@@ -3,7 +3,7 @@ name: "Pull Request Template"
 about: 기본 PR 템플릿입니다.
 title: '[종류] #브랜치번호 - PR에 대한 설명'
 labels: ''
-assignees: ''
+assignees: 'jeongdung-eo, ckkim817'
 
 ---
 
