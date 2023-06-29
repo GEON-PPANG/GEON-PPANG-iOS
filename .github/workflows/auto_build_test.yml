@@ -20,4 +20,4 @@ jobs:
       
     - name: Build test
       run: |
-        xcodebuild build -project GEON-PPANG-iOS/GEON-PPANG-iOS.xcodeproj -scheme GEON-PPANG-iOS -destination "platform=iOS Simulator,name=iPhone 13,OS=latest"
+        xcodebuild build -project ./GEON-PPANG-iOS.xcodeproj -scheme GEON-PPANG-iOS -destination "platform=iOS Simulator,name=iPhone 13,OS=latest"
