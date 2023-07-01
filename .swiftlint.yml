@@ -15,6 +15,5 @@ opt_in_rules:
 - mark
 
 excluded:
-- GEON-PPANG-iOS/AppDelegate.swift
-- GEON-PPANG-iOS/SceneDelegate.swift
+- GEON-PPANG-iOS/Application
 
