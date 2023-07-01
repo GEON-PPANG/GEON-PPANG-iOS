@@ -11,18 +11,18 @@
 		090668FC2A4FF3C600F413FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098F32E02A4200FD0092D09A /* AppDelegate.swift */; };
 		090668FD2A4FF3C600F413FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098F32E22A4200FD0092D09A /* SceneDelegate.swift */; };
 		090668FE2A4FF3C600F413FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098F32E42A4200FD0092D09A /* ViewController.swift */; };
-		098F32E82A4200FD0092D09A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 098F32E62A4200FD0092D09A /* Main.storyboard */; };
+		0961C3642A501EBF0031A822 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0961C3632A501EBF0031A822 /* Strings.swift */; };
 		098F32EA2A4200FE0092D09A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 098F32E92A4200FE0092D09A /* Assets.xcassets */; };
 		098F32ED2A4200FE0092D09A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 098F32EB2A4200FE0092D09A /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		090668F72A4FF1D900F413FA /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		0961C3632A501EBF0031A822 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		098F32DD2A4200FD0092D09A /* GEON-PPANG-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GEON-PPANG-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		098F32E02A4200FD0092D09A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		098F32E22A4200FD0092D09A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		098F32E42A4200FD0092D09A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		098F32E72A4200FD0092D09A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		098F32E92A4200FE0092D09A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		098F32EC2A4200FE0092D09A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		098F32EE2A4200FE0092D09A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -39,6 +39,129 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0961C35F2A501E110031A822 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				098F32E02A4200FD0092D09A /* AppDelegate.swift */,
+				098F32E22A4200FD0092D09A /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		0961C3602A501E9F0031A822 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				0961C3662A501EDD0031A822 /* Network */,
+				0961C3652A501ED40031A822 /* Extensions */,
+				0961C3622A501EB50031A822 /* Literals */,
+				0961C3612A501EAC0031A822 /* Enum */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		0961C3612A501EAC0031A822 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
+		0961C3622A501EB50031A822 /* Literals */ = {
+			isa = PBXGroup;
+			children = (
+				0961C3632A501EBF0031A822 /* Strings.swift */,
+			);
+			path = Literals;
+			sourceTree = "<group>";
+		};
+		0961C3652A501ED40031A822 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0961C3662A501EDD0031A822 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				0961C3692A501EF00031A822 /* Base */,
+				0961C3682A501EE90031A822 /* API */,
+				0961C3672A501EE40031A822 /* Service */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		0961C3672A501EE40031A822 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		0961C3682A501EE90031A822 /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		0961C3692A501EF00031A822 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		0961C36A2A501EF60031A822 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				098F32E42A4200FD0092D09A /* ViewController.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		0961C36B2A501F050031A822 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				0961C36F2A501F4C0031A822 /* Storyboard */,
+				0961C36E2A501F430031A822 /* Colors */,
+				0961C36D2A501F380031A822 /* Fonts */,
+				0961C36C2A501F280031A822 /* Assets */,
+				098F32EE2A4200FE0092D09A /* Info.plist */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		0961C36C2A501F280031A822 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				098F32E92A4200FE0092D09A /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		0961C36D2A501F380031A822 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		0961C36E2A501F430031A822 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
+		0961C36F2A501F4C0031A822 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				098F32EB2A4200FE0092D09A /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
 		098F32D42A4200FD0092D09A = {
 			isa = PBXGroup;
 			children = (
@@ -59,13 +182,10 @@
 		098F32DF2A4200FD0092D09A /* GEON-PPANG-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				098F32E02A4200FD0092D09A /* AppDelegate.swift */,
-				098F32E22A4200FD0092D09A /* SceneDelegate.swift */,
-				098F32E42A4200FD0092D09A /* ViewController.swift */,
-				098F32E62A4200FD0092D09A /* Main.storyboard */,
-				098F32E92A4200FE0092D09A /* Assets.xcassets */,
-				098F32EB2A4200FE0092D09A /* LaunchScreen.storyboard */,
-				098F32EE2A4200FE0092D09A /* Info.plist */,
+				0961C35F2A501E110031A822 /* Application */,
+				0961C3602A501E9F0031A822 /* Global */,
+				0961C36A2A501EF60031A822 /* Presentation */,
+				0961C36B2A501F050031A822 /* Resource */,
 			);
 			path = "GEON-PPANG-iOS";
 			sourceTree = "<group>";
@@ -132,7 +252,6 @@
 				090668F82A4FF1D900F413FA /* .swiftlint.yml in Resources */,
 				098F32ED2A4200FE0092D09A /* LaunchScreen.storyboard in Resources */,
 				098F32EA2A4200FE0092D09A /* Assets.xcassets in Resources */,
-				098F32E82A4200FD0092D09A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +286,7 @@
 			files = (
 				090668FC2A4FF3C600F413FA /* AppDelegate.swift in Sources */,
 				090668FD2A4FF3C600F413FA /* SceneDelegate.swift in Sources */,
+				0961C3642A501EBF0031A822 /* Strings.swift in Sources */,
 				090668FE2A4FF3C600F413FA /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -174,14 +294,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		098F32E62A4200FD0092D09A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				098F32E72A4200FD0092D09A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		098F32EB2A4200FE0092D09A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -319,7 +431,6 @@
 				INFOPLIST_FILE = "GEON-PPANG-iOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -347,7 +458,6 @@
 				INFOPLIST_FILE = "GEON-PPANG-iOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
