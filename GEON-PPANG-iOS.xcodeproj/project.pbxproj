@@ -7,6 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0905561E2A51DB0E00752067 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905561D2A51DB0E00752067 /* UIColor+.swift */; };
+		090556202A51DB2C00752067 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905561F2A51DB2C00752067 /* UIImage+.swift */; };
+		090556222A51DB3300752067 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556212A51DB3300752067 /* UIFont+.swift */; };
+		090556252A51DB9600752067 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556242A51DB9600752067 /* UICollectionView.swift */; };
+		090556272A51DBB100752067 /* NSObject+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556262A51DBB100752067 /* NSObject+.swift */; };
+		090556292A51DBC000752067 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556282A51DBC000752067 /* UIView.swift */; };
+		0905562B2A51DBCE00752067 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905562A2A51DBCE00752067 /* UIStackView+.swift */; };
+		0905562D2A51DBE700752067 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905562C2A51DBE700752067 /* UILabel+.swift */; };
+		090556312A51DDD800752067 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556302A51DDD800752067 /* UITableView.swift */; };
+		090556382A51E16B00752067 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 090556372A51E16B00752067 /* Then */; };
+		0905563B2A51E17800752067 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0905563A2A51E17800752067 /* SnapKit */; };
+		0905563E2A51E2C700752067 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 0905563D2A51E2C700752067 /* FirebaseAnalytics */; };
+		090556402A51E2C700752067 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 0905563F2A51E2C700752067 /* FirebaseCrashlytics */; };
+		090556432A51E6FC00752067 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 090556422A51E6FC00752067 /* Moya */; };
+		090556452A51E79B00752067 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556442A51E79B00752067 /* UITextField+.swift */; };
+		090556472A51E7D900752067 /* UITextView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556462A51E7D900752067 /* UITextView+.swift */; };
+		090556492A51E7EC00752067 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556482A51E7EC00752067 /* UIScreen+.swift */; };
+		0905564B2A51E81D00752067 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905564A2A51E81D00752067 /* UIViewController+.swift */; };
 		090668F82A4FF1D900F413FA /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 090668F72A4FF1D900F413FA /* .swiftlint.yml */; };
 		090668FC2A4FF3C600F413FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098F32E02A4200FD0092D09A /* AppDelegate.swift */; };
 		090668FD2A4FF3C600F413FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098F32E22A4200FD0092D09A /* SceneDelegate.swift */; };
@@ -17,6 +35,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0905561D2A51DB0E00752067 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		0905561F2A51DB2C00752067 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
+		090556212A51DB3300752067 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
+		090556242A51DB9600752067 /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
+		090556262A51DBB100752067 /* NSObject+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+.swift"; sourceTree = "<group>"; };
+		090556282A51DBC000752067 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		0905562A2A51DBCE00752067 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
+		0905562C2A51DBE700752067 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
+		090556302A51DDD800752067 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
+		090556442A51E79B00752067 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
+		090556462A51E7D900752067 /* UITextView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+.swift"; sourceTree = "<group>"; };
+		090556482A51E7EC00752067 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
+		0905564A2A51E81D00752067 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		090668F72A4FF1D900F413FA /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		0961C3632A501EBF0031A822 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		098F32DD2A4200FD0092D09A /* GEON-PPANG-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GEON-PPANG-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -33,12 +64,44 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				090556382A51E16B00752067 /* Then in Frameworks */,
+				090556402A51E2C700752067 /* FirebaseCrashlytics in Frameworks */,
+				0905563B2A51E17800752067 /* SnapKit in Frameworks */,
+				090556432A51E6FC00752067 /* Moya in Frameworks */,
+				0905563E2A51E2C700752067 /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0905561C2A51DAF900752067 /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				0905561D2A51DB0E00752067 /* UIColor+.swift */,
+				0905561F2A51DB2C00752067 /* UIImage+.swift */,
+				090556212A51DB3300752067 /* UIFont+.swift */,
+			);
+			path = Design;
+			sourceTree = "<group>";
+		};
+		090556232A51DB7A00752067 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				090556242A51DB9600752067 /* UICollectionView.swift */,
+				090556302A51DDD800752067 /* UITableView.swift */,
+				090556442A51E79B00752067 /* UITextField+.swift */,
+				090556462A51E7D900752067 /* UITextView+.swift */,
+				090556482A51E7EC00752067 /* UIScreen+.swift */,
+				0905564A2A51E81D00752067 /* UIViewController+.swift */,
+				090556262A51DBB100752067 /* NSObject+.swift */,
+				090556282A51DBC000752067 /* UIView.swift */,
+				0905562A2A51DBCE00752067 /* UIStackView+.swift */,
+				0905562C2A51DBE700752067 /* UILabel+.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		0961C35F2A501E110031A822 /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +140,8 @@
 		0961C3652A501ED40031A822 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				090556232A51DB7A00752067 /* UI */,
+				0905561C2A51DAF900752067 /* Design */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -207,6 +272,13 @@
 			dependencies = (
 			);
 			name = "GEON-PPANG-iOS";
+			packageProductDependencies = (
+				090556372A51E16B00752067 /* Then */,
+				0905563A2A51E17800752067 /* SnapKit */,
+				0905563D2A51E2C700752067 /* FirebaseAnalytics */,
+				0905563F2A51E2C700752067 /* FirebaseCrashlytics */,
+				090556422A51E6FC00752067 /* Moya */,
+			);
 			productName = "GEON-PPANG-iOS";
 			productReference = 098F32DD2A4200FD0092D09A /* GEON-PPANG-iOS.app */;
 			productType = "com.apple.product-type.application";
@@ -235,6 +307,12 @@
 				Base,
 			);
 			mainGroup = 098F32D42A4200FD0092D09A;
+			packageReferences = (
+				090556362A51E16B00752067 /* XCRemoteSwiftPackageReference "Then" */,
+				090556392A51E17800752067 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				0905563C2A51E2C700752067 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				090556412A51E6FC00752067 /* XCRemoteSwiftPackageReference "Moya" */,
+			);
 			productRefGroup = 098F32DE2A4200FD0092D09A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -284,10 +362,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				090556292A51DBC000752067 /* UIView.swift in Sources */,
 				090668FC2A4FF3C600F413FA /* AppDelegate.swift in Sources */,
 				090668FD2A4FF3C600F413FA /* SceneDelegate.swift in Sources */,
+				090556492A51E7EC00752067 /* UIScreen+.swift in Sources */,
 				0961C3642A501EBF0031A822 /* Strings.swift in Sources */,
+				090556222A51DB3300752067 /* UIFont+.swift in Sources */,
+				0905564B2A51E81D00752067 /* UIViewController+.swift in Sources */,
+				090556202A51DB2C00752067 /* UIImage+.swift in Sources */,
+				0905562D2A51DBE700752067 /* UILabel+.swift in Sources */,
 				090668FE2A4FF3C600F413FA /* ViewController.swift in Sources */,
+				090556252A51DB9600752067 /* UICollectionView.swift in Sources */,
+				090556452A51E79B00752067 /* UITextField+.swift in Sources */,
+				090556472A51E7D900752067 /* UITextView+.swift in Sources */,
+				0905562B2A51DBCE00752067 /* UIStackView+.swift in Sources */,
+				090556312A51DDD800752067 /* UITableView.swift in Sources */,
+				090556272A51DBB100752067 /* NSObject+.swift in Sources */,
+				0905561E2A51DB0E00752067 /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,7 +446,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -409,7 +500,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -495,6 +586,69 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		090556362A51E16B00752067 /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		090556392A51E17800752067 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		0905563C2A51E2C700752067 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+		090556412A51E6FC00752067 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		090556372A51E16B00752067 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 090556362A51E16B00752067 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+		0905563A2A51E17800752067 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 090556392A51E17800752067 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		0905563D2A51E2C700752067 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0905563C2A51E2C700752067 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		0905563F2A51E2C700752067 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0905563C2A51E2C700752067 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		090556422A51E6FC00752067 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 090556412A51E6FC00752067 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 098F32D52A4200FD0092D09A /* Project object */;
 }
