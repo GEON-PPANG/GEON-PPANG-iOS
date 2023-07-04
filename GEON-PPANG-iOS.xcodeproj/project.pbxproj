@@ -35,6 +35,7 @@
 		099FC1C62A51F19300116D00 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 099FC1C52A51F19300116D00 /* GoogleService-Info.plist */; };
 		3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */; };
 		3EA2E1E52A53E9DD003516A3 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1E42A53E9DD003516A3 /* BaseTableViewCell.swift */; };
+		3EA2E1E72A53EB0E003516A3 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1E62A53EB0E003516A3 /* BaseCollectionViewCell.swift */; };
 		DF959A612A539FBE00E75774 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */; };
 		DF959A622A539FBE00E75774 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */; };
 /* End PBXBuildFile section */
@@ -65,6 +66,7 @@
 		099FC1C52A51F19300116D00 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		3EA2E1E42A53E9DD003516A3 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		3EA2E1E62A53EB0E003516A3 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -282,6 +284,7 @@
 			children = (
 				3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */,
 				3EA2E1E42A53E9DD003516A3 /* BaseTableViewCell.swift */,
+				3EA2E1E62A53EB0E003516A3 /* BaseCollectionViewCell.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 				090668FD2A4FF3C600F413FA /* SceneDelegate.swift in Sources */,
 				3EA2E1E52A53E9DD003516A3 /* BaseTableViewCell.swift in Sources */,
 				090556492A51E7EC00752067 /* UIScreen+.swift in Sources */,
+				3EA2E1E72A53EB0E003516A3 /* BaseCollectionViewCell.swift in Sources */,
 				0961C3642A501EBF0031A822 /* Strings.swift in Sources */,
 				3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */,
 				090556222A51DB3300752067 /* UIFont+.swift in Sources */,
