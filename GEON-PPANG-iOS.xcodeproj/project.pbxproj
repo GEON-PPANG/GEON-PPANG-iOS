@@ -33,6 +33,8 @@
 		098F32EA2A4200FE0092D09A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 098F32E92A4200FE0092D09A /* Assets.xcassets */; };
 		098F32ED2A4200FE0092D09A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 098F32EB2A4200FE0092D09A /* LaunchScreen.storyboard */; };
 		099FC1C62A51F19300116D00 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 099FC1C52A51F19300116D00 /* GoogleService-Info.plist */; };
+		DF959A612A539FBE00E75774 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */; };
+		DF959A622A539FBE00E75774 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +61,8 @@
 		098F32EC2A4200FE0092D09A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		098F32EE2A4200FE0092D09A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		099FC1C52A51F19300116D00 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
+		DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +215,8 @@
 		0961C36D2A501F380031A822 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */,
+				DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -332,9 +338,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				099FC1C62A51F19300116D00 /* GoogleService-Info.plist in Resources */,
+				DF959A612A539FBE00E75774 /* Pretendard-Bold.otf in Resources */,
 				090668F82A4FF1D900F413FA /* .swiftlint.yml in Resources */,
 				098F32ED2A4200FE0092D09A /* LaunchScreen.storyboard in Resources */,
 				098F32EA2A4200FE0092D09A /* Assets.xcassets in Resources */,
+				DF959A622A539FBE00E75774 /* Pretendard-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,7 +554,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = ZLLGCJ8XUL;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "GEON-PPANG-iOS/Info.plist";
+				INFOPLIST_FILE = "GEON-PPANG-iOS/Resource/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -575,7 +583,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZLLGCJ8XUL;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "GEON-PPANG-iOS/Info.plist";
+				INFOPLIST_FILE = "GEON-PPANG-iOS/Resource/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
