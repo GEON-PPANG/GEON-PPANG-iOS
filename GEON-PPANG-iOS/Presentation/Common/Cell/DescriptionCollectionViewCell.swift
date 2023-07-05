@@ -14,7 +14,7 @@ final class DescriptionCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Property
     
-    var tagText: String
+    var tagText: String = ""
     
     // MARK: - UI Property
     
@@ -22,10 +22,8 @@ final class DescriptionCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Life Cycle
     
-    init(text: String) {
-        self.tagText = text
-        
-        super.init(frame: .zero)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
         setLayout()
         setStyle()
@@ -54,7 +52,7 @@ final class DescriptionCollectionViewCell: UICollectionViewCell {
         }
         
         descriptionLabel.do {
-            $0.text = tagText
+//            $0.text = tagText
             $0.font = .pretendardMedium(13)
             // TODO: asset 추가 시 변경
             $0.textColor = .systemGray

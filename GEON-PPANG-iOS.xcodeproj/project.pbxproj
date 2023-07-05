@@ -35,6 +35,7 @@
 		099FC1C62A51F19300116D00 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 099FC1C52A51F19300116D00 /* GoogleService-Info.plist */; };
 		3E79B19D2A54523D00D36A26 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B19C2A54523D00D36A26 /* BackButton.swift */; };
 		3E79B1A02A5546E700D36A26 /* DescriptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B19F2A5546E700D36A26 /* DescriptionCollectionViewCell.swift */; };
+		3E79B1A32A556E9900D36A26 /* DynamicWidthFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1A22A556E9900D36A26 /* DynamicWidthFlowLayout.swift */; };
 		3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */; };
 		3EA2E1E92A541AEB003516A3 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1E82A541AEB003516A3 /* CustomNavigationBar.swift */; };
 		3EA2E1EB2A542151003516A3 /* SizeLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1EA2A542151003516A3 /* SizeLiteral.swift */; };
@@ -68,6 +69,7 @@
 		099FC1C52A51F19300116D00 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3E79B19C2A54523D00D36A26 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		3E79B19F2A5546E700D36A26 /* DescriptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionCollectionViewCell.swift; sourceTree = "<group>"; };
+		3E79B1A22A556E9900D36A26 /* DynamicWidthFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicWidthFlowLayout.swift; sourceTree = "<group>"; };
 		3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		3EA2E1E82A541AEB003516A3 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		3EA2E1EA2A542151003516A3 /* SizeLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeLiteral.swift; sourceTree = "<group>"; };
@@ -292,9 +294,18 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		3E79B1A12A556D8B00D36A26 /* FlowLayout */ = {
+			isa = PBXGroup;
+			children = (
+				3E79B1A22A556E9900D36A26 /* DynamicWidthFlowLayout.swift */,
+			);
+			path = FlowLayout;
+			sourceTree = "<group>";
+		};
 		3EA2E1E02A53E864003516A3 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				3E79B1A12A556D8B00D36A26 /* FlowLayout */,
 				3E79B19E2A55468500D36A26 /* Cell */,
 				3E79B19B2A54523400D36A26 /* Button */,
 				3EA2E1E12A53E880003516A3 /* Base */,
@@ -464,6 +475,7 @@
 				090556272A51DBB100752067 /* NSObject+.swift in Sources */,
 				0905561E2A51DB0E00752067 /* UIColor+.swift in Sources */,
 				3E79B1A02A5546E700D36A26 /* DescriptionCollectionViewCell.swift in Sources */,
+				3E79B1A32A556E9900D36A26 /* DynamicWidthFlowLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
