@@ -11,6 +11,7 @@ final class BackButton: UIButton {
     
     // MARK: - UI Property
     
+    // TODO: asset 추가되면 image 바꾸기
     private let leftChevron = UIImageView(image: UIImage(systemName: "chevron.left"))
     
     // MARK: - Init
@@ -32,7 +33,7 @@ final class BackButton: UIButton {
     private func setLayout() {
         addSubview(leftChevron)
         leftChevron.snp.makeConstraints {
-            $0.leading.centerY.equalToSuperview()
+            $0.center.equalToSuperview()
             $0.width.equalTo(10)
         }
     }

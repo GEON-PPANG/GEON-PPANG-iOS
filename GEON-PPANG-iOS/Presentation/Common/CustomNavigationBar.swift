@@ -15,8 +15,8 @@ final class CustomNavigationBar: UIView {
     // MARK: - Property
     
     enum Size {
-        static let backButtonSize = 24
-        static let mapButtonSize = 34
+        static let buttonSize = 48
+        static let mapImageSize = 37
     }
     
     // MARK: - UI Property
@@ -47,9 +47,9 @@ final class CustomNavigationBar: UIView {
     private func setLayout() {
         addSubview(backButton)
         backButton.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(24)
-            $0.bottom.equalToSuperview().inset(16)
-            $0.width.height.equalTo(Size.backButtonSize)
+            $0.leading.equalToSuperview().inset(12)
+            $0.bottom.equalToSuperview().inset(10)
+            $0.width.height.equalTo(Size.buttonSize)
         }
     }
     
@@ -102,15 +102,16 @@ final class CustomNavigationBar: UIView {
     func configureRightMapButton() {
         addSubview(rightMapButton)
         rightMapButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(24)
-            $0.width.height.equalTo(Size.mapButtonSize)
+            $0.trailing.equalToSuperview().inset(18)
             $0.centerY.equalTo(backButton)
+            $0.width.height.equalTo(Size.buttonSize)
         }
         
         let mapImageView = UIImageView(image: UIImage(systemName: "map.circle.fill"))
         rightMapButton.addSubview(mapImageView)
         mapImageView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.leading.top.equalToSuperview().inset(5)
+            $0.width.height.equalTo(Size.mapImageSize)
         }
         mapImageView.do {
             // TODO: asset 추가되면 color 변경
