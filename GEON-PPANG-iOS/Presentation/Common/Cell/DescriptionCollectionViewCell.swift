@@ -52,7 +52,6 @@ final class DescriptionCollectionViewCell: UICollectionViewCell {
         }
         
         descriptionLabel.do {
-//            $0.text = tagText
             $0.font = .pretendardMedium(13)
             // TODO: asset 추가 시 변경
             $0.textColor = .systemGray
