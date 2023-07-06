@@ -12,22 +12,18 @@ import Then
 
 final class RegionStackView: UIView {
     
-    // MARK: - Property
-    
-    
-    
     // MARK: - UI Property
     
     private let regionStackView = UIStackView()
-    private let regionLabel = UILabel()
     
     // MARK: - Life Cycle
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(regions: [String]) {
+        super.init(frame: .zero)
         
         setLayout()
         setUI()
+        setStackView(with: regions)
     }
     
     @available(*, unavailable)
@@ -37,21 +33,24 @@ final class RegionStackView: UIView {
     
     // MARK: - Setting
     
-    private func setLayout(){
-        
+    private func setLayout() {
+        addSubview(regionStackView)
+        regionStackView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
     
     private func setUI() {
-        
+        regionStackView.do {
+            $0.axis = .horizontal
+            $0.spacing = 4
+        }
     }
     
-    // MARK: - Action Helper
-    
-    
-    
-    // MARK: - Custom Method
-    
-    
-    
+    private func setStackView(with regions: [String]) {
+        regions.forEach { region in
+            regionStackView.addArrangedSubview(RegionChip(name: region))
+        }
+    }
     
 }
