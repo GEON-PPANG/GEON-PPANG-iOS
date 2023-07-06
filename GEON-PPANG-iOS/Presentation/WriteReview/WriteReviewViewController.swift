@@ -19,7 +19,7 @@ final class WriteReviewViewController: BaseViewController {
     // MARK: - UI Property
     
     // TODO: navigationBar 추가
-    
+    private lazy var regionStackView = region
     
     // MARK: - Life Cycle
     
