@@ -18,12 +18,11 @@ final class RegionStackView: UIView {
     
     // MARK: - Life Cycle
     
-    init(regions: [String]) {
-        super.init(frame: .zero)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
         setLayout()
         setUI()
-        setStackView(with: regions)
     }
     
     @available(*, unavailable)
@@ -47,9 +46,11 @@ final class RegionStackView: UIView {
         }
     }
     
-    private func setStackView(with regions: [String]) {
+    // MARK: - Custom Method
+    
+    func configureStackView(with regions: [String]) {
         regions.forEach { region in
-            regionStackView.addArrangedSubview(RegionChip(name: region))
+            regionStackView.addArrangedSubview(RegionChip(name: region, isBlack: true))
         }
     }
     

@@ -15,6 +15,7 @@ final class RegionChip: UIView {
     // MARK: - Property
     
     private let regionName: String
+    private let isBlack: Bool
     
     // MARK: - UI Property
     
@@ -22,8 +23,9 @@ final class RegionChip: UIView {
     
     // MARK: - Life Cycle
     
-    init(name: String) {
+    init(name: String, isBlack: Bool) {
         self.regionName = name
+        self.isBlack = isBlack
         
         super.init(frame: .zero)
         
@@ -48,23 +50,15 @@ final class RegionChip: UIView {
     
     private func setUI() {
         self.do {
-            $0.backgroundColor = .gbbMain3
+            $0.backgroundColor = isBlack ? .black : .gbbMain3
             $0.makeCornerRound(radius: 15)
         }
         
         regionNameLabel.do {
             $0.text = regionName
             $0.font = .captionM1
-            $0.textColor = .gbbGray100
+            $0.textColor = isBlack ? .gbbGray200 : .gbbGray100
         }
     }
-    
-    // MARK: - Action Helper
-    
-    
-    
-    // MARK: - Custom Method
-    
-    
     
 }

@@ -19,15 +19,17 @@ final class WriteReviewViewController: BaseViewController {
     // MARK: - UI Property
     
     // TODO: navigationBar 추가
-    private lazy var regionStackView = RegionStackView(regions: ["tset"])
+    private let bakeryOverviewView = BakeryOverviewView(bakeryImage: .actions, regions: ["tset", "efqerqf"])
+    
     
     // MARK: - Setting
     
     override func setLayout() {
-        view.addSubview(regionStackView)
-        regionStackView.snp.makeConstraints {
-            $0.leading.equalToSuperview()
-            $0.top.equalTo(view.safeAreaLayoutGuide)
+        view.addSubview(bakeryOverviewView)
+        bakeryOverviewView.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview()
+            $0.top.equalToSuperview()
+            $0.height.equalTo(125)
         }
     }
     

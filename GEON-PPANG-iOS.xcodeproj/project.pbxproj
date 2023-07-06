@@ -32,13 +32,14 @@
 		098F32EA2A4200FE0092D09A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 098F32E92A4200FE0092D09A /* Assets.xcassets */; };
 		098F32ED2A4200FE0092D09A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 098F32EB2A4200FE0092D09A /* LaunchScreen.storyboard */; };
 		099FC1C62A51F19300116D00 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 099FC1C52A51F19300116D00 /* GoogleService-Info.plist */; };
-		3E79B1A62A566F6400D36A26 /* WriteReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1A52A566F6400D36A26 /* WriteReviewViewController.swift */; };
-		3E79B1A92A56739F00D36A26 /* RegionStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1A82A56739F00D36A26 /* RegionStackView.swift */; };
-		3E79B1AC2A5677C800D36A26 /* RegionChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1AB2A5677C800D36A26 /* RegionChip.swift */; };
 		09CA3EFC2A569E4A0063897A /* URLConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CA3EFB2A569E4A0063897A /* URLConstant.swift */; };
 		09CA3F062A569EB30063897A /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CA3F052A569EB30063897A /* API.swift */; };
 		09CA3F082A569EBA0063897A /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CA3F072A569EBA0063897A /* Service.swift */; };
 		09CA3F0A2A569EC50063897A /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CA3F092A569EC50063897A /* Enum.swift */; };
+		3E79B1A62A566F6400D36A26 /* WriteReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1A52A566F6400D36A26 /* WriteReviewViewController.swift */; };
+		3E79B1A92A56739F00D36A26 /* RegionStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1A82A56739F00D36A26 /* RegionStackView.swift */; };
+		3E79B1AC2A5677C800D36A26 /* RegionChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1AB2A5677C800D36A26 /* RegionChip.swift */; };
+		3E79B1AE2A56F14A00D36A26 /* BakeryOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1AD2A56F14A00D36A26 /* BakeryOverviewView.swift */; };
 		3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */; };
 		DF959A612A539FBE00E75774 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */; };
 		DF959A622A539FBE00E75774 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */; };
@@ -69,13 +70,14 @@
 		098F32EC2A4200FE0092D09A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		098F32EE2A4200FE0092D09A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		099FC1C52A51F19300116D00 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		3E79B1A52A566F6400D36A26 /* WriteReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewViewController.swift; sourceTree = "<group>"; };
-		3E79B1A82A56739F00D36A26 /* RegionStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionStackView.swift; sourceTree = "<group>"; };
-		3E79B1AB2A5677C800D36A26 /* RegionChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionChip.swift; sourceTree = "<group>"; };
 		09CA3EFB2A569E4A0063897A /* URLConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConstant.swift; sourceTree = "<group>"; };
 		09CA3F052A569EB30063897A /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		09CA3F072A569EBA0063897A /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		09CA3F092A569EC50063897A /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
+		3E79B1A52A566F6400D36A26 /* WriteReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewViewController.swift; sourceTree = "<group>"; };
+		3E79B1A82A56739F00D36A26 /* RegionStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionStackView.swift; sourceTree = "<group>"; };
+		3E79B1AB2A5677C800D36A26 /* RegionChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionChip.swift; sourceTree = "<group>"; };
+		3E79B1AD2A56F14A00D36A26 /* BakeryOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryOverviewView.swift; sourceTree = "<group>"; };
 		3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				3E79B1A52A566F6400D36A26 /* WriteReviewViewController.swift */,
+				3E79B1AD2A56F14A00D36A26 /* BakeryOverviewView.swift */,
 			);
 			path = WriteReview;
 			sourceTree = "<group>";
@@ -456,6 +459,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E79B1AC2A5677C800D36A26 /* RegionChip.swift in Sources */,
+				3E79B1AE2A56F14A00D36A26 /* BakeryOverviewView.swift in Sources */,
 				3E79B1A62A566F6400D36A26 /* WriteReviewViewController.swift in Sources */,
 				090556292A51DBC000752067 /* UIView.swift in Sources */,
 				090668FC2A4FF3C600F413FA /* AppDelegate.swift in Sources */,
