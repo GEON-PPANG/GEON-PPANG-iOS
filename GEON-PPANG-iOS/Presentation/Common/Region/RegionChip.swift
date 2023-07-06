@@ -41,23 +41,21 @@ final class RegionChip: UIView {
     private func setLayout() {
         addSubview(regionNameLabel)
         regionNameLabel.snp.makeConstraints {
-            $0.horizontalEdges.equalTo(8)
-            $0.verticalEdges.equalTo(6)
+            $0.horizontalEdges.equalToSuperview().inset(6)
+            $0.verticalEdges.equalToSuperview().inset(8)
         }
     }
     
     private func setUI() {
         self.do {
-            // TODO: asset 추가 시 변경
-            $0.backgroundColor = .green
-            $0.makeCornerRound(radius: 20)
+            $0.backgroundColor = .gbbMain3
+            $0.makeCornerRound(radius: 15)
         }
         
         regionNameLabel.do {
-            $0.text = ""
+            $0.text = regionName
             $0.font = .captionM1
-            // TODO: asset 추가 시 변경
-            $0.textColor = .white
+            $0.textColor = .gbbGray2
         }
     }
     

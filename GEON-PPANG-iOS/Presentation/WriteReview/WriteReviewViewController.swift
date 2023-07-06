@@ -19,27 +19,16 @@ final class WriteReviewViewController: BaseViewController {
     // MARK: - UI Property
     
     // TODO: navigationBar 추가
-    private lazy var regionStackView = region
-    
-    // MARK: - Life Cycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        
-    }
+    private lazy var regionStackView = RegionStackView(regions: ["tset"])
     
     // MARK: - Setting
     
-    
-    
-    // MARK: - Action Helper
-    
-    
-    
-    // MARK: - Custom Method
-    
-    
-    
+    override func setLayout() {
+        view.addSubview(regionStackView)
+        regionStackView.snp.makeConstraints {
+            $0.leading.equalToSuperview()
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+        }
+    }
     
 }
