@@ -15,7 +15,7 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
         
         setLayout()
-        setStyle()
+        setUI()
         setDelegate()
     }
     
@@ -25,7 +25,7 @@ class BaseViewController: UIViewController {
         // override to use
     }
     
-    func setStyle() {
+    func setUI() {
         // override to use
     }
     
