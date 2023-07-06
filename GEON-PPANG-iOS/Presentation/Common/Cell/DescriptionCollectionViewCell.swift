@@ -12,10 +12,6 @@ import Then
 
 final class DescriptionCollectionViewCell: UICollectionViewCell {
     
-    // MARK: - Property
-    
-    var tagText: String = ""
-    
     // MARK: - UI Property
     
     private let descriptionLabel = UILabel()
