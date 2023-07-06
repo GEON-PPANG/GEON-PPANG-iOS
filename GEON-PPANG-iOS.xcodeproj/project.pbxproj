@@ -41,6 +41,8 @@
 		3E79B1AC2A5677C800D36A26 /* RegionChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1AB2A5677C800D36A26 /* RegionChip.swift */; };
 		3E79B1AE2A56F14A00D36A26 /* BakeryOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1AD2A56F14A00D36A26 /* BakeryOverviewView.swift */; };
 		3E79B1B02A571B4B00D36A26 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1AF2A571B4B00D36A26 /* LineView.swift */; };
+		3E79B1B22A571E1F00D36A26 /* OptionsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1B12A571E1F00D36A26 /* OptionsCollectionView.swift */; };
+		3E79B1B52A571E7100D36A26 /* OptionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1B42A571E7100D36A26 /* OptionsCollectionViewCell.swift */; };
 		3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */; };
 		DF959A612A539FBE00E75774 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */; };
 		DF959A622A539FBE00E75774 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */; };
@@ -80,6 +82,8 @@
 		3E79B1AB2A5677C800D36A26 /* RegionChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionChip.swift; sourceTree = "<group>"; };
 		3E79B1AD2A56F14A00D36A26 /* BakeryOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryOverviewView.swift; sourceTree = "<group>"; };
 		3E79B1AF2A571B4B00D36A26 /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
+		3E79B1B12A571E1F00D36A26 /* OptionsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsCollectionView.swift; sourceTree = "<group>"; };
+		3E79B1B42A571E7100D36A26 /* OptionsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsCollectionViewCell.swift; sourceTree = "<group>"; };
 		3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
@@ -280,6 +284,7 @@
 		3E79B1A42A566F0700D36A26 /* WriteReview */ = {
 			isa = PBXGroup;
 			children = (
+				3E79B1B32A571E2700D36A26 /* OptionsCollection */,
 				3E79B1A52A566F6400D36A26 /* WriteReviewViewController.swift */,
 				3E79B1AD2A56F14A00D36A26 /* BakeryOverviewView.swift */,
 			);
@@ -293,6 +298,15 @@
 				3E79B1AB2A5677C800D36A26 /* RegionChip.swift */,
 			);
 			path = Region;
+			sourceTree = "<group>";
+		};
+		3E79B1B32A571E2700D36A26 /* OptionsCollection */ = {
+			isa = PBXGroup;
+			children = (
+				3E79B1B12A571E1F00D36A26 /* OptionsCollectionView.swift */,
+				3E79B1B42A571E7100D36A26 /* OptionsCollectionViewCell.swift */,
+			);
+			path = OptionsCollection;
 			sourceTree = "<group>";
 		};
 		3EA2E1E02A53E864003516A3 /* Common */ = {
@@ -486,6 +500,8 @@
 				DF959A6E2A568C9400E75774 /* UIColor+.swift in Sources */,
 				090556472A51E7D900752067 /* UITextView+.swift in Sources */,
 				0905562B2A51DBCE00752067 /* UIStackView+.swift in Sources */,
+				3E79B1B22A571E1F00D36A26 /* OptionsCollectionView.swift in Sources */,
+				3E79B1B52A571E7100D36A26 /* OptionsCollectionViewCell.swift in Sources */,
 				090556312A51DDD800752067 /* UITableView.swift in Sources */,
 				090556272A51DBB100752067 /* NSObject+.swift in Sources */,
 			);
