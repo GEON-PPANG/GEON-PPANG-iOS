@@ -15,7 +15,7 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
         
         setLayout()
-        setLayout()
+        setStyle()
         setDelegate()
     }
     
