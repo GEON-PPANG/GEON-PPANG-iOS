@@ -33,6 +33,8 @@
 		098F32EA2A4200FE0092D09A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 098F32E92A4200FE0092D09A /* Assets.xcassets */; };
 		098F32ED2A4200FE0092D09A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 098F32EB2A4200FE0092D09A /* LaunchScreen.storyboard */; };
 		099FC1C62A51F19300116D00 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 099FC1C52A51F19300116D00 /* GoogleService-Info.plist */; };
+		09CA3EF52A5673730063897A /* Buildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CA3EF42A5673730063897A /* Buildable.swift */; };
+		09CA3EF82A5676AA0063897A /* CommonButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CA3EF72A5676AA0063897A /* CommonButton.swift */; };
 		3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */; };
 		DF959A612A539FBE00E75774 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */; };
 		DF959A622A539FBE00E75774 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */; };
@@ -62,6 +64,8 @@
 		098F32EC2A4200FE0092D09A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		098F32EE2A4200FE0092D09A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		099FC1C52A51F19300116D00 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		09CA3EF42A5673730063897A /* Buildable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buildable.swift; sourceTree = "<group>"; };
+		09CA3EF72A5676AA0063897A /* CommonButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonButton.swift; sourceTree = "<group>"; };
 		3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
@@ -122,6 +126,7 @@
 		0961C3602A501E9F0031A822 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				09CA3EF62A56738A0063897A /* Protocol */,
 				0961C3662A501EDD0031A822 /* Network */,
 				0961C3652A501ED40031A822 /* Extensions */,
 				0961C3622A501EB50031A822 /* Literals */,
@@ -267,9 +272,26 @@
 			path = "GEON-PPANG-iOS";
 			sourceTree = "<group>";
 		};
+		09CA3EF32A566F380063897A /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				09CA3EF72A5676AA0063897A /* CommonButton.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
+		09CA3EF62A56738A0063897A /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				09CA3EF42A5673730063897A /* Buildable.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		3EA2E1E02A53E864003516A3 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				09CA3EF32A566F380063897A /* Button */,
 				3EA2E1E12A53E880003516A3 /* Base */,
 			);
 			path = Common;
@@ -416,9 +438,11 @@
 			files = (
 				090556292A51DBC000752067 /* UIView.swift in Sources */,
 				090668FC2A4FF3C600F413FA /* AppDelegate.swift in Sources */,
+				09CA3EF52A5673730063897A /* Buildable.swift in Sources */,
 				090668FD2A4FF3C600F413FA /* SceneDelegate.swift in Sources */,
 				090556492A51E7EC00752067 /* UIScreen+.swift in Sources */,
 				0961C3642A501EBF0031A822 /* Strings.swift in Sources */,
+				09CA3EF82A5676AA0063897A /* CommonButton.swift in Sources */,
 				3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */,
 				090556222A51DB3300752067 /* UIFont+.swift in Sources */,
 				0905564B2A51E81D00752067 /* UIViewController+.swift in Sources */,
