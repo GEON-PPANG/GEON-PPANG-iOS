@@ -55,7 +55,7 @@ final class RegionChip: UIView {
         regionNameLabel.do {
             $0.text = regionName
             $0.font = .captionM1
-            $0.textColor = .gbbGray2
+            $0.textColor = .gbbGray100
         }
     }
     
