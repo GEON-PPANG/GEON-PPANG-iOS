@@ -33,6 +33,7 @@
 		098F32EA2A4200FE0092D09A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 098F32E92A4200FE0092D09A /* Assets.xcassets */; };
 		098F32ED2A4200FE0092D09A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 098F32EB2A4200FE0092D09A /* LaunchScreen.storyboard */; };
 		099FC1C62A51F19300116D00 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 099FC1C52A51F19300116D00 /* GoogleService-Info.plist */; };
+		3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */; };
 		DF959A612A539FBE00E75774 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */; };
 		DF959A622A539FBE00E75774 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */; };
 /* End PBXBuildFile section */
@@ -61,6 +62,7 @@
 		098F32EC2A4200FE0092D09A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		098F32EE2A4200FE0092D09A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		099FC1C52A51F19300116D00 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -186,6 +188,7 @@
 		0961C36A2A501EF60031A822 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				3EA2E1E02A53E864003516A3 /* Common */,
 				098F32E42A4200FD0092D09A /* ViewController.swift */,
 			);
 			path = Presentation;
@@ -262,6 +265,22 @@
 				0961C36B2A501F050031A822 /* Resource */,
 			);
 			path = "GEON-PPANG-iOS";
+			sourceTree = "<group>";
+		};
+		3EA2E1E02A53E864003516A3 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				3EA2E1E12A53E880003516A3 /* Base */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		3EA2E1E12A53E880003516A3 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -400,6 +419,7 @@
 				090668FD2A4FF3C600F413FA /* SceneDelegate.swift in Sources */,
 				090556492A51E7EC00752067 /* UIScreen+.swift in Sources */,
 				0961C3642A501EBF0031A822 /* Strings.swift in Sources */,
+				3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */,
 				090556222A51DB3300752067 /* UIFont+.swift in Sources */,
 				0905564B2A51E81D00752067 /* UIViewController+.swift in Sources */,
 				090556202A51DB2C00752067 /* UIImage+.swift in Sources */,
