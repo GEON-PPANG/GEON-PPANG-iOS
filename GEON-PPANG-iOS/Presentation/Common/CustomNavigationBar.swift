@@ -49,14 +49,14 @@ final class CustomNavigationBar: UIView {
         backButton.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(12)
             $0.bottom.equalToSuperview().inset(10)
-            $0.width.height.equalTo(Size.buttonSize)
+            $0.size.equalTo(Size.buttonSize)
         }
     }
     
     private func setStyle() {
         backButton.do {
-            // TODO: asset 추가되면 image, color 변경
-            $0.tintColor = .black
+            // TODO: asset 추가되면 image 변경
+            $0.tintColor = .gbbGray700
         }
     }
     
