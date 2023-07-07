@@ -44,7 +44,7 @@ final class BakeryOverviewView: UIView {
     
     // MARK: - Setting
     
-    func setLayout() {
+    private func setLayout() {
         addSubview(bakeryImageView)
         bakeryImageView.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(24)
@@ -67,7 +67,7 @@ final class BakeryOverviewView: UIView {
         }
     }
     
-    func setUI() {
+    private func setUI() {
         bakeryImageView.do {
             // TODO: image 추가 시 적용
             $0.makeCornerRound(radius: 5)
