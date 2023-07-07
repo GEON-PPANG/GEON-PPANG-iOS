@@ -19,11 +19,6 @@ final class OptionsCollectionView: UICollectionView {
         case recommendation
     }
     
-    // MARK: - UI Property
-    
-    // TODO: DynamicCellWidthFlowLayout 로 변경
-    private let flowLayout = UICollectionViewFlowLayout()
-    
     // MARK: - Life Cycle
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
@@ -42,18 +37,10 @@ final class OptionsCollectionView: UICollectionView {
     private func setUI() {
         self.do {
             $0.register(cell: OptionsCollectionViewCell.self)
+            $0.register(header: OptionsCollectionViewHeader.self)
             $0.isScrollEnabled = false
+            $0.backgroundColor = .clear
         }
-        flowLayout.do { $0.estimatedItemSize = UICollectionViewFlowLayout.automaticSize }
     }
-    
-    // MARK: - Action Helper
-    
-    
-    
-    // MARK: - Custom Method
-    
-    
-    
     
 }

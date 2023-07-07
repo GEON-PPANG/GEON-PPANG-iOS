@@ -20,10 +20,6 @@ final class OptionsCollectionViewCell: UICollectionViewCell {
         case disabled
     }
     
-    var status: CellStatus = .deselected
-    
-    var cellText: String = ""
-    
     private var cellBorderColor: UIColor {
         switch status {
         case .deselected: return .gbbGray400!
@@ -40,9 +36,23 @@ final class OptionsCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    private var status: CellStatus = .deselected
+    private var cellText: String = ""
+    
+    override var isSelected: Bool {
+        didSet {
+            toggleCellSelection()
+        }
+    }
+    var isEnabled: Bool = false {
+        didSet {
+            toggleCellInteraction()
+        }
+    }
+    
     // MARK: - UI Property
     
-    private let cellLabel = UILabel()
+    let cellLabel = UILabel()
     
     // MARK: - Life Cycle
     
@@ -69,8 +79,15 @@ final class OptionsCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUI() {
-        self.do { $0.makeCornerRound(radius: 12.5) }
-        cellLabel.do { $0.text = cellText }
+        self.do {
+            $0.makeCornerRound(radius: 16)
+        }
+        
+        cellLabel.do {
+            $0.text = cellText
+            $0.font = .captionB1
+            $0.textAlignment = .center
+        }
         
         configureCell(to: status)
     }
@@ -83,8 +100,19 @@ final class OptionsCollectionViewCell: UICollectionViewCell {
         cellLabel.do { $0.textColor = cellTextColor }
     }
     
+    func configureCellText(to text: String) {
+        self.cellLabel.text = text
+    }
+    
+    func toggleCellSelection() {
+        self.status = isSelected ? .selected : .deselected
+        configureCell(to: self.status)
+    }
+    
     func toggleCellInteraction() {
         self.isUserInteractionEnabled.toggle()
+        self.status = isEnabled ? .deselected : .disabled
+        configureCell(to: status)
     }
     
 }
