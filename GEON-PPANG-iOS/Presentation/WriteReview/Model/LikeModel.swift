@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+struct LikeModel {
+    let isLike: Bool
+}
