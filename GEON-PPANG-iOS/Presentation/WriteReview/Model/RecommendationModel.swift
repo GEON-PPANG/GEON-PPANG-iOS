@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct RecommendationModel {
+    let keyword: KeywordList.Keyword
+    let isSelected: Bool
+}
