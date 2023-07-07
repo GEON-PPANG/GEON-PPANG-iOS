@@ -20,13 +20,9 @@ final class OptionsCollectionViewCell: UICollectionViewCell {
         case disabled
     }
     
-    var status: CellStatus {
-        didSet {
-            configureCell()
-        }
-    }
+    var status: CellStatus = .deselected
     
-    var cellText: String
+    var cellText: String = ""
     
     private var cellBorderColor: UIColor {
         switch status {
@@ -50,11 +46,8 @@ final class OptionsCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Life Cycle
     
-    init(status: CellStatus, text: String) {
-        self.status = status
-        self.cellText = text
-        
-        super.init(frame: .zero)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
         setLayout()
         setUI()
@@ -79,12 +72,13 @@ final class OptionsCollectionViewCell: UICollectionViewCell {
         self.do { $0.makeCornerRound(radius: 12.5) }
         cellLabel.do { $0.text = cellText }
         
-        configureCell()
+        configureCell(to: status)
     }
     
     // MARK: - Custom Method
     
-    private func configureCell() {
+    func configureCell(to status: CellStatus) {
+        self.status = status
         self.do { $0.makeBorder(width: 1.5, color: cellBorderColor) }
         cellLabel.do { $0.textColor = cellTextColor }
     }
