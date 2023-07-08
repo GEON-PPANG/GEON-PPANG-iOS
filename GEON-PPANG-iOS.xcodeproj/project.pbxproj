@@ -37,6 +37,8 @@
 		09B13F502A593CB800C0C723 /* BakeryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B13F4F2A593CB800C0C723 /* BakeryListViewController.swift */; };
 		09B13F542A593CD300C0C723 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B13F532A593CD300C0C723 /* MyPageViewController.swift */; };
 		09B13F562A59410C00C0C723 /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B13F552A59410C00C0C723 /* CALayer+.swift */; };
+		09B13F582A59433500C0C723 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B13F572A59433500C0C723 /* TabBarItem.swift */; };
+		09B13F5A2A5946B700C0C723 /* TabBar+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B13F592A5946B700C0C723 /* TabBar+.swift */; };
 		09CA3EFC2A569E4A0063897A /* URLConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CA3EFB2A569E4A0063897A /* URLConstant.swift */; };
 		09CA3F062A569EB30063897A /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CA3F052A569EB30063897A /* API.swift */; };
 		09CA3F082A569EBA0063897A /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CA3F072A569EBA0063897A /* Service.swift */; };
@@ -76,6 +78,8 @@
 		09B13F4F2A593CB800C0C723 /* BakeryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryListViewController.swift; sourceTree = "<group>"; };
 		09B13F532A593CD300C0C723 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		09B13F552A59410C00C0C723 /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
+		09B13F572A59433500C0C723 /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
+		09B13F592A5946B700C0C723 /* TabBar+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabBar+.swift"; sourceTree = "<group>"; };
 		09CA3EFB2A569E4A0063897A /* URLConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConstant.swift; sourceTree = "<group>"; };
 		09CA3F052A569EB30063897A /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		09CA3F072A569EBA0063897A /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
@@ -127,6 +131,7 @@
 				0905562A2A51DBCE00752067 /* UIStackView+.swift */,
 				0905562C2A51DBE700752067 /* UILabel+.swift */,
 				09B13F552A59410C00C0C723 /* CALayer+.swift */,
+				09B13F592A5946B700C0C723 /* TabBar+.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -285,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				09B13F472A5931DC00C0C723 /* TabBarController.swift */,
+				09B13F572A59433500C0C723 /* TabBarItem.swift */,
 			);
 			path = Tabbar;
 			sourceTree = "<group>";
@@ -504,6 +510,7 @@
 				090556292A51DBC000752067 /* UIView.swift in Sources */,
 				090668FC2A4FF3C600F413FA /* AppDelegate.swift in Sources */,
 				090668FD2A4FF3C600F413FA /* SceneDelegate.swift in Sources */,
+				09B13F5A2A5946B700C0C723 /* TabBar+.swift in Sources */,
 				090556492A51E7EC00752067 /* UIScreen+.swift in Sources */,
 				09CA3F0A2A569EC50063897A /* Enum.swift in Sources */,
 				09B13F482A5931DC00C0C723 /* TabBarController.swift in Sources */,
@@ -519,6 +526,7 @@
 				0905562D2A51DBE700752067 /* UILabel+.swift in Sources */,
 				090668FE2A4FF3C600F413FA /* ViewController.swift in Sources */,
 				090556252A51DB9600752067 /* UICollectionView.swift in Sources */,
+				09B13F582A59433500C0C723 /* TabBarItem.swift in Sources */,
 				09B13F502A593CB800C0C723 /* BakeryListViewController.swift in Sources */,
 				090556452A51E79B00752067 /* UITextField+.swift in Sources */,
 				09CA3F062A569EB30063897A /* API.swift in Sources */,

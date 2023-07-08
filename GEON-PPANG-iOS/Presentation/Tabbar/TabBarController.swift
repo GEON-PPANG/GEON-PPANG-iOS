@@ -25,6 +25,7 @@ final class TabBarController: UITabBarController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
         setTabBarHeight()
     }
     
@@ -36,14 +37,18 @@ final class TabBarController: UITabBarController {
                 MyPageViewController()
                 ]
         
+        TabBarItemType.allCases.forEach {
+            tabs[$0.rawValue].tabBarItem = $0.setTabBarItem()
+            tabs[$0.rawValue].tabBarItem.tag = $0.rawValue
+        }
         setViewControllers(tabs, animated: false)
     }
     
     private func setTabBarUI() {
-        tabBar.backgroundColor = .white
+        tabBar.setUpUITabBar()
+        tabBar.layer.applyShadow()
         tabBar.layer.cornerRadius = convertByHeightRatio(12)
         tabBar.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner)
-        tabBar.itemPositioning = .centered
     }
     
     private func setTabBarHeight() {
