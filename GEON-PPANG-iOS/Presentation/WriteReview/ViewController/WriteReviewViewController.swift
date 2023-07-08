@@ -14,24 +14,35 @@ final class WriteReviewViewController: BaseViewController {
     
     // MARK: - Property
     
-    
+    private var likeCollectionViewHeightConstraint: NSLayoutConstraint!
     
     // MARK: - UI Property
     
+    // TODO: ScrollView 추가
     // TODO: navigationBar 추가
     // TODO: bakeryImage 추가
     private let bakeryOverviewView = BakeryOverviewView(bakeryImage: .actions, regions: ["tset", "efqerqf"])
     private let lineView = LineView()
-    private let flowLayout = OptionsCollectionViewFlowLayout()
-    private lazy var likeCollectionView = OptionsCollectionView(frame: .zero, collectionViewLayout: flowLayout)
-    private lazy var optionsCollectionView = OptionsCollectionView(frame: .zero, collectionViewLayout: flowLayout)
+    private let likeCollectionViewFlowLayout = OptionsCollectionViewFlowLayout()
+    private let optionsCollectionViewFlowLayout = OptionsCollectionViewFlowLayout()
+    private lazy var likeCollectionView = OptionsCollectionView(frame: .zero, collectionViewLayout: likeCollectionViewFlowLayout)
+    private lazy var optionsCollectionView = OptionsCollectionView(frame: .zero, collectionViewLayout: optionsCollectionViewFlowLayout)
+    private let reviewDetailTextView = ReviewDetailTextView()
     
     // MARK: - life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // TODO: baseVC 에 숨기기
         self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        updateCollectionViewConstraint(of: likeCollectionView)
+        updateCollectionViewConstraint(of: optionsCollectionView)
     }
     
     // MARK: - Setting
@@ -62,12 +73,22 @@ final class WriteReviewViewController: BaseViewController {
         optionsCollectionView.snp.makeConstraints {
             $0.top.equalTo(likeCollectionView.snp.bottom).offset(28)
             $0.horizontalEdges.equalToSuperview().inset(24)
-            $0.bottom.equalToSuperview()
+            $0.height.equalTo(50)
+        }
+        
+        view.addSubview(reviewDetailTextView)
+        reviewDetailTextView.snp.makeConstraints {
+            $0.top.equalTo(optionsCollectionView.snp.bottom).offset(28)
+            $0.horizontalEdges.equalToSuperview().inset(24)
         }
     }
     
     override func setUI() {
-        flowLayout.do {
+        likeCollectionViewFlowLayout.do {
+            $0.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        }
+        
+        optionsCollectionViewFlowLayout.do {
             $0.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         }
         
@@ -82,6 +103,18 @@ final class WriteReviewViewController: BaseViewController {
         
         optionsCollectionView.delegate = self
         optionsCollectionView.dataSource = self
+        
+        reviewDetailTextView.detailTextView.delegate = self
+    }
+    
+    // MARK: - Custom Method
+    
+    private func updateCollectionViewConstraint(of collectionView: UICollectionView) {
+        let height = collectionView.collectionViewLayout.collectionViewContentSize.height
+        guard height != 0 else { return }
+        collectionView.snp.updateConstraints {
+            $0.height.equalTo(height)
+        }
     }
     
 }
@@ -109,13 +142,11 @@ extension WriteReviewViewController: UICollectionViewDataSource {
         case likeCollectionView:
             cell.configureCell(to: .deselected)
             cell.configureCellText(to: indexPath.item == 0 ? "좋아요" : "별로에요")
-            print("width: \(cell.frame.width)")
         case optionsCollectionView:
             let keywordList = KeywordList.Keyword.allCases.map { $0.rawValue }
             cell.configureCell(to: .disabled)
             cell.configureCellText(to: keywordList[indexPath.item])
             cell.isUserInteractionEnabled = false
-            print("width: \(cell.frame.width)")
         default: return UICollectionViewCell()
         }
         return cell
@@ -142,4 +173,9 @@ extension WriteReviewViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return .init(width: collectionView.frame.width, height: 22)
     }
+}
+
+extension WriteReviewViewController: UITextViewDelegate {
+    
+    
 }
