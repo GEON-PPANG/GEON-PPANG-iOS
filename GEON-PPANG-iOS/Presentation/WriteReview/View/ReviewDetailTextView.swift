@@ -46,12 +46,14 @@ final class ReviewDetailTextView: UIView {
         textMinimumLabel.snp.makeConstraints {
             $0.top.equalTo(detailTextView.snp.bottom).offset(7)
             $0.trailing.equalTo(detailTextView)
+            $0.height.equalTo(17)
         }
         
         addSubview(textLimitLabel)
         textLimitLabel.snp.makeConstraints {
             $0.top.equalTo(detailTextView.snp.bottom).offset(7)
             $0.trailing.equalTo(textMinimumLabel.snp.leading).offset(4)
+            $0.height.equalTo(17)
         }
     }
     

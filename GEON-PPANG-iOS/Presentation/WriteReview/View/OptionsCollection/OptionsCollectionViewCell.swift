@@ -75,12 +75,13 @@ final class OptionsCollectionViewCell: UICollectionViewCell {
         cellLabel.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(12)
             $0.verticalEdges.equalToSuperview().inset(8)
+            $0.height.equalTo(17)
         }
     }
     
     private func setUI() {
         self.do {
-            $0.makeCornerRound(radius: 16)
+            $0.makeCornerRound(radius: 16.5)
         }
         
         cellLabel.do {
