@@ -48,7 +48,7 @@ final class CommonButton: UIButton {
         setTitle(title.rawValue, for: .normal)
     }
     
-    func setButtonUI(_ color: UIColor,_ border: UIColor? = .clear) {
+    func setButtonUI(_ color: UIColor, _ border: UIColor? = .clear) {
         self.backgroundColor = color
         
         switch color {
