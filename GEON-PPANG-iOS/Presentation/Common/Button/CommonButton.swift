@@ -7,64 +7,69 @@
 
 import UIKit
 
+import SnapKit
 import Then
 
-enum CommonButton: Buildable {
+enum ButtonTitle: String, CaseIterable {
     
-    typealias ViewType = UIButton
+    case login = "로그인"
+    case signIn = "회원가입"
+    case next = "다음"
+    case confirm = "확인"
+    case duplicate = "중복 확인"
+    case write = "작성하기"
+    case start = "시작하기"
     
-    case loginButton(title: String, completion: ((UIAction) -> Void)?=nil)
-    case signInButton(title: String, completion: ((UIAction) -> Void)?=nil)
-    case nextButton(title: String, color: UIColor, completion: ((UIAction) -> Void)?=nil)
-    case confirmButton(title: String, completion: ((UIAction) -> Void)?=nil)
-    case writeButton(title: String, completion: ((UIAction) -> Void)?=nil)
-    case startButton(title: String, completion: ((UIAction) -> Void)?=nil)
-    
-    func build(_ config: ((UIButton) -> Void)?) -> UIButton {
-        var button = makeCommonButton()
-        if let config = config {
-            button = button.then(config)
-        }
-        return button
-    }
-    
-    private func makeCommonButton() -> UIButton {
-        switch self {
-        case .loginButton(title: let title, completion: let completion) :
-            return UIButton.makeCommonButton(title: title, completion: completion).then {
-                $0.backgroundColor = .lightGray
-            }
-        case .signInButton(title: let title, completion: let completion):
-            return UIButton.makeCommonButton(title: title, completion: completion).then {
-                $0.backgroundColor = .lightGray
-            }
-        case .nextButton(title: let title, color: let color, completion: let completion):
-            return UIButton.makeCommonButton(title: title, completion: completion).then {
-                $0.backgroundColor = color
-            }
-        case .confirmButton(title: let title, completion: let completion):
-            return UIButton.makeCommonButton(title: title, completion: completion).then {
-                $0.backgroundColor = .lightGray
-            }
-        case .writeButton(title: let title, completion: let completion):
-            return UIButton.makeCommonButton(title: title, completion: completion).then {
-                $0.backgroundColor = .lightGray
-            }
-        case .startButton(title: let title, completion: let completion):
-            return UIButton.makeCommonButton(title: title, completion: completion).then {
-                $0.backgroundColor = .lightGray
-            }
-        }
-    }
 }
 
-
-extension UIButton {
-    static func makeCommonButton(title: String, completion: ((UIAction) -> Void)? = nil) -> UIButton {
-        let button = UIButton(frame: CGRect(), primaryAction: UIAction(title: title, handler: completion ?? {_ in return}))
-        button.layer.cornerRadius = 11
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.clear.cgColor
-        return button
+final class CommonButton: UIButton {
+    
+    // MARK: - Property
+    // MARK: = UI Property
+    
+    init() {
+        super.init(frame: .zero)
+        
+        setUI()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Setting
+    
+    private func setUI() {
+        makeCornerRound(radius: 11)
+        titleLabel?.font = .pretendardMedium(18)
+    }
+    
+    func setButtonTitle(_ title: ButtonTitle) {
+        setTitle(title.rawValue, for: .normal)
+    }
+    
+    func setButtonUI(_ color: UIColor,_ border: UIColor? = .clear) {
+        self.backgroundColor = color
+        
+        switch color {
+        case .gbbMain3!, .gbbGray700!: setTitleColor(.gbbGray100, for: .normal)
+        case .gbbMain2!: setTitleColor(.white, for: .normal)
+        default:
+            setTitleColor(.gbbGray400, for: .normal)
+        }
+        
+        if let border = border {
+            makeBorder(width: 1, color: border)
+            if border != .clear {
+                setTitleColor(border, for: .normal)
+            }
+        }
+    }
+    
+    func setAction(completion: ((UIAction) -> Void)? = nil) {
+        let action = UIAction { action in
+            completion?(action)
+        }
+        addAction(action, for: .touchUpInside)
     }
 }
