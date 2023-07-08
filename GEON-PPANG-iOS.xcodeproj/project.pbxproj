@@ -41,6 +41,7 @@
 		3E16E4FC2A57D24900B813D0 /* LikeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16E4FB2A57D24900B813D0 /* LikeModel.swift */; };
 		3E16E4FE2A57F06D00B813D0 /* OptionsCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16E4FD2A57F06D00B813D0 /* OptionsCollectionViewFlowLayout.swift */; };
 		3E16E5002A57FFD900B813D0 /* OptionsCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16E4FF2A57FFD900B813D0 /* OptionsCollectionViewHeader.swift */; };
+		3E16E5022A58176800B813D0 /* ReviewDetailTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16E5012A58176800B813D0 /* ReviewDetailTextView.swift */; };
 		3E79B1A62A566F6400D36A26 /* WriteReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1A52A566F6400D36A26 /* WriteReviewViewController.swift */; };
 		3E79B1A92A56739F00D36A26 /* RegionStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1A82A56739F00D36A26 /* RegionStackView.swift */; };
 		3E79B1AC2A5677C800D36A26 /* RegionChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1AB2A5677C800D36A26 /* RegionChip.swift */; };
@@ -87,6 +88,7 @@
 		3E16E4FB2A57D24900B813D0 /* LikeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeModel.swift; sourceTree = "<group>"; };
 		3E16E4FD2A57F06D00B813D0 /* OptionsCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		3E16E4FF2A57FFD900B813D0 /* OptionsCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsCollectionViewHeader.swift; sourceTree = "<group>"; };
+		3E16E5012A58176800B813D0 /* ReviewDetailTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailTextView.swift; sourceTree = "<group>"; };
 		3E79B1A52A566F6400D36A26 /* WriteReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewViewController.swift; sourceTree = "<group>"; };
 		3E79B1A82A56739F00D36A26 /* RegionStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionStackView.swift; sourceTree = "<group>"; };
 		3E79B1AB2A5677C800D36A26 /* RegionChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionChip.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 			children = (
 				3E79B1B32A571E2700D36A26 /* OptionsCollection */,
 				3E79B1AD2A56F14A00D36A26 /* BakeryOverviewView.swift */,
+				3E16E5012A58176800B813D0 /* ReviewDetailTextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -553,6 +556,7 @@
 				090668FE2A4FF3C600F413FA /* ViewController.swift in Sources */,
 				090556252A51DB9600752067 /* UICollectionView.swift in Sources */,
 				090556452A51E79B00752067 /* UITextField+.swift in Sources */,
+				3E16E5022A58176800B813D0 /* ReviewDetailTextView.swift in Sources */,
 				09CA3F062A569EB30063897A /* API.swift in Sources */,
 				DF959A6E2A568C9400E75774 /* UIColor+.swift in Sources */,
 				090556472A51E7D900752067 /* UITextView+.swift in Sources */,
