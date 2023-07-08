@@ -12,6 +12,14 @@ import Then
 
 final class OptionsCollectionViewHeader: UICollectionReusableView {
     
+    // MARK: - Property
+    
+    var isEnabled: Bool = false {
+        didSet {
+            toggleTitleInterface()
+        }
+    }
+    
     // MARK: - UI Property
     
     private let titleLabel = UILabel()
@@ -42,7 +50,7 @@ final class OptionsCollectionViewHeader: UICollectionReusableView {
     private func setUI() {
         titleLabel.do {
             $0.font = .bodyB1
-            $0.textColor = .black
+            $0.textColor = .gbbGray300
             $0.textAlignment = .left
         }
     }
@@ -51,6 +59,12 @@ final class OptionsCollectionViewHeader: UICollectionReusableView {
     
     func configureTitle(to title: String) {
         titleLabel.text = title
+    }
+    
+    func toggleTitleInterface() {
+        titleLabel.do {
+            $0.textColor = isEnabled ? .black : .gbbGray300
+        }
     }
     
 }

@@ -159,6 +159,7 @@ extension WriteReviewViewController: UICollectionViewDataSource {
         switch collectionView {
         case likeCollectionView:
             header.configureTitle(to: "건빵집은 어떠셨나요?")
+            header.isEnabled.toggle()
         case optionsCollectionView:
             header.configureTitle(to: "어떤것을 추천하나요?")
         default:
