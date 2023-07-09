@@ -34,4 +34,11 @@ extension UITextField {
         attributedStr.addAttribute(NSAttributedString.Key.kern, value: spacing, range: NSRange(location: 0, length: attributedStr.length))
         self.attributedText = attributedStr
      }
+    
+    func setPlaceholder(color: UIColor) {
+            guard let string = self.placeholder else {
+                return
+            }
+            attributedPlaceholder = NSAttributedString(string: string, attributes: [.foregroundColor: color])
+        }
  }
