@@ -8,7 +8,7 @@
 import UIKit
 
 final class HomeViewController: BaseViewController {
-
+    
     // MARK: - Property
     
     lazy var safeArea = self.view.safeAreaLayoutGuide
@@ -25,24 +25,25 @@ final class HomeViewController: BaseViewController {
     }
     
     override func setUI() {
+        self.do {
+            $0.view.backgroundColor = .white
+        }
+        
         topView.do {
             $0.setTitle("정둥어")
             $0.gotoNextView = {
-                let vc = BakeryListViewController()
-                DispatchQueue.main.async { [weak self] in
-                    self?.navigationController?.pushViewController(vc, animated: true)
-                }
+                Utils.push(self.navigationController, SearchViewController())
             }
-        }
         
-        label.do {
-            $0.font = .pretendardBold(15)
+            label.do {
+                $0.font = .pretendardBold(15)
+            }
         }
     }
     
     override func setLayout() {
         view.addSubviews(topView, label)
-        view.backgroundColor = .white
+        
         topView.snp.makeConstraints {
             $0.top.equalTo(safeArea).offset(16)
             $0.directionalHorizontalEdges.equalTo(safeArea)
@@ -55,4 +56,5 @@ final class HomeViewController: BaseViewController {
     }
     
     // MARK: - Setting
+
 }

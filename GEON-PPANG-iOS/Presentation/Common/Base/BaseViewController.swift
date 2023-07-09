@@ -15,7 +15,6 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
         
         setBackgroundColor()
-        setConfigure()
         setLayout()
         setUI()
         setDelegate()
@@ -25,10 +24,6 @@ class BaseViewController: UIViewController {
     
     private func setBackgroundColor() {
         self.view.backgroundColor = .gbbBackground2
-    }
-    
-    private func setConfigure() {
-        self.navigationController?.isNavigationBarHidden = true
     }
     
     func setLayout() {

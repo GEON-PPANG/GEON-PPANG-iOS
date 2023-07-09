@@ -22,4 +22,3 @@ final class Utils {
         viewController.present(modalViewController, animated: false)
     }
 }
-
