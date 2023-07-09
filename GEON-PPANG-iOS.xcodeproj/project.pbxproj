@@ -42,10 +42,10 @@
 		09B13F5A2A5946B700C0C723 /* TabBar+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B13F592A5946B700C0C723 /* TabBar+.swift */; };
 		09B71C002A59D50900076AC2 /* HomeTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B71BFF2A59D50900076AC2 /* HomeTopView.swift */; };
 		09B71C022A59D99200076AC2 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B71C012A59D99200076AC2 /* SearchTextField.swift */; };
+		09C6264E2A5B29F8002C8110 /* SearchEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C6264D2A5B29F8002C8110 /* SearchEnum.swift */; };
 		09CA3EFC2A569E4A0063897A /* URLConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CA3EFB2A569E4A0063897A /* URLConstant.swift */; };
 		09CA3F062A569EB30063897A /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CA3F052A569EB30063897A /* API.swift */; };
 		09CA3F082A569EBA0063897A /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CA3F072A569EBA0063897A /* Service.swift */; };
-		09CA3F0A2A569EC50063897A /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CA3F092A569EC50063897A /* Enum.swift */; };
 		3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */; };
 		DF959A612A539FBE00E75774 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */; };
 		DF959A622A539FBE00E75774 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */; };
@@ -86,10 +86,10 @@
 		09B13F592A5946B700C0C723 /* TabBar+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabBar+.swift"; sourceTree = "<group>"; };
 		09B71BFF2A59D50900076AC2 /* HomeTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopView.swift; sourceTree = "<group>"; };
 		09B71C012A59D99200076AC2 /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
+		09C6264D2A5B29F8002C8110 /* SearchEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEnum.swift; sourceTree = "<group>"; };
 		09CA3EFB2A569E4A0063897A /* URLConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConstant.swift; sourceTree = "<group>"; };
 		09CA3F052A569EB30063897A /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		09CA3F072A569EBA0063897A /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
-		09CA3F092A569EC50063897A /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
@@ -427,7 +427,7 @@
 		DF959A672A56851000E75774 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
-				09CA3F092A569EC50063897A /* Enum.swift */,
+				09C6264D2A5B29F8002C8110 /* SearchEnum.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -579,7 +579,6 @@
 				09B71C002A59D50900076AC2 /* HomeTopView.swift in Sources */,
 				090556492A51E7EC00752067 /* UIScreen+.swift in Sources */,
 				09B71C022A59D99200076AC2 /* SearchTextField.swift in Sources */,
-				09CA3F0A2A569EC50063897A /* Enum.swift in Sources */,
 				09B13F482A5931DC00C0C723 /* TabBarController.swift in Sources */,
 				0961C3642A501EBF0031A822 /* Strings.swift in Sources */,
 				093214082A5AE40900875EF6 /* SearchViewController.swift in Sources */,
@@ -587,6 +586,7 @@
 				3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */,
 				090556222A51DB3300752067 /* UIFont+.swift in Sources */,
 				09CA3EFC2A569E4A0063897A /* URLConstant.swift in Sources */,
+				09C6264E2A5B29F8002C8110 /* SearchEnum.swift in Sources */,
 				09CA3F082A569EBA0063897A /* Service.swift in Sources */,
 				09B13F4C2A593C6F00C0C723 /* HomeViewController.swift in Sources */,
 				0905564B2A51E81D00752067 /* UIViewController+.swift in Sources */,
