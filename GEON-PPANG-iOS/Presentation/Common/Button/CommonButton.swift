@@ -16,7 +16,7 @@ enum ButtonTitle: String, CaseIterable {
     case signIn = "회원가입"
     case next = "다음"
     case confirm = "확인"
-    case duplicate = "중복 확인"
+    case duplicate = "중복확인"
     case write = "작성하기"
     case start = "시작하기"
     
