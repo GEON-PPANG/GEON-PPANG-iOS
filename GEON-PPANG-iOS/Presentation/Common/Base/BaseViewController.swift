@@ -23,7 +23,7 @@ class BaseViewController: UIViewController {
     // MARK: - Setting
     
     private func setBackgroundColor() {
-        self.view.backgroundColor = .gbbBackground2
+        self.view.backgroundColor = .white
     }
     
     func setLayout() {
