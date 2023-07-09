@@ -14,35 +14,40 @@ enum RightButtonType {
     case searchButton
     case clearButton
 }
+enum ViewType {
+    case home
+    case search
+}
 
-final class SearchTextField: UITextField, UITextFieldDelegate {
+final class SearchTextField: UITextField {
+    
+    // MARK: - Property
+    
+    var rightButtonType: RightButtonType = .searchButton
+    var viewType: ViewType = .home
+    var textFieldClosure: ((String) -> Void)?
+    
+    // MARK: - UI Property
     
     private lazy var searchButton = UIButton()
     private lazy var clearButton = UIButton()
     private let emptyView = UIView()
     private let rightStackView = UIStackView()
     
-    var rightButtonType: RightButtonType = .searchButton {
-        didSet {
-            updateRightViewMode()
-        }
-    }
+    // MARK: - Life Cycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
         setLayout()
-        delegate = self
+        setDelegate()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func addRightButton(_ buttonType: RightButtonType) {
-        rightButtonType = buttonType
-        updateRightViewMode()
-    }
+    // MARK: - Setting
     
     private func setUI() {
         clearButtonMode = .never
@@ -55,7 +60,7 @@ final class SearchTextField: UITextField, UITextFieldDelegate {
         }
         
         clearButton.do {
-            $0.setImage(UIImage(named: "ic_delete")?.withRenderingMode(.alwaysOriginal), for: .normal)
+            $0.setImage(.deleteIcon, for: .normal)
             $0.addAction(UIAction { _ in
                 self.text?.removeAll()
             }, for: .touchUpInside)
@@ -64,7 +69,7 @@ final class SearchTextField: UITextField, UITextFieldDelegate {
         self.do {
             $0.makeCornerRound(radius: 22)
             $0.backgroundColor = .gbbGray100
-            $0.placeholder = "궁금한 건빵집을 입력해주세요!"
+            $0.placeholder = I18N.Home.searchPlacehold
             $0.setPlaceholder(color: .gbbGray300!)
             $0.setLeftPadding(amount: 15)
             updateRightViewMode()
@@ -88,6 +93,15 @@ final class SearchTextField: UITextField, UITextFieldDelegate {
         }
     }
     
+    private func setDelegate() {
+        self.delegate = self
+    }
+    
+    private func addRightButton(_ buttonType: RightButtonType) {
+        rightButtonType = buttonType
+        updateRightViewMode()
+    }
+    
     private func updateRightViewMode() {
         switch rightButtonType {
         case .searchButton:
@@ -100,13 +114,39 @@ final class SearchTextField: UITextField, UITextFieldDelegate {
             rightViewMode = .whileEditing
         }
     }
+    
+    func viewType(_ viewtype: ViewType) {
+        self.viewType = viewtype
+    }
+    
+    func getText() -> String {
+        return text ?? ""
+    }
+}
 
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if self.text?.count ?? 0 > 0 {
-            addRightButton(.clearButton)
-        } else {
+// MARK: - UITextFieldDelegate
+
+extension SearchTextField: UITextFieldDelegate {
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        
+        if self.isEmpty {
             addRightButton(.searchButton)
+        } else {
+            addRightButton(.clearButton)
         }
     }
     
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        switch viewType {
+        case .home: return false
+        case .search: return true
+        }
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print("🤍\(getText())")
+        textFieldClosure?(getText())
+        resignFirstResponder()
+        return true
+    }
 }
