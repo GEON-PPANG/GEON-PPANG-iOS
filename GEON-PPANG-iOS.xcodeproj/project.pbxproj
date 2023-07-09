@@ -27,8 +27,8 @@
 		090668F82A4FF1D900F413FA /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 090668F72A4FF1D900F413FA /* .swiftlint.yml */; };
 		090668FC2A4FF3C600F413FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098F32E02A4200FD0092D09A /* AppDelegate.swift */; };
 		090668FD2A4FF3C600F413FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098F32E22A4200FD0092D09A /* SceneDelegate.swift */; };
-		093213FF2A5ACC9C00875EF6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093213FE2A5ACC9C00875EF6 /* ViewController.swift */; };
 		093214022A5AE27800875EF6 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093214012A5AE27700875EF6 /* Utils.swift */; };
+		093214082A5AE40900875EF6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093214072A5AE40900875EF6 /* SearchViewController.swift */; };
 		0961C3642A501EBF0031A822 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0961C3632A501EBF0031A822 /* Strings.swift */; };
 		098F32EA2A4200FE0092D09A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 098F32E92A4200FE0092D09A /* Assets.xcassets */; };
 		098F32ED2A4200FE0092D09A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 098F32EB2A4200FE0092D09A /* LaunchScreen.storyboard */; };
@@ -67,8 +67,8 @@
 		090556482A51E7EC00752067 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
 		0905564A2A51E81D00752067 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		090668F72A4FF1D900F413FA /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		093213FE2A5ACC9C00875EF6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		093214012A5AE27700875EF6 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		093214072A5AE40900875EF6 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0961C3632A501EBF0031A822 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		098F32DD2A4200FD0092D09A /* GEON-PPANG-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GEON-PPANG-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		098F32E02A4200FD0092D09A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -166,6 +166,38 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		093214032A5AE3C000875EF6 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				093214062A5AE3DF00875EF6 /* Model */,
+				093214052A5AE3D600875EF6 /* ViewControllers */,
+				093214042A5AE3D000875EF6 /* Views */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		093214042A5AE3D000875EF6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		093214052A5AE3D600875EF6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				093214072A5AE40900875EF6 /* SearchViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		093214062A5AE3DF00875EF6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		0961C35F2A501E110031A822 /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,11 +210,11 @@
 		0961C3602A501E9F0031A822 /* Global */ = {
 			isa = PBXGroup;
 			children = (
-				093214002A5AE26F00875EF6 /* Utils */,
 				0961C3662A501EDD0031A822 /* Network */,
 				0961C3652A501ED40031A822 /* Extensions */,
 				0961C3622A501EB50031A822 /* Literals */,
 				DF959A672A56851000E75774 /* Enum */,
+				093214002A5AE26F00875EF6 /* Utils */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -241,7 +273,7 @@
 		0961C36A2A501EF60031A822 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				093213FE2A5ACC9C00875EF6 /* ViewController.swift */,
+				093214032A5AE3C000875EF6 /* Search */,
 				09B13F492A593C5900C0C723 /* Home */,
 				09B13F4D2A593C7600C0C723 /* BakeryList */,
 				09B13F512A593CC200C0C723 /* MyPage */,
@@ -549,8 +581,8 @@
 				09B71C022A59D99200076AC2 /* SearchTextField.swift in Sources */,
 				09CA3F0A2A569EC50063897A /* Enum.swift in Sources */,
 				09B13F482A5931DC00C0C723 /* TabBarController.swift in Sources */,
-				093213FF2A5ACC9C00875EF6 /* ViewController.swift in Sources */,
 				0961C3642A501EBF0031A822 /* Strings.swift in Sources */,
+				093214082A5AE40900875EF6 /* SearchViewController.swift in Sources */,
 				09B13F542A593CD300C0C723 /* MyPageViewController.swift in Sources */,
 				3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */,
 				090556222A51DB3300752067 /* UIFont+.swift in Sources */,
