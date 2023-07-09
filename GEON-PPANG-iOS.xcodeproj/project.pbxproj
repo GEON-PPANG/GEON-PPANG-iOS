@@ -353,7 +353,6 @@
 			isa = PBXGroup;
 			children = (
 				09B13F472A5931DC00C0C723 /* TabBarController.swift */,
-				09B13F572A59433500C0C723 /* TabBarItem.swift */,
 			);
 			path = Tabbar;
 			sourceTree = "<group>";
@@ -428,6 +427,7 @@
 			isa = PBXGroup;
 			children = (
 				09C6264D2A5B29F8002C8110 /* SearchEnum.swift */,
+				09B13F572A59433500C0C723 /* TabBarItem.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
