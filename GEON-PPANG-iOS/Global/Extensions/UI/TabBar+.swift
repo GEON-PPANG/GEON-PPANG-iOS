@@ -8,7 +8,7 @@
 import UIKit
 
 extension UITabBar {
-    func setUpUITabBar() {
+    func initailizeTabBarUI() {
         UITabBar.appearance().shadowImage = UIImage()
         UITabBar.appearance().backgroundImage = UIImage()
         UITabBar.appearance().backgroundColor = UIColor.white

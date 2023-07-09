@@ -32,9 +32,10 @@ final class TabBarController: UITabBarController {
     // MARK: - Setting
 
     private func setTabBarItems() {
-        tabs = [HomeViewController(),
-                BakeryListViewController(),
-                MyPageViewController()
+        tabs = [
+            HomeViewController(),
+            BakeryListViewController(),
+            MyPageViewController()
                 ]
         
         TabBarItemType.allCases.forEach {
@@ -45,7 +46,7 @@ final class TabBarController: UITabBarController {
     }
     
     private func setTabBarUI() {
-        tabBar.setUpUITabBar()
+        tabBar.initailizeTabBarUI()
         tabBar.layer.applyShadow()
         tabBar.layer.cornerRadius = convertByHeightRatio(12)
         tabBar.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner)
