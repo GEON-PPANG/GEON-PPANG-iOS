@@ -13,23 +13,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-
-                guard let _ = (scene as? UIWindowScene) else { return }
-                
-                if let windowScene = scene as? UIWindowScene {
-                    
-                    let window = UIWindow(windowScene: windowScene)
-                    window.overrideUserInterfaceStyle = UIUserInterfaceStyle.light
-                    
-                    let rootVC = TabBarController()
-                    let navigationController = UINavigationController(rootViewController: rootVC)
-                    
-                    window.rootViewController = navigationController
-                    window.makeKeyAndVisible()
-                    self.window = window
-                }
-            }
-
+        
+        if let windowScene = scene as? UIWindowScene {
+            let window = UIWindow(windowScene: windowScene)
+            window.overrideUserInterfaceStyle = UIUserInterfaceStyle.light
+            
+            let rootViewController = TabBarController()
+            let navigationController = UINavigationController(rootViewController: rootViewController)
+            navigationController.isNavigationBarHidden = true
+            window.rootViewController = navigationController
+            window.makeKeyAndVisible()
+            self.window = window
+        }
+    }
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
