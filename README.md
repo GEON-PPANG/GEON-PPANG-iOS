@@ -68,7 +68,7 @@ Firebase | 비정상 종료를 유발하는 상황 트래킹을 위한 라이브
 │   │  ├─ 📂 Storyboard
 │   │  ├─ 📂 Colors
 │   │  ├─ 📂 Fonts
-│   │  ├─ 📂 Assts
+│   │  ├─ 📂 Assets
 │   │  ├─ 📜 Info
 └─  └─ └─ 📜 GoogleService-Info
 ~~~
