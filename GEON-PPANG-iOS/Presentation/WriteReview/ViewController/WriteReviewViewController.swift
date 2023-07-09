@@ -214,6 +214,18 @@ extension WriteReviewViewController: UICollectionViewDelegateFlowLayout {
 
 extension WriteReviewViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        <#code#>
+        let textView = self.reviewDetailTextView.detailTextView
+        if textView.text == I18N.likePlaceholder || textView.text == I18N.dislikePlaceholder {
+            textView.text = nil
+            textView.textColor = .black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        let textView = self.reviewDetailTextView.detailTextView
+        if textView.text.isEmpty {
+            textView.text = reviewDetailTextView.isLike ? I18N.likePlaceholder : I18N.dislikePlaceholder
+            textView.textColor = .gbbGray300
+        }
     }
 }

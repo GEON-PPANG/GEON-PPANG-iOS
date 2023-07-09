@@ -13,7 +13,7 @@ final class ReviewDetailTextView: UIView {
     
     var isLike: Bool = true {
         didSet {
-            
+            togglePlaceholderWithIsLike()
         }
     }
     
@@ -70,7 +70,7 @@ final class ReviewDetailTextView: UIView {
     
     private func setUI() {
         detailTextView.do {
-            $0.text = I18N.reviewDetailTextViewLikePlaceholder
+            $0.text = I18N.likePlaceholder
             $0.font = .subHead
             $0.textColor = .gbbGray300
             $0.makeCornerRound(radius: 12)
@@ -99,21 +99,21 @@ final class ReviewDetailTextView: UIView {
     
     private func toggleUI() {
         detailTextView.do {
-            $0.textColor = isEnabled ? .gbbGray400 : .gbbGray300
+            $0.textColor = isEnabled ? .gbbGray500 : .gbbGray300
         }
         
         textLimitLabel.do {
-            $0.textColor = isEnabled ? .gbbGray400 : .gbbGray300
+            $0.textColor = isEnabled ? .gbbGray500 : .gbbGray300
         }
         
         textMinimumLimitLabel.do {
-            $0.textColor = isEnabled ? .gbbGray400 : .gbbGray300
+            $0.textColor = isEnabled ? .gbbGray500 : .gbbGray300
         }
     }
     
-    private func toggleTextViewPlaceholder() {
+    private func togglePlaceholderWithIsLike() {
         detailTextView.do {
-            $0.text = isLike ? I18N.reviewDetailTextViewLikePlaceholder : I18N.reviewDetailTextViewDislikePlaceholder
+            $0.text = isLike ? I18N.likePlaceholder : I18N.dislikePlaceholder
         }
     }
     
