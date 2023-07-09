@@ -16,13 +16,8 @@ final class HomeViewController: BaseViewController {
     // MARK: - UI Property
     
     private let topView = HomeTopView()
-    private let label = UILabel()
     
     // MARK: - Life Cycle
-    
-    func searchText(_ text: String) {
-        label.text = text
-    }
     
     override func setUI() {
         self.do {
@@ -34,24 +29,16 @@ final class HomeViewController: BaseViewController {
             $0.gotoNextView = {
                 Utils.push(self.navigationController, SearchViewController())
             }
-        
-            label.do {
-                $0.font = .pretendardBold(15)
-            }
         }
     }
     
     override func setLayout() {
-        view.addSubviews(topView, label)
+        view.addSubviews(topView)
         
         topView.snp.makeConstraints {
             $0.top.equalTo(safeArea).offset(16)
             $0.directionalHorizontalEdges.equalTo(safeArea)
             $0.height.equalTo(convertByHeightRatio(200))
-        }
-        
-        label.snp.makeConstraints {
-            $0.center.equalToSuperview()
         }
     }
     
