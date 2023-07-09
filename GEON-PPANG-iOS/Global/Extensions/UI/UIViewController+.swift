@@ -30,4 +30,15 @@ extension UIViewController {
     func convertByHeightRatio(_ convert: CGFloat) -> CGFloat {
         return (convert / 812) * getDeviceHeight()
     }
+    
+    func setKeyboardHideGesture() {
+        let tap = UITapGestureRecognizer(target: self,
+                                         action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
