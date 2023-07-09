@@ -24,8 +24,8 @@ enum ButtonTitle: String, CaseIterable {
 
 final class CommonButton: UIButton {
     
-    // MARK: - Property
-    // MARK: = UI Property
+
+    // MARK: - Life Cycle
     
     init() {
         super.init(frame: .zero)
@@ -40,8 +40,10 @@ final class CommonButton: UIButton {
     // MARK: - Setting
     
     private func setUI() {
-        makeCornerRound(radius: 11)
-        titleLabel?.font = .pretendardMedium(18)
+        self.do {
+            $0.makeCornerRound(radius: 11)
+            $0.titleLabel?.font = .pretendardMedium(18)
+        }
     }
     
     func setButtonTitle(_ title: ButtonTitle) {
