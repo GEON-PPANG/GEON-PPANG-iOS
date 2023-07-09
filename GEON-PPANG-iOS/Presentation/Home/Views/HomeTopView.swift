@@ -27,8 +27,8 @@ final class HomeTopView: UIView {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        setUI()
         setLayout()
+        setUI()
     }
     
     required init?(coder: NSCoder) {
