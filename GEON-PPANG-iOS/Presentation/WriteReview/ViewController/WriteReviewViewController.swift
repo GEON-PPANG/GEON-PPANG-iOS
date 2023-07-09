@@ -28,6 +28,7 @@ final class WriteReviewViewController: BaseViewController {
     private lazy var likeCollectionView = OptionsCollectionView(frame: .zero, collectionViewLayout: likeCollectionViewFlowLayout)
     private lazy var optionsCollectionView = OptionsCollectionView(frame: .zero, collectionViewLayout: optionsCollectionViewFlowLayout)
     private let reviewDetailTextView = ReviewDetailTextView()
+    private let aboutReviewLabel = UILabel()
     
     // MARK: - life cycle
     
@@ -36,6 +37,7 @@ final class WriteReviewViewController: BaseViewController {
         
         // TODO: baseVC 에 숨기기
         self.navigationController?.navigationBar.isHidden = true
+        setKeyboardHideGesture()
     }
     
     override func viewWillLayoutSubviews() {
@@ -80,6 +82,13 @@ final class WriteReviewViewController: BaseViewController {
         reviewDetailTextView.snp.makeConstraints {
             $0.top.equalTo(optionsCollectionView.snp.bottom).offset(28)
             $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.height.equalTo(221)
+        }
+        
+        view.addSubview(aboutReviewLabel)
+        aboutReviewLabel.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.top.equalTo(reviewDetailTextView.snp.bottom).offset(16)
         }
     }
     
@@ -94,6 +103,14 @@ final class WriteReviewViewController: BaseViewController {
         
         optionsCollectionView.do {
             $0.allowsMultipleSelection = true
+        }
+        
+        aboutReviewLabel.do {
+            $0.text = I18N.aboutReview
+            $0.font = .captionM2
+            $0.textColor = .gbbGray400
+            $0.textAlignment = .left
+            $0.numberOfLines = 4
         }
     }
     
