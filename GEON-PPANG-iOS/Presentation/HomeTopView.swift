@@ -13,6 +13,8 @@ import Then
 final class HomeTopView: UIView {
     
     // MARK: - Property
+    
+    var gotoNextView: (() -> Void)?
         
     // MARK: - UI Property
     
@@ -43,6 +45,14 @@ final class HomeTopView: UIView {
             $0.basic(font: .pretendardBold(26),
                      color: .gbbGray700!)
         }
+        
+        searchTextField.do {
+            $0.viewType(.home)
+            $0.gotoNextView = {
+                self.gotoNextView?()
+            }
+        }
+        
         filterButton.do {
             $0.setImage(.homeFilterButton, for: .normal)
         }

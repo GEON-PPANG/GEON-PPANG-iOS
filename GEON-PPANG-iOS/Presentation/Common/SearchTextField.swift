@@ -14,6 +14,7 @@ enum RightButtonType {
     case searchButton
     case clearButton
 }
+
 enum ViewType {
     case home
     case search
@@ -26,6 +27,7 @@ final class SearchTextField: UITextField {
     var rightButtonType: RightButtonType = .searchButton
     var viewType: ViewType = .home
     var textFieldClosure: ((String) -> Void)?
+    var gotoNextView: (() -> Void)?
     
     // MARK: - UI Property
     
@@ -69,7 +71,7 @@ final class SearchTextField: UITextField {
         self.do {
             $0.makeCornerRound(radius: 22)
             $0.backgroundColor = .gbbGray100
-            $0.placeholder = I18N.Home.searchPlacehold
+            $0.placeholder = I18N.Home.searchPlaceholder
             $0.setPlaceholder(color: .gbbGray300!)
             $0.setLeftPadding(amount: 15)
             updateRightViewMode()
@@ -139,10 +141,13 @@ extension SearchTextField: UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         switch viewType {
-        case .home: return false
+        case .home:
+            self.gotoNextView?()
+            return false
         case .search: return true
         }
     }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         print("🤍\(getText())")
         textFieldClosure?(getText())
