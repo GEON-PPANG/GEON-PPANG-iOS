@@ -12,6 +12,8 @@ struct I18N {
     
     // MARK: - WriteReviewViewController
     
+    static let reviewDetailTextViewLikePlaceholder = "추가로 좋았던 점이 있다면 말씀해주세요!"
+    static let reviewDetailTextViewDislikePlaceholder = "자유롭게 의견을 말씀해주세요!"
     static let aboutReview = """
         솔직하게 작성해주신 리뷰는 건빵 소비자에게 도움이 됩니다!
         하지만 선량한 업주나 제3자의 권리를 침해하는 게시물 (허위 리뷰,

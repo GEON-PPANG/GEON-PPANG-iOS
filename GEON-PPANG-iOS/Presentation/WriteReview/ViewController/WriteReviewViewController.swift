@@ -18,7 +18,6 @@ final class WriteReviewViewController: BaseViewController {
     
     // MARK: - UI Property
     
-    // TODO: ScrollView 추가
     // TODO: navigationBar 추가
     // TODO: bakeryImage 추가
     private let scrollView = UIScrollView()
@@ -150,9 +149,11 @@ final class WriteReviewViewController: BaseViewController {
     
 }
 
-// MARK: - extension
+// MARK: - UICollectionViewDelegate extension
 
 extension WriteReviewViewController: UICollectionViewDelegate {}
+
+// MARK: - UICollectionViewDataSource extension
 
 extension WriteReviewViewController: UICollectionViewDataSource {
     
@@ -201,13 +202,18 @@ extension WriteReviewViewController: UICollectionViewDataSource {
     
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
+
 extension WriteReviewViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return .init(width: collectionView.frame.width, height: 22)
     }
 }
 
+// MARK: - UITextViewDelegate
+
 extension WriteReviewViewController: UITextViewDelegate {
-    
-    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        <#code#>
+    }
 }

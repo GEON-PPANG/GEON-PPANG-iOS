@@ -11,7 +11,12 @@ final class ReviewDetailTextView: UIView {
     
     // MARK: - Property
     
-    var numOfWords: Int = 0
+    var isLike: Bool = true {
+        didSet {
+            
+        }
+    }
+    
     var isEnabled: Bool = false {
         didSet {
             toggleInteraction()
@@ -65,6 +70,7 @@ final class ReviewDetailTextView: UIView {
     
     private func setUI() {
         detailTextView.do {
+            $0.text = I18N.reviewDetailTextViewLikePlaceholder
             $0.font = .subHead
             $0.textColor = .gbbGray300
             $0.makeCornerRound(radius: 12)
@@ -73,7 +79,7 @@ final class ReviewDetailTextView: UIView {
         }
         
         textLimitLabel.do {
-            $0.text = "\(numOfWords)/500"
+            $0.text = "0/500"
             $0.font = .captionM1
             $0.textColor = .gbbGray300
         }
@@ -102,6 +108,18 @@ final class ReviewDetailTextView: UIView {
         
         textMinimumLimitLabel.do {
             $0.textColor = isEnabled ? .gbbGray400 : .gbbGray300
+        }
+    }
+    
+    private func toggleTextViewPlaceholder() {
+        detailTextView.do {
+            $0.text = isLike ? I18N.reviewDetailTextViewLikePlaceholder : I18N.reviewDetailTextViewDislikePlaceholder
+        }
+    }
+    
+    func updateTextLimitLabel(to num: Int) {
+        textLimitLabel.do {
+            $0.text = "\(num)/500"
         }
     }
     
