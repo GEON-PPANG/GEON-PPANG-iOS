@@ -1,7 +1,9 @@
 # <img src="https://github.com/jeongdung-eo/Capstone_inha_Zeloss/assets/107853954/32302669-0ca7-4edb-b37d-5ea8a3e70263" align=left width=110><image src ="https://github.com/jeongdung-eo/Capstone_inha_Zeloss/assets/107853954/65d41d36-17f5-4c0a-bf11-c7dcb8964528" width=100 height=50>
 
  비주류가 만드는 **건빵문화**, 당신이 찾던 그 **건강한 빵집**이 여기에 !
-
+ <br>
+<img width="1728" alt="아요_과제제출_서비스설명" src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/c60ef3b8-66c6-41f6-8c9c-bffc5c921c2d">
+<br>
 
 ## 🍞 iOS Developer
 <img src="https://github.com/jeongdung-eo/Capstone_inha_Zeloss/assets/107853954/cd2bd345-c5e0-4fe1-9eb9-e4c9b6d2280c" width="200"> | <img src="https://github.com/jeongdung-eo/Capstone_inha_Zeloss/assets/107853954/4c8f6d6d-cc23-49f5-b6d4-dc4a408eb456" width="200"> | <img src="https://github.com/jeongdung-eo/Capstone_inha_Zeloss/assets/107853954/2c0b19c9-f59f-4496-a958-4eb717e6868a" width="200"> |
@@ -52,8 +54,9 @@ Firebase | 비정상 종료를 유발하는 상황 트래킹을 위한 라이브
 │   │  │  ├─ 📂 UI
 │   │  │  └─ 📂 Design
 │   │  ├─ 📂 Literals
-│   │  └─ 📂 Enum
-│   │ 
+│   │  ├─ 📂 Enum
+│   │  └─ 📂 Utils
+│   │
 │   ├─ 📂 Presentation
 │   │  ├─ 📂 Scene
 │   │  │  ├─ 📂 ViewControllers
@@ -66,7 +69,7 @@ Firebase | 비정상 종료를 유발하는 상황 트래킹을 위한 라이브
 │   │  ├─ 📂 Storyboard
 │   │  ├─ 📂 Colors
 │   │  ├─ 📂 Fonts
-│   │  ├─ 📂 Assts
+│   │  ├─ 📂 Assets
 │   │  ├─ 📜 Info
 └─  └─ └─ 📜 GoogleService-Info
 ~~~
