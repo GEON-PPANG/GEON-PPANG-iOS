@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		090556202A51DB2C00752067 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905561F2A51DB2C00752067 /* UIImage+.swift */; };
 		090556222A51DB3300752067 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556212A51DB3300752067 /* UIFont+.swift */; };
-		090556252A51DB9600752067 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556242A51DB9600752067 /* UICollectionView.swift */; };
+		090556252A51DB9600752067 /* UICollectionView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556242A51DB9600752067 /* UICollectionView+.swift */; };
 		090556272A51DBB100752067 /* NSObject+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556262A51DBB100752067 /* NSObject+.swift */; };
-		090556292A51DBC000752067 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556282A51DBC000752067 /* UIView.swift */; };
+		090556292A51DBC000752067 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556282A51DBC000752067 /* UIView+.swift */; };
 		0905562B2A51DBCE00752067 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905562A2A51DBCE00752067 /* UIStackView+.swift */; };
 		0905562D2A51DBE700752067 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905562C2A51DBE700752067 /* UILabel+.swift */; };
-		090556312A51DDD800752067 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556302A51DDD800752067 /* UITableView.swift */; };
+		090556312A51DDD800752067 /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556302A51DDD800752067 /* UITableView+.swift */; };
 		090556382A51E16B00752067 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 090556372A51E16B00752067 /* Then */; };
 		0905563B2A51E17800752067 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0905563A2A51E17800752067 /* SnapKit */; };
 		0905563E2A51E2C700752067 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 0905563D2A51E2C700752067 /* FirebaseAnalytics */; };
@@ -56,12 +56,12 @@
 /* Begin PBXFileReference section */
 		0905561F2A51DB2C00752067 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		090556212A51DB3300752067 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
-		090556242A51DB9600752067 /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
+		090556242A51DB9600752067 /* UICollectionView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+.swift"; sourceTree = "<group>"; };
 		090556262A51DBB100752067 /* NSObject+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+.swift"; sourceTree = "<group>"; };
-		090556282A51DBC000752067 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		090556282A51DBC000752067 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		0905562A2A51DBCE00752067 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
 		0905562C2A51DBE700752067 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
-		090556302A51DDD800752067 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
+		090556302A51DDD800752067 /* UITableView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
 		090556442A51E79B00752067 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		090556462A51E7D900752067 /* UITextView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+.swift"; sourceTree = "<group>"; };
 		090556482A51E7EC00752067 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
@@ -126,14 +126,14 @@
 		090556232A51DB7A00752067 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				090556242A51DB9600752067 /* UICollectionView.swift */,
-				090556302A51DDD800752067 /* UITableView.swift */,
+				090556242A51DB9600752067 /* UICollectionView+.swift */,
+				090556302A51DDD800752067 /* UITableView+.swift */,
 				090556442A51E79B00752067 /* UITextField+.swift */,
 				090556462A51E7D900752067 /* UITextView+.swift */,
 				090556482A51E7EC00752067 /* UIScreen+.swift */,
 				0905564A2A51E81D00752067 /* UIViewController+.swift */,
 				090556262A51DBB100752067 /* NSObject+.swift */,
-				090556282A51DBC000752067 /* UIView.swift */,
+				090556282A51DBC000752067 /* UIView+.swift */,
 				0905562A2A51DBCE00752067 /* UIStackView+.swift */,
 				0905562C2A51DBE700752067 /* UILabel+.swift */,
 				09B13F552A59410C00C0C723 /* CALayer+.swift */,
@@ -572,7 +572,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				090556292A51DBC000752067 /* UIView.swift in Sources */,
+				090556292A51DBC000752067 /* UIView+.swift in Sources */,
 				090668FC2A4FF3C600F413FA /* AppDelegate.swift in Sources */,
 				090668FD2A4FF3C600F413FA /* SceneDelegate.swift in Sources */,
 				09B13F5A2A5946B700C0C723 /* TabBar+.swift in Sources */,
@@ -592,7 +592,7 @@
 				0905564B2A51E81D00752067 /* UIViewController+.swift in Sources */,
 				090556202A51DB2C00752067 /* UIImage+.swift in Sources */,
 				0905562D2A51DBE700752067 /* UILabel+.swift in Sources */,
-				090556252A51DB9600752067 /* UICollectionView.swift in Sources */,
+				090556252A51DB9600752067 /* UICollectionView+.swift in Sources */,
 				09B13F582A59433500C0C723 /* TabBarItem.swift in Sources */,
 				09B13F502A593CB800C0C723 /* BakeryListViewController.swift in Sources */,
 				093214022A5AE27800875EF6 /* Utils.swift in Sources */,
@@ -601,7 +601,7 @@
 				DF959A6E2A568C9400E75774 /* UIColor+.swift in Sources */,
 				090556472A51E7D900752067 /* UITextView+.swift in Sources */,
 				0905562B2A51DBCE00752067 /* UIStackView+.swift in Sources */,
-				090556312A51DDD800752067 /* UITableView.swift in Sources */,
+				090556312A51DDD800752067 /* UITableView+.swift in Sources */,
 				09B13F562A59410C00C0C723 /* CALayer+.swift in Sources */,
 				090556272A51DBB100752067 /* NSObject+.swift in Sources */,
 			);
