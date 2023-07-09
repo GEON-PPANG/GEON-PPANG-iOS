@@ -10,16 +10,6 @@ import UIKit
 import SnapKit
 import Then
 
-enum RightButtonType {
-    case searchButton
-    case clearButton
-}
-
-enum ViewType {
-    case home
-    case search
-}
-
 final class SearchTextField: UITextField {
     
     // MARK: - Property
