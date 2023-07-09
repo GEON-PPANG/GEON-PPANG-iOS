@@ -21,6 +21,8 @@ final class WriteReviewViewController: BaseViewController {
     // TODO: ScrollView 추가
     // TODO: navigationBar 추가
     // TODO: bakeryImage 추가
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
     private let bakeryOverviewView = BakeryOverviewView(bakeryImage: .actions, regions: ["tset", "efqerqf"])
     private let lineView = LineView()
     private let likeCollectionViewFlowLayout = OptionsCollectionViewFlowLayout()
@@ -50,45 +52,57 @@ final class WriteReviewViewController: BaseViewController {
     // MARK: - Setting
     
     override func setLayout() {
-        view.addSubview(bakeryOverviewView)
+        view.addSubview(scrollView)
+        scrollView.snp.makeConstraints {
+            $0.verticalEdges.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview()
+        }
+        
+        scrollView.addSubview(contentView)
+        contentView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        contentView.addSubview(bakeryOverviewView)
         bakeryOverviewView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview()
-            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.top.equalToSuperview()
             $0.height.equalTo(125)
         }
         
-        view.addSubview(lineView)
+        contentView.addSubview(lineView)
         lineView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview()
             $0.top.equalTo(bakeryOverviewView.snp.bottom)
             $0.height.equalTo(1)
         }
         
-        view.addSubview(likeCollectionView)
+        contentView.addSubview(likeCollectionView)
         likeCollectionView.snp.makeConstraints {
             $0.top.equalTo(lineView.snp.bottom).offset(24)
             $0.horizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(73)
         }
         
-        view.addSubview(optionsCollectionView)
+        contentView.addSubview(optionsCollectionView)
         optionsCollectionView.snp.makeConstraints {
             $0.top.equalTo(likeCollectionView.snp.bottom).offset(28)
             $0.horizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(50)
         }
         
-        view.addSubview(reviewDetailTextView)
+        contentView.addSubview(reviewDetailTextView)
         reviewDetailTextView.snp.makeConstraints {
             $0.top.equalTo(optionsCollectionView.snp.bottom).offset(28)
             $0.horizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(221)
         }
         
-        view.addSubview(aboutReviewLabel)
+        contentView.addSubview(aboutReviewLabel)
         aboutReviewLabel.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(24)
             $0.top.equalTo(reviewDetailTextView.snp.bottom).offset(16)
+            $0.bottom.equalToSuperview()
         }
     }
     
