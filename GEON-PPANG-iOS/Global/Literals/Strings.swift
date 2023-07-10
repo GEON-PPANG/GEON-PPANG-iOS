@@ -14,7 +14,7 @@ struct I18N {
         static let searchPlaceholder = "궁금한 건빵집을 입력해주세요!"
     }
     
-    // MARK: - WriteReviewViewController
+    /// WriteReviewViewController
     
     static let likePlaceholder = "추가로 좋았던 점이 있다면 말씀해주세요!"
     static let dislikePlaceholder = "자유롭게 의견을 말씀해주세요!"
