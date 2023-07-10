@@ -21,10 +21,15 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     private let markStackView = MarkStackView()
     private let bakeryTitle = UILabel()
     private let bakeryReview = UILabel()
+    private let regionStackView = RegionStackView()
     private lazy var bookMarkButton = BookmarkButton(configuration: .plain())
     
     // MARK: - Life Cycle
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        markStackView.getMarkStatus(false, false, false)
+    }
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
@@ -52,7 +57,7 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
             $0.contentMode = .scaleAspectFill
             $0.backgroundColor = .gbbPoint1
         }
-
+        
         [bakeryTitle, bakeryReview].forEach {
             $0.numberOfLines = 1
             $0.textAlignment = .left
@@ -61,7 +66,7 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     }
     
     private func setLayout() {
-        contentView.addSubviews(bakeryImage, bookMarkButton, bakeryTitle, bakeryReview)
+        contentView.addSubviews(bakeryImage, bookMarkButton, bakeryTitle, bakeryReview, regionStackView)
         bakeryImage.addSubview(markStackView)
         
         let availableHeight = contentView.bounds.height
@@ -94,7 +99,12 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
             $0.top.equalTo(bakeryTitle.snp.bottom).offset(10)
             $0.leading.equalTo(bakeryTitle.snp.leading)
             $0.trailing.equalTo(bookMarkButton.snp.leading).offset(-20)
-            
+        }
+        
+        regionStackView.snp.makeConstraints {
+            $0.top.equalTo(bakeryReview.snp.bottom).offset(10)
+            $0.leading.equalTo(bakeryTitle.snp.leading)
+            $0.bottom.equalToSuperview().offset(-19)
         }
     }
     
@@ -109,12 +119,17 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
             guard let self = self  else { return }
             self.updateData?(status, self.index)
         }
-        
         if data.isBooked {
             bookMarkButton.isSelected = true
         } else {
             bookMarkButton.isSelected = false
         }
         markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNONGMO)
+        
+        if data.secondNearStation == "" {
+            regionStackView.removeSecondRegion()
+        }
+        regionStackView.getGegionName(data.firstNearStation, data.secondNearStation)
+        
     }
 }

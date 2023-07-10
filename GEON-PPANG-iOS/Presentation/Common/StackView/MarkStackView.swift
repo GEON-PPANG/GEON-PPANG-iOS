@@ -12,9 +12,9 @@ import Then
 
 final class MarkStackView: UIStackView {
     
-    private let hccpMarkIconView = UIImageView()
-    private let veganIconView = UIImageView()
-    private let gmoIconView = UIImageView()
+    private lazy var hccpMarkIconView = UIImageView()
+    private lazy var veganIconView = UIImageView()
+    private lazy var gmoIconView = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
