@@ -54,7 +54,7 @@ final class OptionsCollectionViewHeader: UICollectionReusableView {
             $0.text = title
         }
     }
-        
+    
     func configureHeaderColor(to color: UIColor) {
         titleLabel.do {
             $0.textColor = color

@@ -26,7 +26,9 @@ final class WriteReviewViewController: BaseViewController {
     private let lineView = LineView()
     private let likeCollectionViewFlowLayout = OptionsCollectionViewFlowLayout()
     private let optionsCollectionViewFlowLayout = OptionsCollectionViewFlowLayout()
+    private let likeCollectionViewHeaderLabel = UILabel()
     private lazy var likeCollectionView = OptionsCollectionView(frame: .zero, collectionViewLayout: likeCollectionViewFlowLayout)
+    private let optionsCollectionViewHeaderLabel = UILabel()
     private lazy var optionsCollectionView = OptionsCollectionView(frame: .zero, collectionViewLayout: optionsCollectionViewFlowLayout)
     private let reviewDetailTextView = ReviewDetailTextView()
     private let aboutReviewLabel = UILabel()
@@ -76,16 +78,30 @@ final class WriteReviewViewController: BaseViewController {
             $0.height.equalTo(1)
         }
         
+        contentView.addSubview(likeCollectionViewHeaderLabel)
+        likeCollectionViewHeaderLabel.snp.makeConstraints {
+            $0.top.equalTo(lineView.snp.bottom).offset(24)
+            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.height.equalTo(22)
+        }
+        
         contentView.addSubview(likeCollectionView)
         likeCollectionView.snp.makeConstraints {
-            $0.top.equalTo(lineView.snp.bottom).offset(24)
+            $0.top.equalTo(likeCollectionViewHeaderLabel.snp.bottom).offset(18)
             $0.horizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(73)
         }
         
+        contentView.addSubview(optionsCollectionViewHeaderLabel)
+        optionsCollectionViewHeaderLabel.snp.makeConstraints {
+            $0.top.equalTo(likeCollectionView.snp.bottom).offset(28)
+            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.height.equalTo(22)
+        }
+        
         contentView.addSubview(optionsCollectionView)
         optionsCollectionView.snp.makeConstraints {
-            $0.top.equalTo(likeCollectionView.snp.bottom).offset(28)
+            $0.top.equalTo(optionsCollectionViewHeaderLabel.snp.bottom).offset(18)
             $0.horizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(50)
         }
@@ -112,6 +128,18 @@ final class WriteReviewViewController: BaseViewController {
         
         optionsCollectionViewFlowLayout.do {
             $0.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        }
+        
+        likeCollectionViewHeaderLabel.do {
+            $0.text = "건빵집은 어떠셨나요?"
+            $0.font = .bodyB1
+            $0.textColor = .black
+        }
+        
+        optionsCollectionViewHeaderLabel.do {
+            $0.text = "어떤것을 추천하나요?"
+            $0.font = .bodyB1
+            $0.textColor = .gbbGray300
         }
         
         optionsCollectionView.do {
@@ -148,6 +176,12 @@ final class WriteReviewViewController: BaseViewController {
         }
     }
     
+    private func configureCollectionViewHeader(to color: UIColor) {
+        optionsCollectionViewHeaderLabel.do {
+            $0.textColor = color
+        }
+    }
+    
 }
 
 // MARK: - UICollectionViewDelegate extension
@@ -159,12 +193,18 @@ extension WriteReviewViewController: UICollectionViewDelegate {
         case likeCollectionView:
             guard let isLikeSelected = collectionView.cellForItem(at: [0, 0])?.isSelected
             else { return }
-//            optionsCollectionView.isUserInteractionEnabled = isLikeSelected
+            
             optionsCollectionView.toggleIsEnabled(to: isLikeSelected)
-//            optionsCollectionView.supplementaryView(forElementKind: <#T##String#>, at: <#T##IndexPath#>)
-            print("test")
+            configureCollectionViewHeader(to: isLikeSelected ? .black : .gbbGray300!)
+            
+            reviewDetailTextView.isLike = isLikeSelected
+            reviewDetailTextView.configureTextView(to: isLikeSelected ? .deactivated : .activated)
+            
         case optionsCollectionView:
-            print("test1")
+            let hasSelection = collectionView.indexPathsForSelectedItems != nil
+            
+            reviewDetailTextView.configureTextView(to: hasSelection ? .activated : .deactivated)
+            
         default:
             return
         }
@@ -202,38 +242,12 @@ extension WriteReviewViewController: UICollectionViewDataSource {
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
-                                                                           withReuseIdentifier: OptionsCollectionViewHeader.identifier,
-                                                                           for: indexPath) as? OptionsCollectionViewHeader
-        else { return UICollectionReusableView() }
-        
-        switch collectionView {
-        case likeCollectionView:
-            header.configureHeaderTitle(to: "건빵집은 어떠셨나요?")
-            header.configureHeaderColor(to: .black)
-        case optionsCollectionView:
-            header.configureHeaderTitle(to: "어떤것을 추천하나요?")
-            header.configureHeaderColor(to: .gbbGray300!)
-        default:
-            return UICollectionReusableView()
-        }
-        return header
-    }
-    
-}
-
-// MARK: - UICollectionViewDelegateFlowLayout
-
-extension WriteReviewViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return .init(width: collectionView.frame.width, height: 22)
-    }
 }
 
 // MARK: - UITextViewDelegate
 
 extension WriteReviewViewController: UITextViewDelegate {
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         let textView = self.reviewDetailTextView.detailTextView
         if textView.text == I18N.likePlaceholder || textView.text == I18N.dislikePlaceholder {
@@ -249,4 +263,5 @@ extension WriteReviewViewController: UITextViewDelegate {
             textView.textColor = .gbbGray300
         }
     }
+    
 }

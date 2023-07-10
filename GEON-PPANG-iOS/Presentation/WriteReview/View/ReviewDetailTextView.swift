@@ -11,16 +11,33 @@ final class ReviewDetailTextView: UIView {
     
     // MARK: - Property
     
-    var isLike: Bool = true {
-        didSet {
-            togglePlaceholderWithIsLike()
+    enum TextViewStatus {
+        case deactivated
+        case activated
+        case error
+    }
+    
+    private var borderColor: UIColor {
+        switch status {
+        case .deactivated: return .gbbGray300!
+        case .activated: return .gbbGray500!
+        case .error: return .gbbError!
         }
     }
     
-    var isEnabled: Bool = false {
-        didSet {
-            toggleInteraction()
-            toggleUI()
+    private var textColor: UIColor {
+        switch status {
+        case .deactivated: return .gbbGray300!
+        case .activated: return .gbbGray700!
+        case .error: return .gbbError!
+        }
+    }
+    
+    private var status: TextViewStatus = .deactivated
+    
+    var isLike: Bool = true {
+        willSet {
+            configurePlaceholder(with: newValue)
         }
     }
     
@@ -93,25 +110,16 @@ final class ReviewDetailTextView: UIView {
     
     // MARK: - Custom Method
     
-    private func toggleInteraction() {
-        detailTextView.isUserInteractionEnabled.toggle()
-    }
-    
-    private func toggleUI() {
+    func configureTextView(to status: TextViewStatus) {
+        self.status = status
+        
         detailTextView.do {
-            $0.textColor = isEnabled ? .gbbGray500 : .gbbGray300
-        }
-        
-        textLimitLabel.do {
-            $0.textColor = isEnabled ? .gbbGray500 : .gbbGray300
-        }
-        
-        textMinimumLimitLabel.do {
-            $0.textColor = isEnabled ? .gbbGray500 : .gbbGray300
+            $0.textColor = textColor
+            $0.makeBorder(width: 1, color: borderColor)
         }
     }
     
-    private func togglePlaceholderWithIsLike() {
+    func configurePlaceholder(with isLike: Bool) {
         detailTextView.do {
             $0.text = isLike ? I18N.likePlaceholder : I18N.dislikePlaceholder
         }
