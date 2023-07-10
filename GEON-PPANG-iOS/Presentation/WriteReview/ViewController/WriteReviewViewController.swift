@@ -22,6 +22,7 @@ final class WriteReviewViewController: BaseViewController {
     // TODO: bakeryImage 추가
     private let scrollView = UIScrollView()
     private let contentView = UIView()
+    private let navigationBar = CustomNavigationBar()
     private let bakeryOverviewView = BakeryOverviewView(bakeryImage: .actions, regions: ["tset", "efqerqf"])
     private let lineView = LineView()
     private let likeCollectionViewFlowLayout = OptionsCollectionViewFlowLayout()
@@ -53,10 +54,16 @@ final class WriteReviewViewController: BaseViewController {
     // MARK: - Setting
     
     override func setLayout() {
+        view.addSubview(navigationBar)
+        navigationBar.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview()
+            $0.top.equalToSuperview()
+        }
+        
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints {
-            $0.verticalEdges.equalToSuperview()
-            $0.horizontalEdges.equalToSuperview()
+            $0.top.equalTo(navigationBar.snp.bottom)
+            $0.horizontalEdges.bottom.equalToSuperview()
         }
         
         scrollView.addSubview(contentView)
@@ -157,6 +164,8 @@ final class WriteReviewViewController: BaseViewController {
     }
     
     override func setDelegate() {
+        scrollView.delegate = self
+        
         likeCollectionView.delegate = self
         likeCollectionView.dataSource = self
         
@@ -254,13 +263,18 @@ extension WriteReviewViewController: UITextViewDelegate {
             textView.text = nil
             textView.textColor = .black
         }
+        
+//        var textViewPoint = textView.frame.origin
+//        textViewPoint.y = textViewPoint.y - 5
+//        scrollView.setContentOffset(textViewPoint, animated: true)
+        
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
         let textView = self.reviewDetailTextView.detailTextView
         if textView.text.isEmpty {
             textView.text = reviewDetailTextView.isLike ? I18N.likePlaceholder : I18N.dislikePlaceholder
-            textView.textColor = .gbbGray300
+            textView.textColor = .black
         }
     }
     
