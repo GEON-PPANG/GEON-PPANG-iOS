@@ -33,7 +33,7 @@ final class HomeBottomCollectionViewCell: UICollectionViewCell {
             $0.backgroundColor = .gbbGray100
         }
         
-        // TODO: - markdown으로 변경
+        // markdown으로 변경
         
         footerLabel.do {
             $0.textAlignment = .left

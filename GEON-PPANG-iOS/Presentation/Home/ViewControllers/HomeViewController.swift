@@ -111,7 +111,7 @@ final class HomeViewController: BaseViewController {
             case .review:
                 let cell: HomeReviewCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
                 cell.updateUI(data: item as! HomeBestReviewResponseDTO, index: indexPath.item)
-                //cell.updateData = { [ weak self ] _, _ in
+                // cell.updateData = { [ weak self ] _, _ in
                 // Todo: - 북마크 api 호출 - index 값 넘겨줌
                 // }
                 return cell

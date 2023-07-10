@@ -37,4 +37,3 @@ final class GradientImageView: UIImageView {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
