@@ -33,7 +33,6 @@ final class CustomNavigationBar: UIView {
         super.init(frame: .zero)
         
         setLayout()
-        setUI()
     }
     
     @available(*, unavailable)
@@ -53,13 +52,6 @@ final class CustomNavigationBar: UIView {
             $0.leading.equalToSuperview().inset(5)
             $0.bottom.equalToSuperview().inset(10)
             $0.width.height.equalTo(Size.buttonSize)
-        }
-    }
-    
-    private func setUI() {
-        backButton.do {
-            // TODO: asset 추가되면 image, color 변경
-            $0.tintColor = .black
         }
     }
     
