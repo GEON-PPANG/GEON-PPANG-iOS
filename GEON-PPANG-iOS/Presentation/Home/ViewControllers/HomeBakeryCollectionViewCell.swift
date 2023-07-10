@@ -13,7 +13,8 @@ import Then
 final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Property
-    
+    var updateData: ((Bool, Int) -> Void)?
+    var index = 0
     // MARK: - UI Property
     
     private let bakeryImage = UIImageView()
@@ -41,16 +42,16 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
             $0.contentView.makeCornerRound(radius: 5)
             $0.contentView.clipsToBounds = true
         }
-        
+        bookMarkButton.do {
+            $0.configuration?.imagePlacement = NSDirectionalRectEdge.top
+            $0.configuration?.imagePadding = 4
+            $0.configuration?.contentInsets = .zero
+        }
         bakeryImage.do {
             $0.contentMode = .scaleAspectFill
             $0.backgroundColor = .gbbPoint1
         }
-        
-        bookMarkButton.do {
-            $0.configuration?.imagePadding = 4
-            $0.configuration?.imagePlacement = NSDirectionalRectEdge.top
-        }
+
         [bakeryTitle, bakeryReview].forEach {
             $0.numberOfLines = 1
             $0.textAlignment = .left
@@ -86,21 +87,26 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
             $0.top.equalTo(bakeryTitle.snp.bottom).offset(10)
             $0.leading.equalTo(bakeryTitle.snp.leading)
             $0.trailing.equalTo(bookMarkButton.snp.leading).offset(-20)
-
+            
         }
     }
     
-    func updateUI(data: HomeBestBakeryResponseDTO) {
+    func updateUI(data: HomeBestBakeryResponseDTO, index: Int) {
+        self.index = index
         bakeryImage.image = UIImage(named: data.bakeryPicture)
         bakeryTitle.text = data.bakeryName
         bakeryReview.text = "리뷰(\(data.reviewCount))"
         bakeryReview.partColorChange(targetString: "\(data.reviewCount)", textColor: .gbbPoint1!)
         bookMarkButton.getCount(data.bookmarkCount)
+        bookMarkButton.updateData = { [weak self] status in
+            guard let self = self  else { return }
+            self.updateData?(status, self.index)
+        }
+        
         if data.isBooked {
-            bookMarkButton.updateBookMarkUI(.off)
+            bookMarkButton.isSelected = true
         } else {
-            bookMarkButton.updateBookMarkUI(.on)
-
+            bookMarkButton.isSelected = false
         }
     }
 }
