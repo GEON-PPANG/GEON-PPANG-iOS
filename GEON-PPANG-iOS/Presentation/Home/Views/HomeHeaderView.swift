@@ -12,6 +12,8 @@ import Then
 
 final class HomeHeaderView: UICollectionReusableView {
     
+    // MARK: - UI Property
+    
     private let headerLabel = UILabel()
     
     override init(frame: CGRect) {
@@ -20,15 +22,13 @@ final class HomeHeaderView: UICollectionReusableView {
         setUI()
         setLayout()
         
-        Sections.allCases.forEach {
-            headerLabel.text = $0.title
-        }
-        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MAKR: - Setting
     
     private func setUI() {
         headerLabel.do {

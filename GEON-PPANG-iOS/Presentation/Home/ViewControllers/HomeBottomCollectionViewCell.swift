@@ -9,7 +9,11 @@ import UIKit
 
 final class HomeBottomCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - UI Property
+    
     private let footerLabel = UILabel()
+    
+    // MARK: - Life Cycle
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -21,6 +25,8 @@ final class HomeBottomCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Setting
     
     private func setUI() {
         contentView.do {

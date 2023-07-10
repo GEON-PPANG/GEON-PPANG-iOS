@@ -9,7 +9,11 @@ import UIKit
 
 final class PaddingLabel: UILabel {
     
+    // MARK: - Property
+    
     private var padding = UIEdgeInsets(top: 6, left: 8, bottom: 6, right: 8) // 초기 패딩값 설정
+    
+    // MARK: - UI Property
     
     convenience init(padding: UIEdgeInsets) {
         self.init()

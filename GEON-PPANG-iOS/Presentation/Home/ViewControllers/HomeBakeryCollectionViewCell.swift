@@ -13,8 +13,10 @@ import Then
 final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Property
+    
     var updateData: ((Bool, Int) -> Void)?
     var index = 0
+    
     // MARK: - UI Property
     
     private let bakeryImage = UIImageView()
@@ -40,6 +42,8 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Setting
     
     private func setUI() {
         self.do {
