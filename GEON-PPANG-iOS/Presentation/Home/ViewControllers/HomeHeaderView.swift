@@ -32,8 +32,8 @@ final class HomeHeaderView: UICollectionReusableView {
     
     private func setUI() {
         headerLabel.do {
-            $0.partColorChange(targetString: "Best리뷰", textColor: .gbbPoint2!)
             $0.basic(font: .pretendardBold(20), color: .gbbGray700!)
+
         }
     }
     
@@ -48,5 +48,6 @@ final class HomeHeaderView: UICollectionReusableView {
     
     func setctionHeaderTitle(_ section: String) {
         headerLabel.text = section
+        headerLabel.partColorChange(targetString: "BEST", textColor: .gbbPoint1!)
     }
 }
