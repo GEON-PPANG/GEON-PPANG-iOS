@@ -157,15 +157,16 @@ extension WriteReviewViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch collectionView {
         case likeCollectionView:
-            print("likeCollectionView Cell Tapped")
             guard let isLikeSelected = collectionView.cellForItem(at: [0, 0])?.isSelected
             else { return }
-            optionsCollectionView.toggleIsEnabled(isLikeSelected)
-            print(optionsCollectionView.isUserInteractionEnabled)
+//            optionsCollectionView.isUserInteractionEnabled = isLikeSelected
+            optionsCollectionView.toggleIsEnabled(to: isLikeSelected)
+//            optionsCollectionView.supplementaryView(forElementKind: <#T##String#>, at: <#T##IndexPath#>)
+            print("test")
         case optionsCollectionView:
-            print("optionsCollectionview Cell Tapped")
+            print("test1")
         default:
-            print("cell selection failed")
+            return
         }
     }
     
@@ -190,26 +191,30 @@ extension WriteReviewViewController: UICollectionViewDataSource {
         switch collectionView {
         case likeCollectionView:
             cell.configureCell(to: .deselected)
-            cell.configureCellText(to: indexPath.item == 0 ? "좋아요" : "별로에요")
+            cell.configureCellText(to: indexPath.item == 0 ? "좋아요" : "별로예요")
         case optionsCollectionView:
             let keywordList = KeywordList.Keyword.allCases.map { $0.rawValue }
             cell.configureCell(to: .disabled)
             cell.configureCellText(to: keywordList[indexPath.item])
-        default: return UICollectionViewCell()
+        default:
+            return UICollectionViewCell()
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: OptionsCollectionViewHeader.identifier, for: indexPath) as? OptionsCollectionViewHeader
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
+                                                                           withReuseIdentifier: OptionsCollectionViewHeader.identifier,
+                                                                           for: indexPath) as? OptionsCollectionViewHeader
         else { return UICollectionReusableView() }
         
         switch collectionView {
         case likeCollectionView:
-            header.configureTitle(to: "건빵집은 어떠셨나요?")
-            header.isEnabled.toggle()
+            header.configureHeaderTitle(to: "건빵집은 어떠셨나요?")
+            header.configureHeaderColor(to: .black)
         case optionsCollectionView:
-            header.configureTitle(to: "어떤것을 추천하나요?")
+            header.configureHeaderTitle(to: "어떤것을 추천하나요?")
+            header.configureHeaderColor(to: .gbbGray300!)
         default:
             return UICollectionReusableView()
         }

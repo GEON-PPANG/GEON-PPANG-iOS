@@ -36,24 +36,17 @@ final class OptionsCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    private var status: CellStatus = .deselected {
-        didSet {
-            setUI()
-        }
-    }
+    private var status: CellStatus = .deselected
+    
     private var cellText: String = ""
     
     override var isSelected: Bool {
-        didSet {
-            toggleCellSelection()
+        willSet {
+            configureCell(to: newValue ? .selected : .deselected )
         }
     }
     
-    var isEnabled: Bool = true {
-        didSet {
-            toggleCellInteraction()
-        }
-    }
+    var isEnabled: Bool = true
     
     // MARK: - UI Property
     
@@ -113,22 +106,23 @@ final class OptionsCollectionViewCell: UICollectionViewCell {
     }
     
     func configureCellText(to text: String) {
-        cellText = text
+        self.cellText = text
+        
         cellLabel.do {
             $0.text = text
         }
     }
     
-    func toggleCellSelection() {
-        self.status = isSelected ? .selected : .deselected
+//    func toggleCellSelection() {
+//        self.status = isSelected ? .selected : .deselected
 //        configureCell(to: self.status)
-    }
+//    }
     
-    func toggleCellInteraction() {
-        self.status = isEnabled ? .deselected : .disabled
-        self.isUserInteractionEnabled = isEnabled ? true : false
+//    func toggleCellInteraction() {
+//        self.status = isEnabled ? .deselected : .disabled
+//        self.isUserInteractionEnabled = isEnabled ? true : false
 //        self.isUserInteractionEnabled.toggle()
 //        configureCell(to: status)
-    }
+//    }
     
 }

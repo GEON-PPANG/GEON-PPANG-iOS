@@ -46,22 +46,19 @@ final class OptionsCollectionView: UICollectionView {
     // MARK: - Custom Method
     
     private func resetCellsAreSelected() {
-        self.indexPathsForVisibleItems.forEach { indexPath in
-            guard let cell = cellForItem(at: indexPath) as? OptionsCollectionViewCell
-            else { return }
-            cell.configureCell(to: .deselected)
-        }
+        self.indexPathsForSelectedItems?.forEach({ indexPath in
+            self.deselectItem(at: indexPath, animated: false)
+        })
     }
     
-    func toggleIsEnabled(_ isLikeSelected: Bool) {
-        self.indexPathsForVisibleItems.forEach { indexPath in
-            guard let cell = cellForItem(at: indexPath) as? OptionsCollectionViewCell
-            else { return }
-//            cell.isSelected = false
-            cell.configureCell(to: isLikeSelected ? .deselected : .disabled)
-        }
+    func toggleIsEnabled(to isLikeSelected: Bool) {
         self.isUserInteractionEnabled = isLikeSelected
-//        self.resetCellsAreSelected()
+        self.resetCellsAreSelected()
+        self.visibleCells.forEach { cell in
+            guard let optionCell = cell as? OptionsCollectionViewCell
+            else { return }
+            optionCell.configureCell(to: isLikeSelected ? .deselected : .disabled)
+        }
     }
     
 }
