@@ -86,8 +86,8 @@ final class HomeViewController: BaseViewController {
     // MARK: - Setting
     
     private func setRegister() {
-        collectionView.register(cell: HomeCollectionViewCell.self)
         collectionView.register(cell: HomeBakeryCollectionViewCell.self)
+        collectionView.register(cell: HomeReviewCollectionViewCell.self)
         collectionView.register(cell: HomeBottomCollectionViewCell.self)
         collectionView.register(header: HomeHeaderView.self)
     }
@@ -99,17 +99,21 @@ final class HomeViewController: BaseViewController {
             case .bakery:
                 let cell: HomeBakeryCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
                 cell.updateUI(data: item as! HomeBestBakeryResponseDTO, index: indexPath.item)
-                cell.updateData = { [ weak self ] _, _ in
-                    // Todo: - 북마크 api 호출 - index 값 넘겨줌
-                    // Todo: -  200 - 다시 홈뷰 리스트 정보 받아오는 api 연결
-                    
-                    //                    var snapshot = dataSource?.snapshot()
-                    //                    snapshot?.reloadItems(bakeryList)
-                    //                    dataSource?.applySnapshotUsingReloadData(snapshot ?? "")
-                }
+                //                cell.updateData = { [ weak self ] _, _ in
+                // Todo: - 북마크 api 호출 - index 값 넘겨줌
+                // Todo: -  200 - 다시 홈뷰 리스트 정보 받아오는 api 연결
+                
+                //                    var snapshot = dataSource?.snapshot()
+                //                    snapshot?.reloadItems(bakeryList)
+                //                    dataSource?.applySnapshotUsingReloadData(snapshot ?? "")
+                //  }
                 return cell
             case .review:
-                let cell: HomeCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+                let cell: HomeReviewCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+                cell.updateUI(data: item as! HomeBestReviewResponseDTO, index: indexPath.item)
+                //cell.updateData = { [ weak self ] _, _ in
+                // Todo: - 북마크 api 호출 - index 값 넘겨줌
+                // }
                 return cell
             case .bottom, .none:
                 let cell: HomeBottomCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
@@ -147,8 +151,10 @@ final class HomeViewController: BaseViewController {
         let layout = UICollectionViewCompositionalLayout { (sectionIndex, _) -> NSCollectionLayoutSection? in
             let section = Sections(rawValue: sectionIndex)!
             switch section {
-            case .bakery, .review:
-                return self.normalSection()
+            case .bakery:
+                return self.normalSection(headerSize: 48)
+            case .review:
+                return self.normalSection(headerSize: 24)
             case .bottom:
                 return self.bottomSection()
             }
@@ -156,27 +162,25 @@ final class HomeViewController: BaseViewController {
         return layout
     }
     
-    private func normalSection() -> NSCollectionLayoutSection {
+    private func normalSection(headerSize: CGFloat) -> NSCollectionLayoutSection {
         let itemGroupSize = NSCollectionLayoutSize(widthDimension: .absolute(convertByWidthRatio(192)), heightDimension: .estimated(convertByHeightRatio(236)))
         let item = NSCollectionLayoutItem(layoutSize: itemGroupSize)
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemGroupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 12
         section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
-        section.contentInsets = NSDirectionalEdgeInsets(top: 24, leading: 24, bottom: 30, trailing: 24)
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(convertByWidthRatio(24)))
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(headerSize))
         let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 24, leading: 24, bottom: 30, trailing: 24)
         section.boundarySupplementaryItems = [header]
-        
         return section
     }
     
     private func bottomSection() -> NSCollectionLayoutSection {
-        let itemGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(convertByHeightRatio(96)))
+        let itemGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(convertByHeightRatio(115)))
         let item = NSCollectionLayoutItem(layoutSize: itemGroupSize)
         let group = NSCollectionLayoutGroup.vertical(layoutSize: itemGroupSize, subitem: item, count: 1)
         let section = NSCollectionLayoutSection(group: group)
-        
         return section
     }
 }
