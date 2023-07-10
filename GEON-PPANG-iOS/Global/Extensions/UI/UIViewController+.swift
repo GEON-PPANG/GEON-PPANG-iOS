@@ -38,7 +38,31 @@ extension UIViewController {
         view.addGestureRecognizer(tap)
     }
     
-    @objc func dismissKeyboard() {
+    func setKeyboardNotificationCenter() {
+        NotificationCenter.default.addObserver(self, selector: #selector(moveUpAboutKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(moveDownAboutKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    // MARK: - objc functions
+    
+    @objc
+    func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    @objc
+    func moveUpAboutKeyboard(_ notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            UIView.animate(withDuration: 0.2, animations: {
+                self.view.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + 24)
+            })
+        }
+    }
+    
+    @objc
+    func moveDownAboutKeyboard(_ notification: NSNotification) {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.view.transform = .identity
+        })
     }
 }
