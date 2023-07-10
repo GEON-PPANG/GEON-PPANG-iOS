@@ -18,6 +18,7 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     // MARK: - UI Property
     
     private let bakeryImage = UIImageView()
+    private let markStackView = MarkStackView()
     private let bakeryTitle = UILabel()
     private let bakeryReview = UILabel()
     private lazy var bookMarkButton = BookmarkButton(configuration: .plain())
@@ -61,6 +62,7 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     
     private func setLayout() {
         contentView.addSubviews(bakeryImage, bookMarkButton, bakeryTitle, bakeryReview)
+        bakeryImage.addSubview(markStackView)
         
         let availableHeight = contentView.bounds.height
         let buttonHeight: CGFloat = 60
@@ -69,6 +71,11 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
         bakeryImage.snp.makeConstraints {
             $0.top.directionalHorizontalEdges.equalToSuperview()
             $0.height.equalTo(118)
+        }
+        
+        markStackView.snp.makeConstraints {
+            $0.top.leading.equalToSuperview().offset(10)
+            $0.size.equalTo(CGSize(width: 67, height: 28))
         }
         
         bookMarkButton.snp.makeConstraints {
@@ -108,5 +115,6 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
         } else {
             bookMarkButton.isSelected = false
         }
+        markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNONGMO)
     }
 }
