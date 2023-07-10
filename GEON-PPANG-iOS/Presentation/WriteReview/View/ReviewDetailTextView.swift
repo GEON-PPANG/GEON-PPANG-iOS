@@ -98,13 +98,13 @@ final class ReviewDetailTextView: UIView {
         textLimitLabel.do {
             $0.text = "0/500"
             $0.font = .captionM1
-            $0.textColor = .gbbGray300
+            $0.textColor = .gbbGray500
         }
         
         textMinimumLimitLabel.do {
             $0.text = "(최소 10자)"
             $0.font = .captionM1
-            $0.textColor = .gbbGray300
+            $0.textColor = .gbbGray500
         }
     }
     

@@ -18,7 +18,6 @@ final class WriteReviewViewController: BaseViewController {
     
     // MARK: - UI Property
     
-    // TODO: navigationBar 추가
     // TODO: bakeryImage 추가
     private let scrollView = UIScrollView()
     private let contentView = UIView()
@@ -32,7 +31,9 @@ final class WriteReviewViewController: BaseViewController {
     private let optionsCollectionViewHeaderLabel = UILabel()
     private lazy var optionsCollectionView = OptionsCollectionView(frame: .zero, collectionViewLayout: optionsCollectionViewFlowLayout)
     private let reviewDetailTextView = ReviewDetailTextView()
+    private let dotView = UILabel()
     private let aboutReviewLabel = UILabel()
+    private let bottomView = BottomView()
     
     // MARK: - life cycle
     
@@ -42,6 +43,7 @@ final class WriteReviewViewController: BaseViewController {
         // TODO: baseVC 에 숨기기
         self.navigationController?.navigationBar.isHidden = true
         setKeyboardHideGesture()
+        setKeyboardNotificationCenter()
     }
     
     override func viewWillLayoutSubviews() {
@@ -60,10 +62,17 @@ final class WriteReviewViewController: BaseViewController {
             $0.top.equalToSuperview()
         }
         
+        view.addSubview(bottomView)
+        bottomView.snp.makeConstraints {
+            $0.horizontalEdges.bottom.equalToSuperview()
+            $0.height.equalTo(126)
+        }
+        
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints {
             $0.top.equalTo(navigationBar.snp.bottom)
-            $0.horizontalEdges.bottom.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(126)
         }
         
         scrollView.addSubview(contentView)
@@ -120,15 +129,27 @@ final class WriteReviewViewController: BaseViewController {
             $0.height.equalTo(221)
         }
         
+        contentView.addSubview(dotView)
+        dotView.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(24)
+            $0.top.equalTo(reviewDetailTextView.snp.bottom).offset(16)
+        }
+        
         contentView.addSubview(aboutReviewLabel)
         aboutReviewLabel.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.leading.equalTo(dotView.snp.trailing)
+            $0.trailing.equalToSuperview().inset(24)
             $0.top.equalTo(reviewDetailTextView.snp.bottom).offset(16)
             $0.bottom.equalToSuperview()
         }
     }
     
     override func setUI() {
+        navigationBar.do {
+            $0.configureLeftTitle(to: "건대 초코빵")
+            $0.configureBottomLine()
+        }
+        
         likeCollectionViewFlowLayout.do {
             $0.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         }
@@ -154,10 +175,20 @@ final class WriteReviewViewController: BaseViewController {
             $0.isUserInteractionEnabled = false
         }
         
+        reviewDetailTextView.do {
+            $0.isUserInteractionEnabled = false
+        }
+        
+        dotView.do {
+            $0.text = "•"
+            $0.font = .captionM2
+            $0.textColor = .gbbGray300
+        }
+        
         aboutReviewLabel.do {
             $0.text = I18N.aboutReview
             $0.font = .captionM2
-            $0.textColor = .gbbGray400
+            $0.textColor = .gbbGray300
             $0.textAlignment = .left
             $0.numberOfLines = 4
         }
@@ -191,6 +222,15 @@ final class WriteReviewViewController: BaseViewController {
         }
     }
     
+//    private func addShadowLayer() {
+//        let layer = CALayer()
+//        layer.shadowPath = UIBezierPath(rect: bottomView.bounds).cgPath
+//        layer.shadowOffset = .zero
+//        layer.shadowRadius = 10
+//        layer.shadowColor = .init(red: 0, green: 0, blue: 0, alpha: 0.1)
+//        bottomView.layer.addSublayer(layer)
+//    }
+    
 }
 
 // MARK: - UICollectionViewDelegate extension
@@ -207,15 +247,24 @@ extension WriteReviewViewController: UICollectionViewDelegate {
             configureCollectionViewHeader(to: isLikeSelected ? .black : .gbbGray300!)
             
             reviewDetailTextView.isLike = isLikeSelected
+            reviewDetailTextView.isUserInteractionEnabled = !isLikeSelected
             reviewDetailTextView.configureTextView(to: isLikeSelected ? .deactivated : .activated)
             
         case optionsCollectionView:
             let hasSelection = collectionView.indexPathsForSelectedItems != nil
-            
+            reviewDetailTextView.isUserInteractionEnabled = hasSelection
             reviewDetailTextView.configureTextView(to: hasSelection ? .activated : .deactivated)
             
         default:
             return
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        guard collectionView == optionsCollectionView else { return }
+        if collectionView.indexPathsForSelectedItems == [] {
+            reviewDetailTextView.isUserInteractionEnabled = false
+            reviewDetailTextView.configureTextView(to: .deactivated)
         }
     }
     
@@ -263,11 +312,6 @@ extension WriteReviewViewController: UITextViewDelegate {
             textView.text = nil
             textView.textColor = .black
         }
-        
-//        var textViewPoint = textView.frame.origin
-//        textViewPoint.y = textViewPoint.y - 5
-//        scrollView.setContentOffset(textViewPoint, animated: true)
-        
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
