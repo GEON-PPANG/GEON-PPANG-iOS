@@ -46,7 +46,7 @@ final class HomeHeaderView: UICollectionReusableView {
         }
     }
     
-    func setctionHeaderTitle(_ section: Sections) {
-        headerLabel.text = section.title
+    func setctionHeaderTitle(_ section: String) {
+        headerLabel.text = section
     }
 }
