@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "gmo_mark@1x.png",
+      "filename" : "gmo_mark_28px@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "gmo_mark@2x.png",
+      "filename" : "gmo_mark_28px@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "gmo_mark@3x.png",
+      "filename" : "gmo_mark_28px@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
