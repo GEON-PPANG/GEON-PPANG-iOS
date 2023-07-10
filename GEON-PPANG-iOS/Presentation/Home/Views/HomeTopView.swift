@@ -21,6 +21,7 @@ final class HomeTopView: UIView {
     private let titleLabel = UILabel()
     private let searchTextField = SearchTextField()
     private lazy var filterButton = UIButton()
+    private let lineView = UIView()
     
     // MARK: - Life Cycle
     
@@ -56,10 +57,14 @@ final class HomeTopView: UIView {
         filterButton.do {
             $0.setImage(.homeFilterButton, for: .normal)
         }
+        
+        lineView.do {
+            $0.backgroundColor = .gbbGray200
+        }
     }
     
     private func setLayout() {
-        addSubviews(titleLabel, filterButton, searchTextField)
+        addSubviews(titleLabel, filterButton, searchTextField, lineView)
         
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(45)
@@ -77,6 +82,12 @@ final class HomeTopView: UIView {
             $0.leading.equalTo(titleLabel.snp.leading)
             $0.top.equalTo(filterButton.snp.top)
             $0.trailing.equalTo(filterButton.snp.leading).offset(-12)
+        }
+        
+        lineView.snp.makeConstraints {
+            $0.height.equalTo(1)
+            $0.bottom.equalToSuperview()
+            $0.directionalHorizontalEdges.equalToSuperview()
         }
     }
     
