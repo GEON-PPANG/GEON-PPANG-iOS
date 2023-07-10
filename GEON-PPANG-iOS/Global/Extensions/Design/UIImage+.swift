@@ -44,6 +44,7 @@ extension UIImage {
     static let deleteIcon = UIImage(named: "ic_delete")!.withRenderingMode(.alwaysOriginal)
     static let dotdotdotIcon = UIImage(named: "ic_dotdotdot")!.withRenderingMode(.alwaysOriginal)
     static let hideIcon = UIImage(named: "ic_hide")!.withRenderingMode(.alwaysOriginal)
+    static let launchscreenIcon = UIImage(named: "ic_launchscreen")!.withRenderingMode(.alwaysOriginal)
     static let linkIcon = UIImage(named: "ic_link")!.withRenderingMode(.alwaysOriginal)
     static let listIcon = UIImage(named: "ic_link")!.withRenderingMode(.alwaysOriginal) // 건빵집 리스트 옆에 얘 써야 됨, 탭바의 storelist 아님!
     static let logoIcon16px = UIImage(named: "ic_logo_16px")!.withRenderingMode(.alwaysOriginal)
@@ -73,10 +74,6 @@ extension UIImage {
     static let googleLoginButton = UIImage(named: "google_login_button_56px")!.withRenderingMode(.alwaysOriginal)
     static let kakaoLoginButton = UIImage(named: "kakao_login_button_56px")!.withRenderingMode(.alwaysOriginal)
     static let naverLoginButton = UIImage(named: "naver_login_button_56px")!.withRenderingMode(.alwaysOriginal)
-    
-    // Splash
-    static let splashImageIcon = UIImage(named: "ic_splash_image")!.withRenderingMode(.alwaysOriginal)
-    static let splashTitleIcon = UIImage(named: "ic_splash_title")!.withRenderingMode(.alwaysOriginal)
     
     // TabBar
     static let disabledHomeIcon = UIImage(named: "ic_home_disable")!.withRenderingMode(.alwaysOriginal)
