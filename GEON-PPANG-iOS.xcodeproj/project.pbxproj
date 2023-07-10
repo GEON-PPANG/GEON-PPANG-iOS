@@ -28,6 +28,7 @@
 		090668FC2A4FF3C600F413FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098F32E02A4200FD0092D09A /* AppDelegate.swift */; };
 		090668FD2A4FF3C600F413FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098F32E22A4200FD0092D09A /* SceneDelegate.swift */; };
 		0915C16A2A5BFC5900ACB8D4 /* HomeBottomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0915C1692A5BFC5900ACB8D4 /* HomeBottomCollectionViewCell.swift */; };
+		0915C16E2A5C2EE200ACB8D4 /* MarkStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0915C16D2A5C2EE200ACB8D4 /* MarkStackView.swift */; };
 		0924632F2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0924632E2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift */; };
 		093214022A5AE27800875EF6 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093214012A5AE27700875EF6 /* Utils.swift */; };
 		093214082A5AE40900875EF6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093214072A5AE40900875EF6 /* SearchViewController.swift */; };
@@ -78,6 +79,7 @@
 		0905564A2A51E81D00752067 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		090668F72A4FF1D900F413FA /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		0915C1692A5BFC5900ACB8D4 /* HomeBottomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBottomCollectionViewCell.swift; sourceTree = "<group>"; };
+		0915C16D2A5C2EE200ACB8D4 /* MarkStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkStackView.swift; sourceTree = "<group>"; };
 		0924632E2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBakeryCollectionViewCell.swift; sourceTree = "<group>"; };
 		093214012A5AE27700875EF6 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		093214072A5AE40900875EF6 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				09B71BFF2A59D50900076AC2 /* HomeTopView.swift */,
+				0915C16D2A5C2EE200ACB8D4 /* MarkStackView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -417,14 +420,6 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		3E79B19B2A54523400D36A26 /* Button */ = {
-			isa = PBXGroup;
-			children = (
-				3E79B19C2A54523D00D36A26 /* BackButton.swift */,
-			);
-			path = Button;
-			sourceTree = "<group>";
-		};
 		09C626522A5B33A8002C8110 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -432,6 +427,14 @@
 				09C626552A5B3572002C8110 /* HomeBestReviewResponseDTO.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		3E79B19B2A54523400D36A26 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				3E79B19C2A54523D00D36A26 /* BackButton.swift */,
+			);
+			path = Button;
 			sourceTree = "<group>";
 		};
 		3EA2E1E02A53E864003516A3 /* Common */ = {
@@ -624,6 +627,7 @@
 				09CA3F082A569EBA0063897A /* Service.swift in Sources */,
 				09B13F4C2A593C6F00C0C723 /* HomeViewController.swift in Sources */,
 				09C626542A5B344B002C8110 /* HomeBestBakeryResponseDTO.swift in Sources */,
+				0915C16E2A5C2EE200ACB8D4 /* MarkStackView.swift in Sources */,
 				09C626502A5B305E002C8110 /* HomeCollectionViewCell.swift in Sources */,
 				0905564B2A51E81D00752067 /* UIViewController+.swift in Sources */,
 				3EA2E1EB2A542151003516A3 /* SizeLiteral.swift in Sources */,
