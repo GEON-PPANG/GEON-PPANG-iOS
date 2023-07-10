@@ -74,6 +74,10 @@ extension UIImage {
     static let kakaoLoginButton = UIImage(named: "kakao_login_button_56px")!.withRenderingMode(.alwaysOriginal)
     static let naverLoginButton = UIImage(named: "naver_login_button_56px")!.withRenderingMode(.alwaysOriginal)
     
+    // Splash
+    static let splashImageIcon = UIImage(named: "ic_splash_image")!.withRenderingMode(.alwaysOriginal)
+    static let splashTitleIcon = UIImage(named: "ic_splash_title")!.withRenderingMode(.alwaysOriginal)
+    
     // TabBar
     static let disabledHomeIcon = UIImage(named: "ic_home_disable")!.withRenderingMode(.alwaysOriginal)
     static let disabledMypageIcon = UIImage(named: "ic_mypage_disable")!.withRenderingMode(.alwaysOriginal)
