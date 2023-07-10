@@ -29,6 +29,8 @@
 		090668FD2A4FF3C600F413FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098F32E22A4200FD0092D09A /* SceneDelegate.swift */; };
 		0915C16A2A5BFC5900ACB8D4 /* HomeBottomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0915C1692A5BFC5900ACB8D4 /* HomeBottomCollectionViewCell.swift */; };
 		0915C16E2A5C2EE200ACB8D4 /* MarkStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0915C16D2A5C2EE200ACB8D4 /* MarkStackView.swift */; };
+		0915C1702A5C3C5600ACB8D4 /* RegionStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0915C16F2A5C3C5600ACB8D4 /* RegionStackView.swift */; };
+		0915C1722A5C3D3700ACB8D4 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0915C1712A5C3D3700ACB8D4 /* PaddingLabel.swift */; };
 		0924632F2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0924632E2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift */; };
 		093214022A5AE27800875EF6 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093214012A5AE27700875EF6 /* Utils.swift */; };
 		093214082A5AE40900875EF6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093214072A5AE40900875EF6 /* SearchViewController.swift */; };
@@ -80,6 +82,8 @@
 		090668F72A4FF1D900F413FA /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		0915C1692A5BFC5900ACB8D4 /* HomeBottomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBottomCollectionViewCell.swift; sourceTree = "<group>"; };
 		0915C16D2A5C2EE200ACB8D4 /* MarkStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkStackView.swift; sourceTree = "<group>"; };
+		0915C16F2A5C3C5600ACB8D4 /* RegionStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionStackView.swift; sourceTree = "<group>"; };
+		0915C1712A5C3D3700ACB8D4 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		0924632E2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBakeryCollectionViewCell.swift; sourceTree = "<group>"; };
 		093214012A5AE27700875EF6 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		093214072A5AE40900875EF6 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -164,11 +168,21 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		0915C1732A5C4FEE00ACB8D4 /* StackView */ = {
+			isa = PBXGroup;
+			children = (
+				0915C16D2A5C2EE200ACB8D4 /* MarkStackView.swift */,
+				0915C16F2A5C3C5600ACB8D4 /* RegionStackView.swift */,
+			);
+			path = StackView;
+			sourceTree = "<group>";
+		};
 		093213FC2A5A74C200875EF6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				09B71BFF2A59D50900076AC2 /* HomeTopView.swift */,
-				0915C16D2A5C2EE200ACB8D4 /* MarkStackView.swift */,
+				09C626572A5B4269002C8110 /* HomeHeaderView.swift */,
+				0915C1712A5C3D3700ACB8D4 /* PaddingLabel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -379,11 +393,9 @@
 			isa = PBXGroup;
 			children = (
 				09B13F4B2A593C6F00C0C723 /* HomeViewController.swift */,
-				09C626572A5B4269002C8110 /* HomeHeaderView.swift */,
 				0915C1692A5BFC5900ACB8D4 /* HomeBottomCollectionViewCell.swift */,
 				09C6264F2A5B305E002C8110 /* HomeCollectionViewCell.swift */,
 				0924632E2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift */,
-				0987288C2A5BA1F000A29402 /* BookmarkButton.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -432,6 +444,7 @@
 		3E79B19B2A54523400D36A26 /* Button */ = {
 			isa = PBXGroup;
 			children = (
+				0987288C2A5BA1F000A29402 /* BookmarkButton.swift */,
 				3E79B19C2A54523D00D36A26 /* BackButton.swift */,
 			);
 			path = Button;
@@ -440,6 +453,7 @@
 		3EA2E1E02A53E864003516A3 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				0915C1732A5C4FEE00ACB8D4 /* StackView */,
 				093213FD2A5A74D100875EF6 /* TextField */,
 				3E79B19B2A54523400D36A26 /* Button */,
 				3EA2E1E12A53E880003516A3 /* Base */,
@@ -605,6 +619,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0915C1702A5C3C5600ACB8D4 /* RegionStackView.swift in Sources */,
 				090556292A51DBC000752067 /* UIView+.swift in Sources */,
 				090668FC2A4FF3C600F413FA /* AppDelegate.swift in Sources */,
 				090668FD2A4FF3C600F413FA /* SceneDelegate.swift in Sources */,
@@ -620,6 +635,7 @@
 				3E79B19D2A54523D00D36A26 /* BackButton.swift in Sources */,
 				3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */,
 				09C626582A5B4269002C8110 /* HomeHeaderView.swift in Sources */,
+				0915C1722A5C3D3700ACB8D4 /* PaddingLabel.swift in Sources */,
 				090556222A51DB3300752067 /* UIFont+.swift in Sources */,
 				09CA3EFC2A569E4A0063897A /* URLConstant.swift in Sources */,
 				09C6264E2A5B29F8002C8110 /* SearchEnum.swift in Sources */,
