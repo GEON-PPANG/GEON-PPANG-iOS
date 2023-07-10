@@ -116,6 +116,7 @@ final class WriteReviewViewController: BaseViewController {
         
         optionsCollectionView.do {
             $0.allowsMultipleSelection = true
+            $0.isUserInteractionEnabled = false
         }
         
         aboutReviewLabel.do {
@@ -151,7 +152,24 @@ final class WriteReviewViewController: BaseViewController {
 
 // MARK: - UICollectionViewDelegate extension
 
-extension WriteReviewViewController: UICollectionViewDelegate {}
+extension WriteReviewViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch collectionView {
+        case likeCollectionView:
+            print("likeCollectionView Cell Tapped")
+            guard let isLikeSelected = collectionView.cellForItem(at: [0, 0])?.isSelected
+            else { return }
+            optionsCollectionView.toggleIsEnabled(isLikeSelected)
+            print(optionsCollectionView.isUserInteractionEnabled)
+        case optionsCollectionView:
+            print("optionsCollectionview Cell Tapped")
+        default:
+            print("cell selection failed")
+        }
+    }
+    
+}
 
 // MARK: - UICollectionViewDataSource extension
 
@@ -166,7 +184,6 @@ extension WriteReviewViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OptionsCollectionViewCell.identifier, for: indexPath) as? OptionsCollectionViewCell
         else { return UICollectionViewCell() }
         
@@ -178,7 +195,6 @@ extension WriteReviewViewController: UICollectionViewDataSource {
             let keywordList = KeywordList.Keyword.allCases.map { $0.rawValue }
             cell.configureCell(to: .disabled)
             cell.configureCellText(to: keywordList[indexPath.item])
-            cell.isUserInteractionEnabled = false
         default: return UICollectionViewCell()
         }
         return cell
