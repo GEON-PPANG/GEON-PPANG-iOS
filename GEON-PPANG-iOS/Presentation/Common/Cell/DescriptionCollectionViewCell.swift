@@ -40,7 +40,11 @@ final class DescriptionCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    private let cellColor: CellColor
+    var cellColor: CellColor = .basic {
+        didSet {
+            setUI()
+        }
+    }
     
     // MARK: - UI Property
     
@@ -48,10 +52,8 @@ final class DescriptionCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Life Cycle
     
-    init(cellColor: CellColor) {
-        self.cellColor = cellColor
-        
-        super.init()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
         setLayout()
         setUI()
