@@ -50,8 +50,8 @@ extension UILabel {
 }
 
 extension UILabel {
-    func basic(text: String, font: UIFont, color: UIColor) {
-        self.text = text
+    func basic(text: String? = "", font: UIFont, color: UIColor) {
+        self.text = text ?? ""
         self.font = font
         self.textColor = color
     }

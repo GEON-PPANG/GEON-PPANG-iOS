@@ -15,12 +15,12 @@ extension UICollectionView {
         cells.forEach { self.register($0.self, forCellWithReuseIdentifier: $0.identifier)}
     }
     
-    func registerFooters(footers: [UICollectionReusableView.Type]) {
-        footers.forEach { self.register($0.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: $0.identifier)}
-    }
-    
     func registerHeaders(headers: [UICollectionReusableView.Type]) {
         headers.forEach { self.register($0.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: $0.identifier)}
+    }
+    
+    func registerFooters(footers: [UICollectionReusableView.Type]) {
+        footers.forEach { self.register($0.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: $0.identifier)}
     }
 
     /// cell 1개
