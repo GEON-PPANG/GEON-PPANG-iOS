@@ -12,17 +12,49 @@ import Then
 
 final class DescriptionCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - Property
+    
+    enum CellColor {
+        case basic
+        case point
+    }
+    
+    private var cellBorderColor: UIColor {
+        switch cellColor {
+        case .basic: return .gbbGray300!
+        case .point: return .clear
+        }
+    }
+    
+    private var cellBackgroundColor: UIColor {
+        switch cellColor {
+        case .basic: return .clear
+        case .point: return .gbbPoint2!
+        }
+    }
+    
+    private var cellTextColor: UIColor {
+        switch cellColor {
+        case .basic: return .gbbGray400!
+        case .point: return .gbbPoint1!
+        }
+    }
+    
+    private let cellColor: CellColor
+    
     // MARK: - UI Property
     
     private let descriptionLabel = UILabel()
     
     // MARK: - Life Cycle
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(cellColor: CellColor) {
+        self.cellColor = cellColor
+        
+        super.init()
         
         setLayout()
-        setStyle()
+        setUI()
     }
     
     @available(*, unavailable)
@@ -40,17 +72,16 @@ final class DescriptionCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    private func setStyle() {
+    private func setUI() {
         self.do {
-            // TODO: asset 추가 시 변경
-            $0.makeBorder(width: 0.5, color: .systemGray)
+            $0.backgroundColor = cellBackgroundColor
+            $0.makeBorder(width: 0.5, color: cellBorderColor)
             $0.makeCornerRound(radius: 3)
         }
         
         descriptionLabel.do {
-            $0.font = .pretendardMedium(13)
-            // TODO: asset 추가 시 변경
-            $0.textColor = .systemGray
+            $0.font = .captionM1
+            $0.textColor = cellTextColor
         }
     }
     
