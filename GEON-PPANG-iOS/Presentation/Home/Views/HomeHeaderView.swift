@@ -33,7 +33,7 @@ final class HomeHeaderView: UICollectionReusableView {
     private func setUI() {
         headerLabel.do {
             $0.basic(font: .pretendardBold(20), color: .gbbGray700!)
-
+            
         }
     }
     

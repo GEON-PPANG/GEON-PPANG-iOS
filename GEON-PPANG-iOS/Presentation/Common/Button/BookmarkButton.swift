@@ -29,9 +29,6 @@ final class BookmarkButton: UIButton {
         
         var configuration =  UIButton.Configuration.plain()
         configuration.baseBackgroundColor = .clear
-        configuration.contentInsets = .zero
-        configuration.imagePlacement = NSDirectionalRectEdge.top
-        configuration.imagePadding = 4
         
         self.do {
             $0.tintColor = .clear

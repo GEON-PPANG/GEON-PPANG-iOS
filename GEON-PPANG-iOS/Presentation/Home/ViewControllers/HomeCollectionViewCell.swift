@@ -9,7 +9,7 @@ import UIKit
 
 final class HomeCollectionViewCell: UICollectionViewCell {
     
- //   private var bookMarkStatus: BookmarkStatus = .off
+    //   private var bookMarkStatus: BookmarkStatus = .off
     
     private lazy var button = BookmarkButton(configuration: .plain())
     
@@ -38,7 +38,7 @@ final class HomeCollectionViewCell: UICollectionViewCell {
         //                    button.configuration?.image = self.bookMarkStatus.icon
         //                }
         //            }
-  
+        
         button.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.size.equalTo(90)

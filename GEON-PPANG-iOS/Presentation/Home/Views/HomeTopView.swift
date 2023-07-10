@@ -15,7 +15,7 @@ final class HomeTopView: UIView {
     // MARK: - Property
     
     var gotoNextView: (() -> Void)?
-        
+    
     // MARK: - UI Property
     
     private let titleLabel = UILabel()
@@ -70,7 +70,7 @@ final class HomeTopView: UIView {
             $0.top.equalToSuperview().offset(45)
             $0.leading.equalToSuperview().offset(24)
         }
-    
+        
         filterButton.snp.makeConstraints {
             $0.size.equalTo(CGSize(width: 44, height: 48))
             $0.top.equalTo(titleLabel.snp.bottom).offset(24)
