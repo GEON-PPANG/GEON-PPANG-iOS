@@ -110,4 +110,13 @@ final class CustomNavigationBar: UIView {
         }
     }
     
+    func configureBottomLine() {
+        let bottomLine = LineView()
+        addSubview(bottomLine)
+        bottomLine.snp.makeConstraints {
+            $0.bottom.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(1)
+        }
+    }
+    
 }

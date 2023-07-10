@@ -53,13 +53,13 @@
 		3E16E5002A57FFD900B813D0 /* OptionsCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16E4FF2A57FFD900B813D0 /* OptionsCollectionViewHeader.swift */; };
 		3E16E5022A58176800B813D0 /* ReviewDetailTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16E5012A58176800B813D0 /* ReviewDetailTextView.swift */; };
 		3E7869BA2A5BCD5F0087F75B /* RegionStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7869B92A5BCD5F0087F75B /* RegionStackView.swift */; };
+		3E79B19D2A54523D00D36A26 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B19C2A54523D00D36A26 /* BackButton.swift */; };
 		3E79B1A62A566F6400D36A26 /* WriteReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1A52A566F6400D36A26 /* WriteReviewViewController.swift */; };
 		3E79B1AC2A5677C800D36A26 /* RegionChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1AB2A5677C800D36A26 /* RegionChip.swift */; };
 		3E79B1AE2A56F14A00D36A26 /* BakeryOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1AD2A56F14A00D36A26 /* BakeryOverviewView.swift */; };
 		3E79B1B02A571B4B00D36A26 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1AF2A571B4B00D36A26 /* LineView.swift */; };
 		3E79B1B22A571E1F00D36A26 /* OptionsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1B12A571E1F00D36A26 /* OptionsCollectionView.swift */; };
 		3E79B1B52A571E7100D36A26 /* OptionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1B42A571E7100D36A26 /* OptionsCollectionViewCell.swift */; };
-		3E79B19D2A54523D00D36A26 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B19C2A54523D00D36A26 /* BackButton.swift */; };
 		3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */; };
 		3EA2E1E92A541AEB003516A3 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1E82A541AEB003516A3 /* CustomNavigationBar.swift */; };
 		3EA2E1EB2A542151003516A3 /* SizeLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1EA2A542151003516A3 /* SizeLiteral.swift */; };
@@ -106,7 +106,6 @@
 		09CA3EFB2A569E4A0063897A /* URLConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConstant.swift; sourceTree = "<group>"; };
 		09CA3F052A569EB30063897A /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		09CA3F072A569EBA0063897A /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
-		3E79B19C2A54523D00D36A26 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		3E16E4F42A57CF3800B813D0 /* WriteReviewDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewDTO.swift; sourceTree = "<group>"; };
 		3E16E4F92A57D1F400B813D0 /* RecommendationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationModel.swift; sourceTree = "<group>"; };
 		3E16E4FB2A57D24900B813D0 /* LikeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeModel.swift; sourceTree = "<group>"; };
@@ -114,6 +113,7 @@
 		3E16E4FF2A57FFD900B813D0 /* OptionsCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsCollectionViewHeader.swift; sourceTree = "<group>"; };
 		3E16E5012A58176800B813D0 /* ReviewDetailTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailTextView.swift; sourceTree = "<group>"; };
 		3E7869B92A5BCD5F0087F75B /* RegionStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionStackView.swift; sourceTree = "<group>"; };
+		3E79B19C2A54523D00D36A26 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		3E79B1A52A566F6400D36A26 /* WriteReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewViewController.swift; sourceTree = "<group>"; };
 		3E79B1AB2A5677C800D36A26 /* RegionChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionChip.swift; sourceTree = "<group>"; };
 		3E79B1AD2A56F14A00D36A26 /* BakeryOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryOverviewView.swift; sourceTree = "<group>"; };
@@ -441,14 +441,6 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		3E79B19B2A54523400D36A26 /* Button */ = {
-			isa = PBXGroup;
-			children = (
-				3E79B19C2A54523D00D36A26 /* BackButton.swift */,
-			);
-			path = Button;
-			sourceTree = "<group>";
-		};
 		3E16E4F22A57CE2B00B813D0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -492,6 +484,30 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		3E2EEF722A5C928F0093BCA9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3E79B1AF2A571B4B00D36A26 /* LineView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3E2EEF732A5C92980093BCA9 /* NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				3EA2E1E82A541AEB003516A3 /* CustomNavigationBar.swift */,
+			);
+			path = NavigationBar;
+			sourceTree = "<group>";
+		};
+		3E79B19B2A54523400D36A26 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				3E79B19C2A54523D00D36A26 /* BackButton.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
 		3E79B1A42A566F0700D36A26 /* WriteReview */ = {
 			isa = PBXGroup;
 			children = (
@@ -525,12 +541,12 @@
 		3EA2E1E02A53E864003516A3 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				3E79B1AA2A5677AA00D36A26 /* Region */,
+				3EA2E1E12A53E880003516A3 /* Base */,
+				3E2EEF722A5C928F0093BCA9 /* View */,
 				093213FD2A5A74D100875EF6 /* TextField */,
 				3E79B19B2A54523400D36A26 /* Button */,
-				3EA2E1E12A53E880003516A3 /* Base */,
-				3EA2E1E82A541AEB003516A3 /* CustomNavigationBar.swift */,
-				3E79B1AF2A571B4B00D36A26 /* LineView.swift */,
+				3E2EEF732A5C92980093BCA9 /* NavigationBar */,
+				3E79B1AA2A5677AA00D36A26 /* Region */,
 			);
 			path = Common;
 			sourceTree = "<group>";
