@@ -9,4 +9,8 @@ import Foundation
 
 struct I18N {
     
+    /// Home
+    struct Home {
+        static let searchPlaceholder = "궁금한 건빵집을 입력해주세요!"
+    }
 }

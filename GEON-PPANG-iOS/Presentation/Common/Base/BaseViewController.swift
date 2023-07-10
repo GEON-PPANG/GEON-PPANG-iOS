@@ -14,18 +14,23 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setBackgroundColor()
         setLayout()
-        setLayout()
+        setUI()
         setDelegate()
     }
     
     // MARK: - Setting
     
+    private func setBackgroundColor() {
+        self.view.backgroundColor = .white
+    }
+    
     func setLayout() {
         // override to use
     }
     
-    func setStyle() {
+    func setUI() {
         // override to use
     }
     
