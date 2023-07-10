@@ -47,7 +47,6 @@ final class HomeHeaderView: UICollectionReusableView {
     }
     
     func setctionHeaderTitle(_ section: String) {
-        headerLabel.text = section
-        headerLabel.partColorChange(targetString: "BEST", textColor: .gbbPoint1!)
+        headerLabel.text = section  
     }
 }

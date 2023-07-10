@@ -50,7 +50,7 @@ final class HomeBottomCollectionViewCell: UICollectionViewCell {
         
         footerLabel.snp.makeConstraints {
             $0.directionalVerticalEdges.equalToSuperview().inset(20)
-            $0.directionalHorizontalEdges.equalToSuperview().inset(24)
+            $0.directionalHorizontalEdges.equalToSuperview().inset(30)
         }
     }
 }

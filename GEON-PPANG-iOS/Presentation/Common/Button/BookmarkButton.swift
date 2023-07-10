@@ -18,7 +18,7 @@ final class BookmarkButton: UIButton {
         super.init(frame: .zero)
         
         setUI()
-        action()
+        setAction()
     }
     
     required init?(coder: NSCoder) {
@@ -47,7 +47,7 @@ final class BookmarkButton: UIButton {
         }
     }
     
-    private func action() {
+    private func setAction() {
         self.addAction(UIAction { _ in
             self.updateData?(self.isSelected)
             self.isSelected.toggle()

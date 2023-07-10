@@ -72,13 +72,13 @@ final class HomeTopView: UIView {
         }
         
         filterButton.snp.makeConstraints {
-            $0.size.equalTo(CGSize(width: 44, height: 48))
+            $0.size.equalTo(CGSize(width: CGFloat().convertByWidthRatio(44), height: CGFloat().convertByHeightRatio(48)))
             $0.top.equalTo(titleLabel.snp.bottom).offset(24)
             $0.trailing.equalToSuperview().inset(24)
         }
         
         searchTextField.snp.makeConstraints {
-            $0.height.equalTo(44)
+            $0.height.equalTo(CGFloat().convertByHeightRatio(44))
             $0.leading.equalTo(titleLabel.snp.leading)
             $0.top.equalTo(filterButton.snp.top)
             $0.trailing.equalTo(filterButton.snp.leading).offset(-12)
