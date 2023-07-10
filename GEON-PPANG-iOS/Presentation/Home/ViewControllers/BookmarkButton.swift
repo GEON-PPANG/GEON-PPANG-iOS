@@ -10,45 +10,15 @@ import UIKit
 import SnapKit
 import Then
 
-enum BookmarkStatus {
-    case on, off
-    
-    var icon: UIImage? {
-        switch self {
-        case .on:
-            return .enabledBookmarkButton
-        case .off:
-            return .disabledBookmarkButton
-        }
-    }
-    
-    var color: UIColor? {
-        switch self {
-        case .on:
-            return .gbbPoint1
-        case .off:
-            return .clear
-        }
-    }
-}
-
 final class BookmarkButton: UIButton {
     
-    private var bookMarkStatus: BookmarkStatus = .on {
-        didSet {
-            if bookMarkStatus == .off {
-                bookMarkStatus = .on
-            } else {
-                bookMarkStatus = .off
-            }
-        }
-    }
+    var updateData: ((Bool) -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        setLayout()
         setUI()
+        action()
     }
     
     required init?(coder: NSCoder) {
@@ -56,37 +26,43 @@ final class BookmarkButton: UIButton {
     }
     
     private func setUI() {
+        
+        var configuration =  UIButton.Configuration.plain()
+        configuration.baseBackgroundColor = .clear
+        configuration.contentInsets = .zero
+        configuration.imagePlacement = NSDirectionalRectEdge.top
+        configuration.imagePadding = 4
+        
         self.do {
-            $0.configuration?.imagePadding = 4
-            $0.configuration?.imagePlacement = NSDirectionalRectEdge.top
-            $0.configuration?.image = bookMarkStatus.icon
-            $0.configuration?.baseForegroundColor = bookMarkStatus.color
+            $0.tintColor = .clear
+            $0.configuration = configuration
             $0.configurationUpdateHandler = { button in
                 switch button.state {
                 case .selected:
-                    button.configuration?.image =  self.bookMarkStatus.icon
+                    button.configuration?.image = .enabledBookmarkButton
+                    button.configuration?.baseForegroundColor = .gbbPoint1
+                    
                 default:
-                    button.configuration?.image = self.bookMarkStatus.icon
+                    button.configuration?.image = .disabledBookmarkButton
+                    button.configuration?.baseForegroundColor = .gbbGray300
                 }
             }
-            
         }
     }
     
-    private func setLayout() {
-        
-    }
-    
-    func updateBookMarkUI(_ state: BookmarkStatus) {
-        self.bookMarkStatus = state
-        setUI()
+    private func action() {
+        self.addAction(UIAction { _ in
+            self.updateData?(self.isSelected)
+            self.isSelected.toggle()
+            self.setUI()
+        }, for: .touchUpInside)
     }
     
     func getCount(_ count: Int) {
         if count == 0 {
-            configuration?.attributedTitle = ""
+            configuration?.title = ""
         } else {
-            configuration?.attributedTitle = AttributedString("\(count)명", attributes: AttributeContainer([.font: UIFont.pretendardBold(17), .foregroundColor: UIColor.gbbPoint1!]))
+            configuration?.attributedTitle = AttributedString("\(count)명", attributes: AttributeContainer([.font: UIFont.pretendardBold(14)]))
         }
     }
 }
