@@ -33,8 +33,10 @@ extension UIImage {
     static let bigVeganMark = UIImage(named: "vegan_mark_28px")!.withRenderingMode(.alwaysOriginal)
     
     // Icons
+    static let downArrowIcon = UIImage(named: "ic_arrow_down")!.withRenderingMode(.alwaysOriginal)
     static let leftArrowIcon = UIImage(named: "ic_arrow_left")!.withRenderingMode(.alwaysOriginal)
     static let rightArrowIcon = UIImage(named: "ic_arrow_right")!.withRenderingMode(.alwaysOriginal)
+    static let upArrowIcon = UIImage(named: "ic_arrow_up")!.withRenderingMode(.alwaysOriginal)
     static let bookmarkIcon = UIImage(named: "ic_bookmark")!.withRenderingMode(.alwaysOriginal)
     static let callIcon = UIImage(named: "ic_call")!.withRenderingMode(.alwaysOriginal)
     static let checkIcon = UIImage(named: "ic_check")!.withRenderingMode(.alwaysOriginal)
@@ -43,14 +45,16 @@ extension UIImage {
     static let dotdotdotIcon = UIImage(named: "ic_dotdotdot")!.withRenderingMode(.alwaysOriginal)
     static let hideIcon = UIImage(named: "ic_hide")!.withRenderingMode(.alwaysOriginal)
     static let linkIcon = UIImage(named: "ic_link")!.withRenderingMode(.alwaysOriginal)
+    static let listIcon = UIImage(named: "ic_link")!.withRenderingMode(.alwaysOriginal) // 건빵집 리스트 옆에 얘 써야 됨, 탭바의 storelist 아님!
     static let logoIcon16px = UIImage(named: "ic_logo_16px")!.withRenderingMode(.alwaysOriginal)
-    static let noticeIcon = UIImage(named: "ic_notice")!.withRenderingMode(.alwaysOriginal)
+    static let noticeIcon18px = UIImage(named: "ic_notice_18px")!.withRenderingMode(.alwaysOriginal)
     static let reviewIcon = UIImage(named: "ic_review")!.withRenderingMode(.alwaysOriginal)
     static let searchIcon400 = UIImage(named: "ic_search_400")!.withRenderingMode(.alwaysOriginal) // gray400
     static let searchIcon600 = UIImage(named: "ic_search_600")!.withRenderingMode(.alwaysOriginal) // gray600
     static let showIcon = UIImage(named: "ic_show")!.withRenderingMode(.alwaysOriginal)
     static let storeIcon = UIImage(named: "ic_store")!.withRenderingMode(.alwaysOriginal)
     static let swapIcon = UIImage(named: "ic_swap")!.withRenderingMode(.alwaysOriginal)
+    static let timeIcon = UIImage(named: "ic_time")!.withRenderingMode(.alwaysOriginal)
     
     // Include Touch Area
     static let bigLeftArrowIcon = UIImage(named: "ic_arrow_left")!.withRenderingMode(.alwaysOriginal)

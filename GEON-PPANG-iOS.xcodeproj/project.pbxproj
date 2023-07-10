@@ -175,18 +175,9 @@
 		093214032A5AE3C000875EF6 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				093214062A5AE3DF00875EF6 /* Model */,
 				093214052A5AE3D600875EF6 /* ViewControllers */,
-				093214042A5AE3D000875EF6 /* Views */,
 			);
 			path = Search;
-			sourceTree = "<group>";
-		};
-		093214042A5AE3D000875EF6 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		093214052A5AE3D600875EF6 /* ViewControllers */ = {
@@ -195,13 +186,6 @@
 				093214072A5AE40900875EF6 /* SearchViewController.swift */,
 			);
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		093214062A5AE3DF00875EF6 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		0961C35F2A501E110031A822 /* Application */ = {
@@ -623,7 +607,7 @@
 				090556312A51DDD800752067 /* UITableView+.swift in Sources */,
 				09B13F562A59410C00C0C723 /* CALayer+.swift in Sources */,
 				3EA2E1E92A541AEB003516A3 /* CustomNavigationBar.swift in Sources */,
-				090556312A51DDD800752067 /* UITableView.swift in Sources */,
+				090556312A51DDD800752067 /* UITableView+.swift in Sources */,
 				090556272A51DBB100752067 /* NSObject+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
