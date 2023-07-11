@@ -8,10 +8,14 @@
 // MARK: - BakeryListResponseDTO
 struct BakeryListResponseDTO: Hashable {
     let bakeryID: Int
-    let bakeryName, bakeryPicture: String
-    let isHACCP, isVegan, isNonGMO: Bool
+    let bakeryName: String
+    let bakeryPicture: String
+    let isHACCP: Bool
+    let isVegan: Bool
+    let isNonGMO: Bool
     let breadType: BreadType
-    let firstNearStation, secondNearStation: String
+    let firstNearStation: String
+    let secondNearStation: String?
     let isBooked: Bool
     let bookmarkCount: Int
 }
@@ -21,10 +25,14 @@ struct BakeryListResponseDTO: Hashable {
 struct BreadType: Hashable {
     let breadTypeID: Int
     let breadTypeName: String
-    let isGlutenFree, isVegan, isNutFree, isSugarFree: Bool
+    let isGlutenFree: Bool
+    let isVegan: Bool
+    let isNutFree: Bool
+    let isSugarFree: Bool
 }
 
 extension BakeryListResponseDTO {
-    static let item: [BakeryListResponseDTO] = [BakeryListResponseDTO(bakeryID: 1, bakeryName: "건대 초코빵", bakeryPicture: "ursl", isHACCP: true, isVegan: true, isNonGMO: false, breadType: breadItem, firstNearStation: "건대역", secondNearStation: "건대", isBooked: true, bookmarkCount: 7)]
+    static let item: [BakeryListResponseDTO] = [BakeryListResponseDTO(bakeryID: 1, bakeryName: "건대 초코빵", bakeryPicture: "ursl", isHACCP: false, isVegan: true, isNonGMO: false, breadType: breadItem, firstNearStation: "건대역", secondNearStation: "건대", isBooked: true, bookmarkCount: 7),
+                                                BakeryListResponseDTO(bakeryID: 2, bakeryName: "건대 초코빵", bakeryPicture: "ursl", isHACCP: true, isVegan: false, isNonGMO: true, breadType: breadItem, firstNearStation: "건대역", secondNearStation: "건대", isBooked: true, bookmarkCount: 7)]
     static let breadItem: BreadType = BreadType(breadTypeID: 1, breadTypeName: "글루텐프리", isGlutenFree: true, isVegan: false, isNutFree: false, isSugarFree: false)
 }
