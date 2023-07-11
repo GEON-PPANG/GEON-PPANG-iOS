@@ -39,7 +39,7 @@ final class BakeryListTopView: UIView {
         }
         
         bakeryTitle.do {
-            $0.basic(text: "건빵집 리스트",
+            $0.basic(text: I18N.BakeryList.bakeryTitle,
                      font: .pretendardBold(26),
                      color: .gbbGray700!)
         }

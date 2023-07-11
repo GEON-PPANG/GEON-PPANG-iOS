@@ -13,4 +13,9 @@ struct I18N {
     struct Home {
         static let searchPlaceholder = "궁금한 건빵집을 입력해주세요!"
     }
+    
+    /// BakeryList
+    struct BakeryList {
+        static let bakeryTitle = "건빵집 리스트"
+    }
 }
