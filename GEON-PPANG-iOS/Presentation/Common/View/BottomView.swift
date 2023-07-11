@@ -50,6 +50,7 @@ final class BottomView: UIView {
             $0.leading.equalToSuperview().inset(24)
             $0.trailing.equalToSuperview().inset(offset)
             $0.top.equalToSuperview().inset(offset)
+            $0.height.equalTo(56)
         }
     }
     

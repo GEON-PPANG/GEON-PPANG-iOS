@@ -22,7 +22,7 @@ final class WriteReviewViewController: BaseViewController {
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     private let navigationBar = CustomNavigationBar()
-    private let bakeryOverviewView = BakeryOverviewView(bakeryImage: .actions, regions: ["tset", "efqerqf"])
+    private let bakeryOverviewView = BakeryOverviewView(bakeryImage: nil, regions: ["tset", "efqerqf"])
     private let lineView = LineView()
     private let likeCollectionViewFlowLayout = OptionsCollectionViewFlowLayout()
     private let optionsCollectionViewFlowLayout = OptionsCollectionViewFlowLayout()
@@ -35,6 +35,7 @@ final class WriteReviewViewController: BaseViewController {
     private let aboutReviewContainerView = UIView()
     private let aboutReviewLabel = UILabel()
     private let bottomView = BottomView()
+    private let bottomDummyView = UIView()
     
     // MARK: - life cycle
     
@@ -43,7 +44,7 @@ final class WriteReviewViewController: BaseViewController {
         
         setNavigationBarHidden()
         setKeyboardHideGesture()
-        setKeyboardNotificationCenter()
+        setKeyboardNotificationCenterOnScrollView()
     }
     
     override func viewWillLayoutSubviews() {
@@ -215,6 +216,12 @@ final class WriteReviewViewController: BaseViewController {
         bottomView.do {
             $0.backgroundColor = .white
             $0.layer.masksToBounds = false
+            $0.applyAdditionalSubview(bottomDummyView)
+        }
+        
+        bottomDummyView.do {
+            $0.backgroundColor = .gbbPoint1
+            $0.makeCornerRound(radius: 12)
         }
     }
     
@@ -228,6 +235,11 @@ final class WriteReviewViewController: BaseViewController {
         optionsCollectionView.dataSource = self
         
         reviewDetailTextView.detailTextView.delegate = self
+    }
+    
+    private func setKeyboardNotificationCenterOnScrollView() {
+        NotificationCenter.default.addObserver(self, selector: #selector(moveUpAboutKeyboardOnScrollView), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(moveDownAboutKeyboardOnScrollView), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     // MARK: - Custom Method
@@ -259,6 +271,26 @@ final class WriteReviewViewController: BaseViewController {
         else { return false }
         let isOverLimit = text.count + newText.count <= limit
         return isOverLimit
+    }
+    
+    // MARK: - objc
+    
+    @objc
+    func moveUpAboutKeyboardOnScrollView(_ notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            UIView.animate(withDuration: 0.2, animations: {
+                self.scrollView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + 24)
+                self.bottomView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + 24)
+            })
+        }
+    }
+    
+    @objc
+    func moveDownAboutKeyboardOnScrollView(_ notification: NSNotification) {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.scrollView.transform = .identity
+            self.bottomView.transform = .identity
+        })
     }
     
 }
