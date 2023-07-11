@@ -12,7 +12,11 @@ import Then
 
 final class BookmarkButton: UIButton {
     
+    // MARK: - Property
+    
     var updateData: ((Bool) -> Void)?
+    
+    // MARK: - Life Cycle
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -24,6 +28,8 @@ final class BookmarkButton: UIButton {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Setting
     
     private func setUI() {
         

@@ -12,9 +12,13 @@ import Then
 
 final class MarkStackView: UIStackView {
     
+    // MARK: - UI Property
+    
     private lazy var hccpMarkIconView = UIImageView()
     private lazy var veganIconView = UIImageView()
     private lazy var gmoIconView = UIImageView()
+   
+    // MARK: - Life Cycle
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -26,6 +30,8 @@ final class MarkStackView: UIStackView {
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Setting
     
     private func setUI() {
         self.do {

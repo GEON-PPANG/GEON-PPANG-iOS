@@ -12,8 +12,12 @@ import Then
 
 final class RegionStackView: UIStackView {
     
+    // MARK: - UI Property
+    
     private lazy var regionFirstTag = PaddingLabel()
     private lazy var regionSeconodTag = PaddingLabel()
+    
+    // MARK: - Life Cycle
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -24,6 +28,8 @@ final class RegionStackView: UIStackView {
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Setting
     
     private func setUI() {
         self.do {
@@ -41,14 +47,12 @@ final class RegionStackView: UIStackView {
         }
     }
     
-    func getGegionName(_ first: String, _ second: String) {
+    func getRegionName(_ first: String, _ second: String) {
         regionFirstTag.text = first
         regionSeconodTag.text = second
-        print(regionFirstTag.intrinsicContentSize)
-        print(regionSeconodTag.intrinsicContentSize)
     }
     
-    func setBackgroundColor(_ color: UIColor) {
+    func getBackgroundColor(_ color: UIColor) {
         [regionFirstTag, regionSeconodTag] .forEach {
             $0.backgroundColor = color
         }
