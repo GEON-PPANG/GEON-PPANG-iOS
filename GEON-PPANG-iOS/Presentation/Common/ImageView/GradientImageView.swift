@@ -18,7 +18,7 @@ final class GradientImageView: UIImageView {
     init(colors: [CGColor]) {
         super.init(frame: .zero)
         
-        setGradient(coloes: colors)
+        setGradient(colors: colors)
     }
     
     override func layoutSubviews() {
@@ -33,7 +33,7 @@ final class GradientImageView: UIImageView {
     
     // MARK: - Setting
     
-    func setGradient(coloes: [CGColor]) {
+    func setGradient(colors: [CGColor]) {
         gradient.colors = colors
         gradient.locations = [0, 1.0]
         gradient.startPoint = CGPoint(x: 0.25, y: 0.5)
