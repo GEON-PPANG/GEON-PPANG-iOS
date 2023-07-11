@@ -24,10 +24,9 @@ enum ButtonTitle: String, CaseIterable {
 
 final class CommonButton: UIButton {
     
-
     // MARK: - Life Cycle
     
-    init() {
+    override init(frame: CGRect) {
         super.init(frame: .zero)
         
         setUI()
@@ -46,13 +45,12 @@ final class CommonButton: UIButton {
         }
     }
     
-    func setButtonTitle(_ title: ButtonTitle) {
+    func getButtonTitle(_ title: ButtonTitle) {
         setTitle(title.rawValue, for: .normal)
     }
     
-    func setButtonUI(_ color: UIColor, _ border: UIColor? = .clear) {
+    func getButtonUI(_ color: UIColor, _ border: UIColor? = .clear) {
         self.backgroundColor = color
-        
         switch color {
         case .gbbMain3!, .gbbGray700!: setTitleColor(.gbbGray100, for: .normal)
         case .gbbMain2!: setTitleColor(.white, for: .normal)
@@ -68,9 +66,16 @@ final class CommonButton: UIButton {
         }
     }
     
-    func setAction(completion: ((UIAction) -> Void)? = nil) {
-        let action = UIAction { action in
-            completion?(action)
+    func updateUI(_ isTrue: @escaping () -> Void, _ isFalse: @escaping () -> Void) {
+        let action = UIAction { [weak self] _ in
+            self?.isSelected.toggle()
+            if let isSelected = self?.isSelected {
+                if isSelected {
+                    isTrue()
+                } else {
+                    isFalse()
+                }
+            }
         }
         addAction(action, for: .touchUpInside)
     }
