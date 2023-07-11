@@ -246,6 +246,21 @@ final class WriteReviewViewController: BaseViewController {
         }
     }
     
+    private func checkTextViewLength(_ textView: UITextView) {
+        if textView.text.count <= 10 {
+            reviewDetailTextView.configureTextView(to: .error)
+        } else {
+            reviewDetailTextView.configureTextView(to: .activated)
+        }
+    }
+    
+    private func textLimit(_ existingText: String?, to newText: String, with limit: Int) -> Bool {
+        guard let text = existingText
+        else { return false }
+        let isOverLimit = text.count + newText.count <= limit
+        return isOverLimit
+    }
+    
 }
 
 // MARK: - UICollectionViewDelegate extension
@@ -321,8 +336,17 @@ extension WriteReviewViewController: UICollectionViewDataSource {
 
 extension WriteReviewViewController: UITextViewDelegate {
     
+    func textViewDidChange(_ textView: UITextView) {
+        let textCount = textView.text.count
+        if textCount <= 10 && 0 < textCount {
+            reviewDetailTextView.configureTextView(to: .error)
+        } else {
+            reviewDetailTextView.configureTextView(to: .activated)
+        }
+        reviewDetailTextView.updateTextLimitLabel(to: textCount)
+    }
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
-        let textView = self.reviewDetailTextView.detailTextView
         if textView.text == I18N.likePlaceholder || textView.text == I18N.dislikePlaceholder {
             textView.text = nil
             textView.textColor = .black
@@ -330,11 +354,14 @@ extension WriteReviewViewController: UITextViewDelegate {
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        let textView = self.reviewDetailTextView.detailTextView
         if textView.text.isEmpty {
             textView.text = reviewDetailTextView.isLike ? I18N.likePlaceholder : I18N.dislikePlaceholder
             textView.textColor = .black
         }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        return self.textLimit(textView.text, to: text, with: 500)
     }
     
 }
