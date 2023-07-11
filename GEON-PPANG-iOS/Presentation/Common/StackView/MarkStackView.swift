@@ -39,16 +39,16 @@ final class MarkStackView: UIStackView {
             $0.spacing = -9
             $0.axis = .horizontal
         }
+        
         hccpMarkIconView.do {
-            $0.image = .bigHACCPMark
-            $0.contentMode = .scaleAspectFit
-        }
-        veganIconView.do {
-            $0.image = .bigVeganMark
             $0.contentMode = .topLeft
         }
+        
+        veganIconView.do {
+            $0.contentMode = .topLeft
+        }
+        
         gmoIconView.do {
-            $0.image = .bigGMOMark
             $0.contentMode = .topLeft
         }
     }
@@ -61,6 +61,12 @@ final class MarkStackView: UIStackView {
         }
     }
     
+    func getIconImage(_ haccp: UIImage, _ vegan: UIImage, _ gmo: UIImage) {
+        hccpMarkIconView.image = haccp
+        veganIconView.image = vegan
+        gmoIconView.image = gmo
+    }
+
     func getMarkStatus(_ isHACCP: Bool, _ isVegan: Bool, _ isNONGMO: Bool) {
         if !isHACCP {
             hccpMarkIconView.isHidden = true
