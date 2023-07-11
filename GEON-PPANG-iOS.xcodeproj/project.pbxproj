@@ -66,6 +66,8 @@
 		DF959A622A539FBE00E75774 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */; };
 		DF959A6C2A568C4600E75774 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF959A6B2A568C4600E75774 /* Colors.xcassets */; };
 		DF959A6E2A568C9400E75774 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF959A6D2A568C9400E75774 /* UIColor+.swift */; };
+		DFB587B92A5D584800704B6C /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB587B82A5D584800704B6C /* OnboardingViewController.swift */; };
+		DFB587BB2A5D588500704B6C /* DrawDashLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB587BA2A5D588500704B6C /* DrawDashLineView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,6 +127,8 @@
 		DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		DF959A6B2A568C4600E75774 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		DF959A6D2A568C9400E75774 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		DFB587B82A5D584800704B6C /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		DFB587BA2A5D588500704B6C /* DrawDashLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawDashLineView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -307,6 +311,7 @@
 		0961C36A2A501EF60031A822 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				DFB587B72A5D580B00704B6C /* Onboarding */,
 				093214032A5AE3C000875EF6 /* Search */,
 				09B13F492A593C5900C0C723 /* Home */,
 				09B13F4D2A593C7600C0C723 /* BakeryList */,
@@ -480,6 +485,7 @@
 				3E79B19B2A54523400D36A26 /* Button */,
 				3EA2E1E12A53E880003516A3 /* Base */,
 				3EA2E1E82A541AEB003516A3 /* CustomNavigationBar.swift */,
+				DFB587BA2A5D588500704B6C /* DrawDashLineView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -507,6 +513,14 @@
 				DF959A6B2A568C4600E75774 /* Colors.xcassets */,
 			);
 			path = Colors;
+			sourceTree = "<group>";
+		};
+		DFB587B72A5D580B00704B6C /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				DFB587B82A5D584800704B6C /* OnboardingViewController.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -659,6 +673,7 @@
 				3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */,
 				09C626582A5B4269002C8110 /* HomeHeaderView.swift in Sources */,
 				0915C1722A5C3D3700ACB8D4 /* PaddingLabel.swift in Sources */,
+				DFB587BB2A5D588500704B6C /* DrawDashLineView.swift in Sources */,
 				090556222A51DB3300752067 /* UIFont+.swift in Sources */,
 				09CA3EFC2A569E4A0063897A /* URLConstant.swift in Sources */,
 				09C6264E2A5B29F8002C8110 /* SearchEnum.swift in Sources */,
@@ -680,6 +695,7 @@
 				093214022A5AE27800875EF6 /* Utils.swift in Sources */,
 				090556452A51E79B00752067 /* UITextField+.swift in Sources */,
 				09CA3F062A569EB30063897A /* API.swift in Sources */,
+				DFB587B92A5D584800704B6C /* OnboardingViewController.swift in Sources */,
 				DF959A6E2A568C9400E75774 /* UIColor+.swift in Sources */,
 				09C626562A5B3572002C8110 /* HomeBestReviewResponseDTO.swift in Sources */,
 				090556472A51E7D900752067 /* UITextView+.swift in Sources */,
