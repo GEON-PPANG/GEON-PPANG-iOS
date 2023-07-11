@@ -68,6 +68,10 @@
 		3EDC05BE2A5DED4400EAD950 /* FilterPurposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05BD2A5DED4400EAD950 /* FilterPurposeViewController.swift */; };
 		3EDC05C02A5DED9200EAD950 /* FilterBreadTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05BF2A5DED9200EAD950 /* FilterBreadTypeViewController.swift */; };
 		3EDC05C22A5DED9D00EAD950 /* FilterIngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05C12A5DED9D00EAD950 /* FilterIngredientViewController.swift */; };
+		3EDC05C42A5DEE3600EAD950 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05C32A5DEE3600EAD950 /* FilterCollectionViewCell.swift */; };
+		3EDC05CA2A5DF26700EAD950 /* FilterPurposeDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05C92A5DF26700EAD950 /* FilterPurposeDTO.swift */; };
+		3EDC05CC2A5DF3A400EAD950 /* FilterBreadTypeDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05CB2A5DF3A400EAD950 /* FilterBreadTypeDTO.swift */; };
+		3EDC05CE2A5DF8A900EAD950 /* FilterIngredientDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05CD2A5DF8A900EAD950 /* FilterIngredientDTO.swift */; };
 		DF959A612A539FBE00E75774 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */; };
 		DF959A622A539FBE00E75774 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */; };
 		DF959A6C2A568C4600E75774 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF959A6B2A568C4600E75774 /* Colors.xcassets */; };
@@ -133,6 +137,10 @@
 		3EDC05BD2A5DED4400EAD950 /* FilterPurposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPurposeViewController.swift; sourceTree = "<group>"; };
 		3EDC05BF2A5DED9200EAD950 /* FilterBreadTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBreadTypeViewController.swift; sourceTree = "<group>"; };
 		3EDC05C12A5DED9D00EAD950 /* FilterIngredientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterIngredientViewController.swift; sourceTree = "<group>"; };
+		3EDC05C32A5DEE3600EAD950 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
+		3EDC05C92A5DF26700EAD950 /* FilterPurposeDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPurposeDTO.swift; sourceTree = "<group>"; };
+		3EDC05CB2A5DF3A400EAD950 /* FilterBreadTypeDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBreadTypeDTO.swift; sourceTree = "<group>"; };
+		3EDC05CD2A5DF8A900EAD950 /* FilterIngredientDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterIngredientDTO.swift; sourceTree = "<group>"; };
 		DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		DF959A6B2A568C4600E75774 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -527,6 +535,7 @@
 		3EDC05BA2A5DEB7500EAD950 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
+				3EDC05C82A5DF25900EAD950 /* Model */,
 				3EDC05BC2A5DEB7F00EAD950 /* Views */,
 				3EDC05BB2A5DEB7B00EAD950 /* ViewControllers */,
 			);
@@ -546,8 +555,19 @@
 		3EDC05BC2A5DEB7F00EAD950 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3EDC05C32A5DEE3600EAD950 /* FilterCollectionViewCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		3EDC05C82A5DF25900EAD950 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3EDC05C92A5DF26700EAD950 /* FilterPurposeDTO.swift */,
+				3EDC05CB2A5DF3A400EAD950 /* FilterBreadTypeDTO.swift */,
+				3EDC05CD2A5DF8A900EAD950 /* FilterIngredientDTO.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		DF959A672A56851000E75774 /* Enum */ = {
@@ -714,6 +734,8 @@
 				0961C3642A501EBF0031A822 /* Strings.swift in Sources */,
 				093214082A5AE40900875EF6 /* SearchViewController.swift in Sources */,
 				09B13F542A593CD300C0C723 /* MyPageViewController.swift in Sources */,
+				3EDC05C42A5DEE3600EAD950 /* FilterCollectionViewCell.swift in Sources */,
+				3EDC05CE2A5DF8A900EAD950 /* FilterIngredientDTO.swift in Sources */,
 				3E79B19D2A54523D00D36A26 /* BackButton.swift in Sources */,
 				09CA3EF82A5676AA0063897A /* CommonButton.swift in Sources */,
 				3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */,
@@ -722,8 +744,10 @@
 				090556222A51DB3300752067 /* UIFont+.swift in Sources */,
 				09CA3EFC2A569E4A0063897A /* URLConstant.swift in Sources */,
 				3EDC05BE2A5DED4400EAD950 /* FilterPurposeViewController.swift in Sources */,
+				3EDC05CA2A5DF26700EAD950 /* FilterPurposeDTO.swift in Sources */,
 				3EDC05C22A5DED9D00EAD950 /* FilterIngredientViewController.swift in Sources */,
 				09C6264E2A5B29F8002C8110 /* SearchEnum.swift in Sources */,
+				3EDC05CC2A5DF3A400EAD950 /* FilterBreadTypeDTO.swift in Sources */,
 				0915C16A2A5BFC5900ACB8D4 /* HomeBottomCollectionViewCell.swift in Sources */,
 				09CA3F082A569EBA0063897A /* Service.swift in Sources */,
 				09B13F4C2A593C6F00C0C723 /* HomeViewController.swift in Sources */,
