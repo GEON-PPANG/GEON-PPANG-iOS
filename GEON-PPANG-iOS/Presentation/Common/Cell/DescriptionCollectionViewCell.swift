@@ -69,8 +69,8 @@ final class DescriptionCollectionViewCell: UICollectionViewCell {
     private func setLayout() {
         addSubview(descriptionLabel)
         descriptionLabel.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(5)
-            $0.verticalEdges.equalToSuperview().inset(1)
+            $0.horizontalEdges.equalToSuperview().inset(8)
+            $0.verticalEdges.equalToSuperview().inset(4)
         }
     }
     
@@ -89,7 +89,7 @@ final class DescriptionCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Custom Method
     
-    func configureTag(_ text: String) {
+    func configureTagTitle(_ text: String) {
         descriptionLabel.text = text
     }
     
