@@ -19,10 +19,10 @@ class OnboardingViewController: BaseViewController {
     private let signupLabel = UILabel()         // 동일
     private let latelySigninView = DrawDashLineView()
     private let latelySigninLabel = UILabel()
-    private let kakaoButton = UIImageView()
-    private let appleButton = UIImageView()
-    private let naverButton = UIImageView()
-    private let googleButton = UIImageView()
+    private let kakaoButton = UIButton()
+    private let appleButton = UIButton()
+    private let naverButton = UIButton()
+    private let googleButton = UIButton()
     
     override func viewDidLoad() {
         
@@ -69,19 +69,19 @@ class OnboardingViewController: BaseViewController {
         }
         
         kakaoButton.do {
-            $0.image = .kakaoLoginButton
+            $0.setImage(.kakaoLoginButton, for: .normal)
         }
         
         appleButton.do {
-            $0.image = .appleLoginButton
+            $0.setImage(.appleLoginButton, for: .normal)
         }
         
         naverButton.do {
-            $0.image = .naverLoginButton
+            $0.setImage(.naverLoginButton, for: .normal)
         }
         
         googleButton.do {
-            $0.image = .googleLoginButton
+            $0.setImage(.googleLoginButton, for: .normal)
         }
     }
     
@@ -132,25 +132,21 @@ class OnboardingViewController: BaseViewController {
         kakaoButton.snp.makeConstraints {
             $0.top.equalTo(latelySigninView.snp.bottom).offset(convertByHeightRatio(23))
             $0.leading.equalToSuperview().inset(convertByWidthRatio(45))
-            $0.size.equalTo(convertByWidthRatio(56))
         }
         
         appleButton.snp.makeConstraints {
             $0.top.equalTo(kakaoButton.snp.top)
             $0.leading.equalTo(kakaoButton.snp.trailing).offset(convertByWidthRatio(20))
-            $0.size.equalTo(convertByWidthRatio(56))
         }
         
         naverButton.snp.makeConstraints {
             $0.top.equalTo(appleButton.snp.top)
             $0.leading.equalTo(appleButton.snp.trailing).offset(convertByWidthRatio(20))
-            $0.size.equalTo(convertByWidthRatio(56))
         }
         
         googleButton.snp.makeConstraints {
             $0.top.equalTo(naverButton.snp.top)
             $0.leading.equalTo(naverButton.snp.trailing).offset(convertByWidthRatio(20))
-            $0.size.equalTo(convertByWidthRatio(56))
         }
     }
 }
