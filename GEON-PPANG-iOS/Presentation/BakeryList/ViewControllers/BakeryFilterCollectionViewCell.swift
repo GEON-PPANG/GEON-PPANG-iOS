@@ -71,7 +71,10 @@ final class BakeryFilterCollectionViewCell: UICollectionViewCell {
         iconView.image = item.leftIcon
         filterTitle.text = item.filter.title
         filterTitle.textColor = (item.status == .off) ? .black : .gbbBackground2
+        filterTitle.backgroundColor = (item.status == .off) ? .gbbGray100 : .gbbMain3
+        filterTitle.makeBorder(width: 1, color: (item.status == .off) ? .gbbGray200! : .gbbMain2!)
     }
+    
     func getSize() {
         return filterTitle.sizeToFit()
     }
