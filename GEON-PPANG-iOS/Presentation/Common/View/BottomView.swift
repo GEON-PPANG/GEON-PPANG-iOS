@@ -14,30 +14,32 @@ final class BottomView: UIView {
     
     // MARK: - Life Cycle
     
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//
-//        setShadow()
-//    }
-//
-//    @available(*, unavailable)
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//
-//    // MARK: - Setting
-//
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        setLayout()
+        setShadow()
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Setting
+    
+    private func setLayout() {
+        self.snp.makeConstraints {
+            $0.height.equalTo(118)
+        }
+    }
+
     private func setShadow() {
         self.layer.applyShadow(color: .init(red: 0, green: 0, blue: 0, alpha: 0.1),
                                alpha: 1,
                                x: 0,
                                y: 1,
                                blur: 10)
-    }
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        setShadow()
     }
     
     // MARK: - Custom Method

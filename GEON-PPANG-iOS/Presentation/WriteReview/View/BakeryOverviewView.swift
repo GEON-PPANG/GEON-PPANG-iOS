@@ -14,9 +14,7 @@ final class BakeryOverviewView: UIView {
     
     // MARK: - Property
     
-//    private let bakeryImage: UIImage
     // TODO: ingredient Tag 추가
-//    private let regions: [String]
     
     // MARK: - UI Property
     

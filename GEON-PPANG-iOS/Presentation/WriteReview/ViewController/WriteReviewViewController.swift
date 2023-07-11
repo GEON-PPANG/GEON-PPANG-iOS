@@ -41,8 +41,7 @@ final class WriteReviewViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // TODO: baseVC 에 숨기기
-        self.navigationController?.navigationBar.isHidden = true
+        setNavigationBarHidden()
         setKeyboardHideGesture()
         setKeyboardNotificationCenter()
     }
@@ -57,23 +56,19 @@ final class WriteReviewViewController: BaseViewController {
     // MARK: - Setting
     
     override func setLayout() {
+        view.addSubview(scrollView)
+        scrollView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
         view.addSubview(navigationBar)
         navigationBar.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview()
-            $0.top.equalToSuperview()
+            $0.horizontalEdges.top.equalToSuperview()
         }
         
         view.addSubview(bottomView)
         bottomView.snp.makeConstraints {
             $0.horizontalEdges.bottom.equalToSuperview()
-            $0.height.equalTo(126)
-        }
-        
-        view.addSubview(scrollView)
-        scrollView.snp.makeConstraints {
-            $0.top.equalTo(navigationBar.snp.bottom)
-            $0.horizontalEdges.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(126)
         }
         
         scrollView.addSubview(contentView)
@@ -83,8 +78,8 @@ final class WriteReviewViewController: BaseViewController {
         
         contentView.addSubview(bakeryOverviewView)
         bakeryOverviewView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(68)
             $0.horizontalEdges.equalToSuperview()
-            $0.top.equalToSuperview()
             $0.height.equalTo(125)
         }
         
@@ -133,28 +128,40 @@ final class WriteReviewViewController: BaseViewController {
         contentView.addSubview(aboutReviewContainerView)
         aboutReviewContainerView.snp.makeConstraints {
             $0.top.equalTo(reviewDetailTextView.snp.bottom).offset(10)
-            $0.horizontalEdges.bottom.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(207)
+            $0.bottom.equalToSuperview()
         }
         
         aboutReviewContainerView.addSubview(dotView)
         dotView.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(24)
-            $0.top.equalTo(aboutReviewContainerView).offset(16)
+            $0.top.equalToSuperview().offset(16)
         }
         
         aboutReviewContainerView.addSubview(aboutReviewLabel)
         aboutReviewLabel.snp.makeConstraints {
             $0.leading.equalTo(dotView.snp.trailing)
             $0.trailing.equalToSuperview().inset(24)
-            $0.top.equalTo(dotView)
-            $0.bottom.equalToSuperview().inset(34)
+            $0.top.equalToSuperview().offset(16)
         }
     }
     
     override func setUI() {
         navigationBar.do {
+            $0.backgroundColor = .white
             $0.configureLeftTitle(to: "건대 초코빵")
             $0.configureBottomLine()
+        }
+        
+        scrollView.do {
+            $0.showsVerticalScrollIndicator = false
+            $0.verticalScrollIndicatorInsets = .zero
+            $0.backgroundColor = .gbbGray100
+        }
+        
+        contentView.do {
+            $0.backgroundColor = .white
         }
         
         likeCollectionViewFlowLayout.do {
@@ -193,6 +200,7 @@ final class WriteReviewViewController: BaseViewController {
         dotView.do {
             $0.font = .captionM2
             $0.textColor = .gbbGray300
+            $0.textAlignment = .center
             $0.setLineHeight(by: 1.37, with: "•")
         }
         
@@ -205,7 +213,8 @@ final class WriteReviewViewController: BaseViewController {
         }
         
         bottomView.do {
-            $0.backgroundColor = .gbbGray300
+            $0.backgroundColor = .white
+            $0.layer.masksToBounds = false
         }
     }
     
@@ -236,15 +245,6 @@ final class WriteReviewViewController: BaseViewController {
             $0.textColor = color
         }
     }
-    
-//    private func addShadowLayer() {
-//        let layer = CALayer()
-//        layer.shadowPath = UIBezierPath(rect: bottomView.bounds).cgPath
-//        layer.shadowOffset = .zero
-//        layer.shadowRadius = 10
-//        layer.shadowColor = .init(red: 0, green: 0, blue: 0, alpha: 0.1)
-//        bottomView.layer.addSublayer(layer)
-//    }
     
 }
 
