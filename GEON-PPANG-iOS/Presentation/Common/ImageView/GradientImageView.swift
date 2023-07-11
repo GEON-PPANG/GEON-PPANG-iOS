@@ -17,6 +17,23 @@ final class GradientImageView: UIImageView {
     
     init(colors: [CGColor]) {
         super.init(frame: .zero)
+        
+        setGradient(coloes: colors)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        setLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Setting
+    
+    func setGradient(coloes: [CGColor]) {
         gradient.colors = colors
         gradient.locations = [0, 1.0]
         gradient.startPoint = CGPoint(x: 0.25, y: 0.5)
@@ -25,15 +42,8 @@ final class GradientImageView: UIImageView {
         layer.addSublayer(gradient)
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
+    func setLayout() {
         gradient.bounds = self.bounds.insetBy(dx: -0.5*self.bounds.size.width, dy: -0.5*self.bounds.size.height)
         gradient.frame = bounds
-        
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

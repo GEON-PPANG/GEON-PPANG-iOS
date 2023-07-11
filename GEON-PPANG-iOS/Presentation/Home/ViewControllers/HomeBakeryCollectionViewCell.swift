@@ -63,9 +63,11 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
         }
         
         [bakeryTitle, bakeryReview].forEach {
-            $0.numberOfLines = 1
-            $0.textAlignment = .left
-            $0.basic(font: .pretendardBold(14), color: .gbbGray700!)
+            $0.do {
+                $0.numberOfLines = 1
+                $0.textAlignment = .left
+                $0.basic(font: .pretendardBold(14), color: .gbbGray700!)
+            }
         }
     }
     
@@ -112,6 +114,8 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    // MARK: - Custom Method
+    
     func updateUI(data: HomeBestBakeryResponseDTO, index: Int) {
         self.index = index
         bakeryImage.image = UIImage(named: data.bakeryPicture)
@@ -123,11 +127,8 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
             guard let self = self  else { return }
             self.updateData?(status, self.index)
         }
-        if data.isBooked {
-            bookMarkButton.isSelected = true
-        } else {
-            bookMarkButton.isSelected = false
-        }
+        bookMarkButton.isSelected = data.isBooked ? true : false
+        
         markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNONGMO)
         
         if data.secondNearStation == "" {
