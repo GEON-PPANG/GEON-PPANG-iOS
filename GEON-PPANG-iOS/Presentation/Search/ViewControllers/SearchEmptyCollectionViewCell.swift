@@ -1,5 +1,5 @@
 //
-//  SearchInitialCollectionViewCell.swift
+//  SearchEmptyCollectionViewCell.swift
 //  GEON-PPANG-iOS
 //
 //  Created by JEONGEUN KIM on 2023/07/12.
@@ -7,10 +7,7 @@
 
 import UIKit
 
-import SnapKit
-import Then
-
-final class SearchInitialCollectionViewCell: UICollectionViewCell {
+final class SearchEmptyCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Property
     
@@ -44,7 +41,7 @@ final class SearchInitialCollectionViewCell: UICollectionViewCell {
         
         initialLabel.snp.makeConstraints {
             $0.top.equalTo(initialIcon.snp.bottom).offset(20)
-            $0.centerY.equalToSuperview().inset(-35)
+            $0.centerY.equalToSuperview().inset(-33)
             $0.centerX.equalToSuperview()
         }
     }
@@ -52,11 +49,12 @@ final class SearchInitialCollectionViewCell: UICollectionViewCell {
     private func setUI() {
         initialIcon.do {
             $0.contentMode = .scaleAspectFit
-            $0.image = .searchImage
+            $0.image = .noSearchResultImage
         }
         initialLabel.do {
             $0.textAlignment = .center
-            $0.basic(text: "궁금하신 건빵집을 \n검색해보세요!", font: .pretendardBold(20), color: .gbbGray300!)
+            $0.basic(text: "검색결과가 없어요\n다른 키워드로 검색해보세요!", font: .pretendardBold(20), color: .gbbGray300!)
+            $0.partFontChange(targetString: "다른 키워드로 검색해보세요!", font: .pretendardMedium(15))
         }
         
     }

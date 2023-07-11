@@ -63,6 +63,7 @@
 		09FD47C82A5DC991002020BD /* SearchNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47C72A5DC991002020BD /* SearchNavigationView.swift */; };
 		09FD47CA2A5DD38D002020BD /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47C92A5DD38D002020BD /* SearchResultView.swift */; };
 		09FD47CC2A5DE167002020BD /* SearchInitialCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47CB2A5DE167002020BD /* SearchInitialCollectionViewCell.swift */; };
+		09FD47CE2A5DE650002020BD /* SearchEmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47CD2A5DE650002020BD /* SearchEmptyCollectionViewCell.swift */; };
 		3E79B19D2A54523D00D36A26 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B19C2A54523D00D36A26 /* BackButton.swift */; };
 		3E79B1A02A5546E700D36A26 /* DescriptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B19F2A5546E700D36A26 /* DescriptionCollectionViewCell.swift */; };
 		3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */; };
@@ -128,6 +129,7 @@
 		09FD47C72A5DC991002020BD /* SearchNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNavigationView.swift; sourceTree = "<group>"; };
 		09FD47C92A5DD38D002020BD /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
 		09FD47CB2A5DE167002020BD /* SearchInitialCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInitialCollectionViewCell.swift; sourceTree = "<group>"; };
+		09FD47CD2A5DE650002020BD /* SearchEmptyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEmptyCollectionViewCell.swift; sourceTree = "<group>"; };
 		3E79B19C2A54523D00D36A26 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		3E79B19F2A5546E700D36A26 /* DescriptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionCollectionViewCell.swift; sourceTree = "<group>"; };
 		3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 			children = (
 				093214072A5AE40900875EF6 /* SearchViewController.swift */,
 				09FD47CB2A5DE167002020BD /* SearchInitialCollectionViewCell.swift */,
+				09FD47CD2A5DE650002020BD /* SearchEmptyCollectionViewCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -703,6 +706,7 @@
 				09CA3EF82A5676AA0063897A /* CommonButton.swift in Sources */,
 				3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */,
 				09C626582A5B4269002C8110 /* HomeHeaderView.swift in Sources */,
+				09FD47CE2A5DE650002020BD /* SearchEmptyCollectionViewCell.swift in Sources */,
 				0915C1722A5C3D3700ACB8D4 /* PaddingLabel.swift in Sources */,
 				090556222A51DB3300752067 /* UIFont+.swift in Sources */,
 				09CA3EFC2A569E4A0063897A /* URLConstant.swift in Sources */,
