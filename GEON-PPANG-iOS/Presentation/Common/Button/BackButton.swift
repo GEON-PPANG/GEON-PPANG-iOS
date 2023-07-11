@@ -16,7 +16,7 @@ final class BackButton: UIButton {
     // MARK: - Init
     
     override init(frame: CGRect) {
-        super.init(frame: .init(x: 0, y: 0, width: 28, height: 28))
+        super.init(frame: .init(x: 0, y: 0, width: 48, height: 48))
         
         setLayout()
         setStyle()
