@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DrawDashLineView: UIView { // 코너가 들어간 점선 그리기
+final class DrawDashLineView: UIView { // 코너가 들어간 점선 그리기
     
     private let borderLayer = CAShapeLayer()
     

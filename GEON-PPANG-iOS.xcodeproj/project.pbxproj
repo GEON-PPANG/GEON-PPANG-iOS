@@ -560,7 +560,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					098F32DC2A4200FD0092D09A = {
 						CreatedOnToolsVersion = 14.2;
@@ -658,7 +658,6 @@
 				0915C1702A5C3C5600ACB8D4 /* RegionStackView.swift in Sources */,
 				090556292A51DBC000752067 /* UIView+.swift in Sources */,
 				090668FC2A4FF3C600F413FA /* AppDelegate.swift in Sources */,
-				DFAF7C992A5C921B00A93E19 /* DrawDashLineView.swift in Sources */,
 				090668FD2A4FF3C600F413FA /* SceneDelegate.swift in Sources */,
 				097682DC2A5C83910008F4FB /* CGFloat+.swift in Sources */,
 				0924632F2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift in Sources */,
@@ -701,11 +700,9 @@
 				09C626562A5B3572002C8110 /* HomeBestReviewResponseDTO.swift in Sources */,
 				090556472A51E7D900752067 /* UITextView+.swift in Sources */,
 				0905562B2A51DBCE00752067 /* UIStackView+.swift in Sources */,
-				DFAF7C972A5C6CD300A93E19 /* OnboardingViewController.swift in Sources */,
 				090556312A51DDD800752067 /* UITableView+.swift in Sources */,
 				09B13F562A59410C00C0C723 /* CALayer+.swift in Sources */,
 				3EA2E1E92A541AEB003516A3 /* CustomNavigationBar.swift in Sources */,
-				090556312A51DDD800752067 /* UITableView+.swift in Sources */,
 				090556272A51DBB100752067 /* NSObject+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
