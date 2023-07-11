@@ -41,7 +41,7 @@ final class CommonButton: UIButton {
     private func setUI() {
         self.do {
             $0.makeCornerRound(radius: 11)
-            $0.titleLabel?.font = .pretendardMedium(18)
+            $0.titleLabel?.font = .headLine
         }
     }
     
