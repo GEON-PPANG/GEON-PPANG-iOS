@@ -7,11 +7,36 @@
 
 import UIKit
 
-final class SearchViewController: UIViewController {
+import SnapKit
+import Then
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+final class SearchViewController: BaseViewController {
+    
+    // MARK: - Property
+    
+    private lazy var safeArea = self.view.safeAreaLayoutGuide
+    
+    // MARK: - UI Property
+    
+    private let naviView = SearchNavigationView()
+    
+    // MARK: - Setting
+    
+    override func setLayout() {
+        view.addSubview(naviView)
         
-        view.backgroundColor = .purple
+        naviView.snp.makeConstraints {
+            $0.top.equalTo(safeArea)
+            $0.directionalHorizontalEdges.equalTo(safeArea)
+            $0.height.equalTo(convertByHeightRatio(68))
+        }
+    }
+    
+    override func setUI() {
+        naviView.do {
+            $0.dismissClosure = {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
     }
 }
