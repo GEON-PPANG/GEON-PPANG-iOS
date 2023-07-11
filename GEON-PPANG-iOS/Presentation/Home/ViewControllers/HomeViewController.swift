@@ -43,7 +43,7 @@ final class HomeViewController: BaseViewController {
         super.viewDidLoad()
         
         setRegister()
-        setupDataSource()
+        setDataSource()
         setReloadData()
     }
     
@@ -92,7 +92,7 @@ final class HomeViewController: BaseViewController {
         collectionView.register(header: HomeHeaderView.self)
     }
     
-    private func setupDataSource() {
+    private func setDataSource() {
         dataSource = DataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, item in
             let section = self.dataSource?.snapshot().sectionIdentifiers[indexPath.section]
             switch section {
@@ -131,7 +131,7 @@ final class HomeViewController: BaseViewController {
             .forEach { snapshot.appendItems($0.key as! [AnyHashable], toSection: $0.value) }
         
         dataSource?.supplementaryViewProvider = { (collectionView, _, indexPath) in
-            let header: HomeHeaderView  = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
+            let header: HomeHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
             Sections.allCases.forEach {
                 header.setctionHeaderTitle($0.title)
             }
