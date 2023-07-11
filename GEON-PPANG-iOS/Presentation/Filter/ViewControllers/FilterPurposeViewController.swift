@@ -14,7 +14,7 @@ final class FilterPurposeViewController: BaseViewController {
     
     // MARK: - Property
     
-    
+    private var maxSteps: Int = 0
     
     // MARK: - UI Property
     
@@ -22,11 +22,22 @@ final class FilterPurposeViewController: BaseViewController {
     
     // MARK: - Life Cycle
     
+    init(maxSteps: Int) {
+        super.init(nibName: nil, bundle: nil)
+        
+        setMaxSteps(to: maxSteps)
+    }
     
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Setting
     
-    
+    private func setMaxSteps(to steps: Int) {
+        self.maxSteps = steps
+    }
     
     // MARK: - Action Helper
     
