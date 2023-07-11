@@ -43,6 +43,10 @@ extension UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(moveDownAboutKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    func setNavigationBarHidden() {
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
     // MARK: - objc functions
     
     @objc
