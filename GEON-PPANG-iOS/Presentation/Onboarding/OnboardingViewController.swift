@@ -24,11 +24,6 @@ class OnboardingViewController: BaseViewController {
     private let naverButton = UIButton()
     private let googleButton = UIButton()
     
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-    }
-    
     override func setUI() {
         
         logoImage.do {
