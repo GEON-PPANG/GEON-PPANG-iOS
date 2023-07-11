@@ -27,7 +27,7 @@ extension UIFont {
     
     static let title2 = UIFont(name: "Pretendard-Bold", size: 20.0)
     
-    static let headLine = UIFont(name: "Pretendard-Bold", size: 18.0)
+    static let headLine = UIFont(name: "Pretendard-Medium", size: 18.0)
     
     static let subHead = UIFont(name: "Pretendard-Medium", size: 15.0)
     
