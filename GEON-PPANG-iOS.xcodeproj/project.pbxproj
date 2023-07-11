@@ -35,6 +35,7 @@
 		097682E52A5C99340008F4FB /* BakeryFilterItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682E42A5C99340008F4FB /* BakeryFilterItems.swift */; };
 		097682E72A5CF0080008F4FB /* BakeryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682E62A5CF0080008F4FB /* BakeryFilterView.swift */; };
 		097682E92A5D0B6B0008F4FB /* BakeryListTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682E82A5D0B6B0008F4FB /* BakeryListTopView.swift */; };
+		097682EB2A5D12BD0008F4FB /* BakeryListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682EA2A5D12BD0008F4FB /* BakeryListCollectionViewCell.swift */; };
 		098F32EA2A4200FE0092D09A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 098F32E92A4200FE0092D09A /* Assets.xcassets */; };
 		098F32ED2A4200FE0092D09A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 098F32EB2A4200FE0092D09A /* LaunchScreen.storyboard */; };
 		099FC1C62A51F19300116D00 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 099FC1C52A51F19300116D00 /* GoogleService-Info.plist */; };
@@ -83,6 +84,7 @@
 		097682E42A5C99340008F4FB /* BakeryFilterItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryFilterItems.swift; sourceTree = "<group>"; };
 		097682E62A5CF0080008F4FB /* BakeryFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryFilterView.swift; sourceTree = "<group>"; };
 		097682E82A5D0B6B0008F4FB /* BakeryListTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryListTopView.swift; sourceTree = "<group>"; };
+		097682EA2A5D12BD0008F4FB /* BakeryListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryListCollectionViewCell.swift; sourceTree = "<group>"; };
 		098F32DD2A4200FD0092D09A /* GEON-PPANG-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GEON-PPANG-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		098F32E02A4200FD0092D09A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		098F32E22A4200FD0092D09A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -397,6 +399,7 @@
 				097682E22A5C95750008F4FB /* BakeryFilterCollectionViewCell.swift */,
 				097682E42A5C99340008F4FB /* BakeryFilterItems.swift */,
 				09B13F4F2A593CB800C0C723 /* BakeryListViewController.swift */,
+				097682EA2A5D12BD0008F4FB /* BakeryListCollectionViewCell.swift */,
 				097682E82A5D0B6B0008F4FB /* BakeryListTopView.swift */,
 				097682E62A5CF0080008F4FB /* BakeryFilterView.swift */,
 				097682DD2A5C91050008F4FB /* Model */,
@@ -626,6 +629,7 @@
 				09B13F582A59433500C0C723 /* TabBarItem.swift in Sources */,
 				09B13F502A593CB800C0C723 /* BakeryListViewController.swift in Sources */,
 				093214022A5AE27800875EF6 /* Utils.swift in Sources */,
+				097682EB2A5D12BD0008F4FB /* BakeryListCollectionViewCell.swift in Sources */,
 				090556452A51E79B00752067 /* UITextField+.swift in Sources */,
 				09CA3F062A569EB30063897A /* API.swift in Sources */,
 				DF959A6E2A568C9400E75774 /* UIColor+.swift in Sources */,
