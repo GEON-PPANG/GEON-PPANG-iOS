@@ -22,7 +22,7 @@ final class WriteReviewViewController: BaseViewController {
     // TODO: bakeryImage 추가
     private let scrollView = UIScrollView()
     private let contentView = UIView()
-    private let bakeryOverviewView = BakeryOverviewView(bakeryImage: .actions, regions: ["tset", "efqerqf"])
+    private let bakeryOverviewView = BakeryOverviewView(bakeryImage: .actions, firstRegion: "tset", secondRegion: "efqerqf")
     private let lineView = LineView()
     private let likeCollectionViewFlowLayout = OptionsCollectionViewFlowLayout()
     private let optionsCollectionViewFlowLayout = OptionsCollectionViewFlowLayout()
@@ -167,8 +167,7 @@ extension WriteReviewViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OptionsCollectionViewCell.identifier, for: indexPath) as? OptionsCollectionViewCell
-        else { return UICollectionViewCell() }
+        let cell: OptionsCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
         
         switch collectionView {
         case likeCollectionView:
@@ -185,8 +184,7 @@ extension WriteReviewViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: OptionsCollectionViewHeader.identifier, for: indexPath) as? OptionsCollectionViewHeader
-        else { return UICollectionReusableView() }
+        let header: OptionsCollectionViewHeader  = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
         
         switch collectionView {
         case likeCollectionView:

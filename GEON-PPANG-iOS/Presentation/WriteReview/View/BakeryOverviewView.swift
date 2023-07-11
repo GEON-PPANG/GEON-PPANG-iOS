@@ -27,10 +27,10 @@ final class BakeryOverviewView: UIView {
     
     // MARK: - Life Cycle
     // TODO: ingredient Tag 추가
-    init(bakeryImage: UIImage, regions: [String]) {
+    init(bakeryImage: UIImage, firstRegion: String, secondRegion: String) {
         super.init(frame: .zero)
         
-        setProperties(bakeryImage, regions)
+        setProperties(bakeryImage, firstRegion, secondRegion)
         setLayout()
         setUI()
     }
@@ -42,9 +42,13 @@ final class BakeryOverviewView: UIView {
     
     // MARK: - Setting
     
-    private func setProperties(_ bakeryImage: UIImage, _ regions: [String]) {
+    private func setProperties(_ bakeryImage: UIImage, _ firstRegion: String, _ secondRegion: String) {
         self.bakeryImageView.image = bakeryImage
-        self.regionStackView.configureStackView(with: regions)
+        if secondRegion == "" {
+            regionStackView.removeSecondRegion()
+        }
+        regionStackView.getRegionName(firstRegion, secondRegion)
+        regionStackView.getBackgroundColor(.black)
     }
     
     private func setLayout() {

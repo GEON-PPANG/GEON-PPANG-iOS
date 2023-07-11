@@ -64,14 +64,12 @@
 		3E16E4FE2A57F06D00B813D0 /* OptionsCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16E4FD2A57F06D00B813D0 /* OptionsCollectionViewFlowLayout.swift */; };
 		3E16E5002A57FFD900B813D0 /* OptionsCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16E4FF2A57FFD900B813D0 /* OptionsCollectionViewHeader.swift */; };
 		3E16E5022A58176800B813D0 /* ReviewDetailTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16E5012A58176800B813D0 /* ReviewDetailTextView.swift */; };
-		3E7869BA2A5BCD5F0087F75B /* RegionStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7869B92A5BCD5F0087F75B /* RegionStackView.swift */; };
+		3E79B19D2A54523D00D36A26 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B19C2A54523D00D36A26 /* BackButton.swift */; };
 		3E79B1A62A566F6400D36A26 /* WriteReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1A52A566F6400D36A26 /* WriteReviewViewController.swift */; };
-		3E79B1AC2A5677C800D36A26 /* RegionChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1AB2A5677C800D36A26 /* RegionChip.swift */; };
 		3E79B1AE2A56F14A00D36A26 /* BakeryOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1AD2A56F14A00D36A26 /* BakeryOverviewView.swift */; };
 		3E79B1B02A571B4B00D36A26 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1AF2A571B4B00D36A26 /* LineView.swift */; };
 		3E79B1B22A571E1F00D36A26 /* OptionsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1B12A571E1F00D36A26 /* OptionsCollectionView.swift */; };
 		3E79B1B52A571E7100D36A26 /* OptionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1B42A571E7100D36A26 /* OptionsCollectionViewCell.swift */; };
-		3E79B19D2A54523D00D36A26 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B19C2A54523D00D36A26 /* BackButton.swift */; };
 		3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */; };
 		3EA2E1E92A541AEB003516A3 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1E82A541AEB003516A3 /* CustomNavigationBar.swift */; };
 		3EA2E1EB2A542151003516A3 /* SizeLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1EA2A542151003516A3 /* SizeLiteral.swift */; };
@@ -130,16 +128,14 @@
 		09CA3EFB2A569E4A0063897A /* URLConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConstant.swift; sourceTree = "<group>"; };
 		09CA3F052A569EB30063897A /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		09CA3F072A569EBA0063897A /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
-		3E79B19C2A54523D00D36A26 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		3E16E4F42A57CF3800B813D0 /* WriteReviewDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewDTO.swift; sourceTree = "<group>"; };
 		3E16E4F92A57D1F400B813D0 /* RecommendationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationModel.swift; sourceTree = "<group>"; };
 		3E16E4FB2A57D24900B813D0 /* LikeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeModel.swift; sourceTree = "<group>"; };
 		3E16E4FD2A57F06D00B813D0 /* OptionsCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		3E16E4FF2A57FFD900B813D0 /* OptionsCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsCollectionViewHeader.swift; sourceTree = "<group>"; };
 		3E16E5012A58176800B813D0 /* ReviewDetailTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailTextView.swift; sourceTree = "<group>"; };
-		3E7869B92A5BCD5F0087F75B /* RegionStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionStackView.swift; sourceTree = "<group>"; };
+		3E79B19C2A54523D00D36A26 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		3E79B1A52A566F6400D36A26 /* WriteReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewViewController.swift; sourceTree = "<group>"; };
-		3E79B1AB2A5677C800D36A26 /* RegionChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionChip.swift; sourceTree = "<group>"; };
 		3E79B1AD2A56F14A00D36A26 /* BakeryOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryOverviewView.swift; sourceTree = "<group>"; };
 		3E79B1AF2A571B4B00D36A26 /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 		3E79B1B12A571E1F00D36A26 /* OptionsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsCollectionView.swift; sourceTree = "<group>"; };
@@ -480,6 +476,15 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		09C626522A5B33A8002C8110 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				09C626532A5B344B002C8110 /* HomeBestBakeryResponseDTO.swift */,
+				09C626552A5B3572002C8110 /* HomeBestReviewResponseDTO.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		3E16E4F22A57CE2B00B813D0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -523,6 +528,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		3E79B19B2A54523400D36A26 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				0987288C2A5BA1F000A29402 /* BookmarkButton.swift */,
+				3E79B19C2A54523D00D36A26 /* BackButton.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
 		3E79B1A42A566F0700D36A26 /* WriteReview */ = {
 			isa = PBXGroup;
 			children = (
@@ -531,15 +545,6 @@
 				3E16E4F62A57D10300B813D0 /* ViewController */,
 			);
 			path = WriteReview;
-			sourceTree = "<group>";
-		};
-		3E79B1AA2A5677AA00D36A26 /* Region */ = {
-			isa = PBXGroup;
-			children = (
-				3E79B1AB2A5677C800D36A26 /* RegionChip.swift */,
-				3E7869B92A5BCD5F0087F75B /* RegionStackView.swift */,
-			);
-			path = Region;
 			sourceTree = "<group>";
 		};
 		3E79B1B32A571E2700D36A26 /* OptionsCollection */ = {
@@ -553,31 +558,12 @@
 			path = OptionsCollection;
 			sourceTree = "<group>";
 		};
-		09C626522A5B33A8002C8110 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				09C626532A5B344B002C8110 /* HomeBestBakeryResponseDTO.swift */,
-				09C626552A5B3572002C8110 /* HomeBestReviewResponseDTO.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		3E79B19B2A54523400D36A26 /* Button */ = {
-			isa = PBXGroup;
-			children = (
-				0987288C2A5BA1F000A29402 /* BookmarkButton.swift */,
-				3E79B19C2A54523D00D36A26 /* BackButton.swift */,
-			);
-			path = Button;
-			sourceTree = "<group>";
-		};
 		3EA2E1E02A53E864003516A3 /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				097682D82A5C828E0008F4FB /* ImageView */,
 				0915C1762A5C634000ACB8D4 /* Label */,
 				0915C1732A5C4FEE00ACB8D4 /* StackView */,
-				3E79B1AA2A5677AA00D36A26 /* Region */,
 				093213FD2A5A74D100875EF6 /* TextField */,
 				3E79B19B2A54523400D36A26 /* Button */,
 				3EA2E1E12A53E880003516A3 /* Base */,
@@ -746,7 +732,6 @@
 			files = (
 				0915C1702A5C3C5600ACB8D4 /* RegionStackView.swift in Sources */,
 				3E16E4FC2A57D24900B813D0 /* LikeModel.swift in Sources */,
-				3E79B1AC2A5677C800D36A26 /* RegionChip.swift in Sources */,
 				3E79B1AE2A56F14A00D36A26 /* BakeryOverviewView.swift in Sources */,
 				3E16E4FA2A57D1F400B813D0 /* RecommendationModel.swift in Sources */,
 				3E79B1A62A566F6400D36A26 /* WriteReviewViewController.swift in Sources */,
@@ -783,7 +768,6 @@
 				3EA2E1EB2A542151003516A3 /* SizeLiteral.swift in Sources */,
 				0987288D2A5BA1F000A29402 /* BookmarkButton.swift in Sources */,
 				090556202A51DB2C00752067 /* UIImage+.swift in Sources */,
-				3E7869BA2A5BCD5F0087F75B /* RegionStackView.swift in Sources */,
 				0905562D2A51DBE700752067 /* UILabel+.swift in Sources */,
 				090556252A51DB9600752067 /* UICollectionView+.swift in Sources */,
 				09B13F582A59433500C0C723 /* TabBarItem.swift in Sources */,
