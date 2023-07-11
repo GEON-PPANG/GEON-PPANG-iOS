@@ -1,4 +1,3 @@
-        
 //
 //  OnboardingViewController.swift
 //  GEON-PPANG-iOS
@@ -62,11 +61,11 @@ class OnboardingViewController: BaseViewController {
         }
         
         latelySigninLabel.do {
-            $0.text = "최근에 카카오톡으로 로그인 했습니다."
+            $0.text = I18N.Onboarding.latelySigninText
             $0.font = .captionB1
             $0.textColor = .gbbGray500
             $0.textAlignment = .center
-            $0.partColorChange(targetString: "카카오톡", textColor: .gbbMain1!) // 특정 문자열의 textColor를 변경
+            $0.partColorChange(targetString: I18N.Onboarding.latelySigninSNS, textColor: .gbbMain1!) // 특정 문자열의 textColor를 변경
         }
         
         kakaoButton.do {
