@@ -30,6 +30,11 @@
 		093214022A5AE27800875EF6 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093214012A5AE27700875EF6 /* Utils.swift */; };
 		093214082A5AE40900875EF6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093214072A5AE40900875EF6 /* SearchViewController.swift */; };
 		0961C3642A501EBF0031A822 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0961C3632A501EBF0031A822 /* Strings.swift */; };
+		097682DF2A5C91280008F4FB /* BakeryListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682DE2A5C91280008F4FB /* BakeryListResponseDTO.swift */; };
+		097682E32A5C95750008F4FB /* BakeryFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682E22A5C95750008F4FB /* BakeryFilterCollectionViewCell.swift */; };
+		097682E52A5C99340008F4FB /* BakeryFilterItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682E42A5C99340008F4FB /* BakeryFilterItems.swift */; };
+		097682E72A5CF0080008F4FB /* BakeryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682E62A5CF0080008F4FB /* BakeryFilterView.swift */; };
+		097682E92A5D0B6B0008F4FB /* BakeryListTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682E82A5D0B6B0008F4FB /* BakeryListTopView.swift */; };
 		098F32EA2A4200FE0092D09A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 098F32E92A4200FE0092D09A /* Assets.xcassets */; };
 		098F32ED2A4200FE0092D09A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 098F32EB2A4200FE0092D09A /* LaunchScreen.storyboard */; };
 		099FC1C62A51F19300116D00 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 099FC1C52A51F19300116D00 /* GoogleService-Info.plist */; };
@@ -73,6 +78,11 @@
 		093214012A5AE27700875EF6 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		093214072A5AE40900875EF6 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0961C3632A501EBF0031A822 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		097682DE2A5C91280008F4FB /* BakeryListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryListResponseDTO.swift; sourceTree = "<group>"; };
+		097682E22A5C95750008F4FB /* BakeryFilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryFilterCollectionViewCell.swift; sourceTree = "<group>"; };
+		097682E42A5C99340008F4FB /* BakeryFilterItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryFilterItems.swift; sourceTree = "<group>"; };
+		097682E62A5CF0080008F4FB /* BakeryFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryFilterView.swift; sourceTree = "<group>"; };
+		097682E82A5D0B6B0008F4FB /* BakeryListTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryListTopView.swift; sourceTree = "<group>"; };
 		098F32DD2A4200FD0092D09A /* GEON-PPANG-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GEON-PPANG-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		098F32E02A4200FD0092D09A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		098F32E22A4200FD0092D09A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -312,6 +322,14 @@
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
+		097682DD2A5C91050008F4FB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				097682DE2A5C91280008F4FB /* BakeryListResponseDTO.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		098F32D42A4200FD0092D09A = {
 			isa = PBXGroup;
 			children = (
@@ -376,7 +394,12 @@
 		09B13F4E2A593CAE00C0C723 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				097682E22A5C95750008F4FB /* BakeryFilterCollectionViewCell.swift */,
+				097682E42A5C99340008F4FB /* BakeryFilterItems.swift */,
 				09B13F4F2A593CB800C0C723 /* BakeryListViewController.swift */,
+				097682E82A5D0B6B0008F4FB /* BakeryListTopView.swift */,
+				097682E62A5CF0080008F4FB /* BakeryFilterView.swift */,
+				097682DD2A5C91050008F4FB /* Model */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -573,10 +596,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				097682E72A5CF0080008F4FB /* BakeryFilterView.swift in Sources */,
 				090556292A51DBC000752067 /* UIView+.swift in Sources */,
 				090668FC2A4FF3C600F413FA /* AppDelegate.swift in Sources */,
 				090668FD2A4FF3C600F413FA /* SceneDelegate.swift in Sources */,
+				097682E92A5D0B6B0008F4FB /* BakeryListTopView.swift in Sources */,
 				09B13F5A2A5946B700C0C723 /* TabBar+.swift in Sources */,
+				097682DF2A5C91280008F4FB /* BakeryListResponseDTO.swift in Sources */,
 				09B71C002A59D50900076AC2 /* HomeTopView.swift in Sources */,
 				090556492A51E7EC00752067 /* UIScreen+.swift in Sources */,
 				09B71C022A59D99200076AC2 /* SearchTextField.swift in Sources */,
@@ -584,6 +610,7 @@
 				0961C3642A501EBF0031A822 /* Strings.swift in Sources */,
 				093214082A5AE40900875EF6 /* SearchViewController.swift in Sources */,
 				09B13F542A593CD300C0C723 /* MyPageViewController.swift in Sources */,
+				097682E32A5C95750008F4FB /* BakeryFilterCollectionViewCell.swift in Sources */,
 				3E79B19D2A54523D00D36A26 /* BackButton.swift in Sources */,
 				3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */,
 				090556222A51DB3300752067 /* UIFont+.swift in Sources */,
@@ -608,6 +635,7 @@
 				09B13F562A59410C00C0C723 /* CALayer+.swift in Sources */,
 				3EA2E1E92A541AEB003516A3 /* CustomNavigationBar.swift in Sources */,
 				090556312A51DDD800752067 /* UITableView+.swift in Sources */,
+				097682E52A5C99340008F4FB /* BakeryFilterItems.swift in Sources */,
 				090556272A51DBB100752067 /* NSObject+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
