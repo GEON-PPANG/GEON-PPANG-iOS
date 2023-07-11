@@ -29,6 +29,7 @@ enum Filter {
 }
 
 struct BakeryFilterItems: Hashable {
+    var identifier = UUID()
     var filter: Filter
     var status: Status
     var leftIcon: UIImage
@@ -54,10 +55,17 @@ struct BakeryFilterItems: Hashable {
             case .HARD:
                 return BakeryFilterItems(filter: filter, status: status, leftIcon: .enabledHardIcon)
             case .DESSERT:
-                return BakeryFilterItems(filter: .DESSERT, status: .off, leftIcon: .enabledCakeIcon)
+                return BakeryFilterItems(filter: filter, status: status, leftIcon: .enabledCakeIcon)
             case .BRUNCH:
-                return BakeryFilterItems(filter: .BRUNCH, status: .off, leftIcon: .enabledSandwichIcon)
+                return BakeryFilterItems(filter: filter, status: status, leftIcon: .enabledSandwichIcon)
             }
         }
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(identifier)
+    }
+    static func == (lhs: BakeryFilterItems, rhs: BakeryFilterItems) -> Bool {
+        return lhs.identifier == rhs.identifier
     }
 }
