@@ -15,12 +15,13 @@ final class HomeTopView: UIView {
     // MARK: - Property
     
     var gotoNextView: (() -> Void)?
-        
+    
     // MARK: - UI Property
     
     private let titleLabel = UILabel()
     private let searchTextField = SearchTextField()
     private lazy var filterButton = UIButton()
+    private let lineView = UIView()
     
     // MARK: - Life Cycle
     
@@ -56,27 +57,37 @@ final class HomeTopView: UIView {
         filterButton.do {
             $0.setImage(.homeFilterButton, for: .normal)
         }
+        
+        lineView.do {
+            $0.backgroundColor = .gbbGray200
+        }
     }
     
     private func setLayout() {
-        addSubviews(titleLabel, filterButton, searchTextField)
+        addSubviews(titleLabel, filterButton, searchTextField, lineView)
         
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(45)
             $0.leading.equalToSuperview().offset(24)
         }
-    
+        
         filterButton.snp.makeConstraints {
-            $0.size.equalTo(CGSize(width: 44, height: 48))
+            $0.size.equalTo(CGSize(width: CGFloat().convertByWidthRatio(44), height: CGFloat().convertByHeightRatio(48)))
             $0.top.equalTo(titleLabel.snp.bottom).offset(24)
             $0.trailing.equalToSuperview().inset(24)
         }
         
         searchTextField.snp.makeConstraints {
-            $0.height.equalTo(44)
+            $0.height.equalTo(CGFloat().convertByHeightRatio(44))
             $0.leading.equalTo(titleLabel.snp.leading)
             $0.top.equalTo(filterButton.snp.top)
             $0.trailing.equalTo(filterButton.snp.leading).offset(-12)
+        }
+        
+        lineView.snp.makeConstraints {
+            $0.height.equalTo(1)
+            $0.bottom.equalToSuperview()
+            $0.directionalHorizontalEdges.equalToSuperview()
         }
     }
     

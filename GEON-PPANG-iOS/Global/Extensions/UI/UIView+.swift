@@ -15,7 +15,7 @@ extension UIView {
     
     func makeCornerRound (radius: CGFloat) {
         layer.cornerRadius = radius
-        layer.masksToBounds = false
+        layer.masksToBounds = true
     }
     
     func makeBorder(width: CGFloat, color: UIColor ) {
