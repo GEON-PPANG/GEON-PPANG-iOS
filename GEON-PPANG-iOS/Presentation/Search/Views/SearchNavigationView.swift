@@ -34,7 +34,7 @@ final class SearchNavigationView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: -Setting
+    // MARK: - Setting
     
     private func setLayout() {
         addSubviews(backButton, searchTextField)
