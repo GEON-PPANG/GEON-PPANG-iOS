@@ -87,7 +87,11 @@ class OnboardingViewController: BaseViewController {
     
     override func setLayout() {
         
-        view.addSubviews(logoImage, signinButton, signupButton, signinLabel, signupLabel, latelySigninView, latelySigninLabel, kakaoButton, appleButton, naverButton, googleButton)
+        view.addSubviews(logoImage, signinButton, signupButton, latelySigninView, kakaoButton, appleButton, naverButton, googleButton)
+        
+        signinButton.addSubview(signinLabel)
+        signupButton.addSubview(signupLabel)
+        latelySigninView.addSubview(latelySigninLabel)
         
         logoImage.snp.makeConstraints {
             $0.top.equalToSuperview().inset(convertByHeightRatio(190))
@@ -108,11 +112,11 @@ class OnboardingViewController: BaseViewController {
         }
         
         signinLabel.snp.makeConstraints {
-            $0.center.equalTo(signinButton.snp.center)
+            $0.center.equalToSuperview()
         }
         
         signupLabel.snp.makeConstraints {
-            $0.center.equalTo(signupButton.snp.center)
+            $0.center.equalToSuperview()
         }
         
         latelySigninView.snp.makeConstraints {
@@ -122,7 +126,7 @@ class OnboardingViewController: BaseViewController {
         }
         
         latelySigninLabel.snp.makeConstraints {
-            $0.center.equalTo(latelySigninView.snp.center)
+            $0.center.equalToSuperview()
         }
         
         kakaoButton.snp.makeConstraints {
