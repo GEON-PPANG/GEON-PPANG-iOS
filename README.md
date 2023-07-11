@@ -1,4 +1,4 @@
-# <img src="https://github.com/jeongdung-eo/Capstone_inha_Zeloss/assets/107853954/32302669-0ca7-4edb-b37d-5ea8a3e70263" align=left width=110><image src ="https://github.com/jeongdung-eo/Capstone_inha_Zeloss/assets/107853954/65d41d36-17f5-4c0a-bf11-c7dcb8964528" width=100 height=50>
+# <img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/d6fdefe3-4c88-4cef-a280-cae13b5199f6" align=left width=110><image src ="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/abf67c6b-0dc2-45f6-be6f-e6534f4850a3" width=100 height=50>
 
  비주류가 만드는 **건빵문화**, 당신이 찾던 그 **건강한 빵집**이 여기에 !
  <br>
@@ -6,7 +6,7 @@
 <br>
 
 ## 🍞 iOS Developer
-<img src="https://github.com/jeongdung-eo/Capstone_inha_Zeloss/assets/107853954/cd2bd345-c5e0-4fe1-9eb9-e4c9b6d2280c" width="200"> | <img src="https://github.com/jeongdung-eo/Capstone_inha_Zeloss/assets/107853954/4c8f6d6d-cc23-49f5-b6d4-dc4a408eb456" width="200"> | <img src="https://github.com/jeongdung-eo/Capstone_inha_Zeloss/assets/107853954/2c0b19c9-f59f-4496-a958-4eb717e6868a" width="200"> |
+<img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/70fdab77-8a2f-4992-9853-55087a098de3" width="200"> | <img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/a6b640f4-9380-439a-a16d-5f7fac6fcb6d" width="200"> | <img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/93eec23b-d40f-4d31-9e2d-75202625cbca" width="200"> |
 :---------:|:----------:|:---------:
 김정은 | 김창균 | 이성민 |
 [jeongdung-eo](https://github.com/jeongdung-eo) | [ckkim817](https://github.com/ckkim817) | [seongmin221](https://github.com/seongmin221) |
