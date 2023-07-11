@@ -216,7 +216,7 @@ final class WriteReviewViewController: BaseViewController {
         bottomView.do {
             $0.backgroundColor = .white
             $0.layer.masksToBounds = false
-            $0.applyAdditionalSubview(bottomDummyView)
+            $0.applyAdditionalSubview(bottomDummyView, withTrailingOffset: 16)
         }
         
         bottomDummyView.do {
@@ -290,6 +290,7 @@ final class WriteReviewViewController: BaseViewController {
         UIView.animate(withDuration: 0.2, animations: {
             self.scrollView.transform = .identity
             self.bottomView.transform = .identity
+            self.bottomDummyView.transform = .identity
         })
     }
     
@@ -393,7 +394,7 @@ extension WriteReviewViewController: UITextViewDelegate {
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        return self.textLimit(textView.text, to: text, with: 500)
+        return self.textLimit(textView.text, to: text, with: 70)
     }
     
 }
