@@ -144,6 +144,11 @@ extension BakeryFilterView: UICollectionViewDelegate {
             self.filterlist[indexPath.item].status = .off
         }
         self.filterlist[indexPath.item] = self.filterlist[indexPath.item].isSelected()
+        
+        var snapshot = NSDiffableDataSourceSnapshot<Section, BakeryFilterItems>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(filterlist)
+        dataSource?.apply(snapshot, animatingDifferences: true)
     }
 }
 
