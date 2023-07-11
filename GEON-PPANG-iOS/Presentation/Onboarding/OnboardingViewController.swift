@@ -10,19 +10,21 @@ import UIKit
 import SnapKit
 import Then
 
-class OnboardingViewController: BaseViewController {
+final class OnboardingViewController: BaseViewController {
+    
+    // MARK: - UI Property
     
     private let logoImage = UIImageView()
-    private lazy var signinButton = UIView()    // 공통 버튼 구현 전까지
-    private let signinLabel = UILabel()         // 임시로 레이아웃 잡는 용도
-    private lazy var signupButton = UIView()    // 위와
-    private let signupLabel = UILabel()         // 동일
+    private lazy var signinButton = CommonButton()
+    private lazy var signupButton = CommonButton()
     private let latelySigninView = DrawDashLineView()
     private let latelySigninLabel = UILabel()
-    private let kakaoButton = UIButton()
-    private let appleButton = UIButton()
-    private let naverButton = UIButton()
-    private let googleButton = UIButton()
+    private lazy var kakaoButton = UIButton()
+    private lazy var appleButton = UIButton()
+    private lazy var naverButton = UIButton()
+    private lazy var googleButton = UIButton()
+    
+    // MARK: - Setting
     
     override func setUI() {
         
@@ -32,27 +34,13 @@ class OnboardingViewController: BaseViewController {
         }
         
         signinButton.do {
-            $0.backgroundColor = .gbbMain2
-            $0.makeCornerRound(radius: 12)
+            $0.getButtonTitle(.login)
+            $0.getButtonUI(.gbbMain2!)
         }
         
         signupButton.do {
-            $0.makeCornerRound(radius: 12)
-            $0.makeBorder(width: 1, color: .gbbGray300!)
-        }
-        
-        signinLabel.do {
-            $0.text = "로그인"
-            $0.font = .headLine
-            $0.textColor = .gbbGray100
-            $0.textAlignment = .center
-        }
-        
-        signupLabel.do {
-            $0.text = "회원가입"
-            $0.font = .bodyB1
-            $0.textColor = .gbbGray400
-            $0.textAlignment = .center
+            $0.getButtonTitle(.signIn)
+            $0.getButtonUI(.gbbWhite!, .gbbGray300)
         }
         
         latelySigninLabel.do {
@@ -84,8 +72,6 @@ class OnboardingViewController: BaseViewController {
         
         view.addSubviews(logoImage, signinButton, signupButton, latelySigninView, kakaoButton, appleButton, naverButton, googleButton)
         
-        signinButton.addSubview(signinLabel)
-        signupButton.addSubview(signupLabel)
         latelySigninView.addSubview(latelySigninLabel)
         
         logoImage.snp.makeConstraints {
@@ -104,14 +90,6 @@ class OnboardingViewController: BaseViewController {
             $0.top.equalTo(signinButton.snp.bottom).offset(convertByHeightRatio(20))
             $0.directionalHorizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(convertByHeightRatio(56))
-        }
-        
-        signinLabel.snp.makeConstraints {
-            $0.center.equalToSuperview()
-        }
-        
-        signupLabel.snp.makeConstraints {
-            $0.center.equalToSuperview()
         }
         
         latelySigninView.snp.makeConstraints {
