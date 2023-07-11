@@ -62,26 +62,26 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
         
         emptyLabel.snp.makeConstraints {
             $0.top.equalTo(emptyIcon.snp.bottom).offset(20)
+            $0.centerX.equalToSuperview()
+            
             switch emptyType {
             case .initialize, .noSearch:
                 $0.centerY.equalToSuperview().inset(-33)
             case .noReview, .noBookMark:
                 $0.centerY.equalToSuperview().inset(-22)
             }
-            $0.centerX.equalToSuperview()
         }
     }
     
     private func setUI() {
         emptyIcon.do {
             $0.contentMode = .scaleAspectFit
-            $0.image = .noSearchResultImage
         }
         
         emptyLabel.do {
+            $0.numberOfLines = 0
             $0.textAlignment = .center
-            $0.partFontChange(targetString: "검색결과가 없어요", font: .pretendardMedium(15))
-            $0.basic(text: "다른 키워드로 검색해보세요!", font: .pretendardBold(20), color: .gbbGray300!)
+            $0.basic(font: .pretendardBold(20), color: .gbbGray300!)
         }
     }
     
@@ -89,5 +89,12 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
         emptyType = type
         emptyIcon.image = type.icon
         emptyLabel.text = type.rawValue
+        
+        switch type {
+        case .initialize, .noBookMark, .noReview:
+            return emptyLabel.basic(text: emptyType.rawValue, font: .pretendardBold(20), color: .gbbGray300!)
+        case .noSearch:
+            return emptyLabel.partFontChange(targetString: "다른 키워드로 검색해보세요!", font: .pretendardMedium(15))
+        }
     }
 }
