@@ -38,13 +38,13 @@
 		0961C3642A501EBF0031A822 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0961C3632A501EBF0031A822 /* Strings.swift */; };
 		097682DA2A5C829D0008F4FB /* GradientImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682D92A5C829D0008F4FB /* GradientImageView.swift */; };
 		097682DC2A5C83910008F4FB /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682DB2A5C83910008F4FB /* CGFloat+.swift */; };
-		0987288D2A5BA1F000A29402 /* BookmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0987288C2A5BA1F000A29402 /* BookmarkButton.swift */; };
 		097682DF2A5C91280008F4FB /* BakeryListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682DE2A5C91280008F4FB /* BakeryListResponseDTO.swift */; };
 		097682E32A5C95750008F4FB /* BakeryFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682E22A5C95750008F4FB /* BakeryFilterCollectionViewCell.swift */; };
 		097682E52A5C99340008F4FB /* BakeryFilterItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682E42A5C99340008F4FB /* BakeryFilterItems.swift */; };
 		097682E72A5CF0080008F4FB /* BakeryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682E62A5CF0080008F4FB /* BakeryFilterView.swift */; };
 		097682E92A5D0B6B0008F4FB /* BakeryListTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682E82A5D0B6B0008F4FB /* BakeryListTopView.swift */; };
 		097682EB2A5D12BD0008F4FB /* BakeryListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682EA2A5D12BD0008F4FB /* BakeryListCollectionViewCell.swift */; };
+		0987288D2A5BA1F000A29402 /* BookmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0987288C2A5BA1F000A29402 /* BookmarkButton.swift */; };
 		098F32EA2A4200FE0092D09A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 098F32E92A4200FE0092D09A /* Assets.xcassets */; };
 		098F32ED2A4200FE0092D09A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 098F32EB2A4200FE0092D09A /* LaunchScreen.storyboard */; };
 		099FC1C62A51F19300116D00 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 099FC1C52A51F19300116D00 /* GoogleService-Info.plist */; };
@@ -99,13 +99,13 @@
 		0961C3632A501EBF0031A822 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		097682D92A5C829D0008F4FB /* GradientImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientImageView.swift; sourceTree = "<group>"; };
 		097682DB2A5C83910008F4FB /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
-		0987288C2A5BA1F000A29402 /* BookmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkButton.swift; sourceTree = "<group>"; };
 		097682DE2A5C91280008F4FB /* BakeryListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryListResponseDTO.swift; sourceTree = "<group>"; };
 		097682E22A5C95750008F4FB /* BakeryFilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryFilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		097682E42A5C99340008F4FB /* BakeryFilterItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryFilterItems.swift; sourceTree = "<group>"; };
 		097682E62A5CF0080008F4FB /* BakeryFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryFilterView.swift; sourceTree = "<group>"; };
 		097682E82A5D0B6B0008F4FB /* BakeryListTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryListTopView.swift; sourceTree = "<group>"; };
 		097682EA2A5D12BD0008F4FB /* BakeryListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryListCollectionViewCell.swift; sourceTree = "<group>"; };
+		0987288C2A5BA1F000A29402 /* BookmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkButton.swift; sourceTree = "<group>"; };
 		098F32DD2A4200FD0092D09A /* GEON-PPANG-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GEON-PPANG-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		098F32E02A4200FD0092D09A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		098F32E22A4200FD0092D09A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -378,9 +378,19 @@
 		097682DD2A5C91050008F4FB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				097682E42A5C99340008F4FB /* BakeryFilterItems.swift */,
 				097682DE2A5C91280008F4FB /* BakeryListResponseDTO.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		0979852E2A5D9DBF004263E5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				097682E82A5D0B6B0008F4FB /* BakeryListTopView.swift */,
+				097682E62A5CF0080008F4FB /* BakeryFilterView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		098F32D42A4200FD0092D09A = {
@@ -443,6 +453,7 @@
 		09B13F4D2A593C7600C0C723 /* BakeryList */ = {
 			isa = PBXGroup;
 			children = (
+				0979852E2A5D9DBF004263E5 /* Views */,
 				09B13F4E2A593CAE00C0C723 /* ViewControllers */,
 			);
 			path = BakeryList;
@@ -451,12 +462,9 @@
 		09B13F4E2A593CAE00C0C723 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				097682E22A5C95750008F4FB /* BakeryFilterCollectionViewCell.swift */,
-				097682E42A5C99340008F4FB /* BakeryFilterItems.swift */,
 				09B13F4F2A593CB800C0C723 /* BakeryListViewController.swift */,
+				097682E22A5C95750008F4FB /* BakeryFilterCollectionViewCell.swift */,
 				097682EA2A5D12BD0008F4FB /* BakeryListCollectionViewCell.swift */,
-				097682E82A5D0B6B0008F4FB /* BakeryListTopView.swift */,
-				097682E62A5CF0080008F4FB /* BakeryFilterView.swift */,
 				097682DD2A5C91050008F4FB /* Model */,
 			);
 			path = ViewControllers;

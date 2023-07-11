@@ -36,6 +36,7 @@ final class BakeryListTopView: UIView {
         hStackView.do {
             $0.axis = .horizontal
             $0.spacing = 8
+            $0.sizeToFit()
         }
         
         bakeryTitle.do {
