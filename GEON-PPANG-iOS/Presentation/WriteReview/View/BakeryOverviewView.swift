@@ -28,11 +28,9 @@ final class BakeryOverviewView: UIView {
     // MARK: - Life Cycle
     // TODO: ingredient Tag 추가
     init(bakeryImage: UIImage, regions: [String]) {
-        self.bakeryImageView.image = bakeryImage
-        self.regionStackView.configureStackView(with: regions)
-        
         super.init(frame: .zero)
         
+        setProperties(bakeryImage, regions)
         setLayout()
         setUI()
     }
@@ -43,6 +41,11 @@ final class BakeryOverviewView: UIView {
     }
     
     // MARK: - Setting
+    
+    private func setProperties(_ bakeryImage: UIImage, _ regions: [String]) {
+        self.bakeryImageView.image = bakeryImage
+        self.regionStackView.configureStackView(with: regions)
+    }
     
     private func setLayout() {
         addSubview(bakeryImageView)
