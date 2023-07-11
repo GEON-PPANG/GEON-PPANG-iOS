@@ -16,7 +16,6 @@ final class CustomNavigationBar: UIView {
     
     enum Size {
         static let buttonSize = 48
-        static let mapImageSize = 37
     }
     
     // MARK: - UI Property
@@ -34,7 +33,6 @@ final class CustomNavigationBar: UIView {
         super.init(frame: .zero)
         
         setLayout()
-        setStyle()
     }
     
     @available(*, unavailable)
@@ -45,9 +43,13 @@ final class CustomNavigationBar: UIView {
     // MARK: - Setting
     
     private func setLayout() {
+        self.snp.makeConstraints {
+            $0.height.equalTo(118)
+        }
+        
         addSubview(backButton)
         backButton.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(12)
+            $0.leading.equalToSuperview().inset(5)
             $0.bottom.equalToSuperview().inset(10)
             $0.size.equalTo(Size.buttonSize)
         }
@@ -70,7 +72,7 @@ final class CustomNavigationBar: UIView {
         rightMapButton.addAction(action, for: .touchUpInside)
     }
     
-    func configureLeftTitle(to title: String, with font: UIFont) {
+    func configureLeftTitle(to title: String) {
         addSubview(leftTitleLabel)
         leftTitleLabel.snp.makeConstraints {
             $0.leading.equalTo(backButton.snp.trailing).offset(8)
@@ -78,9 +80,7 @@ final class CustomNavigationBar: UIView {
         }
         leftTitleLabel.do {
             $0.text = title
-            // TODO: font 변동 가능성 있을수도 ? 없다면 지우기
-            $0.font = font
-            // TODO: asset 추가되면 color 변경
+            $0.font = .title2
             $0.textColor = .black
         }
     }
@@ -94,8 +94,7 @@ final class CustomNavigationBar: UIView {
         rightCountLabel.do {
             $0.text = "\(currentCount)/\(maxCount)"
             $0.font = .pretendardMedium(15)
-            // TODO: asset 추가되면 color 변경
-            $0.textColor = .systemGray
+            $0.textColor = .gbbGray700
         }
     }
     
@@ -107,15 +106,14 @@ final class CustomNavigationBar: UIView {
             $0.width.height.equalTo(Size.buttonSize)
         }
         
-        let mapImageView = UIImageView(image: UIImage(systemName: "map.circle.fill"))
+        let mapImageView = UIImageView(image: UIImage.mapButton)
         rightMapButton.addSubview(mapImageView)
         mapImageView.snp.makeConstraints {
-            $0.leading.top.equalToSuperview().inset(5)
-            $0.width.height.equalTo(Size.mapImageSize)
+            $0.center.equalToSuperview()
+            $0.width.height.equalTo(Size.buttonSize)
         }
         mapImageView.do {
-            // TODO: asset 추가되면 color 변경
-            $0.tintColor = .systemGray2
+            $0.tintColor = .gbbGray500
         }
     }
     

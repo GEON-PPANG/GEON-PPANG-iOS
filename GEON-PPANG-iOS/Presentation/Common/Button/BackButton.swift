@@ -11,8 +11,7 @@ final class BackButton: UIButton {
     
     // MARK: - UI Property
     
-    // TODO: asset 추가되면 image 바꾸기
-    private let leftChevron = UIImageView(image: UIImage(systemName: "chevron.left"))
+    private let leftChevron = UIImageView(image: UIImage.leftArrowIcon)
     
     // MARK: - Init
     
