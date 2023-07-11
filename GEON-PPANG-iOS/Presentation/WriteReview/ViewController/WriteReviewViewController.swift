@@ -32,6 +32,7 @@ final class WriteReviewViewController: BaseViewController {
     private lazy var optionsCollectionView = OptionsCollectionView(frame: .zero, collectionViewLayout: optionsCollectionViewFlowLayout)
     private let reviewDetailTextView = ReviewDetailTextView()
     private let dotView = UILabel()
+    private let aboutReviewContainerView = UIView()
     private let aboutReviewLabel = UILabel()
     private let bottomView = BottomView()
     
@@ -129,18 +130,24 @@ final class WriteReviewViewController: BaseViewController {
             $0.height.equalTo(221)
         }
         
-        contentView.addSubview(dotView)
-        dotView.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(24)
-            $0.top.equalTo(reviewDetailTextView.snp.bottom).offset(16)
+        contentView.addSubview(aboutReviewContainerView)
+        aboutReviewContainerView.snp.makeConstraints {
+            $0.top.equalTo(reviewDetailTextView.snp.bottom).offset(10)
+            $0.horizontalEdges.bottom.equalToSuperview()
         }
         
-        contentView.addSubview(aboutReviewLabel)
+        aboutReviewContainerView.addSubview(dotView)
+        dotView.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(24)
+            $0.top.equalTo(aboutReviewContainerView).offset(16)
+        }
+        
+        aboutReviewContainerView.addSubview(aboutReviewLabel)
         aboutReviewLabel.snp.makeConstraints {
             $0.leading.equalTo(dotView.snp.trailing)
             $0.trailing.equalToSuperview().inset(24)
-            $0.top.equalTo(reviewDetailTextView.snp.bottom).offset(16)
-            $0.bottom.equalToSuperview()
+            $0.top.equalTo(dotView)
+            $0.bottom.equalToSuperview().inset(34)
         }
     }
     
@@ -179,18 +186,26 @@ final class WriteReviewViewController: BaseViewController {
             $0.isUserInteractionEnabled = false
         }
         
+        aboutReviewContainerView.do {
+            $0.backgroundColor = .gbbGray100
+        }
+        
         dotView.do {
-            $0.text = "•"
             $0.font = .captionM2
             $0.textColor = .gbbGray300
+            $0.setLineHeight(by: 1.37, with: "•")
         }
         
         aboutReviewLabel.do {
-            $0.text = I18N.aboutReview
             $0.font = .captionM2
             $0.textColor = .gbbGray300
             $0.textAlignment = .left
             $0.numberOfLines = 4
+            $0.setLineHeight(by: 1.37, with: I18N.aboutReview)
+        }
+        
+        bottomView.do {
+            $0.backgroundColor = .gbbGray300
         }
     }
     
