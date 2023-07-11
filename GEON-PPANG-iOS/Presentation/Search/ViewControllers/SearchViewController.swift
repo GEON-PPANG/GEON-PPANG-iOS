@@ -19,16 +19,23 @@ final class SearchViewController: BaseViewController {
     // MARK: - UI Property
     
     private let naviView = SearchNavigationView()
+    private let searchResultView = SearchResultView()
     
     // MARK: - Setting
     
     override func setLayout() {
-        view.addSubview(naviView)
+        view.addSubviews(naviView, searchResultView)
         
         naviView.snp.makeConstraints {
             $0.top.equalTo(safeArea)
             $0.directionalHorizontalEdges.equalTo(safeArea)
             $0.height.equalTo(convertByHeightRatio(68))
+        }
+        
+        searchResultView.snp.makeConstraints {
+            $0.top.equalTo(naviView.snp.bottom)
+            $0.directionalHorizontalEdges.equalTo(safeArea)
+            $0.height.equalTo(convertByHeightRatio(55))
         }
     }
     
@@ -37,6 +44,9 @@ final class SearchViewController: BaseViewController {
             $0.dismissClosure = {
                 self.navigationController?.popViewController(animated: true)
             }
+        }
+        searchResultView.do {
+            $0.updateUI(count: 3)
         }
     }
 }
