@@ -61,6 +61,9 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
             $0.contentMode = .scaleAspectFill
             $0.backgroundColor = .gbbPoint1
         }
+        markStackView.do {
+            $0.getIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
+        }
         
         [bakeryTitle, bakeryReview].forEach {
             $0.do {
@@ -132,6 +135,6 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
         if data.secondNearStation == "" {
             regionStackView.removeSecondRegion()
         }
-        regionStackView.getRegionName(data.firstNearStation, data.secondNearStation)
+        regionStackView.getRegionName(data.firstNearStation, data.secondNearStation ?? "")
     }
 }

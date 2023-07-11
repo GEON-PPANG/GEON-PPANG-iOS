@@ -46,7 +46,7 @@ final class RegionStackView: UIStackView {
             $0.textColor = .gbbGray100
         }
     }
-    
+        
     func getRegionName(_ first: String, _ second: String) {
         regionFirstTag.text = first
         regionSeconodTag.text = second

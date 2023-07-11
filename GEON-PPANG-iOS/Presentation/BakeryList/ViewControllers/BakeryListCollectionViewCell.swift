@@ -98,7 +98,7 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
             guard let self = self  else { return }
             self.updateData?(status, self.index)
         }
-        bookMarkButton.isSelected = data.isBooked ? true : false
+        bookMarkButton.isSelected = data.isBooked
         markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)
         if data.secondNearStation == "" {
             regionStackView.removeSecondRegion()

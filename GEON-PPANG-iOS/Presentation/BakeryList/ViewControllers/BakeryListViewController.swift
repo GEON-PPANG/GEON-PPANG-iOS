@@ -11,7 +11,7 @@ import SnapKit
 import Then
 
 final class BakeryListViewController: BaseViewController {
-        
+    
     // MARK: - Property
     
     enum Section {
@@ -27,17 +27,18 @@ final class BakeryListViewController: BaseViewController {
     private let bakeryTopView = BakeryListTopView()
     private let bakeryFilterView = BakeryFilterView()
     private lazy var bakeryListCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
-
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
-         super.viewDidLoad()
+        super.viewDidLoad()
         
         setRegister()
         setupDataSource()
         setReloadData()
         
     }
+    
     override func setUI() {
         bakeryFilterView.do {
             $0.backgroundColor = .clear
@@ -74,7 +75,7 @@ final class BakeryListViewController: BaseViewController {
         var config = UICollectionLayoutListConfiguration(appearance: .plain)
         config.backgroundColor = .clear
         config.showsSeparators = true
-        
+
         let layout = UICollectionViewCompositionalLayout.list(using: config)
         return layout
     }
@@ -82,6 +83,8 @@ final class BakeryListViewController: BaseViewController {
     private func setupDataSource() {
         dataSource = DataSource(collectionView: bakeryListCollectionView, cellProvider: { collectionView, indexPath, item in
             let cell: BakeryListCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+            cell.getViewType(.defaultType)
+            cell.updateUI(data: item, index: indexPath.item)
             return cell
         })
     }
