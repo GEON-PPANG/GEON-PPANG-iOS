@@ -87,7 +87,7 @@ final class ReviewDetailTextView: UIView {
     
     private func setUI() {
         detailTextView.do {
-            $0.text = I18N.likePlaceholder
+            $0.text = I18N.WriteReview.likePlaceholder
             $0.font = .subHead
             $0.textColor = .gbbGray300
             $0.makeCornerRound(radius: 12)
@@ -122,7 +122,7 @@ final class ReviewDetailTextView: UIView {
     
     func configurePlaceholder(with isLike: Bool) {
         detailTextView.do {
-            $0.text = isLike ? I18N.likePlaceholder : I18N.dislikePlaceholder
+            $0.text = isLike ? I18N.WriteReview.likePlaceholder : I18N.WriteReview.dislikePlaceholder
         }
     }
     

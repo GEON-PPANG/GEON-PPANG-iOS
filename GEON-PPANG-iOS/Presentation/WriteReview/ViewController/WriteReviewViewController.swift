@@ -206,6 +206,7 @@ final class WriteReviewViewController: BaseViewController {
         }
         
         aboutReviewLabel.do {
+            $0.text = I18N.aboutReview
             $0.font = .captionM2
             $0.textColor = .gbbGray300
             $0.textAlignment = .left
@@ -346,13 +347,12 @@ extension WriteReviewViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OptionsCollectionViewCell.identifier, for: indexPath) as? OptionsCollectionViewCell
-        else { return UICollectionViewCell() }
+        let cell: OptionsCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
         
         switch collectionView {
         case likeCollectionView:
             cell.configureCell(to: .deselected)
-            cell.configureCellText(to: indexPath.item == 0 ? "좋아요" : "별로예요")
+            cell.configureCellText(to: indexPath.item == 0 ? I18N.WriteReview.like : I18N.WriteReview.dislike)
         case optionsCollectionView:
             let keywordList = KeywordList.Keyword.allCases.map { $0.rawValue }
             cell.configureCell(to: .disabled)
@@ -361,6 +361,21 @@ extension WriteReviewViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header: OptionsCollectionViewHeader  = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
+        
+        switch collectionView {
+        case likeCollectionView:
+            header.configureTitle(to: I18N.WriteReview.likeOptionTitle)
+            header.isEnabled.toggle()
+        case optionsCollectionView:
+            header.configureTitle(to: I18N.WriteReview.optionTitle)
+        default:
+            return UICollectionReusableView()
+        }
+        return header
     }
     
 }
@@ -388,8 +403,8 @@ extension WriteReviewViewController: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = reviewDetailTextView.isLike ? I18N.likePlaceholder : I18N.dislikePlaceholder
-            textView.textColor = .black
+            textView.text = reviewDetailTextView.isLike ? I18N.WriteReview.likePlaceholder : I18N.WriteReview.dislikePlaceholder
+            textView.textColor = .gbbGray300
         }
     }
     
