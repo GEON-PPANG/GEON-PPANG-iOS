@@ -37,6 +37,7 @@ final class BottomSheetAppearView: UIView {
     private func setUI() {
         dimmedView.do {
             $0.backgroundColor = .black.withAlphaComponent(0.6)
+            $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismiss)))
         }
         
         halfView.do {
@@ -76,6 +77,10 @@ extension BottomSheetAppearView {
                 $0.size.equalTo(CGSize(width: 60, height: 6))
             }
         }
+    }
+    
+    @objc func dismiss(gesture: UITapGestureRecognizer?) {
+        dissmissFromSuperview()
     }
     
     func dissmissFromSuperview() {
