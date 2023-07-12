@@ -19,7 +19,6 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
     var index = 0
     var breadTypeCount: Int = 0
     var updateData: ((Bool, Int) -> Void)?
-    var title: String = ""
     private var tips: [String] = ["", "", "", ""]
     private var ingredientList: [BakeryListResponseDTO] = BakeryListResponseDTO.item
     private var bakeryViewType: BakeryViewType? = .defaultType {
@@ -81,7 +80,6 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
         bakeryImage.snp.makeConstraints {
             $0.size.equalTo(90)
             $0.top.leading.equalToSuperview().offset(24)
-//            $0.bottom.equalToSuperview().offset(-24)
         }
         
         markStackView.snp.makeConstraints {
@@ -105,7 +103,7 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
         regionStackView.snp.makeConstraints {
             $0.top.equalTo(collectionView.snp.bottom).offset(16)
             $0.height.equalTo(29)
-            $0.leading.equalTo(bakeryImage.snp.trailing).offset(24)
+            $0.leading.equalTo(bakeryImage.snp.trailing).offset(14)
             $0.bottom.equalToSuperview().offset(-24)
         }
     }
@@ -126,20 +124,27 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
         regionStackView.getRegionName(data.firstNearStation, data.secondNearStation ?? "")
         
         if self.ingredientList[index].breadType.isGlutenFree {
-            self.tips[breadTypeCount] = "글루텐프리"
+            self.tips[breadTypeCount] = I18N.BakeryList.glutenfree
             breadTypeCount += 1
         }
         if self.ingredientList[index].breadType.isNutFree {
-            self.tips[breadTypeCount] = "넛프리"
+            self.tips[breadTypeCount] = I18N.BakeryList.nutfree
             breadTypeCount += 1
         }
         if self.ingredientList[index].breadType.isVegan {
-            self.tips[breadTypeCount] = "비건빵"
+            self.tips[breadTypeCount] = I18N.BakeryList.vegan
             breadTypeCount += 1
         }
         if self.ingredientList[index].breadType.isSugarFree {
-            self.tips[breadTypeCount] = "저당, 무설탕"
+            self.tips[breadTypeCount] = I18N.BakeryList.sugar
             breadTypeCount += 1
+        }
+        
+        collectionView.snp.remakeConstraints {
+            $0.height.equalTo(getHeight(self.tips))
+            $0.top.equalTo(bakeryTitle.snp.bottom).offset(10)
+            $0.leading.equalTo(bakeryImage.snp.trailing).offset(14)
+            $0.trailing.equalToSuperview().offset(-70)
         }
     }
     
@@ -164,6 +169,16 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
             $0.trailing.equalToSuperview().offset(-24)
             $0.size.equalTo(34)
         }
+    }
+    
+    func getHeight(_ list: [String]) -> CGFloat {
+        var width: CGFloat = 0
+        list.forEach {
+            width += $0.size(withAttributes: [NSAttributedString.Key.font: UIFont.pretendardMedium(13)]).width + 4
+        }
+        width -= 4
+        
+        return width < (UIScreen.main.bounds.width - 206) ? 25 : 60
     }
     
     func reviewViewButton() {
