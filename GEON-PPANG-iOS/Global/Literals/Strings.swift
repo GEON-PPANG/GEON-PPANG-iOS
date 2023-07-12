@@ -43,5 +43,9 @@ struct I18N {
     /// BakeryList
     struct BakeryList {
         static let bakeryTitle = "건빵집 리스트"
+        static let glutenfree = "글리텐프리"
+        static let nutfree = "넛프리"
+        static let vegan = "비건빵"
+        static let sugar = "저당, 무설탕"
     }
 }
