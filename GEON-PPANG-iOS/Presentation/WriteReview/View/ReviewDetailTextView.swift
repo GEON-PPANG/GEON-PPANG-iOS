@@ -132,4 +132,10 @@ final class ReviewDetailTextView: UIView {
         }
     }
     
+    func checkTextCount() {
+        if detailTextView.text.count < 10 {
+            configureTextView(to: .error)
+        }
+    }
+    
 }

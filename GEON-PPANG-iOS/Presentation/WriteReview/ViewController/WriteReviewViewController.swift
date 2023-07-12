@@ -318,6 +318,7 @@ extension WriteReviewViewController: UICollectionViewDelegate {
             let hasSelection = collectionView.indexPathsForSelectedItems != nil
             reviewDetailTextView.isUserInteractionEnabled = hasSelection
             reviewDetailTextView.configureTextView(to: hasSelection ? .activated : .deactivated)
+            reviewDetailTextView.checkTextCount()
             
         default:
             return
@@ -371,7 +372,7 @@ extension WriteReviewViewController: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         let textCount = textView.text.count
-        if textCount <= 10 && 0 < textCount {
+        if textCount < 10 && 0 < textCount {
             reviewDetailTextView.configureTextView(to: .error)
         } else {
             reviewDetailTextView.configureTextView(to: .activated)
