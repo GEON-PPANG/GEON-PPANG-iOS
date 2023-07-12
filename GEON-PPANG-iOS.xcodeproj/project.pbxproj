@@ -60,6 +60,8 @@
 		09CA3EFC2A569E4A0063897A /* URLConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CA3EFB2A569E4A0063897A /* URLConstant.swift */; };
 		09CA3F062A569EB30063897A /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CA3F052A569EB30063897A /* API.swift */; };
 		09CA3F082A569EBA0063897A /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CA3F072A569EBA0063897A /* Service.swift */; };
+		09FD47E22A5E69A2002020BD /* CommonBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47E12A5E69A2002020BD /* CommonBottomSheet.swift */; };
+		09FD47E42A5E82BB002020BD /* BottomSheetAppearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47E32A5E82BB002020BD /* BottomSheetAppearView.swift */; };
 		3E79B19D2A54523D00D36A26 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B19C2A54523D00D36A26 /* BackButton.swift */; };
 		3E79B1A02A5546E700D36A26 /* DescriptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B19F2A5546E700D36A26 /* DescriptionCollectionViewCell.swift */; };
 		3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */; };
@@ -122,6 +124,8 @@
 		09CA3EFB2A569E4A0063897A /* URLConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConstant.swift; sourceTree = "<group>"; };
 		09CA3F052A569EB30063897A /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		09CA3F072A569EBA0063897A /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		09FD47E12A5E69A2002020BD /* CommonBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonBottomSheet.swift; sourceTree = "<group>"; };
+		09FD47E32A5E82BB002020BD /* BottomSheetAppearView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetAppearView.swift; sourceTree = "<group>"; };
 		3E79B19C2A54523D00D36A26 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		3E79B19F2A5546E700D36A26 /* DescriptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionCollectionViewCell.swift; sourceTree = "<group>"; };
 		3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -476,6 +480,15 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		09FD47E02A5E698D002020BD /* BottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				09FD47E12A5E69A2002020BD /* CommonBottomSheet.swift */,
+				09FD47E32A5E82BB002020BD /* BottomSheetAppearView.swift */,
+			);
+			path = BottomSheet;
+			sourceTree = "<group>";
+		};
 		3E79B19B2A54523400D36A26 /* Button */ = {
 			isa = PBXGroup;
 			children = (
@@ -497,6 +510,7 @@
 		3EA2E1E02A53E864003516A3 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				09FD47E02A5E698D002020BD /* BottomSheet */,
 				093213FD2A5A74D100875EF6 /* TextField */,
 				3E79B19E2A55468500D36A26 /* Cell */,
 				0915C1732A5C4FEE00ACB8D4 /* StackView */,
@@ -699,6 +713,7 @@
 				3EA2E1EB2A542151003516A3 /* SizeLiteral.swift in Sources */,
 				0987288D2A5BA1F000A29402 /* BookmarkButton.swift in Sources */,
 				090556202A51DB2C00752067 /* UIImage+.swift in Sources */,
+				09FD47E22A5E69A2002020BD /* CommonBottomSheet.swift in Sources */,
 				09B71BFC2A59CF3E00076AC2 /* Protocol.swift in Sources */,
 				0905562D2A51DBE700752067 /* UILabel+.swift in Sources */,
 				090556252A51DB9600752067 /* UICollectionView+.swift in Sources */,
@@ -710,6 +725,7 @@
 				DF959A6E2A568C9400E75774 /* UIColor+.swift in Sources */,
 				09C626562A5B3572002C8110 /* HomeBestReviewResponseDTO.swift in Sources */,
 				090556472A51E7D900752067 /* UITextView+.swift in Sources */,
+				09FD47E42A5E82BB002020BD /* BottomSheetAppearView.swift in Sources */,
 				0905562B2A51DBCE00752067 /* UIStackView+.swift in Sources */,
 				090556312A51DDD800752067 /* UITableView+.swift in Sources */,
 				09B13F562A59410C00C0C723 /* CALayer+.swift in Sources */,
