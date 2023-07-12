@@ -17,4 +17,11 @@ struct I18N {
              - 건빵은 건강한 빵집의 위치와 성분 정보를 제공하여 소비자의 선택을 돕는 용도의 서비스입니다. 건빵의 모든 정보는 제조사에서 제공한 정보입니다. 이는 소비자의 구매를 돕기 위한 참고 사항이며, 제공 정보의 오류에 대한 책임을 지지 않습니다.
             """
     }
+    
+    /// Bottomsheet
+    struct Bottomsheet {
+        static let diableNickname = "해당 닉네임은 사용중이에요"
+        static let checkIdPassword = "아이디 및 비밀번호를\n확인해주세요"
+        
+    }
 }
