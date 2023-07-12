@@ -72,6 +72,7 @@
 		3EDC05CA2A5DF26700EAD950 /* FilterPurposeDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05C92A5DF26700EAD950 /* FilterPurposeDTO.swift */; };
 		3EDC05CC2A5DF3A400EAD950 /* FilterBreadTypeDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05CB2A5DF3A400EAD950 /* FilterBreadTypeDTO.swift */; };
 		3EDC05CE2A5DF8A900EAD950 /* FilterIngredientDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05CD2A5DF8A900EAD950 /* FilterIngredientDTO.swift */; };
+		3EDC05D02A5E4FF900EAD950 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05CF2A5E4FF900EAD950 /* String+.swift */; };
 		DF959A612A539FBE00E75774 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */; };
 		DF959A622A539FBE00E75774 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */; };
 		DF959A6C2A568C4600E75774 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF959A6B2A568C4600E75774 /* Colors.xcassets */; };
@@ -141,6 +142,7 @@
 		3EDC05C92A5DF26700EAD950 /* FilterPurposeDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPurposeDTO.swift; sourceTree = "<group>"; };
 		3EDC05CB2A5DF3A400EAD950 /* FilterBreadTypeDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBreadTypeDTO.swift; sourceTree = "<group>"; };
 		3EDC05CD2A5DF8A900EAD950 /* FilterIngredientDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterIngredientDTO.swift; sourceTree = "<group>"; };
+		3EDC05CF2A5E4FF900EAD950 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		DF959A6B2A568C4600E75774 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				0905562C2A51DBE700752067 /* UILabel+.swift */,
 				09B13F552A59410C00C0C723 /* CALayer+.swift */,
 				09B13F592A5946B700C0C723 /* TabBar+.swift */,
+				3EDC05CF2A5E4FF900EAD950 /* String+.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -770,6 +773,7 @@
 				DF959A6E2A568C9400E75774 /* UIColor+.swift in Sources */,
 				09C626562A5B3572002C8110 /* HomeBestReviewResponseDTO.swift in Sources */,
 				090556472A51E7D900752067 /* UITextView+.swift in Sources */,
+				3EDC05D02A5E4FF900EAD950 /* String+.swift in Sources */,
 				0905562B2A51DBCE00752067 /* UIStackView+.swift in Sources */,
 				090556312A51DDD800752067 /* UITableView+.swift in Sources */,
 				09B13F562A59410C00C0C723 /* CALayer+.swift in Sources */,
