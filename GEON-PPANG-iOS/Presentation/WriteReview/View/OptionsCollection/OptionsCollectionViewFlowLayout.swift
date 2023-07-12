@@ -12,7 +12,7 @@ class OptionsCollectionViewFlowLayout: UICollectionViewFlowLayout {
     override init() {
         super.init()
         self.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        self.minimumLineSpacing = 12.0
+        self.minimumLineSpacing = 10.0
         self.sectionInset = .zero
     }
 
