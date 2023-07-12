@@ -88,7 +88,7 @@ final class SearchViewController: BaseViewController {
     }
     
     private func setupDataSource() {
-        dataSource = DataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, item in
+        dataSource = DataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, _ in
             let section = self.dataSource?.snapshot().sectionIdentifiers[indexPath.section]
             switch section {
             case .initial:
@@ -144,8 +144,10 @@ final class SearchViewController: BaseViewController {
     }
     
     private func normalSection() -> NSCollectionLayoutSection {
-        let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension:  .fractionalHeight(1)))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)), subitem: item, count: 1)
+        let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1),
+                                                            heightDimension: .fractionalHeight(1)))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1),
+                                                                       heightDimension: .fractionalHeight(1)), subitem: item, count: 1)
         let section = NSCollectionLayoutSection(group: group)
         return section
     }

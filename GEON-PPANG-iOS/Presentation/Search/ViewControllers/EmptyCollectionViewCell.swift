@@ -97,4 +97,8 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
             return emptyLabel.partFontChange(targetString: "다른 키워드로 검색해보세요!", font: .pretendardMedium(15))
         }
     }
+    
+    func getEmtyText(_ text: String) {
+        emptyLabel.text = text
+    }
 }
