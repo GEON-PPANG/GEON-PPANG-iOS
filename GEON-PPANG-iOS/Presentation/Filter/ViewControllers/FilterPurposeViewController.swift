@@ -17,14 +17,14 @@ final class FilterPurposeViewController: BaseViewController {
     private var maxSteps: Int = 0
     private var userName: String = "Id"
     private var filterTitleText: String = I18N.Filter.Purpose.title
-    private let filterCellTexts: [String] = FilterPurposeType.allCases.map { $0.description }
+    private let filterTypes: [String] = FilterPurposeType.allCases.map { $0.rawValue }
+    private let filterDescriptions: [String] = FilterPurposeType.allCases.map { $0.description }
     
     // MARK: - UI Property
     
     private let navigationBar = CustomNavigationBar()
     private let filterTitleLabel = UILabel()
-    private let flowLayout = UICollectionViewFlowLayout()
-    private lazy var filterCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+    private lazy var filterCollectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
     private let nextButton = CommonButton()
     
     // MARK: - Life Cycle
@@ -58,15 +58,19 @@ final class FilterPurposeViewController: BaseViewController {
             $0.leading.equalToSuperview().inset(24)
         }
         
+        view.addSubview(nextButton)
+        nextButton.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.bottom.equalToSuperview().inset(55)
+            $0.height.equalTo(56)
+        }
+        
         view.addSubview(filterCollectionView)
         filterCollectionView.snp.makeConstraints {
             $0.top.equalTo(filterTitleLabel.snp.bottom).offset(40)
             $0.horizontalEdges.equalToSuperview().inset(24)
-        }
-        
-        view.addSubview(nextButton)
-        nextButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(55)
+//            $0.height.equalTo(0)
+            $0.bottom.equalTo(nextButton.snp.top)
         }
     }
     
@@ -82,12 +86,14 @@ final class FilterPurposeViewController: BaseViewController {
             $0.textColor = .gbbGray700
         }
         
-//        flowLayout.do {
-//            $0.
-//        }
-        
         filterCollectionView.do {
             $0.register(cell: FilterCollectionViewCell.self)
+            $0.isScrollEnabled = false
+        }
+        
+        nextButton.do {
+            $0.getButtonTitle(.next)
+            $0.getButtonUI(.gbbGray200!)
         }
     }
     
@@ -102,7 +108,26 @@ final class FilterPurposeViewController: BaseViewController {
     
     // MARK: - Custom Method
     
+    private func updateCollectionViewHeight() {
+        print(Utils.calculateCollectionViewSize(of: filterCollectionView))
+        filterCollectionView.snp.updateConstraints {
+            $0.height.equalTo(Utils.calculateCollectionViewSize(of: filterCollectionView).height)
+        }
+    }
     
+}
+
+// MARK: - UICollectionLayoutListConfiguration setup
+
+extension FilterPurposeViewController {
+    
+    private func createLayout() -> UICollectionViewLayout {
+        var configuration = UICollectionLayoutListConfiguration(appearance: .plain)
+        configuration.headerMode = .none
+        configuration.showsSeparators = false
+        let layout = UICollectionViewCompositionalLayout.list(using: configuration)
+        return layout
+    }
     
 }
 
@@ -115,12 +140,14 @@ extension FilterPurposeViewController: UICollectionViewDelegate {}
 extension FilterPurposeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filterCellTexts.count
+        return FilterPurposeType.allCases.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: FilterCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
         cell.filterType = .purpose
+        cell.typeLabelText = filterTypes[indexPath.item]
+        cell.descriptionLabelText = filterDescriptions[indexPath.item]
         return cell
     }
     

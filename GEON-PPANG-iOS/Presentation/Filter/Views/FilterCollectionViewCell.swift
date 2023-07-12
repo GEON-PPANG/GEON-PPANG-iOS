@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class FilterCollectionViewCell: UICollectionViewCell {
+final class FilterCollectionViewCell: UICollectionViewListCell {
     
     // MARK: - Property
     
@@ -52,13 +52,25 @@ final class FilterCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    var typeLabelText: String = "" {
+        willSet {
+            configureLabelText(type: newValue)
+        }
+    }
+    
+    var descriptionLabelText: String = "" {
+        willSet {
+            configureLabelText(description: newValue)
+        }
+    }
+    
     // MARK: - UI Property
     
     private let typeLabel = UILabel()
     private let descriptionLabel = UILabel()
     private lazy var labelStackView = UIStackView(arrangedSubviews: [typeLabel, descriptionLabel])
     
-    // MARK: - Setting
+    // MARK: - Custom Method
     
     private func configureLayout() {
         self.snp.makeConstraints {
@@ -83,6 +95,7 @@ final class FilterCollectionViewCell: UICollectionViewCell {
         self.do {
             $0.backgroundColor = .gbbBackground2
             $0.makeBorder(width: 1, color: .gbbGray300!)
+            $0.makeCornerRound(radius: 10)
         }
         
         typeLabel.do {
@@ -102,7 +115,17 @@ final class FilterCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    // MARK: - Custom Method
+    private func configureLabelText(type typeText: String) {
+        typeLabel.do {
+            $0.text = typeText
+        }
+    }
+    
+    private func configureLabelText(description descriptionText: String) {
+        descriptionLabel.do {
+            $0.text = descriptionText
+        }
+    }
     
     private func toggleSelection() {
         self.do {

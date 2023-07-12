@@ -21,7 +21,7 @@ struct I18N {
     /// Filter Selection
     struct Filter {
         struct Purpose {
-            static let title = "반가워요 바이블님 :)\n건빵을 찾은 이유를 알려주세요!"
+            static let title = "반가워요 님 :)\n건빵을 찾은 이유를 알려주세요!"
         }
     }
 }

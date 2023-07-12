@@ -94,7 +94,7 @@ final class CustomNavigationBar: UIView {
         rightCountLabel.do {
             $0.text = "\(currentCount)/\(maxCount)"
             $0.font = .pretendardMedium(15)
-            $0.textColor = .gbbGray700
+            $0.textColor = .gbbGray300
         }
     }
     
