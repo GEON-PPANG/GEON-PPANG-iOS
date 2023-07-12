@@ -60,6 +60,8 @@
 		09CA3EFC2A569E4A0063897A /* URLConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CA3EFB2A569E4A0063897A /* URLConstant.swift */; };
 		09CA3F062A569EB30063897A /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CA3F052A569EB30063897A /* API.swift */; };
 		09CA3F082A569EBA0063897A /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CA3F072A569EBA0063897A /* Service.swift */; };
+		09FD47DD2A5E57F2002020BD /* MyReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47DC2A5E57F2002020BD /* MyReviewsViewController.swift */; };
+		09FD47DF2A5E58D1002020BD /* MyReviewsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47DE2A5E58D1002020BD /* MyReviewsHeaderView.swift */; };
 		3E79B19D2A54523D00D36A26 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B19C2A54523D00D36A26 /* BackButton.swift */; };
 		3E79B1A02A5546E700D36A26 /* DescriptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B19F2A5546E700D36A26 /* DescriptionCollectionViewCell.swift */; };
 		3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */; };
@@ -122,6 +124,8 @@
 		09CA3EFB2A569E4A0063897A /* URLConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConstant.swift; sourceTree = "<group>"; };
 		09CA3F052A569EB30063897A /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		09CA3F072A569EBA0063897A /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		09FD47DC2A5E57F2002020BD /* MyReviewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewsViewController.swift; sourceTree = "<group>"; };
+		09FD47DE2A5E58D1002020BD /* MyReviewsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewsHeaderView.swift; sourceTree = "<group>"; };
 		3E79B19C2A54523D00D36A26 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		3E79B19F2A5546E700D36A26 /* DescriptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionCollectionViewCell.swift; sourceTree = "<group>"; };
 		3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -314,6 +318,7 @@
 		0961C36A2A501EF60031A822 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				09FD47DA2A5E57CC002020BD /* MyReviews */,
 				093214032A5AE3C000875EF6 /* Search */,
 				09B13F492A593C5900C0C723 /* Home */,
 				09B13F4D2A593C7600C0C723 /* BakeryList */,
@@ -474,6 +479,23 @@
 				09B71BFB2A59CF3E00076AC2 /* Protocol.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		09FD47DA2A5E57CC002020BD /* MyReviews */ = {
+			isa = PBXGroup;
+			children = (
+				09FD47DB2A5E57E3002020BD /* ViewControllers */,
+			);
+			path = MyReviews;
+			sourceTree = "<group>";
+		};
+		09FD47DB2A5E57E3002020BD /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				09FD47DC2A5E57F2002020BD /* MyReviewsViewController.swift */,
+				09FD47DE2A5E58D1002020BD /* MyReviewsHeaderView.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		3E79B19B2A54523400D36A26 /* Button */ = {
@@ -696,6 +718,7 @@
 				0905564B2A51E81D00752067 /* UIViewController+.swift in Sources */,
 				0915C1752A5C533900ACB8D4 /* HomeReviewCollectionViewCell.swift in Sources */,
 				097682DA2A5C829D0008F4FB /* GradientImageView.swift in Sources */,
+				09FD47DD2A5E57F2002020BD /* MyReviewsViewController.swift in Sources */,
 				3EA2E1EB2A542151003516A3 /* SizeLiteral.swift in Sources */,
 				0987288D2A5BA1F000A29402 /* BookmarkButton.swift in Sources */,
 				090556202A51DB2C00752067 /* UIImage+.swift in Sources */,
@@ -715,6 +738,7 @@
 				09B13F562A59410C00C0C723 /* CALayer+.swift in Sources */,
 				3EA2E1E92A541AEB003516A3 /* CustomNavigationBar.swift in Sources */,
 				090556312A51DDD800752067 /* UITableView+.swift in Sources */,
+				09FD47DF2A5E58D1002020BD /* MyReviewsHeaderView.swift in Sources */,
 				090556272A51DBB100752067 /* NSObject+.swift in Sources */,
 				3E79B1A02A5546E700D36A26 /* DescriptionCollectionViewCell.swift in Sources */,
 			);
