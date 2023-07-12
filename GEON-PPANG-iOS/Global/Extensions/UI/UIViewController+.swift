@@ -30,4 +30,11 @@ extension UIViewController {
     func convertByHeightRatio(_ convert: CGFloat) -> CGFloat {
         return (convert / 812) * getDeviceHeight()
     }
+    
+    func popViewControllerAction() -> UIAction {
+        let action = UIAction { [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        }
+        return action
+    }
 }
