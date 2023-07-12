@@ -281,7 +281,7 @@ final class WriteReviewViewController: BaseViewController {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             UIView.animate(withDuration: 0.2, animations: {
                 self.scrollView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + 24)
-                self.bottomView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + 24)
+                self.bottomView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + 40)
             })
         }
     }
