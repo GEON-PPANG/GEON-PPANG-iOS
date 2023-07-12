@@ -18,6 +18,12 @@ struct I18N {
             """
     }
     
+    /// Onboarding
+    struct Onboarding {
+        static let latelySigninText = "최근에 카카오톡으로 로그인 했습니다."
+        static let latelySigninSNS = "카카오톡"
+    }
+    
     /// WriteReviewViewController
     struct WriteReview {
         static let likeOptionTitle = "건빵집은 어떠셨나요?"
