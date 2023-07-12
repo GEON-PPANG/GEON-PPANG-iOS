@@ -37,7 +37,6 @@ final class OptionsCollectionView: UICollectionView {
     private func setUI() {
         self.do {
             $0.register(cell: OptionsCollectionViewCell.self)
-            $0.register(header: OptionsCollectionViewHeader.self)
             $0.isScrollEnabled = false
             $0.backgroundColor = .clear
         }
