@@ -73,12 +73,12 @@
 		3E16E5002A57FFD900B813D0 /* OptionsCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16E4FF2A57FFD900B813D0 /* OptionsCollectionViewHeader.swift */; };
 		3E16E5022A58176800B813D0 /* ReviewDetailTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16E5012A58176800B813D0 /* ReviewDetailTextView.swift */; };
 		3E79B19D2A54523D00D36A26 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B19C2A54523D00D36A26 /* BackButton.swift */; };
+		3E79B1A02A5546E700D36A26 /* DescriptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B19F2A5546E700D36A26 /* DescriptionCollectionViewCell.swift */; };
 		3E79B1A62A566F6400D36A26 /* WriteReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1A52A566F6400D36A26 /* WriteReviewViewController.swift */; };
 		3E79B1AE2A56F14A00D36A26 /* BakeryOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1AD2A56F14A00D36A26 /* BakeryOverviewView.swift */; };
 		3E79B1B02A571B4B00D36A26 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1AF2A571B4B00D36A26 /* LineView.swift */; };
 		3E79B1B22A571E1F00D36A26 /* OptionsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1B12A571E1F00D36A26 /* OptionsCollectionView.swift */; };
 		3E79B1B52A571E7100D36A26 /* OptionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1B42A571E7100D36A26 /* OptionsCollectionViewCell.swift */; };
-		3E79B1A02A5546E700D36A26 /* DescriptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B19F2A5546E700D36A26 /* DescriptionCollectionViewCell.swift */; };
 		3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */; };
 		3EA2E1E92A541AEB003516A3 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1E82A541AEB003516A3 /* CustomNavigationBar.swift */; };
 		3EA2E1EB2A542151003516A3 /* SizeLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1EA2A542151003516A3 /* SizeLiteral.swift */; };

@@ -11,7 +11,7 @@ import SnapKit
 import Then
 
 final class MarkStackView: UIStackView {
-    
+            
     // MARK: - UI Property
     
     private lazy var hccpMarkIconView = UIImageView()
@@ -36,7 +36,7 @@ final class MarkStackView: UIStackView {
     private func setUI() {
         self.do {
             $0.addArrangedSubviews(hccpMarkIconView, veganIconView, gmoIconView)
-            $0.spacing = -9
+            $0.spacing = -8
             $0.axis = .horizontal
         }
         
@@ -56,7 +56,7 @@ final class MarkStackView: UIStackView {
     private func setLayout() {
         [hccpMarkIconView, veganIconView, gmoIconView].forEach {
             $0.snp.makeConstraints {
-                $0.size.equalTo(28)
+                $0.size.equalTo(24)
             }
         }
     }

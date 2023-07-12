@@ -32,7 +32,14 @@ struct BreadType: Hashable {
 }
 
 extension BakeryListResponseDTO {
-    static let item: [BakeryListResponseDTO] = [BakeryListResponseDTO(bakeryID: 1, bakeryName: "건대 초코빵", bakeryPicture: "ursl", isHACCP: false, isVegan: true, isNonGMO: false, breadType: breadItem, firstNearStation: "건대역", secondNearStation: "건대", isBooked: true, bookmarkCount: 7),
-                                                BakeryListResponseDTO(bakeryID: 2, bakeryName: "건대 초코빵", bakeryPicture: "ursl", isHACCP: true, isVegan: false, isNonGMO: true, breadType: breadItem, firstNearStation: "건대역", secondNearStation: "건대", isBooked: true, bookmarkCount: 7)]
-    static let breadItem: BreadType = BreadType(breadTypeID: 1, breadTypeName: "글루텐프리", isGlutenFree: true, isVegan: false, isNutFree: false, isSugarFree: false)
+    static let item: [BakeryListResponseDTO] = [BakeryListResponseDTO(bakeryID: 1, bakeryName: "건대 초코빵", bakeryPicture: "ursl", isHACCP: true, isVegan: true, isNonGMO: true, breadType: .breadItem1, firstNearStation: "건대역", secondNearStation: "건대", isBooked: true, bookmarkCount: 7),
+                                                BakeryListResponseDTO(bakeryID: 2, bakeryName: "건대 초코빵", bakeryPicture: "ursl", isHACCP: true, isVegan: true, isNonGMO: true, breadType: .breadItem2, firstNearStation: "건대역", secondNearStation: "건대", isBooked: true, bookmarkCount: 7),
+               BakeryListResponseDTO(bakeryID: 3, bakeryName: "건대 초코빵", bakeryPicture: "ursl", isHACCP: true, isVegan: true, isNonGMO: true, breadType: .breadItem3, firstNearStation: "건대역", secondNearStation: "건대", isBooked: true, bookmarkCount: 7)
+    ]
+}
+extension BreadType {
+    static let breadItem1: BreadType = BreadType(breadTypeID: 1, breadTypeName: "글루텐프리", isGlutenFree: true, isVegan: true, isNutFree: true, isSugarFree: true)
+    static let breadItem2: BreadType = BreadType(breadTypeID: 1, breadTypeName: "글루텐프리", isGlutenFree: true, isVegan: false, isNutFree: false, isSugarFree: true)
+    static let breadItem3: BreadType = BreadType(breadTypeID: 1, breadTypeName: "글루텐프리", isGlutenFree: true, isVegan: true, isNutFree: true, isSugarFree: true)
+    
 }
