@@ -22,7 +22,7 @@ final class WriteReviewViewController: BaseViewController {
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     private let navigationBar = CustomNavigationBar()
-    private let bakeryOverviewView = BakeryOverviewView(bakeryImage: nil, regions: ["tset", "efqerqf"])
+    private let bakeryOverviewView = BakeryOverviewView(bakeryImage: .actions, firstRegion: "tset", secondRegion: "efqerqf")
     private let lineView = LineView()
     private let likeCollectionViewFlowLayout = OptionsCollectionViewFlowLayout()
     private let optionsCollectionViewFlowLayout = OptionsCollectionViewFlowLayout()
@@ -206,12 +206,12 @@ final class WriteReviewViewController: BaseViewController {
         }
         
         aboutReviewLabel.do {
-            $0.text = I18N.aboutReview
+            $0.text = I18N.WriteReview.aboutReview
             $0.font = .captionM2
             $0.textColor = .gbbGray300
             $0.textAlignment = .left
             $0.numberOfLines = 4
-            $0.setLineHeight(by: 1.37, with: I18N.aboutReview)
+            $0.setLineHeight(by: 1.37, with: I18N.WriteReview.aboutReview)
         }
         
         bottomView.do {
@@ -363,21 +363,6 @@ extension WriteReviewViewController: UICollectionViewDataSource {
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header: OptionsCollectionViewHeader  = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
-        
-        switch collectionView {
-        case likeCollectionView:
-            header.configureTitle(to: I18N.WriteReview.likeOptionTitle)
-            header.isEnabled.toggle()
-        case optionsCollectionView:
-            header.configureTitle(to: I18N.WriteReview.optionTitle)
-        default:
-            return UICollectionReusableView()
-        }
-        return header
-    }
-    
 }
 
 // MARK: - UITextViewDelegate
@@ -395,7 +380,7 @@ extension WriteReviewViewController: UITextViewDelegate {
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == I18N.likePlaceholder || textView.text == I18N.dislikePlaceholder {
+        if textView.text == I18N.WriteReview.likePlaceholder || textView.text == I18N.WriteReview.dislikePlaceholder {
             textView.text = nil
             textView.textColor = .black
         }
