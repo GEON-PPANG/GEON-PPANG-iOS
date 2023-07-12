@@ -25,12 +25,14 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     private let bakeryReview = UILabel()
     private let regionStackView = RegionStackView()
     private lazy var bookMarkButton = BookmarkButton(configuration: .plain())
-    
+        
     // MARK: - Life Cycle
     
     override func prepareForReuse() {
         super.prepareForReuse()
         markStackView.getMarkStatus(false, false, false)
+        markStackView.getIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
+        bookMarkButton.getCount(0)
     }
     override init(frame: CGRect) {
         super.init(frame: .zero)
