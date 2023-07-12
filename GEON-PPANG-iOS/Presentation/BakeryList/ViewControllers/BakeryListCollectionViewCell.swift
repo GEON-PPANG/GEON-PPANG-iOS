@@ -17,21 +17,26 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
     // MARK: - Property
     
     var index = 0
+    var breadTypeCount: Int = 0
     var updateData: ((Bool, Int) -> Void)?
+    var title: String = ""
+    private var tips: [String] = ["", "", "", ""]
+    private var ingredientList: [BakeryListResponseDTO] = BakeryListResponseDTO.item
     private var bakeryViewType: BakeryViewType? = .defaultType {
         didSet {
             configure()
         }
     }
-
+    
     // MARK: - UI Property
-
+    
     private let markStackView = MarkStackView()
     private let bakeryImage = UIImageView()
     private let bakeryTitle = UILabel()
     private let regionStackView = RegionStackView()
     private lazy var bookMarkButton = BookmarkButton(configuration: .plain())
     private lazy var arrowButton = UIButton()
+    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: OptionsCollectionViewFlowLayout())
     
     // MARK: - Life Cycle
     
@@ -40,6 +45,8 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = .white
         setLayout()
         setUI()
+        
+        setRegister()
     }
     
     required init?(coder: NSCoder) {
@@ -53,37 +60,50 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
             $0.backgroundColor = .darkGray
             $0.makeCornerRound(radius: 5)
         }
-        
         markStackView.do {
             $0.getIconImage(.smallHACCPMark, .smallVeganMark, .smallGMOMark)
         }
-        
         bakeryTitle.do {
             $0.basic(font: .pretendardBold(20), color: .gbbGray700!)
+        }
+        collectionView.do {
+            $0.isScrollEnabled = false
+            $0.backgroundColor = .clear
+            $0.delegate = self
+            $0.dataSource = self
         }
     }
     
     private func setLayout() {
-        contentView.addSubviews(bakeryImage, bakeryTitle, regionStackView)
+        contentView.addSubviews(bakeryImage, bakeryTitle, collectionView, regionStackView)
         bakeryImage.addSubview(markStackView)
         
         bakeryImage.snp.makeConstraints {
             $0.size.equalTo(90)
             $0.top.leading.equalToSuperview().offset(24)
-            $0.bottom.equalToSuperview().offset(-24)
+//            $0.bottom.equalToSuperview().offset(-24)
         }
         
         markStackView.snp.makeConstraints {
             $0.top.leading.equalToSuperview().offset(8)
+            $0.width.equalTo(55)
             $0.height.equalTo(22)
         }
-
+        
         bakeryTitle.snp.makeConstraints {
             $0.top.equalToSuperview().offset(24)
             $0.leading.equalTo(bakeryImage.snp.trailing).offset(14)
         }
         
+        collectionView.snp.makeConstraints {
+            $0.height.equalTo(25)
+            $0.top.equalTo(bakeryTitle.snp.bottom).offset(16)
+            $0.leading.equalTo(bakeryImage.snp.trailing).offset(14)
+            $0.trailing.equalToSuperview().offset(-70)
+        }
+        
         regionStackView.snp.makeConstraints {
+            $0.top.equalTo(collectionView.snp.bottom).offset(16)
             $0.height.equalTo(29)
             $0.leading.equalTo(bakeryImage.snp.trailing).offset(24)
             $0.bottom.equalToSuperview().offset(-24)
@@ -104,6 +124,23 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
             regionStackView.removeSecondRegion()
         }
         regionStackView.getRegionName(data.firstNearStation, data.secondNearStation ?? "")
+        
+        if self.ingredientList[index].breadType.isGlutenFree {
+            self.tips[breadTypeCount] = "글루텐프리"
+            breadTypeCount += 1
+        }
+        if self.ingredientList[index].breadType.isNutFree {
+            self.tips[breadTypeCount] = "넛프리"
+            breadTypeCount += 1
+        }
+        if self.ingredientList[index].breadType.isVegan {
+            self.tips[breadTypeCount] = "비건빵"
+            breadTypeCount += 1
+        }
+        if self.ingredientList[index].breadType.isSugarFree {
+            self.tips[breadTypeCount] = "저당, 무설탕"
+            breadTypeCount += 1
+        }
     }
     
     func getViewType(_ type: BakeryViewType) {
@@ -154,7 +191,39 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
         case .reviewType:
             reviewViewButton()
         case .none:
-            return 
+            return
         }
+    }
+}
+
+// MARK: - CollectionView Register
+
+extension BakeryListCollectionViewCell {
+    private func setRegister() {
+        collectionView.register(cell: DescriptionCollectionViewCell.self)
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+
+extension BakeryListCollectionViewCell: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return breadTypeCount
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: DescriptionCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+        cell.configureTagTitle(self.tips[indexPath.item])
+        return cell
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension BakeryListCollectionViewCell: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let tagTitle = self.tips[indexPath.item]
+        let itemSize = tagTitle.size(withAttributes: [NSAttributedString.Key.font: UIFont.pretendardMedium(13)])
+        return CGSize(width: itemSize.width + 12, height: itemSize.height + 8)
     }
 }
