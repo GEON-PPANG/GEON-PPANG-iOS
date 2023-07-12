@@ -18,7 +18,9 @@ final class FilterPurposeViewController: BaseViewController {
     
     // MARK: - UI Property
     
-    
+    private let filterTitleLabel = UILabel()
+    private let filterSubtitleLabel = UILabel()
+    private let filterCollectionView = UICollectionView()
     
     // MARK: - Life Cycle
     

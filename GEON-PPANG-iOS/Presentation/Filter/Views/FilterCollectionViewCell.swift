@@ -14,26 +14,106 @@ final class FilterCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Property
     
+    enum FilterType {
+        case purpose
+        case breadType
+        case ingredient
+    }
     
+    private var cellSize: CGSize {
+        switch filterType {
+        case .purpose, .ingredient:
+            return .init(width: CGFloat().convertByWidthRatio(327),
+                         height: CGFloat().convertByHeightRatio(106))
+        case .breadType:
+            return .init(width: CGFloat().convertByWidthRatio(153),
+                         height: CGFloat().convertByHeightRatio(161))
+        }
+    }
+    
+    private var labelSpacing: CGFloat {
+        switch filterType {
+        case .purpose: return 9
+        case .breadType: return 24
+        case .ingredient: return 0
+        }
+    }
+    
+    override var isSelected: Bool {
+        didSet {
+            toggleSelection()
+        }
+    }
+    
+    var filterType: FilterType = .purpose {
+        didSet {
+            configureLayout()
+            configureUI()
+        }
+    }
     
     // MARK: - UI Property
     
-    
-    
-    // MARK: - Life Cycle
-    
-    
+    private let typeLabel = UILabel()
+    private let descriptionLabel = UILabel()
+    private lazy var labelStackView = UIStackView(arrangedSubviews: [typeLabel, descriptionLabel])
     
     // MARK: - Setting
     
+    private func configureLayout() {
+        self.snp.makeConstraints {
+            $0.size.equalTo(cellSize)
+        }
+        
+        addSubview(typeLabel)
+        switch filterType {
+        case .purpose, .ingredient:
+            typeLabel.snp.makeConstraints {
+                $0.center.equalToSuperview()
+            }
+        case .breadType:
+            typeLabel.snp.makeConstraints {
+                $0.centerX.equalToSuperview()
+                $0.top.equalToSuperview().inset(46)
+            }
+        }
+    }
     
-    
-    // MARK: - Action Helper
-    
-    
+    private func configureUI() {
+        self.do {
+            $0.backgroundColor = .gbbBackground2
+            $0.makeBorder(width: 1, color: .gbbGray300!)
+        }
+        
+        typeLabel.do {
+            $0.font = .title2
+            $0.textColor = .gbbGray300
+        }
+        
+        descriptionLabel.do {
+            $0.font = .bodyM1
+            $0.textColor = .gbbGray300
+        }
+        
+        labelStackView.do {
+            $0.axis = .vertical
+            $0.spacing = labelSpacing
+            $0.alignment = .center
+        }
+    }
     
     // MARK: - Custom Method
     
-    
+    private func toggleSelection() {
+        self.do {
+            $0.makeBorder(width: isSelected ? 2 : 1, color: isSelected ? .gbbMain1! : .gbbGray300!)
+        }
+        
+        [typeLabel, descriptionLabel].forEach {
+            $0.do {
+                $0.textColor = isSelected ? .gbbGray300 : .gbbMain1
+            }
+        }
+    }
     
 }
