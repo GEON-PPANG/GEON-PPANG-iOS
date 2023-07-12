@@ -33,7 +33,7 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         setLayout()
         setUI()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -111,6 +111,5 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
             self.updateData?(status, self.index)
         }
         bookMarkButton.isSelected = data.isBooked ? true: false
-
     }
 }
