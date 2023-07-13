@@ -17,7 +17,7 @@ final class BakeryDetailTopCollectionViewCell: UICollectionViewCell {
     private let bakeryImage = UIImageView()
     private let markStackView = MarkStackView()
     private let bakeryTitleLabel = UILabel()
-    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: OptionsCollectionViewFlowLayout())
+    private lazy var optionBreadTypeStackView = OptionBreadTypeStackView()
     private lazy var bookmarkButton = BookmarkButton(configuration: .plain())
     
     // MARK: - Life Cycle
@@ -51,11 +51,8 @@ final class BakeryDetailTopCollectionViewCell: UICollectionViewCell {
             $0.numberOfLines = 0
         }
         
-        collectionView.do {
-            $0.isScrollEnabled = false
+        optionBreadTypeStackView.do {
             $0.backgroundColor = .clear
-//            $0.delegate = self
-//            $0.dataSource = self
         }
         
         bookmarkButton.do {
@@ -67,7 +64,7 @@ final class BakeryDetailTopCollectionViewCell: UICollectionViewCell {
     
     private func setLayout() {
         
-        contentView.addSubviews(bakeryImage, markStackView, bakeryTitleLabel, collectionView, bookmarkButton)
+        contentView.addSubviews(bakeryImage, markStackView, bakeryTitleLabel, optionBreadTypeStackView, bookmarkButton)
         
         let availableHeight = contentView.bounds.height
         let bakeryImageHeight = 243
@@ -91,7 +88,7 @@ final class BakeryDetailTopCollectionViewCell: UICollectionViewCell {
             $0.trailing.equalToSuperview().inset(106)
         }
         
-        collectionView.snp.makeConstraints {
+        optionBreadTypeStackView.snp.makeConstraints {
             $0.height.equalTo(25)
             $0.top.equalTo(bakeryTitleLabel.snp.bottom).offset(12)
             $0.leading.equalToSuperview().inset(24)
@@ -104,11 +101,5 @@ final class BakeryDetailTopCollectionViewCell: UICollectionViewCell {
             $0.trailing.equalToSuperview().inset(24)
             $0.size.equalTo(34)
         }
-    }
-}
-
-extension BakeryDetailTopCollectionViewCell {
-    private func setRegister() {
-        collectionView.register(cell: DescriptionCollectionViewCell.self)
     }
 }
