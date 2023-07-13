@@ -74,7 +74,7 @@ final class FilterIngredientViewController: BaseViewController {
         view.addSubview(nextButton)
         nextButton.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(24)
-            $0.bottom.equalToSuperview().inset(55)
+            $0.bottom.equalToSuperview().inset(CGFloat().heightConsideringBottomSafeArea(55))
             $0.height.equalTo(56)
         }
         
