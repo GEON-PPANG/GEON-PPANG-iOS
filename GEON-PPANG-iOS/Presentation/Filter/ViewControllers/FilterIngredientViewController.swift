@@ -91,7 +91,7 @@ final class FilterIngredientViewController: BaseViewController {
     override func setUI() {
         navigationBar.do {
             $0.addBackButtonAction(popViewControllerAction())
-            $0.configureRightCount(maxSteps - 2, by: maxSteps)
+            $0.configureRightCount(maxSteps, by: maxSteps)
         }
         
         filterTitleLabel.do {

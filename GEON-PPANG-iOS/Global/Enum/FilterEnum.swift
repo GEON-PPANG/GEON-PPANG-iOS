@@ -44,6 +44,14 @@ enum FilterPurposeType: String, CaseIterable {
         case .vegan: return "종교 , 환경 , 동물 , 노동권을 위한 비거니즘"
         }
     }
+    
+    var data: String {
+        switch self {
+        case .health: return "HEALTH"
+        case .taste: return "TASTE"
+        case .vegan: return "VEGAN"
+        }
+    }
 }
 
 enum FilterBreadType: String, CaseIterable {

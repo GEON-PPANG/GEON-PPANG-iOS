@@ -16,12 +16,14 @@ final class FilterPurposeViewController: BaseViewController {
     
     private var maxSteps: Int = 0
     private var userName: String = "Id"
-    private var selectedFilter: String!
     
     private var filterType: FilterType = .purpose
-    private var filterTitleText: String = I18N.Filter.purposeTitle
+    
     private let filterTypes: [String] = FilterPurposeType.allCases.map { $0.rawValue }
     private let filterDescriptions: [String] = FilterPurposeType.allCases.map { $0.description }
+    private let filterDatas: [String] = FilterPurposeType.allCases.map { $0.data }
+    
+    private var filterData: String!
     
     // MARK: - UI Property
     
@@ -33,10 +35,11 @@ final class FilterPurposeViewController: BaseViewController {
     
     // MARK: - Life Cycle
     
-    init(maxSteps: Int) {
+    init(maxSteps: Int, username: String) {
         super.init(nibName: nil, bundle: nil)
         
         setMaxSteps(to: maxSteps)
+        setUsername(to: username)
     }
     
     @available(*, unavailable)
@@ -54,6 +57,10 @@ final class FilterPurposeViewController: BaseViewController {
     
     private func setMaxSteps(to steps: Int) {
         self.maxSteps = steps
+    }
+    
+    private func setUsername(to name: String) {
+        self.userName = name
     }
     
     override func setLayout() {
@@ -90,7 +97,7 @@ final class FilterPurposeViewController: BaseViewController {
         }
         
         filterTitleLabel.do {
-            $0.text = filterTitleText.insertString(userName, at: 5)
+            $0.text = I18N.Filter.purposeTitle.insertString(userName, at: 5)
             $0.font = .title1
             $0.textColor = .gbbGray700
             $0.numberOfLines = 2
@@ -120,10 +127,21 @@ final class FilterPurposeViewController: BaseViewController {
     
     private func setNextButtonAction() {
         let action = UIAction { [weak self] _ in
-            // TODO: to next filter selection
-            print(self?.selectedFilter)
+            Utils.push(self?.navigationController, FilterBreadTypeViewController(maxSteps: 6))
+            print(self?.filterData)
         }
         nextButton.addAction(action, for: .touchUpInside)
+    }
+    
+    // MARK: - Custom Method
+    
+    private func enableNextButton() {
+        UIView.animate(withDuration: 0.2) {
+            self.nextButton.do {
+                $0.getButtonUI(.gbbMain2!)
+                $0.isUserInteractionEnabled = true
+            }
+        }
     }
     
 }
@@ -133,13 +151,8 @@ final class FilterPurposeViewController: BaseViewController {
 extension FilterPurposeViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedFilter = filterTypes[indexPath.item]
-        UIView.animate(withDuration: 0.2) {
-            self.nextButton.do {
-                $0.getButtonUI(.gbbMain2!)
-                $0.isUserInteractionEnabled = true
-            }
-        }
+        filterData = filterDatas[indexPath.item]
+        enableNextButton()
     }
     
 }
