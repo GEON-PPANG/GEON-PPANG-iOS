@@ -10,9 +10,11 @@
 struct HomeBestBakeryResponseDTO: Hashable {
     let bakeryID: Int
     let bakeryName: String
-    let isHACCP, isVegan: Bool
+    let isHACCP: Bool
+    let isVegan: Bool
     let isNONGMO: Bool
-    let firstNearStation, secondNearStation: String
+    let firstNearStation: String
+    let secondNearStation: String?
     let isBooked: Bool
     let bookmarkCount: Int
     let bakeryPicture: String

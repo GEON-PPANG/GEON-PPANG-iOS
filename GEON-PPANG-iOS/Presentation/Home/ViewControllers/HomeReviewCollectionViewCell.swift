@@ -110,6 +110,6 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
             guard let self = self  else { return }
             self.updateData?(status, self.index)
         }
-        bookMarkButton.isSelected = data.isBooked ? true: false
+        bookMarkButton.isSelected = data.isBooked
     }
 }
