@@ -15,9 +15,8 @@ final class FilterBreadTypeViewController: BaseViewController {
     // MARK: - Property
     
     private var maxSteps: Int = 0
-    
     private var filterType: FilterType = .breadType
-    private var filterTitleText: String = I18N.Filter.breadTypeTitle
+    
     private let filterTypes: [String] = FilterBreadType.allCases.map { $0.rawValue }
     private let filterDescriptions: [String] = FilterBreadType.allCases.map { $0.description }
     
@@ -196,7 +195,7 @@ extension FilterBreadTypeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: FilterCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-        cell.filterType = .breadType
+        cell.filterType = self.filterType
         cell.typeLabelText = filterTypes[indexPath.item]
         cell.descriptionLabelText = filterDescriptions[indexPath.item]
         return cell

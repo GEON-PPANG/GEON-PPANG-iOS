@@ -32,4 +32,12 @@ struct NutrientType {
     var isNutrientOpen: Bool
     var isIngredientOpen: Bool
     var isNotOpen: Bool
+    
+    func isNoneSelected() -> Bool {
+        if isNutrientOpen == false && isIngredientOpen == false && isNotOpen == false {
+            return true
+        } else {
+            return false
+        }
+    }
 }
