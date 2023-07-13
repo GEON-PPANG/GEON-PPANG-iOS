@@ -8,9 +8,22 @@
 import Foundation
 
 struct FilterRequestDTO {
-    let mainPurpose: String
-    let breadType: BreadType
-    let nutrientType: NutrientType
+    var mainPurpose: String
+    var breadType: BreadType
+    var nutrientType: NutrientType
+    
+    static var sharedData = FilterRequestDTO()
+    
+    private init() {
+        self.mainPurpose = ""
+        self.breadType = .init(isGlutenFree: false,
+                               isVegan: false,
+                               isNutFree: false,
+                               isSugarFree: false)
+        self.nutrientType = .init(isNutrientOpen: false,
+                                  isIngredientOpen: false,
+                                  isNotOpen: false)
+    }
 }
 
 struct BreadType {

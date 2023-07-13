@@ -19,8 +19,6 @@ final class FilterIngredientViewController: BaseViewController {
     
     private let filterTypes: [String] = FilterIngredientType.allCases.map { $0.rawValue }
     
-    private var filterData: NutrientType = .init(isNutrientOpen: false, isIngredientOpen: false, isNotOpen: false)
-    
     // MARK: - UI Property
     
     private let navigationBar = CustomNavigationBar()
@@ -133,7 +131,7 @@ final class FilterIngredientViewController: BaseViewController {
     private func setNextButtonAction() {
         let action = UIAction { [weak self] _ in
             // TODO: to next filter selection
-            dump(self?.filterData)
+            dump(FilterRequestDTO.sharedData)
         }
         nextButton.addAction(action, for: .touchUpInside)
     }
@@ -141,7 +139,7 @@ final class FilterIngredientViewController: BaseViewController {
     // MARK: - Custom Method
     
     private func checkNextButtonStatus() {
-        if filterData.isNoneSelected() {
+        if FilterRequestDTO.sharedData.nutrientType.isNoneSelected() {
             nextButton.isUserInteractionEnabled = false
             UIView.animate(withDuration: 0.2) {
                 self.nextButton.getButtonUI(.gbbGray300!)
@@ -162,9 +160,9 @@ extension FilterIngredientViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.item {
-        case 0: filterData.isNutrientOpen = true
-        case 1: filterData.isIngredientOpen = true
-        case 2: filterData.isNotOpen = true
+        case 0: FilterRequestDTO.sharedData.nutrientType.isNutrientOpen = true
+        case 1: FilterRequestDTO.sharedData.nutrientType.isIngredientOpen = true
+        case 2: FilterRequestDTO.sharedData.nutrientType.isNotOpen = true
         default: return
         }
         checkNextButtonStatus()
@@ -172,9 +170,9 @@ extension FilterIngredientViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         switch indexPath.item {
-        case 0: filterData.isNutrientOpen = false
-        case 1: filterData.isIngredientOpen = false
-        case 2: filterData.isNotOpen = false
+        case 0: FilterRequestDTO.sharedData.nutrientType.isNutrientOpen = false
+        case 1: FilterRequestDTO.sharedData.nutrientType.isIngredientOpen = false
+        case 2: FilterRequestDTO.sharedData.nutrientType.isNotOpen = false
         default: return
         }
         checkNextButtonStatus()

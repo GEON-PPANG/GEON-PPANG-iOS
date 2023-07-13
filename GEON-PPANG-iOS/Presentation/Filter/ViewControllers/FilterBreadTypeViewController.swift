@@ -20,8 +20,6 @@ final class FilterBreadTypeViewController: BaseViewController {
     private let filterTypes: [String] = FilterBreadType.allCases.map { $0.rawValue }
     private let filterDescriptions: [String] = FilterBreadType.allCases.map { $0.description }
     
-    private var filterData: BreadType = .init(isGlutenFree: false, isVegan: false, isNutFree: false, isSugarFree: false)
-    
     // MARK: - UI Property
     
     private let navigationBar = CustomNavigationBar()
@@ -134,7 +132,7 @@ final class FilterBreadTypeViewController: BaseViewController {
     private func setNextButtonAction() {
         let action = UIAction { [weak self] _ in
             Utils.push(self?.navigationController, FilterIngredientViewController(maxSteps: 6))
-            dump(self?.filterData)
+            dump(FilterRequestDTO.sharedData)
         }
         nextButton.addAction(action, for: .touchUpInside)
     }
@@ -142,7 +140,7 @@ final class FilterBreadTypeViewController: BaseViewController {
     // MARK: - Custom Method
     
     private func checkNextButtonStatus() {
-        if filterData.isNoneSelected() {
+        if FilterRequestDTO.sharedData.breadType.isNoneSelected() {
             nextButton.isUserInteractionEnabled = false
             UIView.animate(withDuration: 0.2) {
                 self.nextButton.getButtonUI(.gbbGray300!)
@@ -163,10 +161,10 @@ extension FilterBreadTypeViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.item {
-        case 0: filterData.isGlutenFree = true
-        case 1: filterData.isVegan = true
-        case 2: filterData.isNutFree = true
-        case 3: filterData.isSugarFree = true
+        case 0: FilterRequestDTO.sharedData.breadType.isGlutenFree = true
+        case 1: FilterRequestDTO.sharedData.breadType.isVegan = true
+        case 2: FilterRequestDTO.sharedData.breadType.isNutFree = true
+        case 3: FilterRequestDTO.sharedData.breadType.isSugarFree = true
         default: return
         }
         checkNextButtonStatus()
@@ -174,10 +172,10 @@ extension FilterBreadTypeViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         switch indexPath.item {
-        case 0: filterData.isGlutenFree = false
-        case 1: filterData.isVegan = false
-        case 2: filterData.isNutFree = false
-        case 3: filterData.isSugarFree = false
+        case 0: FilterRequestDTO.sharedData.breadType.isGlutenFree = false
+        case 1: FilterRequestDTO.sharedData.breadType.isVegan = false
+        case 2: FilterRequestDTO.sharedData.breadType.isNutFree = false
+        case 3: FilterRequestDTO.sharedData.breadType.isSugarFree = false
         default: return
         }
         checkNextButtonStatus()

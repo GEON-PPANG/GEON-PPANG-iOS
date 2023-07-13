@@ -23,8 +23,6 @@ final class FilterPurposeViewController: BaseViewController {
     private let filterDescriptions: [String] = FilterPurposeType.allCases.map { $0.description }
     private let filterDatas: [String] = FilterPurposeType.allCases.map { $0.data }
     
-    private var filterData: String!
-    
     // MARK: - UI Property
     
     private let navigationBar = CustomNavigationBar()
@@ -128,7 +126,7 @@ final class FilterPurposeViewController: BaseViewController {
     private func setNextButtonAction() {
         let action = UIAction { [weak self] _ in
             Utils.push(self?.navigationController, FilterBreadTypeViewController(maxSteps: 6))
-            print(self?.filterData)
+            dump(FilterRequestDTO.sharedData)
         }
         nextButton.addAction(action, for: .touchUpInside)
     }
@@ -151,7 +149,7 @@ final class FilterPurposeViewController: BaseViewController {
 extension FilterPurposeViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        filterData = filterDatas[indexPath.item]
+        FilterRequestDTO.sharedData.mainPurpose = filterDatas[indexPath.item]
         enableNextButton()
     }
     
