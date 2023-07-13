@@ -68,7 +68,6 @@ final class MarkStackView: UIStackView {
     }
 
     func getMarkStatus(_ isHACCP: Bool, _ isVegan: Bool, _ isNONGMO: Bool) {
-        // else 안적었더니 초기화 실패
         if !isHACCP {
             hccpMarkIconView.isHidden = true
         } else {

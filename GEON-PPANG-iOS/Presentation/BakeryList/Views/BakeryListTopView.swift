@@ -11,15 +11,16 @@ import SnapKit
 import Then
 
 final class BakeryListTopView: UIView {
-    
-    // MARK: - Property
-    
+        
     // MARK: - UI Property
     
     private let hStackView = UIStackView()
     private let bakeryTitle = UILabel()
     private let bakeryIcon = UIImageView()
     private let searchButton = UIButton()
+    
+    
+    // MARK: - Life Cycle
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -31,6 +32,8 @@ final class BakeryListTopView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Setting
     
     private func setUI() {
         hStackView.do {

@@ -13,7 +13,7 @@ import Then
 final class BakeryFilterCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Property
-
+    
     private var isTapped: Bool = true {
         didSet {
             updateUI(isTapped)
@@ -24,7 +24,7 @@ final class BakeryFilterCollectionViewCell: UICollectionViewCell {
     
     private let hStackView = UIStackView()
     private let iconView = UIImageView()
-     var filterTitle = UILabel()
+    var filterTitle = UILabel()
     
     // MARK: - Life Cycle
     

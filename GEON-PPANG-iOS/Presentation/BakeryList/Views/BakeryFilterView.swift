@@ -24,12 +24,14 @@ final class BakeryFilterView: UIView {
     
     // MARK: - UI Property
     
-    private lazy var filterCollectionview = UICollectionView(frame: .zero, collectionViewLayout: layout())
+    private lazy var filterCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
     private lazy var filterButton = UIButton(configuration: .plain())
     
     private let topView = UIView()
     private let lineView = UIView()
     private let bottomView = UIView()
+    
+    // MARK: - Life Cycle
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -37,8 +39,8 @@ final class BakeryFilterView: UIView {
         setLayout()
         setUI()
         
-        setRegister()
-        setupDataSource()
+        setRegistration()
+        setDataSource()
         setReloadData()
     }
     
@@ -46,9 +48,10 @@ final class BakeryFilterView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Setting
+    
     private func setUI() {
-        
-        filterCollectionview.do {
+        filterCollectionView.do {
             $0.delegate = self
             $0.showsHorizontalScrollIndicator = false
         }
@@ -76,7 +79,7 @@ final class BakeryFilterView: UIView {
     }
     
     private func setLayout() {
-        addSubviews(topView, filterButton, lineView, filterCollectionview, bottomView)
+        addSubviews(topView, filterButton, lineView, filterCollectionView, bottomView)
         
         topView.snp.makeConstraints {
             $0.top.directionalHorizontalEdges.equalToSuperview()
@@ -95,7 +98,7 @@ final class BakeryFilterView: UIView {
             $0.directionalVerticalEdges.equalToSuperview().inset(15)
         }
         
-        filterCollectionview.snp.makeConstraints {
+        filterCollectionView.snp.makeConstraints {
             $0.leading.equalTo(lineView.snp.trailing)
             $0.centerY.trailing.equalToSuperview()
             $0.height.equalTo(42)
@@ -115,12 +118,12 @@ final class BakeryFilterView: UIView {
         return layout
     }
     
-    private func setRegister() {
-        filterCollectionview.register(cell: BakeryFilterCollectionViewCell.self)
+    private func setRegistration() {
+        filterCollectionView.register(cell: BakeryFilterCollectionViewCell.self)
     }
     
-    private func setupDataSource() {
-        dataSource = DataSource(collectionView: filterCollectionview, cellProvider: { collectionView, indexPath, item in
+    private func setDataSource() {
+        dataSource = DataSource(collectionView: filterCollectionView, cellProvider: { collectionView, indexPath, item in
             let cell: BakeryFilterCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             cell.bind(item: item, index: indexPath.item)
             return cell

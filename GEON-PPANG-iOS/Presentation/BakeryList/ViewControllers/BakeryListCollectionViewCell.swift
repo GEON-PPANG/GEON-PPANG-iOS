@@ -40,11 +40,10 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        contentView.backgroundColor = .white
+        
         setLayout()
         setUI()
-        
-        setRegister()
+        setRegistration()
     }
     
     required init?(coder: NSCoder) {
@@ -54,6 +53,9 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
     // MARK: - Setting
     
     private func setUI() {
+        self.do {
+            $0.contentView.backgroundColor = .white
+        }
         bakeryImage.do {
             $0.backgroundColor = .darkGray
             $0.makeCornerRound(radius: 5)
@@ -212,7 +214,7 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
 // MARK: - CollectionView Register
 
 extension BakeryListCollectionViewCell {
-    private func setRegister() {
+    private func setRegistration() {
         collectionView.register(cell: DescriptionCollectionViewCell.self)
     }
 }

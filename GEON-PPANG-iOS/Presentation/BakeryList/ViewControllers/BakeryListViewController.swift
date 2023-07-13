@@ -33,7 +33,7 @@ final class BakeryListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setRegister()
+        setRegistration()
         setupDataSource()
         setReloadData()
         
@@ -67,7 +67,7 @@ final class BakeryListViewController: BaseViewController {
         }
     }
     
-    private func setRegister() {
+    private func setRegistration() {
         bakeryListCollectionView.register(cell: BakeryListCollectionViewCell.self)
     }
     
