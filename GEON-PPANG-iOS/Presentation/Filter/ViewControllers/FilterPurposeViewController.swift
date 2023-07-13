@@ -85,6 +85,7 @@ final class FilterPurposeViewController: BaseViewController {
             $0.text = filterTitleText.insertString(userName, at: 5)
             $0.font = .title1
             $0.textColor = .gbbGray700
+            $0.numberOfLines = 2
         }
         
         filterCollectionViewFlowLayout.do {
