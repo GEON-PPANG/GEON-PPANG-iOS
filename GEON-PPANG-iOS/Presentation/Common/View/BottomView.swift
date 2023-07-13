@@ -27,10 +27,7 @@ final class BottomView: UIView {
     }
 
     // MARK: - Setting
-    // 16
-    // 56
-    // 16 -> 32
-    // 24
+    
     private func setLayout() {
         self.snp.makeConstraints {
             $0.height.equalTo(128)
