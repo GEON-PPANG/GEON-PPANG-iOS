@@ -13,7 +13,7 @@ class OptionsCollectionViewFlowLayout: UICollectionViewFlowLayout {
         super.init()
         self.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         self.minimumLineSpacing = 12.0
-        self.sectionInset = UIEdgeInsets(top: 18.0, left: 0.0, bottom: 0.0, right: 0.0)
+        self.sectionInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
     }
 
     required init?(coder: NSCoder) {
