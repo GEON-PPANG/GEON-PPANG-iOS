@@ -81,8 +81,9 @@
 		DF959A6C2A568C4600E75774 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF959A6B2A568C4600E75774 /* Colors.xcassets */; };
 		DF959A6E2A568C9400E75774 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF959A6D2A568C9400E75774 /* UIColor+.swift */; };
 		DFB585F72A5F31D80077D272 /* BakeryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB585F62A5F31D80077D272 /* BakeryDetailViewController.swift */; };
-		DFB585F92A5F32420077D272 /* BakeryDetailTopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB585F82A5F32420077D272 /* BakeryDetailTopCollectionViewCell.swift */; };
+		DFB585F92A5F32420077D272 /* BakeryDetailTitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB585F82A5F32420077D272 /* BakeryDetailTitleCollectionViewCell.swift */; };
 		DFB585FB2A5F565F0077D272 /* OptionBreadTypeStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB585FA2A5F565F0077D272 /* OptionBreadTypeStackView.swift */; };
+		DFB585FD2A5FEA0E0077D272 /* BakeryDetailInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB585FC2A5FEA0E0077D272 /* BakeryDetailInfoCollectionViewCell.swift */; };
 		DFB587B92A5D584800704B6C /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB587B82A5D584800704B6C /* OnboardingViewController.swift */; };
 		DFB587BB2A5D588500704B6C /* DrawDashLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB587BA2A5D588500704B6C /* DrawDashLineView.swift */; };
 /* End PBXBuildFile section */
@@ -159,8 +160,9 @@
 		DF959A6B2A568C4600E75774 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		DF959A6D2A568C9400E75774 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		DFB585F62A5F31D80077D272 /* BakeryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryDetailViewController.swift; sourceTree = "<group>"; };
-		DFB585F82A5F32420077D272 /* BakeryDetailTopCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryDetailTopCollectionViewCell.swift; sourceTree = "<group>"; };
+		DFB585F82A5F32420077D272 /* BakeryDetailTitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryDetailTitleCollectionViewCell.swift; sourceTree = "<group>"; };
 		DFB585FA2A5F565F0077D272 /* OptionBreadTypeStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionBreadTypeStackView.swift; sourceTree = "<group>"; };
+		DFB585FC2A5FEA0E0077D272 /* BakeryDetailInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryDetailInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		DFB587B82A5D584800704B6C /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		DFB587BA2A5D588500704B6C /* DrawDashLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawDashLineView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -641,7 +643,8 @@
 			isa = PBXGroup;
 			children = (
 				DFB585F62A5F31D80077D272 /* BakeryDetailViewController.swift */,
-				DFB585F82A5F32420077D272 /* BakeryDetailTopCollectionViewCell.swift */,
+				DFB585F82A5F32420077D272 /* BakeryDetailTitleCollectionViewCell.swift */,
+				DFB585FC2A5FEA0E0077D272 /* BakeryDetailInfoCollectionViewCell.swift */,
 			);
 			path = BakeryDetail;
 			sourceTree = "<group>";
@@ -799,7 +802,7 @@
 				097682DC2A5C83910008F4FB /* CGFloat+.swift in Sources */,
 				0924632F2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift in Sources */,
 				09B13F5A2A5946B700C0C723 /* TabBar+.swift in Sources */,
-				DFB585F92A5F32420077D272 /* BakeryDetailTopCollectionViewCell.swift in Sources */,
+				DFB585F92A5F32420077D272 /* BakeryDetailTitleCollectionViewCell.swift in Sources */,
 				09B71C002A59D50900076AC2 /* HomeTopView.swift in Sources */,
 				090556492A51E7EC00752067 /* UIScreen+.swift in Sources */,
 				09B71C022A59D99200076AC2 /* SearchTextField.swift in Sources */,
@@ -825,6 +828,7 @@
 				0915C1752A5C533900ACB8D4 /* HomeReviewCollectionViewCell.swift in Sources */,
 				097682DA2A5C829D0008F4FB /* GradientImageView.swift in Sources */,
 				DFB585FB2A5F565F0077D272 /* OptionBreadTypeStackView.swift in Sources */,
+				DFB585FD2A5FEA0E0077D272 /* BakeryDetailInfoCollectionViewCell.swift in Sources */,
 				3EA2E1EB2A542151003516A3 /* SizeLiteral.swift in Sources */,
 				DFB585F72A5F31D80077D272 /* BakeryDetailViewController.swift in Sources */,
 				0987288D2A5BA1F000A29402 /* BookmarkButton.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  BakeryDetailTopCollectionViewCell.swift
+//  BakeryDetailTitleCollectionViewCell.swift
 //  GEON-PPANG-iOS
 //
 //  Created by kyun on 2023/07/13.
@@ -10,13 +10,13 @@ import UIKit
 import SnapKit
 import Then
 
-final class BakeryDetailTopCollectionViewCell: UICollectionViewCell {
+final class BakeryDetailTitleCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI Property
     
     private let bakeryImage = UIImageView()
     private let markStackView = MarkStackView()
-    private let bakeryTitleLabel = UILabel()
+    private let bakeryNameLabel = UILabel()
     private lazy var optionBreadTypeStackView = OptionBreadTypeStackView()
     private lazy var bookmarkButton = BookmarkButton(configuration: .plain())
     
@@ -25,8 +25,8 @@ final class BakeryDetailTopCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        setLayout()
         setUI()
+        setLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -38,7 +38,7 @@ final class BakeryDetailTopCollectionViewCell: UICollectionViewCell {
     private func setUI() {
         
         bakeryImage.do {
-            $0.backgroundColor = .gbbError
+            $0.backgroundColor = .gbbPoint1
             $0.contentMode = .scaleAspectFit
         }
         
@@ -46,7 +46,7 @@ final class BakeryDetailTopCollectionViewCell: UICollectionViewCell {
             $0.spacing = 10
         }
         
-        bakeryTitleLabel.do {
+        bakeryNameLabel.do {
             $0.basic(text: "건대 초코빵",font: .title1!, color: .gbbGray700!)
             $0.numberOfLines = 0
         }
@@ -64,7 +64,7 @@ final class BakeryDetailTopCollectionViewCell: UICollectionViewCell {
     
     private func setLayout() {
         
-        contentView.addSubviews(bakeryImage, markStackView, bakeryTitleLabel, optionBreadTypeStackView, bookmarkButton)
+        contentView.addSubviews(bakeryImage, markStackView, bakeryNameLabel, optionBreadTypeStackView, bookmarkButton)
         
         let availableHeight = contentView.bounds.height
         let bakeryImageHeight = 243
@@ -72,8 +72,8 @@ final class BakeryDetailTopCollectionViewCell: UICollectionViewCell {
         let buttonTopOffset = (Int(availableHeight) + bakeryImageHeight - buttonHeight) / 2
         
         bakeryImage.snp.makeConstraints {
-            $0.top.directionalHorizontalEdges.equalToSuperview()
             $0.height.equalTo(243)
+            $0.top.directionalHorizontalEdges.equalToSuperview()
         }
         
         markStackView.snp.makeConstraints {
@@ -81,16 +81,17 @@ final class BakeryDetailTopCollectionViewCell: UICollectionViewCell {
             $0.leading.equalToSuperview().inset(24)
         }
         
-        bakeryTitleLabel.snp.makeConstraints {
+        bakeryNameLabel.snp.makeConstraints {
             // TODO: 스택뷰 갯수 카운트해서 0개 되면 remakeConstraints 하는 거 넣기 (정은쓰가 해주기로 함)
             $0.top.equalTo(markStackView.snp.bottom).offset(16)
             $0.leading.equalToSuperview().inset(24)
             $0.trailing.equalToSuperview().inset(106)
+            // TODO: 가게 이름 길어지면 ...으로 요약하는 거 하기 (가게 이름 2줄도 되는지 확인, ...으로 요약하는 게 맞긴 한가? 아니었던 것 같기도,,)
         }
         
         optionBreadTypeStackView.snp.makeConstraints {
             $0.height.equalTo(25)
-            $0.top.equalTo(bakeryTitleLabel.snp.bottom).offset(12)
+            $0.top.equalTo(bakeryNameLabel.snp.bottom).offset(12)
             $0.leading.equalToSuperview().inset(24)
             $0.trailing.equalToSuperview().inset(106)
             $0.bottom.equalToSuperview().inset(24)
