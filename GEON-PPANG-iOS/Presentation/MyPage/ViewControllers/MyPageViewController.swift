@@ -9,8 +9,6 @@ import UIKit
 
 final class MyPageViewController: UIViewController {
 
-    
-    private let safeArea = view.safeAreaLayoutGuide
     override func viewDidLoad() {
         super.viewDidLoad()
 

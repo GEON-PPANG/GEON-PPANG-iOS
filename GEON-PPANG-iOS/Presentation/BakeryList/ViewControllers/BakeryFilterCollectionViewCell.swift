@@ -53,7 +53,7 @@ final class BakeryFilterCollectionViewCell: UICollectionViewCell {
             $0.distribution = .fillProportionally
         }
         filterTitle.do {
-            $0.font = .pretendardMedium(13)
+            $0.font = .captionM1
             $0.sizeToFit()
         }
     }
@@ -78,7 +78,7 @@ final class BakeryFilterCollectionViewCell: UICollectionViewCell {
     }
     
     func updateUI(_ isTapped: Bool) {
-        filterTitle.textColor = isTapped ? .black : .gbbBackground2
+        filterTitle.textColor = isTapped ? .gbbGray700 : .gbbBackground2
         contentView.backgroundColor = isTapped ? .gbbGray100 : .gbbMain3
         contentView.makeBorder(width: 1, color: isTapped ? .gbbGray200! : .gbbMain2!)
     }

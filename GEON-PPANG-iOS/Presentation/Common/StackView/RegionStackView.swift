@@ -41,7 +41,7 @@ final class RegionStackView: UIStackView {
         
         [regionFirstTag, regionSeconodTag] .forEach {
             $0.makeCornerRound(radius: 14.5)
-            $0.font = .pretendardMedium(13)
+            $0.font = .captionM1
             $0.backgroundColor = .gbbMain3
             $0.textColor = .gbbGray100
         }

@@ -137,7 +137,7 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
         }
         
         if self.ingredientList[index].breadType.isSugarFree {
-            self.breadTypeTag.append(I18N.BakeryList.sugar)
+            self.breadTypeTag.append(I18N.BakeryList.noSugar)
         }
         
         collectionView.snp.remakeConstraints {
