@@ -22,6 +22,7 @@ final class SearchViewController: BaseViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Item>
     private var dataSource: DataSource?
     private let bakeryList: [HomeBestBakeryResponseDTO] = HomeBestBakeryResponseDTO.item
+    private var currentSection: [Section] = [.initial]
     
     // MARK: - UI Property
     
@@ -114,13 +115,17 @@ final class SearchViewController: BaseViewController {
     }
     
     private func setDataSource(data: [HomeBestBakeryResponseDTO]) {
-        guard var snapshot = dataSource?.snapshot() else { return}
+        guard var snapshot = dataSource?.snapshot() else { return }
         if data.count == 0 {
+            snapshot.deleteSections(currentSection)
             snapshot.appendItems([0], toSection: .empty)
+            currentSection = [.empty]
             dataSource?.apply(snapshot)
         } else {
-            snapshot.deleteSections([.initial])
+            snapshot.deleteSections(currentSection)
             snapshot.appendItems(bakeryList, toSection: .main)
+            currentSection = [.main]
+            dataSource?.apply(snapshot)
         }
     }
     
@@ -144,10 +149,18 @@ final class SearchViewController: BaseViewController {
     }
     
     private func normalSection() -> NSCollectionLayoutSection {
-        let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1),
-                                                            heightDimension: .fractionalHeight(1)))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1),
-                                                                       heightDimension: .fractionalHeight(1)), subitem: item, count: 1)
+        let item = NSCollectionLayoutItem(layoutSize: .init(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalHeight(1))
+        )
+        let group = NSCollectionLayoutGroup.vertical(
+            layoutSize: .init(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .fractionalHeight(1)
+            ),
+            subitem: item,
+            count: 1
+        )
         let section = NSCollectionLayoutSection(group: group)
         return section
     }
