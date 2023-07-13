@@ -16,8 +16,7 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
     
     var updateData: ((Bool, Int) -> Void)?
     var index = 0
-    private var keywords = ["", ""]
-    private var keywordsCount: Int = 0
+    private var keywords: [String] = []
     private var reviewList: [HomeBestReviewResponseDTO] = HomeBestReviewResponseDTO.item
     
     // MARK: - UI Property
@@ -142,12 +141,10 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         bookMarkButton.isSelected = data.isBooked
         
         if !self.reviewList[index].firstMaxRecommendKeyword.isEmpty {
-            self.keywords[keywordsCount] = data.firstMaxRecommendKeyword
-            keywordsCount += 1
+            self.keywords.append(data.firstMaxRecommendKeyword)
         }
         if !self.reviewList[index].secondMaxRecommendKeyword.isEmpty {
-            self.keywords[keywordsCount] = data.secondMaxRecommendKeyword
-            keywordsCount += 1
+            self.keywords.append(data.secondMaxRecommendKeyword)
         }
     }
 }
@@ -164,7 +161,7 @@ extension HomeReviewCollectionViewCell {
 
 extension HomeReviewCollectionViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return keywordsCount
+        return keywords.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
