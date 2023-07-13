@@ -113,16 +113,4 @@ final class OptionsCollectionViewCell: UICollectionViewCell {
         }
     }
     
-//    func toggleCellSelection() {
-//        self.status = isSelected ? .selected : .deselected
-//        configureCell(to: self.status)
-//    }
-    
-//    func toggleCellInteraction() {
-//        self.status = isEnabled ? .deselected : .disabled
-//        self.isUserInteractionEnabled = isEnabled ? true : false
-//        self.isUserInteractionEnabled.toggle()
-//        configureCell(to: status)
-//    }
-    
 }
