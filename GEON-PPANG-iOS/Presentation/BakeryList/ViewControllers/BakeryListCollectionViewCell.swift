@@ -17,9 +17,8 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
     // MARK: - Property
     
     var index = 0
-    var breadTypeCount: Int = 0
     var updateData: ((Bool, Int) -> Void)?
-    private var tips: [String] = ["", "", "", ""]
+    private var breadTypeTag: [String] = []
     private var ingredientList: [BakeryListResponseDTO] = BakeryListResponseDTO.item
     private var bakeryViewType: BakeryViewType? = .defaultType {
         didSet {
@@ -124,24 +123,23 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
         regionStackView.getRegionName(data.firstNearStation, data.secondNearStation ?? "")
         
         if self.ingredientList[index].breadType.isGlutenFree {
-            self.tips[breadTypeCount] = I18N.BakeryList.glutenfree
-            breadTypeCount += 1
+            self.breadTypeTag.append(I18N.BakeryList.glutenfree)
         }
+        
         if self.ingredientList[index].breadType.isNutFree {
-            self.tips[breadTypeCount] = I18N.BakeryList.nutfree
-            breadTypeCount += 1
+            self.breadTypeTag.append(I18N.BakeryList.nutfree)
         }
+        
         if self.ingredientList[index].breadType.isVegan {
-            self.tips[breadTypeCount] = I18N.BakeryList.vegan
-            breadTypeCount += 1
+            self.breadTypeTag.append(I18N.BakeryList.vegan)
         }
+        
         if self.ingredientList[index].breadType.isSugarFree {
-            self.tips[breadTypeCount] = I18N.BakeryList.sugar
-            breadTypeCount += 1
+            self.breadTypeTag.append(I18N.BakeryList.sugar)
         }
         
         collectionView.snp.remakeConstraints {
-            $0.height.equalTo(getHeight(self.tips))
+            $0.height.equalTo(getHeight(self.breadTypeTag))
             $0.top.equalTo(bakeryTitle.snp.bottom).offset(10)
             $0.leading.equalTo(bakeryImage.snp.trailing).offset(14)
             $0.trailing.equalToSuperview().offset(-70)
@@ -223,12 +221,12 @@ extension BakeryListCollectionViewCell {
 
 extension BakeryListCollectionViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return breadTypeCount
+        return breadTypeTag.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: DescriptionCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-        cell.configureTagTitle(self.tips[indexPath.item])
+        cell.configureTagTitle(self.breadTypeTag[indexPath.item])
         return cell
     }
 }
@@ -237,7 +235,7 @@ extension BakeryListCollectionViewCell: UICollectionViewDataSource {
 
 extension BakeryListCollectionViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let tagTitle = self.tips[indexPath.item]
+        let tagTitle = self.breadTypeTag[indexPath.item]
         let itemSize = tagTitle.size(withAttributes: [NSAttributedString.Key.font: UIFont.pretendardMedium(13)])
         return CGSize(width: itemSize.width + 12, height: itemSize.height + 8)
     }
