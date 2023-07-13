@@ -174,13 +174,13 @@ final class WriteReviewViewController: BaseViewController {
         }
         
         likeCollectionViewHeaderLabel.do {
-            $0.text = "건빵집은 어떠셨나요?"
+            $0.text = I18N.WriteReview.likeOptionTitle
             $0.font = .bodyB1
             $0.textColor = .black
         }
         
         optionsCollectionViewHeaderLabel.do {
-            $0.text = "어떤것을 추천하나요?"
+            $0.text = I18N.WriteReview.optionTitle
             $0.font = .bodyB1
             $0.textColor = .gbbGray300
         }
