@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class FilterCollectionViewCell: UICollectionViewListCell {
+final class FilterCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Property
     
@@ -20,7 +20,7 @@ final class FilterCollectionViewCell: UICollectionViewListCell {
         case ingredient
     }
     
-    private var cellSize: CGSize {
+    var cellSize: CGSize {
         switch filterType {
         case .purpose, .ingredient:
             return .init(width: CGFloat().convertByWidthRatio(327),
@@ -73,18 +73,14 @@ final class FilterCollectionViewCell: UICollectionViewListCell {
     // MARK: - Custom Method
     
     private func configureLayout() {
-        self.snp.makeConstraints {
-            $0.size.equalTo(cellSize)
-        }
-        
-        addSubview(typeLabel)
+        contentView.addSubview(labelStackView)
         switch filterType {
         case .purpose, .ingredient:
-            typeLabel.snp.makeConstraints {
+            labelStackView.snp.makeConstraints {
                 $0.center.equalToSuperview()
             }
         case .breadType:
-            typeLabel.snp.makeConstraints {
+            labelStackView.snp.makeConstraints {
                 $0.centerX.equalToSuperview()
                 $0.top.equalToSuperview().inset(46)
             }
@@ -132,10 +128,12 @@ final class FilterCollectionViewCell: UICollectionViewListCell {
             $0.makeBorder(width: isSelected ? 2 : 1, color: isSelected ? .gbbMain1! : .gbbGray300!)
         }
         
-        [typeLabel, descriptionLabel].forEach {
-            $0.do {
-                $0.textColor = isSelected ? .gbbGray300 : .gbbMain1
-            }
+        typeLabel.do {
+            $0.textColor = isSelected ? .gbbMain1 : .gbbGray300
+        }
+        
+        descriptionLabel.do {
+            $0.textColor = isSelected ? .gbbMain1 : .gbbGray300
         }
     }
     
