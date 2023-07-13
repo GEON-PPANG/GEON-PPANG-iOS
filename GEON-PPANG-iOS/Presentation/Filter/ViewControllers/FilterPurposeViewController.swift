@@ -84,7 +84,7 @@ final class FilterPurposeViewController: BaseViewController {
         filterCollectionView.snp.makeConstraints {
             $0.top.equalTo(filterTitleLabel.snp.bottom).offset(40)
             $0.horizontalEdges.equalToSuperview().inset(24)
-            $0.bottom.equalTo(nextButton.snp.top).offset(-40)
+            $0.bottom.equalTo(nextButton.snp.top).offset(-10)
         }
     }
     

@@ -82,7 +82,7 @@ final class FilterIngredientViewController: BaseViewController {
         filterCollectionView.snp.makeConstraints {
             $0.top.equalTo(filterSubtitleLabel.snp.bottom).offset(40)
             $0.horizontalEdges.equalToSuperview().inset(24)
-            $0.bottom.equalTo(nextButton.snp.top).offset(-40)
+            $0.bottom.equalTo(nextButton.snp.top).offset(-10)
         }
     }
     

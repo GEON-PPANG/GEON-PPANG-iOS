@@ -49,16 +49,8 @@ final class FilterCollectionViewCell: UICollectionViewCell {
     
     private func configureLayout() {
         contentView.addSubview(labelStackView)
-        switch filterType {
-        case .purpose, .ingredient:
-            labelStackView.snp.makeConstraints {
-                $0.center.equalToSuperview()
-            }
-        case .breadType:
-            labelStackView.snp.makeConstraints {
-                $0.centerX.equalToSuperview()
-                $0.top.equalToSuperview().inset(46)
-            }
+        labelStackView.snp.makeConstraints {
+            $0.center.equalToSuperview()
         }
     }
     
