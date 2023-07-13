@@ -89,7 +89,7 @@ final class FilterBreadTypeViewController: BaseViewController {
     
     override func setUI() {
         navigationBar.do {
-            $0.addBackButtonAction(popViewControllerAction())
+            $0.addBackButtonAction(popFilterViewController())
             $0.configureRightCount(maxSteps - 1, by: maxSteps)
         }
         
@@ -137,13 +137,28 @@ final class FilterBreadTypeViewController: BaseViewController {
         nextButton.addAction(action, for: .touchUpInside)
     }
     
+    // MARK: - Action Helper
+    
+    private func popFilterViewController() -> UIAction {
+        let action = UIAction { [weak self] _ in
+            FilterRequestDTO.sharedData.breadType = .init(
+                isGlutenFree: false,
+                isVegan: false,
+                isNutFree: false,
+                isSugarFree: false
+            )
+            self?.navigationController?.popViewController(animated: true)
+        }
+        return action
+    }
+    
     // MARK: - Custom Method
     
     private func checkNextButtonStatus() {
         if FilterRequestDTO.sharedData.breadType.isNoneSelected() {
             nextButton.isUserInteractionEnabled = false
             UIView.animate(withDuration: 0.2) {
-                self.nextButton.getButtonUI(.gbbGray300!)
+                self.nextButton.getButtonUI(.gbbGray200!)
             }
         } else {
             nextButton.isUserInteractionEnabled = true

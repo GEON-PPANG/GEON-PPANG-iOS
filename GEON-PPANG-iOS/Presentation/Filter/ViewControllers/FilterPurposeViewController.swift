@@ -90,7 +90,7 @@ final class FilterPurposeViewController: BaseViewController {
     
     override func setUI() {
         navigationBar.do {
-            $0.addBackButtonAction(popViewControllerAction())
+            $0.addBackButtonAction(popFilterViewController())
             $0.configureRightCount(maxSteps - 2, by: maxSteps)
         }
         
@@ -129,6 +129,16 @@ final class FilterPurposeViewController: BaseViewController {
             dump(FilterRequestDTO.sharedData)
         }
         nextButton.addAction(action, for: .touchUpInside)
+    }
+    
+    // MARK: - Action Helper
+    
+    private func popFilterViewController() -> UIAction {
+        let action = UIAction { [weak self] _ in
+            FilterRequestDTO.sharedData.mainPurpose = ""
+            self?.navigationController?.popViewController(animated: true)
+        }
+        return action
     }
     
     // MARK: - Custom Method

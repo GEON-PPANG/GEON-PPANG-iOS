@@ -88,7 +88,7 @@ final class FilterIngredientViewController: BaseViewController {
     
     override func setUI() {
         navigationBar.do {
-            $0.addBackButtonAction(popViewControllerAction())
+            $0.addBackButtonAction(popFilterViewController())
             $0.configureRightCount(maxSteps, by: maxSteps)
         }
         
@@ -136,13 +136,27 @@ final class FilterIngredientViewController: BaseViewController {
         nextButton.addAction(action, for: .touchUpInside)
     }
     
+    // MARK: - Action Helper
+    
+    private func popFilterViewController() -> UIAction {
+        let action = UIAction { [weak self] _ in
+            FilterRequestDTO.sharedData.nutrientType = .init(
+                isNutrientOpen: false,
+                isIngredientOpen: false,
+                isNotOpen: false
+            )
+            self?.navigationController?.popViewController(animated: true)
+        }
+        return action
+    }
+    
     // MARK: - Custom Method
     
     private func checkNextButtonStatus() {
         if FilterRequestDTO.sharedData.nutrientType.isNoneSelected() {
             nextButton.isUserInteractionEnabled = false
             UIView.animate(withDuration: 0.2) {
-                self.nextButton.getButtonUI(.gbbGray300!)
+                self.nextButton.getButtonUI(.gbbGray200!)
             }
         } else {
             nextButton.isUserInteractionEnabled = true
