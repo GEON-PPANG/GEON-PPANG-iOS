@@ -44,7 +44,7 @@ final class CustomNavigationBar: UIView {
     
     private func setLayout() {
         self.snp.makeConstraints {
-            $0.height.equalTo(118)
+            $0.height.equalTo(CGFloat().heightConsideringNotch(118))
         }
         
         addSubview(backButton)
