@@ -14,31 +14,6 @@ final class FilterCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Property
     
-    enum FilterType {
-        case purpose
-        case breadType
-        case ingredient
-    }
-    
-    var cellSize: CGSize {
-        switch filterType {
-        case .purpose, .ingredient:
-            return .init(width: CGFloat().convertByWidthRatio(327),
-                         height: CGFloat().convertByHeightRatio(106))
-        case .breadType:
-            return .init(width: CGFloat().convertByWidthRatio(153),
-                         height: CGFloat().convertByHeightRatio(161))
-        }
-    }
-    
-    private var labelSpacing: CGFloat {
-        switch filterType {
-        case .purpose: return 9
-        case .breadType: return 24
-        case .ingredient: return 0
-        }
-    }
-    
     override var isSelected: Bool {
         didSet {
             toggleSelection()
@@ -106,7 +81,7 @@ final class FilterCollectionViewCell: UICollectionViewCell {
         
         labelStackView.do {
             $0.axis = .vertical
-            $0.spacing = labelSpacing
+            $0.spacing = filterType.labelSpacing
             $0.alignment = .center
         }
     }

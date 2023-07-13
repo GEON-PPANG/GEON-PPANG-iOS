@@ -65,13 +65,12 @@
 		3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */; };
 		3EA2E1E92A541AEB003516A3 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1E82A541AEB003516A3 /* CustomNavigationBar.swift */; };
 		3EA2E1EB2A542151003516A3 /* SizeLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1EA2A542151003516A3 /* SizeLiteral.swift */; };
+		3ED40DF92A5FCF3800C7D5DA /* FilterEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED40DF82A5FCF3800C7D5DA /* FilterEnum.swift */; };
+		3ED40DFB2A5FD26200C7D5DA /* FilterDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED40DFA2A5FD26200C7D5DA /* FilterDTO.swift */; };
 		3EDC05BE2A5DED4400EAD950 /* FilterPurposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05BD2A5DED4400EAD950 /* FilterPurposeViewController.swift */; };
 		3EDC05C02A5DED9200EAD950 /* FilterBreadTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05BF2A5DED9200EAD950 /* FilterBreadTypeViewController.swift */; };
 		3EDC05C22A5DED9D00EAD950 /* FilterIngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05C12A5DED9D00EAD950 /* FilterIngredientViewController.swift */; };
 		3EDC05C42A5DEE3600EAD950 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05C32A5DEE3600EAD950 /* FilterCollectionViewCell.swift */; };
-		3EDC05CA2A5DF26700EAD950 /* FilterPurposeDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05C92A5DF26700EAD950 /* FilterPurposeDTO.swift */; };
-		3EDC05CC2A5DF3A400EAD950 /* FilterBreadTypeDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05CB2A5DF3A400EAD950 /* FilterBreadTypeDTO.swift */; };
-		3EDC05CE2A5DF8A900EAD950 /* FilterIngredientDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05CD2A5DF8A900EAD950 /* FilterIngredientDTO.swift */; };
 		3EDC05D02A5E4FF900EAD950 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05CF2A5E4FF900EAD950 /* String+.swift */; };
 		DF959A612A539FBE00E75774 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */; };
 		DF959A622A539FBE00E75774 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */; };
@@ -135,13 +134,12 @@
 		3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		3EA2E1E82A541AEB003516A3 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		3EA2E1EA2A542151003516A3 /* SizeLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeLiteral.swift; sourceTree = "<group>"; };
+		3ED40DF82A5FCF3800C7D5DA /* FilterEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterEnum.swift; sourceTree = "<group>"; };
+		3ED40DFA2A5FD26200C7D5DA /* FilterDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDTO.swift; sourceTree = "<group>"; };
 		3EDC05BD2A5DED4400EAD950 /* FilterPurposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPurposeViewController.swift; sourceTree = "<group>"; };
 		3EDC05BF2A5DED9200EAD950 /* FilterBreadTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBreadTypeViewController.swift; sourceTree = "<group>"; };
 		3EDC05C12A5DED9D00EAD950 /* FilterIngredientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterIngredientViewController.swift; sourceTree = "<group>"; };
 		3EDC05C32A5DEE3600EAD950 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
-		3EDC05C92A5DF26700EAD950 /* FilterPurposeDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPurposeDTO.swift; sourceTree = "<group>"; };
-		3EDC05CB2A5DF3A400EAD950 /* FilterBreadTypeDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBreadTypeDTO.swift; sourceTree = "<group>"; };
-		3EDC05CD2A5DF8A900EAD950 /* FilterIngredientDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterIngredientDTO.swift; sourceTree = "<group>"; };
 		3EDC05CF2A5E4FF900EAD950 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
@@ -566,9 +564,7 @@
 		3EDC05C82A5DF25900EAD950 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3EDC05C92A5DF26700EAD950 /* FilterPurposeDTO.swift */,
-				3EDC05CB2A5DF3A400EAD950 /* FilterBreadTypeDTO.swift */,
-				3EDC05CD2A5DF8A900EAD950 /* FilterIngredientDTO.swift */,
+				3ED40DFA2A5FD26200C7D5DA /* FilterDTO.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -578,6 +574,7 @@
 			children = (
 				09C6264D2A5B29F8002C8110 /* SearchEnum.swift */,
 				09B13F572A59433500C0C723 /* TabBarItem.swift */,
+				3ED40DF82A5FCF3800C7D5DA /* FilterEnum.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -723,11 +720,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0915C1702A5C3C5600ACB8D4 /* RegionStackView.swift in Sources */,
+				3ED40DFB2A5FD26200C7D5DA /* FilterDTO.swift in Sources */,
 				090556292A51DBC000752067 /* UIView+.swift in Sources */,
 				090668FC2A4FF3C600F413FA /* AppDelegate.swift in Sources */,
 				3EDC05C02A5DED9200EAD950 /* FilterBreadTypeViewController.swift in Sources */,
 				090668FD2A4FF3C600F413FA /* SceneDelegate.swift in Sources */,
 				097682DC2A5C83910008F4FB /* CGFloat+.swift in Sources */,
+				3ED40DF92A5FCF3800C7D5DA /* FilterEnum.swift in Sources */,
 				0924632F2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift in Sources */,
 				09B13F5A2A5946B700C0C723 /* TabBar+.swift in Sources */,
 				09B71C002A59D50900076AC2 /* HomeTopView.swift in Sources */,
@@ -738,7 +737,6 @@
 				093214082A5AE40900875EF6 /* SearchViewController.swift in Sources */,
 				09B13F542A593CD300C0C723 /* MyPageViewController.swift in Sources */,
 				3EDC05C42A5DEE3600EAD950 /* FilterCollectionViewCell.swift in Sources */,
-				3EDC05CE2A5DF8A900EAD950 /* FilterIngredientDTO.swift in Sources */,
 				3E79B19D2A54523D00D36A26 /* BackButton.swift in Sources */,
 				09CA3EF82A5676AA0063897A /* CommonButton.swift in Sources */,
 				3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */,
@@ -747,10 +745,8 @@
 				090556222A51DB3300752067 /* UIFont+.swift in Sources */,
 				09CA3EFC2A569E4A0063897A /* URLConstant.swift in Sources */,
 				3EDC05BE2A5DED4400EAD950 /* FilterPurposeViewController.swift in Sources */,
-				3EDC05CA2A5DF26700EAD950 /* FilterPurposeDTO.swift in Sources */,
 				3EDC05C22A5DED9D00EAD950 /* FilterIngredientViewController.swift in Sources */,
 				09C6264E2A5B29F8002C8110 /* SearchEnum.swift in Sources */,
-				3EDC05CC2A5DF3A400EAD950 /* FilterBreadTypeDTO.swift in Sources */,
 				0915C16A2A5BFC5900ACB8D4 /* HomeBottomCollectionViewCell.swift in Sources */,
 				09CA3F082A569EBA0063897A /* Service.swift in Sources */,
 				09B13F4C2A593C6F00C0C723 /* HomeViewController.swift in Sources */,

@@ -18,7 +18,8 @@ final class FilterPurposeViewController: BaseViewController {
     private var userName: String = "Id"
     private var selectedFilter: String!
     
-    private var filterTitleText: String = I18N.Filter.Purpose.title
+    private var filterType: FilterType = .purpose
+    private var filterTitleText: String = I18N.Filter.purposeTitle
     private let filterTypes: [String] = FilterPurposeType.allCases.map { $0.rawValue }
     private let filterDescriptions: [String] = FilterPurposeType.allCases.map { $0.description }
     
@@ -125,15 +126,6 @@ final class FilterPurposeViewController: BaseViewController {
         nextButton.addAction(action, for: .touchUpInside)
     }
     
-    // MARK: - Custom Method
-    
-    private func updateCollectionViewHeight() {
-        print(Utils.calculateCollectionViewSize(of: filterCollectionView))
-        filterCollectionView.snp.updateConstraints {
-            $0.height.equalTo(Utils.calculateCollectionViewSize(of: filterCollectionView).height)
-        }
-    }
-    
 }
 
 // MARK: - UICollectionViewDelegate extension
@@ -170,7 +162,6 @@ extension FilterPurposeViewController: UICollectionViewDataSource {
 
 extension FilterPurposeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cell: FilterCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-        return cell.cellSize
+        return filterType.cellSize
     }
 }
