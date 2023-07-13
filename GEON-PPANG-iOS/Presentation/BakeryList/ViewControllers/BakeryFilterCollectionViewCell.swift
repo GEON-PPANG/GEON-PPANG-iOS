@@ -13,8 +13,12 @@ import Then
 final class BakeryFilterCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Property
-    
-    var isTapped: Bool = true
+
+    private var isTapped: Bool = true {
+        didSet {
+            updateUI(isTapped)
+        }
+    }
     
     // MARK: - UI Property
     
@@ -70,9 +74,13 @@ final class BakeryFilterCollectionViewCell: UICollectionViewCell {
     func bind(item: BakeryFilterItems, index: Int) {
         iconView.image = item.leftIcon
         filterTitle.text = item.filter.title
-        filterTitle.textColor = (item.status == .off) ? .black : .gbbBackground2
-        contentView.backgroundColor = (item.status == .off) ? .gbbGray100 : .gbbMain3
-        contentView.makeBorder(width: 1, color: (item.status == .off) ? .gbbGray200! : .gbbMain2!)
+        isTapped = item.status == .on ? false : true
+    }
+    
+    func updateUI(_ isTapped: Bool) {
+        filterTitle.textColor = isTapped ? .black : .gbbBackground2
+        contentView.backgroundColor = isTapped ? .gbbGray100 : .gbbMain3
+        contentView.makeBorder(width: 1, color: isTapped ? .gbbGray200! : .gbbMain2!)
     }
     
     func getSize() {
