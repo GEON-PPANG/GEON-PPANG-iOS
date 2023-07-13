@@ -39,4 +39,13 @@ struct I18N {
             제재를 받을 수 있습니다. 또한, 건빵은 이에 대한 책임을 지지 않습니다.
         """
     }
+    
+    /// BakeryList
+    struct BakeryList {
+        static let bakeryTitle = "건빵집 리스트"
+        static let glutenfree = "글루텐프리"
+        static let nutfree = "넛프리"
+        static let vegan = "비건빵"
+        static let noSugar = "저당, 무설탕"
+    }
 }
