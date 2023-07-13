@@ -108,6 +108,8 @@ final class FilterBreadTypeViewController: BaseViewController {
         
         filterCollectionViewFlowLayout.do {
             $0.scrollDirection = .vertical
+            $0.minimumLineSpacing = CGFloat().convertByWidthRatio(21)
+            $0.minimumInteritemSpacing = CGFloat().convertByHeightRatio(20)
         }
         
         filterCollectionView.do {

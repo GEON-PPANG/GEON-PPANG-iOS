@@ -103,6 +103,7 @@ final class FilterPurposeViewController: BaseViewController {
         
         filterCollectionViewFlowLayout.do {
             $0.scrollDirection = .vertical
+            $0.minimumLineSpacing = 20
         }
         
         filterCollectionView.do {
