@@ -135,9 +135,25 @@ final class FilterBreadTypeViewController: BaseViewController {
     private func setNextButtonAction() {
         let action = UIAction { [weak self] _ in
             // TODO: to next filter selection
-//            print(self?.selectedFilter)
+            dump(self?.filterData)
         }
         nextButton.addAction(action, for: .touchUpInside)
+    }
+    
+    // MARK: - Custom Method
+    
+    private func checkNextButtonStatus() {
+        if filterData.isNoneSelected() {
+            nextButton.isUserInteractionEnabled = false
+            UIView.animate(withDuration: 0.2) {
+                self.nextButton.getButtonUI(.gbbGray300!)
+            }
+        } else {
+            nextButton.isUserInteractionEnabled = true
+            UIView.animate(withDuration: 0.2) {
+                self.nextButton.getButtonUI(.gbbMain2!)
+            }
+        }
     }
     
 }
@@ -154,7 +170,7 @@ extension FilterBreadTypeViewController: UICollectionViewDelegate {
         case 3: filterData.isSugarFree = true
         default: return
         }
-        dump(filterData)
+        checkNextButtonStatus()
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -165,7 +181,7 @@ extension FilterBreadTypeViewController: UICollectionViewDelegate {
         case 3: filterData.isSugarFree = false
         default: return
         }
-        dump(filterData)
+        checkNextButtonStatus()
     }
     
 }

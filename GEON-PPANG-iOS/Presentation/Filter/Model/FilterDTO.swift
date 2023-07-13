@@ -18,6 +18,14 @@ struct BreadType {
     var isVegan: Bool
     var isNutFree: Bool
     var isSugarFree: Bool
+    
+    func isNoneSelected() -> Bool {
+        if isGlutenFree == false && isVegan == false && isNutFree == false && isSugarFree == false {
+            return true
+        } else {
+            return false
+        }
+    }
 }
 
 struct NutrientType {
