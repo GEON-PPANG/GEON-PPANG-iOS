@@ -16,8 +16,9 @@ final class FilterPurposeViewController: BaseViewController {
     
     private var maxSteps: Int = 0
     private var userName: String = "Id"
-    private var filterTitleText: String = I18N.Filter.Purpose.title
+    private var selectedFilter: String!
     
+    private var filterTitleText: String = I18N.Filter.Purpose.title
     private let filterTypes: [String] = FilterPurposeType.allCases.map { $0.rawValue }
     private let filterDescriptions: [String] = FilterPurposeType.allCases.map { $0.description }
     
@@ -40,6 +41,12 @@ final class FilterPurposeViewController: BaseViewController {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setNextButtonAction()
     }
     
     // MARK: - Setting
@@ -101,6 +108,7 @@ final class FilterPurposeViewController: BaseViewController {
         nextButton.do {
             $0.getButtonTitle(.next)
             $0.getButtonUI(.gbbGray200!)
+            $0.isUserInteractionEnabled = false
         }
     }
     
@@ -109,9 +117,13 @@ final class FilterPurposeViewController: BaseViewController {
         filterCollectionView.dataSource = self
     }
     
-    // MARK: - Action Helper
-    
-    
+    private func setNextButtonAction() {
+        let action = UIAction { [weak self] _ in
+            // TODO: to next filter selection
+            print(self?.selectedFilter)
+        }
+        nextButton.addAction(action, for: .touchUpInside)
+    }
     
     // MARK: - Custom Method
     
@@ -126,7 +138,19 @@ final class FilterPurposeViewController: BaseViewController {
 
 // MARK: - UICollectionViewDelegate extension
 
-extension FilterPurposeViewController: UICollectionViewDelegate {}
+extension FilterPurposeViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedFilter = filterTypes[indexPath.item]
+        UIView.animate(withDuration: 0.2) {
+            self.nextButton.do {
+                $0.getButtonUI(.gbbMain2!)
+                $0.isUserInteractionEnabled = true
+            }
+        }
+    }
+    
+}
 
 // MARK: - UICollectionViewDataSource extension
 
