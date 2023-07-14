@@ -19,7 +19,7 @@ enum LogoinPropetyType: String {
 
 final class LoginTextFiledView: UIView {
     
-    private let loginType: LogoinPropetyType = .email
+    private let loginType: LogoinPropetyType = .password
     
     private let commonTextField = UITextField()
     private let titleLabel = UILabel()
@@ -28,9 +28,10 @@ final class LoginTextFiledView: UIView {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        commonTextField.delegate = self
         setLayout()
         setUI()
+        
+        setDelegate()
     }
     
     required init?(coder: NSCoder) {
@@ -41,7 +42,6 @@ final class LoginTextFiledView: UIView {
         commonTextField.do {
             $0.backgroundColor = .gbbBackground2
             $0.makeCornerRound(radius: 10)
-            $0.makeBorder(width: 1, color: .black)
             $0.contentVerticalAlignment = .center
             $0.setLeftPadding(amount: 18)
             $0.setPlaceholder(color: .gbbGray300!, font: .headLine!)
@@ -75,6 +75,10 @@ final class LoginTextFiledView: UIView {
             $0.top.equalTo(commonTextField.snp.bottom).offset(7)
             $0.trailing.equalToSuperview()
         }
+    }
+    
+    private func setDelegate() {
+        commonTextField.delegate = self
     }
     
 }
@@ -156,7 +160,11 @@ extension LoginTextFiledView: UITextFieldDelegate {
         case .checkPasswaord:
             print("check password")
         }
-        
+        if text.isEmpty {
+            titleLabel.textColor = .gbbGray400!
+            checkLabel.text = ""
+            textField.layer.borderColor = UIColor.clear.cgColor
+        }
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
