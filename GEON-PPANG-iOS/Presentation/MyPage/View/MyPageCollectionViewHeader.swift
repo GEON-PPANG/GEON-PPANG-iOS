@@ -30,10 +30,10 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
     lazy var filterCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
     private let rightChevronButton = UIButton()
     
-    private let bookmarkButtonContainer = UIView()
+    private let buttonsContainer = UIView()
     private let bookmarkButton = ImageWithSubtitleButton(buttonType: .bookmark)
-    private let myReviewButtonContainer = UIView()
     private let myReviewButton = ImageWithSubtitleButton(buttonType: .myReview)
+    private lazy var buttonsStackView = UIStackView(arrangedSubviews: [bookmarkButton, myReviewButton])
     private let seperatorView = UIView()
     
     // MARK: - Life Cycle
@@ -49,6 +49,12 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        Utils.updateCollectionViewConstraint(of: filterCollectionView)
     }
     
     // MARK: - Setting
@@ -109,36 +115,23 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
             $0.width.equalTo(48)
         }
         
-        addSubview(bookmarkButtonContainer)
-        bookmarkButtonContainer.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(24)
-            $0.trailing.equalTo(self.snp.centerX)
+        addSubview(buttonsContainer)
+        buttonsContainer.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(24)
             $0.top.equalTo(filterCollectionView.snp.bottom).offset(24)
             $0.height.equalTo(87)
             $0.bottom.equalToSuperview().inset(20)
         }
         
-        bookmarkButtonContainer.addSubview(bookmarkButton)
-        bookmarkButton.snp.makeConstraints {
-            $0.center.equalToSuperview()
-        }
-        
-        addSubview(myReviewButtonContainer)
-        myReviewButtonContainer.snp.makeConstraints {
-            $0.leading.equalTo(bookmarkButtonContainer.snp.trailing)
-            $0.trailing.equalToSuperview().inset(24)
-            $0.top.bottom.equalTo(bookmarkButtonContainer)
-        }
-        
-        myReviewButtonContainer.addSubview(myReviewButton)
-        myReviewButton.snp.makeConstraints {
-            $0.center.equalToSuperview()
+        addSubview(buttonsStackView)
+        buttonsStackView.snp.makeConstraints {
+            $0.center.equalTo(buttonsContainer)
         }
         
         addSubview(seperatorView)
         seperatorView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.centerY.equalTo(myReviewButtonContainer)
+            $0.centerY.equalTo(buttonsContainer)
             $0.width.equalTo(1)
             $0.height.equalTo(42)
         }
@@ -174,16 +167,15 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
             $0.setImage(.rightArrowIcon, for: .normal)
         }
         
-        bookmarkButtonContainer.do {
-            $0.roundCorners(corners: [.topLeft, .bottomLeft], radius: 12)
+        buttonsContainer.do {
+            $0.makeCornerRound(radius: 12)
             $0.makeBorder(width: 1, color: .gbbPoint1!)
             $0.backgroundColor = .gbbBackground1
         }
         
-        myReviewButtonContainer.do {
-            $0.roundCorners(corners: [.topRight, .bottomLeft], radius: 12)
-            $0.makeBorder(width: 1, color: .gbbPoint1!)
-            $0.backgroundColor = .gbbBackground1
+        buttonsStackView.do {
+            $0.axis = .horizontal
+            $0.spacing = CGFloat().convertByWidthRatio(96)
         }
         
         seperatorView.do {
@@ -207,7 +199,7 @@ extension MyPageCollectionViewHeader: UICollectionViewDelegate {}
 extension MyPageCollectionViewHeader: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -215,5 +207,19 @@ extension MyPageCollectionViewHeader: UICollectionViewDataSource {
         cell.configureTagTitle("test")
         return cell
     }
+    
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout extension
+
+extension MyPageCollectionViewHeader: UICollectionViewDelegateFlowLayout {
+    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        let cell: DescriptionCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+//        return cell.systemLayoutSizeFitting(.init(width: collectionView.frame.width,
+//                                                  height: UIView.layoutFittingExpandedSize.height),
+//                                            withHorizontalFittingPriority: .required,
+//                                            verticalFittingPriority: .fittingSizeLevel)
+//    }
     
 }

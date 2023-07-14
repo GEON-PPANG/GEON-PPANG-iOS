@@ -23,11 +23,6 @@ final class MyPageViewController: BaseViewController {
     
     // MARK: - Life Cycle
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
@@ -40,7 +35,7 @@ final class MyPageViewController: BaseViewController {
         view.addSubview(myPageCollectionView)
         myPageCollectionView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
-            $0.horizontalEdges.equalToSuperview()
+            $0.horizontalEdges.bottom.equalToSuperview()
             $0.height.equalTo(50)
         }
     }
@@ -56,7 +51,6 @@ final class MyPageViewController: BaseViewController {
             $0.register(header: MyPageCollectionViewHeader.self)
             $0.register(cell: MyPageCollectionViewCell.self)
             $0.register(footer: MyPageCollectionViewFooter.self)
-            $0.backgroundColor = .gbbGray200
         }
     }
     
