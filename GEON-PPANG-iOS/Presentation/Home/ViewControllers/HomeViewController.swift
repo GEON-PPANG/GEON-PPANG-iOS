@@ -42,7 +42,7 @@ final class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setRegister()
+        setRegistration()
         setDataSource()
         setReloadData()
     }
@@ -85,7 +85,7 @@ final class HomeViewController: BaseViewController {
     
     // MARK: - Setting
     
-    private func setRegister() {
+    private func setRegistration() {
         collectionView.register(cell: HomeBakeryCollectionViewCell.self)
         collectionView.register(cell: HomeReviewCollectionViewCell.self)
         collectionView.register(cell: HomeBottomCollectionViewCell.self)
