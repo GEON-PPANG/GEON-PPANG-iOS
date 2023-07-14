@@ -2,7 +2,7 @@
 //  MyReviewsHeaderView.swift
 //  GEON-PPANG-iOS
 //
-//  Created by JEONGEUN KIM on 2023/07/12.
+//  Created by JEONGEUN KIM on 2023/07/14.
 //
 
 import UIKit
@@ -30,29 +30,34 @@ final class MyReviewsHeaderView: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Setting
-    
     private func setLayout() {
-        addSubviews(dateLabel, dotButton)
+        self.addSubviews(dateLabel, dotButton)
         
         dateLabel.snp.makeConstraints {
-            $0.leading.top.equalToSuperview()
+            $0.leading.equalToSuperview()
+            $0.centerY.equalToSuperview()
         }
+        
         dotButton.snp.makeConstraints {
             $0.size.equalTo(24)
-            $0.top.equalToSuperview()
-            $0.trailing.equalToSuperview().offset(-19)
+            $0.directionalVerticalEdges.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(24)
         }
     }
     
     private func setUI() {
-        
         dateLabel.do {
-            $0.basic(font: .pretendardMedium(13), color: .gbbGray400!)
+            $0.basic(text: "23.08.09",
+                     font: .captionM1!,
+                     color: .gbbGray400!)
         }
         
         dotButton.do {
             $0.setImage(.dotdotdotIcon, for: .normal)
+            $0.addAction(UIAction { _ in
+                print("myreviews Tapped")
+            }, for: .touchUpInside)
         }
     }
+    
 }
