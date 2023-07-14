@@ -39,7 +39,7 @@ final class BakeryDetailTitleCollectionViewCell: UICollectionViewCell {
         
         bakeryImage.do {
             $0.backgroundColor = .gbbPoint1
-            $0.contentMode = .scaleAspectFit
+            $0.contentMode = .scaleToFill
         }
         
         markStackView.do {
@@ -47,7 +47,7 @@ final class BakeryDetailTitleCollectionViewCell: UICollectionViewCell {
         }
         
         bakeryNameLabel.do {
-            $0.basic(text: "건대 초코빵",font: .title1!, color: .gbbGray700!)
+            $0.basic(text: "건대 초코빵", font: .title1!, color: .gbbGray700!)
             $0.numberOfLines = 0
         }
         
