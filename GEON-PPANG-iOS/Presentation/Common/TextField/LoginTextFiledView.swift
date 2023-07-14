@@ -10,17 +10,31 @@ import UIKit
 import SnapKit
 import Then
 
-enum LogoinPropetyType: String {
+enum SignInPropetyType: String, CaseIterable {
     case email = "이메일"
     case password = "비밀번호"
     case checkPasswaord = "비밀번호 재확인"
     case nickname = "닉네임"
+    
+    var placeHolder: String {
+        switch self {
+        case .email: return  "이메일을 입력해주세요"
+        case .password: return "영문, 숫자 포함 8자리이상"
+        case .checkPasswaord: return "비밀번호를 재입력해주세요"
+        case .nickname: return "닉네임 10자 이내, 특수문자 금지"
+        }
+    }
 }
 
 final class LoginTextFiledView: UIView {
     
-    private let loginType: LogoinPropetyType = .password
+    private var signInType: SignInPropetyType = .email {
+        didSet {
+            setLayout()
+        }
+    }
     
+    var duplicatedCheck: ((String) -> Void)?
     private let commonTextField = UITextField()
     private let titleLabel = UILabel()
     private let checkLabel = UILabel()
@@ -28,20 +42,19 @@ final class LoginTextFiledView: UIView {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        setLayout()
         setUI()
-        
         setDelegate()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     private func setLayout() {
         commonTextField.do {
             $0.backgroundColor = .gbbBackground2
             $0.makeCornerRound(radius: 10)
+            $0.makeBorder(width: 1, color: .clear)
             $0.contentVerticalAlignment = .center
             $0.setLeftPadding(amount: 18)
             $0.setPlaceholder(color: .gbbGray300!, font: .headLine!)
@@ -49,7 +62,7 @@ final class LoginTextFiledView: UIView {
         
         titleLabel.do {
             $0.basic(font: .bodyB2!, color: .gbbGray400!)
-            $0.text = loginType.rawValue
+            $0.text = signInType.rawValue
         }
         
         checkLabel.do {
@@ -77,8 +90,21 @@ final class LoginTextFiledView: UIView {
         }
     }
     
+    func getType(_ type: SignInPropetyType) {
+        self.signInType = type
+        commonTextField.placeholder = type.placeHolder
+    }
+    
     private func setDelegate() {
         commonTextField.delegate = self
+    }
+    
+    func getText() -> String {
+        return commonTextField.text ?? ""
+    }
+    
+    func getAccessoryView(_ view: UIView) {
+        commonTextField.inputAccessoryView = view
     }
     
 }
@@ -88,8 +114,8 @@ extension LoginTextFiledView: UITextFieldDelegate {
         let newY: CGFloat = 20.0
         let modifiedBounds = CGRect(x: bounds.origin.x, y: bounds.origin.y + newY, width: bounds.size.width, height: bounds.size.height)
         return modifiedBounds
-    }    
- // 입력이 시작되면 호출
+    }
+    // 입력이 시작되면 호출
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField.isEmpty {
             textField.layer.borderColor = UIColor.clear.cgColor
@@ -97,7 +123,7 @@ extension LoginTextFiledView: UITextFieldDelegate {
             if !textField.text!.isValidEmail() {
                 textField.layer.borderColor = UIColor.gbbError?.cgColor
             }
-            switch loginType {
+            switch signInType {
             case .email:
                 if !textField.text!.isValidEmail() {
                     textField.layer.borderColor = UIColor.gbbError?.cgColor
@@ -122,7 +148,7 @@ extension LoginTextFiledView: UITextFieldDelegate {
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
         guard let text = textField.text else { return }
-        switch loginType {
+        switch signInType {
         case .email:
             if !text.isValidEmail() {
                 titleLabel.textColor = .gbbError!
@@ -158,8 +184,18 @@ extension LoginTextFiledView: UITextFieldDelegate {
                 textField.layer.borderColor = UIColor.clear.cgColor
             }
         case .checkPasswaord:
-            print("check password")
-        }
+            if !text.isNotContainSpecialCharacters() {
+                titleLabel.textColor = .gbbError!
+                checkLabel.basic(text: "비밀번호를 확인해주세요",
+                                 font: .captionM1!, color: .gbbError!)
+                titleLabel.textColor = .gbbError!
+                textField.layer.borderColor = UIColor.gbbError?.cgColor
+            } else {
+                titleLabel.textColor = .gbbGray400!
+                checkLabel.text = ""
+                textField.layer.borderColor = UIColor.clear.cgColor
+            }        }
+        
         if text.isEmpty {
             titleLabel.textColor = .gbbGray400!
             checkLabel.text = ""
@@ -171,17 +207,18 @@ extension LoginTextFiledView: UITextFieldDelegate {
         let currentText = textField.text ?? ""
         guard let stringRange = Range(range, in: currentText) else { return false }
         let changeText = currentText.replacingCharacters(in: stringRange, with: string)
-        if loginType == .nickname {
+        if signInType == .nickname {
             return changeText.count < 11
         }
         print(changeText.count)
-       
+        
         return true
     }
     // 엔터를 누르면 return이 먼저 호출되고 입력~가 호출됨.
     // 엔터키가 눌러졌을 때 호출 -> 이거 사용해야함
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("return")
+        print(getText())
+        self.duplicatedCheck?(getText())
         textField.resignFirstResponder()
         return true
     }
