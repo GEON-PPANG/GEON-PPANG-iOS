@@ -140,7 +140,7 @@ extension MyPageViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         switch section {
         case 0: return .zero
-        case 1: return .init(width: SizeLiteral.Screen.width, height: 37)
+        case 1: return .init(width: SizeLiteral.Screen.width, height: 60)
         default: return .zero
         }
     }

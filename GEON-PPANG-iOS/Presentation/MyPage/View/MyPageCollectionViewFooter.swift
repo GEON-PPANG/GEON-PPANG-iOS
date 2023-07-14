@@ -37,13 +37,13 @@ final class MyPageCollectionViewFooter: UICollectionReusableView {
         addSubview(appVersionLabel)
         appVersionLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(24)
-            $0.centerY.equalToSuperview()
+            $0.top.equalToSuperview().inset(12)
         }
         
         addSubview(appVersionNumLabel)
         appVersionNumLabel.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(24)
-            $0.centerY.equalToSuperview()
+            $0.centerY.equalTo(appVersionLabel)
         }
     }
     

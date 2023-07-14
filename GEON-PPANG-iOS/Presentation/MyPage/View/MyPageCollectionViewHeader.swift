@@ -194,7 +194,7 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
 
 extension MyPageCollectionViewHeader: UICollectionViewDelegate {}
 
-// MARK: - UICollectionViewDataSource
+// MARK: - UICollectionViewDataSource extension
 
 extension MyPageCollectionViewHeader: UICollectionViewDataSource {
     
@@ -207,19 +207,5 @@ extension MyPageCollectionViewHeader: UICollectionViewDataSource {
         cell.configureTagTitle("test")
         return cell
     }
-    
-}
-
-// MARK: - UICollectionViewDelegateFlowLayout extension
-
-extension MyPageCollectionViewHeader: UICollectionViewDelegateFlowLayout {
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let cell: DescriptionCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-//        return cell.systemLayoutSizeFitting(.init(width: collectionView.frame.width,
-//                                                  height: UIView.layoutFittingExpandedSize.height),
-//                                            withHorizontalFittingPriority: .required,
-//                                            verticalFittingPriority: .fittingSizeLevel)
-//    }
     
 }
