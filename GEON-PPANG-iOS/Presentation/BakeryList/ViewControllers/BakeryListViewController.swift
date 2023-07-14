@@ -42,6 +42,11 @@ final class BakeryListViewController: BaseViewController {
     override func setUI() {
         bakeryFilterView.do {
             $0.backgroundColor = .clear
+            $0.applyAction {
+                let sortBottomSheet = SortBottomSheetViewController()
+                sortBottomSheet.modalPresentationStyle = .overFullScreen
+                self.present(sortBottomSheet, animated: false)
+            }
         }
     }
     

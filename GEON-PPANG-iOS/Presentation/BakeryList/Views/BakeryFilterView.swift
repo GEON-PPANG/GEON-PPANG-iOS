@@ -136,6 +136,13 @@ final class BakeryFilterView: UIView {
         snapshot.appendSections([.main])
         snapshot.appendItems(filterlist)
     }
+    
+    func applyAction(_ action: @escaping () -> Void) {
+        let action = UIAction { _ in
+            action()
+        }
+        filterButton.addAction(action, for: .touchUpInside)
+    }
 }
 
 extension BakeryFilterView: UICollectionViewDelegate {
