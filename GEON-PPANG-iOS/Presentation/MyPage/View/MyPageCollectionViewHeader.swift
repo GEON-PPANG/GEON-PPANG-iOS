@@ -159,6 +159,11 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
             $0.textColor = .gbbGray700
         }
         
+        flowLayout.do {
+            $0.minimumLineSpacing = 10
+            $0.minimumInteritemSpacing = 4
+        }
+        
         filterCollectionView.do {
             $0.register(cell: DescriptionCollectionViewCell.self)
         }

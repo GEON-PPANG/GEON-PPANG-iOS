@@ -59,14 +59,6 @@ final class MyPageViewController: BaseViewController {
         myPageCollectionView.dataSource = self
     }
     
-    // MARK: - Action Helper
-    
-    
-    
-    // MARK: - Custom Method
-    
-    
-    
 }
 
 // MARK: - UICollectionViewDelegate extension
@@ -93,8 +85,16 @@ extension MyPageViewController: UICollectionViewDataSource {
         let cell: MyPageCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
         let section = indexPath.section
         switch section {
-        case 0: cell.configureTitle(to: MyPageSectionEnum.terms.items[indexPath.item])
-        case 1: cell.configureTitle(to: MyPageSectionEnum.questions.items[indexPath.item])
+        case 0:
+            cell.configureTitle(to: MyPageSectionEnum.terms.items[indexPath.item])
+            cell.applyTopThickBorder()
+        case 1:
+            cell.configureTitle(to: MyPageSectionEnum.questions.items[indexPath.item])
+            if indexPath.item == 0 {
+                cell.applyTopThickBorder()
+            } else {
+                cell.applyTopThinBorder()
+            }
         default: return UICollectionViewCell()
         }
         return cell
@@ -122,6 +122,18 @@ extension MyPageViewController: UICollectionViewDataSource {
 extension MyPageViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        switch indexPath.section {
+        case 0:
+            return .init(width: SizeLiteral.Screen.width, height: 68 + 8)
+        case 1:
+            if indexPath.item == 0 {
+                return .init(width: SizeLiteral.Screen.width, height: 68 + 8)
+            } else {
+                return .init(width: SizeLiteral.Screen.width, height: 68 + 1)
+            }
+        default:
+            return .zero
+        }
         return .init(width: SizeLiteral.Screen.width, height: 68)
     }
     

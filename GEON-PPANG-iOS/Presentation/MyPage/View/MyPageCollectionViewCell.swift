@@ -73,4 +73,31 @@ final class MyPageCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    func applyTopThickBorder() {
+        let borderView = UIView()
+        contentView.addSubview(borderView)
+        borderView.snp.makeConstraints {
+            $0.bottom.equalTo(contentView.snp.top)
+            $0.height.equalTo(8)
+            $0.horizontalEdges.equalToSuperview()
+        }
+        
+        borderView.do {
+            $0.backgroundColor = .gbbGray200
+        }
+    }
+    
+    func applyTopThinBorder() {
+        let borderView = UIView()
+        contentView.addSubview(borderView)
+        borderView.snp.makeConstraints {
+            $0.height.equalTo(1)
+            $0.horizontalEdges.equalToSuperview()
+        }
+        
+        borderView.do {
+            $0.backgroundColor = .gbbGray200
+        }
+    }
+    
 }
