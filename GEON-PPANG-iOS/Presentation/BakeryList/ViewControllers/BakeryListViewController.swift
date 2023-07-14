@@ -75,7 +75,7 @@ final class BakeryListViewController: BaseViewController {
         var config = UICollectionLayoutListConfiguration(appearance: .plain)
         config.backgroundColor = .clear
         config.showsSeparators = true
-
+        
         let layout = UICollectionViewCompositionalLayout.list(using: config)
         return layout
     }
@@ -84,7 +84,20 @@ final class BakeryListViewController: BaseViewController {
         dataSource = DataSource(collectionView: bakeryListCollectionView, cellProvider: { collectionView, indexPath, item in
             let cell: BakeryListCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             cell.getViewType(.defaultType)
-            cell.updateUI(data: item, index: indexPath.item)
+            if let bakeryListItem = item as? BakeryListResponseDTO {
+                let bakeryListProtocols = BakeryListProtocols(
+                    bakeryName: bakeryListItem.bakeryName,
+                    bookmarkCount: bakeryListItem.bookmarkCount,
+                    isBooked: bakeryListItem.isBooked,
+                    isHACCP: bakeryListItem.isHACCP,
+                    isVegan: bakeryListItem.isVegan,
+                    isNonGMO: bakeryListItem.isNonGMO,
+                    firstNearStation: bakeryListItem.firstNearStation,
+                    secondNearStation: bakeryListItem.secondNearStation ?? "",
+                    breadType: bakeryListItem.breadType
+                )
+                cell.updateUI(data: bakeryListProtocols, index: indexPath.item)
+            }
             return cell
         })
     }
