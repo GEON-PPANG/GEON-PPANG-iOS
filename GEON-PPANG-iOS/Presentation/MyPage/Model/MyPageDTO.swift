@@ -22,7 +22,7 @@ extension MyPageDTO {
                                       breadTypeName: "맛 • 다이어트",
                                       isGlutenFree: true,
                                       isVegan: true,
-                                      isNutFree: true,
+                                      isNutFree: false,
                                       isSugarFree: true))
     }
 }

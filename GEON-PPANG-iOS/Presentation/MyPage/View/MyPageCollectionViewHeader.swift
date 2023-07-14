@@ -16,7 +16,7 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
     
     private let myPageData = MyPageDTO.dummyData()
     private let username = "빵순이빵돌이"
-//    private lazy var myPageTagData = myPageData.breadType.configureTrueOptions()
+    private lazy var myPageTagData = myPageData.breadType.configureTrueOptions()
     
     // MARK: - UI Property
     
@@ -204,12 +204,19 @@ extension MyPageCollectionViewHeader: UICollectionViewDelegate {}
 extension MyPageCollectionViewHeader: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return myPageTagData.filter { $0.1 == true }.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: DescriptionCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-        cell.configureTagTitle("test")
+        cell.configureTagTitle(myPageTagData[indexPath.item].0)
+//        switch indexPath.item {
+//        case 0:
+//        case 1: cell.configureTagTitle("비건빵")
+//        case 2: cell.configureTagTitle("넛프리")
+//        case 3: cell.configureTagTitle("저당,무설탕")
+//        default: return UICollectionViewCell()
+//        }
         return cell
     }
     
