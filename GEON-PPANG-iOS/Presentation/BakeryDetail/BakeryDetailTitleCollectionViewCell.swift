@@ -17,7 +17,7 @@ final class BakeryDetailTitleCollectionViewCell: UICollectionViewCell {
     private let bakeryImage = UIImageView()
     private let markStackView = MarkStackView()
     private let bakeryNameLabel = UILabel()
-    private lazy var optionBreadTypeStackView = OptionBreadTypeStackView()
+    private let optionBreadTypeStackView = OptionBreadTypeStackView()
     private lazy var bookmarkButton = BookmarkButton(configuration: .plain())
     
     // MARK: - Life Cycle
@@ -66,11 +66,6 @@ final class BakeryDetailTitleCollectionViewCell: UICollectionViewCell {
         
         contentView.addSubviews(bakeryImage, markStackView, bakeryNameLabel, optionBreadTypeStackView, bookmarkButton)
         
-        let availableHeight = contentView.bounds.height
-        let bakeryImageHeight = 243
-        let buttonHeight = 57
-        let buttonTopOffset = (Int(availableHeight) + bakeryImageHeight - buttonHeight) / 2
-        
         bakeryImage.snp.makeConstraints {
             $0.height.equalTo(243)
             $0.top.directionalHorizontalEdges.equalToSuperview()
@@ -98,7 +93,7 @@ final class BakeryDetailTitleCollectionViewCell: UICollectionViewCell {
         }
         
         bookmarkButton.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(buttonTopOffset)
+            $0.top.equalTo(bakeryImage.snp.bottom).offset(30)
             $0.trailing.equalToSuperview().inset(24)
             $0.size.equalTo(34)
         }

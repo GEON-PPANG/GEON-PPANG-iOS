@@ -14,15 +14,19 @@ final class BakeryDetailInfoCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI Property
     
-    ///TODO: 
-    private let bakeryDetailInfoLabel = UILabel()
-    private let ingredientNoticeLabel = UILabel()
+//    private let bakeryDetailInfoLabel = UILabel()
+//    private let ingredientNoticeLabel = UILabel()
     private let homepageLinkImage = UIImageView()
-    private lazy var homepagelinkButton = UIButton()
+    private lazy var homepagelinkLabel = UILabel()
     private let bakeryAddressImage = UIImageView()
     private let bakeryAddressLabel = UILabel()
     private lazy var addressCopyButton = UIButton()
-    private let 
+    private let regionStackView = RegionStackView()
+    private let bakeryOpeningHoursImage = UIImageView()
+    private let bakeryClosedDaysLabel = UILabel()
+    private let bakeryOpeningHoursLabel = UILabel()
+    private let bakeryPhoneNumberImage = UIImage()
+    private let bakeryPhoneNumberLabel = UILabel()
     
     
     // MARK: - Life Cycle
