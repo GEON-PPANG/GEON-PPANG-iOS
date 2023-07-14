@@ -22,7 +22,7 @@ struct BakeryListResponseDTO: Hashable {
 
 // MARK: - BreadType
 
-struct BreadType: Hashable {
+struct BreadType: Codable, Hashable {
     let breadTypeID: Int
     let breadTypeName: String
     let isGlutenFree: Bool

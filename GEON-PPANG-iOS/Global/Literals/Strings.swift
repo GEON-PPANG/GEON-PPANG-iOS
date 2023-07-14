@@ -48,4 +48,16 @@ struct I18N {
         static let vegan = "비건빵"
         static let noSugar = "저당, 무설탕"
     }
+    
+    /// MyPage
+    struct MyPage {
+        static let title = "마이페이지"
+        static let bookmark = "저장목록"
+        static let myReviews = "내가 쓴 리뷰"
+        static let terms = "이용약관"
+        static let commonQuestions = "자주 묻는 질문"
+        static let askQuestions = "문의하기"
+        static let appVersion = "앱버전"
+        static let appVersionNum = "v 0.0.1"
+    }
 }
