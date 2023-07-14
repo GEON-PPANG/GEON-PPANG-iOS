@@ -81,7 +81,7 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
         emptyLabel.do {
             $0.numberOfLines = 0
             $0.textAlignment = .center
-            $0.basic(font: .pretendardBold(20), color: .gbbGray300!)
+            $0.basic(font: .title2!, color: .gbbGray300!)
         }
     }
     
@@ -92,9 +92,9 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
         
         switch type {
         case .initialize, .noBookMark, .noReview:
-            return emptyLabel.basic(text: emptyType.rawValue, font: .pretendardBold(20), color: .gbbGray300!)
+            return emptyLabel.basic(text: emptyType.rawValue, font: .title2!, color: .gbbGray300!)
         case .noSearch:
-            return emptyLabel.partFontChange(targetString: "다른 키워드로 검색해보세요!", font: .pretendardMedium(15))
+            return emptyLabel.partFontChange(targetString: "다른 키워드로 검색해보세요!", font: .subHead!)
         }
     }
     

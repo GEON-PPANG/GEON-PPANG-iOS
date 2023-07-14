@@ -21,7 +21,8 @@ final class SearchViewController: BaseViewController {
     typealias Item = AnyHashable
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Item>
     private var dataSource: DataSource?
-    private let bakeryList: [HomeBestBakeryResponseDTO] = HomeBestBakeryResponseDTO.item
+    private var searchList: [SearchResponseDTO] = SearchResponseDTO.item
+    private var searchBakeryList: [SearchBakeryList] = SearchBakeryList.searchBakeryItem
     private var currentSection: [Section] = [.initial]
     
     // MARK: - UI Property
@@ -30,15 +31,17 @@ final class SearchViewController: BaseViewController {
     private let searchResultView = SearchResultView()
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
     
-    // MARK: - Setting
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setRegister()
-        setupDataSource()
+        setRegistration()
+        setDataSource()
         setReloadData()
     }
+    
+    // MARK: - Setting
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
@@ -83,13 +86,13 @@ final class SearchViewController: BaseViewController {
         }
     }
     
-    private func setRegister() {
+    private func setRegistration() {
         collectionView.register(cell: EmptyCollectionViewCell.self)
-        collectionView.register(cell: SearchCollectionViewCell.self)
+        collectionView.register(cell: BakeryListCollectionViewCell.self)
     }
     
-    private func setupDataSource() {
-        dataSource = DataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, _ in
+    private func setDataSource() {
+        dataSource = DataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, item in
             let section = self.dataSource?.snapshot().sectionIdentifiers[indexPath.section]
             switch section {
             case .initial:
@@ -101,7 +104,22 @@ final class SearchViewController: BaseViewController {
                 cell.getViewType(.noSearch)
                 return cell
             case .main, .none:
-                let cell: SearchCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+                let cell: BakeryListCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+                cell.getViewType(.defaultType)
+                if let searchBakeryItem = item as? SearchBakeryList {
+                    let bakeryListProtocols = BakeryListProtocols(
+                        bakeryName: searchBakeryItem.bakeryName,
+                        bookmarkCount: searchBakeryItem.bookmarkCount,
+                        isBooked: searchBakeryItem.isBooked,
+                        isHACCP: searchBakeryItem.isHACCP,
+                        isVegan: searchBakeryItem.isVegan,
+                        isNonGMO: searchBakeryItem.isNonGMO,
+                        firstNearStation: searchBakeryItem.firstNearStation,
+                        secondNearStation: searchBakeryItem.secondNearStation ?? "",
+                        breadType: searchBakeryItem.breadType
+                    )
+                    cell.updateUI(data: bakeryListProtocols, index: indexPath.item)
+                }
                 return cell
             }
         })
@@ -114,16 +132,18 @@ final class SearchViewController: BaseViewController {
         snapshot.appendItems([0])
     }
     
-    private func setDataSource(data: [HomeBestBakeryResponseDTO]) {
+    private func updateDataSource(data: SearchResponseDTO) {
         guard var snapshot = dataSource?.snapshot() else { return }
-        if data.count == 0 {
+        if data.resultCount == 0 {
+            searchResultView.isHidden = true
             snapshot.deleteSections(currentSection)
             snapshot.appendItems([0], toSection: .empty)
             currentSection = [.empty]
             dataSource?.apply(snapshot)
         } else {
+            searchResultView.isHidden = false
             snapshot.deleteSections(currentSection)
-            snapshot.appendItems(bakeryList, toSection: .main)
+            snapshot.appendItems(searchBakeryList, toSection: .main)
             currentSection = [.main]
             dataSource?.apply(snapshot)
         }
