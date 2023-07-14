@@ -210,13 +210,6 @@ extension MyPageCollectionViewHeader: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: DescriptionCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
         cell.configureTagTitle(myPageTagData[indexPath.item].0)
-//        switch indexPath.item {
-//        case 0:
-//        case 1: cell.configureTagTitle("비건빵")
-//        case 2: cell.configureTagTitle("넛프리")
-//        case 3: cell.configureTagTitle("저당,무설탕")
-//        default: return UICollectionViewCell()
-//        }
         return cell
     }
     
