@@ -34,7 +34,7 @@ final class MyReviewsHeaderView: UICollectionReusableView {
         self.addSubviews(dateLabel, dotButton)
         
         dateLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview()
+            $0.leading.equalToSuperview().offset(24)
             $0.centerY.equalToSuperview()
         }
         

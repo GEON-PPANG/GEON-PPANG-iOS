@@ -41,8 +41,7 @@ final class MyReviewsViewController: BaseViewController {
         
         collectionView.snp.makeConstraints {
             $0.top.equalTo(naviView.snp.bottom)
-            $0.leading.equalToSuperview().inset(24)
-            $0.trailing.equalToSuperview()
+            $0.directionalHorizontalEdges.equalTo(safeArea)
             $0.bottom.equalToSuperview()
         }
     }
@@ -71,7 +70,6 @@ final class MyReviewsViewController: BaseViewController {
         config.backgroundColor = .clear
         config.showsSeparators = true
         config.headerMode = .supplementary
-        config.footerMode = .none
         config.separatorConfiguration.topSeparatorVisibility = .hidden
         config.separatorConfiguration.bottomSeparatorVisibility = .visible
 

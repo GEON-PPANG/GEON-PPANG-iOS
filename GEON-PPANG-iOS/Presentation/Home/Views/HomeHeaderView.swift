@@ -41,7 +41,7 @@ final class HomeHeaderView: UICollectionReusableView {
         addSubview(headerLabel)
         
         headerLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview()
+            $0.leading.equalToSuperview().offset(24)
             $0.bottom.equalToSuperview()
         }
     }

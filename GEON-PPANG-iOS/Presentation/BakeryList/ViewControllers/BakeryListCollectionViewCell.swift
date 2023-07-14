@@ -196,7 +196,7 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
         bakeryImage.snp.remakeConstraints {
             $0.size.equalTo(90)
             $0.top.equalToSuperview().offset(10)
-            $0.leading.equalToSuperview()
+            $0.leading.equalToSuperview().offset(24)
         }
         arrowButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
