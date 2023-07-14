@@ -101,7 +101,6 @@ extension MyPageViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
         switch indexPath.section {
         case 0:
             let header: MyPageCollectionViewHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
@@ -112,7 +111,6 @@ extension MyPageViewController: UICollectionViewDataSource {
         default:
             return UICollectionReusableView()
         }
-        
     }
     
 }

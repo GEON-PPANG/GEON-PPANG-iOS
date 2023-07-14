@@ -10,7 +10,7 @@ import Foundation
 struct MyPageDTO: Codable {
     let memberNickname: String
     let mainPurpose: String
-    let breadType: BreadType
+    let breadType: BreadResponseType
 }
 
 extension MyPageDTO {

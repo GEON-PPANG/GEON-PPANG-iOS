@@ -13,7 +13,7 @@ struct BakeryListResponseDTO: Hashable {
     let isHACCP: Bool
     let isVegan: Bool
     let isNonGMO: Bool
-    let breadType: BreadType
+    let breadType: BreadResponseType
     let firstNearStation: String
     let secondNearStation: String?
     let isBooked: Bool
@@ -22,7 +22,7 @@ struct BakeryListResponseDTO: Hashable {
 
 // MARK: - BreadType
 
-struct BreadType: Codable, Hashable {
+struct BreadResponseType: Codable, Hashable {
     let breadTypeID: Int
     let breadTypeName: String
     let isGlutenFree: Bool
@@ -37,9 +37,9 @@ extension BakeryListResponseDTO {
                BakeryListResponseDTO(bakeryID: 3, bakeryName: "건대 초코빵", bakeryPicture: "ursl", isHACCP: true, isVegan: true, isNonGMO: true, breadType: .breadItem3, firstNearStation: "건대역", secondNearStation: "건대", isBooked: true, bookmarkCount: 7)
     ]
 }
-extension BreadType {
-    static let breadItem1: BreadType = BreadType(breadTypeID: 1, breadTypeName: "글루텐프리", isGlutenFree: true, isVegan: true, isNutFree: true, isSugarFree: true)
-    static let breadItem2: BreadType = BreadType(breadTypeID: 1, breadTypeName: "글루텐프리", isGlutenFree: true, isVegan: false, isNutFree: false, isSugarFree: true)
-    static let breadItem3: BreadType = BreadType(breadTypeID: 1, breadTypeName: "글루텐프리", isGlutenFree: true, isVegan: true, isNutFree: true, isSugarFree: true)
+extension BreadResponseType {
+    static let breadItem1: BreadResponseType = BreadResponseType(breadTypeID: 1, breadTypeName: "글루텐프리", isGlutenFree: true, isVegan: true, isNutFree: true, isSugarFree: true)
+    static let breadItem2: BreadResponseType = BreadResponseType(breadTypeID: 1, breadTypeName: "글루텐프리", isGlutenFree: true, isVegan: false, isNutFree: false, isSugarFree: true)
+    static let breadItem3: BreadResponseType = BreadResponseType(breadTypeID: 1, breadTypeName: "글루텐프리", isGlutenFree: true, isVegan: true, isNutFree: true, isSugarFree: true)
     
 }
