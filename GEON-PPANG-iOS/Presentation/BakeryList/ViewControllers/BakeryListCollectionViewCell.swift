@@ -80,7 +80,8 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
         
         bakeryImage.snp.makeConstraints {
             $0.size.equalTo(90)
-            $0.top.leading.equalToSuperview().offset(24)
+            $0.top.equalToSuperview().offset(24)
+            $0.leading.equalToSuperview().inset(48)
         }
         
         markStackView.snp.makeConstraints {
@@ -90,7 +91,7 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
         }
         
         bakeryTitle.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(24)
+            $0.top.equalTo(bakeryImage.snp.top)
             $0.leading.equalTo(bakeryImage.snp.trailing).offset(14)
         }
         
@@ -192,6 +193,11 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
             }, for: .touchUpInside)
         }
         
+        bakeryImage.snp.remakeConstraints {
+            $0.size.equalTo(90)
+            $0.top.equalToSuperview().offset(10)
+            $0.leading.equalToSuperview()
+        }
         arrowButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview().offset(-12)
