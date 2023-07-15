@@ -26,5 +26,5 @@ protocol BakeryListProtocol {
     var firstNearStation: String { get }
     var secondNearStation: String? { get }
     
-    var breadType: BreadType { get }
+    var breadType: BreadResponseType { get }
 }

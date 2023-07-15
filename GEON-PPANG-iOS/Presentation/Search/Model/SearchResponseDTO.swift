@@ -22,7 +22,7 @@ struct SearchBakeryList: Hashable, BakeryListProtocol {
     let isHACCP: Bool
     let isVegan: Bool
     let isNonGMO: Bool
-    var breadType: BreadType
+    var breadType: BreadResponseType
     let firstNearStation: String
     var secondNearStation: String?
     let isBooked: Bool
@@ -38,6 +38,6 @@ extension SearchBakeryList {
     static let searchBakeryItem: [SearchBakeryList] = [SearchBakeryList(bakeryID: 1, bakeryName: "히히히히", isHACCP: true, isVegan: true, isNonGMO: true, breadType: .searchBreadType, firstNearStation: "헤헤", secondNearStation: "두번째역", isBooked: true, bookmarkCount: 5, bakeryPicture: "")]
 }
 
-extension BreadType {
-    static let searchBreadType: BreadType = BreadType(breadTypeID: 3, breadTypeName: "글루텐프리", isGlutenFree: true, isVegan: true, isNutFree: false, isSugarFree: true)
+extension BreadResponseType {
+    static let searchBreadType: BreadResponseType = BreadResponseType(breadTypeID: 3, breadTypeName: "글루텐프리", isGlutenFree: true, isVegan: true, isNutFree: false, isSugarFree: true)
 }
