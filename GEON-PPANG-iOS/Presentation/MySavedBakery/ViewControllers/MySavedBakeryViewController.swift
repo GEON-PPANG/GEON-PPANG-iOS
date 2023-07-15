@@ -43,6 +43,7 @@ final class MySavedBakeryViewController: BaseViewController {
     // MARK: - Setting
     
     override func setLayout() {
+        
         view.addSubviews(naviView, collectionView)
         naviView.addSubview(lineView)
         
@@ -92,7 +93,7 @@ final class MySavedBakeryViewController: BaseViewController {
                 return cell
             case .empty, .none:
                 let cell: EmptyCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-                cell.getViewType(.noBookMark)
+                cell.getViewType(.noBookmark)
                 return cell
             }
         })
@@ -121,6 +122,7 @@ final class MySavedBakeryViewController: BaseViewController {
     }
     
     private func layout() -> UICollectionViewLayout {
+        
         let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnvirnment  in
             let section = self.dataSource?.snapshot().sectionIdentifiers[sectionIndex]
             switch section {
@@ -135,6 +137,7 @@ final class MySavedBakeryViewController: BaseViewController {
                 return self.normalSection()
             }
         }
+        
         return layout
     }
     
@@ -152,6 +155,7 @@ final class MySavedBakeryViewController: BaseViewController {
             count: 1
         )
         let section = NSCollectionLayoutSection(group: group)
+        
         return section
     }
 }
