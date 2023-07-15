@@ -7,7 +7,7 @@
 
 // MARK: - BakeryListResponseDTO
 
-struct BakeryListResponseDTO: Hashable {
+struct BakeryListResponseDTO: Hashable, BakeryListProtocol {
     let bakeryID: Int
     let bakeryName: String
     let bakeryPicture: String

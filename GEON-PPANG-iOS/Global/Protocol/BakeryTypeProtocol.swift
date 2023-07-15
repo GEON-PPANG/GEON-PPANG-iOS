@@ -28,19 +28,19 @@ protocol BakeryListProtocol {
     
     var breadType: BreadType { get }
 }
-
-struct BakeryListProtocols: BakeryListProtocol {
-    var bakeryName: String
-    var bookmarkCount: Int
-    var isBooked: Bool
-    
-    var isHACCP: Bool
-    var isVegan: Bool
-    var isNonGMO: Bool
-    
-    var firstNearStation: String 
-    var secondNearStation: String? = ""
-    
-    var breadType: BreadType
-
-}
+//
+//struct Bakery: BakeryListProtocol {
+//    var bakeryName: String
+//    var bookmarkCount: Int
+//    var isBooked: Bool
+//
+//    var isHACCP: Bool
+//    var isVegan: Bool
+//    var isNonGMO: Bool
+//
+//    var firstNearStation: String
+//    var secondNearStation: String? = ""
+//
+//    var breadType: BreadType
+//
+//}

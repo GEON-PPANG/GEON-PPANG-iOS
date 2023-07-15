@@ -107,18 +107,7 @@ final class SearchViewController: BaseViewController {
                 let cell: BakeryListCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
                 cell.getViewType(.defaultType)
                 if let searchBakeryItem = item as? SearchBakeryList {
-                    let bakeryListProtocols = BakeryListProtocols(
-                        bakeryName: searchBakeryItem.bakeryName,
-                        bookmarkCount: searchBakeryItem.bookmarkCount,
-                        isBooked: searchBakeryItem.isBooked,
-                        isHACCP: searchBakeryItem.isHACCP,
-                        isVegan: searchBakeryItem.isVegan,
-                        isNonGMO: searchBakeryItem.isNonGMO,
-                        firstNearStation: searchBakeryItem.firstNearStation,
-                        secondNearStation: searchBakeryItem.secondNearStation ?? "",
-                        breadType: searchBakeryItem.breadType
-                    )
-                    cell.updateUI(data: bakeryListProtocols, index: indexPath.item)
+                    cell.updateUI(data: searchBakeryItem, index: indexPath.item)
                 }
                 return cell
             }

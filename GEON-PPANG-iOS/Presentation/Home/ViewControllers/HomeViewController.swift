@@ -73,7 +73,7 @@ final class HomeViewController: BaseViewController {
         topView.snp.makeConstraints {
             $0.top.equalTo(safeArea)
             $0.directionalHorizontalEdges.equalTo(safeArea)
-            $0.height.equalTo(convertByHeightRatio(200))
+            $0.height.equalTo(200)
         }
         
         collectionView.snp.makeConstraints {

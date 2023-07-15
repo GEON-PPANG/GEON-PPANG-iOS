@@ -83,18 +83,7 @@ final class MySavedBakeryViewController: BaseViewController {
             let cell: BakeryListCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             cell.getViewType(.defaultType)
             if let bakeryListItem = item as? BakeryListResponseDTO {
-                let bakeryListProtocols = BakeryListProtocols(
-                    bakeryName: bakeryListItem.bakeryName,
-                    bookmarkCount: bakeryListItem.bookmarkCount,
-                    isBooked: bakeryListItem.isBooked,
-                    isHACCP: bakeryListItem.isHACCP,
-                    isVegan: bakeryListItem.isVegan,
-                    isNonGMO: bakeryListItem.isNonGMO,
-                    firstNearStation: bakeryListItem.firstNearStation,
-                    secondNearStation: bakeryListItem.secondNearStation ?? "",
-                    breadType: bakeryListItem.breadType
-                )
-                cell.updateUI(data: bakeryListProtocols, index: indexPath.item)
+                cell.updateUI(data: bakeryListItem, index: indexPath.item)
             }
             return cell
         })
