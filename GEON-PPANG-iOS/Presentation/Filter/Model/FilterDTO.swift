@@ -9,7 +9,7 @@ import Foundation
 
 struct FilterRequestDTO {
     var mainPurpose: String
-    var breadType: BreadType
+    var breadType: BreadRequestType
     var nutrientType: NutrientType
     
     static var sharedData = FilterRequestDTO()
@@ -26,7 +26,7 @@ struct FilterRequestDTO {
     }
 }
 
-struct BreadType {
+struct BreadRequestType {
     var isGlutenFree: Bool
     var isVegan: Bool
     var isNutFree: Bool
