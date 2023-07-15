@@ -30,7 +30,7 @@ final class LoginTextFiledView: UIView {
     
     private var signInType: SignInPropetyType = .email {
         didSet {
-            setLayout()
+            setUI()
         }
     }
     
@@ -38,11 +38,13 @@ final class LoginTextFiledView: UIView {
     private let commonTextField = UITextField()
     private let titleLabel = UILabel()
     private let checkLabel = UILabel()
+    private lazy var secureButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
         setUI()
+        setLayout()
         setDelegate()
     }
 
@@ -50,7 +52,7 @@ final class LoginTextFiledView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setLayout() {
+    private func setUI() {
         commonTextField.do {
             $0.backgroundColor = .gbbBackground2
             $0.makeCornerRound(radius: 10)
@@ -68,9 +70,10 @@ final class LoginTextFiledView: UIView {
         checkLabel.do {
             $0.font = .captionM1
         }
+        
     }
     
-    private func setUI() {
+    private func setLayout() {
         addSubviews(commonTextField, checkLabel)
         commonTextField.addSubview(titleLabel)
         
