@@ -29,4 +29,9 @@ final class Utils {
             $0.height.equalTo(height)
         }
     }
+    
+    class func calculateCollectionViewSize(of collectionView: UICollectionView) -> CGSize {
+        let size = collectionView.collectionViewLayout.collectionViewContentSize
+        return size
+    }
 }

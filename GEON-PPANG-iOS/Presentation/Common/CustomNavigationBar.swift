@@ -44,7 +44,7 @@ final class CustomNavigationBar: UIView {
     
     private func setLayout() {
         self.snp.makeConstraints {
-            $0.height.equalTo(118)
+            $0.height.equalTo(CGFloat().heightConsideringNotch(118))
         }
         
         addSubview(backButton)
@@ -94,7 +94,7 @@ final class CustomNavigationBar: UIView {
         rightCountLabel.do {
             $0.text = "\(currentCount)/\(maxCount)"
             $0.font = .pretendardMedium(15)
-            $0.textColor = .gbbGray700
+            $0.textColor = .gbbGray300
         }
     }
     

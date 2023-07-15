@@ -50,6 +50,15 @@ struct I18N {
         static let defaultFilter = "기본순"
     }
     
+    /// Filter Selection
+    struct Filter {
+        static let purposeTitle = "반가워요 님 :)\n건빵을 찾은 이유를 알려주세요!"
+        static let breadTypeTitle = "어떤 빵을 원하시나요?"
+        static let breadTypeSubtitle = "중복선택이 가능해요!"
+        static let ingredientTitle = "어떤 성분을 원하시나요?"
+        static let ingredientSubtitle = "중복선택이 가능해요!"
+    }
+    
     /// MyPage
     struct MyPage {
         static let title = "마이페이지"
