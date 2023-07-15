@@ -21,9 +21,11 @@ final class WriteReviewViewController: BaseViewController {
     // TODO: bakeryImage 추가
     private let scrollView = UIScrollView()
     private let contentView = UIView()
+    
     private let navigationBar = CustomNavigationBar()
     private let bakeryOverviewView = BakeryOverviewView(bakeryImage: .actions, firstRegion: "tset", secondRegion: "efqerqf")
     private let lineView = LineView()
+    
     private let likeCollectionViewFlowLayout = OptionsCollectionViewFlowLayout()
     private let optionsCollectionViewFlowLayout = OptionsCollectionViewFlowLayout()
     private let likeCollectionViewHeaderLabel = UILabel()
@@ -34,8 +36,9 @@ final class WriteReviewViewController: BaseViewController {
     private let dotView = UILabel()
     private let aboutReviewContainerView = UIView()
     private let aboutReviewLabel = UILabel()
+    
     private let bottomView = BottomView()
-    private let bottomDummyView = UIView()
+    private let nextButton = CommonButton()
     
     // MARK: - life cycle
     
@@ -217,10 +220,10 @@ final class WriteReviewViewController: BaseViewController {
         bottomView.do {
             $0.backgroundColor = .white
             $0.layer.masksToBounds = false
-            $0.applyAdditionalSubview(bottomDummyView, withTrailingOffset: 16)
+            $0.applyAdditionalSubview(nextButton, withTrailingOffset: 16)
         }
         
-        bottomDummyView.do {
+        nextButton.do {
             $0.backgroundColor = .gbbPoint1
             $0.makeCornerRound(radius: 12)
         }
@@ -291,7 +294,7 @@ final class WriteReviewViewController: BaseViewController {
         UIView.animate(withDuration: 0.2, animations: {
             self.scrollView.transform = .identity
             self.bottomView.transform = .identity
-            self.bottomDummyView.transform = .identity
+            self.nextButton.transform = .identity
         })
     }
     
@@ -363,21 +366,6 @@ extension WriteReviewViewController: UICollectionViewDataSource {
         }
         return cell
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        let header: OptionsCollectionViewHeader  = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
-//        
-//        switch collectionView {
-//        case likeCollectionView:
-//            header.configureTitle(to: I18N.WriteReview.likeOptionTitle)
-//            header.isEnabled.toggle()
-//        case optionsCollectionView:
-//            header.configureTitle(to: I18N.WriteReview.optionTitle)
-//        default:
-//            return UICollectionReusableView()
-//        }
-//        return header
-//    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 18, left: 0, bottom: 0, right: 0)
