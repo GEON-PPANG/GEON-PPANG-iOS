@@ -58,4 +58,16 @@ struct I18N {
         static let ingredientTitle = "어떤 성분을 원하시나요?"
         static let ingredientSubtitle = "중복선택이 가능해요!"
     }
+    
+    /// MyPage
+    struct MyPage {
+        static let title = "마이페이지"
+        static let bookmark = "저장목록"
+        static let myReviews = "내가 쓴 리뷰"
+        static let terms = "이용약관"
+        static let commonQuestions = "자주 묻는 질문"
+        static let askQuestions = "문의하기"
+        static let appVersion = "앱버전"
+        static let appVersionNum = "v 0.0.1"
+    }
 }
