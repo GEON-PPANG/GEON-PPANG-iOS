@@ -18,7 +18,7 @@ final class BakeryListTopView: UIView {
     private let bakeryTitle = UILabel()
     private let bakeryIcon = UIImageView()
     private let searchButton = UIButton()
-        
+    
     // MARK: - Life Cycle
     
     override init(frame: CGRect) {
