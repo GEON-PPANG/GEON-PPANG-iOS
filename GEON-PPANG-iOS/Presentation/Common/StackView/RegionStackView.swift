@@ -15,7 +15,7 @@ final class RegionStackView: UIStackView {
     // MARK: - UI Property
     
     private lazy var regionFirstTag = PaddingLabel()
-    private lazy var regionSeconodTag = PaddingLabel()
+    private lazy var regionSecondTag = PaddingLabel()
     
     // MARK: - Life Cycle
     
@@ -33,13 +33,13 @@ final class RegionStackView: UIStackView {
     
     private func setUI() {
         self.do {
-            $0.addArrangedSubviews(regionFirstTag, regionSeconodTag)
+            $0.addArrangedSubviews(regionFirstTag, regionSecondTag)
             $0.axis = .horizontal
             $0.spacing = 5
             $0.distribution = .fillProportionally
         }
         
-        [regionFirstTag, regionSeconodTag] .forEach {
+        [regionFirstTag, regionSecondTag].forEach {
             $0.makeCornerRound(radius: 14.5)
             $0.font = .captionM1
             $0.backgroundColor = .gbbMain3
@@ -49,17 +49,17 @@ final class RegionStackView: UIStackView {
         
     func getRegionName(_ first: String, _ second: String) {
         regionFirstTag.text = first
-        regionSeconodTag.text = second
+        regionSecondTag.text = second
     }
     
     func getBackgroundColor(_ color: UIColor) {
-        [regionFirstTag, regionSeconodTag] .forEach {
+        [regionFirstTag, regionSecondTag] .forEach {
             $0.backgroundColor = color
         }
     }
     
     func removeSecondRegion() {
-        self.removeArrangedSubview(regionSeconodTag)
-        regionSeconodTag.removeFromSuperview()
+        self.removeArrangedSubview(regionSecondTag)
+        regionSecondTag.removeFromSuperview()
     }
 }
