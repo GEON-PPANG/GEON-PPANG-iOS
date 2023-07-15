@@ -135,7 +135,7 @@ final class HomeViewController: BaseViewController {
         
         dataSource?.supplementaryViewProvider = { (collectionView, _, indexPath) in
             let header: HomeHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
-
+            
             switch indexPath.section {
             case 0:
                 header.setctionHeaderTitle(Sections.bakery.title)
