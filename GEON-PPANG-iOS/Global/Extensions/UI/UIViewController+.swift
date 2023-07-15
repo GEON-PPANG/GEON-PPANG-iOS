@@ -31,6 +31,13 @@ extension UIViewController {
         return (convert / 812) * getDeviceHeight()
     }
     
+    func popViewControllerAction() -> UIAction {
+        let action = UIAction { [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        }
+        return action
+    }
+    
     func setKeyboardHideGesture() {
         let tap = UITapGestureRecognizer(target: self,
                                          action: #selector(UIViewController.dismissKeyboard))

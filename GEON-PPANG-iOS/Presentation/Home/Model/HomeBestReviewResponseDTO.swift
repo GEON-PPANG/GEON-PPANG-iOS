@@ -13,14 +13,18 @@ struct HomeBestReviewResponseDTO: Hashable {
 
     let bakeryID: Int
     let bakeryName: String
-    let isHACCP, isVegan: Bool
-    let isNONGMO: Bool?
-    let firstNearStation, secondNearStation: String
+    let isHACCP: Bool
+    let isVegan: Bool
+    let isNONGMO: Bool
+    let firstNearStation: String
+    let secondNearStation: String? 
     let isBooked: Bool
     let bookmarkCount: Int
     let bakeryPicture: String
     let reviewCount: Int
-    let reviewText, firstMaxRecommendKeyword, secondMaxRecommendKeyword: String
+    let reviewText: String
+    let firstMaxRecommendKeyword: String
+    let secondMaxRecommendKeyword: String?
 }
 
 extension HomeBestReviewResponseDTO {

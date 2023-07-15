@@ -25,12 +25,14 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     private let bakeryReview = UILabel()
     private let regionStackView = RegionStackView()
     private lazy var bookMarkButton = BookmarkButton(configuration: .plain())
-    
+        
     // MARK: - Life Cycle
     
     override func prepareForReuse() {
         super.prepareForReuse()
         markStackView.getMarkStatus(false, false, false)
+        markStackView.getIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
+        bookMarkButton.getCount(0)
     }
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -61,12 +63,22 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
             $0.contentMode = .scaleAspectFill
             $0.backgroundColor = .gbbPoint1
         }
+        markStackView.do {
+            $0.getIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
+        }
+        
+        bakeryTitle.do {
+            $0.basic(font: .bodyB2!, color: .gbbGray700!)
+        }
+        
+        bakeryReview.do {
+            $0.basic(font: .pretendardBold(13), color: .gbbGray700!)
+        }
         
         [bakeryTitle, bakeryReview].forEach {
             $0.do {
                 $0.numberOfLines = 1
                 $0.textAlignment = .left
-                $0.basic(font: .pretendardBold(14), color: .gbbGray700!)
             }
         }
     }
@@ -74,11 +86,7 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     private func setLayout() {
         contentView.addSubviews(bakeryImage, bookMarkButton, bakeryTitle, bakeryReview, regionStackView)
         bakeryImage.addSubview(markStackView)
-        
-        let availableHeight = contentView.bounds.height
-        let buttonHeight: CGFloat = 60
-        let buttonTopOffset = (availableHeight - buttonHeight) / 2
-        
+
         bakeryImage.snp.makeConstraints {
             $0.top.directionalHorizontalEdges.equalToSuperview()
             $0.height.equalTo(118)
@@ -91,26 +99,25 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
         
         bookMarkButton.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(16)
-            $0.top.equalTo(bakeryReview.snp.bottom).offset(buttonTopOffset)
+            $0.top.equalTo(bakeryImage.snp.bottom).offset(29)
             $0.size.equalTo(CGSize(width: 34, height: 60))
         }
         
         bakeryTitle.snp.makeConstraints {
-            $0.top.equalTo(bakeryImage.snp.bottom).offset(18)
-            $0.leading.equalToSuperview().offset(13)
+            $0.top.equalTo(bakeryImage.snp.bottom).offset(15)
+            $0.leading.equalToSuperview().offset(16)
             $0.trailing.equalTo(bookMarkButton.snp.leading).offset(-14)
         }
         
         bakeryReview.snp.makeConstraints {
-            $0.top.equalTo(bakeryTitle.snp.bottom).offset(10)
+            $0.top.equalTo(bakeryTitle.snp.bottom).offset(6)
             $0.leading.equalTo(bakeryTitle.snp.leading)
-            $0.trailing.equalTo(bookMarkButton.snp.leading).offset(-20)
         }
         
         regionStackView.snp.makeConstraints {
-            $0.top.equalTo(bakeryReview.snp.bottom).offset(10)
+            $0.top.equalTo(bakeryReview.snp.bottom).offset(14)
             $0.leading.equalTo(bakeryTitle.snp.leading)
-            $0.bottom.equalToSuperview().offset(-19)
+            $0.bottom.equalToSuperview().inset(16)
         }
     }
     
@@ -132,6 +139,6 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
         if data.secondNearStation == "" {
             regionStackView.removeSecondRegion()
         }
-        regionStackView.getRegionName(data.firstNearStation, data.secondNearStation)
+        regionStackView.getRegionName(data.firstNearStation, data.secondNearStation ?? "")
     }
 }

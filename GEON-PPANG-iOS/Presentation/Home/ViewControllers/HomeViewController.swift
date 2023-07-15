@@ -42,7 +42,7 @@ final class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setRegister()
+        setRegistration()
         setDataSource()
         setReloadData()
     }
@@ -56,6 +56,9 @@ final class HomeViewController: BaseViewController {
             $0.setTitle("정둥어")
             $0.gotoNextView = {
                 Utils.push(self.navigationController, SearchViewController())
+            }
+            $0.addActionToFilterButton {
+                Utils.push(self.navigationController, FilterPurposeViewController(maxSteps: 3, username: "찐빵대빵"))
             }
         }
         
@@ -85,7 +88,7 @@ final class HomeViewController: BaseViewController {
     
     // MARK: - Setting
     
-    private func setRegister() {
+    private func setRegistration() {
         collectionView.register(cell: HomeBakeryCollectionViewCell.self)
         collectionView.register(cell: HomeReviewCollectionViewCell.self)
         collectionView.register(cell: HomeBottomCollectionViewCell.self)
@@ -132,9 +135,7 @@ final class HomeViewController: BaseViewController {
         
         dataSource?.supplementaryViewProvider = { (collectionView, _, indexPath) in
             let header: HomeHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
-            Sections.allCases.forEach {
-                header.setctionHeaderTitle($0.title)
-            }
+
             switch indexPath.section {
             case 0:
                 header.setctionHeaderTitle(Sections.bakery.title)
