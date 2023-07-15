@@ -75,4 +75,3 @@ enum FilterIngredientType: String, CaseIterable {
     case isIngredientOpen = "원재료 공개"
     case isNotOpen = "비공개"
 }
-

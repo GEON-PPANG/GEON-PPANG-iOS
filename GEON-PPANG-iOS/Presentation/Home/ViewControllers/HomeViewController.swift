@@ -76,7 +76,7 @@ final class HomeViewController: BaseViewController {
         topView.snp.makeConstraints {
             $0.top.equalTo(safeArea)
             $0.directionalHorizontalEdges.equalTo(safeArea)
-            $0.height.equalTo(convertByHeightRatio(200))
+            $0.height.equalTo(200)
         }
         
         collectionView.snp.makeConstraints {
@@ -135,7 +135,7 @@ final class HomeViewController: BaseViewController {
         
         dataSource?.supplementaryViewProvider = { (collectionView, _, indexPath) in
             let header: HomeHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
-
+            
             switch indexPath.section {
             case 0:
                 header.setctionHeaderTitle(Sections.bakery.title)

@@ -1,8 +1,8 @@
 //
-//  SearchViewController.swift
+//  MySavedBakeryViewController.swift
 //  GEON-PPANG-iOS
 //
-//  Created by JEONGEUN KIM on 2023/07/09.
+//  Created by JEONGEUN KIM on 2023/07/12.
 //
 
 import UIKit
@@ -10,25 +10,24 @@ import UIKit
 import SnapKit
 import Then
 
-final class SearchViewController: BaseViewController {
+final class MySavedBakeryViewController: BaseViewController {
     
     // MARK: - Property
     
     enum Section {
-        case initial, main, empty
+        case main, empty
     }
-    private lazy var safeArea = self.view.safeAreaLayoutGuide
-    typealias Item = AnyHashable
-    typealias DataSource = UICollectionViewDiffableDataSource<Section, Item>
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, AnyHashable>
     private var dataSource: DataSource?
-    private var searchList: [SearchResponseDTO] = SearchResponseDTO.item
-    private var searchBakeryList: [SearchBakeryList] = SearchBakeryList.searchBakeryItem
-    private var currentSection: [Section] = [.initial]
+    private var savedList: [BakeryListResponseDTO] = BakeryListResponseDTO.item
+    private var currentSection: [Section] = [.empty]
+    
+    private lazy var safeArea = self.view.safeAreaLayoutGuide
     
     // MARK: - UI Property
     
-    private let naviView = SearchNavigationView()
-    private let searchResultView = SearchResultView()
+    private let naviView = CustomNavigationBar()
+    private let lineView = LineView()
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
     
     // MARK: - Life Cycle
@@ -43,96 +42,80 @@ final class SearchViewController: BaseViewController {
     
     // MARK: - Setting
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        self.view.endEditing(true)
-    }
-    
     override func setLayout() {
-        view.addSubviews(naviView, searchResultView, collectionView)
+        
+        view.addSubviews(naviView, collectionView)
+        naviView.addSubview(lineView)
         
         naviView.snp.makeConstraints {
-            $0.top.equalTo(safeArea)
+            $0.top.equalToSuperview()
             $0.directionalHorizontalEdges.equalTo(safeArea)
-            $0.height.equalTo(convertByHeightRatio(68))
         }
         
-        searchResultView.snp.makeConstraints {
+        lineView.snp.makeConstraints {
+            $0.directionalHorizontalEdges.equalToSuperview()
+            $0.height.equalTo(1)
+            $0.bottom.equalToSuperview()
+        }
+        collectionView.snp.makeConstraints {
             $0.top.equalTo(naviView.snp.bottom)
             $0.directionalHorizontalEdges.equalTo(safeArea)
-            $0.height.equalTo(convertByHeightRatio(55))
-        }
-        
-        collectionView.snp.makeConstraints {
-            $0.top.equalTo(searchResultView.snp.bottom)
-            $0.directionalHorizontalEdges.equalTo(safeArea)
             $0.bottom.equalToSuperview()
+            
         }
     }
     
     override func setUI() {
         naviView.do {
-            $0.dismissClosure = {
+            $0.addBackButtonAction(UIAction { _ in
+                dump(self.navigationController)
                 self.navigationController?.popViewController(animated: true)
-            }
-        }
-        searchResultView.do {
-            $0.updateUI(count: 3)
-            $0.isHidden = true
-        }
-        collectionView.do {
-            $0.backgroundColor = .clear
-            $0.isScrollEnabled = false
+            })
+            $0.configureLeftTitle(to: I18N.MySavedBakery.naviTitle)
         }
     }
     
     private func setRegistration() {
-        collectionView.register(cell: EmptyCollectionViewCell.self)
         collectionView.register(cell: BakeryListCollectionViewCell.self)
+        collectionView.register(cell: EmptyCollectionViewCell.self)
     }
     
     private func setDataSource() {
         dataSource = DataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, item in
             let section = self.dataSource?.snapshot().sectionIdentifiers[indexPath.section]
             switch section {
-            case .initial:
-                let cell: EmptyCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-                cell.getViewType(.initialize)
-                return cell
-            case .empty:
-                let cell: EmptyCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-                cell.getViewType(.noSearch)
-                return cell
-            case .main, .none:
+            case .main:
                 let cell: BakeryListCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
                 cell.getViewType(.defaultType)
-                if let searchBakeryItem = item as? SearchBakeryList {
-                    cell.updateUI(data: searchBakeryItem, index: indexPath.item)
+                if let bakeryListItem = item as? BakeryListResponseDTO {
+                    cell.updateUI(data: bakeryListItem, index: indexPath.item)
                 }
+                return cell
+            case .empty, .none:
+                let cell: EmptyCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+                cell.getViewType(.noBookmark)
                 return cell
             }
         })
     }
     
     private func setReloadData() {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, AnyHashable>()
         defer { dataSource?.apply(snapshot, animatingDifferences: false)}
-        snapshot.appendSections([.initial])
-        snapshot.appendItems([0])
+        snapshot.appendSections([.main])
+        snapshot.appendItems(savedList)
     }
     
-    private func updateDataSource(data: SearchResponseDTO) {
+    private func updateDataSource(data: BakeryListResponseDTO) {
         guard var snapshot = dataSource?.snapshot() else { return }
-        if data.resultCount == 0 {
-            searchResultView.isHidden = true
+        if data.bookmarkCount == 0 {
             snapshot.deleteSections(currentSection)
             snapshot.appendItems([0], toSection: .empty)
             currentSection = [.empty]
             dataSource?.apply(snapshot)
         } else {
-            searchResultView.isHidden = false
             snapshot.deleteSections(currentSection)
-            snapshot.appendItems(searchBakeryList, toSection: .main)
+            snapshot.appendItems(savedList, toSection: .main)
             currentSection = [.main]
             dataSource?.apply(snapshot)
         }
@@ -150,10 +133,11 @@ final class SearchViewController: BaseViewController {
                 
                 let layoutSection = NSCollectionLayoutSection.list(using: config, layoutEnvironment: layoutEnvirnment)
                 return layoutSection
-            case .initial, .empty, .none:
+            case .empty, .none:
                 return self.normalSection()
             }
         }
+        
         return layout
     }
     
@@ -171,7 +155,7 @@ final class SearchViewController: BaseViewController {
             count: 1
         )
         let section = NSCollectionLayoutSection(group: group)
+        
         return section
     }
-    
 }

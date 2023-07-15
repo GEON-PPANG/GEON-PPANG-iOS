@@ -71,6 +71,11 @@ struct I18N {
         static let appVersionNum = "v 0.0.1"
     }
     
+    /// MySavedBakery
+    struct MySavedBakery {
+        static let naviTitle = "저장 목록"
+    }
+    
     /// MyReviews
     struct MyReviews {
         static let naviTitle = "내가 쓴 리뷰"
