@@ -134,6 +134,9 @@ extension MyPageViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         let indexPath = IndexPath(item: 0, section: section)
         let header: MyPageCollectionViewHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
+        header.addNextButtonAction {
+//            Utils.push(self.navigationController, )
+        }
         switch section {
         case 0: return header.systemLayoutSizeFitting(.init(width: collectionView.frame.width,
                                                             height: UIView.layoutFittingExpandedSize.height),

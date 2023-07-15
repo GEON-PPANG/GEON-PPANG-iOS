@@ -193,6 +193,14 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
         filterCollectionView.dataSource = self
     }
     
+    // MARK: - Custom Method
+    
+    func addNextButtonAction(_ action: @escaping () -> Void) {
+        rightChevronButton.addAction(UIAction { _ in
+            action()
+        }, for: .touchUpInside)
+    }
+    
 }
 
 // MARK: - UICollectionViewDelegate extension
