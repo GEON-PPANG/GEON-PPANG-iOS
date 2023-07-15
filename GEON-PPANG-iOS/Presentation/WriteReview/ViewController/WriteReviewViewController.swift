@@ -16,6 +16,9 @@ final class WriteReviewViewController: BaseViewController {
     
     private var likeCollectionViewHeightConstraint: NSLayoutConstraint!
     
+    private let keywordList = KeywordList.Keyword.allCases.map { $0.rawValue }
+    private var writeReviewData: WriteReviewDTO = .init(bakeryID: 1, isLike: false, keywordList: [], reviewText: "")
+    
     // MARK: - UI Property
     
     // TODO: bakeryImage 추가
@@ -225,7 +228,13 @@ final class WriteReviewViewController: BaseViewController {
         
         nextButton.do {
             $0.backgroundColor = .gbbPoint1
+            $0.isUserInteractionEnabled = false
             $0.makeCornerRound(radius: 12)
+            $0.getButtonTitle(.write)
+            $0.getButtonUI(.gbbGray200!)
+            $0.addAction(UIAction { [weak self] _ in
+                self?.nextButtonTapped()
+            }, for: .touchUpInside)
         }
     }
     
@@ -244,6 +253,13 @@ final class WriteReviewViewController: BaseViewController {
     private func setKeyboardNotificationCenterOnScrollView() {
         NotificationCenter.default.addObserver(self, selector: #selector(moveUpAboutKeyboardOnScrollView), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(moveDownAboutKeyboardOnScrollView), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    // MARK: - Action Helper
+    
+    private func nextButtonTapped() {
+        writeReviewData.reviewText = reviewDetailTextView.detailTextView.text
+        dump(writeReviewData)
     }
     
     // MARK: - Custom Method
@@ -311,17 +327,25 @@ extension WriteReviewViewController: UICollectionViewDelegate {
             else { return }
             
             optionsCollectionView.toggleIsEnabled(to: isLikeSelected)
+            if !isLikeSelected {
+                writeReviewData.keywordList.removeAll()
+            }
+            
             configureCollectionViewHeader(to: isLikeSelected ? .black : .gbbGray300!)
             
             reviewDetailTextView.isLike = isLikeSelected
             reviewDetailTextView.isUserInteractionEnabled = !isLikeSelected
             reviewDetailTextView.configureTextView(to: isLikeSelected ? .deactivated : .activated)
             
+            writeReviewData.isLike = isLikeSelected
+            
         case optionsCollectionView:
             let hasSelection = collectionView.indexPathsForSelectedItems != nil
             reviewDetailTextView.isUserInteractionEnabled = hasSelection
             reviewDetailTextView.configureTextView(to: hasSelection ? .activated : .deactivated)
             reviewDetailTextView.checkTextCount()
+            
+            writeReviewData.keywordList.append(keywordList[indexPath.item])
             
         default:
             return
@@ -330,6 +354,11 @@ extension WriteReviewViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         guard collectionView == optionsCollectionView else { return }
+        
+        if let keywordIndex = writeReviewData.keywordList.firstIndex(of: keywordList[indexPath.item]) {
+            writeReviewData.keywordList.remove(at: keywordIndex)
+        }
+        
         if collectionView.indexPathsForSelectedItems == [] {
             reviewDetailTextView.isUserInteractionEnabled = false
             reviewDetailTextView.configureTextView(to: .deactivated)
@@ -358,7 +387,6 @@ extension WriteReviewViewController: UICollectionViewDataSource {
             cell.configureCell(to: .deselected)
             cell.configureCellText(to: indexPath.item == 0 ? I18N.WriteReview.like : I18N.WriteReview.dislike)
         case optionsCollectionView:
-            let keywordList = KeywordList.Keyword.allCases.map { $0.rawValue }
             cell.configureCell(to: .disabled)
             cell.configureCellText(to: keywordList[indexPath.item])
         default:
@@ -381,8 +409,14 @@ extension WriteReviewViewController: UITextViewDelegate {
         let textCount = textView.text.count
         if textCount < 10 && 0 < textCount {
             reviewDetailTextView.configureTextView(to: .error)
+            
+            nextButton.getButtonUI(.gbbGray200!)
+            nextButton.isUserInteractionEnabled = false
         } else {
             reviewDetailTextView.configureTextView(to: .activated)
+            
+            nextButton.getButtonUI(.gbbGray700!)
+            nextButton.isUserInteractionEnabled = true
         }
         reviewDetailTextView.updateTextLimitLabel(to: textCount)
     }
