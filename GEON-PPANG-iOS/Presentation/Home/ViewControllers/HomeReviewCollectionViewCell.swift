@@ -143,8 +143,8 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         if !self.reviewList[index].firstMaxRecommendKeyword.isEmpty {
             self.keywords.append(data.firstMaxRecommendKeyword)
         }
-        if !self.reviewList[index].secondMaxRecommendKeyword.isEmpty {
-            self.keywords.append(data.secondMaxRecommendKeyword)
+        if self.reviewList[index].secondMaxRecommendKeyword != nil {
+            self.keywords.append(data.secondMaxRecommendKeyword ?? "" )
         }
     }
 }
