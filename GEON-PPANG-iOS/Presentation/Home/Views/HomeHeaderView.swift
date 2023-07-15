@@ -39,7 +39,7 @@ final class HomeHeaderView: UICollectionReusableView {
     }
     
     func setctionHeaderTitle(_ section: String) {
-        var attributedString = NSMutableAttributedString (
+        let attributedString = NSMutableAttributedString(
             string: section,
             attributes: [
                 .font: UIFont.pretendardBold(20),
