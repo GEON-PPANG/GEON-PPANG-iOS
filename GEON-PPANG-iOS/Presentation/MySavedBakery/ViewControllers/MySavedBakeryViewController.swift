@@ -59,7 +59,8 @@ final class MySavedBakeryViewController: BaseViewController {
     override func setUI() {
         naviView.do {
             $0.addBackButtonAction(UIAction { _ in
-                self.navigationController?.popToViewController(self, animated: true)
+                dump(self.navigationController)
+                self.navigationController?.popViewController(animated: true)
             })
             $0.configureLeftTitle(to: I18N.MySavedBakery.naviTitle)
         }
