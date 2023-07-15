@@ -27,6 +27,7 @@ final class MySavedBakeryViewController: BaseViewController {
     // MARK: - UI Property
     
     private let naviView = CustomNavigationBar()
+    private let lineView = LineView()
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
     
     // MARK: - Life Cycle
@@ -43,12 +44,18 @@ final class MySavedBakeryViewController: BaseViewController {
     
     override func setLayout() {
         view.addSubviews(naviView, collectionView)
+        naviView.addSubview(lineView)
         
         naviView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.directionalHorizontalEdges.equalTo(safeArea)
         }
         
+        lineView.snp.makeConstraints {
+            $0.directionalHorizontalEdges.equalToSuperview()
+            $0.height.equalTo(1)
+            $0.bottom.equalToSuperview()
+        }
         collectionView.snp.makeConstraints {
             $0.top.equalTo(naviView.snp.bottom)
             $0.directionalHorizontalEdges.equalTo(safeArea)
@@ -94,8 +101,8 @@ final class MySavedBakeryViewController: BaseViewController {
     private func setReloadData() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, AnyHashable>()
         defer { dataSource?.apply(snapshot, animatingDifferences: false)}
-        snapshot.appendSections([.empty])
-        snapshot.appendItems([0])
+        snapshot.appendSections([.main])
+        snapshot.appendItems(savedList)
     }
     
     private func updateDataSource(data: BakeryListResponseDTO) {
