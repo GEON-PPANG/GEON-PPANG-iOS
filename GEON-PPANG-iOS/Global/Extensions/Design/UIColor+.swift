@@ -25,7 +25,7 @@ extension UIColor {
     static let gbbBackground1 = UIColor(named: "Background_1")
     static let gbbBackground2 = UIColor(named: "Background_2")
     
-    static let gbbGray50 = UIColor(named: "gray-50")
+    static let gbbWhite = UIColor(named: "white")
     static let gbbGray100 = UIColor(named: "gray-100")
     static let gbbGray200 = UIColor(named: "gray-200")
     static let gbbGray300 = UIColor(named: "gray-300")
@@ -33,5 +33,5 @@ extension UIColor {
     static let gbbGray500 = UIColor(named: "gray-500")
     static let gbbGray600 = UIColor(named: "gray-600")
     static let gbbGray700 = UIColor(named: "gray-700")
-    static let gbbGray800 = UIColor(named: "gray-800")
+    static let gbbBlack = UIColor(named: "black")
 }

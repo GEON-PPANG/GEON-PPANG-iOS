@@ -42,8 +42,7 @@ final class HomeTopView: UIView {
         titleLabel.do {
             $0.numberOfLines = 2
             $0.textAlignment = .left
-            $0.font = .pretendardBold(26)
-            $0.basic(font: .pretendardBold(26),
+            $0.basic(font: .title1!,
                      color: .gbbGray700!)
         }
         
