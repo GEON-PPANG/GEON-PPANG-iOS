@@ -364,20 +364,20 @@ extension WriteReviewViewController: UICollectionViewDataSource {
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header: OptionsCollectionViewHeader  = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
-        
-        switch collectionView {
-        case likeCollectionView:
-            header.configureTitle(to: I18N.WriteReview.likeOptionTitle)
-            header.isEnabled.toggle()
-        case optionsCollectionView:
-            header.configureTitle(to: I18N.WriteReview.optionTitle)
-        default:
-            return UICollectionReusableView()
-        }
-        return header
-    }
+//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+//        let header: OptionsCollectionViewHeader  = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
+//        
+//        switch collectionView {
+//        case likeCollectionView:
+//            header.configureTitle(to: I18N.WriteReview.likeOptionTitle)
+//            header.isEnabled.toggle()
+//        case optionsCollectionView:
+//            header.configureTitle(to: I18N.WriteReview.optionTitle)
+//        default:
+//            return UICollectionReusableView()
+//        }
+//        return header
+//    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 18, left: 0, bottom: 0, right: 0)
