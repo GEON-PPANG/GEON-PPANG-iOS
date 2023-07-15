@@ -18,6 +18,12 @@ struct I18N {
             """
     }
     
+    /// Onboarding
+    struct Onboarding {
+        static let latelySigninText = "최근에 카카오톡으로 로그인 했습니다."
+        static let latelySigninSNS = "카카오톡"
+    }
+    
     /// Bottomsheet
     struct Bottomsheet {
         static let diableNickname = "해당 닉네임은 사용중이에요"
@@ -39,5 +45,46 @@ struct I18N {
             명예훼손, 욕설, 타인 비방글 등)은 안내 없이 삭제되며, 관련법률에 따라
             제재를 받을 수 있습니다. 또한, 건빵은 이에 대한 책임을 지지 않습니다.
         """
+    }
+    
+    /// BakeryList
+    struct BakeryList {
+        static let bakeryTitle = "건빵집 리스트"
+        static let glutenfree = "글루텐프리"
+        static let nutfree = "넛프리"
+        static let vegan = "비건빵"
+        static let noSugar = "저당, 무설탕"
+        static let defaultFilter = "기본순"
+    }
+    
+    /// Filter Selection
+    struct Filter {
+        static let purposeTitle = "반가워요 님 :)\n건빵을 찾은 이유를 알려주세요!"
+        static let breadTypeTitle = "어떤 빵을 원하시나요?"
+        static let breadTypeSubtitle = "중복선택이 가능해요!"
+        static let ingredientTitle = "어떤 성분을 원하시나요?"
+        static let ingredientSubtitle = "중복선택이 가능해요!"
+    }
+    
+    /// MyPage
+    struct MyPage {
+        static let title = "마이페이지"
+        static let bookmark = "저장목록"
+        static let myReviews = "내가 쓴 리뷰"
+        static let terms = "이용약관"
+        static let commonQuestions = "자주 묻는 질문"
+        static let askQuestions = "문의하기"
+        static let appVersion = "앱버전"
+        static let appVersionNum = "v 0.0.1"
+    }
+    
+    /// MySavedBakery
+    struct MySavedBakery {
+        static let naviTitle = "저장 목록"
+    }
+    
+    /// MyReviews
+    struct MyReviews {
+        static let naviTitle = "내가 쓴 리뷰"
     }
 }

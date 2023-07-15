@@ -16,6 +16,8 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
     
     var updateData: ((Bool, Int) -> Void)?
     var index = 0
+    private var keywords: [String] = []
+    private var reviewList: [HomeBestReviewResponseDTO] = HomeBestReviewResponseDTO.item
     
     // MARK: - UI Property
     
@@ -24,6 +26,7 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
     private let bakeryTitle = UILabel()
     private let bakeryReview = UILabel()
     private lazy var bookMarkButton = BookmarkButton(configuration: .plain())
+    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: OptionsCollectionViewFlowLayout())
     
     // MARK: - Life Cycle
     
@@ -32,8 +35,10 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         
         setLayout()
         setUI()
+        
+        setRegister()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -58,24 +63,40 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         }
         
         reviewTitle.do {
-            $0.basic(font: .pretendardBold(14), color: .white)
+            $0.basic(font: .bodyB2!, color: .white)
             $0.numberOfLines = 2
         }
         
+        collectionView.do {
+            $0.isScrollEnabled = false
+            $0.backgroundColor = .clear
+            $0.delegate = self
+            $0.dataSource = self
+        }
+        
+        bakeryTitle.do {
+            $0.basic(font: .bodyB2!, color: .gbbGray700!)
+        }
+        
+        bakeryReview.do {
+            $0.basic(font: .pretendardBold(13), color: .gbbGray700!)
+        }
+        
         [bakeryTitle, bakeryReview].forEach {
-            $0.numberOfLines = 1
-            $0.textAlignment = .left
-            $0.basic(font: .pretendardBold(14), color: .gbbGray700!)
+            $0.do {
+                $0.numberOfLines = 1
+                $0.textAlignment = .left
+            }
         }
     }
     
     private func setLayout() {
-        contentView.addSubviews(bakeryImage, bookMarkButton, bakeryReview, bakeryTitle)
+        contentView.addSubviews(bakeryImage, bookMarkButton, collectionView, bakeryTitle, bakeryReview)
         bakeryImage.addSubview(reviewTitle)
         
         bakeryImage.snp.makeConstraints {
             $0.top.directionalHorizontalEdges.equalToSuperview()
-            $0.height.equalTo(CGFloat().convertByHeightRatio(170))
+            $0.height.equalTo(130)
         }
         
         bookMarkButton.snp.makeConstraints {
@@ -85,17 +106,24 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         }
         
         reviewTitle.snp.makeConstraints {
+            $0.bottom.equalTo(bakeryImage.snp.bottom).inset(13)
             $0.directionalHorizontalEdges.equalToSuperview().inset(15)
-            $0.bottom.equalToSuperview().offset(-13)
         }
-        bakeryReview.snp.makeConstraints {
-            $0.bottom.equalToSuperview().offset(-18)
-            $0.leading.equalToSuperview().offset(15)
+        
+        collectionView.snp.makeConstraints {
+            $0.top.equalTo(bakeryImage.snp.bottom).offset(16)
+            $0.directionalHorizontalEdges.equalToSuperview().inset(16)
+            $0.height.equalTo(25)
         }
         
         bakeryTitle.snp.makeConstraints {
-            $0.bottom.equalTo(bakeryReview.snp.top).offset(-4)
-            $0.leading.equalToSuperview().offset(15)
+            $0.top.equalTo(collectionView.snp.bottom).offset(6)
+            $0.leading.equalToSuperview().offset(16)
+        }
+        
+        bakeryReview.snp.makeConstraints {
+            $0.top.equalTo(bakeryTitle.snp.bottom).offset(6)
+            $0.bottom.leading.equalToSuperview().inset(16)
         }
         
     }
@@ -110,7 +138,45 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
             guard let self = self  else { return }
             self.updateData?(status, self.index)
         }
-        bookMarkButton.isSelected = data.isBooked ? true: false
+        bookMarkButton.isSelected = data.isBooked
+        
+        if !self.reviewList[index].firstMaxRecommendKeyword.isEmpty {
+            self.keywords.append(data.firstMaxRecommendKeyword)
+        }
+        if self.reviewList[index].secondMaxRecommendKeyword != nil {
+            self.keywords.append(data.secondMaxRecommendKeyword ?? "" )
+        }
+    }
+}
 
+// MARK: - CollectionView Register
+
+extension HomeReviewCollectionViewCell {
+    private func setRegister() {
+        collectionView.register(cell: DescriptionCollectionViewCell.self)
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+
+extension HomeReviewCollectionViewCell: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return keywords.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: DescriptionCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+        cell.configureTagTitle(self.keywords[indexPath.item])
+        return cell
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension HomeReviewCollectionViewCell: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let keywordsTitle = self.keywords[indexPath.item]
+        let itemSize = keywordsTitle.size(withAttributes: [NSAttributedString.Key.font: UIFont.pretendardMedium(13)])
+        return CGSize(width: itemSize.width + 12, height: itemSize.height + 8)
     }
 }

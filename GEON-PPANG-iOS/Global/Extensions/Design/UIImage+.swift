@@ -6,7 +6,6 @@
 //
 
 import UIKit
-
 extension UIImage {
     
     // 따로 픽셀이 적혀있지 않은 컴포넌트는 24px임.
@@ -44,10 +43,12 @@ extension UIImage {
     static let deleteIcon = UIImage(named: "ic_delete")!.withRenderingMode(.alwaysOriginal)
     static let dotdotdotIcon = UIImage(named: "ic_dotdotdot")!.withRenderingMode(.alwaysOriginal)
     static let hideIcon = UIImage(named: "ic_hide")!.withRenderingMode(.alwaysOriginal)
+    static let launchscreenIcon = UIImage(named: "ic_launchscreen")!.withRenderingMode(.alwaysOriginal)
     static let linkIcon = UIImage(named: "ic_link")!.withRenderingMode(.alwaysOriginal)
-    static let listIcon = UIImage(named: "ic_link")!.withRenderingMode(.alwaysOriginal) /// 건빵집 리스트 옆에 얘 써야 됨, 탭바의 storelist 아님!
+    static let listIcon = UIImage(named: "ic_list")!.withRenderingMode(.alwaysOriginal) // 건빵집 리스트 옆에 얘 써야 됨, 탭바의 storelist 아님!
     static let logoIcon16px = UIImage(named: "ic_logo_16px")!.withRenderingMode(.alwaysOriginal)
     static let noticeIcon18px = UIImage(named: "ic_notice_18px")!.withRenderingMode(.alwaysOriginal)
+    static let profileIcon = UIImage(named: "ic_profile")!.withRenderingMode(.alwaysOriginal)
     static let reviewIcon = UIImage(named: "ic_review")!.withRenderingMode(.alwaysOriginal)
     static let searchIcon400 = UIImage(named: "ic_search_400")!.withRenderingMode(.alwaysOriginal) /// gray400
     static let searchIcon600 = UIImage(named: "ic_search_600")!.withRenderingMode(.alwaysOriginal) /// gray600

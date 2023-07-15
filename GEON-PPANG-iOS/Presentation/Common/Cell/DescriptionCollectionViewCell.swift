@@ -69,7 +69,7 @@ final class DescriptionCollectionViewCell: UICollectionViewCell {
     private func setLayout() {
         addSubview(descriptionLabel)
         descriptionLabel.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(8)
+            $0.horizontalEdges.equalToSuperview().inset(6)
             $0.verticalEdges.equalToSuperview().inset(4)
         }
     }
