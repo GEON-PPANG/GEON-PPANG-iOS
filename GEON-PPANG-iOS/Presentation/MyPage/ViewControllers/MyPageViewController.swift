@@ -12,10 +12,6 @@ import Then
 
 final class MyPageViewController: BaseViewController {
     
-    
-    // MARK: - Property
-    
-    
     // MARK: - UI Property
     
     private let flowLayout = UICollectionViewFlowLayout()
