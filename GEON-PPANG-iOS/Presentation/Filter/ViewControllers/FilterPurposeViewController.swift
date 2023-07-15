@@ -126,7 +126,7 @@ final class FilterPurposeViewController: BaseViewController {
     
     private func setNextButtonAction() {
         let action = UIAction { [weak self] _ in
-            Utils.push(self?.navigationController, FilterBreadTypeViewController(maxSteps: 6))
+            Utils.push(self?.navigationController, FilterBreadTypeViewController(maxSteps: self?.maxSteps ?? 0))
             dump(FilterRequestDTO.sharedData)
         }
         nextButton.addAction(action, for: .touchUpInside)

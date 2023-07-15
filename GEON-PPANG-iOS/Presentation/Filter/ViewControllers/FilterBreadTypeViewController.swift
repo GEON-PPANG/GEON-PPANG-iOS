@@ -133,8 +133,7 @@ final class FilterBreadTypeViewController: BaseViewController {
     
     private func setNextButtonAction() {
         let action = UIAction { [weak self] _ in
-            Utils.push(self?.navigationController, FilterIngredientViewController(maxSteps: 6))
-            dump(FilterRequestDTO.sharedData)
+            Utils.push(self?.navigationController, FilterIngredientViewController(maxSteps: self?.maxSteps ?? 0))
         }
         nextButton.addAction(action, for: .touchUpInside)
     }

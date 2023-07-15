@@ -57,6 +57,9 @@ final class HomeViewController: BaseViewController {
             $0.gotoNextView = {
                 Utils.push(self.navigationController, SearchViewController())
             }
+            $0.addActionToFilterButton {
+                Utils.push(self.navigationController, FilterPurposeViewController(maxSteps: 3, username: "찐빵대빵"))
+            }
         }
         
         collectionView.do {
