@@ -100,6 +100,9 @@ extension MyPageViewController: UICollectionViewDataSource {
         switch indexPath.section {
         case 0:
             let header: MyPageCollectionViewHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
+            header.addNextButtonAction {
+                Utils.push(self.navigationController, FilterPurposeViewController(maxSteps: 3, username: "찐빵대빵"))
+            }
             return header
         case 1:
             let footer: MyPageCollectionViewFooter = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, indexPath: indexPath)
@@ -134,9 +137,6 @@ extension MyPageViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         let indexPath = IndexPath(item: 0, section: section)
         let header: MyPageCollectionViewHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
-        header.addNextButtonAction {
-//            Utils.push(self.navigationController, )
-        }
         switch section {
         case 0: return header.systemLayoutSizeFitting(.init(width: collectionView.frame.width,
                                                             height: UIView.layoutFittingExpandedSize.height),
