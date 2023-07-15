@@ -19,7 +19,6 @@ final class HomeHeaderView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        setUI()
         setLayout()
         
     }
@@ -29,13 +28,6 @@ final class HomeHeaderView: UICollectionReusableView {
     }
     
     // MAKR: - Setting
-    
-    private func setUI() {
-        headerLabel.do {
-            $0.basic(font: .pretendardBold(20), color: .gbbGray700!)
-            
-        }
-    }
     
     private func setLayout() {
         addSubview(headerLabel)
@@ -47,6 +39,22 @@ final class HomeHeaderView: UICollectionReusableView {
     }
     
     func setctionHeaderTitle(_ section: String) {
-        headerLabel.text = section  
+        let attributedString = NSMutableAttributedString(
+            string: section,
+            attributes: [
+                .font: UIFont.pretendardBold(20),
+                .foregroundColor: UIColor.gbbGray700!
+            ]
+        )
+        
+        attributedString.addAttributes(
+            [.foregroundColor: UIColor.gbbPoint1!],
+            range: NSRange(
+                location: section.count - 8,
+                length: 8
+            )
+        )
+        headerLabel.attributedText = attributedString
+        
     }
 }
