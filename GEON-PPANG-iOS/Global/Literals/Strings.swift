@@ -75,4 +75,9 @@ struct I18N {
     struct MySavedBakery {
         static let naviTitle = "저장 목록"
     }
+    
+    /// MyReviews
+    struct MyReviews {
+        static let naviTitle = "내가 쓴 리뷰"
+    }
 }

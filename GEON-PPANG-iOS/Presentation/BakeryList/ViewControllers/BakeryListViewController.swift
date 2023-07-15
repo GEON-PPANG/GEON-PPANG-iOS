@@ -62,7 +62,8 @@ final class BakeryListViewController: BaseViewController {
         
         bakeryListCollectionView.snp.makeConstraints {
             $0.top.equalTo(bakeryFilterView.snp.bottom)
-            $0.directionalHorizontalEdges.equalTo(safeArea)
+            $0.leading.equalTo(safeArea).offset(-24)
+            $0.trailing.equalTo(safeArea)
             $0.bottom.equalToSuperview()
         }
     }
