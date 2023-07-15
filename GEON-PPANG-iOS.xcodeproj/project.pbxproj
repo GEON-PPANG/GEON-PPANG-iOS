@@ -70,6 +70,7 @@
 		09FD47C82A5DC991002020BD /* SearchNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47C72A5DC991002020BD /* SearchNavigationView.swift */; };
 		09FD47CA2A5DD38D002020BD /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47C92A5DD38D002020BD /* SearchResultView.swift */; };
 		09FD47D22A5DF892002020BD /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47D12A5DF892002020BD /* EmptyCollectionViewCell.swift */; };
+		09FD47D92A5E5148002020BD /* MySavedBakeryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47D82A5E5148002020BD /* MySavedBakeryViewController.swift */; };
 		3E16E4F52A57CF3800B813D0 /* WriteReviewDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16E4F42A57CF3800B813D0 /* WriteReviewDTO.swift */; };
 		3E16E4FA2A57D1F400B813D0 /* RecommendationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16E4F92A57D1F400B813D0 /* RecommendationModel.swift */; };
 		3E16E4FC2A57D24900B813D0 /* LikeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16E4FB2A57D24900B813D0 /* LikeModel.swift */; };
@@ -177,6 +178,7 @@
 		3E452B662A60E68000EA456D /* MyPageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageDTO.swift; sourceTree = "<group>"; };
 		3E452B682A60FF7900EA456D /* MyPageCollectionViewFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCollectionViewFooter.swift; sourceTree = "<group>"; };
 		3E452B6A2A614AAD00EA456D /* ImageWithSubtitleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWithSubtitleButton.swift; sourceTree = "<group>"; };
+		09FD47D82A5E5148002020BD /* MySavedBakeryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavedBakeryViewController.swift; sourceTree = "<group>"; };
 		3E2EEF742A5C93010093BCA9 /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
 		3E79B19C2A54523D00D36A26 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		3E79B19F2A5546E700D36A26 /* DescriptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 				3EDC05BA2A5DEB7500EAD950 /* Filter */,
 				DFB587B72A5D580B00704B6C /* Onboarding */,
 				3E79B1A42A566F0700D36A26 /* WriteReview */,
+				09FD47D62A5E511F002020BD /* MySavedBakery */,
 				093214032A5AE3C000875EF6 /* Search */,
 				09B13F492A593C5900C0C723 /* Home */,
 				09B13F4D2A593C7600C0C723 /* BakeryList */,
@@ -640,6 +643,22 @@
 				3E16E4F92A57D1F400B813D0 /* RecommendationModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		09FD47D62A5E511F002020BD /* MySavedBakery */ = {
+			isa = PBXGroup;
+			children = (
+				09FD47D72A5E5132002020BD /* ViewControllers */,
+			);
+			path = MySavedBakery;
+			sourceTree = "<group>";
+		};
+		09FD47D72A5E5132002020BD /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				09FD47D82A5E5148002020BD /* MySavedBakeryViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		3E2EEF722A5C928F0093BCA9 /* View */ = {
@@ -1001,6 +1020,7 @@
 				098716B62A60F52200538D05 /* BakeryTypeProtocol.swift in Sources */,
 				09B13F582A59433500C0C723 /* TabBarItem.swift in Sources */,
 				09B13F502A593CB800C0C723 /* BakeryListViewController.swift in Sources */,
+				09FD47D92A5E5148002020BD /* MySavedBakeryViewController.swift in Sources */,
 				093214022A5AE27800875EF6 /* Utils.swift in Sources */,
 				097682EB2A5D12BD0008F4FB /* BakeryListCollectionViewCell.swift in Sources */,
 				090556452A51E79B00752067 /* UITextField+.swift in Sources */,

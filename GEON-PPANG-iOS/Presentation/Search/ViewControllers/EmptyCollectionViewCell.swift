@@ -12,14 +12,14 @@ import Then
 
 enum EmptyType: String {
     case noReview = "작성된 리뷰가 없어요!"
-    case noBookMark = "저장 목록이 없어요!"
+    case noBookmark = "저장 목록이 없어요!"
     case noSearch = "검색결과가 없어요\n다른 키워드로 검색해보세요!"
     case initialize = "궁금하신 건빵집을\n검색해보세요!"
     
     var icon: UIImage {
         switch self {
         case .noReview: return .noReviewImage
-        case .noBookMark: return .noBookmarkImage
+        case .noBookmark: return .noBookmarkImage
         case .noSearch: return .noSearchResultImage
         case .initialize: return .searchImage
         }
@@ -67,7 +67,7 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
             switch emptyType {
             case .initialize, .noSearch:
                 $0.centerY.equalToSuperview().inset(-33)
-            case .noReview, .noBookMark:
+            case .noReview, .noBookmark:
                 $0.centerY.equalToSuperview().inset(-22)
             }
         }
@@ -91,7 +91,7 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
         emptyLabel.text = type.rawValue
         
         switch type {
-        case .initialize, .noBookMark, .noReview:
+        case .initialize, .noBookmark, .noReview:
             return emptyLabel.basic(text: emptyType.rawValue, font: .title2!, color: .gbbGray300!)
         case .noSearch:
             return emptyLabel.partFontChange(targetString: "다른 키워드로 검색해보세요!", font: .subHead!)

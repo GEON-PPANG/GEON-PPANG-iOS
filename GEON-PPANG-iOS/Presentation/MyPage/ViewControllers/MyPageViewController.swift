@@ -37,6 +37,7 @@ final class MyPageViewController: BaseViewController {
     }
     
     override func setUI() {
+                
         flowLayout.do {
             $0.scrollDirection = .vertical
             $0.sectionInset = .init(top: 8, left: 0, bottom: 0, right: 0)
@@ -102,6 +103,12 @@ extension MyPageViewController: UICollectionViewDataSource {
             let header: MyPageCollectionViewHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
             header.addNextButtonAction {
                 Utils.push(self.navigationController, FilterPurposeViewController(maxSteps: 3, username: "찐빵대빵"))
+            }
+            header.myReviewsTapped = {
+                print("tapped")
+            }
+            header.svedBakeryTapped = {
+                Utils.push(self.navigationController, MySavedBakeryViewController())
             }
             return header
         case 1:
