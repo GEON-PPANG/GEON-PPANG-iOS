@@ -80,6 +80,8 @@
 		3E79B1B22A571E1F00D36A26 /* OptionsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1B12A571E1F00D36A26 /* OptionsCollectionView.swift */; };
 		3E79B1B52A571E7100D36A26 /* OptionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1B42A571E7100D36A26 /* OptionsCollectionViewCell.swift */; };
 		3E7B21C02A61CB8C00C8F8B4 /* SortBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7B21BF2A61CB8C00C8F8B4 /* SortBottomSheetViewController.swift */; };
+		3E7B21C22A62172500C8F8B4 /* SortEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7B21C12A62172500C8F8B4 /* SortEnum.swift */; };
+		3E7B21C42A621A9A00C8F8B4 /* SortBakeryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7B21C32A621A9A00C8F8B4 /* SortBakeryCollectionViewCell.swift */; };
 		3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */; };
 		3EA2E1E92A541AEB003516A3 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1E82A541AEB003516A3 /* CustomNavigationBar.swift */; };
 		3EA2E1EB2A542151003516A3 /* SizeLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1EA2A542151003516A3 /* SizeLiteral.swift */; };
@@ -162,6 +164,8 @@
 		3E79B1B12A571E1F00D36A26 /* OptionsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsCollectionView.swift; sourceTree = "<group>"; };
 		3E79B1B42A571E7100D36A26 /* OptionsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsCollectionViewCell.swift; sourceTree = "<group>"; };
 		3E7B21BF2A61CB8C00C8F8B4 /* SortBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortBottomSheetViewController.swift; sourceTree = "<group>"; };
+		3E7B21C12A62172500C8F8B4 /* SortEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortEnum.swift; sourceTree = "<group>"; };
+		3E7B21C32A621A9A00C8F8B4 /* SortBakeryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortBakeryCollectionViewCell.swift; sourceTree = "<group>"; };
 		3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		3EA2E1E82A541AEB003516A3 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		3EA2E1EA2A542151003516A3 /* SizeLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeLiteral.swift; sourceTree = "<group>"; };
@@ -427,6 +431,7 @@
 			children = (
 				097682E82A5D0B6B0008F4FB /* BakeryListTopView.swift */,
 				097682E62A5CF0080008F4FB /* BakeryFilterView.swift */,
+				3E7B21C32A621A9A00C8F8B4 /* SortBakeryCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -654,6 +659,7 @@
 			children = (
 				09C6264D2A5B29F8002C8110 /* SearchEnum.swift */,
 				09B13F572A59433500C0C723 /* TabBarItem.swift */,
+				3E7B21C12A62172500C8F8B4 /* SortEnum.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -835,6 +841,7 @@
 				3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */,
 				09C626582A5B4269002C8110 /* HomeHeaderView.swift in Sources */,
 				0915C1722A5C3D3700ACB8D4 /* PaddingLabel.swift in Sources */,
+				3E7B21C42A621A9A00C8F8B4 /* SortBakeryCollectionViewCell.swift in Sources */,
 				DFB587BB2A5D588500704B6C /* DrawDashLineView.swift in Sources */,
 				090556222A51DB3300752067 /* UIFont+.swift in Sources */,
 				09CA3EFC2A569E4A0063897A /* URLConstant.swift in Sources */,
@@ -846,6 +853,7 @@
 				0915C16E2A5C2EE200ACB8D4 /* MarkStackView.swift in Sources */,
 				0905564B2A51E81D00752067 /* UIViewController+.swift in Sources */,
 				0915C1752A5C533900ACB8D4 /* HomeReviewCollectionViewCell.swift in Sources */,
+				3E7B21C22A62172500C8F8B4 /* SortEnum.swift in Sources */,
 				097682DA2A5C829D0008F4FB /* GradientImageView.swift in Sources */,
 				3EA2E1EB2A542151003516A3 /* SizeLiteral.swift in Sources */,
 				0987288D2A5BA1F000A29402 /* BookmarkButton.swift in Sources */,

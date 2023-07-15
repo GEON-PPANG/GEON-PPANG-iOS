@@ -25,7 +25,10 @@ final class BakeryFilterView: UIView {
     // MARK: - UI Property
     
     private lazy var filterCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
-    private lazy var filterButton = UIButton(configuration: .plain())
+//    private lazy var filterButton = UIButton(configuration: .plain())
+    private let filterButtonTitleLabel = UILabel()
+    private let filterButtonImageView = UIImageView(image: .swapIcon)
+    private lazy var filterButton = UIButton()
     
     private let topView = UIView()
     private let lineView = UIView()
@@ -56,19 +59,33 @@ final class BakeryFilterView: UIView {
             $0.showsHorizontalScrollIndicator = false
         }
         
+        filterButtonTitleLabel.do {
+            $0.text = "기본순"
+            $0.font = .captionB1
+            $0.textColor = .gbbGray700
+        }
+        
         filterButton.do {
-            $0.configuration?.background.strokeWidth = 1
-            $0.configuration?.background.strokeColor = .gbbGray200
-            $0.configuration?.baseForegroundColor = .black
-            $0.configuration?.image = .swapIcon
-            $0.configuration?.attributedTitle = AttributedString("기본순", attributes: AttributeContainer([.font: UIFont.pretendardBold(13)]))
-            $0.configuration?.cornerStyle = .capsule
-            $0.configuration?.imagePadding = 5
-            $0.configuration?.contentInsets = .zero
+            $0.makeCornerRound(radius: 18)
+            $0.makeBorder(width: 1, color: .gbbGray200!)
             $0.addAction(UIAction { _ in
                 print("tapped")
             }, for: .touchUpInside)
         }
+        
+//        filterButton.do {
+//            $0.configuration?.background.strokeWidth = 1
+//            $0.configuration?.background.strokeColor = .gbbGray200
+//            $0.configuration?.baseForegroundColor = .black
+//            $0.configuration?.image = .swapIcon
+//            $0.configuration?.attributedTitle = AttributedString("기본순", attributes: AttributeContainer([.font: UIFont.pretendardBold(13)]))
+//            $0.configuration?.cornerStyle = .capsule
+//            $0.configuration?.imagePadding = 5
+//            $0.configuration?.contentInsets = .zero
+//            $0.addAction(UIAction { _ in
+//                print("tapped")
+//            }, for: .touchUpInside)
+//        }
         
         lineView.do {
             $0.backgroundColor = .gbbGray200
@@ -80,16 +97,28 @@ final class BakeryFilterView: UIView {
     
     private func setLayout() {
         addSubviews(topView, filterButton, lineView, filterCollectionView, bottomView)
+        filterButton.addSubviews(filterButtonImageView, filterButtonTitleLabel)
         
         topView.snp.makeConstraints {
             $0.top.directionalHorizontalEdges.equalToSuperview()
             $0.height.equalTo(1)
         }
         
+        filterButtonImageView.snp.makeConstraints {
+            $0.size.equalTo(16)
+            $0.leading.equalToSuperview().inset(12)
+            $0.verticalEdges.equalToSuperview().inset(9)
+        }
+        
+        filterButtonTitleLabel.snp.makeConstraints {
+            $0.centerY.equalTo(filterButtonImageView)
+            $0.leading.equalTo(filterButtonImageView.snp.trailing).offset(5)
+            $0.trailing.equalToSuperview().inset(12)
+        }
+        
         filterButton.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(24)
             $0.centerY.equalToSuperview()
-            $0.size.equalTo(CGSize(width: 87, height: 36))
         }
         
         lineView.snp.makeConstraints {
@@ -137,11 +166,19 @@ final class BakeryFilterView: UIView {
         snapshot.appendItems(filterlist)
     }
     
+    // MARK: - Custom Method
+    
     func applyAction(_ action: @escaping () -> Void) {
         let action = UIAction { _ in
             action()
         }
         filterButton.addAction(action, for: .touchUpInside)
+    }
+    
+    func configureFilterButtonText(to text: String) {
+        filterButtonTitleLabel.do {
+            $0.text = text
+        }
     }
 }
 

@@ -48,4 +48,11 @@ struct I18N {
         static let vegan = "비건빵"
         static let noSugar = "저당, 무설탕"
     }
+    
+    /// SortBottomSheet
+    struct SortBottomSheet {
+        static let sortBy = "정렬"
+        static let byDefault = "기본순"
+        static let byReviews = "리뷰 많은 순"
+    }
 }

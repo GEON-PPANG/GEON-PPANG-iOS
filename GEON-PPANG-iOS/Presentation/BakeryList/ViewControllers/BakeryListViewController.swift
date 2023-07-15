@@ -20,6 +20,7 @@ final class BakeryListViewController: BaseViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Section, BakeryListResponseDTO>
     private var dataSource: DataSource?
     private var filterlist: [BakeryListResponseDTO] = BakeryListResponseDTO.item
+    private var sortBakeryBy: SortBakery = .byDefault
     private lazy var safeArea = self.view.safeAreaLayoutGuide
     
     // MARK: - UI Property
@@ -39,13 +40,17 @@ final class BakeryListViewController: BaseViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    // MARK: - Setting
+    
     override func setUI() {
         bakeryFilterView.do {
             $0.backgroundColor = .clear
             $0.applyAction {
-                let sortBottomSheet = SortBottomSheetViewController()
-                sortBottomSheet.modalPresentationStyle = .overFullScreen
-                self.present(sortBottomSheet, animated: false)
+                self.bakeryFilterButtonTapped()
             }
         }
     }
@@ -100,4 +105,26 @@ final class BakeryListViewController: BaseViewController {
         snapshot.appendSections([.main])
         snapshot.appendItems(filterlist)
     }
+    
+    // MARK: - Custom Method
+    
+    private func configureFilterButtonText() {
+        switch sortBakeryBy {
+        case .byDefault: bakeryFilterView.configureFilterButtonText(to: "기본순")
+        case .byReviews: bakeryFilterView.configureFilterButtonText(to: "리뷰 많은순")
+        }
+    }
+    
+    private func bakeryFilterButtonTapped() {
+        let sortBottomSheet = SortBottomSheetViewController(sort: sortBakeryBy)
+        sortBottomSheet.modalPresentationStyle = .overFullScreen
+        sortBottomSheet.dataBind = { sortBy in
+            self.sortBakeryBy = sortBy
+            self.configureFilterButtonText()
+            // TODO: API 통신 진행 후 반영
+            self.bakeryListCollectionView.reloadData()
+        }
+        self.present(sortBottomSheet, animated: false)
+    }
+    
 }
