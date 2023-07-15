@@ -14,9 +14,7 @@ final class BakeryOverviewView: UIView {
     
     // MARK: - Property
     
-//    private let bakeryImage: UIImage
     // TODO: ingredient Tag 추가
-//    private let regions: [String]
     
     // MARK: - UI Property
     
@@ -77,13 +75,14 @@ final class BakeryOverviewView: UIView {
     private func setUI() {
         bakeryImageView.do {
             // TODO: image 추가 시 적용
+            $0.backgroundColor = .gbbPoint1
             $0.makeCornerRound(radius: 5)
             $0.contentMode = .scaleAspectFill
         }
         
         // TODO: ingredient Tag 추가
         sampleView.do {
-            $0.backgroundColor = .black
+            $0.backgroundColor = .gbbPoint1
         }
     }
     

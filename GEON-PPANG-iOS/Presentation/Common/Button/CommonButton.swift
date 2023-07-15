@@ -40,7 +40,7 @@ final class CommonButton: UIButton {
     
     private func setUI() {
         self.do {
-            $0.makeCornerRound(radius: 11)
+            $0.makeCornerRound(radius: 12)
             $0.titleLabel?.font = .headLine
         }
     }
@@ -52,17 +52,13 @@ final class CommonButton: UIButton {
     func getButtonUI(_ color: UIColor, _ border: UIColor? = .clear) {
         self.backgroundColor = color
         switch color {
-        case .gbbMain3!, .gbbGray700!: setTitleColor(.gbbGray100, for: .normal)
-        case .gbbMain2!: setTitleColor(.white, for: .normal)
+        case .gbbMain2!, .gbbGray700!: setTitleColor(.gbbGray100, for: .normal)
         default:
             setTitleColor(.gbbGray400, for: .normal)
         }
         
-        if let border = border {
-            makeBorder(width: 1, color: border)
-            if border != .clear {
-                setTitleColor(border, for: .normal)
-            }
+        if border != .clear {
+            makeBorder(width: 1, color: border!)
         }
     }
     

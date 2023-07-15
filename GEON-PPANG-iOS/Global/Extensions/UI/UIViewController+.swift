@@ -31,6 +31,13 @@ extension UIViewController {
         return (convert / 812) * getDeviceHeight()
     }
     
+    func popViewControllerAction() -> UIAction {
+        let action = UIAction { [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        }
+        return action
+    }
+    
     func setKeyboardHideGesture() {
         let tap = UITapGestureRecognizer(target: self,
                                          action: #selector(UIViewController.dismissKeyboard))
@@ -38,7 +45,35 @@ extension UIViewController {
         view.addGestureRecognizer(tap)
     }
     
-    @objc func dismissKeyboard() {
+    func setKeyboardNotificationCenter() {
+        NotificationCenter.default.addObserver(self, selector: #selector(moveUpAboutKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(moveDownAboutKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    func setNavigationBarHidden() {
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    // MARK: - objc functions
+    
+    @objc
+    func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    @objc
+    func moveUpAboutKeyboard(_ notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            UIView.animate(withDuration: 0.2, animations: {
+                self.view.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + 24)
+            })
+        }
+    }
+    
+    @objc
+    func moveDownAboutKeyboard(_ notification: NSNotification) {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.view.transform = .identity
+        })
     }
 }

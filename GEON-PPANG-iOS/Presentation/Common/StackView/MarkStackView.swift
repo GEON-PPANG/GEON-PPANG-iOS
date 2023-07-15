@@ -11,7 +11,7 @@ import SnapKit
 import Then
 
 final class MarkStackView: UIStackView {
-    
+            
     // MARK: - UI Property
     
     private lazy var hccpMarkIconView = UIImageView()
@@ -36,19 +36,19 @@ final class MarkStackView: UIStackView {
     private func setUI() {
         self.do {
             $0.addArrangedSubviews(hccpMarkIconView, veganIconView, gmoIconView)
-            $0.spacing = -9
+            $0.spacing = -8
             $0.axis = .horizontal
         }
+        
         hccpMarkIconView.do {
-            $0.image = .bigHACCPMark
-            $0.contentMode = .scaleAspectFit
-        }
-        veganIconView.do {
-            $0.image = .bigVeganMark
             $0.contentMode = .topLeft
         }
+        
+        veganIconView.do {
+            $0.contentMode = .topLeft
+        }
+        
         gmoIconView.do {
-            $0.image = .bigGMOMark
             $0.contentMode = .topLeft
         }
     }
@@ -56,20 +56,32 @@ final class MarkStackView: UIStackView {
     private func setLayout() {
         [hccpMarkIconView, veganIconView, gmoIconView].forEach {
             $0.snp.makeConstraints {
-                $0.size.equalTo(28)
+                $0.size.equalTo(24)
             }
         }
     }
     
+    func getIconImage(_ haccp: UIImage, _ vegan: UIImage, _ gmo: UIImage) {
+        hccpMarkIconView.image = haccp
+        veganIconView.image = vegan
+        gmoIconView.image = gmo
+    }
+
     func getMarkStatus(_ isHACCP: Bool, _ isVegan: Bool, _ isNONGMO: Bool) {
         if !isHACCP {
             hccpMarkIconView.isHidden = true
+        } else {
+            hccpMarkIconView.isHidden = false
         }
         if !isVegan {
             veganIconView.isHidden = true
+        } else {
+            veganIconView.isHidden = false
         }
         if !isNONGMO {
             gmoIconView.isHidden = true
+        } else {
+            gmoIconView.isHidden = false
         }
     }
 }
