@@ -21,4 +21,9 @@ final class Utils {
         modalViewController.modalPresentationStyle = modalStyle
         viewController.present(modalViewController, animated: false)
     }
+    
+    class func calculateCollectionViewSize(of collectionView: UICollectionView) -> CGSize {
+        let size = collectionView.collectionViewLayout.collectionViewContentSize
+        return size
+    }
 }
