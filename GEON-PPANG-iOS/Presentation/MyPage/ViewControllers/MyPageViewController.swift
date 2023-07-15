@@ -105,7 +105,7 @@ extension MyPageViewController: UICollectionViewDataSource {
                 Utils.push(self.navigationController, FilterPurposeViewController(maxSteps: 3, username: "찐빵대빵"))
             }
             header.myReviewsTapped = {
-                print("tapped")
+                Utils.push(self.navigationController, MyReviewsViewController())
             }
             header.svedBakeryTapped = {
                 Utils.push(self.navigationController, MySavedBakeryViewController())
