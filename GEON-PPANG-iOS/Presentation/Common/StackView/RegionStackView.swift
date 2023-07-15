@@ -41,12 +41,12 @@ final class RegionStackView: UIStackView {
         
         [regionFirstTag, regionSecondTag].forEach {
             $0.makeCornerRound(radius: 14.5)
-            $0.font = .pretendardMedium(13)
+            $0.font = .captionM1
             $0.backgroundColor = .gbbMain3
             $0.textColor = .gbbGray100
         }
     }
-    
+        
     func getRegionName(_ first: String, _ second: String) {
         regionFirstTag.text = first
         regionSecondTag.text = second

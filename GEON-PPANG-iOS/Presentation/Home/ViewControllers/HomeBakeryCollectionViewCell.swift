@@ -25,12 +25,14 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     private let bakeryReview = UILabel()
     private let regionStackView = RegionStackView()
     private lazy var bookMarkButton = BookmarkButton(configuration: .plain())
-    
+        
     // MARK: - Life Cycle
     
     override func prepareForReuse() {
         super.prepareForReuse()
         markStackView.getMarkStatus(false, false, false)
+        markStackView.getIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
+        bookMarkButton.getCount(0)
     }
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -60,6 +62,9 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
         bakeryImage.do {
             $0.contentMode = .scaleAspectFill
             $0.backgroundColor = .gbbPoint1
+        }
+        markStackView.do {
+            $0.getIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
         }
         
         bakeryTitle.do {
@@ -134,6 +139,6 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
         if data.secondNearStation == "" {
             regionStackView.removeSecondRegion()
         }
-        regionStackView.getRegionName(data.firstNearStation, data.secondNearStation)
+        regionStackView.getRegionName(data.firstNearStation, data.secondNearStation ?? "")
     }
 }
