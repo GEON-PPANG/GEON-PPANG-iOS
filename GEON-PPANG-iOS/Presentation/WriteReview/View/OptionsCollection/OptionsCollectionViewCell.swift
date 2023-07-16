@@ -37,22 +37,20 @@ final class OptionsCollectionViewCell: UICollectionViewCell {
     }
     
     private var status: CellStatus = .deselected
+    
     private var cellText: String = ""
     
     override var isSelected: Bool {
-        didSet {
-            toggleCellSelection()
+        willSet {
+            configureCell(to: newValue ? .selected : .deselected )
         }
     }
-    var isEnabled: Bool = false {
-        didSet {
-            toggleCellInteraction()
-        }
-    }
+    
+    var isEnabled: Bool = true
     
     // MARK: - UI Property
     
-    let cellLabel = UILabel()
+    private let cellLabel = UILabel()
     
     // MARK: - Life Cycle
     
@@ -73,47 +71,46 @@ final class OptionsCollectionViewCell: UICollectionViewCell {
     private func setLayout() {
         addSubview(cellLabel)
         cellLabel.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(12)
-            $0.verticalEdges.equalToSuperview().inset(8)
+            $0.horizontalEdges.equalToSuperview().inset(16)
+            $0.verticalEdges.equalToSuperview().inset(10)
             $0.height.equalTo(17)
         }
     }
     
     private func setUI() {
         self.do {
-            $0.makeCornerRound(radius: 16.5)
+            $0.makeCornerRound(radius: 18.5)
+            $0.makeBorder(width: 1.5, color: cellBorderColor)
         }
         
         cellLabel.do {
             $0.text = cellText
             $0.font = .captionB1
+            $0.textColor = cellTextColor
             $0.textAlignment = .center
         }
-        
-        configureCell(to: status)
     }
     
     // MARK: - Custom Method
     
     func configureCell(to status: CellStatus) {
         self.status = status
-        self.do { $0.makeBorder(width: 1.5, color: cellBorderColor) }
-        cellLabel.do { $0.textColor = cellTextColor }
+        
+        self.do {
+            $0.makeBorder(width: 1.5, color: cellBorderColor)
+        }
+        
+        cellLabel.do {
+            $0.textColor = cellTextColor
+        }
     }
     
     func configureCellText(to text: String) {
-        self.cellLabel.text = text
-    }
-    
-    func toggleCellSelection() {
-        self.status = isSelected ? .selected : .deselected
-        configureCell(to: self.status)
-    }
-    
-    func toggleCellInteraction() {
-        self.isUserInteractionEnabled.toggle()
-        self.status = isEnabled ? .deselected : .disabled
-        configureCell(to: status)
+        self.cellText = text
+        
+        cellLabel.do {
+            $0.text = text
+        }
     }
     
 }

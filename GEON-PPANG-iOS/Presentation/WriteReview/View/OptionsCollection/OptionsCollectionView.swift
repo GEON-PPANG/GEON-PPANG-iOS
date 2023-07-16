@@ -37,9 +37,26 @@ final class OptionsCollectionView: UICollectionView {
     private func setUI() {
         self.do {
             $0.register(cell: OptionsCollectionViewCell.self)
-            $0.register(header: OptionsCollectionViewHeader.self)
             $0.isScrollEnabled = false
             $0.backgroundColor = .clear
+        }
+    }
+    
+    // MARK: - Custom Method
+    
+    private func resetCellsAreSelected() {
+        self.indexPathsForSelectedItems?.forEach({ indexPath in
+            self.deselectItem(at: indexPath, animated: false)
+        })
+    }
+    
+    func toggleIsEnabled(to isLikeSelected: Bool) {
+        self.isUserInteractionEnabled = isLikeSelected
+        self.resetCellsAreSelected()
+        self.visibleCells.forEach { cell in
+            guard let optionCell = cell as? OptionsCollectionViewCell
+            else { return }
+            optionCell.configureCell(to: isLikeSelected ? .deselected : .disabled)
         }
     }
     
