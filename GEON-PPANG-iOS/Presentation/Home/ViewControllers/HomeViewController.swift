@@ -74,7 +74,7 @@ final class HomeViewController: BaseViewController {
         view.addSubviews(topView, collectionView)
         
         topView.snp.makeConstraints {
-            $0.top.equalTo(safeArea)
+            $0.top.equalToSuperview().offset(constraintByNotch(44, 0))
             $0.directionalHorizontalEdges.equalTo(safeArea)
             $0.height.equalTo(200)
         }
