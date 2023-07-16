@@ -19,11 +19,13 @@ final class EmailViewController: BaseViewController {
     private let emailTextField = CommonTextView()
     private lazy var checkButton = CommonButton()
     private lazy var nextButton = CommonButton()
+    private var backGroundView = BottomSheetAppearView()
+    private var bottomSheet = CommonBottomSheet()
     
     // MARK: - Setting
     
     override func setLayout() {
-        view.addSubviews(naviView, titleLabel, emailTextField, checkButton, nextButton)
+        view.addSubviews(naviView, titleLabel, emailTextField, checkButton, nextButton, backGroundView)
         
         naviView.snp.makeConstraints {
             $0.top.equalToSuperview()
@@ -80,11 +82,23 @@ final class EmailViewController: BaseViewController {
             }
         }
         
+        checkButton.do {
+            $0.addAction {
+                self.backGroundView.appearBottomSheetView(subView: self.bottomSheet, 281)
+            }
+        }
         nextButton.do {
             $0.isUserInteractionEnabled = false
             $0.getButtonUI(.gbbGray200!)
             $0.getButtonTitle(.next)
         }
+        
+        bottomSheet.do {
+            $0.getEmojiType(.smile)
+            $0.getBottonSheetTitle(I18N.Bottomsheet.checkIdPassword)
+            $0.dismissClosure = {
+                self.self.backGroundView.dissmissFromSuperview()
+            }
+        }
     }
-    
 }

@@ -19,6 +19,8 @@ final class NickNameViewController: BaseViewController {
     private let nicknameTextField = CommonTextView()
     private lazy var checkButton = CommonButton()
     private lazy var nextButton = CommonButton()
+    private var backGroundView = BottomSheetAppearView()
+    private var bottomSheet = CommonBottomSheet()
     
     // MARK: - Setting
     
@@ -65,16 +67,20 @@ final class NickNameViewController: BaseViewController {
                      color: .gbbGray700!)
         }
         checkButton.do {
-            $0.getButtonUI(.clear, .gbbGray300)
             $0.getButtonTitle(.duplicate)
+            $0.addAction {
+                self.backGroundView.appearBottomSheetView(subView: self.bottomSheet, 281)
+            }
         }
         
         nicknameTextField.do {
             $0.getAccessoryView(nextButton)
             $0.getType(.nickname)
-            $0.duplicatedCheck = { data in
-                self.checkButton.getButtonUI(.gbbMain2!)
-                print(data)
+            $0.validCheck = { [weak self] valid in
+                self?.checkButton.do {
+                    $0.isEnabled = valid
+                    $0.getButtonUI(.clear, valid ? .gbbMain2! : .gbbGray300!)
+                }
             }
         }
         
@@ -82,6 +88,14 @@ final class NickNameViewController: BaseViewController {
             $0.isUserInteractionEnabled = false
             $0.getButtonUI(.gbbGray200!)
             $0.getButtonTitle(.next)
+        }
+        
+        bottomSheet.do {
+            $0.getEmojiType(.sad)
+            $0.getBottonSheetTitle(I18N.Bottomsheet.diableNickname)
+            $0.dismissClosure = {
+                self.self.backGroundView.dissmissFromSuperview()
+            }
         }
     }
 }
