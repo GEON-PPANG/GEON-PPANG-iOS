@@ -138,7 +138,6 @@ extension MyPageViewController: UICollectionViewDelegateFlowLayout {
         default:
             return .zero
         }
-        return .init(width: SizeLiteral.Screen.width, height: 68)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
