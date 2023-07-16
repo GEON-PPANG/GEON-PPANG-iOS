@@ -16,9 +16,11 @@ final class EmailViewController: BaseViewController {
     
     private let naviView = CustomNavigationBar()
     private let titleLabel = UILabel()
-    private let emailTextField = LoginTextFiledView()
+    private let emailTextField = CommonTextView()
     private lazy var checkButton = CommonButton()
     private lazy var nextButton = CommonButton()
+    
+    // MARK: - Setting
     
     override func setLayout() {
         view.addSubviews(naviView, titleLabel, emailTextField, checkButton, nextButton)
@@ -53,6 +55,9 @@ final class EmailViewController: BaseViewController {
     }
     
     override func setUI() {
+        naviView.do {
+            $0.configureRightCount(3, by: 6)
+        }
         titleLabel.do {
             $0.numberOfLines = 0
             $0.basic(text: "회원가입을 위한 \n이메일을 입력해주세요!",
@@ -62,19 +67,37 @@ final class EmailViewController: BaseViewController {
         checkButton.do {
             $0.getButtonUI(.clear, .gbbGray300)
             $0.getButtonTitle(.duplicate)
+            $0.addAction(UIAction { _ in
+                self.nextButton.do {
+                    $0.isUserInteractionEnabled = true
+                    $0.getButtonUI(.gbbMain2!)
+                }
+            }, for: .touchUpInside)
         }
         
         emailTextField.do {
             $0.getAccessoryView(nextButton)
             $0.getType(.email)
-            $0.duplicatedCheck = { data in
-                self.checkButton.getButtonUI(.gbbMain2!)
-                print(data)
+            $0.validateEmail()
+            $0.validCheck = {
+                self.checkButton.do {
+                    $0.isEnabled = true
+                    $0.getButtonUI(.clear, .gbbMain2!)
+                }
+            }
+            $0.invalidCheck = {
+                self.checkButton.do {
+                    $0.isEnabled = false
+                    $0.getButtonUI(.clear, .gbbGray300)
+                }
             }
         }
+        
         nextButton.do {
+            $0.isUserInteractionEnabled = false
             $0.getButtonUI(.gbbGray200!)
             $0.getButtonTitle(.next)
         }
     }
+    
 }

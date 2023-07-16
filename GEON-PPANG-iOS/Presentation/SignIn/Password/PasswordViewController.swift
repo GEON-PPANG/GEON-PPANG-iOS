@@ -16,9 +16,11 @@ final class PasswordViewController: BaseViewController {
     
     private let naviView = CustomNavigationBar()
     private let titleLabel = UILabel()
-    private let passwordTextField = LoginTextFiledView()
-    private let checkPasswordTextFiedl = LoginTextFiledView()
+    private let passwordTextField = CommonTextView()
+    private let checkPasswordTextFiedl = CommonTextView()
     private lazy var nextButton = CommonButton()
+    
+    // MARK: - Setting
     
     override func setLayout() {
         view.addSubviews(naviView, titleLabel, passwordTextField, checkPasswordTextFiedl, nextButton)
@@ -53,6 +55,9 @@ final class PasswordViewController: BaseViewController {
     }
     
     override func setUI() {
+        naviView.do {
+            $0.configureRightCount(4, by: 6)
+        }
         titleLabel.do {
             $0.numberOfLines = 0
             $0.basic(text: "회원가입을 위한 \n비밀번호를 입력해주세요!",
@@ -71,7 +76,7 @@ final class PasswordViewController: BaseViewController {
         
         checkPasswordTextFiedl.do {
             $0.getAccessoryView(nextButton)
-            $0.getType(.checkPasswaord)
+            $0.getType(.checkPassword)
             $0.duplicatedCheck = { data in
                 print(data)
             }
@@ -80,6 +85,9 @@ final class PasswordViewController: BaseViewController {
         nextButton.do {
             $0.getButtonUI(.gbbGray200!)
             $0.getButtonTitle(.next)
+            $0.addAction(UIAction { _ in
+                Utils.push(self.navigationController, PasswordViewController())
+            }, for: .touchUpInside)
         }
     }
 }

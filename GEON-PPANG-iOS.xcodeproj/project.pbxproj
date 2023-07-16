@@ -33,7 +33,7 @@
 		0915C1722A5C3D3700ACB8D4 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0915C1712A5C3D3700ACB8D4 /* PaddingLabel.swift */; };
 		0915C1752A5C533900ACB8D4 /* HomeReviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0915C1742A5C533900ACB8D4 /* HomeReviewCollectionViewCell.swift */; };
 		0924632F2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0924632E2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift */; };
-		092EFCA42A6195D900E7C262 /* LoginTextFiledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092EFCA32A6195D900E7C262 /* LoginTextFiledView.swift */; };
+		092EFCA42A6195D900E7C262 /* CommonTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092EFCA32A6195D900E7C262 /* CommonTextView.swift */; };
 		093214022A5AE27800875EF6 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093214012A5AE27700875EF6 /* Utils.swift */; };
 		093214082A5AE40900875EF6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093214072A5AE40900875EF6 /* SearchViewController.swift */; };
 		093EFA592A61F62D003228CD /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093EFA582A61F62D003228CD /* EmailViewController.swift */; };
@@ -72,6 +72,8 @@
 		09CA3F082A569EBA0063897A /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CA3F072A569EBA0063897A /* Service.swift */; };
 		09CD078E2A62074900A078DE /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CD078D2A62074900A078DE /* PasswordViewController.swift */; };
 		09CD07902A620D7D00A078DE /* NickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CD078F2A620D7D00A078DE /* NickNameViewController.swift */; };
+		09CD07922A624B7D00A078DE /* SignInTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CD07912A624B7D00A078DE /* SignInTextField.swift */; };
+		09DF7E272A61BCED00A1BBDB /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DF7E262A61BCED00A1BBDB /* String+.swift */; };
 		09FD47C82A5DC991002020BD /* SearchNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47C72A5DC991002020BD /* SearchNavigationView.swift */; };
 		09FD47CA2A5DD38D002020BD /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47C92A5DD38D002020BD /* SearchResultView.swift */; };
 		09FD47D22A5DF892002020BD /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47D12A5DF892002020BD /* EmptyCollectionViewCell.swift */; };
@@ -135,7 +137,7 @@
 		0915C1712A5C3D3700ACB8D4 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		0915C1742A5C533900ACB8D4 /* HomeReviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeReviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		0924632E2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBakeryCollectionViewCell.swift; sourceTree = "<group>"; };
-		092EFCA32A6195D900E7C262 /* LoginTextFiledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextFiledView.swift; sourceTree = "<group>"; };
+		092EFCA32A6195D900E7C262 /* CommonTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTextView.swift; sourceTree = "<group>"; };
 		093214012A5AE27700875EF6 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		093214072A5AE40900875EF6 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		093EFA582A61F62D003228CD /* EmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
@@ -178,6 +180,8 @@
 		09CA3F072A569EBA0063897A /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		09CD078D2A62074900A078DE /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		09CD078F2A620D7D00A078DE /* NickNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameViewController.swift; sourceTree = "<group>"; };
+		09CD07912A624B7D00A078DE /* SignInTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInTextField.swift; sourceTree = "<group>"; };
+		09DF7E262A61BCED00A1BBDB /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		09FD47C72A5DC991002020BD /* SearchNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNavigationView.swift; sourceTree = "<group>"; };
 		09FD47C92A5DD38D002020BD /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
 		09FD47D12A5DF892002020BD /* EmptyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -298,7 +302,8 @@
 			isa = PBXGroup;
 			children = (
 				09B71C012A59D99200076AC2 /* SearchTextField.swift */,
-				092EFCA32A6195D900E7C262 /* LoginTextFiledView.swift */,
+				09CD07912A624B7D00A078DE /* SignInTextField.swift */,
+				092EFCA32A6195D900E7C262 /* CommonTextView.swift */,
 			);
 			path = TextField;
 			sourceTree = "<group>";
@@ -1060,6 +1065,7 @@
 				09C6264E2A5B29F8002C8110 /* SearchEnum.swift in Sources */,
 				0915C16A2A5BFC5900ACB8D4 /* HomeBottomCollectionViewCell.swift in Sources */,
 				09CA3F082A569EBA0063897A /* Service.swift in Sources */,
+				09CD07922A624B7D00A078DE /* SignInTextField.swift in Sources */,
 				098716B82A6138BD00538D05 /* MyReviewsHeaderView.swift in Sources */,
 				09B13F4C2A593C6F00C0C723 /* HomeViewController.swift in Sources */,
 				09C626542A5B344B002C8110 /* HomeBestBakeryResponseDTO.swift in Sources */,
@@ -1080,7 +1086,7 @@
 				093214022A5AE27800875EF6 /* Utils.swift in Sources */,
 				097682EB2A5D12BD0008F4FB /* BakeryListCollectionViewCell.swift in Sources */,
 				090556452A51E79B00752067 /* UITextField+.swift in Sources */,
-				092EFCA42A6195D900E7C262 /* LoginTextFiledView.swift in Sources */,
+				092EFCA42A6195D900E7C262 /* CommonTextView.swift in Sources */,
 				3E16E5022A58176800B813D0 /* ReviewDetailTextView.swift in Sources */,
 				09CA3F062A569EB30063897A /* API.swift in Sources */,
 				DFB587B92A5D584800704B6C /* OnboardingViewController.swift in Sources */,
