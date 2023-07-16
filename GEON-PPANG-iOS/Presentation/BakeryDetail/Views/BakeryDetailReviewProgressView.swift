@@ -12,18 +12,23 @@ import Then
 
 final class BakeryDetailReviewProgressView: UIView {
     
+    // MARK: - Property
+    
     // 회전할 각도 설정
     private let rotationAngle: CGFloat = .pi / -2 // 90도 반시계 방향 회전
     
     private var time: Float = 0.0 // 애니메이션 지속 시간 커스텀을 위한 변수 선언
     private var timer: Timer?
     
+//    private var reviewCount = eachKeywordCount - totalReviewCount
+    var gauge: Float = 1
+    
     // 진행 바를 수직으로 회전
     
     // MARK: - UI Property
     
     private let reviewProgressBar = UIProgressView()
-    private let reviewLabel = UILabel()
+    let reviewLabel = UILabel()
     
     // MARK: - Initializer
     
@@ -32,8 +37,7 @@ final class BakeryDetailReviewProgressView: UIView {
         
         setUI()
         setLayout()
-        
-        timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(setProgressBarAnimation), userInfo: nil, repeats: true)
+        setProgressBar()
     }
     
     required init?(coder: NSCoder) {
@@ -63,7 +67,7 @@ final class BakeryDetailReviewProgressView: UIView {
     private func setLayout() {
         
         self.addSubviews(reviewProgressBar, reviewLabel)
-        self.backgroundColor = .white
+        self.backgroundColor = .gbbWhite
         
         reviewProgressBar.snp.makeConstraints {
             $0.top.equalToSuperview().inset(47)
@@ -79,10 +83,10 @@ final class BakeryDetailReviewProgressView: UIView {
     }
     
     @objc private func setProgressBarAnimation() {
-        time += 0.05
+        time += gauge / 20
         reviewProgressBar.setProgress(time, animated: true)
         
-        if time >= 0.7 {
+        if time >= gauge {
             timer!.invalidate()
         }
     }

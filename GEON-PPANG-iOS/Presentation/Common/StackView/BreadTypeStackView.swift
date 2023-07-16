@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class OptionBreadTypeStackView: UIStackView {
+final class BreadTypeStackView: UIStackView {
     
     // MARK: - UI Property
     
@@ -18,9 +18,9 @@ final class OptionBreadTypeStackView: UIStackView {
     private lazy var veganBreadChip = PaddingLabel()
     private lazy var nutFreeChip = PaddingLabel()
     private lazy var noSugarChip = PaddingLabel()
-    private let naming = ["글루텐프리", "비건빵", "넛프리", "저당,무설탕"]
+    private let labeling = ["글루텐프리", "비건빵", "넛프리", "저당,무설탕"]
     
-    // MARK: - Life Cycle
+    // MARK: - Initializer
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -45,10 +45,9 @@ final class OptionBreadTypeStackView: UIStackView {
         
         [glutenFreeChip, veganBreadChip, nutFreeChip, noSugarChip].enumerated().forEach { index, chip in
             chip.do {
-                $0.text = naming[index]
-                $0.makeCornerRound(radius: 3)
-                $0.basic(font: .captionM1!, color: .gbbGray400!)
                 $0.backgroundColor = .gbbWhite
+                $0.basic(text: labeling[index], font: .captionM1!, color: .gbbGray400!)
+                $0.makeCornerRound(radius: 3)
                 $0.makeBorder(width: 0.5, color: .gbbGray300!)
             }
         }

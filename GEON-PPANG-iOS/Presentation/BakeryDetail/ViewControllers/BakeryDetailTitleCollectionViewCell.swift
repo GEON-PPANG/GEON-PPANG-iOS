@@ -17,7 +17,7 @@ final class BakeryDetailTitleCollectionViewCell: UICollectionViewCell {
     private let bakeryImage = UIImageView()
     private let markStackView = MarkStackView()
     private let bakeryNameLabel = UILabel()
-    private let optionBreadTypeStackView = OptionBreadTypeStackView()
+    private let breadTypeStackView = BreadTypeStackView()
     private lazy var bookmarkButton = BookmarkButton(configuration: .plain())
     
     // MARK: - Initializer
@@ -51,7 +51,7 @@ final class BakeryDetailTitleCollectionViewCell: UICollectionViewCell {
             $0.numberOfLines = 0
         }
         
-        optionBreadTypeStackView.do {
+        breadTypeStackView.do {
             $0.backgroundColor = .clear
         }
         
@@ -64,7 +64,7 @@ final class BakeryDetailTitleCollectionViewCell: UICollectionViewCell {
     
     private func setLayout() {
         
-        contentView.addSubviews(bakeryImage, markStackView, bakeryNameLabel, optionBreadTypeStackView, bookmarkButton)
+        contentView.addSubviews(bakeryImage, markStackView, bakeryNameLabel, breadTypeStackView, bookmarkButton)
         
         bakeryImage.snp.makeConstraints {
             $0.height.equalTo(243)
@@ -84,7 +84,7 @@ final class BakeryDetailTitleCollectionViewCell: UICollectionViewCell {
             // TODO: 가게 이름 길어지면 ...으로 요약하는 거 하기 (가게 이름 2줄도 되는지 확인, ...으로 요약하는 게 맞긴 한가? 아니었던 것 같기도,,)
         }
         
-        optionBreadTypeStackView.snp.makeConstraints {
+        breadTypeStackView.snp.makeConstraints {
             $0.height.equalTo(25)
             $0.top.equalTo(bakeryNameLabel.snp.bottom).offset(12)
             $0.leading.equalToSuperview().inset(24)

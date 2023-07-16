@@ -110,11 +110,12 @@
 		DF959A6C2A568C4600E75774 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF959A6B2A568C4600E75774 /* Colors.xcassets */; };
 		DF959A6E2A568C9400E75774 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF959A6D2A568C9400E75774 /* UIColor+.swift */; };
 		DF99C5F92A63D70500C2C78C /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF99C5F82A63D70500C2C78C /* TestViewController.swift */; };
+		DF99C5FE2A6412F800C2C78C /* ReviewProgressBarStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF99C5FD2A6412F800C2C78C /* ReviewProgressBarStackView.swift */; };
 		DFB134372A62110900BAB52E /* BakeryDetailMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB134362A62110900BAB52E /* BakeryDetailMenuCollectionViewCell.swift */; };
 		DFB1343D2A6284BB00BAB52E /* BakeryDetailReviewProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB1343C2A6284BB00BAB52E /* BakeryDetailReviewProgressView.swift */; };
 		DFB585F72A5F31D80077D272 /* BakeryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB585F62A5F31D80077D272 /* BakeryDetailViewController.swift */; };
 		DFB585F92A5F32420077D272 /* BakeryDetailTitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB585F82A5F32420077D272 /* BakeryDetailTitleCollectionViewCell.swift */; };
-		DFB585FB2A5F565F0077D272 /* OptionBreadTypeStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB585FA2A5F565F0077D272 /* OptionBreadTypeStackView.swift */; };
+		DFB585FB2A5F565F0077D272 /* BreadTypeStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB585FA2A5F565F0077D272 /* BreadTypeStackView.swift */; };
 		DFB585FD2A5FEA0E0077D272 /* BakeryDetailInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB585FC2A5FEA0E0077D272 /* BakeryDetailInfoCollectionViewCell.swift */; };
 		DFB587B92A5D584800704B6C /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB587B82A5D584800704B6C /* OnboardingViewController.swift */; };
 		DFB587BB2A5D588500704B6C /* DrawDashLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB587BA2A5D588500704B6C /* DrawDashLineView.swift */; };
@@ -221,11 +222,12 @@
 		DF959A6B2A568C4600E75774 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		DF959A6D2A568C9400E75774 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		DF99C5F82A63D70500C2C78C /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		DF99C5FD2A6412F800C2C78C /* ReviewProgressBarStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewProgressBarStackView.swift; sourceTree = "<group>"; };
 		DFB134362A62110900BAB52E /* BakeryDetailMenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryDetailMenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		DFB1343C2A6284BB00BAB52E /* BakeryDetailReviewProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryDetailReviewProgressView.swift; sourceTree = "<group>"; };
 		DFB585F62A5F31D80077D272 /* BakeryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryDetailViewController.swift; sourceTree = "<group>"; };
 		DFB585F82A5F32420077D272 /* BakeryDetailTitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryDetailTitleCollectionViewCell.swift; sourceTree = "<group>"; };
-		DFB585FA2A5F565F0077D272 /* OptionBreadTypeStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionBreadTypeStackView.swift; sourceTree = "<group>"; };
+		DFB585FA2A5F565F0077D272 /* BreadTypeStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreadTypeStackView.swift; sourceTree = "<group>"; };
 		DFB585FC2A5FEA0E0077D272 /* BakeryDetailInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryDetailInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		DFB587B82A5D584800704B6C /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		DFB587BA2A5D588500704B6C /* DrawDashLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawDashLineView.swift; sourceTree = "<group>"; };
@@ -283,7 +285,8 @@
 			children = (
 				0915C16D2A5C2EE200ACB8D4 /* MarkStackView.swift */,
 				0915C16F2A5C3C5600ACB8D4 /* RegionStackView.swift */,
-				DFB585FA2A5F565F0077D272 /* OptionBreadTypeStackView.swift */,
+				DFB585FA2A5F565F0077D272 /* BreadTypeStackView.swift */,
+				DF99C5FD2A6412F800C2C78C /* ReviewProgressBarStackView.swift */,
 			);
 			path = StackView;
 			sourceTree = "<group>";
@@ -1066,6 +1069,7 @@
 				090556292A51DBC000752067 /* UIView+.swift in Sources */,
 				090556292A51DBC000752067 /* UIView+.swift in Sources */,
 				090668FC2A4FF3C600F413FA /* AppDelegate.swift in Sources */,
+				DF99C5FE2A6412F800C2C78C /* ReviewProgressBarStackView.swift in Sources */,
 				DFB134372A62110900BAB52E /* BakeryDetailMenuCollectionViewCell.swift in Sources */,
 				3EDC05C02A5DED9200EAD950 /* FilterBreadTypeViewController.swift in Sources */,
 				09FD47C82A5DC991002020BD /* SearchNavigationView.swift in Sources */,
@@ -1107,7 +1111,7 @@
 				0905564B2A51E81D00752067 /* UIViewController+.swift in Sources */,
 				0915C1752A5C533900ACB8D4 /* HomeReviewCollectionViewCell.swift in Sources */,
 				097682DA2A5C829D0008F4FB /* GradientImageView.swift in Sources */,
-				DFB585FB2A5F565F0077D272 /* OptionBreadTypeStackView.swift in Sources */,
+				DFB585FB2A5F565F0077D272 /* BreadTypeStackView.swift in Sources */,
 				DFB585FD2A5FEA0E0077D272 /* BakeryDetailInfoCollectionViewCell.swift in Sources */,
 				09FD47DD2A5E57F2002020BD /* MyReviewsViewController.swift in Sources */,
 				3EA2E1EB2A542151003516A3 /* SizeLiteral.swift in Sources */,
