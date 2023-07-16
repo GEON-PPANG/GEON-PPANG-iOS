@@ -67,28 +67,15 @@ final class EmailViewController: BaseViewController {
         checkButton.do {
             $0.getButtonUI(.clear, .gbbGray300)
             $0.getButtonTitle(.duplicate)
-            $0.addAction(UIAction { _ in
-                self.nextButton.do {
-                    $0.isUserInteractionEnabled = true
-                    $0.getButtonUI(.gbbMain2!)
-                }
-            }, for: .touchUpInside)
         }
         
         emailTextField.do {
             $0.getAccessoryView(nextButton)
             $0.getType(.email)
-            $0.validateEmail()
-            $0.validCheck = {
-                self.checkButton.do {
-                    $0.isEnabled = true
-                    $0.getButtonUI(.clear, .gbbMain2!)
-                }
-            }
-            $0.invalidCheck = {
-                self.checkButton.do {
-                    $0.isEnabled = false
-                    $0.getButtonUI(.clear, .gbbGray300)
+            $0.validCheck = { [weak self] valid in
+                self?.checkButton.do {
+                    $0.isEnabled = valid
+                    $0.getButtonUI(.clear, valid ? .gbbMain2! : .gbbGray300!)
                 }
             }
         }
