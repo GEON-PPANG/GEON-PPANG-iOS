@@ -75,4 +75,11 @@ final class CommonButton: UIButton {
         }
         addAction(action, for: .touchUpInside)
     }
+    
+    func addAction(completion: @escaping () -> Void) {
+        let action = UIAction { _ in
+            completion()
+        }
+        addAction(action, for: .touchUpInside)
+    }
 }

@@ -24,6 +24,13 @@ struct I18N {
         static let latelySigninSNS = "카카오톡"
     }
     
+    /// Bottomsheet
+    struct Bottomsheet {
+        static let diableNickname = "해당 닉네임은 사용중이에요"
+        static let checkIdPassword = "아이디 및 비밀번호를\n확인해주세요"
+        
+    }
+    
     /// WriteReviewViewController
     struct WriteReview {
         static let likeOptionTitle = "건빵집은 어떠셨나요?"
