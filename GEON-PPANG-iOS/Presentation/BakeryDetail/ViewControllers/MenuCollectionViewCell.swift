@@ -1,5 +1,5 @@
 //
-//  BakeryDetailMenuCollectionViewCell.swift
+//  MenuCollectionViewCell.swift
 //  GEON-PPANG-iOS
 //
 //  Created by kyun on 2023/07/15.
@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class BakeryDetailMenuCollectionViewCell: UICollectionViewCell {
+final class MenuCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI Property
     

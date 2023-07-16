@@ -14,10 +14,10 @@ final class ReviewProgressBarStackView: UIStackView {
 
     // MARK: - UIProperty
     
-    private lazy var deliciousProgressView = BakeryDetailReviewProgressView()
-    private lazy var specialProgressView = BakeryDetailReviewProgressView()
-    private lazy var kindProgressView = BakeryDetailReviewProgressView()
-    private lazy var zeroWasteProgressView = BakeryDetailReviewProgressView()
+    private lazy var deliciousProgressView = ReviewProgressView()
+    private lazy var specialProgressView = ReviewProgressView()
+    private lazy var kindProgressView = ReviewProgressView()
+    private lazy var zeroWasteProgressView = ReviewProgressView()
     private let labeling = ["맛있어요", "특별한 메뉴", "친절해요", "제로웨이스트"]
     private var tempGauge: [Float] = [0.8, 0.5, 0.7, 0.6]
     private let tempWidth = [45, 60, 45, 68]

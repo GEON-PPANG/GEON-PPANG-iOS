@@ -1,5 +1,5 @@
 //
-//  OptionBreadTypeStackView.swift
+//  BreadTypeStackView.swift
 //  GEON-PPANG-iOS
 //
 //  Created by kyun on 2023/07/13.
