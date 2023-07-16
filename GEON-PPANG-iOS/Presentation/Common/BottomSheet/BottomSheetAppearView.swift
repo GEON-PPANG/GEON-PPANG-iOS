@@ -22,16 +22,6 @@ final class BottomSheetAppearView: UIView {
     private lazy var halfView =  UIView()
     private lazy var handlerView = UIView()
     
-    // MARK: - Life Cycle
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     // MARK: - Setting
     
     private func setUI() {
