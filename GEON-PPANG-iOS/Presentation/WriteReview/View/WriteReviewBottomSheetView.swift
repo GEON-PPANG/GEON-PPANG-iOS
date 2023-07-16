@@ -14,16 +14,19 @@ final class WriteReviewBottomSheetView: UIView {
     
     // MARK: - Property
     
-    
+    var dismissClosure: (() -> Void)?
     
     // MARK: - UI Property
     
     private let emojiImageView = UIImageView(image: .memoEmoji)
     private let sheetTitleLabel = UILabel()
     private let sheetDescriptionLabel = UILabel()
+    
+    private let lineView = UIView()
     private lazy var quitButton = UIButton()
     private lazy var continueButton = UIButton()
     private lazy var buttonStackView = UIStackView(arrangedSubviews: [quitButton, continueButton])
+    private let buttonSeperator = UIView()
     
     // MARK: - Life Cycle
     
@@ -63,8 +66,31 @@ final class WriteReviewBottomSheetView: UIView {
         
         addSubview(buttonStackView)
         buttonStackView.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(8)
+            $0.height.equalTo(53)
+            $0.bottom.equalToSuperview().inset(41)
             $0.horizontalEdges.equalToSuperview()
+        }
+        
+        quitButton.snp.makeConstraints {
+            $0.width.equalTo(SizeLiteral.Screen.width / 2)
+        }
+        
+        continueButton.snp.makeConstraints {
+            $0.width.equalTo(SizeLiteral.Screen.width / 2)
+        }
+        
+        addSubview(lineView)
+        lineView.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(7)
+            $0.bottom.equalTo(buttonStackView.snp.top)
+            $0.height.equalTo(1)
+        }
+        
+        buttonStackView.addSubview(buttonSeperator)
+        buttonSeperator.snp.makeConstraints {
+            $0.verticalEdges.equalToSuperview().inset(14)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(1)
         }
     }
     
@@ -76,36 +102,53 @@ final class WriteReviewBottomSheetView: UIView {
         }
         
         sheetDescriptionLabel.do {
-            $0.text = I18N.WriteReview.sheetDescription
             $0.font = .bodyM2
             $0.textColor = .gbbGray400
+            $0.numberOfLines = 2
+            $0.setLineHeight(by: 1.14, with: I18N.WriteReview.sheetDescription)
+            $0.textAlignment = .center
         }
         
         quitButton.do {
-            $0.titleLabel?.text = I18N.WriteReview.sheetQuit
-            $0.titleLabel?.font = .bodyM1
-            $0.titleLabel?.textColor = .gbbGray400
+            $0.setTitle(I18N.WriteReview.sheetQuit, for: .normal)
+            $0.setTitleColor(.gbbGray400, for: .normal)
+            $0.titleLabel?.font = .bodyM2
         }
         
         continueButton.do {
-            $0.titleLabel?.text = I18N.WriteReview.sheetContinue
-            $0.titleLabel?.font = .bodyM1
-            $0.titleLabel?.textColor = .gbbGray700
+            $0.setTitle(I18N.WriteReview.sheetContinue, for: .normal)
+            $0.setTitleColor(.gbbGray700, for: .normal)
+            $0.titleLabel?.font = .bodyM2
         }
         
         buttonStackView.do {
             $0.axis = .horizontal
-            $0.alignment = .center
-            $0.distribution = .equalCentering
+            $0.distribution = .equalSpacing
+        }
+        
+        lineView.do {
+            $0.backgroundColor = .gbbGray200
+        }
+        
+        buttonSeperator.do {
+            $0.backgroundColor = .gbbGray200
         }
     }
     
-    // MARK: - Action Helper
-    
-    
-    
     // MARK: - Custom Method
     
+    func addQuitButtonAction(_ action: @escaping () -> Void) {
+        let action = UIAction { _ in
+            action()
+        }
+        quitButton.addAction(action, for: .touchUpInside)
+    }
     
+    func addContinueButtonAction(_ action: @escaping () -> Void) {
+        let action = UIAction { _ in
+            action()
+        }
+        quitButton.addAction(action, for: .touchUpInside)
+    }
     
 }

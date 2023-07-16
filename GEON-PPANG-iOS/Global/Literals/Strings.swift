@@ -48,7 +48,7 @@ struct I18N {
         static let sheetTitle = "정말 리뷰 작성을 그만하시겠어요?"
         static let sheetDescription = "고객님의 리뷰가 다른 고객님들에게\n도움이 될 수 있어요"
         static let sheetQuit = "그만하기"
-        static let sheetContinue = "계속하기"
+        static let sheetContinue = "계속쓰기"
     }
     
     /// BakeryList

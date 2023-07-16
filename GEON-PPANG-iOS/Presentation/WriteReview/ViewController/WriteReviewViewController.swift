@@ -43,6 +43,9 @@ final class WriteReviewViewController: BaseViewController {
     private let bottomView = BottomView()
     private let nextButton = CommonButton()
     
+    private let backgroundView = BottomSheetAppearView()
+    private let bottomSheetView = WriteReviewBottomSheetView()
+    
     // MARK: - life cycle
     
     override func viewDidLoad() {
@@ -159,6 +162,9 @@ final class WriteReviewViewController: BaseViewController {
             $0.backgroundColor = .white
             $0.configureLeftTitle(to: "건대 초코빵")
             $0.configureBottomLine()
+            $0.addBackButtonAction(UIAction { [weak self] _ in
+                self?.backButtonTapped()
+            })
         }
         
         scrollView.do {
@@ -236,6 +242,19 @@ final class WriteReviewViewController: BaseViewController {
                 self?.nextButtonTapped()
             }, for: .touchUpInside)
         }
+        
+        bottomSheetView.do {
+            $0.dismissClosure = {
+                self.backgroundView.dissmissFromSuperview()
+            }
+            $0.addQuitButtonAction {
+                self.backgroundView.dissmissFromSuperview()
+                self.navigationController?.popViewController(animated: true)
+            }
+            $0.addContinueButtonAction {
+                self.backgroundView.dissmissFromSuperview()
+            }
+        }
     }
     
     override func setDelegate() {
@@ -291,6 +310,10 @@ final class WriteReviewViewController: BaseViewController {
         else { return false }
         let isOverLimit = text.count + newText.count <= limit
         return isOverLimit
+    }
+    
+    private func backButtonTapped() {
+        backgroundView.appearBottomSheetView(subView: bottomSheetView, 309)
     }
     
     // MARK: - objc
