@@ -102,17 +102,7 @@ final class CommonTextView: UIView {
     
     func getAccessoryView(_ view: UIView) {
         commonTextField.inputAccessoryView = view
-    }
-    
-//    func validateEmail() {
-//        let text = getText()
-//        if text.isValidEmail() {
-//            self.validCheck?()
-//        } else {
-//            self.invalidCheck?()
-//        }
-//    }
-//    
+    } 
 }
 
 extension CommonTextView: UITextFieldDelegate {
