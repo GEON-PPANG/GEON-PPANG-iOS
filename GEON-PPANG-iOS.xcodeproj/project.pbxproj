@@ -370,7 +370,6 @@
 		0961C3662A501EDD0031A822 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				3E16E4F22A57CE2B00B813D0 /* Model */,
 				0961C3692A501EF00031A822 /* Base */,
 				0961C3682A501EE90031A822 /* API */,
 				0961C3672A501EE40031A822 /* Service */,
@@ -663,21 +662,6 @@
 			path = BottomSheet;
 			sourceTree = "<group>";
 		};
-		3E16E4F22A57CE2B00B813D0 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				3E16E4F32A57CEF400B813D0 /* Bakery */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		3E16E4F32A57CEF400B813D0 /* Bakery */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Bakery;
-			sourceTree = "<group>";
-		};
 		3E16E4F62A57D10300B813D0 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -722,15 +706,6 @@
 				3EFA97872A5EBCED002E70FA /* CustomNavigationBar.swift */,
 			);
 			path = NavigationBar;
-			sourceTree = "<group>";
-		};
-		09FD47E02A5E698D002020BD /* BottomSheet */ = {
-			isa = PBXGroup;
-			children = (
-				09FD47E12A5E69A2002020BD /* CommonBottomSheet.swift */,
-				09FD47E32A5E82BB002020BD /* BottomSheetAppearView.swift */,
-			);
-			path = BottomSheet;
 			sourceTree = "<group>";
 		};
 		3E79B19B2A54523400D36A26 /* Button */ = {
