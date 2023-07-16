@@ -86,6 +86,8 @@
 		DF959A622A539FBE00E75774 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */; };
 		DF959A6C2A568C4600E75774 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF959A6B2A568C4600E75774 /* Colors.xcassets */; };
 		DF959A6E2A568C9400E75774 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF959A6D2A568C9400E75774 /* UIColor+.swift */; };
+		DFB134372A62110900BAB52E /* BakeryDetailMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB134362A62110900BAB52E /* BakeryDetailMenuCollectionViewCell.swift */; };
+		DFB1343D2A6284BB00BAB52E /* BakeryDetailReviewProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB1343C2A6284BB00BAB52E /* BakeryDetailReviewProgressView.swift */; };
 		DFB585F72A5F31D80077D272 /* BakeryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB585F62A5F31D80077D272 /* BakeryDetailViewController.swift */; };
 		DFB585F92A5F32420077D272 /* BakeryDetailTitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB585F82A5F32420077D272 /* BakeryDetailTitleCollectionViewCell.swift */; };
 		DFB585FB2A5F565F0077D272 /* OptionBreadTypeStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB585FA2A5F565F0077D272 /* OptionBreadTypeStackView.swift */; };
@@ -171,6 +173,8 @@
 		DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		DF959A6B2A568C4600E75774 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		DF959A6D2A568C9400E75774 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		DFB134362A62110900BAB52E /* BakeryDetailMenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryDetailMenuCollectionViewCell.swift; sourceTree = "<group>"; };
+		DFB1343C2A6284BB00BAB52E /* BakeryDetailReviewProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryDetailReviewProgressView.swift; sourceTree = "<group>"; };
 		DFB585F62A5F31D80077D272 /* BakeryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryDetailViewController.swift; sourceTree = "<group>"; };
 		DFB585F82A5F32420077D272 /* BakeryDetailTitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryDetailTitleCollectionViewCell.swift; sourceTree = "<group>"; };
 		DFB585FA2A5F565F0077D272 /* OptionBreadTypeStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionBreadTypeStackView.swift; sourceTree = "<group>"; };
@@ -673,12 +677,38 @@
 			path = Colors;
 			sourceTree = "<group>";
 		};
-		DFB585F52A5F314D0077D272 /* BakeryDetail */ = {
+		DFB134382A627AD000BAB52E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				DFB587B82A5D584800704B6C /* OnboardingViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		DFB134392A627ADF00BAB52E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DFB1343C2A6284BB00BAB52E /* BakeryDetailReviewProgressView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DFB1343A2A627AE900BAB52E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				DFB585F62A5F31D80077D272 /* BakeryDetailViewController.swift */,
 				DFB585F82A5F32420077D272 /* BakeryDetailTitleCollectionViewCell.swift */,
 				DFB585FC2A5FEA0E0077D272 /* BakeryDetailInfoCollectionViewCell.swift */,
+				DFB134362A62110900BAB52E /* BakeryDetailMenuCollectionViewCell.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		DFB585F52A5F314D0077D272 /* BakeryDetail */ = {
+			isa = PBXGroup;
+			children = (
+				DFB134392A627ADF00BAB52E /* Views */,
+				DFB1343A2A627AE900BAB52E /* ViewControllers */,
 			);
 			path = BakeryDetail;
 			sourceTree = "<group>";
@@ -686,7 +716,7 @@
 		DFB587B72A5D580B00704B6C /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				DFB587B82A5D584800704B6C /* OnboardingViewController.swift */,
+				DFB134382A627AD000BAB52E /* ViewControllers */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -832,6 +862,7 @@
 				090556292A51DBC000752067 /* UIView+.swift in Sources */,
 				090556292A51DBC000752067 /* UIView+.swift in Sources */,
 				090668FC2A4FF3C600F413FA /* AppDelegate.swift in Sources */,
+				DFB134372A62110900BAB52E /* BakeryDetailMenuCollectionViewCell.swift in Sources */,
 				3E79B1B02A571B4B00D36A26 /* LineView.swift in Sources */,
 				090668FD2A4FF3C600F413FA /* SceneDelegate.swift in Sources */,
 				097682DC2A5C83910008F4FB /* CGFloat+.swift in Sources */,
@@ -890,6 +921,7 @@
 				09B13F562A59410C00C0C723 /* CALayer+.swift in Sources */,
 				3EA2E1E92A541AEB003516A3 /* CustomNavigationBar.swift in Sources */,
 				090556312A51DDD800752067 /* UITableView+.swift in Sources */,
+				DFB1343D2A6284BB00BAB52E /* BakeryDetailReviewProgressView.swift in Sources */,
 				3E16E4FE2A57F06D00B813D0 /* OptionsCollectionViewFlowLayout.swift in Sources */,
 				3E79B1B22A571E1F00D36A26 /* OptionsCollectionView.swift in Sources */,
 				3E79B1B52A571E7100D36A26 /* OptionsCollectionViewCell.swift in Sources */,

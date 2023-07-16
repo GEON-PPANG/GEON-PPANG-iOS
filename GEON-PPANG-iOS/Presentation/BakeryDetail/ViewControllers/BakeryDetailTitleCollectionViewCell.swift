@@ -20,7 +20,7 @@ final class BakeryDetailTitleCollectionViewCell: UICollectionViewCell {
     private let optionBreadTypeStackView = OptionBreadTypeStackView()
     private lazy var bookmarkButton = BookmarkButton(configuration: .plain())
     
-    // MARK: - Life Cycle
+    // MARK: - Initializer
     
     override init(frame: CGRect) {
         super.init(frame: .zero)

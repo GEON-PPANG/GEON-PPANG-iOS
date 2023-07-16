@@ -28,8 +28,7 @@ final class BakeryDetailInfoCollectionViewCell: UICollectionViewCell {
     private let bakeryPhoneNumberImage = UIImageView()
     private let bakeryPhoneNumberLabel = UILabel()
     
-    
-    // MARK: - Life Cycle
+    // MARK: - Initializer
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -116,20 +115,20 @@ final class BakeryDetailInfoCollectionViewCell: UICollectionViewCell {
         }
         
         bakeryAddressLabel.snp.makeConstraints {
-            $0.top.equalTo(bakeryAddressImage.snp.top)
-            $0.leading.equalTo(homepageLinkLabel.snp.leading)
+            $0.top.equalTo(bakeryAddressImage)
+            $0.leading.equalTo(homepageLinkLabel)
             $0.trailing.equalTo(addressCopyButton.snp.leading).offset(36)
         }
         
         addressCopyButton.snp.makeConstraints {
-            $0.top.equalTo(bakeryAddressImage.snp.top)
+            $0.top.equalTo(bakeryAddressImage)
             $0.trailing.equalToSuperview()
             $0.size.equalTo(30)
         }
         
         regionStackView.snp.makeConstraints {
             $0.top.equalTo(bakeryAddressLabel.snp.bottom).offset(8)
-            $0.leading.equalTo(bakeryAddressLabel.snp.leading)
+            $0.leading.equalTo(bakeryAddressLabel)
         }
         
         bakeryOpeningHoursImage.snp.makeConstraints {
@@ -139,13 +138,13 @@ final class BakeryDetailInfoCollectionViewCell: UICollectionViewCell {
         }
         
         bakeryClosedDaysLabel.snp.makeConstraints {
-            $0.top.equalTo(bakeryOpeningHoursImage.snp.top)
-            $0.leading.equalTo(regionStackView.snp.leading)
+            $0.top.equalTo(bakeryOpeningHoursImage)
+            $0.leading.equalTo(regionStackView)
         }
         
         bakeryOpeningHoursLabel.snp.makeConstraints {
             $0.top.equalTo(bakeryClosedDaysLabel.snp.bottom).offset(2)
-            $0.leading.equalTo(bakeryClosedDaysLabel.snp.leading)
+            $0.leading.equalTo(bakeryClosedDaysLabel)
             $0.trailing.equalToSuperview()
         }
         
@@ -156,8 +155,8 @@ final class BakeryDetailInfoCollectionViewCell: UICollectionViewCell {
         }
         
         bakeryPhoneNumberLabel.snp.makeConstraints {
-            $0.centerY.equalTo(bakeryPhoneNumberImage)
-            $0.leading.equalTo(bakeryOpeningHoursLabel.snp.leading)
+            $0.top.equalTo(bakeryPhoneNumberImage)
+            $0.leading.equalTo(bakeryOpeningHoursLabel)
             $0.trailing.equalToSuperview().inset(155)
         }
     }
