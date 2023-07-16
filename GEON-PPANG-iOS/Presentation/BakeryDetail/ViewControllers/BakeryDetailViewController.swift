@@ -14,10 +14,10 @@ final class BakeryDetailViewController: BaseViewController {
     
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//    }
     
     override func setUI() {
         
@@ -49,14 +49,15 @@ extension BakeryDetailViewController: UICollectionViewDelegate { }
 extension BakeryDetailViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-//        switch section {
-//        case 0:
-//            return 1
-//        case 1:
-//            return 2
-//        case 2
-//        }
+
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return 2
+        default:
+            return 0
+        }
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -79,7 +80,7 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
 
 extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
 //        switch indexPath.section {
 //        case 0:
@@ -87,5 +88,5 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
 //        default:
 //            return CGSize(width: UIScreen.main.bounds.width - 40, height: 95)
 //        }
-    }
+//    }
 }
