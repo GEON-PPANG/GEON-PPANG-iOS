@@ -47,6 +47,13 @@ extension UILabel {
         }
         self.attributedText = attributedString
     }
+    
+    func setLineHeight(by multiple: CGFloat, with text: String) {
+        var paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = multiple
+        attributedText = NSMutableAttributedString(string: text, attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
+    }
+    
 }
 
 extension UILabel {
