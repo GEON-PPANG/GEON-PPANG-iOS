@@ -11,16 +11,33 @@ final class ReviewDetailTextView: UIView {
     
     // MARK: - Property
     
-    var isLike: Bool = true {
-        didSet {
-            togglePlaceholderWithIsLike()
+    enum TextViewStatus {
+        case deactivated
+        case activated
+        case error
+    }
+    
+    private var borderColor: UIColor {
+        switch status {
+        case .deactivated: return .gbbGray300!
+        case .activated: return .gbbGray500!
+        case .error: return .gbbError!
         }
     }
     
-    var isEnabled: Bool = false {
-        didSet {
-            toggleInteraction()
-            toggleUI()
+    private var textColor: UIColor {
+        switch status {
+        case .deactivated: return .gbbGray300!
+        case .activated: return .gbbGray700!
+        case .error: return .gbbError!
+        }
+    }
+    
+    private var status: TextViewStatus = .deactivated
+    
+    var isLike: Bool = true {
+        willSet {
+            configurePlaceholder(with: newValue)
         }
     }
     
@@ -75,43 +92,35 @@ final class ReviewDetailTextView: UIView {
             $0.textColor = .gbbGray300
             $0.makeCornerRound(radius: 12)
             $0.makeBorder(width: 1, color: .gbbGray300!)
-            $0.contentInset = .init(top: 20, left: 28, bottom: 16, right: 28)
+            $0.textContainerInset = .init(top: 20, left: 28, bottom: 16, right: 28)
+            $0.clipsToBounds = true
         }
         
         textLimitLabel.do {
             $0.text = "0/500"
             $0.font = .captionM1
-            $0.textColor = .gbbGray300
+            $0.textColor = .gbbGray500
         }
         
         textMinimumLimitLabel.do {
             $0.text = "(최소 10자)"
             $0.font = .captionM1
-            $0.textColor = .gbbGray300
+            $0.textColor = .gbbGray500
         }
     }
     
     // MARK: - Custom Method
     
-    private func toggleInteraction() {
-        detailTextView.isUserInteractionEnabled.toggle()
-    }
-    
-    private func toggleUI() {
+    func configureTextView(to status: TextViewStatus) {
+        self.status = status
+        
         detailTextView.do {
-            $0.textColor = isEnabled ? .gbbGray500 : .gbbGray300
-        }
-        
-        textLimitLabel.do {
-            $0.textColor = isEnabled ? .gbbGray500 : .gbbGray300
-        }
-        
-        textMinimumLimitLabel.do {
-            $0.textColor = isEnabled ? .gbbGray500 : .gbbGray300
+            $0.textColor = textColor
+            $0.makeBorder(width: 1, color: borderColor)
         }
     }
     
-    private func togglePlaceholderWithIsLike() {
+    func configurePlaceholder(with isLike: Bool) {
         detailTextView.do {
             $0.text = isLike ? I18N.WriteReview.likePlaceholder : I18N.WriteReview.dislikePlaceholder
         }
@@ -120,6 +129,12 @@ final class ReviewDetailTextView: UIView {
     func updateTextLimitLabel(to num: Int) {
         textLimitLabel.do {
             $0.text = "\(num)/500"
+        }
+    }
+    
+    func checkTextCount() {
+        if detailTextView.text.count < 10 {
+            configureTextView(to: .error)
         }
     }
     

@@ -9,9 +9,9 @@ import Foundation
 
 struct WriteReviewDTO: Codable {
     let bakeryID: Int
-    let isLike: Bool
-    let keywordList: [KeywordList]
-    let reviewText: String
+    var isLike: Bool
+    var keywordList: [String]
+    var reviewText: String
 
     enum CodingKeys: String, CodingKey {
         case bakeryID = "bakeryId"
@@ -28,6 +28,4 @@ struct KeywordList: Codable {
         case special = "특별한 메뉴"
         case zeroWaste = "제로 웨이스트"
     }
-    
-    let keywordName: Keyword.RawValue
 }
