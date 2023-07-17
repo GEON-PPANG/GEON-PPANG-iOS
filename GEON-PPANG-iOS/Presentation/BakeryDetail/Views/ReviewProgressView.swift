@@ -20,7 +20,7 @@ final class ReviewProgressView: UIView {
     private var time: Float = 0.0 // 애니메이션 지속 시간 커스텀을 위한 변수 선언
     private var timer: Timer?
     
-//    private var reviewCount = eachKeywordCount - totalReviewCount
+    // TODO: reviewCount = eachKeywordCount - totalReviewCount
     var gauge: Float = 1
     
     // 진행 바를 수직으로 회전
@@ -49,7 +49,7 @@ final class ReviewProgressView: UIView {
     private func setUI() {
         
         reviewProgressBar.do {
-            $0.progress = 0.1
+            $0.progress = 0
             $0.trackTintColor = .gbbBackground2
             $0.progressTintColor = .gbbMain3
             $0.progressViewStyle = .default
@@ -83,6 +83,7 @@ final class ReviewProgressView: UIView {
     }
     
     @objc private func setProgressBarAnimation() {
+        
         time += gauge / 20
         reviewProgressBar.setProgress(time, animated: true)
         
@@ -92,6 +93,7 @@ final class ReviewProgressView: UIView {
     }
     
     private func setProgressBar() {
+        
         timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(setProgressBarAnimation), userInfo: nil, repeats: true)
     }
 }

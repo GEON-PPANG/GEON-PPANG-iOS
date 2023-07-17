@@ -14,14 +14,13 @@ final class ReviewCategoryCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UIProperty
     
-    private let reviewProgressBarStackView = ReviewProgressBarStackView()
+    private lazy var reviewProgressBarStackView = ReviewProgressBarStackView() // 서버
     
     // MARK: - Initializer
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        setUI()
         setLayout()
     }
     
@@ -30,10 +29,6 @@ final class ReviewCategoryCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Setting
-    
-    private func setUI() {
-        
-    }
     
     private func setLayout() {
         

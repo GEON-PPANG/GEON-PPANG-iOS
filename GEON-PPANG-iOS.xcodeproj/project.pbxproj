@@ -105,6 +105,9 @@
 		3EDC05D02A5E4FF900EAD950 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05CF2A5E4FF900EAD950 /* String+.swift */; };
 		3EFA97862A5EBCA9002E70FA /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFA97852A5EBCA9002E70FA /* LineView.swift */; };
 		3EFA97882A5EBCED002E70FA /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFA97872A5EBCED002E70FA /* CustomNavigationBar.swift */; };
+		DF483ACC2A652E0100FCD507 /* BookmarkReviewStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF483ACB2A652E0100FCD507 /* BookmarkReviewStackView.swift */; };
+		DF483ACE2A65893600FCD507 /* CountStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF483ACD2A65893600FCD507 /* CountStackView.swift */; };
+		DF483AD02A65D03A00FCD507 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF483ACF2A65D03A00FCD507 /* UIButton+.swift */; };
 		DF959A612A539FBE00E75774 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */; };
 		DF959A622A539FBE00E75774 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */; };
 		DF959A6C2A568C4600E75774 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF959A6B2A568C4600E75774 /* Colors.xcassets */; };
@@ -218,6 +221,9 @@
 		3EDC05CF2A5E4FF900EAD950 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		3EFA97852A5EBCA9002E70FA /* LineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 		3EFA97872A5EBCED002E70FA /* CustomNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
+		DF483ACB2A652E0100FCD507 /* BookmarkReviewStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkReviewStackView.swift; sourceTree = "<group>"; };
+		DF483ACD2A65893600FCD507 /* CountStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountStackView.swift; sourceTree = "<group>"; };
+		DF483ACF2A65D03A00FCD507 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 		DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		DF959A6B2A568C4600E75774 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -278,6 +284,7 @@
 				09B13F552A59410C00C0C723 /* CALayer+.swift */,
 				09B13F592A5946B700C0C723 /* TabBar+.swift */,
 				3EDC05CF2A5E4FF900EAD950 /* String+.swift */,
+				DF483ACF2A65D03A00FCD507 /* UIButton+.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -289,6 +296,8 @@
 				0915C16F2A5C3C5600ACB8D4 /* RegionStackView.swift */,
 				DFB585FA2A5F565F0077D272 /* BreadTypeStackView.swift */,
 				DF99C5FD2A6412F800C2C78C /* ReviewProgressBarStackView.swift */,
+				DF483ACD2A65893600FCD507 /* CountStackView.swift */,
+				DF483ACB2A652E0100FCD507 /* BookmarkReviewStackView.swift */,
 			);
 			path = StackView;
 			sourceTree = "<group>";
@@ -1077,6 +1086,7 @@
 				3EDC05C02A5DED9200EAD950 /* FilterBreadTypeViewController.swift in Sources */,
 				09FD47C82A5DC991002020BD /* SearchNavigationView.swift in Sources */,
 				090668FD2A4FF3C600F413FA /* SceneDelegate.swift in Sources */,
+				DF483ACC2A652E0100FCD507 /* BookmarkReviewStackView.swift in Sources */,
 				097682DC2A5C83910008F4FB /* CGFloat+.swift in Sources */,
 				3ED40DF92A5FCF3800C7D5DA /* FilterEnum.swift in Sources */,
 				0924632F2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift in Sources */,
@@ -1108,6 +1118,7 @@
 				09C6264E2A5B29F8002C8110 /* SearchEnum.swift in Sources */,
 				0915C16A2A5BFC5900ACB8D4 /* HomeBottomCollectionViewCell.swift in Sources */,
 				09CA3F082A569EBA0063897A /* Service.swift in Sources */,
+				DF483ACE2A65893600FCD507 /* CountStackView.swift in Sources */,
 				098716B82A6138BD00538D05 /* MyReviewsHeaderView.swift in Sources */,
 				09B13F4C2A593C6F00C0C723 /* HomeViewController.swift in Sources */,
 				09C626542A5B344B002C8110 /* HomeBestBakeryResponseDTO.swift in Sources */,
@@ -1134,6 +1145,7 @@
 				DF99C5F92A63D70500C2C78C /* TestViewController.swift in Sources */,
 				097682EB2A5D12BD0008F4FB /* BakeryListCollectionViewCell.swift in Sources */,
 				090556452A51E79B00752067 /* UITextField+.swift in Sources */,
+				DF483AD02A65D03A00FCD507 /* UIButton+.swift in Sources */,
 				3E16E5022A58176800B813D0 /* ReviewDetailTextView.swift in Sources */,
 				09CA3F062A569EB30063897A /* API.swift in Sources */,
 				DFB587B92A5D584800704B6C /* OnboardingViewController.swift in Sources */,

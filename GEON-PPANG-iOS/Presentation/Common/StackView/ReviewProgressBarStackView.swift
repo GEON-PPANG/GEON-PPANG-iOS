@@ -14,8 +14,8 @@ final class ReviewProgressBarStackView: UIStackView {
 
     // MARK: - UIProperty
     
-    private lazy var deliciousProgressView = ReviewProgressView()
-    private lazy var specialProgressView = ReviewProgressView()
+    private let deliciousProgressView = ReviewProgressView()
+    private let specialProgressView = ReviewProgressView()
     private lazy var kindProgressView = ReviewProgressView()
     private lazy var zeroWasteProgressView = ReviewProgressView()
     private let labeling = ["맛있어요", "특별한 메뉴", "친절해요", "제로웨이스트"]
@@ -42,12 +42,11 @@ final class ReviewProgressBarStackView: UIStackView {
         self.do {
             $0.axis = .horizontal
             $0.spacing = 30
-            $0.distribution = .equalCentering
+            $0.distribution = .equalSpacing
         }
         
         [deliciousProgressView, specialProgressView, kindProgressView, zeroWasteProgressView].enumerated().forEach { index, view in
             view.do {
-                $0.backgroundColor = .gbbWhite
                 $0.reviewLabel.text = labeling[index]
                 $0.gauge = tempGauge[index]
             }
@@ -61,7 +60,6 @@ final class ReviewProgressBarStackView: UIStackView {
         [deliciousProgressView, specialProgressView, kindProgressView, zeroWasteProgressView].enumerated().forEach { index, view in
             view.snp.makeConstraints {
                 $0.width.equalTo(tempWidth[index])
-                $0.height.equalTo(134)
             }
         }
     }
