@@ -56,7 +56,6 @@ extension UIViewController {
     }
 }
 
-
 extension UIViewController: UIGestureRecognizerDelegate {
     public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         guard let count = self.navigationController?.viewControllers.count else { return false }
