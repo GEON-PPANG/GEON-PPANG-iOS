@@ -21,6 +21,7 @@ final class PasswordViewController: BaseViewController {
     }
     private lazy var safeArea = self.view.safeAreaLayoutGuide
     private var password: String = ""
+    private var keyboardHeight: CGFloat = 0
     
     // MARK: - UI Property
     
@@ -36,16 +37,19 @@ final class PasswordViewController: BaseViewController {
     private let nextButton = CommonButton()
     
     // MARK: - Life Cycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        registerKeyboardNotifications()
-        setupTapGesture()
+        
+        setNavigationBarHidden()
+        setKeyboardHideGesture()
+        setKeyboardNotificationCenterOnScrollView()
     }
+    
     // MARK: - Setting
     
     override func setLayout() {
-        view.addSubviews(naviView, scrollView, bottomView)
+        view.addSubviews(scrollView, naviView, bottomView)
         scrollView.addSubview(contentView)
         contentView.addSubviews(titleLabel, passwordTextField, checkPasswordTextField)
         bottomView.addSubview(nextButton)
@@ -56,8 +60,7 @@ final class PasswordViewController: BaseViewController {
         }
         
         scrollView.snp.makeConstraints {
-            $0.top.equalTo(naviView.snp.bottom)
-            $0.bottom.directionalHorizontalEdges.equalTo(safeArea)
+            $0.edges.equalTo(safeArea)
         }
         
         contentView.snp.makeConstraints {
@@ -66,7 +69,7 @@ final class PasswordViewController: BaseViewController {
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview()
+            $0.top.equalToSuperview().offset(68)
             $0.leading.equalToSuperview().offset(24)
         }
         
@@ -103,6 +106,7 @@ final class PasswordViewController: BaseViewController {
         }
         
         naviView.do {
+            $0.backgroundColor = .white
             $0.configureRightCount(4, by: 6)
             $0.addBackButtonAction(UIAction { _ in
                 self.navigationController?.popViewController(animated: true)
@@ -121,11 +125,16 @@ final class PasswordViewController: BaseViewController {
             $0.duplicatedCheck = { data in
                 self.password = data
             }
+            $0.changeLayout = {
+                self.bottomView.transform = CGAffineTransform(translationX: 0, y: -50)
+            }
         }
         
         checkPasswordTextField.do {
-            $0.getAccessoryView(nextButton)
             $0.getType(.checkPassword)
+            $0.changeLayout = {
+                self.bottomView.transform = CGAffineTransform(translationX: 0, y: -50)
+            }
             $0.textFieldData = { [weak self] data in
                 if self?.password == data {
                     self?.checkPasswordTextField.clearErrorMessage(true)
@@ -143,49 +152,45 @@ final class PasswordViewController: BaseViewController {
         }
         
         nextButton.do {
+            $0.isEnabled = false
             $0.getButtonUI(.gbbGray200!)
             $0.getButtonTitle(.next)
-            $0.addAction(UIAction { _ in
-                Utils.push(self.navigationController, NickNameViewController())
-            }, for: .touchUpInside)
         }
     }
     
     func updateUI(_ isValid: Bool) {
         self.nextButton.do {
             $0.isEnabled = isValid
-            $0.getButtonUI(isValid ? .gbbMain2! : .clear, isValid ? .clear : .gbbGray300!)
+            $0.getButtonUI(isValid ? .gbbMain2! : .gbbGray200!)
+            $0.addAction {
+                if isValid {
+                    Utils.push(self.navigationController, NickNameViewController())
+                }
+            }
         }
     }
     
+    private func setKeyboardNotificationCenterOnScrollView() {
+        NotificationCenter.default.addObserver(self, selector: #selector(moveUpAboutKeyboardOnScrollView), name: UIResponder.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(moveDownAboutKeyboardOnScrollView), name: UIResponder.keyboardWillHideNotification, object: nil)
+
+    }
     
-       private func registerKeyboardNotifications() {
-           NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-           NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-       }
-       
-       @objc private func keyboardWillShow(_ notification: Notification) {
-           guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
-           
-           let contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
-           scrollView.contentInset = contentInset
-           scrollView.scrollIndicatorInsets = contentInset
-       }
-       
-       @objc private func keyboardWillHide(_ notification: Notification) {
-           scrollView.contentInset = .zero
-           scrollView.scrollIndicatorInsets = .zero
-       }
-       
-       // MARK: - Tap Gesture Handling
-       
-       private func setupTapGesture() {
-           let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-           scrollView.addGestureRecognizer(tapGesture)
-       }
-       
     @objc
-    override func dismissKeyboard() {
-           view.endEditing(true)
-       }
+    func moveUpAboutKeyboardOnScrollView(_ notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            UIView.animate(withDuration: 0.2, animations: {
+                self.keyboardHeight = keyboardSize.height
+                self.scrollView.transform = CGAffineTransform(translationX: 0, y: -50)
+                self.bottomView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height)
+            })
+        }
+    }
+//    @objc
+//    func moveDownAboutKeyboardOnScrollView(_ notification: NSNotification) {
+//        UIView.animate(withDuration: 0.2, animations: {
+//            self.scrollView.transform = .identity
+//            self.bottomView.transform = .identity
+//        })
+//    }
 }
