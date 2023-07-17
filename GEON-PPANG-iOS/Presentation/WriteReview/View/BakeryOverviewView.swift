@@ -14,23 +14,25 @@ final class BakeryOverviewView: UIView {
     
     // MARK: - Property
     
-    // TODO: ingredient Tag 추가
+    private var ingredientsData: [String] = []
     
     // MARK: - UI Property
     
     private let bakeryImageView = UIImageView()
-    // TODO: ingredient Tag 추가
+    private let flowLayout = OptionsCollectionViewFlowLayout()
+    lazy var bakeryIngredientsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
     private let sampleView = UIView()
     private let regionStackView = RegionStackView()
     
     // MARK: - Life Cycle
-    // TODO: ingredient Tag 추가
-    init(bakeryImage: UIImage, firstRegion: String, secondRegion: String) {
+    
+    init(bakeryImage: UIImage, ingredients: [String], firstRegion: String, secondRegion: String) {
         super.init(frame: .zero)
         
-        setProperties(bakeryImage, firstRegion, secondRegion)
+        setProperties(bakeryImage, ingredients, firstRegion, secondRegion)
         setLayout()
         setUI()
+        setDelegate()
     }
     
     @available(*, unavailable)
@@ -40,8 +42,9 @@ final class BakeryOverviewView: UIView {
     
     // MARK: - Setting
     
-    private func setProperties(_ bakeryImage: UIImage, _ firstRegion: String, _ secondRegion: String) {
+    private func setProperties(_ bakeryImage: UIImage, _ ingredients: [String], _ firstRegion: String, _ secondRegion: String) {
         self.bakeryImageView.image = bakeryImage
+        self.ingredientsData = ingredients
         if secondRegion == "" {
             regionStackView.removeSecondRegion()
         }
@@ -52,23 +55,23 @@ final class BakeryOverviewView: UIView {
     private func setLayout() {
         addSubview(bakeryImageView)
         bakeryImageView.snp.makeConstraints {
+            $0.top.equalToSuperview()
             $0.leading.equalToSuperview().inset(24)
-            $0.centerY.equalToSuperview().offset(6)
             $0.width.height.equalTo(84)
         }
         
-        // TODO: ingredient Tag 추가
-        addSubview(sampleView)
-        sampleView.snp.makeConstraints {
+        addSubview(bakeryIngredientsCollectionView)
+        bakeryIngredientsCollectionView.snp.makeConstraints {
+            $0.top.equalToSuperview()
             $0.leading.equalTo(bakeryImageView.snp.trailing).offset(20)
-            $0.top.equalToSuperview().inset(24)
-            $0.height.width.equalTo(43)
+            $0.trailing.equalToSuperview().inset(24)
+            $0.height.equalTo(20)
         }
         
         addSubview(regionStackView)
         regionStackView.snp.makeConstraints {
             $0.leading.equalTo(bakeryImageView.snp.trailing).offset(20)
-            $0.bottom.equalToSuperview().inset(12)
+            $0.top.equalTo(bakeryIngredientsCollectionView.snp.bottom).offset(16)
         }
     }
     
@@ -80,10 +83,41 @@ final class BakeryOverviewView: UIView {
             $0.contentMode = .scaleAspectFill
         }
         
-        // TODO: ingredient Tag 추가
-        sampleView.do {
-            $0.backgroundColor = .gbbPoint1
+        bakeryIngredientsCollectionView.do {
+            $0.register(cell: DescriptionCollectionViewCell.self)
         }
     }
     
+    private func setDelegate() {
+        bakeryIngredientsCollectionView.delegate = self
+        bakeryIngredientsCollectionView.dataSource = self
+    }
+    
+}
+
+// MARK: - UICollectionViewDelegate extension
+
+extension BakeryOverviewView: UICollectionViewDelegate {}
+
+// MARK: - UICollectionViewDataSource extension
+
+extension BakeryOverviewView: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return ingredientsData.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: DescriptionCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+        cell.configureTagTitle(ingredientsData[indexPath.item])
+        return cell
+    }
+    
+}
+
+extension BakeryOverviewView: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cell: DescriptionCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+        return cell.fittingSize(availableHeight: 25)
+    }
 }

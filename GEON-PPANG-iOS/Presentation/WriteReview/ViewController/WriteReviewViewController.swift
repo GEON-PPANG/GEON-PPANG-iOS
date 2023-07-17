@@ -17,6 +17,7 @@ final class WriteReviewViewController: BaseViewController {
     private var likeCollectionViewHeightConstraint: NSLayoutConstraint!
     
     private let keywordList = KeywordList.Keyword.allCases.map { $0.rawValue }
+    
     private var writeReviewData: WriteReviewDTO = .init(bakeryID: 1, isLike: false, keywordList: [], reviewText: "")
     
     // MARK: - UI Property
@@ -24,9 +25,15 @@ final class WriteReviewViewController: BaseViewController {
     // TODO: bakeryImage 추가
     private let scrollView = UIScrollView()
     private let contentView = UIView()
-    
     private let navigationBar = CustomNavigationBar()
-    private let bakeryOverviewView = BakeryOverviewView(bakeryImage: .actions, firstRegion: "tset", secondRegion: "efqerqf")
+    private let bottomView = BottomView()
+    private let nextButton = CommonButton()
+    
+    private let bakeryOverviewView = BakeryOverviewView(bakeryImage: .actions,
+                                                        ingredients: ["넛프리", "비건빵", "글루텐프리", "혀ㅛ효ㅕㅛ효"],
+                                                        firstRegion: "tset",
+                                                        secondRegion: "efqerqf")
+    
     private let lineView = LineView()
     
     private let likeCollectionViewFlowLayout = OptionsCollectionViewFlowLayout()
@@ -35,13 +42,13 @@ final class WriteReviewViewController: BaseViewController {
     private lazy var likeCollectionView = OptionsCollectionView(frame: .zero, collectionViewLayout: likeCollectionViewFlowLayout)
     private let optionsCollectionViewHeaderLabel = UILabel()
     private lazy var optionsCollectionView = OptionsCollectionView(frame: .zero, collectionViewLayout: optionsCollectionViewFlowLayout)
+    
     private let reviewDetailTextView = ReviewDetailTextView()
-    private let dotView = UILabel()
     private let aboutReviewContainerView = UIView()
+    private let dotView = UILabel()
     private let aboutReviewLabel = UILabel()
     
-    private let bottomView = BottomView()
-    private let nextButton = CommonButton()
+    
     
     private let backgroundView = BottomSheetAppearView()
     private let bottomSheetView = WriteReviewBottomSheetView()
@@ -59,8 +66,9 @@ final class WriteReviewViewController: BaseViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        updateCollectionViewConstraint(of: likeCollectionView)
-        updateCollectionViewConstraint(of: optionsCollectionView)
+        Utils.updateCollectionViewConstraint(of: bakeryOverviewView.bakeryIngredientsCollectionView, byOffset: 1)
+        Utils.updateCollectionViewConstraint(of: likeCollectionView)
+        Utils.updateCollectionViewConstraint(of: optionsCollectionView)
     }
     
     // MARK: - Setting
@@ -88,15 +96,15 @@ final class WriteReviewViewController: BaseViewController {
         
         contentView.addSubview(bakeryOverviewView)
         bakeryOverviewView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(68)
+            $0.top.equalToSuperview().offset(92)
             $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(125)
+            $0.height.equalTo(50)
         }
         
         contentView.addSubview(lineView)
         lineView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview()
-            $0.top.equalTo(bakeryOverviewView.snp.bottom)
+            $0.top.equalTo(bakeryOverviewView.snp.bottom).offset(24)
             $0.height.equalTo(1)
         }
         
@@ -175,14 +183,6 @@ final class WriteReviewViewController: BaseViewController {
         
         contentView.do {
             $0.backgroundColor = .white
-        }
-        
-        likeCollectionViewFlowLayout.do {
-            $0.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        }
-        
-        optionsCollectionViewFlowLayout.do {
-            $0.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         }
         
         likeCollectionViewHeaderLabel.do {
