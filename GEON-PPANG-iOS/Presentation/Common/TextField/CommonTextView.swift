@@ -41,6 +41,7 @@ final class CommonTextView: UIView {
     var invalidCheck: ((Bool) -> Void)?
     var duplicatedCheck: ((String) -> Void)?
     var textFieldData: ((String) -> Void)?
+    var changeLayout: (() -> Void)?
 
     // MARK: - UI Property
     
@@ -110,10 +111,6 @@ final class CommonTextView: UIView {
     func getText() -> String {
         return commonTextField.text ?? ""
     }
-    
-    func getAccessoryView(_ view: UIView) {
-        commonTextField.inputAccessoryView = view
-    }
 }
 
 // MARK: - UITextFieldDelegate
@@ -127,10 +124,6 @@ extension CommonTextView: UITextFieldDelegate {
             textField.layer.borderColor = UIColor.clear.cgColor
         }
     }
-    
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        textField.layer.borderColor = UIColor.clear.cgColor
-//    }
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
         guard let text = textField.text else { return }
@@ -181,6 +174,7 @@ extension CommonTextView: UITextFieldDelegate {
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         duplicatedCheck?(getText())
+        self.changeLayout?()
         textField.resignFirstResponder()
         return true
     }
