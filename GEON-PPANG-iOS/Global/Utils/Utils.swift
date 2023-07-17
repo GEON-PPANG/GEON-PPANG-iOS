@@ -22,8 +22,8 @@ final class Utils {
         viewController.present(modalViewController, animated: false)
     }
     
-    class func updateCollectionViewConstraint(of collectionView: UICollectionView) {
-        let height = collectionView.collectionViewLayout.collectionViewContentSize.height
+    class func updateCollectionViewConstraint(of collectionView: UICollectionView, byOffset offset: CGFloat = 0) {
+        let height = collectionView.collectionViewLayout.collectionViewContentSize.height + offset
         guard height != 0 else { return }
         collectionView.snp.updateConstraints {
             $0.height.equalTo(height)

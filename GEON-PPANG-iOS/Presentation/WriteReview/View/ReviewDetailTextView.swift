@@ -7,6 +7,9 @@
 
 import UIKit
 
+import SnapKit
+import Then
+
 final class ReviewDetailTextView: UIView {
     
     // MARK: - Property
@@ -72,14 +75,14 @@ final class ReviewDetailTextView: UIView {
         
         addSubview(textMinimumLimitLabel)
         textMinimumLimitLabel.snp.makeConstraints {
-            $0.top.equalTo(detailTextView.snp.bottom).offset(7)
-            $0.trailing.equalTo(detailTextView)
+            $0.bottom.equalTo(detailTextView.snp.bottom).offset(-10)
+            $0.trailing.equalTo(detailTextView).offset(-12)
             $0.height.equalTo(17)
         }
         
         addSubview(textLimitLabel)
         textLimitLabel.snp.makeConstraints {
-            $0.top.equalTo(detailTextView.snp.bottom).offset(7)
+            $0.bottom.equalTo(detailTextView.snp.bottom).offset(-10)
             $0.trailing.equalTo(textMinimumLimitLabel.snp.leading).offset(-4)
             $0.height.equalTo(17)
         }
@@ -92,7 +95,7 @@ final class ReviewDetailTextView: UIView {
             $0.textColor = .gbbGray300
             $0.makeCornerRound(radius: 12)
             $0.makeBorder(width: 1, color: .gbbGray300!)
-            $0.textContainerInset = .init(top: 20, left: 28, bottom: 16, right: 28)
+            $0.textContainerInset = .init(top: 20, left: 28, bottom: 39, right: 28)
             $0.clipsToBounds = true
         }
         
@@ -128,7 +131,7 @@ final class ReviewDetailTextView: UIView {
     
     func updateTextLimitLabel(to num: Int) {
         textLimitLabel.do {
-            $0.text = "\(num)/500"
+            $0.text = "\(num)/70"
         }
     }
     
