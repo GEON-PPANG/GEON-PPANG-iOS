@@ -30,7 +30,7 @@ final class BottomView: UIView {
     
     private func setLayout() {
         self.snp.makeConstraints {
-            $0.height.equalTo(128)
+            $0.height.equalTo(CGFloat().heightConsideringBottomSafeArea(128))
         }
     }
 

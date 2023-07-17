@@ -30,7 +30,7 @@ final class WriteReviewViewController: BaseViewController {
     private let nextButton = CommonButton()
     
     private let bakeryOverviewView = BakeryOverviewView(bakeryImage: .actions,
-                                                        ingredients: ["넛프리", "비건빵", "글루텐프리", "혀ㅛ효ㅕㅛ효"],
+                                                        ingredients: ["넛프리", "비건빵", "글루텐프리"],
                                                         firstRegion: "tset",
                                                         secondRegion: "efqerqf")
     
@@ -47,8 +47,6 @@ final class WriteReviewViewController: BaseViewController {
     private let aboutReviewContainerView = UIView()
     private let dotView = UILabel()
     private let aboutReviewLabel = UILabel()
-    
-    
     
     private let backgroundView = BottomSheetAppearView()
     private let bottomSheetView = WriteReviewBottomSheetView()
@@ -96,9 +94,8 @@ final class WriteReviewViewController: BaseViewController {
         
         contentView.addSubview(bakeryOverviewView)
         bakeryOverviewView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(92)
+            $0.top.equalToSuperview().inset(CGFloat().heightConsideringNotch(122))
             $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(50)
         }
         
         contentView.addSubview(lineView)

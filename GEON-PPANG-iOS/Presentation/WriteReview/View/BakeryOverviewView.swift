@@ -53,11 +53,15 @@ final class BakeryOverviewView: UIView {
     }
     
     private func setLayout() {
+        self.snp.makeConstraints {
+            $0.height.greaterThanOrEqualTo(90)
+        }
+        
         addSubview(bakeryImageView)
         bakeryImageView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalToSuperview().inset(24)
-            $0.width.height.equalTo(84)
+            $0.width.height.equalTo(90)
         }
         
         addSubview(bakeryIngredientsCollectionView)
