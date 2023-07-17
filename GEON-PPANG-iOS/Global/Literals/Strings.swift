@@ -91,4 +91,11 @@ struct I18N {
     struct MyReviews {
         static let naviTitle = "내가 쓴 리뷰"
     }
+    
+    /// SortBottomSheet
+    struct SortBottomSheet {
+        static let sortBy = "정렬"
+        static let byDefault = "기본순"
+        static let byReviews = "리뷰 많은 순"
+    }
 }
