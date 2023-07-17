@@ -23,9 +23,5 @@ struct HomeBestReviewResponseDTO: Codable, Hashable {
     let reviewText: String
     let firstMaxRecommendKeyword: String
     let secondMaxRecommendKeyword: String?
-//    
-//    enum CodingKeys: String, CodingKey {
-//        case bakeryID = "bakeryId"
-//        case bakeryName, bakeryPicture, isHACCP, isVegan, isNonGMO, firstNearStation, secondNearStation, isBooked, bookMarkCount, reviewCount, firstMaxRecommendKeyword, secondMaxRecommendKeyword
-//    }
+
 }
