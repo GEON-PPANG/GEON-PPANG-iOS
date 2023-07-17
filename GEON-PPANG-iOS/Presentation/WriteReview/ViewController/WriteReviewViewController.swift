@@ -87,6 +87,7 @@ final class WriteReviewViewController: BaseViewController {
         scrollView.addSubview(contentView)
         contentView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+            $0.width.equalTo(SizeLiteral.Screen.width)
         }
         
         contentView.addSubview(bakeryOverviewView)
@@ -105,7 +106,7 @@ final class WriteReviewViewController: BaseViewController {
         contentView.addSubview(likeCollectionViewHeaderLabel)
         likeCollectionViewHeaderLabel.snp.makeConstraints {
             $0.top.equalTo(lineView.snp.bottom).offset(24)
-            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.leading.equalToSuperview().inset(24)
             $0.height.equalTo(22)
         }
         
@@ -119,7 +120,7 @@ final class WriteReviewViewController: BaseViewController {
         contentView.addSubview(optionsCollectionViewHeaderLabel)
         optionsCollectionViewHeaderLabel.snp.makeConstraints {
             $0.top.equalTo(likeCollectionView.snp.bottom).offset(28)
-            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.leading.equalToSuperview().inset(24)
             $0.height.equalTo(22)
         }
         
@@ -141,8 +142,8 @@ final class WriteReviewViewController: BaseViewController {
         aboutReviewContainerView.snp.makeConstraints {
             $0.top.equalTo(reviewDetailTextView.snp.bottom).offset(10)
             $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(207)
             $0.bottom.equalToSuperview()
+            $0.height.equalTo(207)
         }
         
         aboutReviewContainerView.addSubview(dotView)
@@ -272,6 +273,11 @@ final class WriteReviewViewController: BaseViewController {
     
     private func nextButtonTapped() {
         writeReviewData.reviewText = reviewDetailTextView.detailTextView.text
+        dump(writeReviewData)
+    }
+    
+    private func backButtonTapped() {
+        backgroundView.appearBottomSheetView(subView: bottomSheetView, 309)
     }
     
     // MARK: - Custom Method
@@ -299,10 +305,6 @@ final class WriteReviewViewController: BaseViewController {
         else { return false }
         let isOverLimit = text.count + newText.count <= limit
         return isOverLimit
-    }
-    
-    private func backButtonTapped() {
-        backgroundView.appearBottomSheetView(subView: bottomSheetView, 309)
     }
     
     // MARK: - objc
