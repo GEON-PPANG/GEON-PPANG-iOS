@@ -73,6 +73,8 @@
 		09FD47D22A5DF892002020BD /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47D12A5DF892002020BD /* EmptyCollectionViewCell.swift */; };
 		09FD47D92A5E5148002020BD /* MySavedBakeryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47D82A5E5148002020BD /* MySavedBakeryViewController.swift */; };
 		09FD47DD2A5E57F2002020BD /* MyReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47DC2A5E57F2002020BD /* MyReviewsViewController.swift */; };
+		09FD47E22A5E69A2002020BD /* CommonBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47E12A5E69A2002020BD /* CommonBottomSheet.swift */; };
+		09FD47E42A5E82BB002020BD /* BottomSheetAppearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47E32A5E82BB002020BD /* BottomSheetAppearView.swift */; };
 		3E16E4F52A57CF3800B813D0 /* WriteReviewDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16E4F42A57CF3800B813D0 /* WriteReviewDTO.swift */; };
 		3E16E4FA2A57D1F400B813D0 /* RecommendationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16E4F92A57D1F400B813D0 /* RecommendationModel.swift */; };
 		3E16E4FC2A57D24900B813D0 /* LikeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16E4FB2A57D24900B813D0 /* LikeModel.swift */; };
@@ -82,8 +84,6 @@
 		3E452B672A60E68000EA456D /* MyPageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E452B662A60E68000EA456D /* MyPageDTO.swift */; };
 		3E452B692A60FF7900EA456D /* MyPageCollectionViewFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E452B682A60FF7900EA456D /* MyPageCollectionViewFooter.swift */; };
 		3E452B6B2A614AAE00EA456D /* ImageWithSubtitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E452B6A2A614AAD00EA456D /* ImageWithSubtitleButton.swift */; };
-		09FD47E22A5E69A2002020BD /* CommonBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47E12A5E69A2002020BD /* CommonBottomSheet.swift */; };
-		09FD47E42A5E82BB002020BD /* BottomSheetAppearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47E32A5E82BB002020BD /* BottomSheetAppearView.swift */; };
 		3E79B19D2A54523D00D36A26 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B19C2A54523D00D36A26 /* BackButton.swift */; };
 		3E79B1A02A5546E700D36A26 /* DescriptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B19F2A5546E700D36A26 /* DescriptionCollectionViewCell.swift */; };
 		3E79B1A62A566F6400D36A26 /* WriteReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1A52A566F6400D36A26 /* WriteReviewViewController.swift */; };
@@ -103,6 +103,7 @@
 		3EDC05C22A5DED9D00EAD950 /* FilterIngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05C12A5DED9D00EAD950 /* FilterIngredientViewController.swift */; };
 		3EDC05C42A5DEE3600EAD950 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05C32A5DEE3600EAD950 /* FilterCollectionViewCell.swift */; };
 		3EDC05D02A5E4FF900EAD950 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05CF2A5E4FF900EAD950 /* String+.swift */; };
+		3EE343182A65396C0010C187 /* FilterCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE343172A65396C0010C187 /* FilterCompleteViewController.swift */; };
 		3EFA97862A5EBCA9002E70FA /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFA97852A5EBCA9002E70FA /* LineView.swift */; };
 		3EFA97882A5EBCED002E70FA /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFA97872A5EBCED002E70FA /* CustomNavigationBar.swift */; };
 		DF959A612A539FBE00E75774 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */; };
@@ -177,6 +178,8 @@
 		09FD47D12A5DF892002020BD /* EmptyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCollectionViewCell.swift; sourceTree = "<group>"; };
 		09FD47D82A5E5148002020BD /* MySavedBakeryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavedBakeryViewController.swift; sourceTree = "<group>"; };
 		09FD47DC2A5E57F2002020BD /* MyReviewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewsViewController.swift; sourceTree = "<group>"; };
+		09FD47E12A5E69A2002020BD /* CommonBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonBottomSheet.swift; sourceTree = "<group>"; };
+		09FD47E32A5E82BB002020BD /* BottomSheetAppearView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetAppearView.swift; sourceTree = "<group>"; };
 		3E16E4F42A57CF3800B813D0 /* WriteReviewDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewDTO.swift; sourceTree = "<group>"; };
 		3E16E4F92A57D1F400B813D0 /* RecommendationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationModel.swift; sourceTree = "<group>"; };
 		3E16E4FB2A57D24900B813D0 /* LikeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeModel.swift; sourceTree = "<group>"; };
@@ -186,9 +189,6 @@
 		3E452B662A60E68000EA456D /* MyPageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageDTO.swift; sourceTree = "<group>"; };
 		3E452B682A60FF7900EA456D /* MyPageCollectionViewFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCollectionViewFooter.swift; sourceTree = "<group>"; };
 		3E452B6A2A614AAD00EA456D /* ImageWithSubtitleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWithSubtitleButton.swift; sourceTree = "<group>"; };
-		09FD47D82A5E5148002020BD /* MySavedBakeryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavedBakeryViewController.swift; sourceTree = "<group>"; };
-		09FD47E12A5E69A2002020BD /* CommonBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonBottomSheet.swift; sourceTree = "<group>"; };
-		09FD47E32A5E82BB002020BD /* BottomSheetAppearView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetAppearView.swift; sourceTree = "<group>"; };
 		3E79B19C2A54523D00D36A26 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		3E79B19F2A5546E700D36A26 /* DescriptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionCollectionViewCell.swift; sourceTree = "<group>"; };
 		3E79B1A52A566F6400D36A26 /* WriteReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewViewController.swift; sourceTree = "<group>"; };
@@ -208,6 +208,7 @@
 		3EDC05C12A5DED9D00EAD950 /* FilterIngredientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterIngredientViewController.swift; sourceTree = "<group>"; };
 		3EDC05C32A5DEE3600EAD950 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		3EDC05CF2A5E4FF900EAD950 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		3EE343172A65396C0010C187 /* FilterCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCompleteViewController.swift; sourceTree = "<group>"; };
 		3EFA97852A5EBCA9002E70FA /* LineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 		3EFA97872A5EBCED002E70FA /* CustomNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
@@ -653,6 +654,15 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		09FD47E02A5E698D002020BD /* BottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				09FD47E12A5E69A2002020BD /* CommonBottomSheet.swift */,
+				09FD47E32A5E82BB002020BD /* BottomSheetAppearView.swift */,
+			);
+			path = BottomSheet;
+			sourceTree = "<group>";
+		};
 		3E16E4F22A57CE2B00B813D0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -711,15 +721,6 @@
 				3EFA97872A5EBCED002E70FA /* CustomNavigationBar.swift */,
 			);
 			path = NavigationBar;
-			sourceTree = "<group>";
-		};
-		09FD47E02A5E698D002020BD /* BottomSheet */ = {
-			isa = PBXGroup;
-			children = (
-				09FD47E12A5E69A2002020BD /* CommonBottomSheet.swift */,
-				09FD47E32A5E82BB002020BD /* BottomSheetAppearView.swift */,
-			);
-			path = BottomSheet;
 			sourceTree = "<group>";
 		};
 		3E79B19B2A54523400D36A26 /* Button */ = {
@@ -822,6 +823,7 @@
 				3EDC05BD2A5DED4400EAD950 /* FilterPurposeViewController.swift */,
 				3EDC05BF2A5DED9200EAD950 /* FilterBreadTypeViewController.swift */,
 				3EDC05C12A5DED9D00EAD950 /* FilterIngredientViewController.swift */,
+				3EE343172A65396C0010C187 /* FilterCompleteViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1040,6 +1042,7 @@
 				0915C1722A5C3D3700ACB8D4 /* PaddingLabel.swift in Sources */,
 				DFB587BB2A5D588500704B6C /* DrawDashLineView.swift in Sources */,
 				090556222A51DB3300752067 /* UIFont+.swift in Sources */,
+				3EE343182A65396C0010C187 /* FilterCompleteViewController.swift in Sources */,
 				09CA3EFC2A569E4A0063897A /* URLConstant.swift in Sources */,
 				3EDC05BE2A5DED4400EAD950 /* FilterPurposeViewController.swift in Sources */,
 				3EDC05C22A5DED9D00EAD950 /* FilterIngredientViewController.swift in Sources */,
@@ -1059,7 +1062,6 @@
 				0987288D2A5BA1F000A29402 /* BookmarkButton.swift in Sources */,
 				090556202A51DB2C00752067 /* UIImage+.swift in Sources */,
 				09FD47E22A5E69A2002020BD /* CommonBottomSheet.swift in Sources */,
-				09B71BFC2A59CF3E00076AC2 /* Protocol.swift in Sources */,
 				0905562D2A51DBE700752067 /* UILabel+.swift in Sources */,
 				090556252A51DB9600752067 /* UICollectionView+.swift in Sources */,
 				098716B62A60F52200538D05 /* BakeryTypeProtocol.swift in Sources */,
