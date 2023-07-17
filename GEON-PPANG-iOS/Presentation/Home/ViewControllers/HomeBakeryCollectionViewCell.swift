@@ -9,6 +9,7 @@ import UIKit
 
 import SnapKit
 import Then
+import Kingfisher
 
 final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     
@@ -111,7 +112,8 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     // MARK: - Custom Method
     
     func updateUI(data: HomeBestBakeryResponseDTO) {
-        bakeryImage.image = UIImage(named: data.bakeryPicture)
+        let url = URL(string: data.bakeryPicture)
+        bakeryImage.kf.setImage(with: url)
         bakeryTitle.text = data.bakeryName
         bakeryReview.text = "리뷰(\(data.reviewCount)) ⦁ 저장(\(data.bookMarkCount))"
         markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)
