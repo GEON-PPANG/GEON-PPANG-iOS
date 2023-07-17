@@ -42,9 +42,10 @@ struct BreadResponseType: Codable, Hashable {
 }
 
 extension BakeryListResponseDTO {
-    static let item: [BakeryListResponseDTO] = [BakeryListResponseDTO(bakeryID: 1, bakeryName: "건대 초코빵", bakeryPicture: "ursl", isHACCP: true, isVegan: true, isNonGMO: true, breadType: .breadItem1, firstNearStation: "건대역", secondNearStation: "건대", isBooked: true, bookmarkCount: 7),
-                                                BakeryListResponseDTO(bakeryID: 2, bakeryName: "건대 초코빵", bakeryPicture: "ursl", isHACCP: true, isVegan: true, isNonGMO: true, breadType: .breadItem2, firstNearStation: "건대역", secondNearStation: "건대", isBooked: true, bookmarkCount: 7),
-                                                BakeryListResponseDTO(bakeryID: 3, bakeryName: "건대 초코빵", bakeryPicture: "ursl", isHACCP: true, isVegan: true, isNonGMO: true, breadType: .breadItem3, firstNearStation: "건대역", secondNearStation: "건대", isBooked: true, bookmarkCount: 7)
+    static let item: [BakeryListResponseDTO] = [
+        BakeryListResponseDTO(bakeryID: 1, bakeryName: "건대 초코빵", bakeryPicture: "ursl", isHACCP: true, isVegan: true, isNonGMO: true, breadType: .breadItem1, firstNearStation: "건대역", secondNearStation: "건대", isBooked: true, bookmarkCount: 7),
+        BakeryListResponseDTO(bakeryID: 2, bakeryName: "건대 초코빵", bakeryPicture: "ursl", isHACCP: true, isVegan: true, isNonGMO: true, breadType: .breadItem2, firstNearStation: "건대역", secondNearStation: "건대", isBooked: true, bookmarkCount: 7),
+        BakeryListResponseDTO(bakeryID: 3, bakeryName: "건대 초코빵", bakeryPicture: "ursl", isHACCP: true, isVegan: true, isNonGMO: true, breadType: .breadItem3, firstNearStation: "건대역", secondNearStation: "건대", isBooked: true, bookmarkCount: 7)
     ]
 }
 extension BreadResponseType {
