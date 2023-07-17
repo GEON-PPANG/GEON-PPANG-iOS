@@ -27,7 +27,7 @@ final class HomeViewController: BaseViewController {
     
     typealias DataSource = UICollectionViewDiffableDataSource<Sections, AnyHashable>
     private var dataSource: DataSource?
-    private let bakeryList: [HomeBestBakeryResponseDTO] = HomeBestBakeryResponseDTO.item
+    private let bakeryList: [HomeBestBakeryResponseDTO] = []
     private let reviewList: [HomeBestReviewResponseDTO] = HomeBestReviewResponseDTO.item
     
     lazy var safeArea = self.view.safeAreaLayoutGuide
@@ -74,7 +74,7 @@ final class HomeViewController: BaseViewController {
         view.addSubviews(topView, collectionView)
         
         topView.snp.makeConstraints {
-            $0.top.equalTo(safeArea)
+            $0.top.equalToSuperview().offset(constraintByNotch(44, 0))
             $0.directionalHorizontalEdges.equalTo(safeArea)
             $0.height.equalTo(200)
         }
@@ -189,5 +189,4 @@ final class HomeViewController: BaseViewController {
 // MARK: - UICollectionViewDelegate
 
 extension HomeViewController: UICollectionViewDelegate {
-    
 }
