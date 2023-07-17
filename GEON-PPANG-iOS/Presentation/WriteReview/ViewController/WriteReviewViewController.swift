@@ -224,7 +224,7 @@ final class WriteReviewViewController: BaseViewController {
         bottomView.do {
             $0.backgroundColor = .white
             $0.layer.masksToBounds = false
-            $0.applyAdditionalSubview(nextButton, withTrailingOffset: 16)
+            $0.applyAdditionalSubview(nextButton, withTopOffset: 20)
         }
         
         nextButton.do {
@@ -313,8 +313,8 @@ final class WriteReviewViewController: BaseViewController {
     func moveUpAboutKeyboardOnScrollView(_ notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             UIView.animate(withDuration: 0.2, animations: {
-                self.scrollView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + 24)
-                self.bottomView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + 40)
+                self.scrollView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height)
+                self.bottomView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + 30)
             })
         }
     }

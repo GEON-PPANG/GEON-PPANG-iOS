@@ -30,7 +30,7 @@ final class BottomView: UIView {
     
     private func setLayout() {
         self.snp.makeConstraints {
-            $0.height.equalTo(CGFloat().heightConsideringBottomSafeArea(128))
+            $0.height.equalTo(CGFloat().heightConsideringBottomSafeArea(126))
         }
     }
 
@@ -44,7 +44,7 @@ final class BottomView: UIView {
     
     // MARK: - Custom Method
     
-    func applyAdditionalSubview(_ view: UIView, withTrailingOffset offset: CGFloat = 21) {
+    func applyAdditionalSubview(_ view: UIView, withTopOffset offset: CGFloat = 21) {
         addSubview(view)
         view.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(24)
