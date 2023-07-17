@@ -50,7 +50,6 @@ final class SortBottomSheetViewController: BaseViewController {
         super.viewDidAppear(animated)
         
         showBottomSheet()
-        print("test ---", selectedSortBy)
     }
     
     override func viewWillLayoutSubviews() {
@@ -183,7 +182,6 @@ extension SortBottomSheetViewController: UICollectionViewDelegate {
         default: dismissBottomSheetViewController()
         }
         dataBind?(selectedSortBy)
-//        print("selectedSortBy - sheet", selectedSortBy)
         dismissBottomSheetViewController()
     }
     
@@ -201,10 +199,6 @@ extension SortBottomSheetViewController: UICollectionViewDataSource {
         let cell: SortBakeryCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
         let data = SortBakery.allCases.map { $0.description }
         cell.configureLabel(to: data[indexPath.item])
-//        switch indexPath.item {
-//        case 0:
-//            if selectedSortBy == .byDefault
-//        }
         if selectedSortBy == .byDefault && indexPath.item == 0 {
             cell.configureSelected()
         } else if selectedSortBy == .byReviews && indexPath.item == 1 {
