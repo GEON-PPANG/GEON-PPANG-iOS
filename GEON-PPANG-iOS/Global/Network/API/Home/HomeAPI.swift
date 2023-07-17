@@ -17,18 +17,37 @@ final class HomeAPI {
     
     var homeProvider = MoyaProvider<HomeService>(plugins: [MoyaLoggingPlugin()])
     
-    public private(set) var bestReviews: GeneralArrayResponse<HomeBestBakeryResponseDTO>?
+    public private(set) var bestBakery: GeneralArrayResponse<HomeBestBakeryResponseDTO>?
+    public private(set) var bestReviews: GeneralArrayResponse<HomeBestReviewResponseDTO>?
     
     // MARK: - GET
     
-    func getBestReviews(completion: @escaping (GeneralArrayResponse<HomeBestBakeryResponseDTO>?) -> Void) {
-        homeProvider.request(.best) { result in
+    func getBestBakery(completion: @escaping (GeneralArrayResponse<HomeBestBakeryResponseDTO>?) -> Void) {
+        homeProvider.request(.bestBakery) { result in
             switch result {
             case let .success(response):
                 do {
-                    
-                    self.bestReviews = try
+                    self.bestBakery = try
                     response.map(GeneralArrayResponse<HomeBestBakeryResponseDTO>?.self)
+                    guard let bestBakery = self.bestBakery else { return }
+                    completion(bestBakery)
+                } catch let err {
+                    print(err.localizedDescription, 500)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+                completion(nil)
+            }
+        }
+    }
+    
+    func getBestReviews(completion: @escaping (GeneralArrayResponse<HomeBestReviewResponseDTO>?) -> Void) {
+        homeProvider.request(.bestReviews) { result in
+            switch result {
+            case let .success(response):
+                do {
+                    self.bestReviews = try
+                    response.map(GeneralArrayResponse<HomeBestReviewResponseDTO>?.self)
                     guard let bestReviews = self.bestReviews else { return }
                     completion(bestReviews)
                 } catch let err {
