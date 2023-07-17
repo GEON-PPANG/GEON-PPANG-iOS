@@ -67,7 +67,7 @@ final class WriteReviewBottomSheetView: UIView {
         addSubview(buttonStackView)
         buttonStackView.snp.makeConstraints {
             $0.height.equalTo(53)
-            $0.bottom.equalToSuperview().inset(41)
+            $0.bottom.equalToSuperview().inset(CGFloat().heightConsideringBottomSafeArea(41))
             $0.horizontalEdges.equalToSuperview()
         }
         

@@ -108,7 +108,7 @@ extension MyPageViewController: UICollectionViewDataSource {
                 Utils.push(self.navigationController, MyReviewsViewController())
             }
             header.savedBakeryTapped = {
-                Utils.push(self.navigationController, MySavedBakeryViewController())
+                Utils.push(self.navigationController, WriteReviewViewController())
             }
             return header
         case 1:
