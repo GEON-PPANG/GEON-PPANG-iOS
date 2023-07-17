@@ -18,7 +18,7 @@ final class TitleCollectionViewCell: UICollectionViewCell {
     private let markStackView = MarkStackView()
     private let bakeryNameLabel = UILabel()
     private let breadTypeStackView = BreadTypeStackView()
-    private lazy var bookmarkButton = BookmarkButton(configuration: .plain())
+    
     
     // MARK: - Initializer
     
@@ -54,17 +54,11 @@ final class TitleCollectionViewCell: UICollectionViewCell {
         breadTypeStackView.do {
             $0.backgroundColor = .clear
         }
-        
-        bookmarkButton.do {
-            $0.configuration?.imagePlacement = NSDirectionalRectEdge.top
-            $0.configuration?.imagePadding = 4
-            $0.configuration?.contentInsets = .zero
-        }
     }
     
     private func setLayout() {
         
-        contentView.addSubviews(bakeryImage, markStackView, bakeryNameLabel, breadTypeStackView, bookmarkButton)
+        contentView.addSubviews(bakeryImage, markStackView, bakeryNameLabel, breadTypeStackView)
         
         bakeryImage.snp.makeConstraints {
             $0.height.equalTo(243)
@@ -90,12 +84,6 @@ final class TitleCollectionViewCell: UICollectionViewCell {
             $0.leading.equalToSuperview().inset(24)
             $0.trailing.equalToSuperview().inset(106)
             $0.bottom.equalToSuperview().inset(24)
-        }
-        
-        bookmarkButton.snp.makeConstraints {
-            $0.top.equalTo(bakeryImage.snp.bottom).offset(30)
-            $0.trailing.equalToSuperview().inset(24)
-            $0.size.equalTo(34)
         }
     }
 }
