@@ -12,6 +12,14 @@ import Then
 
 final class EmailViewController: BaseViewController {
     
+    // MARK: - Property
+    
+    private var isValid: Bool = false {
+        didSet {
+            updateUI(isValid)
+        }
+    }
+    
     // MARK: - UI Property
     
     private let naviView = CustomNavigationBar()
@@ -19,8 +27,8 @@ final class EmailViewController: BaseViewController {
     private let emailTextField = CommonTextView()
     private lazy var checkButton = CommonButton()
     private lazy var nextButton = CommonButton()
-    private var backGroundView = BottomSheetAppearView()
-    private var bottomSheet = CommonBottomSheet()
+    private lazy var backGroundView = BottomSheetAppearView()
+    private lazy var bottomSheet = CommonBottomSheet()
     
     // MARK: - Setting
     
@@ -50,7 +58,7 @@ final class EmailViewController: BaseViewController {
         }
         
         nextButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(48)
+            $0.bottom.equalToSuperview().inset(21)
             $0.directionalHorizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(56)
         }
@@ -60,33 +68,29 @@ final class EmailViewController: BaseViewController {
         naviView.do {
             $0.configureRightCount(3, by: 6)
         }
+        
         titleLabel.do {
             $0.numberOfLines = 0
             $0.basic(text: "회원가입을 위한 \n이메일을 입력해주세요!",
                      font: .title1!,
                      color: .gbbGray700!)
         }
+        
         checkButton.do {
             $0.getButtonUI(.clear, .gbbGray300)
             $0.getButtonTitle(.duplicate)
-        }
-        
-        emailTextField.do {
-            $0.getAccessoryView(nextButton)
-            $0.getType(.email)
-            $0.validCheck = { [weak self] valid in
-                self?.checkButton.do {
-                    $0.isEnabled = valid
-                    $0.getButtonUI(.clear, valid ? .gbbMain2! : .gbbGray300!)
-                }
-            }
-        }
-        
-        checkButton.do {
             $0.addAction {
                 self.backGroundView.appearBottomSheetView(subView: self.bottomSheet, 281)
             }
         }
+        
+        emailTextField.do {
+            $0.getType(.email)
+            $0.validCheck = { [weak self] valid in
+                self?.isValid = valid
+            }
+        }
+
         nextButton.do {
             $0.isUserInteractionEnabled = false
             $0.getButtonUI(.gbbGray200!)
@@ -97,7 +101,28 @@ final class EmailViewController: BaseViewController {
             $0.getEmojiType(.smile)
             $0.getBottonSheetTitle(I18N.Bottomsheet.checkIdPassword)
             $0.dismissClosure = {
-                self.self.backGroundView.dissmissFromSuperview()
+                self.backGroundView.dissmissFromSuperview()
+                self.nextButton.do {
+                    $0.isUserInteractionEnabled = true
+                    $0.getButtonUI(.gbbMain2!)
+                    $0.addAction {
+                        Utils.push(self.navigationController, PasswordViewController())
+                    }
+                }
+            }
+        }
+    }
+    
+    func updateUI(_ isValid: Bool) {
+        self.checkButton.do {
+            $0.isEnabled = isValid
+            $0.getButtonUI(.clear, isValid ? .gbbMain2! : .gbbGray300!)
+        }
+        
+        if !isValid {
+            nextButton.do {
+                $0.isUserInteractionEnabled = false
+                $0.getButtonUI(.gbbGray200!)
             }
         }
     }
