@@ -81,7 +81,6 @@ final class BakeryOverviewView: UIView {
     
     private func setUI() {
         bakeryImageView.do {
-            // TODO: image 추가 시 적용
             $0.backgroundColor = .gbbPoint1
             $0.makeCornerRound(radius: 5)
             $0.contentMode = .scaleAspectFill

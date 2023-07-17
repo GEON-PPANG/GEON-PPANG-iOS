@@ -14,15 +14,12 @@ final class WriteReviewViewController: BaseViewController {
     
     // MARK: - Property
     
-    private var likeCollectionViewHeightConstraint: NSLayoutConstraint!
-    
     private let keywordList = KeywordList.Keyword.allCases.map { $0.rawValue }
     
     private var writeReviewData: WriteReviewDTO = .init(bakeryID: 1, isLike: false, keywordList: [], reviewText: "")
     
     // MARK: - UI Property
     
-    // TODO: bakeryImage 추가
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     private let navigationBar = CustomNavigationBar()
@@ -275,7 +272,6 @@ final class WriteReviewViewController: BaseViewController {
     
     private func nextButtonTapped() {
         writeReviewData.reviewText = reviewDetailTextView.detailTextView.text
-        dump(writeReviewData)
     }
     
     // MARK: - Custom Method
@@ -295,11 +291,7 @@ final class WriteReviewViewController: BaseViewController {
     }
     
     private func checkTextViewLength(_ textView: UITextView) {
-        if textView.text.count <= 10 {
-            reviewDetailTextView.configureTextView(to: .error)
-        } else {
-            reviewDetailTextView.configureTextView(to: .activated)
-        }
+        reviewDetailTextView.configureTextView(to: textView.text.count <= 10 ? .error : .activated)
     }
     
     private func textLimit(_ existingText: String?, to newText: String, with limit: Int) -> Bool {
