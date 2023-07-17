@@ -102,22 +102,11 @@ final class HomeViewController: BaseViewController {
             switch section {
             case .bakery:
                 let cell: HomeBakeryCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-                cell.updateUI(data: item as! HomeBestBakeryResponseDTO, index: indexPath.item)
-                //                cell.updateData = { [ weak self ] _, _ in
-                // Todo: - 북마크 api 호출 - index 값 넘겨줌
-                // Todo: -  200 - 다시 홈뷰 리스트 정보 받아오는 api 연결
-                
-                //                    var snapshot = dataSource?.snapshot()
-                //                    snapshot?.reloadItems(bakeryList)
-                //                    dataSource?.applySnapshotUsingReloadData(snapshot ?? "")
-                //  }
+                cell.updateUI(data: item as! HomeBestBakeryResponseDTO)
                 return cell
             case .review:
                 let cell: HomeReviewCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
                 cell.updateUI(data: item as! HomeBestReviewResponseDTO, index: indexPath.item)
-                // cell.updateData = { [ weak self ] _, _ in
-                // Todo: - 북마크 api 호출 - index 값 넘겨줌
-                // }
                 return cell
             case .bottom, .none:
                 let cell: HomeBottomCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
@@ -147,6 +136,12 @@ final class HomeViewController: BaseViewController {
             }
             return header
         }
+    }
+    
+    private func updateData(_ item: [HomeBestBakeryResponseDTO]) {
+        var snapshot = dataSource!.snapshot()
+        snapshot.appendItems(item, toSection: .bakery)
+        dataSource?.apply(snapshot)
     }
     
     func layout() -> UICollectionViewLayout {
@@ -200,8 +195,8 @@ extension HomeViewController {
             guard let data = response.data else { return }
             for item in data {
                 self.bakeryList.append(item)
-                print("✅\(self.bakeryList)")
             }
+            self.updateData(self.bakeryList)
         }
     }
 }
