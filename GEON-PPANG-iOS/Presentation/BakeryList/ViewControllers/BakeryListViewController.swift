@@ -40,10 +40,6 @@ final class BakeryListViewController: BaseViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
     // MARK: - Setting
     
     override func setUI() {
