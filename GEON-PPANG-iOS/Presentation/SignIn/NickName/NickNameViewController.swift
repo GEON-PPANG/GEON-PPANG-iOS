@@ -12,6 +12,14 @@ import Then
 
 final class NickNameViewController: BaseViewController {
     
+    // MARK: - Property
+    
+    private var isValid: Bool = false {
+        didSet {
+            updateUI(isValid)
+        }
+    }
+    
     // MARK: - UI Property
     
     private let naviView = CustomNavigationBar()
@@ -67,6 +75,7 @@ final class NickNameViewController: BaseViewController {
                      color: .gbbGray700!)
         }
         checkButton.do {
+            $0.getButtonUI(.clear, .gbbGray300)
             $0.getButtonTitle(.duplicate)
             $0.addAction {
                 self.backGroundView.appearBottomSheetView(subView: self.bottomSheet, 281)
@@ -74,13 +83,9 @@ final class NickNameViewController: BaseViewController {
         }
         
         nicknameTextField.do {
-            $0.getAccessoryView(nextButton)
             $0.getType(.nickname)
             $0.validCheck = { [weak self] valid in
-                self?.checkButton.do {
-                    $0.isEnabled = valid
-                    $0.getButtonUI(.clear, valid ? .gbbMain2! : .gbbGray300!)
-                }
+                self?.isValid = valid
             }
         }
         
@@ -94,7 +99,25 @@ final class NickNameViewController: BaseViewController {
             $0.getEmojiType(.sad)
             $0.getBottonSheetTitle(I18N.Bottomsheet.diableNickname)
             $0.dismissClosure = {
-                self.self.backGroundView.dissmissFromSuperview()
+                self.backGroundView.dissmissFromSuperview()
+                self.nextButton.do {
+                    $0.isUserInteractionEnabled = true
+                    $0.getButtonUI(.gbbMain2!)
+                }
+            }
+        }
+    }
+    
+    func updateUI(_ isValid: Bool) {
+        self.checkButton.do {
+            $0.isEnabled = isValid
+            $0.getButtonUI(.clear, isValid ? .gbbMain2! : .gbbGray300!)
+        }
+        
+        if !isValid {
+            nextButton.do {
+                $0.isUserInteractionEnabled = false
+                $0.getButtonUI(.gbbGray200!)
             }
         }
     }
