@@ -38,42 +38,32 @@ extension UIViewController {
         return action
     }
     
-    func setKeyboardHideGesture() {
-        let tap = UITapGestureRecognizer(target: self,
-                                         action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    func setKeyboardNotificationCenter() {
-        NotificationCenter.default.addObserver(self, selector: #selector(moveUpAboutKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(moveDownAboutKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
     func setNavigationBarHidden() {
         self.navigationController?.navigationBar.isHidden = true
     }
     
+    func setKeyboardHideGesture() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(endEditingView))
+        tap.cancelsTouchesInView = false
+        tap.delegate = self
+        view.addGestureRecognizer(tap)
+    }
+    
     // MARK: - objc functions
     
-    @objc
-    func dismissKeyboard() {
+    @objc func endEditingView() {
         view.endEditing(true)
     }
-    
-    @objc
-    func moveUpAboutKeyboard(_ notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            UIView.animate(withDuration: 0.2, animations: {
-                self.view.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + 24)
-            })
-        }
+}
+
+
+extension UIViewController: UIGestureRecognizerDelegate {
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        guard let count = self.navigationController?.viewControllers.count else { return false }
+        return count > 1
     }
-    
-    @objc
-    func moveDownAboutKeyboard(_ notification: NSNotification) {
-        UIView.animate(withDuration: 0.2, animations: {
-            self.view.transform = .identity
-        })
-    }
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+         guard touch.view is UIButton else { return true }
+         return false
+     }
 }

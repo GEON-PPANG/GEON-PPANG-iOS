@@ -55,7 +55,7 @@ final class WriteReviewViewController: BaseViewController {
         
         setNavigationBarHidden()
         setKeyboardHideGesture()
-        setKeyboardNotificationCenterOnScrollView()
+        setupNotificationCenterOnScrollView()
     }
     
     override func viewWillLayoutSubviews() {
@@ -264,15 +264,20 @@ final class WriteReviewViewController: BaseViewController {
         reviewDetailTextView.detailTextView.delegate = self
     }
     
-    private func setKeyboardNotificationCenterOnScrollView() {
-        NotificationCenter.default.addObserver(self, selector: #selector(moveUpAboutKeyboardOnScrollView), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(moveDownAboutKeyboardOnScrollView), name: UIResponder.keyboardWillHideNotification, object: nil)
+    private func setupNotificationCenterOnScrollView() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowOnScrollView), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideOnScrollView), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     // MARK: - Action Helper
     
     private func nextButtonTapped() {
         writeReviewData.reviewText = reviewDetailTextView.detailTextView.text
+        UIView.animate(withDuration: 0.2, animations: {
+            self.bottomView.transform = .identity
+            self.scrollView.transform = .identity
+        })
+        view.endEditing(true)
         dump(writeReviewData)
     }
     
@@ -281,14 +286,6 @@ final class WriteReviewViewController: BaseViewController {
     }
     
     // MARK: - Custom Method
-    
-    private func updateCollectionViewConstraint(of collectionView: UICollectionView) {
-        let height = collectionView.collectionViewLayout.collectionViewContentSize.height
-        guard height != 0 else { return }
-        collectionView.snp.updateConstraints {
-            $0.height.equalTo(height)
-        }
-    }
     
     private func configureCollectionViewHeader(to color: UIColor) {
         optionsCollectionViewHeaderLabel.do {
@@ -310,24 +307,23 @@ final class WriteReviewViewController: BaseViewController {
     // MARK: - objc
     
     @objc
-    func moveUpAboutKeyboardOnScrollView(_ notification: NSNotification) {
+    private func keyboardWillShowOnScrollView(notification:NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             UIView.animate(withDuration: 0.2, animations: {
-                self.scrollView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height)
                 self.bottomView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + 30)
+                self.scrollView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height)
             })
         }
     }
-    
+
     @objc
-    func moveDownAboutKeyboardOnScrollView(_ notification: NSNotification) {
+    private func keyboardWillHideOnScrollView(notification:NSNotification) {
         UIView.animate(withDuration: 0.2, animations: {
-            self.scrollView.transform = .identity
             self.bottomView.transform = .identity
-            self.nextButton.transform = .identity
+            self.scrollView.transform = .identity
         })
     }
-    
+
 }
 
 // MARK: - UICollectionViewDelegate extension
