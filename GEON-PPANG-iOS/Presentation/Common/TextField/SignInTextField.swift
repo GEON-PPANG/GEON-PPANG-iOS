@@ -15,13 +15,21 @@ class SignInTextField: UITextField {
     // MARK: - Property
     
     private let topPadding: CGFloat = 15
+    private let signIntype: SignInPropetyType = .email
 
     // MARK: - UI Property
     
+    private lazy var securityButton = UIButton()
+    private let emptyView = UIView()
+    private let rightStackView = UIStackView()
+    private let bottomView = UIView(frame: .init(x: 0, y: 0, width: SizeLiteral.Screen.width, height: 92))
+    private let nextButton = CommonButton()
+
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
         setUI()
+        setLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -38,9 +46,64 @@ class SignInTextField: UITextField {
             $0.contentVerticalAlignment = .center
             $0.setLeftPadding(amount: 18)
             $0.setPlaceholder(color: .gbbGray300!, font: .headLine!)
+            $0.rightViewMode = .always
+
+        }
+        
+        rightStackView.do {
+            $0.addArrangedSubviews(securityButton, emptyView)
+        }
+        
+        securityButton.do {
+            $0.setImage(.hideIcon, for: .normal)
+            $0.setImage(.showIcon, for: .selected)
+            $0.addAction(UIAction { [weak self]_ in
+                self?.isSecureTextEntry.toggle()
+                self?.securityButton.isSelected.toggle()
+            }, for: .touchUpInside)
+        }
+        nextButton.do {
+            $0.getButtonTitle(.next)
+            $0.getButtonUI(.gbbGray200!)
+        }
+        bottomView.do {
+            $0.backgroundColor = .white
+            $0.layer.masksToBounds = false
+            $0.addSubview(nextButton)
         }
     }
     
+    private func setLayout() {
+        rightStackView.snp.makeConstraints {
+            $0.width.equalTo(40)
+        }
+        
+        emptyView.snp.makeConstraints {
+            $0.width.equalTo(18)
+        }
+        
+        securityButton.snp.makeConstraints {
+            $0.size.equalTo(24)
+        }
+        nextButton.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.directionalHorizontalEdges.equalToSuperview().inset(24)
+            $0.height.equalTo(56)
+        }
+    }
+    
+    func getViewType(_ viewType: SignInPropetyType) {
+        switch viewType {
+        case .checkPassword, .password:
+            self.isSecureTextEntry = true
+            self.rightView = rightStackView
+            self.inputAccessoryView = bottomView
+            
+        default:
+            self.rightView = .none
+        }
+    }
+        
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         let rect = super.textRect(forBounds: bounds)
         return rect.inset(by: UIEdgeInsets(top: topPadding, left: 0, bottom: 0, right: 0))
@@ -54,5 +117,10 @@ class SignInTextField: UITextField {
     override public func placeholderRect(forBounds bounds: CGRect) -> CGRect {
         let rect = super.textRect(forBounds: bounds)
         return rect.inset(by: UIEdgeInsets(top: topPadding, left: 0, bottom: 0, right: 0))
+    }
+    
+    override public func rightViewRect(forBounds bounds: CGRect) -> CGRect {
+        let rect = super.rightViewRect(forBounds: bounds)
+        return rect.inset(by: UIEdgeInsets(top: topPadding - 5, left: 0, bottom: 0, right: 0))
     }
 }
