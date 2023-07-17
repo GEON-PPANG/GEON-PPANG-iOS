@@ -134,7 +134,7 @@ final class FilterIngredientViewController: BaseViewController {
             if self?.maxSteps != 6 {
                 self?.navigationController?.popToRootViewController(animated: true)
             } else {
-                
+                Utils.push(self?.navigationController, FilterCompleteViewController())
             }
         }
         nextButton.addAction(action, for: .touchUpInside)

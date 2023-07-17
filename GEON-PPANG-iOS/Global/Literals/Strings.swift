@@ -65,7 +65,7 @@ struct I18N {
         static let ingredientTitle = "어떤 성분을 원하시나요?"
         static let ingredientSubtitle = "중복선택이 가능해요!"
         // TODO: 문구 약간 변경
-        static let welcomeTitle = "바이블님\n건빵에 오신 걸 환영해요!"
+        static let welcomeTitle = "님\n건빵에 오신 걸 환영해요!"
     }
     
     /// MyPage

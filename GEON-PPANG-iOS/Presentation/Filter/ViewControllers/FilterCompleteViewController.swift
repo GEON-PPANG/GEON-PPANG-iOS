@@ -12,6 +12,10 @@ import Then
 
 final class FilterCompleteViewController: BaseViewController {
     
+    // MARK: - Property
+    
+    private let username: String = "Id"
+    
     // MARK: - UI Property
     
     private let navigationBar = CustomNavigationBar()
@@ -57,7 +61,7 @@ final class FilterCompleteViewController: BaseViewController {
             $0.font = .title1
             $0.textColor = .gbbGray700
             $0.numberOfLines = 2
-            $0.setLineHeight(by: 1.03, with: I18N.Filter.welcomeTitle)
+            $0.setLineHeight(by: 1.03, with: I18N.Filter.welcomeTitle.insertString(username, at: 0))
         }
         
         startButton.do {
