@@ -5,7 +5,6 @@
 //  Created by JEONGEUN KIM on 2023/07/10.
 //
 
-
 // MARK: - HomeBestReviewResponseDTO
 
 struct HomeBestReviewResponseDTO: Hashable {
