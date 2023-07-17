@@ -66,8 +66,15 @@ final class BakeryFilterView: UIView {
         }
         
         filterButton.do {
-            $0.makeCornerRound(radius: 18)
-            $0.makeBorder(width: 1, color: .gbbGray200!)
+            $0.configuration?.background.strokeWidth = 1
+            $0.configuration?.background.strokeColor = .gbbGray200
+            $0.configuration?.baseForegroundColor = .black
+            $0.configuration?.image = .swapIcon
+            $0.configuration?.attributedTitle = AttributedString(I18N.BakeryList.defaultFilter,
+                                                                 attributes: AttributeContainer([.font: UIFont.pretendardBold(13)]))
+            $0.configuration?.cornerStyle = .capsule
+            $0.configuration?.imagePadding = 5
+            $0.configuration?.contentInsets = .zero
             $0.addAction(UIAction { _ in
                 print("tapped")
             }, for: .touchUpInside)

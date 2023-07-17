@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "img_no_review@1x.png",
+      "filename" : "img_no_review.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "img_no_review@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "img_no_review@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

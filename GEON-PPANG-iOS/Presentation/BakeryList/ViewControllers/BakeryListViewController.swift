@@ -61,7 +61,7 @@ final class BakeryListViewController: BaseViewController {
         bakeryTopView.snp.makeConstraints {
             $0.top.equalTo(safeArea)
             $0.directionalHorizontalEdges.equalTo(safeArea)
-            $0.height.equalTo(convertByHeightRatio(91))
+            $0.height.equalTo(91)
         }
         
         bakeryFilterView.snp.makeConstraints {
@@ -72,7 +72,8 @@ final class BakeryListViewController: BaseViewController {
         
         bakeryListCollectionView.snp.makeConstraints {
             $0.top.equalTo(bakeryFilterView.snp.bottom)
-            $0.directionalHorizontalEdges.equalTo(safeArea)
+            $0.leading.equalTo(safeArea).offset(-24)
+            $0.trailing.equalTo(safeArea)
             $0.bottom.equalToSuperview()
         }
     }
@@ -85,7 +86,7 @@ final class BakeryListViewController: BaseViewController {
         var config = UICollectionLayoutListConfiguration(appearance: .plain)
         config.backgroundColor = .clear
         config.showsSeparators = true
-
+        
         let layout = UICollectionViewCompositionalLayout.list(using: config)
         return layout
     }
