@@ -8,15 +8,17 @@
 import Foundation
 
 struct HomeBestBakeryResponseDTO: Codable, Hashable {
+    
     let bakeryId: Int
     let bakeryName: String
+    let bakeryPicture: String
     let isHACCP: Bool
     let isVegan: Bool
     let isNonGMO: Bool
     let firstNearStation: String
     let secondNearStation: String?
     let isBooked: Bool
-    let bookmarkCount: Int
-    let bakeryPicture: String
+    let bookMarkCount: Int
     let reviewCount: Int
+
 }

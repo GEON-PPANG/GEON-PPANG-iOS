@@ -7,7 +7,7 @@
 
 // MARK: - HomeBestReviewResponseDTO
 
-struct HomeBestReviewResponseDTO: Hashable {
+struct HomeBestReviewResponseDTO: Codable, Hashable {
 
     let bakeryID: Int
     let bakeryName: String

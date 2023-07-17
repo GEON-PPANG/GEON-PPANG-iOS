@@ -26,9 +26,11 @@ final class HomeAPI {
             switch result {
             case let .success(response):
                 do {
-                    let data = try response.map(GeneralArrayResponse<HomeBestBakeryResponseDTO>.self)
-                    completion(data)
-                    print("✅\(data)")
+                    
+                    self.bestReviews = try
+                    response.map(GeneralArrayResponse<HomeBestBakeryResponseDTO>?.self)
+                    guard let bestReviews = self.bestReviews else { return }
+                    completion(bestReviews)
                 } catch let err {
                     print(err.localizedDescription, 500)
                 }
