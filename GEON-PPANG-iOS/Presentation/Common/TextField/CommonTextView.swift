@@ -28,6 +28,8 @@ enum SignInPropetyType: String, CaseIterable {
 
 final class CommonTextView: UIView {
     
+    // MARK: - Property
+    
     private var signInType: SignInPropetyType = .email {
         didSet {
             setUI()
@@ -38,10 +40,17 @@ final class CommonTextView: UIView {
     var validCheck: ((Bool) -> Void)?
     var invalidCheck: ((Bool) -> Void)?
     var duplicatedCheck: ((String) -> Void)?
+    var textFieldData: ((String) -> Void)?
+
+    // MARK: - UI Property
+    
     private let commonTextField = SignInTextField()
     private let titleLabel = UILabel()
     private let checkLabel = UILabel()
     private lazy var secureButton = UIButton()
+    var password: String = ""
+    
+    // MARK: - Life Cycle
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -55,8 +64,9 @@ final class CommonTextView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Setting
+    
     private func setUI() {
-        
         titleLabel.do {
             $0.basic(font: .bodyB2!, color: .gbbGray400!)
             $0.text = signInType.rawValue
@@ -89,6 +99,7 @@ final class CommonTextView: UIView {
     
     func getType(_ type: SignInPropetyType) {
         self.signInType = type
+        commonTextField.getViewType(type)
         commonTextField.placeholder = type.placeHolder
     }
     
@@ -102,8 +113,10 @@ final class CommonTextView: UIView {
     
     func getAccessoryView(_ view: UIView) {
         commonTextField.inputAccessoryView = view
-    } 
+    }
 }
+
+// MARK: - UITextFieldDelegate
 
 extension CommonTextView: UITextFieldDelegate {
 
@@ -115,9 +128,9 @@ extension CommonTextView: UITextFieldDelegate {
         }
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.layer.borderColor = UIColor.clear.cgColor
-    }
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        textField.layer.borderColor = UIColor.clear.cgColor
+//    }
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
         guard let text = textField.text else { return }
@@ -141,11 +154,7 @@ extension CommonTextView: UITextFieldDelegate {
                 clearErrorMessage(true)
             }
         case .checkPassword:
-            if !text.isNotContainSpecialCharacters() {
-                setErrorMessage("비밀번호를 확인해주세요")
-            } else {
-                clearErrorMessage(true)
-            }
+            self.textFieldData?(getText())
         }
         
         if text.isEmpty {
@@ -176,14 +185,14 @@ extension CommonTextView: UITextFieldDelegate {
         return true
     }
     
-    private func setErrorMessage(_ message: String) {
+     func setErrorMessage(_ message: String) {
         self.validCheck?(false)
         titleLabel.textColor = .gbbError
         checkLabel.basic(text: message, font: .captionM1!, color: .gbbError!)
         commonTextField.layer.borderColor = UIColor.gbbError?.cgColor
     }
     
-    private func clearErrorMessage(_ isValid: Bool) {
+     func clearErrorMessage(_ isValid: Bool) {
         self.validCheck?(isValid)
         titleLabel.textColor = .gbbGray400
         checkLabel.text = ""

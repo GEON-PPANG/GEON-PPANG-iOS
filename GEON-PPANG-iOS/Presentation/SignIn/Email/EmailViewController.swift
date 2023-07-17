@@ -62,6 +62,7 @@ final class EmailViewController: BaseViewController {
             $0.directionalHorizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(56)
         }
+        
     }
     
     override func setUI() {
