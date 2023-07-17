@@ -27,7 +27,7 @@ final class HomeViewController: BaseViewController {
     
     typealias DataSource = UICollectionViewDiffableDataSource<Sections, AnyHashable>
     private var dataSource: DataSource?
-    private let bakeryList: [HomeBestBakeryResponseDTO] = []
+    private var bakeryList: [HomeBestBakeryResponseDTO] = []
     private let reviewList: [HomeBestReviewResponseDTO] = HomeBestReviewResponseDTO.item
     
     lazy var safeArea = self.view.safeAreaLayoutGuide
@@ -45,6 +45,7 @@ final class HomeViewController: BaseViewController {
         setRegistration()
         setDataSource()
         setReloadData()
+        requestBestBakery()
     }
     
     override func setUI() {
@@ -189,4 +190,18 @@ final class HomeViewController: BaseViewController {
 // MARK: - UICollectionViewDelegate
 
 extension HomeViewController: UICollectionViewDelegate {
+}
+
+extension HomeViewController {
+    private func requestBestBakery() {
+        HomeAPI.shared.getBestReviews { response in
+            guard self != nil else { return }
+            guard let response = response else { return }
+            guard let data = response.data else { return }
+            for item in data {
+                self.bakeryList.append(item)
+                print("✅\(self.bakeryList)")
+            }
+        }
+    }
 }
