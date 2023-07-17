@@ -21,7 +21,6 @@ final class BakeryOverviewView: UIView {
     private let bakeryImageView = UIImageView()
     private let flowLayout = OptionsCollectionViewFlowLayout()
     lazy var bakeryIngredientsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-    private let sampleView = UIView()
     private let regionStackView = RegionStackView()
     
     // MARK: - Life Cycle
@@ -60,7 +59,7 @@ final class BakeryOverviewView: UIView {
         addSubview(bakeryImageView)
         bakeryImageView.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.leading.equalToSuperview().inset(24)
+            $0.leading.equalToSuperview()
             $0.width.height.equalTo(90)
         }
         

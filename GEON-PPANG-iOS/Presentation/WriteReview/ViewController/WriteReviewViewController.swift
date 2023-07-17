@@ -91,8 +91,8 @@ final class WriteReviewViewController: BaseViewController {
         
         contentView.addSubview(bakeryOverviewView)
         bakeryOverviewView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(CGFloat().heightConsideringNotch(122))
-            $0.horizontalEdges.equalToSuperview()
+            $0.top.equalToSuperview().inset(UIScreen.main.hasNotch ? 92 : 96)
+            $0.horizontalEdges.equalToSuperview().inset(24)
         }
         
         contentView.addSubview(lineView)
