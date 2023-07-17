@@ -12,19 +12,14 @@ import Then
 
 final class BakeryOverviewView: UIView {
     
-    // MARK: - Property
-    
-    // TODO: ingredient Tag 추가
-    
     // MARK: - UI Property
     
     private let bakeryImageView = UIImageView()
-    // TODO: ingredient Tag 추가
     private let sampleView = UIView()
     private let regionStackView = RegionStackView()
     
     // MARK: - Life Cycle
-    // TODO: ingredient Tag 추가
+    
     init(bakeryImage: UIImage, firstRegion: String, secondRegion: String) {
         super.init(frame: .zero)
         
@@ -57,7 +52,6 @@ final class BakeryOverviewView: UIView {
             $0.width.height.equalTo(84)
         }
         
-        // TODO: ingredient Tag 추가
         addSubview(sampleView)
         sampleView.snp.makeConstraints {
             $0.leading.equalTo(bakeryImageView.snp.trailing).offset(20)
