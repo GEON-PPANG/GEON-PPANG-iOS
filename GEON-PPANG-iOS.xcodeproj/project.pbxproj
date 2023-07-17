@@ -185,6 +185,7 @@
 		0959F1912A658D2A00E77CAF /* MyPageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageService.swift; sourceTree = "<group>"; };
 		0959F1932A658D3100E77CAF /* BookmarkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkService.swift; sourceTree = "<group>"; };
 		0959F1952A658E7400E77CAF /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		0959F1972A65AD5000E77CAF /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		0961C3632A501EBF0031A822 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		097682D92A5C829D0008F4FB /* GradientImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientImageView.swift; sourceTree = "<group>"; };
 		097682DB2A5C83910008F4FB /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
@@ -750,6 +751,7 @@
 			isa = PBXGroup;
 			children = (
 				090668F72A4FF1D900F413FA /* .swiftlint.yml */,
+				0959F1972A65AD5000E77CAF /* Config.xcconfig */,
 				098F32DF2A4200FD0092D09A /* GEON-PPANG-iOS */,
 				098F32DE2A4200FD0092D09A /* Products */,
 			);
@@ -1370,9 +1372,11 @@
 /* Begin XCBuildConfiguration section */
 		098F32EF2A4200FE0092D09A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0959F1972A65AD5000E77CAF /* Config.xcconfig */;
 			buildSettings = {
+				ACCESS_TOKEN = "${ACCESS_TOKEN}";
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BASE_URL = "http://52.79.161.83";
+				BASE_URL = "${BASE_URL}";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1431,9 +1435,11 @@
 		};
 		098F32F02A4200FE0092D09A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0959F1972A65AD5000E77CAF /* Config.xcconfig */;
 			buildSettings = {
+				ACCESS_TOKEN = "${ACCESS_TOKEN}";
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BASE_URL = "http://52.79.161.83";
+				BASE_URL = "${BASE_URL}";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1486,6 +1492,7 @@
 		};
 		098F32F22A4200FE0092D09A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0959F1972A65AD5000E77CAF /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1517,6 +1524,7 @@
 		};
 		098F32F32A4200FE0092D09A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0959F1972A65AD5000E77CAF /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
