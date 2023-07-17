@@ -21,7 +21,6 @@ final class WriteReviewViewController: BaseViewController {
     
     // MARK: - UI Property
     
-    // TODO: bakeryImage 추가
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     
