@@ -14,8 +14,7 @@ final class MyPagePurposeChipView: UIView {
     
     // MARK: - Property
     
-    // TODO: filterPurposeType 으로 변경
-    let purposeType = "맛 • 다이어트"
+    let purposeType: FilterPurposeType
     
     // MARK: - UI Property
     
@@ -23,8 +22,9 @@ final class MyPagePurposeChipView: UIView {
     
     // MARK: - Life Cycle
     
-    override init(frame: CGRect) {
-        super.init(frame: .zero)
+    init(type: FilterPurposeType) {
+        self.purposeType = type
+        super.init()
         
         setLayout()
         setUI()
@@ -53,8 +53,7 @@ final class MyPagePurposeChipView: UIView {
         }
         
         purposeLabel.do {
-            // TODO: filterPurposeType 으로 변환 후 .rawValue 사용
-            $0.text = purposeType
+            $0.text = purposeType.rawValue
             $0.font = .captionM1
             $0.textColor = .gbbPoint1
         }

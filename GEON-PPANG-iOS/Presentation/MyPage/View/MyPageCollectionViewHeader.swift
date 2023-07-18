@@ -64,8 +64,7 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
     private func setLayout() {
         addSubview(mainTitleLabel)
         mainTitleLabel.snp.makeConstraints {
-            // TODO: notch 유무로 재계산
-            $0.top.equalToSuperview().inset(44)
+            $0.top.equalToSuperview().inset(CGFloat().heightConsideringNotch(44))
             $0.leading.equalToSuperview().inset(24)
         }
         
