@@ -37,7 +37,7 @@ final class MyPageViewController: BaseViewController {
     }
     
     override func setUI() {
-                
+        
         flowLayout.do {
             $0.scrollDirection = .vertical
             $0.sectionInset = .init(top: 8, left: 0, bottom: 0, right: 0)

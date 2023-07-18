@@ -10,7 +10,7 @@ import Foundation
 // MARK: - BakeryListResponseDTO
 
 struct BakeryListResponseDTO: Codable, Hashable, BakeryListProtocol {
-
+    
     let bakeryID: Int
     let bakeryName: String
     let bakeryPicture: String

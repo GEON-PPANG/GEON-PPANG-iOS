@@ -65,6 +65,7 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
             return defaultLayout()
         }
     }
+    // TODO: - 나중에 삭제
     //        emptyIcon.snp.makeConstraints {
     //            $0.size.equalTo(CGSize(width: 154, height: 132))
     //            switch emptyType {
@@ -99,7 +100,7 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
             $0.centerY.equalToSuperview().inset(-33)
         }
     }
-        
+    
     private func myPageLayout() {
         emptyIcon.snp.remakeConstraints {
             $0.size.equalTo(CGSize(width: 154, height: 132))
