@@ -27,7 +27,7 @@ final class HomeViewController: BaseViewController {
     
     typealias DataSource = UICollectionViewDiffableDataSource<Sections, AnyHashable>
     private var dataSource: DataSource?
-    private let bakeryList: [HomeBestBakeryResponseDTO] = HomeBestBakeryResponseDTO.item
+    private let bakeryList: [HomeBestBakeryResponseDTO] = []
     private let reviewList: [HomeBestReviewResponseDTO] = HomeBestReviewResponseDTO.item
     
     lazy var safeArea = self.view.safeAreaLayoutGuide
@@ -189,5 +189,4 @@ final class HomeViewController: BaseViewController {
 // MARK: - UICollectionViewDelegate
 
 extension HomeViewController: UICollectionViewDelegate {
-    
 }

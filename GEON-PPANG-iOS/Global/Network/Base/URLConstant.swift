@@ -4,12 +4,25 @@
 //
 //  Created by JEONGEUN KIM on 2023/07/06.
 //
-
 import Foundation
 
 struct URLConstant {
+    // MARK: - Auth
     
-    /// BaseURL
+    // MARK: - Filter
     
-    static let baseURL = ""
+    // MARK: - Home
+    
+    static let best = "/bakeries/best"
+    
+    // MARK: - Search
+    
+    static let search = "/search/bakeries"
+    
+    // MARK: - Bakery
+    
+    // MARK: - MyPage
+    
+    // MARK: - Bookmark
+    
 }

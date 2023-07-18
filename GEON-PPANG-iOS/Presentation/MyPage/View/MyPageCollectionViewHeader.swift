@@ -17,7 +17,7 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
     private let myPageData = MyPageDTO.dummyData()
     private let username = "빵순이빵돌이"
     private lazy var myPageTagData = myPageData.breadType.configureTrueOptions()
-    var svedBakeryTapped: (() -> Void)?
+    var savedBakeryTapped: (() -> Void)?
     var myReviewsTapped: (() -> Void)?
     
     // MARK: - UI Property
@@ -187,11 +187,13 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
         seperatorView.do {
             $0.backgroundColor = .gbbPoint1
         }
+        
         bookmarkButton.do {
             $0.addButtonAction {
-                self.svedBakeryTapped?()
+                self.savedBakeryTapped?()
             }
         }
+        
         myReviewButton.do {
             $0.addButtonAction {
                 self.myReviewsTapped?()

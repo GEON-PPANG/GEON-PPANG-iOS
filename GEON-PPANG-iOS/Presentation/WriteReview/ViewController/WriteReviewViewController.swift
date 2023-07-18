@@ -14,18 +14,23 @@ final class WriteReviewViewController: BaseViewController {
     
     // MARK: - Property
     
-    private var likeCollectionViewHeightConstraint: NSLayoutConstraint!
-    
     private let keywordList = KeywordList.Keyword.allCases.map { $0.rawValue }
+    
     private var writeReviewData: WriteReviewDTO = .init(bakeryID: 1, isLike: false, keywordList: [], reviewText: "")
     
     // MARK: - UI Property
     
     private let scrollView = UIScrollView()
     private let contentView = UIView()
-    
     private let navigationBar = CustomNavigationBar()
-    private let bakeryOverviewView = BakeryOverviewView(bakeryImage: .actions, firstRegion: "tset", secondRegion: "efqerqf")
+    private let bottomView = BottomView()
+    private let nextButton = CommonButton()
+    
+    private let bakeryOverviewView = BakeryOverviewView(bakeryImage: .actions,
+                                                        ingredients: ["넛프리", "비건빵", "글루텐프리"],
+                                                        firstRegion: "tset",
+                                                        secondRegion: "efqerqf")
+    
     private let lineView = LineView()
     
     private let likeCollectionViewFlowLayout = OptionsCollectionViewFlowLayout()
@@ -34,13 +39,14 @@ final class WriteReviewViewController: BaseViewController {
     private lazy var likeCollectionView = OptionsCollectionView(frame: .zero, collectionViewLayout: likeCollectionViewFlowLayout)
     private let optionsCollectionViewHeaderLabel = UILabel()
     private lazy var optionsCollectionView = OptionsCollectionView(frame: .zero, collectionViewLayout: optionsCollectionViewFlowLayout)
+    
     private let reviewDetailTextView = ReviewDetailTextView()
-    private let dotView = UILabel()
     private let aboutReviewContainerView = UIView()
+    private let dotView = UILabel()
     private let aboutReviewLabel = UILabel()
     
-    private let bottomView = BottomView()
-    private let nextButton = CommonButton()
+    private let backgroundView = BottomSheetAppearView()
+    private let bottomSheetView = WriteReviewBottomSheetView()
     
     // MARK: - life cycle
     
@@ -49,14 +55,15 @@ final class WriteReviewViewController: BaseViewController {
         
         setNavigationBarHidden()
         setKeyboardHideGesture()
-        setKeyboardNotificationCenterOnScrollView()
+        setupNotificationCenterOnScrollView()
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        updateCollectionViewConstraint(of: likeCollectionView)
-        updateCollectionViewConstraint(of: optionsCollectionView)
+        Utils.updateCollectionViewConstraint(of: bakeryOverviewView.bakeryIngredientsCollectionView, byOffset: 1)
+        Utils.updateCollectionViewConstraint(of: likeCollectionView)
+        Utils.updateCollectionViewConstraint(of: optionsCollectionView)
     }
     
     // MARK: - Setting
@@ -80,26 +87,26 @@ final class WriteReviewViewController: BaseViewController {
         scrollView.addSubview(contentView)
         contentView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+            $0.width.equalTo(SizeLiteral.Screen.width)
         }
         
         contentView.addSubview(bakeryOverviewView)
         bakeryOverviewView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(68)
-            $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(125)
+            $0.top.equalToSuperview().inset(UIScreen.main.hasNotch ? 92 : 96)
+            $0.horizontalEdges.equalToSuperview().inset(24)
         }
         
         contentView.addSubview(lineView)
         lineView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview()
-            $0.top.equalTo(bakeryOverviewView.snp.bottom)
+            $0.top.equalTo(bakeryOverviewView.snp.bottom).offset(24)
             $0.height.equalTo(1)
         }
         
         contentView.addSubview(likeCollectionViewHeaderLabel)
         likeCollectionViewHeaderLabel.snp.makeConstraints {
             $0.top.equalTo(lineView.snp.bottom).offset(24)
-            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.leading.equalToSuperview().inset(24)
             $0.height.equalTo(22)
         }
         
@@ -113,7 +120,7 @@ final class WriteReviewViewController: BaseViewController {
         contentView.addSubview(optionsCollectionViewHeaderLabel)
         optionsCollectionViewHeaderLabel.snp.makeConstraints {
             $0.top.equalTo(likeCollectionView.snp.bottom).offset(28)
-            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.leading.equalToSuperview().inset(24)
             $0.height.equalTo(22)
         }
         
@@ -135,8 +142,8 @@ final class WriteReviewViewController: BaseViewController {
         aboutReviewContainerView.snp.makeConstraints {
             $0.top.equalTo(reviewDetailTextView.snp.bottom).offset(10)
             $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(207)
             $0.bottom.equalToSuperview()
+            $0.height.equalTo(207)
         }
         
         aboutReviewContainerView.addSubview(dotView)
@@ -158,6 +165,9 @@ final class WriteReviewViewController: BaseViewController {
             $0.backgroundColor = .white
             $0.configureLeftTitle(to: "건대 초코빵")
             $0.configureBottomLine()
+            $0.addBackButtonAction(UIAction { [weak self] _ in
+                self?.backButtonTapped()
+            })
         }
         
         scrollView.do {
@@ -168,14 +178,6 @@ final class WriteReviewViewController: BaseViewController {
         
         contentView.do {
             $0.backgroundColor = .white
-        }
-        
-        likeCollectionViewFlowLayout.do {
-            $0.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        }
-        
-        optionsCollectionViewFlowLayout.do {
-            $0.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         }
         
         likeCollectionViewHeaderLabel.do {
@@ -222,7 +224,7 @@ final class WriteReviewViewController: BaseViewController {
         bottomView.do {
             $0.backgroundColor = .white
             $0.layer.masksToBounds = false
-            $0.applyAdditionalSubview(nextButton, withTrailingOffset: 16)
+            $0.applyAdditionalSubview(nextButton, withTopOffset: 20)
         }
         
         nextButton.do {
@@ -234,6 +236,19 @@ final class WriteReviewViewController: BaseViewController {
             $0.addAction(UIAction { [weak self] _ in
                 self?.nextButtonTapped()
             }, for: .touchUpInside)
+        }
+        
+        bottomSheetView.do {
+            $0.dismissClosure = {
+                self.backgroundView.dissmissFromSuperview()
+            }
+            $0.addQuitButtonAction {
+                self.backgroundView.dissmissFromSuperview()
+                self.navigationController?.popViewController(animated: true)
+            }
+            $0.addContinueButtonAction {
+                self.backgroundView.dissmissFromSuperview()
+            }
         }
     }
     
@@ -249,27 +264,28 @@ final class WriteReviewViewController: BaseViewController {
         reviewDetailTextView.detailTextView.delegate = self
     }
     
-    private func setKeyboardNotificationCenterOnScrollView() {
-        NotificationCenter.default.addObserver(self, selector: #selector(moveUpAboutKeyboardOnScrollView), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(moveDownAboutKeyboardOnScrollView), name: UIResponder.keyboardWillHideNotification, object: nil)
+    private func setupNotificationCenterOnScrollView() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowOnScrollView), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideOnScrollView), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     // MARK: - Action Helper
     
     private func nextButtonTapped() {
         writeReviewData.reviewText = reviewDetailTextView.detailTextView.text
+        UIView.animate(withDuration: 0.2, animations: {
+            self.bottomView.transform = .identity
+            self.scrollView.transform = .identity
+        })
+        view.endEditing(true)
         dump(writeReviewData)
     }
     
-    // MARK: - Custom Method
-    
-    private func updateCollectionViewConstraint(of collectionView: UICollectionView) {
-        let height = collectionView.collectionViewLayout.collectionViewContentSize.height
-        guard height != 0 else { return }
-        collectionView.snp.updateConstraints {
-            $0.height.equalTo(height)
-        }
+    private func backButtonTapped() {
+        backgroundView.appearBottomSheetView(subView: bottomSheetView, CGFloat().heightConsideringBottomSafeArea(309))
     }
+    
+    // MARK: - Custom Method
     
     private func configureCollectionViewHeader(to color: UIColor) {
         optionsCollectionViewHeaderLabel.do {
@@ -278,11 +294,7 @@ final class WriteReviewViewController: BaseViewController {
     }
     
     private func checkTextViewLength(_ textView: UITextView) {
-        if textView.text.count <= 10 {
-            reviewDetailTextView.configureTextView(to: .error)
-        } else {
-            reviewDetailTextView.configureTextView(to: .activated)
-        }
+        reviewDetailTextView.configureTextView(to: textView.text.count <= 10 ? .error : .activated)
     }
     
     private func textLimit(_ existingText: String?, to newText: String, with limit: Int) -> Bool {
@@ -295,24 +307,23 @@ final class WriteReviewViewController: BaseViewController {
     // MARK: - objc
     
     @objc
-    func moveUpAboutKeyboardOnScrollView(_ notification: NSNotification) {
+    private func keyboardWillShowOnScrollView(notification:NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             UIView.animate(withDuration: 0.2, animations: {
-                self.scrollView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + 24)
-                self.bottomView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + 40)
+                self.bottomView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + 30)
+                self.scrollView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height)
             })
         }
     }
-    
+
     @objc
-    func moveDownAboutKeyboardOnScrollView(_ notification: NSNotification) {
+    private func keyboardWillHideOnScrollView(notification:NSNotification) {
         UIView.animate(withDuration: 0.2, animations: {
-            self.scrollView.transform = .identity
             self.bottomView.transform = .identity
-            self.nextButton.transform = .identity
+            self.scrollView.transform = .identity
         })
     }
-    
+
 }
 
 // MARK: - UICollectionViewDelegate extension

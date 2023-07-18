@@ -135,7 +135,7 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
             self.updateData?(status, self.index)
         }
         bookMarkButton.isSelected = data.isBooked ? true : false
-        markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNONGMO)
+        markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)
         if data.secondNearStation == "" {
             regionStackView.removeSecondRegion()
         }
