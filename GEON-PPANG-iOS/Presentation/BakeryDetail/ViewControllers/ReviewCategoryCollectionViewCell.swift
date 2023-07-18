@@ -35,9 +35,9 @@ final class ReviewCategoryCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(reviewProgressBarStackView)
         
         reviewProgressBarStackView.snp.makeConstraints {
-            $0.height.equalTo(154)
             $0.top.equalToSuperview()
             $0.directionalHorizontalEdges.equalTo(9.5)
+            $0.height.equalTo(154)
         }
     }
 }

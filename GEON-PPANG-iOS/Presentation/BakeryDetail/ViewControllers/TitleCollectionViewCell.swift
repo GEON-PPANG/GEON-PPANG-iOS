@@ -57,8 +57,8 @@ final class TitleCollectionViewCell: UICollectionViewCell {
         contentView.addSubviews(bakeryImage, markStackView, bakeryNameLabel, breadTypeStackView, bookmarkReviewStackView)
         
         bakeryImage.snp.makeConstraints {
-            $0.height.equalTo(243)
             $0.top.directionalHorizontalEdges.equalToSuperview()
+            $0.height.equalTo(243)
         }
         
         markStackView.snp.makeConstraints {
@@ -69,7 +69,8 @@ final class TitleCollectionViewCell: UICollectionViewCell {
         bakeryNameLabel.snp.makeConstraints {
             // TODO: 스택뷰 갯수 카운트해서 0개 되면 remakeConstraints 하는 거 넣기 (정은쓰가 해주기로 함)
             $0.top.equalTo(markStackView.snp.bottom).offset(16)
-            $0.leading.trailing.equalToSuperview().inset(24)
+            $0.directionalHorizontalEdges.equalToSuperview().inset(24)
+            $0.height.equalTo(32)
             // TODO: 가게 이름 길어졌을 때 높이 동적으로 되는지 확인
         }
         

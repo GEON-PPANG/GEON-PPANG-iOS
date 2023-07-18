@@ -114,7 +114,7 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         bakeryAddressLabel.snp.makeConstraints {
             $0.centerY.equalTo(bakeryAddressImage)
             $0.leading.equalTo(homepageLinkButton)
-            //TODO: 동적으로 skrrr
+            // TODO: 동적으로 skrrr
             $0.trailing.equalToSuperview().offset(44)
             $0.width.equalTo(249)
             $0.height.equalTo(20)
@@ -148,7 +148,7 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         bakeryOpeningHoursLabel.snp.makeConstraints {
             $0.top.equalTo(bakeryClosedDaysLabel.snp.bottom).offset(2)
             $0.leading.equalTo(bakeryClosedDaysLabel)
-            //TODO: 동적으로 skrrr
+            // TODO: 동적으로 skrrr
             $0.trailing.equalToSuperview()
             $0.width.equalTo(293)
             $0.height.equalTo(20)
@@ -164,6 +164,8 @@ final class InfoCollectionViewCell: UICollectionViewCell {
             $0.centerY.equalTo(bakeryPhoneNumberImage)
             $0.leading.equalTo(bakeryOpeningHoursLabel)
             $0.trailing.equalToSuperview().inset(131)
+            $0.width.equalTo(162)
+            $0.height.equalTo(20)
         }
     }
 }

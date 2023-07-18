@@ -79,6 +79,7 @@ final class ReviewProgressView: UIView {
         reviewLabel.snp.makeConstraints {
             $0.top.equalTo(reviewProgressBar.snp.bottom).offset(63.25)
             $0.centerX.equalToSuperview()
+            $0.height.equalTo(17)
         }
     }
     

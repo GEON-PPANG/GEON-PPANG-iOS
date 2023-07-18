@@ -307,7 +307,7 @@ final class WriteReviewViewController: BaseViewController {
     // MARK: - objc
     
     @objc
-    private func keyboardWillShowOnScrollView(notification:NSNotification) {
+    private func keyboardWillShowOnScrollView(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             UIView.animate(withDuration: 0.2, animations: {
                 self.bottomView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + 30)
@@ -317,7 +317,7 @@ final class WriteReviewViewController: BaseViewController {
     }
 
     @objc
-    private func keyboardWillHideOnScrollView(notification:NSNotification) {
+    private func keyboardWillHideOnScrollView(notification: NSNotification) {
         UIView.animate(withDuration: 0.2, animations: {
             self.bottomView.transform = .identity
             self.scrollView.transform = .identity
@@ -448,5 +448,4 @@ extension WriteReviewViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         return self.textLimit(textView.text, to: text, with: 70)
     }
-    
 }

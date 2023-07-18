@@ -14,7 +14,7 @@ enum CountType {
     case bookmark
     case review
 }
-//let label = CountStackView(type: .bookmark)
+// let label = CountStackView(type: .bookmark)
 final class CountStackView: UIStackView {
 
     // MARK: - Property
@@ -23,7 +23,7 @@ final class CountStackView: UIStackView {
     private var icon: UIImage {
         switch countType {
         case .bookmark:
-            return .bookmarkIcon16px
+            return .bookmarkIcon16px300
         case .review:
             return .reviewIcon16px
         }
@@ -71,14 +71,14 @@ final class CountStackView: UIStackView {
         self.addArrangedSubviews(countIcon, countLabel)
         
         countIcon.snp.makeConstraints {
-            $0.size.equalTo(16)
             $0.top.leading.equalToSuperview().inset(0.5)
+            $0.size.equalTo(16)
         }
         
         countLabel.snp.makeConstraints {
-            $0.height.equalTo(17)
             $0.top.equalToSuperview()
             $0.leading.equalTo(countIcon.snp.trailing).offset(1)
+            $0.height.equalTo(17)
         }
     }
 }
