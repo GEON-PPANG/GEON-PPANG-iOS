@@ -55,6 +55,7 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         bakeryImage.do {
             $0.contentMode = .scaleAspectFill
             $0.backgroundColor = .gbbPoint1
+            $0.clipsToBounds = true
         }
         
         reviewTitle.do {
@@ -93,7 +94,7 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
             $0.top.directionalHorizontalEdges.equalToSuperview()
             $0.height.equalTo(130)
         }
-
+        
         reviewTitle.snp.makeConstraints {
             $0.bottom.equalTo(bakeryImage.snp.bottom).inset(13)
             $0.directionalHorizontalEdges.equalToSuperview().inset(15)
@@ -117,7 +118,7 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         
     }
     
-    func updateUI(data: HomeBestReviewResponseDTO, index: Int) {
+    func updateUI(data: BestReviews, index: Int) {
         self.index = index
         let url = URL(string: data.bakeryPicture)
         bakeryImage.kf.setImage(with: url)
@@ -125,9 +126,9 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         bakeryTitle.text = data.bakeryName
         bakeryReview.text = "리뷰(\(data.reviewCount))"
         bakeryReview.partColorChange(targetString: "\(data.reviewCount)", textColor: .gbbPoint1!)
-
+        
         self.keywords.append(data.firstMaxRecommendKeyword)
-
+        
         if self.reviewList?[index].secondMaxRecommendKeyword != nil {
             self.keywords.append(data.secondMaxRecommendKeyword ?? "" )
         }

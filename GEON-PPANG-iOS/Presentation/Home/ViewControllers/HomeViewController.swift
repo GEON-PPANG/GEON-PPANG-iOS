@@ -27,8 +27,8 @@ final class HomeViewController: BaseViewController {
     
     typealias DataSource = UICollectionViewDiffableDataSource<Sections, AnyHashable>
     private var dataSource: DataSource?
-    private var bakeryList: [HomeBestBakeryResponseDTO] = []
-    private var reviewList: [HomeBestReviewResponseDTO] = []
+    private var bakeryList: [BestBakery] = []
+    private var reviewList: [BestReviews] = []
     
     lazy var safeArea = self.view.safeAreaLayoutGuide
     
@@ -102,11 +102,11 @@ final class HomeViewController: BaseViewController {
             switch section {
             case .bakery:
                 let cell: HomeBakeryCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-                cell.updateUI(data: item as! HomeBestBakeryResponseDTO)
+                cell.updateUI(data: item as! BestBakery)
                 return cell
             case .review:
                 let cell: HomeReviewCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-                cell.updateUI(data: item as! HomeBestReviewResponseDTO, index: indexPath.item)
+                cell.updateUI(data: item as! BestReviews, index: indexPath.item)
                 return cell
             case .bottom, .none:
                 let cell: HomeBottomCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
@@ -120,13 +120,13 @@ final class HomeViewController: BaseViewController {
         defer { dataSource?.apply(snapshot, animatingDifferences: false)}
         
         snapshot.appendSections([.bakery, .review, .bottom])
-
+        
         let itemsDictionary: [Sections: [AnyHashable]] = [
             .bakery: bakeryList,
             .review: reviewList,
             .bottom: [0]
         ]
-
+        
         for (section, items) in itemsDictionary {
             snapshot.appendItems(items, toSection: section)
         }
@@ -146,13 +146,13 @@ final class HomeViewController: BaseViewController {
         }
     }
     
-    private func updateData(_ bakery: [HomeBestBakeryResponseDTO]) {
+    private func updateBestBakeryData(_ bakery: [BestBakery]) {
         var snapshot = dataSource!.snapshot()
         snapshot.appendItems(bakery, toSection: .bakery)
         dataSource?.apply(snapshot)
     }
     
-    private func updateReviewsData(_ reviews: [HomeBestReviewResponseDTO]) {
+    private func updateReviewsData(_ reviews: [BestReviews]) {
         var snapshot = dataSource!.snapshot()
         snapshot.appendItems(reviews, toSection: .review)
         dataSource?.apply(snapshot)
@@ -207,16 +207,16 @@ extension HomeViewController {
             guard let response = response else { return }
             guard let data = response.data else { return }
             for item in data {
-                self.bakeryList.append(item)
+                self.bakeryList.append(item.convertToBestBakery())
             }
-            self.updateData(self.bakeryList)
+            self.updateBestBakeryData(self.bakeryList)
         }
         
         HomeAPI.shared.getBestReviews { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
             for item in data {
-                self.reviewList.append(item)
+                self.reviewList.append(item.convertToBakeryReviews())
             }
             self.updateReviewsData(self.reviewList)
         }

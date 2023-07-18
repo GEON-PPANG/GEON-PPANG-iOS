@@ -25,7 +25,7 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     private let bakeryTitle = UILabel()
     private let bakeryReview = UILabel()
     private let regionStackView = RegionStackView()
-        
+    
     // MARK: - Life Cycle
     
     override func prepareForReuse() {
@@ -53,10 +53,11 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
             $0.contentView.makeCornerRound(radius: 5)
             $0.contentView.clipsToBounds = true
         }
-
+        
         bakeryImage.do {
             $0.contentMode = .scaleAspectFill
             $0.backgroundColor = .gbbPoint1
+            $0.clipsToBounds = true
         }
         markStackView.do {
             $0.getIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
@@ -81,7 +82,7 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     private func setLayout() {
         contentView.addSubviews(bakeryImage, bakeryTitle, bakeryReview, regionStackView)
         bakeryImage.addSubview(markStackView)
-
+        
         bakeryImage.snp.makeConstraints {
             $0.top.directionalHorizontalEdges.equalToSuperview()
             $0.height.equalTo(118)
@@ -111,7 +112,7 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Custom Method
     
-    func updateUI(data: HomeBestBakeryResponseDTO) {
+    func updateUI(data: BestBakery) {
         let url = URL(string: data.bakeryPicture)
         bakeryImage.kf.setImage(with: url)
         bakeryTitle.text = data.bakeryName
