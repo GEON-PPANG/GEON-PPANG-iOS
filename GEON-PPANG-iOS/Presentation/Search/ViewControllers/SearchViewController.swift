@@ -85,9 +85,6 @@ final class SearchViewController: BaseViewController {
         }
         collectionView.do {
             $0.backgroundColor = .clear
-            if searchList?.resultCount == 0 || searchBakeryList.isEmpty {
-                $0.isScrollEnabled = false
-            }
         }
     }
     
@@ -181,12 +178,18 @@ final class SearchViewController: BaseViewController {
         return section
     }
     
+    func getListCount(_ count: Int) {
+        if count == 0 {
+            self.collectionView.isScrollEnabled = false
+        } else {
+            self.collectionView.isScrollEnabled = true
+        }
+    }
 }
 
 extension SearchViewController {
     func requestSearchBakery(bakeryID: String) {
         SearchAPI.shared.searchBakeryList(bakeryID: bakeryID) { response in
-            guard self != nil else { return }
             guard let response = response else { return }
             guard let data = response.data else { return }
             self.searchBakeryList = []
@@ -196,6 +199,7 @@ extension SearchViewController {
                 self.searchBakeryList.append(item)
             }
             self.updateDataSource(data: self.searchBakeryList)
+            self.getListCount(data.resultCount)
         }
     }
 }
