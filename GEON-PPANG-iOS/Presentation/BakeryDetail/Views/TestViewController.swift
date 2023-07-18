@@ -10,7 +10,7 @@ import UIKit
 class TestViewController: UIViewController {
 
     private lazy var reviewProgressBarStackView = ReviewProgressBarStackView()
-    private lazy var bookmarkReviewStackView = BookmarkReviewStackView()
+    private lazy var bookmarkReviewStackView = BookmarkReviewNumberStackView()
     
     override func viewDidLoad() {
         super.viewDidLoad()

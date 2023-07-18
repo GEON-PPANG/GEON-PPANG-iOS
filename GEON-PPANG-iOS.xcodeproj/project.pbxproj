@@ -135,7 +135,7 @@
 		3EE343142A6440EB0010C187 /* UICollectionViewCell+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE343132A6440EB0010C187 /* UICollectionViewCell+.swift */; };
 		3EFA97862A5EBCA9002E70FA /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFA97852A5EBCA9002E70FA /* LineView.swift */; };
 		3EFA97882A5EBCED002E70FA /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFA97872A5EBCED002E70FA /* CustomNavigationBar.swift */; };
-		DF483ACC2A652E0100FCD507 /* BookmarkReviewStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF483ACB2A652E0100FCD507 /* BookmarkReviewStackView.swift */; };
+		DF483ACC2A652E0100FCD507 /* BookmarkReviewNumberStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF483ACB2A652E0100FCD507 /* BookmarkReviewNumberStackView.swift */; };
 		DF483ACE2A65893600FCD507 /* CountStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF483ACD2A65893600FCD507 /* CountStackView.swift */; };
 		DF483AD02A65D03A00FCD507 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF483ACF2A65D03A00FCD507 /* UIButton+.swift */; };
 		DF959A612A539FBE00E75774 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */; };
@@ -154,6 +154,8 @@
 		DFB587B92A5D584800704B6C /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB587B82A5D584800704B6C /* OnboardingViewController.swift */; };
 		DFB587BB2A5D588500704B6C /* DrawDashLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB587BA2A5D588500704B6C /* DrawDashLineView.swift */; };
 		DFDE72D72A65E84700389A51 /* WrittenReviewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDE72D62A65E84700389A51 /* WrittenReviewsCollectionViewCell.swift */; };
+		DFDE72DB2A66893900389A51 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DFDE72DA2A66893900389A51 /* Config.xcconfig */; };
+		DFDE72DD2A668FFE00389A51 /* ReviewCategoryStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDE72DC2A668FFE00389A51 /* ReviewCategoryStackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -204,7 +206,6 @@
 		0959F1912A658D2A00E77CAF /* MyPageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageService.swift; sourceTree = "<group>"; };
 		0959F1932A658D3100E77CAF /* BookmarkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkService.swift; sourceTree = "<group>"; };
 		0959F1952A658E7400E77CAF /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		0959F1972A65AD5000E77CAF /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		0961C3632A501EBF0031A822 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		097682D92A5C829D0008F4FB /* GradientImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientImageView.swift; sourceTree = "<group>"; };
 		097682DB2A5C83910008F4FB /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
@@ -282,7 +283,7 @@
 		3EE343132A6440EB0010C187 /* UICollectionViewCell+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+.swift"; sourceTree = "<group>"; };
 		3EFA97852A5EBCA9002E70FA /* LineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 		3EFA97872A5EBCED002E70FA /* CustomNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
-		DF483ACB2A652E0100FCD507 /* BookmarkReviewStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkReviewStackView.swift; sourceTree = "<group>"; };
+		DF483ACB2A652E0100FCD507 /* BookmarkReviewNumberStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkReviewNumberStackView.swift; sourceTree = "<group>"; };
 		DF483ACD2A65893600FCD507 /* CountStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountStackView.swift; sourceTree = "<group>"; };
 		DF483ACF2A65D03A00FCD507 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 		DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
@@ -301,6 +302,8 @@
 		DFB587B82A5D584800704B6C /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		DFB587BA2A5D588500704B6C /* DrawDashLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawDashLineView.swift; sourceTree = "<group>"; };
 		DFDE72D62A65E84700389A51 /* WrittenReviewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrittenReviewsCollectionViewCell.swift; sourceTree = "<group>"; };
+		DFDE72DA2A66893900389A51 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		DFDE72DC2A668FFE00389A51 /* ReviewCategoryStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCategoryStackView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -361,7 +364,8 @@
 				DFB585FA2A5F565F0077D272 /* BreadTypeStackView.swift */,
 				DF99C5FD2A6412F800C2C78C /* ReviewProgressBarStackView.swift */,
 				DF483ACD2A65893600FCD507 /* CountStackView.swift */,
-				DF483ACB2A652E0100FCD507 /* BookmarkReviewStackView.swift */,
+				DF483ACB2A652E0100FCD507 /* BookmarkReviewNumberStackView.swift */,
+				DFDE72DC2A668FFE00389A51 /* ReviewCategoryStackView.swift */,
 			);
 			path = StackView;
 			sourceTree = "<group>";
@@ -797,7 +801,7 @@
 			isa = PBXGroup;
 			children = (
 				090668F72A4FF1D900F413FA /* .swiftlint.yml */,
-				0959F1972A65AD5000E77CAF /* Config.xcconfig */,
+				DFDE72DA2A66893900389A51 /* Config.xcconfig */,
 				098F32DF2A4200FD0092D09A /* GEON-PPANG-iOS */,
 				098F32DE2A4200FD0092D09A /* Products */,
 			);
@@ -1269,6 +1273,7 @@
 				DF959A612A539FBE00E75774 /* Pretendard-Bold.otf in Resources */,
 				090668F82A4FF1D900F413FA /* .swiftlint.yml in Resources */,
 				098F32ED2A4200FE0092D09A /* LaunchScreen.storyboard in Resources */,
+				DFDE72DB2A66893900389A51 /* Config.xcconfig in Resources */,
 				098F32EA2A4200FE0092D09A /* Assets.xcassets in Resources */,
 				DF959A622A539FBE00E75774 /* Pretendard-Medium.otf in Resources */,
 				DF959A6C2A568C4600E75774 /* Colors.xcassets in Resources */,
@@ -1351,8 +1356,9 @@
 				DFDE72D72A65E84700389A51 /* WrittenReviewsCollectionViewCell.swift in Sources */,
 				09FD47C82A5DC991002020BD /* SearchNavigationView.swift in Sources */,
 				090668FD2A4FF3C600F413FA /* SceneDelegate.swift in Sources */,
-				DF483ACC2A652E0100FCD507 /* BookmarkReviewStackView.swift in Sources */,
+				DF483ACC2A652E0100FCD507 /* BookmarkReviewNumberStackView.swift in Sources */,
 				097682DC2A5C83910008F4FB /* CGFloat+.swift in Sources */,
+				DFDE72DD2A668FFE00389A51 /* ReviewCategoryStackView.swift in Sources */,
 				3ED40DF92A5FCF3800C7D5DA /* FilterEnum.swift in Sources */,
 				0959F1842A658CF300E77CAF /* MyPageAPI.swift in Sources */,
 				0924632F2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift in Sources */,
@@ -1480,7 +1486,6 @@
 /* Begin XCBuildConfiguration section */
 		098F32EF2A4200FE0092D09A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0959F1972A65AD5000E77CAF /* Config.xcconfig */;
 			buildSettings = {
 				ACCESS_TOKEN = "${ACCESS_TOKEN}";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1543,7 +1548,6 @@
 		};
 		098F32F02A4200FE0092D09A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0959F1972A65AD5000E77CAF /* Config.xcconfig */;
 			buildSettings = {
 				ACCESS_TOKEN = "${ACCESS_TOKEN}";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1600,7 +1604,6 @@
 		};
 		098F32F22A4200FE0092D09A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0959F1972A65AD5000E77CAF /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1632,7 +1635,6 @@
 		};
 		098F32F32A4200FE0092D09A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0959F1972A65AD5000E77CAF /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

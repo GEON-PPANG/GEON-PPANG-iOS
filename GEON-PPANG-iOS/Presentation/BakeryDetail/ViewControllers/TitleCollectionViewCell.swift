@@ -18,7 +18,7 @@ final class TitleCollectionViewCell: UICollectionViewCell {
     private lazy var markStackView = MarkStackView() // 서버
     private let bakeryNameLabel = UILabel() // 서버
     private lazy var breadTypeStackView = BreadTypeStackView() // 서버
-    private lazy var bookmarkReviewStackView = BookmarkReviewStackView() // 서버
+    private lazy var bookmarkReviewStackView = BookmarkReviewNumberStackView() // 서버
     
     // MARK: - Initializer
     

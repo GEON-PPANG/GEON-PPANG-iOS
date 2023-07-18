@@ -1,5 +1,5 @@
 //
-//  BookmarkReviewStackView.swift
+//  BookmarkReviewNumberStackView.swift
 //  GEON-PPANG-iOS
 //
 //  Created by kyun on 2023/07/17.
@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class BookmarkReviewStackView: UIStackView {
+final class BookmarkReviewNumberStackView: UIStackView {
 
     // MARK: - UIProperty
     

@@ -17,8 +17,7 @@ final class BreadTypeStackView: UIStackView {
     private var padding = UIEdgeInsets(top: 4, left: 6, bottom: 4, right: 6)
     
     // MARK: - UI Property
-    
-    // TODO: let lazy var 중에 뭐가 맞는지 확인해보기
+
     private lazy var glutenFreeChip = PaddingLabel(padding: padding)
     private lazy var veganBreadChip = PaddingLabel(padding: padding)
     private lazy var nutFreeChip = PaddingLabel(padding: padding)
