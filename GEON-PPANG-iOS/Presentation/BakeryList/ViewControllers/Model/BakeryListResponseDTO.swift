@@ -20,7 +20,7 @@ struct BakeryListResponseDTO: Codable, Hashable, BakeryListProtocol {
     let breadType: BreadResponseType
     let firstNearStation: String
     let secondNearStation: String?
-    let isBooked: Bool
+    let isBookMarked: Bool
     let bookMarkCount: Int
     let reviewCount: Int
     
@@ -34,13 +34,13 @@ struct BakeryListResponseDTO: Codable, Hashable, BakeryListProtocol {
         case breadType
         case firstNearStation
         case secondNearStation
-        case isBooked = "isBookMarked"
+        case isBookMarked
         case bookMarkCount
         case reviewCount
     }
     
     func convertToBakeryList() -> BakeryList {
-        return BakeryList(bakeryID: bakeryID, bakeryName: bakeryName, bakeryPicture: bakeryPicture, isHACCP: isHACCP, isVegan: isVegan, isNonGMO: isNonGMO, breadType: breadType, firstNearStation: firstNearStation, secondNearStation: secondNearStation, isBooked: isBooked, bookMarkCount: bookMarkCount, reviewCount: reviewCount)
+        return BakeryList(bakeryID: bakeryID, bakeryName: bakeryName, bakeryPicture: bakeryPicture, isHACCP: isHACCP, isVegan: isVegan, isNonGMO: isNonGMO, breadType: breadType, firstNearStation: firstNearStation, secondNearStation: secondNearStation, isBookMarked: isBookMarked, bookMarkCount: bookMarkCount, reviewCount: reviewCount)
     }
 }
 
@@ -53,15 +53,6 @@ struct BreadResponseType: Codable, Hashable {
     let isVegan: Bool
     let isNutFree: Bool
     let isSugarFree: Bool
-    
-    enum CodingKeys: String, CodingKey {
-        case breadTypeID = "breadTypeId"
-        case breadTypeName
-        case isGlutenFree
-        case isVegan
-        case isNutFree
-        case isSugarFree
-    }
     
     func configureTrueOptions() -> [(String, Bool)] {
         var optionsBoolArray: [(String, Bool)] = []
@@ -94,7 +85,7 @@ struct BakeryList: Codable, Hashable, BakeryListProtocol {
     let breadType: BreadResponseType
     let firstNearStation: String
     let secondNearStation: String?
-    let isBooked: Bool
+    let isBookMarked: Bool
     let bookMarkCount: Int
     let reviewCount: Int
     
