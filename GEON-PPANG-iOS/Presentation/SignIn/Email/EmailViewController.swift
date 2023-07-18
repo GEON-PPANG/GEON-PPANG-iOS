@@ -100,7 +100,7 @@ final class EmailViewController: BaseViewController {
         
         bottomSheet.do {
             $0.getEmojiType(.smile)
-            $0.getBottonSheetTitle(I18N.Bottomsheet.checkIdPassword)
+            $0.getBottonSheetTitle(I18N.Bottomsheet.email)
             $0.dismissClosure = {
                 self.backGroundView.dissmissFromSuperview()
                 self.nextButton.do {

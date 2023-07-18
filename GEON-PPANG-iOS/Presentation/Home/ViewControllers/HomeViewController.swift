@@ -15,8 +15,8 @@ enum Sections: Int, Hashable, CaseIterable {
     
     var title: String {
         switch self {
-        case .bakery: return "바이블님 맞춤 BEST 건빵집"
-        case .review: return "바이블님 맞춤 BEST 리뷰"
+        case .bakery: return "님 맞춤 BEST 건빵집"
+        case .review: return "님 맞춤 BEST 리뷰"
         case .bottom: return ""
         }
     }
@@ -25,6 +25,7 @@ final class HomeViewController: BaseViewController {
     
     // MARK: - Property
     
+    private var nickname =  UserDefaults.standard.string(forKey: "nickname") ?? ""
     typealias DataSource = UICollectionViewDiffableDataSource<Sections, AnyHashable>
     private var dataSource: DataSource?
     private let bakeryList: [HomeBestBakeryResponseDTO] = []
@@ -53,7 +54,7 @@ final class HomeViewController: BaseViewController {
         }
         
         topView.do {
-            $0.setTitle("정둥어")
+            $0.setTitle(nickname)
             $0.gotoNextView = {
                 Utils.push(self.navigationController, SearchViewController())
             }
@@ -138,11 +139,11 @@ final class HomeViewController: BaseViewController {
             
             switch indexPath.section {
             case 0:
-                header.setctionHeaderTitle(Sections.bakery.title)
+                header.setctionHeaderTitle(self.nickname + Sections.bakery.title)
             case 1:
-                header.setctionHeaderTitle(Sections.review.title)
+                header.setctionHeaderTitle(self.nickname + Sections.review.title)
             default:
-                header.setctionHeaderTitle(Sections.bottom.title)
+                header.setctionHeaderTitle(self.nickname + Sections.bottom.title)
             }
             return header
         }

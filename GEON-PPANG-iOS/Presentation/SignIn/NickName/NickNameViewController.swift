@@ -90,6 +90,9 @@ final class NickNameViewController: BaseViewController {
             $0.validCheck = { [weak self] valid in
                 self?.isValid = valid
             }
+            $0.duplicatedCheck = { [weak self] nickname in
+                UserDefaults.standard.setValue(nickname, forKey: "nickname")
+            }
         }
         
         nextButton.do {
@@ -99,13 +102,16 @@ final class NickNameViewController: BaseViewController {
         }
         
         bottomSheet.do {
-            $0.getEmojiType(.sad)
+            $0.getEmojiType(.smile)
             $0.getBottonSheetTitle(I18N.Bottomsheet.diableNickname)
             $0.dismissClosure = {
                 self.backGroundView.dissmissFromSuperview()
                 self.nextButton.do {
                     $0.isUserInteractionEnabled = true
                     $0.getButtonUI(.gbbMain2!)
+                    $0.addAction {
+                        Utils.push(self.navigationController, HomeViewController())
+                    }
                 }
             }
         }
