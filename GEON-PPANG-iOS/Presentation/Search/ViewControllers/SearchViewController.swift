@@ -21,8 +21,9 @@ final class SearchViewController: BaseViewController {
     typealias Item = AnyHashable
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Item>
     private var dataSource: DataSource?
-    private var searchList: [SearchResponseDTO] = SearchResponseDTO.item
-    private var searchBakeryList: [SearchBakeryList] = SearchBakeryList.searchBakeryItem
+    private var searchList: SearchResponseDTO?
+    private var searchBakeryList: [SearchBakeryList] = []
+    private var bakeryListCount: Int?
     private var currentSection: [Section] = [.initial]
     
     // MARK: - UI Property
@@ -75,9 +76,11 @@ final class SearchViewController: BaseViewController {
             $0.dismissClosure = {
                 self.navigationController?.popViewController(animated: true)
             }
+            $0.textFieldClosure = { text in
+                self.requestSearchBakery(bakeryID: text)
+            }
         }
         searchResultView.do {
-            $0.updateUI(count: 3)
             $0.isHidden = true
         }
         collectionView.do {
@@ -121,18 +124,20 @@ final class SearchViewController: BaseViewController {
         snapshot.appendItems([0])
     }
     
-    private func updateDataSource(data: SearchResponseDTO) {
+    private func updateDataSource(data: [SearchBakeryList]) {
         guard var snapshot = dataSource?.snapshot() else { return }
-        if data.resultCount == 0 {
+        if self.bakeryListCount == 0 {
             searchResultView.isHidden = true
             snapshot.deleteSections(currentSection)
+            snapshot.appendSections([.empty])
             snapshot.appendItems([0], toSection: .empty)
             currentSection = [.empty]
             dataSource?.apply(snapshot)
         } else {
             searchResultView.isHidden = false
             snapshot.deleteSections(currentSection)
-            snapshot.appendItems(searchBakeryList, toSection: .main)
+            snapshot.appendSections([.main])
+            snapshot.appendItems(data, toSection: .main)
             currentSection = [.main]
             dataSource?.apply(snapshot)
         }
@@ -174,4 +179,21 @@ final class SearchViewController: BaseViewController {
         return section
     }
     
+}
+
+extension SearchViewController {
+    func requestSearchBakery(bakeryID: String) {
+        SearchAPI.shared.searchBakeryList(bakeryID: bakeryID) { response in
+            guard self != nil else { return }
+            guard let response = response else { return }
+            guard let data = response.data else { return }
+            self.searchBakeryList = []
+            self.bakeryListCount = data.resultCount
+            self.searchResultView.updateUI(count: data.resultCount)
+            for item in data.bakeryList {
+                self.searchBakeryList.append(item)
+             }
+            self.updateDataSource(data: self.searchBakeryList)
+        }
+    }
 }
