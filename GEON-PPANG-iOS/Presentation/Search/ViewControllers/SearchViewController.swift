@@ -85,7 +85,7 @@ final class SearchViewController: BaseViewController {
         }
         collectionView.do {
             $0.backgroundColor = .clear
-            $0.isScrollEnabled = false
+            $0.isScrollEnabled = true
         }
     }
     

@@ -43,7 +43,10 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: OptionsCollectionViewFlowLayout())
     
     // MARK: - Life Cycle
-    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        ingredientList = []
+    }
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
