@@ -536,6 +536,7 @@
 			isa = PBXGroup;
 			children = (
 				0959F1732A658CBA00E77CAF /* BakeryResponseDTO.swift */,
+				3E16E4F42A57CF3800B813D0 /* WriteReviewDTO.swift */,
 			);
 			path = Bakery;
 			sourceTree = "<group>";
@@ -952,7 +953,6 @@
 			children = (
 				3E16E4FB2A57D24900B813D0 /* LikeModel.swift */,
 				3E16E4F92A57D1F400B813D0 /* RecommendationModel.swift */,
-				3E16E4F42A57CF3800B813D0 /* WriteReviewDTO.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
