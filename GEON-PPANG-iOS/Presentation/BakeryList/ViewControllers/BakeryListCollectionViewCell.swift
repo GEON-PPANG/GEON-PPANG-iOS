@@ -89,7 +89,7 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
             $0.spacing = 0
         }
         reviewIcon.do {
-            $0.image = .bookmarkIcon16px
+            $0.image = .bookmarkIcon16px400
             $0.contentMode = .scaleAspectFit
         }
         reviewCount.do {
