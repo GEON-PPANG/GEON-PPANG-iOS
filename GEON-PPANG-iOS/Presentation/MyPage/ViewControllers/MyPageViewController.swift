@@ -107,8 +107,8 @@ extension MyPageViewController: UICollectionViewDataSource {
             header.myReviewsTapped = {
                 Utils.push(self.navigationController, MyReviewsViewController())
             }
-            header.svedBakeryTapped = {
-                Utils.push(self.navigationController, MySavedBakeryViewController())
+            header.savedBakeryTapped = {
+                Utils.push(self.navigationController, WriteReviewViewController())
             }
             return header
         case 1:
@@ -138,7 +138,6 @@ extension MyPageViewController: UICollectionViewDelegateFlowLayout {
         default:
             return .zero
         }
-        return .init(width: SizeLiteral.Screen.width, height: 68)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
