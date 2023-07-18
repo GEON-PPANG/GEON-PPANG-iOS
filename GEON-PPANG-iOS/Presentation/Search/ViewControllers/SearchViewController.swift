@@ -192,7 +192,7 @@ extension SearchViewController {
             self.searchResultView.updateUI(count: data.resultCount)
             for item in data.bakeryList {
                 self.searchBakeryList.append(item)
-             }
+            }
             self.updateDataSource(data: self.searchBakeryList)
         }
     }

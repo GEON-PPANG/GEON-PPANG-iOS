@@ -43,10 +43,12 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: OptionsCollectionViewFlowLayout())
     
     // MARK: - Life Cycle
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         ingredientList = []
     }
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
@@ -152,6 +154,7 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
         }
         regionStackView.getRegionName(data.firstNearStation, data.secondNearStation ?? "")
         
+        breadTypeTag = []
         if data.breadType.isGlutenFree {
             breadTypeTag.append(I18N.BakeryList.glutenfree)
         }
@@ -174,6 +177,8 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
             $0.leading.equalTo(bakeryImage.snp.trailing).offset(14)
             $0.trailing.equalToSuperview().offset(-70)
         }
+        
+        collectionView.reloadData()
     }
     
     func getViewType(_ type: BakeryViewType) {
@@ -186,8 +191,7 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
             width += $0.size(withAttributes: [NSAttributedString.Key.font: UIFont.pretendardMedium(13)]).width + 4
         }
         width -= 4
-        
-        return width < (UIScreen.main.bounds.width - 152) ? 25 : 60
+        return width < (UIScreen.main.bounds.width - 152) ? 25 : 56
     }
     
     func reviewViewButton() {
