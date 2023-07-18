@@ -7,6 +7,10 @@
 
 import UIKit
 
+import Kingfisher
+import SnapKit
+import Then
+
 enum BakeryViewType {
     case defaultType
     case reviewType
@@ -32,11 +36,18 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
     private let bakeryImage = UIImageView()
     private let bakeryTitle = UILabel()
     private let regionStackView = RegionStackView()
-    private lazy var bookMarkButton = BookmarkButton(configuration: .plain())
+    private let reviewStacView = UIStackView()
+    private let reviewIcon = UIImageView()
+    private let reviewCount = UILabel()
     private lazy var arrowButton = UIButton()
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: OptionsCollectionViewFlowLayout())
     
     // MARK: - Life Cycle
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        ingredientList = []
+    }
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -72,16 +83,28 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
             $0.delegate = self
             $0.dataSource = self
         }
+        reviewStacView.do {
+            $0.addArrangedSubviews(reviewIcon, reviewCount)
+            $0.axis = .horizontal
+            $0.spacing = 0
+        }
+        reviewIcon.do {
+            $0.image = .bookmarkIcon16px400
+            $0.contentMode = .scaleAspectFit
+        }
+        reviewCount.do {
+            $0.basic(font: .captionB1!, color: .gbbGray400!)
+        }
     }
     
     private func setLayout() {
-        contentView.addSubviews(bakeryImage, bakeryTitle, collectionView, regionStackView)
+        contentView.addSubviews(bakeryImage, bakeryTitle, collectionView, regionStackView, reviewStacView)
         bakeryImage.addSubview(markStackView)
         
         bakeryImage.snp.makeConstraints {
             $0.size.equalTo(90)
             $0.top.equalToSuperview().offset(24)
-            $0.leading.equalToSuperview().inset(48)
+            $0.leading.equalToSuperview().inset(24)
         }
         
         markStackView.snp.makeConstraints {
@@ -99,7 +122,7 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
             $0.height.equalTo(25)
             $0.top.equalTo(bakeryTitle.snp.bottom).offset(16)
             $0.leading.equalTo(bakeryImage.snp.trailing).offset(14)
-            $0.trailing.equalToSuperview().offset(-70)
+            $0.trailing.equalToSuperview()
         }
         
         regionStackView.snp.makeConstraints {
@@ -108,23 +131,30 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
             $0.leading.equalTo(bakeryImage.snp.trailing).offset(14)
             $0.bottom.equalToSuperview().offset(-24)
         }
+        
+        reviewStacView.snp.makeConstraints {
+            $0.top.equalTo(bakeryImage.snp.top)
+            $0.trailing.equalToSuperview().inset(24)
+            $0.height.equalTo(16)
+        }
+        reviewIcon.snp.makeConstraints {
+            $0.size.equalTo(16)
+        }
     }
     
     func updateUI<T: BakeryListProtocol>(data: T, index: Int) {
         self.index = index
         bakeryTitle.text = data.bakeryName
-        bookMarkButton.getCount(data.bookMarkCount)
-        bookMarkButton.updateData = { [weak self] status in
-            guard let self = self else { return }
-            self.updateData?(status, self.index)
-        }
-        bookMarkButton.isSelected = data.isBooked
+        reviewCount.text = "(\(data.reviewCount))"
+        guard let url = URL(string: data.bakeryPicture) else { return }
+        bakeryImage.kf.setImage(with: url)
         markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)
         if data.secondNearStation == "" {
             regionStackView.removeSecondRegion()
         }
         regionStackView.getRegionName(data.firstNearStation, data.secondNearStation ?? "")
         
+        breadTypeTag = []
         if data.breadType.isGlutenFree {
             breadTypeTag.append(I18N.BakeryList.glutenfree)
         }
@@ -147,29 +177,12 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
             $0.leading.equalTo(bakeryImage.snp.trailing).offset(14)
             $0.trailing.equalToSuperview().offset(-70)
         }
+        
+        collectionView.reloadData()
     }
     
     func getViewType(_ type: BakeryViewType) {
         bakeryViewType = type
-    }
-    
-    func defaultViewButton() {
-        addSubview(bookMarkButton)
-        
-        bookMarkButton.do {
-            $0.configuration?.imagePlacement = NSDirectionalRectEdge.top
-            $0.configuration?.imagePadding = 4
-            $0.configuration?.contentInsets = .zero
-            $0.addAction(UIAction { _ in
-                print("default")
-            }, for: .touchUpInside)
-        }
-        
-        bookMarkButton.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview().offset(-24)
-            $0.size.equalTo(34)
-        }
     }
     
     func getHeight(_ list: [String]) -> CGFloat {
@@ -178,8 +191,7 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
             width += $0.size(withAttributes: [NSAttributedString.Key.font: UIFont.pretendardMedium(13)]).width + 4
         }
         width -= 4
-        
-        return width < (UIScreen.main.bounds.width - 206) ? 25 : 60
+        return width < (UIScreen.main.bounds.width - 152) ? 25 : 56
     }
     
     func reviewViewButton() {
@@ -207,11 +219,9 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
     
     func configure() {
         switch bakeryViewType {
-        case .defaultType:
-            defaultViewButton()
         case .reviewType:
             reviewViewButton()
-        case .none:
+        case .defaultType, .none:
             return
         }
     }

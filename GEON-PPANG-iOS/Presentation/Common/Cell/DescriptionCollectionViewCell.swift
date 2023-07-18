@@ -52,6 +52,11 @@ final class DescriptionCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Life Cycle
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        descriptionLabel.text = ""
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         

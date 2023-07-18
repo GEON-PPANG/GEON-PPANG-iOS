@@ -17,7 +17,9 @@ protocol BakeryTypeProtocol {
 protocol BakeryListProtocol {
     var bakeryName: String { get }
     var bookMarkCount: Int { get }
-    var isBooked: Bool { get }
+    var isBookMarked: Bool { get }
+    var reviewCount: Int { get }
+    var bakeryPicture: String { get }
 
     var isHACCP: Bool { get }
     var isVegan: Bool { get }

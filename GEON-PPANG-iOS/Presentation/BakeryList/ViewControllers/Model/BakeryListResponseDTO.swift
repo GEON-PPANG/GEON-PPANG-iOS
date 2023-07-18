@@ -47,7 +47,7 @@ struct BakeryListResponseDTO: Codable, Hashable, BakeryListProtocol {
 // MARK: - BreadType
 
 struct BreadResponseType: Codable, Hashable {
-    let breadTypeID: Int
+    let breadTypeId: Int
     let breadTypeName: String
     let isGlutenFree: Bool
     let isVegan: Bool
