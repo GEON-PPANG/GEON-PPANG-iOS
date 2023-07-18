@@ -15,6 +15,7 @@ final class SearchNavigationView: UIView {
     // MARK: - Property
     
     var dismissClosure: (() -> Void)?
+    var textFieldClosure: ((String) -> Void)?
     
     // MARK: - UI Property
     
@@ -55,7 +56,11 @@ final class SearchNavigationView: UIView {
     private func setUI() {
         searchTextField.do {
             $0.viewType(.search)
+            $0.textFieldClosure = { text in
+                self.textFieldClosure?(text)
+            }
         }
+        
         backButton.do {
             $0.setImage(.leftArrowIcon, for: .normal)
             $0.addAction(UIAction { [weak self] _ in
