@@ -13,7 +13,8 @@ struct URLConstant {
     
     // MARK: - Home
     
-    static let best = "/bakeries/best"
+    static let bestBakery = "/best/bakeries"
+    static let bestReviews = "/best/reviews"
     
     // MARK: - Search
     

@@ -552,6 +552,7 @@
 			isa = PBXGroup;
 			children = (
 				0959F16F2A658CA400E77CAF /* HomeBestBakeryResponseDTO.swift */,
+				09C626552A5B3572002C8110 /* HomeBestReviewResponseDTO.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -864,7 +865,6 @@
 		09C626522A5B33A8002C8110 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				09C626552A5B3572002C8110 /* HomeBestReviewResponseDTO.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
