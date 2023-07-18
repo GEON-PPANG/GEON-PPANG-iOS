@@ -57,7 +57,6 @@ final class CustomNavigationBar: UIView {
     
     private func setStyle() {
         backButton.do {
-            // TODO: asset 추가되면 image 변경
             $0.tintColor = .gbbGray700
         }
     }
