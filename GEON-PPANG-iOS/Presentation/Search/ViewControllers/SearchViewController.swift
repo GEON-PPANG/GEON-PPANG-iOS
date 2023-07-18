@@ -85,7 +85,9 @@ final class SearchViewController: BaseViewController {
         }
         collectionView.do {
             $0.backgroundColor = .clear
-            $0.isScrollEnabled = true
+            if searchList?.resultCount == 0 || searchBakeryList.isEmpty {
+                $0.isScrollEnabled = false
+            }
         }
     }
     
