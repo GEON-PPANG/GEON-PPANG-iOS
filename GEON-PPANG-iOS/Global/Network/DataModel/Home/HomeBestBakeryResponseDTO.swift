@@ -17,8 +17,8 @@ struct HomeBestBakeryResponseDTO: Codable, Hashable {
     let isNonGMO: Bool
     let firstNearStation: String
     let secondNearStation: String?
-    let isBooked: Bool
+    let isBookMarked: Bool
     let bookMarkCount: Int
     let reviewCount: Int
-
+    
 }

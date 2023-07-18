@@ -5,23 +5,31 @@
 //  Created by JEONGEUN KIM on 2023/07/10.
 //
 
+import Foundation
+
 // MARK: - HomeBestReviewResponseDTO
 
 struct HomeBestReviewResponseDTO: Codable, Hashable {
+    var id = UUID()
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
     
-    let bakeryId: Int
+    static func == (lhs: HomeBestReviewResponseDTO, rhs: HomeBestReviewResponseDTO) -> Bool {
+        lhs.id == rhs.id
+    }
+    var bakeryId: Int
     let bakeryName: String
     let isHACCP: Bool
     let isVegan: Bool
     let isNonGMO: Bool
     let firstNearStation: String
     let secondNearStation: String?
-    let isBooked: Bool
+    let isBookMarked: Bool
     let bookMarkCount: Int
     let bakeryPicture: String
     let reviewCount: Int
     let reviewText: String
     let firstMaxRecommendKeyword: String
     let secondMaxRecommendKeyword: String?
-
 }

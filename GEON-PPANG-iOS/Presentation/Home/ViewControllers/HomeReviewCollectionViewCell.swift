@@ -17,7 +17,7 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
     var updateData: ((Bool, Int) -> Void)?
     var index = 0
     private var keywords: [String] = []
-    private var reviewList: [HomeBestReviewResponseDTO] = HomeBestReviewResponseDTO.item
+    private var reviewList: [HomeBestReviewResponseDTO]?
     
     // MARK: - UI Property
     
@@ -25,7 +25,6 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
     private let reviewTitle = UILabel()
     private let bakeryTitle = UILabel()
     private let bakeryReview = UILabel()
-    private lazy var bookMarkButton = BookmarkButton(configuration: .plain())
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: OptionsCollectionViewFlowLayout())
     
     // MARK: - Life Cycle
@@ -58,10 +57,6 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
             $0.backgroundColor = .gbbPoint1
         }
         
-        bookMarkButton.do {
-            $0.configuration?.contentInsets = .zero
-        }
-        
         reviewTitle.do {
             $0.basic(font: .bodyB2!, color: .white)
             $0.numberOfLines = 2
@@ -91,20 +86,14 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
     }
     
     private func setLayout() {
-        contentView.addSubviews(bakeryImage, bookMarkButton, collectionView, bakeryTitle, bakeryReview)
+        contentView.addSubviews(bakeryImage, collectionView, bakeryTitle, bakeryReview)
         bakeryImage.addSubview(reviewTitle)
         
         bakeryImage.snp.makeConstraints {
             $0.top.directionalHorizontalEdges.equalToSuperview()
             $0.height.equalTo(130)
         }
-        
-        bookMarkButton.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(19)
-            $0.trailing.equalToSuperview().offset(-19)
-            $0.size.equalTo(34)
-        }
-        
+
         reviewTitle.snp.makeConstraints {
             $0.bottom.equalTo(bakeryImage.snp.bottom).inset(13)
             $0.directionalHorizontalEdges.equalToSuperview().inset(15)
@@ -130,20 +119,16 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
     
     func updateUI(data: HomeBestReviewResponseDTO, index: Int) {
         self.index = index
+        let url = URL(string: data.bakeryPicture)
+        bakeryImage.kf.setImage(with: url)
         reviewTitle.text = data.reviewText
         bakeryTitle.text = data.bakeryName
         bakeryReview.text = "리뷰(\(data.reviewCount))"
         bakeryReview.partColorChange(targetString: "\(data.reviewCount)", textColor: .gbbPoint1!)
-        bookMarkButton.updateData = { [weak self] status in
-            guard let self = self  else { return }
-            self.updateData?(status, self.index)
-        }
-        bookMarkButton.isSelected = data.isBooked
-        
-        if !self.reviewList[index].firstMaxRecommendKeyword.isEmpty {
-            self.keywords.append(data.firstMaxRecommendKeyword)
-        }
-        if self.reviewList[index].secondMaxRecommendKeyword != nil {
+
+        self.keywords.append(data.firstMaxRecommendKeyword)
+
+        if self.reviewList?[index].secondMaxRecommendKeyword != nil {
             self.keywords.append(data.secondMaxRecommendKeyword ?? "" )
         }
     }
