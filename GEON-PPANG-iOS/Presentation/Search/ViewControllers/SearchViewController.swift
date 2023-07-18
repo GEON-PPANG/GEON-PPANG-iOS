@@ -127,7 +127,7 @@ final class SearchViewController: BaseViewController {
     private func updateDataSource(data: [SearchBakeryList]) {
         guard var snapshot = dataSource?.snapshot() else { return }
         if self.bakeryListCount == 0 {
-            searchResultView.isHidden = true
+            searchResultView.isHidden = false
             snapshot.deleteSections(currentSection)
             snapshot.appendSections([.empty])
             snapshot.appendItems([0], toSection: .empty)
