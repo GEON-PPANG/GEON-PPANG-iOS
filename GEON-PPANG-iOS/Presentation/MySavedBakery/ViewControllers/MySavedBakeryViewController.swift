@@ -27,6 +27,7 @@ final class MySavedBakeryViewController: BaseViewController {
     // MARK: - UI Property
     
     private let naviView = CustomNavigationBar()
+    private let lineView = LineView()
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
     
     // MARK: - Life Cycle
@@ -45,10 +46,17 @@ final class MySavedBakeryViewController: BaseViewController {
     override func setLayout() {
         
         view.addSubviews(naviView, collectionView)
+        naviView.addSubview(lineView)
         
         naviView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.directionalHorizontalEdges.equalTo(safeArea)
+        }
+        
+        lineView.snp.makeConstraints {
+            $0.height.equalTo(1)
+            $0.directionalHorizontalEdges.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
         
         collectionView.snp.makeConstraints {
