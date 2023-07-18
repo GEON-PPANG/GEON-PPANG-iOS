@@ -113,7 +113,7 @@ extension BottomSheetAppearView {
             halfView.transform = transform
             dimmedView.alpha = 0
             UIView.animate(
-                withDuration: 0.7,
+                withDuration: 0.4,
                 delay: 0,
                 usingSpringWithDamping: 1,
                 initialSpringVelocity: 1,
