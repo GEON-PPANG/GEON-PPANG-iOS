@@ -19,7 +19,7 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
     var index = 0
     var updateData: ((Bool, Int) -> Void)?
     private var breadTypeTag: [String] = []
-    private var ingredientList: [BakeryListResponseDTO] = BakeryListResponseDTO.item
+    private var ingredientList: [BakeryListResponseDTO] = []
     private var bakeryViewType: BakeryViewType? = .defaultType {
         didSet {
             configure()
@@ -113,7 +113,7 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
     func updateUI<T: BakeryListProtocol>(data: T, index: Int) {
         self.index = index
         bakeryTitle.text = data.bakeryName
-        bookMarkButton.getCount(data.bookmarkCount)
+        bookMarkButton.getCount(data.bookMarkCount)
         bookMarkButton.updateData = { [weak self] status in
             guard let self = self else { return }
             self.updateData?(status, self.index)

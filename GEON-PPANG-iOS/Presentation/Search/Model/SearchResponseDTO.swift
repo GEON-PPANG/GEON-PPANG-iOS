@@ -26,7 +26,7 @@ struct SearchBakeryList: Hashable, BakeryListProtocol {
     let firstNearStation: String
     var secondNearStation: String?
     let isBooked: Bool
-    let bookmarkCount: Int
+    let bookMarkCount: Int
     let bakeryPicture: String
 }
 
@@ -35,7 +35,7 @@ extension SearchResponseDTO {
 }
 
 extension SearchBakeryList {
-    static let searchBakeryItem: [SearchBakeryList] = [SearchBakeryList(bakeryID: 1, bakeryName: "히히히히", isHACCP: true, isVegan: true, isNonGMO: true, breadType: .searchBreadType, firstNearStation: "헤헤", secondNearStation: "두번째역", isBooked: true, bookmarkCount: 5, bakeryPicture: "")]
+    static let searchBakeryItem: [SearchBakeryList] = [SearchBakeryList(bakeryID: 1, bakeryName: "히히히히", isHACCP: true, isVegan: true, isNonGMO: true, breadType: .searchBreadType, firstNearStation: "헤헤", secondNearStation: "두번째역", isBooked: true, bookMarkCount: 5, bakeryPicture: "")]
 }
 
 extension BreadResponseType {
