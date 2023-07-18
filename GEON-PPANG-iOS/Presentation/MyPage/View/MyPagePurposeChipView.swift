@@ -14,7 +14,7 @@ final class MyPagePurposeChipView: UIView {
     
     // MARK: - Property
     
-    let purposeType: FilterPurposeType
+    private var purposeType: FilterPurposeType = .health
     
     // MARK: - UI Property
     
@@ -22,9 +22,8 @@ final class MyPagePurposeChipView: UIView {
     
     // MARK: - Life Cycle
     
-    init(type: FilterPurposeType) {
-        self.purposeType = type
-        super.init()
+    init() {
+        super.init(frame: .zero)
         
         setLayout()
         setUI()
@@ -56,6 +55,14 @@ final class MyPagePurposeChipView: UIView {
             $0.text = purposeType.rawValue
             $0.font = .captionM1
             $0.textColor = .gbbPoint1
+        }
+    }
+    
+    // MARK: - Custom Method
+    
+    func configureChip(toTag tag: FilterPurposeType) {
+        purposeLabel.do {
+            $0.text = tag.rawValue
         }
     }
     

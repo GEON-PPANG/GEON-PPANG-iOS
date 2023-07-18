@@ -160,6 +160,10 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
             $0.textColor = .gbbGray700
         }
         
+        purposeFilterChipView.do {
+            $0.configureChip(toTag: .vegan)
+        }
+        
         flowLayout.do {
             $0.minimumLineSpacing = 10
             $0.minimumInteritemSpacing = 4
