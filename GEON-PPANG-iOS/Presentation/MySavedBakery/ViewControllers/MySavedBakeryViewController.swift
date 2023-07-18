@@ -19,7 +19,7 @@ final class MySavedBakeryViewController: BaseViewController {
     }
     typealias DataSource = UICollectionViewDiffableDataSource<Section, AnyHashable>
     private var dataSource: DataSource?
-    private var savedList: [BakeryListResponseDTO] = BakeryListResponseDTO.item
+    private var savedList: [BakeryListResponseDTO] = []
     private var currentSection: [Section] = [.empty]
     
     private lazy var safeArea = self.view.safeAreaLayoutGuide
@@ -101,7 +101,7 @@ final class MySavedBakeryViewController: BaseViewController {
     
     private func updateDataSource(data: BakeryListResponseDTO) {
         guard var snapshot = dataSource?.snapshot() else { return }
-        if data.bookmarkCount == 0 {
+        if data.bookMarkCount == 0 {
             snapshot.deleteSections(currentSection)
             snapshot.appendItems([0], toSection: .empty)
             currentSection = [.empty]

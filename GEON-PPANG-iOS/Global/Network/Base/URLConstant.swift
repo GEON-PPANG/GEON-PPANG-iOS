@@ -17,6 +17,8 @@ struct URLConstant {
     
     // MARK: - Search
     
+    static let search = "/search/bakeries"
+    
     // MARK: - Bakery
     
     // MARK: - MyPage

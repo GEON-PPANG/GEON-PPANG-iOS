@@ -575,6 +575,7 @@
 		0959F1652A658C5200E77CAF /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				098716B32A6061F500538D05 /* SearchResponseDTO.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -784,7 +785,6 @@
 		098716B22A603A8500538D05 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				098716B32A6061F500538D05 /* SearchResponseDTO.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
