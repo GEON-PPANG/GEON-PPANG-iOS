@@ -19,7 +19,7 @@ final class BakeryListViewController: BaseViewController {
     }
     typealias DataSource = UICollectionViewDiffableDataSource<Section, BakeryListResponseDTO>
     private var dataSource: DataSource?
-    private var filterlist: [BakeryListResponseDTO] = BakeryListResponseDTO.item
+    private var filterlist: [BakeryListResponseDTO] = []
     private var sortBakeryBy: SortBakery = .byDefault
     private lazy var safeArea = self.view.safeAreaLayoutGuide
     

@@ -18,7 +18,7 @@ extension MyPageDTO {
     static func dummyData() -> MyPageDTO {
         return .init(memberNickname: "Id",
                      mainPurpose: "HEALTH",
-                     breadType: .init(breadTypeID: 1,
+                     breadType: .init(breadTypeId: 1,
                                       breadTypeName: "맛 • 다이어트",
                                       isGlutenFree: true,
                                       isVegan: true,
