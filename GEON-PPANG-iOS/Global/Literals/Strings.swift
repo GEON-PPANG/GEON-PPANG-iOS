@@ -45,6 +45,10 @@ struct I18N {
             명예훼손, 욕설, 타인 비방글 등)은 안내 없이 삭제되며, 관련법률에 따라
             제재를 받을 수 있습니다. 또한, 건빵은 이에 대한 책임을 지지 않습니다.
         """
+        static let sheetTitle = "정말 리뷰 작성을 그만하시겠어요?"
+        static let sheetDescription = "고객님의 리뷰가 다른 고객님들에게\n도움이 될 수 있어요"
+        static let sheetQuit = "그만하기"
+        static let sheetContinue = "계속쓰기"
     }
     
     /// BakeryList
@@ -88,5 +92,12 @@ struct I18N {
     /// MyReviews
     struct MyReviews {
         static let naviTitle = "내가 쓴 리뷰"
+    }
+    
+    /// SortBottomSheet
+    struct SortBottomSheet {
+        static let sortBy = "정렬"
+        static let byDefault = "기본순"
+        static let byReviews = "리뷰 많은 순"
     }
 }

@@ -12,9 +12,8 @@ class OptionsCollectionViewFlowLayout: UICollectionViewFlowLayout {
     override init() {
         super.init()
         self.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        self.minimumLineSpacing = 10.0
-        self.sectionInset = .zero
-        self.minimumLineSpacing = 12.0
+        self.minimumLineSpacing = 6
+        self.minimumInteritemSpacing = 4
         self.sectionInset = .zero
     }
 
@@ -22,7 +21,7 @@ class OptionsCollectionViewFlowLayout: UICollectionViewFlowLayout {
         fatalError("init(coder:) has not been implemented")
     }
 
-    let cellSpacing: CGFloat = 6
+    let cellSpacing: CGFloat = 4
 
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         let attributes = super.layoutAttributesForElements(in: rect)
