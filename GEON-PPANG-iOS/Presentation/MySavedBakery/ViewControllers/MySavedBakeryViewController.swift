@@ -19,7 +19,7 @@ final class MySavedBakeryViewController: BaseViewController {
     }
     typealias DataSource = UICollectionViewDiffableDataSource<Section, AnyHashable>
     private var dataSource: DataSource?
-    private var savedList: [BakeryListResponseDTO] = []
+    private var savedList: [BakeryList] = []
     private var currentSection: [Section] = [.empty]
     
     private lazy var safeArea = self.view.safeAreaLayoutGuide
@@ -37,7 +37,7 @@ final class MySavedBakeryViewController: BaseViewController {
         setRegistration()
         setDataSource()
         setReloadData()
-        getSavedBakeryList() 
+        getSavedBakeryList()
     }
     
     // MARK: - Setting
@@ -50,7 +50,7 @@ final class MySavedBakeryViewController: BaseViewController {
             $0.top.equalToSuperview()
             $0.directionalHorizontalEdges.equalTo(safeArea)
         }
-
+        
         collectionView.snp.makeConstraints {
             $0.top.equalTo(naviView.snp.bottom)
             $0.leading.equalToSuperview().offset(-24)
@@ -67,12 +67,6 @@ final class MySavedBakeryViewController: BaseViewController {
             })
             $0.configureLeftTitle(to: I18N.MySavedBakery.naviTitle)
         }
-        
-        collectionView.do {
-            if self.savedList.isEmpty {
-                $0.isScrollEnabled = false
-            }
-        }
     }
     
     private func setRegistration() {
@@ -87,7 +81,7 @@ final class MySavedBakeryViewController: BaseViewController {
             case .main:
                 let cell: BakeryListCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
                 cell.getViewType(.defaultType)
-                if let bakeryListItem = item as? BakeryListResponseDTO {
+                if let bakeryListItem = item as? BakeryList {
                     cell.updateUI(data: bakeryListItem, index: indexPath.item)
                 }
                 return cell
@@ -106,7 +100,7 @@ final class MySavedBakeryViewController: BaseViewController {
         snapshot.appendItems([0])
     }
     
-    private func updateDataSource(data: [BakeryListResponseDTO]) {
+    private func updateDataSource(data: [BakeryList]) {
         guard var snapshot = dataSource?.snapshot() else { return }
         if data.count == 0 {
             snapshot.deleteSections(currentSection)
@@ -148,7 +142,7 @@ final class MySavedBakeryViewController: BaseViewController {
             widthDimension: .fractionalWidth(1),
             heightDimension: .fractionalHeight(convertByHeightRatio(694) / convertByHeightRatio(812))
         ))
-                                
+        
         let group = NSCollectionLayoutGroup.vertical(
             layoutSize: .init(
                 widthDimension: .fractionalWidth(1),
@@ -161,18 +155,26 @@ final class MySavedBakeryViewController: BaseViewController {
         
         return section
     }
+    
+    func getCountData(_ count: Int) {
+        if count == 0 {
+            collectionView.isScrollEnabled = false
+        } else {
+            collectionView.isScrollEnabled = true
+        }
+    }
 }
 
 extension MySavedBakeryViewController {
     private func getSavedBakeryList() {
         MyPageAPI.shared.getBookmarks { response in
-            guard self != nil else { return }
             guard let response = response else { return }
             guard let data = response.data else { return }
             for item in data {
-                self.savedList.append(item)
+                self.savedList.append(item.convertToBakeryList())
             }
             self.updateDataSource(data: self.savedList)
+            self.getCountData(data.count)
         }
     }
 }
