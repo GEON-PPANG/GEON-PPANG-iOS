@@ -19,7 +19,7 @@ final class MySavedBakeryViewController: BaseViewController {
     }
     typealias DataSource = UICollectionViewDiffableDataSource<Section, AnyHashable>
     private var dataSource: DataSource?
-    private var savedList: [BakeryListResponseDTO] = BakeryListResponseDTO.item
+    private var savedList: [BakeryListResponseDTO] = []
     private var currentSection: [Section] = [.empty]
     
     private lazy var safeArea = self.view.safeAreaLayoutGuide
@@ -37,6 +37,7 @@ final class MySavedBakeryViewController: BaseViewController {
         setRegistration()
         setDataSource()
         setReloadData()
+        getSavedBakeryList() 
     }
     
     // MARK: - Setting
@@ -52,7 +53,7 @@ final class MySavedBakeryViewController: BaseViewController {
 
         collectionView.snp.makeConstraints {
             $0.top.equalTo(naviView.snp.bottom)
-            $0.leading.equalTo(safeArea).offset(-24)
+            $0.leading.equalToSuperview().offset(-24)
             $0.trailing.equalTo(safeArea)
             $0.bottom.equalToSuperview()
         }
@@ -65,6 +66,12 @@ final class MySavedBakeryViewController: BaseViewController {
                 self.navigationController?.popViewController(animated: true)
             })
             $0.configureLeftTitle(to: I18N.MySavedBakery.naviTitle)
+        }
+        
+        collectionView.do {
+            if self.savedList.isEmpty {
+                $0.isScrollEnabled = false
+            }
         }
     }
     
@@ -95,19 +102,21 @@ final class MySavedBakeryViewController: BaseViewController {
     private func setReloadData() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, AnyHashable>()
         defer { dataSource?.apply(snapshot, animatingDifferences: false)}
-        snapshot.appendSections([.main])
-        snapshot.appendItems(savedList)
+        snapshot.appendSections([.empty])
+        snapshot.appendItems([0])
     }
     
-    private func updateDataSource(data: BakeryListResponseDTO) {
+    private func updateDataSource(data: [BakeryListResponseDTO]) {
         guard var snapshot = dataSource?.snapshot() else { return }
-        if data.bookmarkCount == 0 {
+        if data.count == 0 {
             snapshot.deleteSections(currentSection)
+            snapshot.appendSections([.empty])
             snapshot.appendItems([0], toSection: .empty)
             currentSection = [.empty]
             dataSource?.apply(snapshot)
         } else {
             snapshot.deleteSections(currentSection)
+            snapshot.appendSections([.main])
             snapshot.appendItems(savedList, toSection: .main)
             currentSection = [.main]
             dataSource?.apply(snapshot)
@@ -137,12 +146,13 @@ final class MySavedBakeryViewController: BaseViewController {
     private func normalSection() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(layoutSize: .init(
             widthDimension: .fractionalWidth(1),
-            heightDimension: .fractionalHeight(1))
-        )
+            heightDimension: .fractionalHeight(convertByHeightRatio(694) / convertByHeightRatio(812))
+        ))
+                                
         let group = NSCollectionLayoutGroup.vertical(
             layoutSize: .init(
                 widthDimension: .fractionalWidth(1),
-                heightDimension: .fractionalHeight(1)
+                heightDimension: .fractionalHeight(convertByHeightRatio(694) / convertByHeightRatio(812))
             ),
             subitem: item,
             count: 1
@@ -150,5 +160,19 @@ final class MySavedBakeryViewController: BaseViewController {
         let section = NSCollectionLayoutSection(group: group)
         
         return section
+    }
+}
+
+extension MySavedBakeryViewController {
+    private func getSavedBakeryList() {
+        MyPageAPI.shared.getBookmarks { response in
+            guard self != nil else { return }
+            guard let response = response else { return }
+            guard let data = response.data else { return }
+            for item in data {
+                self.savedList.append(item)
+            }
+            self.updateDataSource(data: self.savedList)
+        }
     }
 }
