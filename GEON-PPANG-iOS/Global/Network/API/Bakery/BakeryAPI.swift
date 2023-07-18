@@ -11,7 +11,8 @@ import Moya
 
 final class BakeryAPI {
     
-    typealias WriteReviewResponse = GeneralResponse<WriteReviewDTO>
+    typealias WriteReviewRequest = WriteReviewDTO
+    typealias WriteReviewResponse = GeneralResponse<VoidType>
     
     static let shared: BakeryAPI = BakeryAPI()
     
@@ -23,8 +24,8 @@ final class BakeryAPI {
     
     // MARK: - POST
     
-    func writeReview(bakeryID: String, completion: @escaping (WriteReviewResponse?) -> Void) {
-        bakeryProvider.request(.writeReview(bakeryID: bakeryID)) { result in
+    func writeReview(content: WriteReviewRequest, completion: @escaping (WriteReviewResponse?) -> Void) {
+        bakeryProvider.request(.writeReview(content: content)) { result in
             switch result {
             case let .success(response):
                 do {

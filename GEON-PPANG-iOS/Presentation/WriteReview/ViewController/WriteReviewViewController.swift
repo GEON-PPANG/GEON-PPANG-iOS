@@ -273,6 +273,7 @@ final class WriteReviewViewController: BaseViewController {
     
     private func nextButtonTapped() {
         writeReviewData.reviewText = reviewDetailTextView.detailTextView.text
+        requestWriteReview(writeReviewData)
         UIView.animate(withDuration: 0.2, animations: {
             self.bottomView.transform = .identity
             self.scrollView.transform = .identity
@@ -449,4 +450,16 @@ extension WriteReviewViewController: UITextViewDelegate {
         return self.textLimit(textView.text, to: text, with: 70)
     }
     
+}
+
+// MARK: API
+
+extension WriteReviewViewController {
+    func requestWriteReview(_ content: WriteReviewDTO) {
+        BakeryService.writeReview(content: content) { response in
+            guard let response = response else { return }
+            guard let data = response.data else { return }
+            dump(data)
+        }
+    }
 }
