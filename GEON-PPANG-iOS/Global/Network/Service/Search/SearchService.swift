@@ -35,7 +35,7 @@ extension SearchService: TargetType {
     var task: Moya.Task {
         switch self {
         case .searchBakery(bakeryID: let bakeryID):
-            return .requestParameters(parameters: ["bakeryName" : bakeryID], encoding: URLEncoding.queryString)
+            return .requestParameters(parameters: ["bakeryName": bakeryID], encoding: URLEncoding.queryString)
         }
     }
     
