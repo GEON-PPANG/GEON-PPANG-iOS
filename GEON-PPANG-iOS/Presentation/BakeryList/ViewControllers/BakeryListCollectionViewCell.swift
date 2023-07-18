@@ -147,7 +147,7 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
         bakeryTitle.text = data.bakeryName
         reviewCount.text = "(\(data.reviewCount))"
         guard let url = URL(string: data.bakeryPicture) else { return }
-         bakeryImage.kf.setImage(with: url)
+        bakeryImage.kf.setImage(with: url)
         markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)
         if data.secondNearStation == "" {
             regionStackView.removeSecondRegion()
@@ -184,7 +184,7 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
     func getViewType(_ type: BakeryViewType) {
         bakeryViewType = type
     }
-
+    
     func getHeight(_ list: [String]) -> CGFloat {
         var width: CGFloat = 0
         list.forEach {
