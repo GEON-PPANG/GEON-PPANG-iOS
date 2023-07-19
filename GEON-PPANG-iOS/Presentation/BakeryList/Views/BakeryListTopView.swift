@@ -77,4 +77,10 @@ final class BakeryListTopView: UIView {
             $0.bottom.equalToSuperview().offset(-15)
         }
     }
+    
+    func addActionToSearchButton(_ action: @escaping () -> Void) {
+        searchButton.addAction(UIAction { _ in
+            action()
+        }, for: .touchUpInside)
+    }
 }

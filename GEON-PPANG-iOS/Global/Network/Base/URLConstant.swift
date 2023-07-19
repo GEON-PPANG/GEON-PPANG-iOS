@@ -24,6 +24,8 @@ struct URLConstant {
     
     // MARK: - Bakery
     
+    static let bakeryList = "/bakeries"
+    
     // MARK: - MyPage
     
     // MARK: - Bookmark
