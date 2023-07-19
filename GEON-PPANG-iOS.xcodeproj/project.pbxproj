@@ -374,7 +374,6 @@
 		093214032A5AE3C000875EF6 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				098716B22A603A8500538D05 /* Model */,
 				09FD47C62A5DC97E002020BD /* Views */,
 				093214052A5AE3D600875EF6 /* ViewControllers */,
 			);
@@ -748,13 +747,6 @@
 				3E7B21C32A621A9A00C8F8B4 /* SortBakeryCollectionViewCell.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		098716B22A603A8500538D05 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		098716B92A613B6A00538D05 /* Views */ = {
