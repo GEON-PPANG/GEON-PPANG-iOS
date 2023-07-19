@@ -11,9 +11,12 @@ struct URLConstant {
     
     // MARK: - Filter
     
+    static let changeFilter = "/member/types"
+    
     // MARK: - Home
     
-    static let best = "/bakeries/best"
+    static let bestBakery = "/best/bakeries"
+    static let bestReviews = "/best/reviews"
     
     // MARK: - Search
     
@@ -21,8 +24,13 @@ struct URLConstant {
     
     // MARK: - Bakery
     
+    static let bakeryList = "/bakeries"
+    
     // MARK: - MyPage
     
     // MARK: - Bookmark
+    
+    static let bookmarks = "member/bookMarks"
+    static let myReviews = "member/reviews"
     
 }

@@ -48,7 +48,7 @@ enum FilterPurposeType: String, CaseIterable {
     var data: String {
         switch self {
         case .health: return "HEALTH"
-        case .taste: return "TASTE"
+        case .taste: return "DIET"
         case .vegan: return "VEGAN"
         }
     }

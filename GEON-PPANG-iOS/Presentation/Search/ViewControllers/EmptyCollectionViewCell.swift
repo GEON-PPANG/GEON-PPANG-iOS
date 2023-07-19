@@ -30,7 +30,11 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Property
     
-    private var emptyType: EmptyType = .initialize
+    private var emptyType: EmptyType = .initialize {
+        didSet {
+            setLayout()
+        }
+    }
     
     // MARK: - UI Property
     
@@ -54,7 +58,15 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
     
     private func setLayout() {
         addSubviews(emptyIcon, emptyLabel)
-        
+        switch emptyType {
+        case .noBookmark, .noReview:
+            return myPageLayout()
+        default:
+            return defaultLayout()
+        }
+    }
+
+    private func defaultLayout() {
         emptyIcon.snp.makeConstraints {
             $0.size.equalTo(CGSize(width: 154, height: 132))
             $0.centerX.equalToSuperview()
@@ -63,13 +75,20 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
         emptyLabel.snp.makeConstraints {
             $0.top.equalTo(emptyIcon.snp.bottom).offset(20)
             $0.centerX.equalToSuperview()
-            
-            switch emptyType {
-            case .initialize, .noSearch:
-                $0.centerY.equalToSuperview().inset(-33)
-            case .noReview, .noBookmark:
-                $0.centerY.equalToSuperview().inset(-22)
-            }
+            $0.centerY.equalToSuperview().inset(-33)
+        }
+    }
+    
+    private func myPageLayout() {
+        emptyIcon.snp.remakeConstraints {
+            $0.size.equalTo(CGSize(width: 154, height: 132))
+            $0.centerX.equalToSuperview().offset(24)
+            $0.centerY.equalToSuperview().offset(-35)
+        }
+        
+        emptyLabel.snp.remakeConstraints {
+            $0.top.equalTo(emptyIcon.snp.bottom).offset(20)
+            $0.centerX.equalToSuperview().offset(15)
         }
     }
     
@@ -96,6 +115,7 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
         case .noSearch:
             return emptyLabel.partFontChange(targetString: "다른 키워드로 검색해보세요!", font: .subHead!)
         }
+        
     }
     
     func getEmtyText(_ text: String) {
