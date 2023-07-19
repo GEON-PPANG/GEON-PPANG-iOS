@@ -131,6 +131,11 @@ final class FilterIngredientViewController: BaseViewController {
     
     private func setNextButtonAction() {
         let action = UIAction { [weak self] _ in
+            
+            FilterAPI.shared.changeFilter(to: FilterRequestDTO.sharedData) { response in
+                dump(response)
+            }
+            
             if self?.maxSteps != 6 {
                 self?.navigationController?.popToRootViewController(animated: true)
             } else {
