@@ -61,9 +61,10 @@ final class MyReviewsViewController: BaseViewController {
     }
     
     private func setRegistration() {
-        collectionView.register(cell: BakeryCollectionViewListCell.self)
+        //        collectionView.register(cell: cellRegistration.self)
         collectionView.register(cell: EmptyCollectionViewCell.self)
         collectionView.register(header: MyReviewsHeaderView.self)
+        
     }
     
     private func layout() -> UICollectionViewLayout {
@@ -125,11 +126,13 @@ extension MyReviewsViewController: UICollectionViewDataSource {
             cell.getViewType(.noReview)
             return cell
         } else {
-//            let cell: BakeryListCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-//            cell.getViewType(.reviewType)
-//            cell.updateUI(data: myReviewslist[indexPath.section], index: indexPath.item)
-//            return cell
-            return UICollectionViewCell()
+            let cellRegistration = UICollectionView.CellRegistration<BakeryCollectionViewListCell, BakeryListResponseDTO> { cell, indexPath, _ in
+                cell.getViewType(.reviewType)
+                cell.updateUI(data: self.myReviewslist[indexPath.section], index: indexPath.item)
+            }
+            
+            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: myReviewslist[indexPath.section])
+            
         }
     }
 }
@@ -144,5 +147,11 @@ extension MyReviewsViewController: UICollectionViewDelegateFlowLayout {
             let header: MyReviewsHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
             return header
         }
+    }
+}
+
+extension MyReviewsViewController {
+    private func requestMyReviews() {
+        
     }
 }

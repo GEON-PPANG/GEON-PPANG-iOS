@@ -19,9 +19,9 @@ final class BakeryListViewController: BaseViewController {
     }
     typealias DataSource = UICollectionViewDiffableDataSource<Section, BakeryList>
     private var dataSource: DataSource?
-    private var filterlist: [BakeryList] = []
+    private var bakeryList: [BakeryList] = []
     private var sortBakeryBy: SortBakery = .byDefault
-    private var sortBakeryName: String = SortBakery.byDefault.description
+    private var sortBakeryName: String = SortBakery.byDefault.sortValue
     private lazy var safeArea = self.view.safeAreaLayoutGuide
     private var filterStatus: [Bool] = [false, false, false ]
     
@@ -118,7 +118,7 @@ final class BakeryListViewController: BaseViewController {
         defer { dataSource?.apply(snapshot, animatingDifferences: false)}
         
         snapshot.appendSections([.main])
-        snapshot.appendItems(filterlist)
+        snapshot.appendItems(bakeryList)
     }
     
     // MARK: - Custom Method
@@ -136,8 +136,8 @@ final class BakeryListViewController: BaseViewController {
         sortBottomSheet.dataBind = { sortBy in
             self.sortBakeryBy = sortBy
             self.configureFilterButtonText()
+            self.sortBakeryName = sortBy.sortValue
             
-            self.sortBakeryName = self.sortBakeryBy.description
             self.requestBakeryList(sort: self.sortBakeryName,
                                    isHard: self.filterStatus[0],
                                    isDessert: self.filterStatus[1],
@@ -155,12 +155,11 @@ extension BakeryListViewController {
                                        isBrunch: isBrunch) { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
-            self.filterlist = []
+            self.bakeryList = []
             
             for item in data {
-                self.filterlist.append(item.convertToBakeryList())
+                self.bakeryList.append(item.convertToBakeryList())
             }
-            
             self.setReloadData()
             self.bakeryListCollectionView.reloadData()
         }
