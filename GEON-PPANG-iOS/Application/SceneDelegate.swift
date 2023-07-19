@@ -36,6 +36,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillEnterForeground(_ scene: UIScene) {}
 
     func sceneDidEnterBackground(_ scene: UIScene) {}
+    
+    func changeRootViewControllerToTabBarController() {
+        guard let window = window else { return }
+        window.rootViewController = TabBarController()
+        UIView.transition(with: window, duration: 0.2, options: [.transitionCrossDissolve], animations: nil)
+    }
 
 }
 

@@ -15,7 +15,7 @@ final class MyReviewsViewController: BaseViewController {
     // MARK: - Property
     
     private lazy var safeArea = self.view.safeAreaLayoutGuide
-    private var myReviewslist: [BakeryListResponseDTO] = BakeryListResponseDTO.item
+    private var myReviewslist: [BakeryListResponseDTO] = []
     
     // MARK: - UI Property
     

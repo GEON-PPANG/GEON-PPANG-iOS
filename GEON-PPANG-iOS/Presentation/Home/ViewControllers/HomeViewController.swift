@@ -28,8 +28,8 @@ final class HomeViewController: BaseViewController {
     private var nickname =  UserDefaults.standard.string(forKey: "nickname") ?? ""
     typealias DataSource = UICollectionViewDiffableDataSource<Sections, AnyHashable>
     private var dataSource: DataSource?
-    private let bakeryList: [HomeBestBakeryResponseDTO] = []
-    private let reviewList: [HomeBestReviewResponseDTO] = HomeBestReviewResponseDTO.item
+    private var bakeryList: [BestBakery] = []
+    private var reviewList: [BestReviews] = []
     
     lazy var safeArea = self.view.safeAreaLayoutGuide
     
@@ -46,6 +46,7 @@ final class HomeViewController: BaseViewController {
         setRegistration()
         setDataSource()
         setReloadData()
+        requestHomeBestData()
     }
     
     override func setUI() {
@@ -102,22 +103,11 @@ final class HomeViewController: BaseViewController {
             switch section {
             case .bakery:
                 let cell: HomeBakeryCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-                cell.updateUI(data: item as! HomeBestBakeryResponseDTO, index: indexPath.item)
-                //                cell.updateData = { [ weak self ] _, _ in
-                // Todo: - 북마크 api 호출 - index 값 넘겨줌
-                // Todo: -  200 - 다시 홈뷰 리스트 정보 받아오는 api 연결
-                
-                //                    var snapshot = dataSource?.snapshot()
-                //                    snapshot?.reloadItems(bakeryList)
-                //                    dataSource?.applySnapshotUsingReloadData(snapshot ?? "")
-                //  }
+                cell.updateUI(data: item as! BestBakery)
                 return cell
             case .review:
                 let cell: HomeReviewCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-                cell.updateUI(data: item as! HomeBestReviewResponseDTO, index: indexPath.item)
-                // cell.updateData = { [ weak self ] _, _ in
-                // Todo: - 북마크 api 호출 - index 값 넘겨줌
-                // }
+                cell.updateUI(data: item as! BestReviews, index: indexPath.item)
                 return cell
             case .bottom, .none:
                 let cell: HomeBottomCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
@@ -131,8 +121,16 @@ final class HomeViewController: BaseViewController {
         defer { dataSource?.apply(snapshot, animatingDifferences: false)}
         
         snapshot.appendSections([.bakery, .review, .bottom])
-        [bakeryList: .bakery, reviewList: .review, [0]: .bottom]
-            .forEach { snapshot.appendItems($0.key as! [AnyHashable], toSection: $0.value) }
+        
+        let itemsDictionary: [Sections: [AnyHashable]] = [
+            .bakery: bakeryList,
+            .review: reviewList,
+            .bottom: [0]
+        ]
+        
+        for (section, items) in itemsDictionary {
+            snapshot.appendItems(items, toSection: section)
+        }
         
         dataSource?.supplementaryViewProvider = { (collectionView, _, indexPath) in
             let header: HomeHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
@@ -147,6 +145,18 @@ final class HomeViewController: BaseViewController {
             }
             return header
         }
+    }
+    
+    private func updateBestBakeryData(_ bakery: [BestBakery]) {
+        var snapshot = dataSource!.snapshot()
+        snapshot.appendItems(bakery, toSection: .bakery)
+        dataSource?.apply(snapshot)
+    }
+    
+    private func updateReviewsData(_ reviews: [BestReviews]) {
+        var snapshot = dataSource!.snapshot()
+        snapshot.appendItems(reviews, toSection: .review)
+        dataSource?.apply(snapshot)
     }
     
     func layout() -> UICollectionViewLayout {
@@ -190,4 +200,26 @@ final class HomeViewController: BaseViewController {
 // MARK: - UICollectionViewDelegate
 
 extension HomeViewController: UICollectionViewDelegate {
+}
+
+extension HomeViewController {
+    private func requestHomeBestData() {
+        HomeAPI.shared.getBestBakery { response in
+            guard let response = response else { return }
+            guard let data = response.data else { return }
+            for item in data {
+                self.bakeryList.append(item.convertToBestBakery())
+            }
+            self.updateBestBakeryData(self.bakeryList)
+        }
+        
+        HomeAPI.shared.getBestReviews { response in
+            guard let response = response else { return }
+            guard let data = response.data else { return }
+            for item in data {
+                self.reviewList.append(item.convertToBakeryReviews())
+            }
+            self.updateReviewsData(self.reviewList)
+        }
+    }
 }

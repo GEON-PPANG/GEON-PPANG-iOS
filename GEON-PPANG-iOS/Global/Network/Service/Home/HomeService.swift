@@ -10,7 +10,8 @@ import Foundation
 import Moya
 
 enum HomeService {
-    case best
+    case bestBakery
+    case bestReviews
 }
 
 extension HomeService: TargetType {
@@ -20,21 +21,23 @@ extension HomeService: TargetType {
     
     var path: String {
         switch self {
-        case .best:
-            return URLConstant.best
+        case .bestBakery:
+            return URLConstant.bestBakery
+        case.bestReviews:
+            return URLConstant.bestReviews
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .best:
+        case .bestBakery, .bestReviews:
             return .get
         }
     }
     
     var task: Moya.Task {
         switch self {
-        case .best:
+        case .bestBakery, .bestReviews:
             return .requestPlain
         }
     }

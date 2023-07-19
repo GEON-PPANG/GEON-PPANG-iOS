@@ -16,6 +16,12 @@ final class TabBarController: UITabBarController {
     
     // MARK: - Life Cycle
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBar.initailizeTabBarUI()
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,7 +52,6 @@ final class TabBarController: UITabBarController {
     }
     
     private func setTabBarUI() {
-        tabBar.initailizeTabBarUI()
         tabBar.layer.applyShadow()
         tabBar.layer.cornerRadius = convertByHeightRatio(12)
         tabBar.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner)
