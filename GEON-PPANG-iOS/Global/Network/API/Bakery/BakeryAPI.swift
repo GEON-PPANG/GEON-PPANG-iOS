@@ -45,7 +45,7 @@ final class BakeryAPI {
     
     // MARK: - POST
     
-    func writeReview(content: WriteReviewRequest, completion: @escaping (WriteReviewResponse?) -> Void) {
+    func postWriteReview(content: WriteReviewRequest, completion: @escaping (WriteReviewResponse?) -> Void) {
         // TODO: bakery ID 는 이전 View 에서 전달받아온 값으로 설정
         bakeryProvider.request(.writeReview(bakeryID: 15, content: content)) { result in
             switch result {
