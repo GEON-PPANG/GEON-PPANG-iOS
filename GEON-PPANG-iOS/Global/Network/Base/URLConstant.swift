@@ -11,6 +11,8 @@ struct URLConstant {
     
     // MARK: - Filter
     
+    static let changeFilter = "/member/types"
+    
     // MARK: - Home
     
     static let bestBakery = "/best/bakeries"

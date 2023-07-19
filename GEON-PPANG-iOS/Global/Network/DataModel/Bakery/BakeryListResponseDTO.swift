@@ -11,7 +11,7 @@ import Foundation
 
 struct BakeryListResponseDTO: Codable, Hashable, BakeryListProtocol {
     let reviewCount: Int
-    let bakeryId: Int
+    let bakeryID: Int
     let bakeryName: String
     let bakeryPicture: String
     let isHACCP: Bool
@@ -23,28 +23,23 @@ struct BakeryListResponseDTO: Codable, Hashable, BakeryListProtocol {
     let isBookMarked: Bool
     let bookMarkCount: Int
     
-    func convertToBakeryList() -> BakeryList {
-        return BakeryList(reviewCount: reviewCount, bakeryId: bakeryId, bakeryName: bakeryName, bakeryPicture: bakeryPicture, isHACCP: isHACCP, isVegan: isVegan, isNonGMO: isNonGMO, breadType: breadType, firstNearStation: firstNearStation, secondNearStation: secondNearStation, isBookMarked: isBookMarked, bookMarkCount: bookMarkCount)
+    enum CodingKeys: String, CodingKey {
+        case reviewCount
+        case bakeryID = "bakeryId"
+        case bakeryName
+        case bakeryPicture
+        case isHACCP
+        case isVegan
+        case isNonGMO
+        case breadType
+        case firstNearStation
+        case secondNearStation
+        case isBookMarked
+        case bookMarkCount
     }
-}
-
-// MARK: - BreadType
-
-struct BreadResponseType: Codable, Hashable {
-    let breadTypeId: Int
-    let breadTypeName: String
-    let isGlutenFree: Bool
-    let isVegan: Bool
-    let isNutFree: Bool
-    let isSugarFree: Bool
     
-    func configureTrueOptions() -> [(String, Bool)] {
-        var optionsBoolArray: [(String, Bool)] = []
-        if isGlutenFree { optionsBoolArray.append((I18N.BakeryList.glutenfree, true)) }
-        if isVegan { optionsBoolArray.append((I18N.BakeryList.vegan, true)) }
-        if isNutFree { optionsBoolArray.append((I18N.BakeryList.nutfree, true)) }
-        if isSugarFree { optionsBoolArray.append((I18N.BakeryList.noSugar, true)) }
-        return optionsBoolArray
+    func convertToBakeryList() -> BakeryList {
+        return BakeryList(reviewCount: reviewCount, bakeryID: bakeryID, bakeryName: bakeryName, bakeryPicture: bakeryPicture, isHACCP: isHACCP, isVegan: isVegan, isNonGMO: isNonGMO, breadType: breadType, firstNearStation: firstNearStation, secondNearStation: secondNearStation, isBookMarked: isBookMarked, bookMarkCount: bookMarkCount)
     }
 }
 
@@ -60,7 +55,7 @@ struct BakeryList: Codable, Hashable, BakeryListProtocol {
     }
     
     let reviewCount: Int
-    let bakeryId: Int
+    let bakeryID: Int
     let bakeryName: String
     let bakeryPicture: String
     let isHACCP: Bool
@@ -71,5 +66,20 @@ struct BakeryList: Codable, Hashable, BakeryListProtocol {
     let secondNearStation: String?
     let isBookMarked: Bool
     let bookMarkCount: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case reviewCount
+        case bakeryID = "bakeryId"
+        case bakeryName
+        case bakeryPicture
+        case isHACCP
+        case isVegan
+        case isNonGMO
+        case breadType
+        case firstNearStation
+        case secondNearStation
+        case isBookMarked
+        case bookMarkCount
+    }
     
 }
