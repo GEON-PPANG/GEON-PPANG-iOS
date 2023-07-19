@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct FilterRequestDTO {
+struct FilterRequestDTO: Codable {
     var mainPurpose: String
     var breadType: BreadRequestType
-    var nutrientType: NutrientType
+    var nutrientType: NutrientRequestType
     
     static var sharedData = FilterRequestDTO()
     
@@ -26,7 +26,7 @@ struct FilterRequestDTO {
     }
 }
 
-struct BreadRequestType {
+struct BreadRequestType: Codable {
     var isGlutenFree: Bool
     var isVegan: Bool
     var isNutFree: Bool
@@ -41,7 +41,7 @@ struct BreadRequestType {
     }
 }
 
-struct NutrientType {
+struct NutrientRequestType: Codable {
     var isNutrientOpen: Bool
     var isIngredientOpen: Bool
     var isNotOpen: Bool
