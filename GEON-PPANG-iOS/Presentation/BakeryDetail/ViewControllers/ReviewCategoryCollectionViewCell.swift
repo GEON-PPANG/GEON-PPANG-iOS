@@ -12,7 +12,7 @@ import Then
 
 final class ReviewCategoryCollectionViewCell: UICollectionViewCell {
     
-    // MARK: - UIProperty
+    // MARK: - UI Property
     
     private lazy var reviewProgressBarStackView = ReviewProgressBarStackView() // 서버
     
@@ -24,6 +24,7 @@ final class ReviewCategoryCollectionViewCell: UICollectionViewCell {
         setLayout()
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

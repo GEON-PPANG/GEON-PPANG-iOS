@@ -33,6 +33,7 @@ final class ReviewCategoryStackView: UIStackView {
         setLayout()
     }
     
+    @available(*, unavailable)
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

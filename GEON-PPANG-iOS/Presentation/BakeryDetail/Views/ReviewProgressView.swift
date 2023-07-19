@@ -40,11 +40,12 @@ final class ReviewProgressView: UIView {
         setProgressBar()
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: Setting
+    // MARK: - Setting
     
     private func setUI() {
         
@@ -82,6 +83,8 @@ final class ReviewProgressView: UIView {
             $0.height.equalTo(17)
         }
     }
+    
+    // MARK: - Custom Method
     
     @objc private func setProgressBarAnimation() {
         

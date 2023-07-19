@@ -12,7 +12,7 @@ import Then
 
 final class ReviewProgressBarStackView: UIStackView {
 
-    // MARK: - UIProperty
+    // MARK: - UI Property
     
     private let deliciousProgressView = ReviewProgressView()
     private let specialProgressView = ReviewProgressView()
@@ -31,6 +31,7 @@ final class ReviewProgressBarStackView: UIStackView {
         setLayout()
     }
     
+    @available(*, unavailable)
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
