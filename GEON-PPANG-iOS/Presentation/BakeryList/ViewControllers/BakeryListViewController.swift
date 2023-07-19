@@ -36,7 +36,6 @@ final class BakeryListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         requestBakeryList(sort: self.sortBakeryName, isHard: false, isDessert: false, isBrunch: false)
-        setRegistration()
         setDataSource()
         setReloadData()
         
@@ -87,14 +86,10 @@ final class BakeryListViewController: BaseViewController {
         
         bakeryListCollectionView.snp.makeConstraints {
             $0.top.equalTo(bakeryFilterView.snp.bottom)
-            $0.leading.equalTo(safeArea).offset(-24)
+            $0.leading.equalTo(safeArea)
             $0.trailing.equalTo(safeArea)
             $0.bottom.equalToSuperview()
         }
-    }
-    
-    private func setRegistration() {
-        bakeryListCollectionView.register(cell: BakeryListCollectionViewCell.self)
     }
     
     private func layout() -> UICollectionViewLayout {
@@ -107,12 +102,15 @@ final class BakeryListViewController: BaseViewController {
     }
     
     private func setDataSource() {
-        dataSource = DataSource(collectionView: bakeryListCollectionView, cellProvider: { collectionView, indexPath, item in
-            let cell: BakeryListCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+        let cellRegistration = UICollectionView.CellRegistration<BakeryListCollectionViewCell, BakeryList> { (cell, indexPath, item) in
+            cell.separatorLayoutGuide.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
             cell.getViewType(.defaultType)
             cell.updateUI(data: item, index: indexPath.item)
-            return cell
-        })
+        }
+        
+        dataSource = DataSource(collectionView: bakeryListCollectionView) { (collectionView, indexPath, itemIdentifier) -> UICollectionViewCell? in
+            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
+        }
     }
     
     private func setReloadData() {
