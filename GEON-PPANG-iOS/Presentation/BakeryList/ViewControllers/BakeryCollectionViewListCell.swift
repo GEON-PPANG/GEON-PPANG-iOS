@@ -195,7 +195,7 @@ final class BakeryCollectionViewListCell: UICollectionViewListCell {
     }
     
     func reviewViewButton() {
-        addSubview(arrowButton)
+       // addSubview(arrowButton)
         
         regionStackView.getBackgroundColor(.gbbGray700!)
         arrowButton.do {

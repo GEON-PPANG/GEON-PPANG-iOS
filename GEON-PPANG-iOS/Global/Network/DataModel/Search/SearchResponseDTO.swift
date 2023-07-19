@@ -17,7 +17,6 @@ struct SearchResponseDTO: Codable, Hashable {
 // MARK: - SearchBakeryList
 
 struct SearchBakeryList: Codable, Hashable, BakeryListProtocol {
-    var id: Int { bakeryId }
     let bakeryId: Int
     let bakeryName: String
     let bakeryPicture: String
@@ -29,6 +28,5 @@ struct SearchBakeryList: Codable, Hashable, BakeryListProtocol {
     let isBookMarked: Bool
     let bookMarkCount: Int
     let reviewCount: Int
-    var breadType: BreadResponseType
-
+    let breadType: BreadResponseType
 }
