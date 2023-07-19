@@ -10,8 +10,8 @@ import Foundation
 // MARK: - BakeryListResponseDTO
 
 struct BakeryListResponseDTO: Codable, Hashable, BakeryListProtocol {
-    
-    let bakeryID: Int
+    let reviewCount: Int
+    let bakeryId: Int
     let bakeryName: String
     let bakeryPicture: String
     let isHACCP: Bool
@@ -22,25 +22,9 @@ struct BakeryListResponseDTO: Codable, Hashable, BakeryListProtocol {
     let secondNearStation: String?
     let isBookMarked: Bool
     let bookMarkCount: Int
-    let reviewCount: Int
-    
-    enum CodingKeys: String, CodingKey {
-        case bakeryID = "bakeryId"
-        case bakeryName
-        case bakeryPicture
-        case isHACCP
-        case isVegan
-        case isNonGMO
-        case breadType
-        case firstNearStation
-        case secondNearStation
-        case isBookMarked
-        case bookMarkCount
-        case reviewCount
-    }
     
     func convertToBakeryList() -> BakeryList {
-        return BakeryList(bakeryID: bakeryID, bakeryName: bakeryName, bakeryPicture: bakeryPicture, isHACCP: isHACCP, isVegan: isVegan, isNonGMO: isNonGMO, breadType: breadType, firstNearStation: firstNearStation, secondNearStation: secondNearStation, isBookMarked: isBookMarked, bookMarkCount: bookMarkCount, reviewCount: reviewCount)
+        return BakeryList(reviewCount: reviewCount, bakeryId: bakeryId, bakeryName: bakeryName, bakeryPicture: bakeryPicture, isHACCP: isHACCP, isVegan: isVegan, isNonGMO: isNonGMO, breadType: breadType, firstNearStation: firstNearStation, secondNearStation: secondNearStation, isBookMarked: isBookMarked, bookMarkCount: bookMarkCount)
     }
 }
 
@@ -64,9 +48,8 @@ struct BreadResponseType: Codable, Hashable {
     }
 }
 
-// BakeryList
-
 struct BakeryList: Codable, Hashable, BakeryListProtocol {
+    
     var id = UUID()
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
@@ -76,7 +59,8 @@ struct BakeryList: Codable, Hashable, BakeryListProtocol {
         lhs.id == rhs.id
     }
     
-    let bakeryID: Int
+    let reviewCount: Int
+    let bakeryId: Int
     let bakeryName: String
     let bakeryPicture: String
     let isHACCP: Bool
@@ -87,6 +71,5 @@ struct BakeryList: Codable, Hashable, BakeryListProtocol {
     let secondNearStation: String?
     let isBookMarked: Bool
     let bookMarkCount: Int
-    let reviewCount: Int
     
 }

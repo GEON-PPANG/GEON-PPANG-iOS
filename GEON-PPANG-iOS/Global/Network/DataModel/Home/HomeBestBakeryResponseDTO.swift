@@ -27,7 +27,6 @@ struct HomeBestBakeryResponseDTO: Codable, Hashable {
     
 }
 
-
 struct BestBakery: Codable, Hashable {
     var id = UUID()
     func hash(into hasher: inout Hasher) {
