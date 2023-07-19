@@ -119,6 +119,10 @@
 		3E7B21C22A62172500C8F8B4 /* SortEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7B21C12A62172500C8F8B4 /* SortEnum.swift */; };
 		3E7B21C42A621A9A00C8F8B4 /* SortBakeryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7B21C32A621A9A00C8F8B4 /* SortBakeryCollectionViewCell.swift */; };
 		3E8B2FF92A6706A4001BD057 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3E8B2FF82A6706A4001BD057 /* Config.xcconfig */; };
+		3E8B2FFC2A67A58B001BD057 /* BreadResponseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8B2FFB2A67A58B001BD057 /* BreadResponseType.swift */; };
+		3E8B2FFE2A67A5B9001BD057 /* NutrientResponseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8B2FFD2A67A5B9001BD057 /* NutrientResponseType.swift */; };
+		3E8B30002A67A614001BD057 /* BreadRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8B2FFF2A67A614001BD057 /* BreadRequestType.swift */; };
+		3E8B30022A67A630001BD057 /* NutrientRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8B30012A67A630001BD057 /* NutrientRequestType.swift */; };
 		3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */; };
 		3EA2E1EB2A542151003516A3 /* SizeLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1EA2A542151003516A3 /* SizeLiteral.swift */; };
 		3EBFB5702A63B2B60058F968 /* WriteReviewBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFB56F2A63B2B60058F968 /* WriteReviewBottomSheetView.swift */; };
@@ -254,6 +258,10 @@
 		3E7B21C12A62172500C8F8B4 /* SortEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortEnum.swift; sourceTree = "<group>"; };
 		3E7B21C32A621A9A00C8F8B4 /* SortBakeryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortBakeryCollectionViewCell.swift; sourceTree = "<group>"; };
 		3E8B2FF82A6706A4001BD057 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		3E8B2FFB2A67A58B001BD057 /* BreadResponseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreadResponseType.swift; sourceTree = "<group>"; };
+		3E8B2FFD2A67A5B9001BD057 /* NutrientResponseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientResponseType.swift; sourceTree = "<group>"; };
+		3E8B2FFF2A67A614001BD057 /* BreadRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreadRequestType.swift; sourceTree = "<group>"; };
+		3E8B30012A67A630001BD057 /* NutrientRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientRequestType.swift; sourceTree = "<group>"; };
 		3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		3EA2E1EA2A542151003516A3 /* SizeLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeLiteral.swift; sourceTree = "<group>"; };
 		3EBFB56F2A63B2B60058F968 /* WriteReviewBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewBottomSheetView.swift; sourceTree = "<group>"; };
@@ -505,6 +513,7 @@
 		0959F1612A658C3000E77CAF /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				3E8B2FFA2A67A56E001BD057 /* Common */,
 				0959F1682A658C5F00E77CAF /* Auth */,
 				0959F1672A658C5B00E77CAF /* Filter */,
 				0959F1662A658C5600E77CAF /* Home */,
@@ -1013,6 +1022,17 @@
 			path = OptionsCollection;
 			sourceTree = "<group>";
 		};
+		3E8B2FFA2A67A56E001BD057 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				3E8B2FFB2A67A58B001BD057 /* BreadResponseType.swift */,
+				3E8B2FFD2A67A5B9001BD057 /* NutrientResponseType.swift */,
+				3E8B2FFF2A67A614001BD057 /* BreadRequestType.swift */,
+				3E8B30012A67A630001BD057 /* NutrientRequestType.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		3EA2E1E02A53E864003516A3 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -1340,6 +1360,7 @@
 				09FD47D92A5E5148002020BD /* MySavedBakeryViewController.swift in Sources */,
 				093214022A5AE27800875EF6 /* Utils.swift in Sources */,
 				097682EB2A5D12BD0008F4FB /* BakeryListCollectionViewCell.swift in Sources */,
+				3E8B30002A67A614001BD057 /* BreadRequestType.swift in Sources */,
 				090556452A51E79B00752067 /* UITextField+.swift in Sources */,
 				0959F14E2A65840300E77CAF /* NetworkResult.swift in Sources */,
 				0959F16C2A658C9500E77CAF /* AuthResponseDTO.swift in Sources */,
@@ -1366,8 +1387,11 @@
 				3ED40E002A608B4700C7D5DA /* MyPageCollectionViewCell.swift in Sources */,
 				097682E52A5C99340008F4FB /* BakeryFilterItems.swift in Sources */,
 				098716B42A6061F500538D05 /* SearchResponseDTO.swift in Sources */,
+				3E8B2FFE2A67A5B9001BD057 /* NutrientResponseType.swift in Sources */,
 				0959F1942A658D3100E77CAF /* BookmarkService.swift in Sources */,
+				3E8B2FFC2A67A58B001BD057 /* BreadResponseType.swift in Sources */,
 				09FD47D22A5DF892002020BD /* EmptyCollectionViewCell.swift in Sources */,
+				3E8B30022A67A630001BD057 /* NutrientRequestType.swift in Sources */,
 				3ED40E062A60916000C7D5DA /* MyPagePurposeChipView.swift in Sources */,
 				090556272A51DBB100752067 /* NSObject+.swift in Sources */,
 				3E79B1A02A5546E700D36A26 /* DescriptionCollectionViewCell.swift in Sources */,

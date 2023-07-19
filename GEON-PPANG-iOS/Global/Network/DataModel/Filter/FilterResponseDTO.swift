@@ -20,19 +20,3 @@ struct FilterResponseDTO: Codable {
         case nutrientType
     }
 }
-
-struct NutrientResponseType: Codable {
-    let nutrientTypeID: Int
-    let nutrientTypeName: String
-    let isNutrientOpen: Bool
-    let isIngredientOpen: Bool
-    let isNotOpen: Bool
-    
-    enum CodingKeys: String, CodingKey {
-        case nutrientTypeID = "nutrientTypeId"
-        case nutrientTypeName
-        case isNutrientOpen
-        case isIngredientOpen
-        case isNotOpen
-    }
-}
