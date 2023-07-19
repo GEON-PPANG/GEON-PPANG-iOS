@@ -32,4 +32,8 @@ struct BreadResponseType: Codable, Hashable {
         if isSugarFree { optionsBoolArray.append((I18N.BakeryList.noSugar, true)) }
         return optionsBoolArray
     }
+    
+    static func emptyBreadType() -> BreadResponseType {
+        return BreadResponseType(breadTypeID: 0, name: "", isGlutenFree: false, isVegan: false, isNutFree: false, isSugarFree: false)
+    }
 }
