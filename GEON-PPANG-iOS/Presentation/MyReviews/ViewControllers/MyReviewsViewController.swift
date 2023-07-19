@@ -15,11 +15,12 @@ final class MyReviewsViewController: BaseViewController {
     // MARK: - Property
     
     private lazy var safeArea = self.view.safeAreaLayoutGuide
-    private var myReviewslist: [BakeryListResponseDTO] = []
+    private var myReviewslist: [MyReviewsResponseDTO] = []
     
     // MARK: - UI Property
     
     private let naviView = CustomNavigationBar()
+    private let lineView = LineView()
     private lazy var collectionView = UICollectionView(frame: .zero,
                                                        collectionViewLayout: layout())
     
@@ -29,14 +30,22 @@ final class MyReviewsViewController: BaseViewController {
         super.viewDidLoad()
         
         setRegistration()
+        getSavedBakeryList()
     }
     
     override func setLayout() {
         view.addSubviews(naviView, collectionView)
+        naviView.addSubview(lineView)
         
         naviView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.directionalHorizontalEdges.equalTo(safeArea)
+        }
+        
+        lineView.snp.makeConstraints {
+            $0.directionalHorizontalEdges.equalToSuperview()
+            $0.height.equalTo(1)
+            $0.bottom.equalToSuperview()
         }
         
         collectionView.snp.makeConstraints {
@@ -53,6 +62,10 @@ final class MyReviewsViewController: BaseViewController {
             })
             $0.configureLeftTitle(to: I18N.MyReviews.naviTitle)
         }
+        collectionView.do {
+            $0.isScrollEnabled = false
+            $0.contentInset = .init(top: 20, left: 0, bottom: 0, right: 0)
+        }
     }
     
     override func setDelegate() {
@@ -61,7 +74,7 @@ final class MyReviewsViewController: BaseViewController {
     }
     
     private func setRegistration() {
-        //        collectionView.register(cell: cellRegistration.self)
+        collectionView.register(cell: MyReviewsCollectionViewCell.self)
         collectionView.register(cell: EmptyCollectionViewCell.self)
         collectionView.register(header: MyReviewsHeaderView.self)
         
@@ -89,17 +102,19 @@ final class MyReviewsViewController: BaseViewController {
     private func normalSection() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(layoutSize: .init(
             widthDimension: .fractionalWidth(1),
-            heightDimension: .fractionalHeight(1))
-        )
+            heightDimension: .fractionalHeight(convertByHeightRatio(694) / convertByHeightRatio(812))
+        ))
+        
         let group = NSCollectionLayoutGroup.vertical(
             layoutSize: .init(
                 widthDimension: .fractionalWidth(1),
-                heightDimension: .fractionalHeight(1)
+                heightDimension: .fractionalHeight(convertByHeightRatio(694) / convertByHeightRatio(812))
             ),
             subitem: item,
             count: 1
         )
         let section = NSCollectionLayoutSection(group: group)
+        
         return section
     }
 }
@@ -126,13 +141,10 @@ extension MyReviewsViewController: UICollectionViewDataSource {
             cell.getViewType(.noReview)
             return cell
         } else {
-            let cellRegistration = UICollectionView.CellRegistration<BakeryCollectionViewListCell, BakeryListResponseDTO> { cell, indexPath, _ in
-                cell.getViewType(.reviewType)
-                cell.updateUI(data: self.myReviewslist[indexPath.section], index: indexPath.item)
-            }
-            
-            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: myReviewslist[indexPath.section])
-            
+            let cell: MyReviewsCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+            cell.updateUI(myReviewslist[indexPath.section])
+            cell.getViewType(.reviewType)
+            return cell
         }
     }
 }
@@ -145,13 +157,21 @@ extension MyReviewsViewController: UICollectionViewDelegateFlowLayout {
             return UICollectionReusableView()
         } else {
             let header: MyReviewsHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
+            header.getReviewDate(self.myReviewslist[indexPath.item].createdAt)
             return header
         }
     }
 }
 
 extension MyReviewsViewController {
-    private func requestMyReviews() {
-        
+    private func getSavedBakeryList() {
+        MyPageAPI.shared.getMyReviews { response in
+            guard let response = response else { return }
+            guard let data = response.data else { return }
+            for item in data {
+                self.myReviewslist.append(item)
+            }
+            self.collectionView.reloadData()
+        }
     }
 }
