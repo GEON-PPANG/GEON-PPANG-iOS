@@ -136,8 +136,11 @@
 		3EFA97862A5EBCA9002E70FA /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFA97852A5EBCA9002E70FA /* LineView.swift */; };
 		3EFA97882A5EBCED002E70FA /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFA97872A5EBCED002E70FA /* CustomNavigationBar.swift */; };
 		DF483ACC2A652E0100FCD507 /* BookmarkReviewNumberStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF483ACB2A652E0100FCD507 /* BookmarkReviewNumberStackView.swift */; };
-		DF483ACE2A65893600FCD507 /* CountStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF483ACD2A65893600FCD507 /* CountStackView.swift */; };
+		DF483ACE2A65893600FCD507 /* IconLabelStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF483ACD2A65893600FCD507 /* IconLabelStackView.swift */; };
 		DF483AD02A65D03A00FCD507 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF483ACF2A65D03A00FCD507 /* UIButton+.swift */; };
+		DF697C032A671A6D008CE4CF /* BakeryDetailCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF697C022A671A6D008CE4CF /* BakeryDetailCollectionViewHeader.swift */; };
+		DF697C052A671A7B008CE4CF /* BakeryDetailCollectionViewFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF697C042A671A7B008CE4CF /* BakeryDetailCollectionViewFooter.swift */; };
+		DF697C072A68557A008CE4CF /* ReviewSortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF697C062A68557A008CE4CF /* ReviewSortButton.swift */; };
 		DF959A612A539FBE00E75774 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */; };
 		DF959A622A539FBE00E75774 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */; };
 		DF959A6C2A568C4600E75774 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF959A6B2A568C4600E75774 /* Colors.xcassets */; };
@@ -284,8 +287,11 @@
 		3EFA97852A5EBCA9002E70FA /* LineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 		3EFA97872A5EBCED002E70FA /* CustomNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		DF483ACB2A652E0100FCD507 /* BookmarkReviewNumberStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkReviewNumberStackView.swift; sourceTree = "<group>"; };
-		DF483ACD2A65893600FCD507 /* CountStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountStackView.swift; sourceTree = "<group>"; };
+		DF483ACD2A65893600FCD507 /* IconLabelStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconLabelStackView.swift; sourceTree = "<group>"; };
 		DF483ACF2A65D03A00FCD507 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
+		DF697C022A671A6D008CE4CF /* BakeryDetailCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryDetailCollectionViewHeader.swift; sourceTree = "<group>"; };
+		DF697C042A671A7B008CE4CF /* BakeryDetailCollectionViewFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryDetailCollectionViewFooter.swift; sourceTree = "<group>"; };
+		DF697C062A68557A008CE4CF /* ReviewSortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSortButton.swift; sourceTree = "<group>"; };
 		DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		DF959A6B2A568C4600E75774 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -363,7 +369,7 @@
 				0915C16F2A5C3C5600ACB8D4 /* RegionStackView.swift */,
 				DFB585FA2A5F565F0077D272 /* BreadTypeStackView.swift */,
 				DF99C5FD2A6412F800C2C78C /* ReviewProgressBarStackView.swift */,
-				DF483ACD2A65893600FCD507 /* CountStackView.swift */,
+				DF483ACD2A65893600FCD507 /* IconLabelStackView.swift */,
 				DF483ACB2A652E0100FCD507 /* BookmarkReviewNumberStackView.swift */,
 				DFDE72DC2A668FFE00389A51 /* ReviewCategoryStackView.swift */,
 			);
@@ -1014,6 +1020,7 @@
 				3E79B19C2A54523D00D36A26 /* BackButton.swift */,
 				0987288C2A5BA1F000A29402 /* BookmarkButton.swift */,
 				09CA3EF72A5676AA0063897A /* CommonButton.swift */,
+				DF697C062A68557A008CE4CF /* ReviewSortButton.swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -1127,6 +1134,18 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		DF697C082A686ABC008CE4CF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DFB585F82A5F32420077D272 /* TitleCollectionViewCell.swift */,
+				DFB585FC2A5FEA0E0077D272 /* InfoCollectionViewCell.swift */,
+				DFB134362A62110900BAB52E /* MenuCollectionViewCell.swift */,
+				DF99C5FF2A644A1700C2C78C /* ReviewCategoryCollectionViewCell.swift */,
+				DFDE72D62A65E84700389A51 /* WrittenReviewsCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		DF959A672A56851000E75774 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
@@ -1159,7 +1178,8 @@
 			isa = PBXGroup;
 			children = (
 				DFB1343C2A6284BB00BAB52E /* ReviewProgressView.swift */,
-				DF99C5F82A63D70500C2C78C /* TestViewController.swift */,
+				DF697C022A671A6D008CE4CF /* BakeryDetailCollectionViewHeader.swift */,
+				DF697C042A671A7B008CE4CF /* BakeryDetailCollectionViewFooter.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1167,12 +1187,8 @@
 		DFB1343A2A627AE900BAB52E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				DF99C5F82A63D70500C2C78C /* TestViewController.swift */,
 				DFB585F62A5F31D80077D272 /* BakeryDetailViewController.swift */,
-				DFB585F82A5F32420077D272 /* TitleCollectionViewCell.swift */,
-				DFB585FC2A5FEA0E0077D272 /* InfoCollectionViewCell.swift */,
-				DFB134362A62110900BAB52E /* MenuCollectionViewCell.swift */,
-				DF99C5FF2A644A1700C2C78C /* ReviewCategoryCollectionViewCell.swift */,
-				DFDE72D62A65E84700389A51 /* WrittenReviewsCollectionViewCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1180,6 +1196,7 @@
 		DFB585F52A5F314D0077D272 /* BakeryDetail */ = {
 			isa = PBXGroup;
 			children = (
+				DF697C082A686ABC008CE4CF /* Cell */,
 				DFB134392A627ADF00BAB52E /* Views */,
 				DFB1343A2A627AE900BAB52E /* ViewControllers */,
 			);
@@ -1399,7 +1416,7 @@
 				0959F17C2A658CDA00E77CAF /* FilterAPI.swift in Sources */,
 				0915C16A2A5BFC5900ACB8D4 /* HomeBottomCollectionViewCell.swift in Sources */,
 				09CA3F082A569EBA0063897A /* Service.swift in Sources */,
-				DF483ACE2A65893600FCD507 /* CountStackView.swift in Sources */,
+				DF483ACE2A65893600FCD507 /* IconLabelStackView.swift in Sources */,
 				098716B82A6138BD00538D05 /* MyReviewsHeaderView.swift in Sources */,
 				09B13F4C2A593C6F00C0C723 /* HomeViewController.swift in Sources */,
 				0959F1902A658D1E00E77CAF /* BakeryService.swift in Sources */,
@@ -1409,7 +1426,9 @@
 				0959F1882A658D0700E77CAF /* AuthService.swift in Sources */,
 				0915C1752A5C533900ACB8D4 /* HomeReviewCollectionViewCell.swift in Sources */,
 				3E7B21C22A62172500C8F8B4 /* SortEnum.swift in Sources */,
+				DF697C052A671A7B008CE4CF /* BakeryDetailCollectionViewFooter.swift in Sources */,
 				097682DA2A5C829D0008F4FB /* GradientImageView.swift in Sources */,
+				DF697C032A671A6D008CE4CF /* BakeryDetailCollectionViewHeader.swift in Sources */,
 				DFB585FB2A5F565F0077D272 /* BreadTypeStackView.swift in Sources */,
 				DFB585FD2A5FEA0E0077D272 /* InfoCollectionViewCell.swift in Sources */,
 				09FD47DD2A5E57F2002020BD /* MyReviewsViewController.swift in Sources */,
@@ -1458,6 +1477,7 @@
 				3ED40E002A608B4700C7D5DA /* MyPageCollectionViewCell.swift in Sources */,
 				097682E52A5C99340008F4FB /* BakeryFilterItems.swift in Sources */,
 				098716B42A6061F500538D05 /* SearchResponseDTO.swift in Sources */,
+				DF697C072A68557A008CE4CF /* ReviewSortButton.swift in Sources */,
 				0959F1942A658D3100E77CAF /* BookmarkService.swift in Sources */,
 				09FD47D22A5DF892002020BD /* EmptyCollectionViewCell.swift in Sources */,
 				3ED40E062A60916000C7D5DA /* MyPagePurposeChipView.swift in Sources */,
