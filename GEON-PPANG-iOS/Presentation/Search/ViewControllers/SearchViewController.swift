@@ -77,12 +77,14 @@ final class SearchViewController: BaseViewController {
                 self.navigationController?.popViewController(animated: true)
             }
             $0.textFieldClosure = { text in
-                self.requestSearchBakery(bakeryID: text)
+                self.requestSearchBakery(bakeryName: text)
             }
         }
+        
         searchResultView.do {
             $0.isHidden = true
         }
+        
         collectionView.do {
             $0.isScrollEnabled = false
             $0.backgroundColor = .clear
@@ -95,11 +97,10 @@ final class SearchViewController: BaseViewController {
     }
     
     private func setDataSource() {
-        let cellRegistration = UICollectionView.CellRegistration<BakeryCollectionViewListCell, Item> { (cell, indexPath, item) in
+        let cellRegistration = UICollectionView.CellRegistration<BakeryCollectionViewListCell, Item> { (cell, _, item) in
             cell.separatorLayoutGuide.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-            cell.getViewType(.defaultType)
             if let searchBakeryItem = item as? SearchBakeryList {
-                cell.updateUI(data: searchBakeryItem, index: indexPath.item)
+                cell.updateUI(data: searchBakeryItem)
             }
         }
         dataSource = DataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, item in
@@ -191,8 +192,8 @@ final class SearchViewController: BaseViewController {
 }
 
 extension SearchViewController {
-    func requestSearchBakery(bakeryID: String) {
-        SearchAPI.shared.searchBakeryList(bakeryID: bakeryID) { response in
+    func requestSearchBakery(bakeryName: String) {
+        SearchAPI.shared.searchBakeryList(bakeryName: bakeryName) { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
             self.searchBakeryList = []

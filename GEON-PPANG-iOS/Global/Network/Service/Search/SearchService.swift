@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 enum SearchService {
-    case searchBakery(bakeryID: String)
+    case searchBakery(bakeryName: String)
 }
 
 extension SearchService: TargetType {
@@ -34,8 +34,8 @@ extension SearchService: TargetType {
     
     var task: Moya.Task {
         switch self {
-        case .searchBakery(bakeryID: let bakeryID):
-            return .requestParameters(parameters: ["bakeryName": bakeryID], encoding: URLEncoding.queryString)
+        case .searchBakery(bakeryName: let bakeryName):
+            return .requestParameters(parameters: ["bakeryName": bakeryName], encoding: URLEncoding.queryString)
         }
     }
     
