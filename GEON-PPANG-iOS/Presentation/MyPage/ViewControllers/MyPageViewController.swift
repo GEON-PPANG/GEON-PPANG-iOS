@@ -23,11 +23,6 @@ final class MyPageViewController: BaseViewController {
     
     // MARK: - Life Cycle
     
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//
-//    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -117,7 +112,6 @@ extension MyPageViewController: UICollectionViewDataSource {
         case 0:
             let header: MyPageCollectionViewHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
             header.configureMemberData(to: memberData)
-//            collectionView.reloadData()
             header.addNextButtonAction {
                 Utils.push(self.navigationController, FilterPurposeViewController(maxSteps: 3, username: self.memberData.memberNickname))
             }
@@ -185,12 +179,9 @@ extension MyPageViewController {
     func requestMemberData() {
         MyPageAPI.shared.getMemberData { response in
             guard let response = response else { return }
-            dump(response)
             guard let data = response.data else { return }
             self.memberData = data
-//            dump(self.memberData)
-//            self.myPageCollectionView.reloadData()
+            self.myPageCollectionView.reloadData()
         }
-//        dump(memberData)
     }
 }

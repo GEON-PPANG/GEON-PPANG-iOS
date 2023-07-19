@@ -214,7 +214,8 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
     
     func configureMemberData(to memberData: MyPageResponseDTO) {
         self.myPageData = memberData
-        self.userNameLabel.text = username
+        self.purposeFilterChipView.configureChip(toTag: convertFromData(memberData.mainPurpose))
+        self.userNameLabel.text = memberData.memberNickname
         
         filterCollectionView.reloadData()
     }
@@ -223,6 +224,15 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
         rightChevronButton.addAction(UIAction { _ in
             action()
         }, for: .touchUpInside)
+    }
+    
+    func convertFromData(_ data: String) -> FilterPurposeType {
+        switch data {
+        case "HEALTH": return .health
+        case "DIET": return .diet
+        case "VEGAN": return .vegan
+        default: return .diet
+        }
     }
     
 }
