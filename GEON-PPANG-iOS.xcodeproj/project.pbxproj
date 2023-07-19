@@ -836,11 +836,11 @@
 		09B13F4E2A593CAE00C0C723 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				3E7B21BF2A61CB8C00C8F8B4 /* SortBottomSheetViewController.swift */,
 				09B13F4F2A593CB800C0C723 /* BakeryListViewController.swift */,
 				097682E22A5C95750008F4FB /* BakeryFilterCollectionViewCell.swift */,
 				097682EA2A5D12BD0008F4FB /* BakeryCollectionViewListCell.swift */,
 				097682DD2A5C91050008F4FB /* Model */,
-				3E7B21BF2A61CB8C00C8F8B4 /* SortBottomSheetViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1344,7 +1344,7 @@
 				09B13F502A593CB800C0C723 /* BakeryListViewController.swift in Sources */,
 				09FD47D92A5E5148002020BD /* MySavedBakeryViewController.swift in Sources */,
 				093214022A5AE27800875EF6 /* Utils.swift in Sources */,
-				097682EB2A5D12BD0008F4FB /* BakeryListCollectionViewCell.swift in Sources */,
+				097682EB2A5D12BD0008F4FB /* BakeryCollectionViewListCell.swift in Sources */,
 				3E8B30002A67A614001BD057 /* BreadRequestType.swift in Sources */,
 				097682EB2A5D12BD0008F4FB /* BakeryCollectionViewListCell.swift in Sources */,
 				090556452A51E79B00752067 /* UITextField+.swift in Sources */,
