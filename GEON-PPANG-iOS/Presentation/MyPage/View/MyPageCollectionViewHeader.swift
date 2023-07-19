@@ -14,7 +14,7 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
     
     // MARK: - Prperty
     
-    private let myPageData = MyPageDTO.dummyData()
+    private let myPageData = MyPageResponseDTO.dummyData()
     private let username = "빵순이빵돌이"
     private lazy var myPageTagData = myPageData.breadType.configureTrueOptions()
     var savedBakeryTapped: (() -> Void)?
@@ -211,6 +211,10 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
     }
     
     // MARK: - Custom Method
+    
+//    func configureMemberData(to memberData: MyPageResponseDTO) {
+//        self.myPageData = memberData
+//    }
     
     func addNextButtonAction(_ action: @escaping () -> Void) {
         rightChevronButton.addAction(UIAction { _ in

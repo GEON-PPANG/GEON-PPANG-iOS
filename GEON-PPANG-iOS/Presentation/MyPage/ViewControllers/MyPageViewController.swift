@@ -12,12 +12,22 @@ import Then
 
 final class MyPageViewController: BaseViewController {
     
+    // MARK: - Property
+    
+    private var memberData: MyPageResponseDTO = .emptyData()
+    
     // MARK: - UI Property
     
     private let flowLayout = UICollectionViewFlowLayout()
     private lazy var myPageCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
     
     // MARK: - Life Cycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        requestMemberData()
+    }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -101,8 +111,9 @@ extension MyPageViewController: UICollectionViewDataSource {
         switch indexPath.section {
         case 0:
             let header: MyPageCollectionViewHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
+//            header.configureMemberData(to: memberData)
             header.addNextButtonAction {
-                Utils.push(self.navigationController, FilterPurposeViewController(maxSteps: 3, username: "찐빵대빵"))
+                Utils.push(self.navigationController, FilterPurposeViewController(maxSteps: 3, username: self.memberData.memberNickname))
             }
             header.myReviewsTapped = {
                 Utils.push(self.navigationController, MyReviewsViewController())
@@ -160,4 +171,18 @@ extension MyPageViewController: UICollectionViewDelegateFlowLayout {
         }
     }
     
+}
+
+// MARK: - API
+
+extension MyPageViewController {
+    func requestMemberData() {
+        MyPageAPI.shared.getMemberData { response in
+            guard let response = response else { return }
+            guard let data = response.data else { return }
+            dump(data)
+//            self.memberData = data
+//            self.myPageCollectionView.reloadData()
+        }
+    }
 }
