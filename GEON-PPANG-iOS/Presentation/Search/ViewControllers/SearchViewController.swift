@@ -90,10 +90,16 @@ final class SearchViewController: BaseViewController {
     
     private func setRegistration() {
         collectionView.register(cell: EmptyCollectionViewCell.self)
-        collectionView.register(cell: BakeryListCollectionViewCell.self)
     }
     
     private func setDataSource() {
+        let cellRegistration = UICollectionView.CellRegistration<BakeryListCollectionViewCell, Item> { (cell, indexPath, item) in
+            cell.separatorLayoutGuide.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+            cell.getViewType(.defaultType)
+            if let searchBakeryItem = item as? SearchBakeryList {
+                cell.updateUI(data: searchBakeryItem, index: indexPath.item)
+            }
+        }
         dataSource = DataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, item in
             let section = self.dataSource?.snapshot().sectionIdentifiers[indexPath.section]
             switch section {
@@ -106,12 +112,7 @@ final class SearchViewController: BaseViewController {
                 cell.getViewType(.noSearch)
                 return cell
             case .main, .none:
-                let cell: BakeryListCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-                cell.getViewType(.defaultType)
-                if let searchBakeryItem = item as? SearchBakeryList {
-                    cell.updateUI(data: searchBakeryItem, index: indexPath.item)
-                }
-                return cell
+                return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
             }
         })
     }
