@@ -58,14 +58,17 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
     
     private func setLayout() {
         addSubviews(emptyIcon, emptyLabel)
+        
         switch emptyType {
-        case .noBookmark, .noReview:
+        case .noBookmark:
             return myPageLayout()
+        case .noReview:
+            return myReviewsLayout()
         default:
             return defaultLayout()
         }
     }
-
+    
     private func defaultLayout() {
         emptyIcon.snp.makeConstraints {
             $0.size.equalTo(CGSize(width: 154, height: 132))
@@ -76,6 +79,19 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
             $0.top.equalTo(emptyIcon.snp.bottom).offset(20)
             $0.centerX.equalToSuperview()
             $0.centerY.equalToSuperview().inset(-33)
+        }
+    }
+    
+    private func myReviewsLayout() {
+        emptyIcon.snp.remakeConstraints {
+            $0.size.equalTo(CGSize(width: 154, height: 132))
+            $0.center.equalToSuperview()
+            $0.centerY.equalToSuperview().offset(-35)
+        }
+        
+        emptyLabel.snp.remakeConstraints {
+            $0.top.equalTo(emptyIcon.snp.bottom).offset(20)
+            $0.centerX.equalToSuperview()
         }
     }
     
@@ -115,7 +131,6 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
         case .noSearch:
             return emptyLabel.partFontChange(targetString: "다른 키워드로 검색해보세요!", font: .subHead!)
         }
-        
     }
     
     func getEmtyText(_ text: String) {
