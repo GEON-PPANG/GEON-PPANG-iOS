@@ -14,7 +14,8 @@ final class WriteReviewViewController: BaseViewController {
     
     // MARK: - Property
     
-    private let keywordList = KeywordList.Keyword.allCases.map { $0.rawValue }
+    private let keywordList = KeywordDescriptionList.Keyword.allCases.map { $0.rawValue }
+    private let keywordRequestList = KeywordDescriptionList.Request.allCases.map { $0.rawValue }
     
     private var writeReviewData: WriteReviewDTO = .init(bakeryID: 1, isLike: false, keywordList: [], reviewText: "")
     
@@ -356,7 +357,7 @@ extension WriteReviewViewController: UICollectionViewDelegate {
             reviewDetailTextView.configureTextView(to: hasSelection ? .activated : .deactivated)
             reviewDetailTextView.checkTextCount()
             
-            writeReviewData.keywordList.append(keywordList[indexPath.item])
+            writeReviewData.keywordList.append(SingleKeyword(keywordName: keywordRequestList[indexPath.item]))
             
         default:
             return
@@ -366,7 +367,7 @@ extension WriteReviewViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         guard collectionView == optionsCollectionView else { return }
         
-        if let keywordIndex = writeReviewData.keywordList.firstIndex(of: keywordList[indexPath.item]) {
+        if let keywordIndex = writeReviewData.keywordList.firstIndex(of: SingleKeyword(keywordName: keywordRequestList[indexPath.item])) {
             writeReviewData.keywordList.remove(at: keywordIndex)
         }
         

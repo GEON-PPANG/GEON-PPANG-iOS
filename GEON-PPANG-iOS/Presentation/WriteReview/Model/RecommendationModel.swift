@@ -8,6 +8,6 @@
 import Foundation
 
 struct RecommendationModel {
-    let keyword: KeywordList.Keyword
+    let keyword: KeywordDescriptionList.Keyword
     let isSelected: Bool
 }
