@@ -16,7 +16,7 @@ enum BakeryViewType {
     case reviewType
 }
 
-final class BakeryListCollectionViewCell: UICollectionViewCell {
+final class BakeryListCollectionViewCell: UICollectionViewListCell {
     
     // MARK: - Property
     
@@ -41,7 +41,7 @@ final class BakeryListCollectionViewCell: UICollectionViewCell {
     private let reviewCount = UILabel()
     private lazy var arrowButton = UIButton()
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: OptionsCollectionViewFlowLayout())
-    
+
     // MARK: - Life Cycle
     
     override func prepareForReuse() {
