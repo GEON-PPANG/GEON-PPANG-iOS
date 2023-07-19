@@ -561,6 +561,7 @@
 			isa = PBXGroup;
 			children = (
 				0959F16D2A658C9D00E77CAF /* FilterResponseDTO.swift */,
+				3ED40DFA2A5FD26200C7D5DA /* FilterDTO.swift */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
@@ -1061,7 +1062,6 @@
 		3EDC05BA2A5DEB7500EAD950 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
-				3EDC05C82A5DF25900EAD950 /* Model */,
 				3EDC05BC2A5DEB7F00EAD950 /* Views */,
 				3EDC05BB2A5DEB7B00EAD950 /* ViewControllers */,
 			);
@@ -1085,14 +1085,6 @@
 				3EDC05C32A5DEE3600EAD950 /* FilterCollectionViewCell.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		3EDC05C82A5DF25900EAD950 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				3ED40DFA2A5FD26200C7D5DA /* FilterDTO.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		DF959A672A56851000E75774 /* Enum */ = {
