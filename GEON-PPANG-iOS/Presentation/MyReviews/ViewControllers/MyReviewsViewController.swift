@@ -61,7 +61,7 @@ final class MyReviewsViewController: BaseViewController {
     }
     
     private func setRegistration() {
-        collectionView.register(cell: BakeryListCollectionViewCell.self)
+        collectionView.register(cell: BakeryCollectionViewListCell.self)
         collectionView.register(cell: EmptyCollectionViewCell.self)
         collectionView.register(header: MyReviewsHeaderView.self)
     }

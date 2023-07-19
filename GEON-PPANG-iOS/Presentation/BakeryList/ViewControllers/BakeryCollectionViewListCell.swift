@@ -16,7 +16,7 @@ enum BakeryViewType {
     case reviewType
 }
 
-final class BakeryListCollectionViewCell: UICollectionViewListCell {
+final class BakeryCollectionViewListCell: UICollectionViewListCell {
     
     // MARK: - Property
     
@@ -229,7 +229,7 @@ final class BakeryListCollectionViewCell: UICollectionViewListCell {
 
 // MARK: - CollectionView Register
 
-extension BakeryListCollectionViewCell {
+extension BakeryCollectionViewListCell {
     private func setRegistration() {
         collectionView.register(cell: DescriptionCollectionViewCell.self)
     }
@@ -237,7 +237,7 @@ extension BakeryListCollectionViewCell {
 
 // MARK: - UICollectionViewDataSource
 
-extension BakeryListCollectionViewCell: UICollectionViewDataSource {
+extension BakeryCollectionViewListCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return breadTypeTag.count
     }
@@ -251,7 +251,7 @@ extension BakeryListCollectionViewCell: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegateFlowLayout
 
-extension BakeryListCollectionViewCell: UICollectionViewDelegateFlowLayout {
+extension BakeryCollectionViewListCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let tagTitle = self.breadTypeTag[indexPath.item]
         let itemSize = tagTitle.size(withAttributes: [NSAttributedString.Key.font: UIFont.pretendardMedium(13)])

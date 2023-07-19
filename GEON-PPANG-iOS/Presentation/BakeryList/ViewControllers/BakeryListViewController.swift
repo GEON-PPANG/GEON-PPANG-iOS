@@ -102,7 +102,7 @@ final class BakeryListViewController: BaseViewController {
     }
     
     private func setDataSource() {
-        let cellRegistration = UICollectionView.CellRegistration<BakeryListCollectionViewCell, BakeryList> { (cell, indexPath, item) in
+        let cellRegistration = UICollectionView.CellRegistration<BakeryCollectionViewListCell, BakeryList> { (cell, indexPath, item) in
             cell.separatorLayoutGuide.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
             cell.getViewType(.defaultType)
             cell.updateUI(data: item, index: indexPath.item)
