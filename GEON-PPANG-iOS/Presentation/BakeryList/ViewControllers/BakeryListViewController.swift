@@ -32,7 +32,7 @@ final class BakeryListViewController: BaseViewController {
     private lazy var bakeryListCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
     
     // MARK: - Life Cycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         requestBakeryList(sort: self.sortBakeryName, isHard: false, isDessert: false, isBrunch: false)
@@ -62,7 +62,6 @@ final class BakeryListViewController: BaseViewController {
                 for (index, value) in data.enumerated() {
                     self.filterStatus[index] = value
                 }
-                
                 self.requestBakeryList(sort: self.sortBakeryName,
                                        isHard: self.filterStatus[0],
                                        isDessert: self.filterStatus[1],
