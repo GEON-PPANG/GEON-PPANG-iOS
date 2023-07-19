@@ -807,7 +807,6 @@
 			children = (
 				093213FC2A5A74C200875EF6 /* Views */,
 				09B13F4A2A593C6300C0C723 /* ViewControllers */,
-				09C626522A5B33A8002C8110 /* Model */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -860,13 +859,6 @@
 				09B13F532A593CD300C0C723 /* MyPageViewController.swift */,
 			);
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		09C626522A5B33A8002C8110 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		09CA3EF62A56738A0063897A /* Protocol */ = {
