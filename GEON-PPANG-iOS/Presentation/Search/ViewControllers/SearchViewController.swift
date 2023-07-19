@@ -95,7 +95,7 @@ final class SearchViewController: BaseViewController {
     }
     
     private func setDataSource() {
-        let cellRegistration = UICollectionView.CellRegistration<BakeryListCollectionViewCell, Item> { (cell, indexPath, item) in
+        let cellRegistration = UICollectionView.CellRegistration<BakeryCollectionViewListCell, Item> { (cell, indexPath, item) in
             cell.separatorLayoutGuide.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
             cell.getViewType(.defaultType)
             if let searchBakeryItem = item as? SearchBakeryList {

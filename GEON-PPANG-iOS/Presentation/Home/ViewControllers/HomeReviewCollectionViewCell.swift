@@ -71,11 +71,11 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         }
         
         bakeryTitle.do {
-            $0.basic(font: .bodyB2!, color: .gbbGray700!)
+            $0.basic(font: .bodyB1!, color: .gbbGray700!)
         }
         
         bakeryReview.do {
-            $0.basic(font: .pretendardBold(13), color: .gbbGray700!)
+            $0.basic(font: .captionB1!, color: .gbbGray400!)
         }
         
         [bakeryTitle, bakeryReview].forEach {
@@ -122,11 +122,9 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         self.index = index
         let url = URL(string: data.bakeryPicture)
         bakeryImage.kf.setImage(with: url)
-        reviewTitle.text = data.reviewText
+        reviewTitle.text = "\"\(data.reviewText)\""
         bakeryTitle.text = data.bakeryName
-        bakeryReview.text = "리뷰(\(data.reviewCount))"
-        bakeryReview.partColorChange(targetString: "\(data.reviewCount)", textColor: .gbbPoint1!)
-        
+        bakeryReview.text = "리뷰(\(data.reviewCount)) ⦁ 저장(\(data.bookMarkCount))"
         self.keywords.append(data.firstMaxRecommendKeyword)
         
         if self.reviewList?[index].secondMaxRecommendKeyword != nil {

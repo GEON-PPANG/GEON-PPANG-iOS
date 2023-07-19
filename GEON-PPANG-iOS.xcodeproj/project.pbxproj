@@ -35,6 +35,8 @@
 		0924632F2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0924632E2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift */; };
 		093214022A5AE27800875EF6 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093214012A5AE27700875EF6 /* Utils.swift */; };
 		093214082A5AE40900875EF6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093214072A5AE40900875EF6 /* SearchViewController.swift */; };
+		0949750E2A67EC9B00A63420 /* MyReviewsResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0949750D2A67EC9B00A63420 /* MyReviewsResponseDTO.swift */; };
+		094975102A67FB5900A63420 /* MyReviewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0949750F2A67FB5900A63420 /* MyReviewsCollectionViewCell.swift */; };
 		0959F1482A6583C200E77CAF /* NetworkLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F1472A6583C200E77CAF /* NetworkLoggerPlugin.swift */; };
 		0959F14A2A6583DF00E77CAF /* GeneralResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F1492A6583DF00E77CAF /* GeneralResponse.swift */; };
 		0959F14E2A65840300E77CAF /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F14D2A65840300E77CAF /* NetworkResult.swift */; };
@@ -70,7 +72,7 @@
 		097682E52A5C99340008F4FB /* BakeryFilterItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682E42A5C99340008F4FB /* BakeryFilterItems.swift */; };
 		097682E72A5CF0080008F4FB /* BakeryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682E62A5CF0080008F4FB /* BakeryFilterView.swift */; };
 		097682E92A5D0B6B0008F4FB /* BakeryListTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682E82A5D0B6B0008F4FB /* BakeryListTopView.swift */; };
-		097682EB2A5D12BD0008F4FB /* BakeryListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682EA2A5D12BD0008F4FB /* BakeryListCollectionViewCell.swift */; };
+		097682EB2A5D12BD0008F4FB /* BakeryCollectionViewListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682EA2A5D12BD0008F4FB /* BakeryCollectionViewListCell.swift */; };
 		098716B42A6061F500538D05 /* SearchResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098716B32A6061F500538D05 /* SearchResponseDTO.swift */; };
 		098716B62A60F52200538D05 /* BakeryTypeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098716B52A60F52200538D05 /* BakeryTypeProtocol.swift */; };
 		098716B82A6138BD00538D05 /* MyReviewsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098716B72A6138BD00538D05 /* MyReviewsHeaderView.swift */; };
@@ -171,6 +173,8 @@
 		0924632E2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBakeryCollectionViewCell.swift; sourceTree = "<group>"; };
 		093214012A5AE27700875EF6 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		093214072A5AE40900875EF6 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		0949750D2A67EC9B00A63420 /* MyReviewsResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewsResponseDTO.swift; sourceTree = "<group>"; };
+		0949750F2A67FB5900A63420 /* MyReviewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewsCollectionViewCell.swift; sourceTree = "<group>"; };
 		0959F1472A6583C200E77CAF /* NetworkLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerPlugin.swift; sourceTree = "<group>"; };
 		0959F1492A6583DF00E77CAF /* GeneralResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralResponse.swift; sourceTree = "<group>"; };
 		0959F14D2A65840300E77CAF /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
@@ -205,7 +209,7 @@
 		097682E42A5C99340008F4FB /* BakeryFilterItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryFilterItems.swift; sourceTree = "<group>"; };
 		097682E62A5CF0080008F4FB /* BakeryFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryFilterView.swift; sourceTree = "<group>"; };
 		097682E82A5D0B6B0008F4FB /* BakeryListTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryListTopView.swift; sourceTree = "<group>"; };
-		097682EA2A5D12BD0008F4FB /* BakeryListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryListCollectionViewCell.swift; sourceTree = "<group>"; };
+		097682EA2A5D12BD0008F4FB /* BakeryCollectionViewListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryCollectionViewListCell.swift; sourceTree = "<group>"; };
 		098716B32A6061F500538D05 /* SearchResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponseDTO.swift; sourceTree = "<group>"; };
 		098716B52A60F52200538D05 /* BakeryTypeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryTypeProtocol.swift; sourceTree = "<group>"; };
 		098716B72A6138BD00538D05 /* MyReviewsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewsHeaderView.swift; sourceTree = "<group>"; };
@@ -382,7 +386,6 @@
 		093214032A5AE3C000875EF6 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				098716B22A603A8500538D05 /* Model */,
 				09FD47C62A5DC97E002020BD /* Views */,
 				093214052A5AE3D600875EF6 /* ViewControllers */,
 			);
@@ -537,6 +540,7 @@
 			isa = PBXGroup;
 			children = (
 				0959F1752A658CC100E77CAF /* MyPageResponseDTO.swift */,
+				0949750D2A67EC9B00A63420 /* MyReviewsResponseDTO.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -545,6 +549,7 @@
 			isa = PBXGroup;
 			children = (
 				0959F1732A658CBA00E77CAF /* BakeryResponseDTO.swift */,
+				097682DE2A5C91280008F4FB /* BakeryListResponseDTO.swift */,
 			);
 			path = Bakery;
 			sourceTree = "<group>";
@@ -745,7 +750,6 @@
 			isa = PBXGroup;
 			children = (
 				097682E42A5C99340008F4FB /* BakeryFilterItems.swift */,
-				097682DE2A5C91280008F4FB /* BakeryListResponseDTO.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -758,13 +762,6 @@
 				3E7B21C32A621A9A00C8F8B4 /* SortBakeryCollectionViewCell.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		098716B22A603A8500538D05 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		098716B92A613B6A00538D05 /* Views */ = {
@@ -844,11 +841,11 @@
 		09B13F4E2A593CAE00C0C723 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				3E7B21BF2A61CB8C00C8F8B4 /* SortBottomSheetViewController.swift */,
 				09B13F4F2A593CB800C0C723 /* BakeryListViewController.swift */,
 				097682E22A5C95750008F4FB /* BakeryFilterCollectionViewCell.swift */,
-				097682EA2A5D12BD0008F4FB /* BakeryListCollectionViewCell.swift */,
+				097682EA2A5D12BD0008F4FB /* BakeryCollectionViewListCell.swift */,
 				097682DD2A5C91050008F4FB /* Model */,
-				3E7B21BF2A61CB8C00C8F8B4 /* SortBottomSheetViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -917,6 +914,7 @@
 			isa = PBXGroup;
 			children = (
 				09FD47DC2A5E57F2002020BD /* MyReviewsViewController.swift */,
+				0949750F2A67FB5900A63420 /* MyReviewsCollectionViewCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1352,8 +1350,9 @@
 				09B13F502A593CB800C0C723 /* BakeryListViewController.swift in Sources */,
 				09FD47D92A5E5148002020BD /* MySavedBakeryViewController.swift in Sources */,
 				093214022A5AE27800875EF6 /* Utils.swift in Sources */,
-				097682EB2A5D12BD0008F4FB /* BakeryListCollectionViewCell.swift in Sources */,
+				097682EB2A5D12BD0008F4FB /* BakeryCollectionViewListCell.swift in Sources */,
 				3E8B30002A67A614001BD057 /* BreadRequestType.swift in Sources */,
+				097682EB2A5D12BD0008F4FB /* BakeryCollectionViewListCell.swift in Sources */,
 				090556452A51E79B00752067 /* UITextField+.swift in Sources */,
 				0959F14E2A65840300E77CAF /* NetworkResult.swift in Sources */,
 				0959F16C2A658C9500E77CAF /* AuthResponseDTO.swift in Sources */,
@@ -1388,10 +1387,12 @@
 				3ED40E062A60916000C7D5DA /* MyPagePurposeChipView.swift in Sources */,
 				090556272A51DBB100752067 /* NSObject+.swift in Sources */,
 				3E79B1A02A5546E700D36A26 /* DescriptionCollectionViewCell.swift in Sources */,
+				094975102A67FB5900A63420 /* MyReviewsCollectionViewCell.swift in Sources */,
 				3ED40E022A608B8600C7D5DA /* MyPageSectionEnum.swift in Sources */,
 				3E452B692A60FF7900EA456D /* MyPageCollectionViewFooter.swift in Sources */,
 				3E16E4F52A57CF3800B813D0 /* WriteReviewDTO.swift in Sources */,
 				09FD47CA2A5DD38D002020BD /* SearchResultView.swift in Sources */,
+				0949750E2A67EC9B00A63420 /* MyReviewsResponseDTO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

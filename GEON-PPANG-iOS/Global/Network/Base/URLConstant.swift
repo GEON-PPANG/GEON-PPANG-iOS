@@ -31,5 +31,6 @@ struct URLConstant {
     // MARK: - Bookmark
     
     static let bookmarks = "member/bookMarks"
+    static let myReviews = "member/reviews"
     
 }
