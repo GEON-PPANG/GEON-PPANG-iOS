@@ -39,13 +39,17 @@ final class HomeViewController: BaseViewController {
     
     // MARK: - Life Cycle
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        requestHomeBestData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setRegistration()
         setDataSource()
         setReloadData()
-        requestHomeBestData()
     }
     
     override func setUI() {
@@ -75,7 +79,7 @@ final class HomeViewController: BaseViewController {
         view.addSubviews(topView, collectionView)
         
         topView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(constraintByNotch(44, 0))
+            $0.top.equalToSuperview().offset(heightConsideringNotch(44))
             $0.directionalHorizontalEdges.equalTo(safeArea)
             $0.height.equalTo(200)
         }
@@ -106,7 +110,7 @@ final class HomeViewController: BaseViewController {
                 return cell
             case .review:
                 let cell: HomeReviewCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-                cell.updateUI(data: item as! BestReviews, index: indexPath.item)
+                cell.updateUI(data: item as! BestReviews)
                 return cell
             case .bottom, .none:
                 let cell: HomeBottomCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
@@ -136,24 +140,24 @@ final class HomeViewController: BaseViewController {
             
             switch indexPath.section {
             case 0:
-                header.setctionHeaderTitle(Sections.bakery.title)
+                header.getSectionHeaderTitle(Sections.bakery.title)
             case 1:
-                header.setctionHeaderTitle(Sections.review.title)
+                header.getSectionHeaderTitle(Sections.review.title)
             default:
-                header.setctionHeaderTitle(Sections.bottom.title)
+                header.getSectionHeaderTitle(Sections.bottom.title)
             }
             return header
         }
     }
     
     private func updateBestBakeryData(_ bakery: [BestBakery]) {
-        var snapshot = dataSource!.snapshot()
+        guard var snapshot = dataSource?.snapshot() else { return }
         snapshot.appendItems(bakery, toSection: .bakery)
         dataSource?.apply(snapshot)
     }
     
     private func updateReviewsData(_ reviews: [BestReviews]) {
-        var snapshot = dataSource!.snapshot()
+        guard var snapshot = dataSource?.snapshot() else { return }
         snapshot.appendItems(reviews, toSection: .review)
         dataSource?.apply(snapshot)
     }
@@ -163,9 +167,9 @@ final class HomeViewController: BaseViewController {
             let section = Sections(rawValue: sectionIndex)!
             switch section {
             case .bakery:
-                return self.normalSection(headerSize: 48)
+                return self.normalSection(headerSize: 49)
             case .review:
-                return self.normalSection(headerSize: 24)
+                return self.normalSection(headerSize: 25)
             case .bottom:
                 return self.bottomSection()
             }
@@ -174,7 +178,8 @@ final class HomeViewController: BaseViewController {
     }
     
     private func normalSection(headerSize: CGFloat) -> NSCollectionLayoutSection {
-        let itemGroupSize = NSCollectionLayoutSize(widthDimension: .absolute(convertByWidthRatio(192)), heightDimension: .estimated(convertByHeightRatio(236)))
+        let itemGroupSize = NSCollectionLayoutSize(widthDimension: .absolute(convertByWidthRatio(192)),
+                                                   heightDimension: .estimated(convertByHeightRatio(236)))
         let item = NSCollectionLayoutItem(layoutSize: itemGroupSize)
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemGroupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
@@ -188,7 +193,8 @@ final class HomeViewController: BaseViewController {
     }
     
     private func bottomSection() -> NSCollectionLayoutSection {
-        let itemGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(convertByHeightRatio(115)))
+        let itemGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                                   heightDimension: .absolute(convertByHeightRatio(115)))
         let item = NSCollectionLayoutItem(layoutSize: itemGroupSize)
         let group = NSCollectionLayoutGroup.vertical(layoutSize: itemGroupSize, subitem: item, count: 1)
         let section = NSCollectionLayoutSection(group: group)
