@@ -32,7 +32,6 @@ final class BakeryAPI {
                 do {
                     self.bakeryList = try response.map(GeneralArrayResponse<BakeryListResponseDTO>.self)
                     guard let bakeryList = self.bakeryList else { return }
-
                     completion(bakeryList)
                 } catch let err {
                     print(err.localizedDescription, 500)

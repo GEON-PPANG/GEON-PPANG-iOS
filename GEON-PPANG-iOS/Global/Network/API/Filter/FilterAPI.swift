@@ -32,7 +32,6 @@ final class FilterAPI {
                     guard let response = self.response else { return }
                     
                     completion(response)
-                    print("✅\(response)")
                 } catch let err {
                     print(err.localizedDescription, 500)
                 }
