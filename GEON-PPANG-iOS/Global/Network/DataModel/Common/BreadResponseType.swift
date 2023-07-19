@@ -8,12 +8,21 @@
 import Foundation
 
 struct BreadResponseType: Codable, Hashable {
-    let breadTypeId: Int
-    let breadTypeName: String
+    let breadTypeID: Int
+    let name: String
     let isGlutenFree: Bool
     let isVegan: Bool
     let isNutFree: Bool
     let isSugarFree: Bool
+    
+    enum CodingKeys: String, CodingKey {
+        case breadTypeID
+        case name = "breadTypeName"
+        case isGlutenFree
+        case isVegan
+        case isNutFree
+        case isSugarFree
+    }
     
     func configureTrueOptions() -> [(String, Bool)] {
         var optionsBoolArray: [(String, Bool)] = []
