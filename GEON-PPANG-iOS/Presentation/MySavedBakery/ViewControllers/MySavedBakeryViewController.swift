@@ -87,12 +87,13 @@ final class MySavedBakeryViewController: BaseViewController {
             let section = self.dataSource?.snapshot().sectionIdentifiers[indexPath.section]
             switch section {
             case .main:
-                let cell: BakeryListCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-                cell.getViewType(.defaultType)
-                if let bakeryListItem = item as? BakeryList {
-                    cell.updateUI(data: bakeryListItem, index: indexPath.item)
-                }
-                return cell
+//                let cell: BakeryListCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+//                cell.getViewType(.defaultType)
+//                if let bakeryListItem = item as? BakeryListResponseDTO {
+//                    cell.updateUI(data: bakeryListItem, index: indexPath.item)
+//                }
+//                return cell
+                return UICollectionViewCell()
             case .empty, .none:
                 let cell: EmptyCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
                 cell.getViewType(.noBookmark)

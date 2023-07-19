@@ -125,10 +125,11 @@ extension MyReviewsViewController: UICollectionViewDataSource {
             cell.getViewType(.noReview)
             return cell
         } else {
-            let cell: BakeryListCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-            cell.getViewType(.reviewType)
-            cell.updateUI(data: myReviewslist[indexPath.section], index: indexPath.item)
-            return cell
+//            let cell: BakeryListCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+//            cell.getViewType(.reviewType)
+//            cell.updateUI(data: myReviewslist[indexPath.section], index: indexPath.item)
+//            return cell
+            return UICollectionViewCell()
         }
     }
 }
