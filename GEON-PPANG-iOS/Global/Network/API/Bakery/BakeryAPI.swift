@@ -25,7 +25,7 @@ final class BakeryAPI {
     // MARK: - POST
     
     func writeReview(content: WriteReviewRequest, completion: @escaping (WriteReviewResponse?) -> Void) {
-        bakeryProvider.request(.writeReview(content: content)) { result in
+        bakeryProvider.request(.writeReview(bakeryID: 1, content: content)) { result in
             switch result {
             case let .success(response):
                 do {

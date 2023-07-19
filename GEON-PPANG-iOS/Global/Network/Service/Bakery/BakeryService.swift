@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 enum BakeryService {
-    case writeReview(content: WriteReviewDTO)
+    case writeReview(bakeryID: Int, content: WriteReviewDTO)
 }
 
 extension BakeryService: TargetType {
@@ -20,8 +20,8 @@ extension BakeryService: TargetType {
     
     var path: String {
         switch self {
-        case .writeReview:
-            return URLConstant.writeReview
+        case .writeReview(bakeryID: let bakeryID, _):
+            return URLConstant.writeReview + "/\(bakeryID)"
         }
     }
     
@@ -34,7 +34,7 @@ extension BakeryService: TargetType {
     
     var task: Moya.Task {
         switch self {
-        case .writeReview(content: let content):
+        case .writeReview(_, content: let content):
             return .requestJSONEncodable(content)
         }
     }
