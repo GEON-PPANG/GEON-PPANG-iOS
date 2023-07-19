@@ -12,10 +12,10 @@ import Then
 
 final class BookmarkReviewNumberStackView: UIStackView {
 
-    // MARK: - UIProperty
+    // MARK: - UI Property
     
-    private lazy var bookmarkCountStackView = CountStackView(type: .bookmark)
-    private lazy var reviewCountStackView = CountStackView(type: .review)
+    private lazy var bookmarkCountStackView = IconLabelStackView(type: .bookmark)
+    private lazy var reviewCountStackView = IconLabelStackView(type: .review)
     
     // MARK: - Initializer
     
@@ -26,6 +26,7 @@ final class BookmarkReviewNumberStackView: UIStackView {
         setLayout()
     }
     
+    @available(*, unavailable)
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
