@@ -65,29 +65,7 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
             return defaultLayout()
         }
     }
-    // TODO: - 나중에 삭제
-    //        emptyIcon.snp.makeConstraints {
-    //            $0.size.equalTo(CGSize(width: 154, height: 132))
-    //            switch emptyType {
-    //            case .initialize, .noSearch:
-    //                $0.centerX.equalToSuperview()
-    //            case .noReview, .noBookmark:
-    //                $0.centerX.equalToSuperview().offset(50)
-    //            }
-    //        }
-    //
-    //        emptyLabel.snp.makeConstraints {
-    //            $0.top.equalTo(emptyIcon.snp.bottom).offset(20)
-    //            switch emptyType {
-    //            case .initialize, .noSearch:
-    //                $0.centerX.equalToSuperview()
-    //                $0.centerY.equalToSuperview().inset(-33)
-    //            case .noReview, .noBookmark:
-    //                $0.centerX.equalToSuperview().offset(24)
-    //                $0.centerY.equalToSuperview().inset(-22)
-    //            }
-    //        }
-    
+
     private func defaultLayout() {
         emptyIcon.snp.makeConstraints {
             $0.size.equalTo(CGSize(width: 154, height: 132))

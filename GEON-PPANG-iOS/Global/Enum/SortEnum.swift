@@ -17,4 +17,10 @@ enum SortBakery: CaseIterable {
         case .byReviews: return I18N.SortBottomSheet.byReviews
         }
     }
+    var sortValue: String {
+        switch self {
+        case .byDefault: return "default"
+        case .byReviews: return "review"
+        }
+    }
 }

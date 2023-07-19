@@ -11,24 +11,27 @@ import Moya
 
 final class HomeAPI {
     
+    typealias HomeBestBakeryResponse = GeneralArrayResponse<HomeBestBakeryResponseDTO>
+    typealias HomeBestReviewResponse = GeneralArrayResponse<HomeBestReviewResponseDTO>
+    
     static let shared: HomeAPI = HomeAPI()
     
-    private init() { }
+    private init() {}
     
     var homeProvider = MoyaProvider<HomeService>(plugins: [MoyaLoggingPlugin()])
     
-    public private(set) var bestBakery: GeneralArrayResponse<HomeBestBakeryResponseDTO>?
-    public private(set) var bestReviews: GeneralArrayResponse<HomeBestReviewResponseDTO>?
+    public private(set) var bestBakery: HomeBestBakeryResponse?
+    public private(set) var bestReviews: HomeBestReviewResponse?
     
     // MARK: - GET
     
-    func getBestBakery(completion: @escaping (GeneralArrayResponse<HomeBestBakeryResponseDTO>?) -> Void) {
+    func getBestBakery(completion: @escaping (HomeBestBakeryResponse?) -> Void) {
         homeProvider.request(.bestBakery) { result in
             switch result {
             case let .success(response):
                 do {
                     self.bestBakery = try
-                    response.map(GeneralArrayResponse<HomeBestBakeryResponseDTO>?.self)
+                    response.map(HomeBestBakeryResponse.self)
                     guard let bestBakery = self.bestBakery else { return }
                     completion(bestBakery)
                 } catch let err {
@@ -41,13 +44,13 @@ final class HomeAPI {
         }
     }
     
-    func getBestReviews(completion: @escaping (GeneralArrayResponse<HomeBestReviewResponseDTO>?) -> Void) {
+    func getBestReviews(completion: @escaping (HomeBestReviewResponse?) -> Void) {
         homeProvider.request(.bestReviews) { result in
             switch result {
             case let .success(response):
                 do {
                     self.bestReviews = try
-                    response.map(GeneralArrayResponse<HomeBestReviewResponseDTO>?.self)
+                    response.map(HomeBestReviewResponse.self)
                     guard let bestReviews = self.bestReviews else { return }
                     completion(bestReviews)
                 } catch let err {

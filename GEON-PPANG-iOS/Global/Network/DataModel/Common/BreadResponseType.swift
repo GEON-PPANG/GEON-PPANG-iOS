@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BreadResponseType: Codable, Hashable {
+struct BreadResponseType: Codable, Hashable, BakeryTypeProtocol {
     let breadTypeID: Int
     let name: String
     let isGlutenFree: Bool
@@ -16,7 +16,7 @@ struct BreadResponseType: Codable, Hashable {
     let isSugarFree: Bool
     
     enum CodingKeys: String, CodingKey {
-        case breadTypeID
+        case breadTypeID = "breadTypeId"
         case name = "breadTypeName"
         case isGlutenFree
         case isVegan

@@ -47,8 +47,7 @@ final class MyReviewsHeaderView: UICollectionReusableView {
     
     private func setUI() {
         dateLabel.do {
-            $0.basic(text: "23.08.09",
-                     font: .captionM1!,
+            $0.basic(font: .captionM1!,
                      color: .gbbGray400!)
         }
         
@@ -60,4 +59,7 @@ final class MyReviewsHeaderView: UICollectionReusableView {
         }
     }
     
+    func getReviewDate(_ date: String) {
+        dateLabel.text = date
+    }
 }

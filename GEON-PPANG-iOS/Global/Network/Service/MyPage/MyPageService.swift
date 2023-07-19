@@ -11,6 +11,7 @@ import Moya
 
 enum MyPageService {
     case bookmarks
+    case myReviews
     case memberData
 }
 
@@ -23,6 +24,8 @@ extension MyPageService: TargetType {
         switch self {
         case .bookmarks:
             return URLConstant.bookmarks
+        case .myReviews:
+            return URLConstant.myReviews
         case .memberData:
             return URLConstant.member
         }
@@ -30,7 +33,7 @@ extension MyPageService: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .bookmarks:
+        case .bookmarks, .myReviews:
             return .get
         case .memberData:
             return .get
@@ -39,7 +42,7 @@ extension MyPageService: TargetType {
     
     var task: Moya.Task {
         switch self {
-        case .bookmarks:
+        case .bookmarks, .myReviews:
             return .requestPlain
         case .memberData:
             return .requestPlain
