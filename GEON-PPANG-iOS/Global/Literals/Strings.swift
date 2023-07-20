@@ -100,4 +100,9 @@ struct I18N {
         static let byDefault = "기본순"
         static let byReviews = "리뷰 많은 순"
     }
+    
+    /// Detail
+    struct Detail {
+        static let writeReview = "리뷰 작성하기"
+    }
 }
