@@ -15,8 +15,8 @@ enum Sections: Int, Hashable, CaseIterable {
     
     var title: String {
         switch self {
-        case .bakery: return "바이블님 맞춤 BEST 건빵집"
-        case .review: return "바이블님 맞춤 BEST 리뷰"
+        case .bakery: return "님 맞춤 BEST 건빵집"
+        case .review: return "님 맞춤 BEST 리뷰"
         case .bottom: return ""
         }
     }
@@ -25,6 +25,7 @@ final class HomeViewController: BaseViewController {
     
     // MARK: - Property
     
+    private var nickname =  UserDefaults.standard.string(forKey: "nickname") ?? ""
     typealias DataSource = UICollectionViewDiffableDataSource<Sections, AnyHashable>
     private var dataSource: DataSource?
     private var bakeryList: [BestBakery] = []
@@ -59,7 +60,7 @@ final class HomeViewController: BaseViewController {
         }
         
         topView.do {
-            $0.setTitle("정둥어")
+            $0.setTitle(nickname)
             $0.gotoNextView = {
                 Utils.push(self.navigationController, SearchViewController())
             }
@@ -141,11 +142,11 @@ final class HomeViewController: BaseViewController {
             
             switch indexPath.section {
             case 0:
-                header.getSectionHeaderTitle(Sections.bakery.title)
+                header.getSectionHeaderTitle(self.nickname + Sections.bakery.title)
             case 1:
-                header.getSectionHeaderTitle(Sections.review.title)
+                header.getSectionHeaderTitle(self.nickname + Sections.review.title)
             default:
-                header.getSectionHeaderTitle(Sections.bottom.title)
+                header.getSectionHeaderTitle(self.nickname + Sections.bottom.title)
             }
             return header
         }
@@ -207,7 +208,9 @@ extension HomeViewController {
             for item in data {
                 self.bakeryList.append(item.convertToBestBakery())
             }
-            self.setReloadData()
+            DispatchQueue.main.async {
+                self.setReloadData()
+            }
         }
         
         HomeAPI.shared.getBestReviews { response in
@@ -217,7 +220,10 @@ extension HomeViewController {
             for item in data {
                 self.reviewList.append(item.convertToBakeryReviews())
             }
-            self.setReloadData()
+            
+            DispatchQueue.main.async {
+                self.setReloadData()
+            }
         }
     }
 }

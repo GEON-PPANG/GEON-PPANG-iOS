@@ -59,6 +59,7 @@ final class CommonButton: UIButton {
         
         if border != .clear {
             makeBorder(width: 1, color: border!)
+            setTitleColor(border!, for: .normal)
         }
     }
     
