@@ -28,8 +28,16 @@ final class HomeViewController: BaseViewController {
     private var nickname =  UserDefaults.standard.string(forKey: "nickname") ?? ""
     typealias DataSource = UICollectionViewDiffableDataSource<Sections, AnyHashable>
     private var dataSource: DataSource?
-    private var bakeryList: [BestBakery] = []
-    private var reviewList: [BestReviews] = []
+    private var bakeryList: [BestBakery] = [] {
+        didSet {
+            self.setReloadData()
+        }
+    }
+    private var reviewList: [BestReviews] = [] {
+        didSet {
+            self.setReloadData()
+        }
+    }
     
     lazy var safeArea = self.view.safeAreaLayoutGuide
     
@@ -204,26 +212,21 @@ extension HomeViewController {
         HomeAPI.shared.getBestBakery { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
-            self.bakeryList = []
+            var bakeryList: [BestBakery] = []
             for item in data {
-                self.bakeryList.append(item.convertToBestBakery())
+                bakeryList.append(item.convertToBestBakery())
             }
-            DispatchQueue.main.async {
-                self.setReloadData()
-            }
+            self.bakeryList = bakeryList
         }
         
         HomeAPI.shared.getBestReviews { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
-            self.reviewList = []
+            var reviewsList: [BestReviews] = []
             for item in data {
-                self.reviewList.append(item.convertToBakeryReviews())
+                reviewsList.append(item.convertToBakeryReviews())
             }
-            
-            DispatchQueue.main.async {
-                self.setReloadData()
-            }
+            self.reviewList = reviewsList
         }
     }
 }
