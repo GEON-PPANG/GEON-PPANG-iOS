@@ -20,7 +20,6 @@ final class MyReviewsViewController: BaseViewController {
     // MARK: - UI Property
     
     private let naviView = CustomNavigationBar()
-    private let lineView = LineView()
     private lazy var collectionView = UICollectionView(frame: .zero,
                                                        collectionViewLayout: layout())
     
@@ -35,17 +34,10 @@ final class MyReviewsViewController: BaseViewController {
     
     override func setLayout() {
         view.addSubviews(naviView, collectionView)
-        naviView.addSubview(lineView)
         
         naviView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.directionalHorizontalEdges.equalTo(safeArea)
-        }
-        
-        lineView.snp.makeConstraints {
-            $0.directionalHorizontalEdges.equalToSuperview()
-            $0.height.equalTo(1)
-            $0.bottom.equalToSuperview()
         }
         
         collectionView.snp.makeConstraints {
@@ -57,11 +49,13 @@ final class MyReviewsViewController: BaseViewController {
     
     override func setUI() {
         naviView.do {
+            $0.configureBottomLine()
             $0.addBackButtonAction(UIAction { _ in
                 self.navigationController?.popViewController(animated: true)
             })
             $0.configureLeftTitle(to: I18N.MyReviews.naviTitle)
         }
+        
         collectionView.do {
             $0.isScrollEnabled = false
             $0.contentInset = .init(top: 18, left: 0, bottom: 0, right: 0)
@@ -170,6 +164,8 @@ extension MyReviewsViewController: UICollectionViewDelegateFlowLayout {
         }
     }
 }
+
+// MARK: - API
 
 extension MyReviewsViewController {
     private func getSavedBakeryList() {

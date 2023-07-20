@@ -28,7 +28,7 @@ final class MyReviewsCollectionViewCell: UICollectionViewCell {
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: OptionsCollectionViewFlowLayout())
     
     // MARK: - Life Cycle
-
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
@@ -70,7 +70,7 @@ final class MyReviewsCollectionViewCell: UICollectionViewCell {
         regionStackView.do {
             $0.getBackgroundColor(.gbbGray700!)
         }
-
+        
     }
     
     private func setLayout() {
@@ -106,7 +106,7 @@ final class MyReviewsCollectionViewCell: UICollectionViewCell {
             $0.leading.equalTo(bakeryImage.snp.trailing).offset(14)
             $0.bottom.equalToSuperview().inset(24)
         }
-
+        
     }
     
     func updateUI(_ data: MyReviewsResponseDTO) {
@@ -146,7 +146,7 @@ final class MyReviewsCollectionViewCell: UICollectionViewCell {
         
         collectionView.reloadData()
     }
-
+    
 }
 
 // MARK: - CollectionView Register

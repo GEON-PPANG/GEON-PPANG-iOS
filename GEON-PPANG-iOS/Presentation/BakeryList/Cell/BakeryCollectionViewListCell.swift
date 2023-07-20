@@ -166,7 +166,7 @@ final class BakeryCollectionViewListCell: UICollectionViewListCell {
         }
         
         collectionView.reloadData()
-
+        
         collectionView.snp.remakeConstraints {
             $0.height.equalTo(Utils.getHeight(breadTypeTag))
             $0.top.equalTo(bakeryTitle.snp.bottom).offset(10)
