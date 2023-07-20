@@ -37,8 +37,15 @@ final class ReviewCategoryCollectionViewCell: UICollectionViewCell {
         
         reviewProgressBarStackView.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.directionalHorizontalEdges.equalTo(9.5)
+            $0.directionalHorizontalEdges.equalToSuperview().inset(33.5)
             $0.height.equalTo(134)
         }
+    }
+    
+    func updateUI(_ data: WrittenReviewsResponseDTO) {
+        
+        reviewProgressBarStackView.updateGauge(data.tastePercent, data.specialPercent, data.kindPercent, data.zeroPercent)
+        
+        print(data)
     }
 }

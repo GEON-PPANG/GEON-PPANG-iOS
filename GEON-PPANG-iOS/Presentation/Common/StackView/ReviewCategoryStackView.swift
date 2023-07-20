@@ -67,4 +67,28 @@ final class ReviewCategoryStackView: UIStackView {
             }
         }
     }
+    
+    func getChipStatus(_ recommendKeywordList: [Int]) {
+        
+        if !recommendKeywordList.contains(1) {
+            deliciousChip.isHidden = true
+        } else {
+            deliciousChip.isHidden = false
+        }
+        if !recommendKeywordList.contains(2) {
+            specialChip.isHidden = true
+        } else {
+            specialChip.isHidden = false
+        }
+        if !recommendKeywordList.contains(3) {
+            kindChip.isHidden = true
+        } else {
+            kindChip.isHidden = false
+        }
+        if !recommendKeywordList.contains(4) {
+            zerowasteChip.isHidden = true
+        } else {
+            zerowasteChip.isHidden = false
+        }
+    }
 }

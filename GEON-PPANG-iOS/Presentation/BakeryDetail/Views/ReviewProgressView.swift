@@ -20,7 +20,6 @@ final class ReviewProgressView: UIView {
     private var time: Float = 0.0 // 애니메이션 지속 시간 커스텀을 위한 변수 선언
     private var timer: Timer?
     
-    // TODO: reviewCount = eachKeywordCount - totalReviewCount
     var gauge: Float = 1
     
     // 진행 바를 수직으로 회전

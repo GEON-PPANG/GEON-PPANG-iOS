@@ -19,7 +19,11 @@ final class ReviewProgressBarStackView: UIStackView {
     private lazy var kindProgressView = ReviewProgressView()
     private lazy var zeroWasteProgressView = ReviewProgressView()
     private let labeling = ["맛있어요", "특별한 메뉴", "친절해요", "제로웨이스트"]
-    private var tempGauge: [Float] = [0.8, 0.5, 0.7, 0.6]
+    private var tempGauge: [Float] = [0.0, 0.0, 0.0, 0.0] {
+        didSet {
+            setUI()
+        }
+    }
     private let tempWidth = [45, 60, 45, 68]
     
     // MARK: - Initializer
@@ -42,6 +46,7 @@ final class ReviewProgressBarStackView: UIStackView {
         
         self.do {
             $0.axis = .horizontal
+            $0.backgroundColor = .gbbWhite
             $0.spacing = 30
             $0.distribution = .equalSpacing
         }
@@ -63,5 +68,13 @@ final class ReviewProgressBarStackView: UIStackView {
                 $0.width.equalTo(tempWidth[index])
             }
         }
+    }
+    
+    func updateGauge (_ deliciousPercent: Float, _ specialPercent: Float, _ kindPercent: Float, _ zerowastePercent: Float) {
+        
+        tempGauge[0] = deliciousPercent
+        tempGauge[1] = specialPercent
+        tempGauge[2] = kindPercent
+        tempGauge[3] = zerowastePercent
     }
 }
