@@ -17,14 +17,14 @@ final class InfoCollectionViewCell: UICollectionViewCell {
     private let homepageLinkImage = UIImageView()
     private let homepageLinkButton = UIButton()
     private let bakeryAddressImage = UIImageView()
-    private lazy var bakeryAddressLabel = UILabel() // 서버
-    private lazy var addressCopyButton = UIButton() // 서버
-    private lazy var regionStackView = RegionStackView() // 서버
+    private lazy var bakeryAddressLabel = UILabel()
+    private lazy var addressCopyButton = UIButton()
+    private lazy var regionStackView = RegionStackView()
     private let bakeryOpeningHoursImage = UIImageView()
-    private let bakeryClosedDaysLabel = UILabel() // 서버
-    private let bakeryOpeningHoursLabel = UILabel() // 서버
+    private let bakeryClosedDaysLabel = UILabel()
+    private let bakeryOpeningHoursLabel = UILabel()
     private let bakeryPhoneNumberImage = UIImageView()
-    private let bakeryPhoneNumberLabel = UILabel() // 서버
+    private let bakeryPhoneNumberLabel = UILabel()
     
     // MARK: - Initializer
     
