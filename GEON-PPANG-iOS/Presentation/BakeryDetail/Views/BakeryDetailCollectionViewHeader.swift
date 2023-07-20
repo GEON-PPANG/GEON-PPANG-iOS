@@ -10,8 +10,36 @@ import UIKit
 import SnapKit
 import Then
 
+enum SectionType {
+    case info
+    case menu
+    case reviewCategory
+    case writtenReviews
+}
+
 final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
-        
+    
+    // MARK: - Property
+    
+    private var sectionType: SectionType = .info {
+        didSet {
+            getType(sectionType)
+        }
+    }
+    private var reviewCount: UInt16 = 28
+    private var titleText: String {
+        switch sectionType {
+        case .info:
+            return "가게 상세정보"
+        case .menu:
+            return "가게 메뉴"
+        case .reviewCategory:
+            return "건빵집 리뷰"
+        case .writtenReviews:
+            return "작성된 리뷰 (\(reviewCount))개"
+        }
+    }
+    
     // MARK: - UI Property
     
     private let titleLabel = UILabel()
@@ -22,7 +50,7 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        
+            
         setUI()
         setLayout()
     }
@@ -36,8 +64,10 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
     
     private func setUI() {
         
+        self.backgroundColor = .gbbWhite
+        
         titleLabel.do {
-            $0.basic(text: "가게 상세정보", font: .bodyB1!, color: .gbbBlack!) // 임시 텍스트
+            $0.basic(text: titleText, font: .bodyB1!, color: .gbbBlack!)
             $0.frame.size = $0.sizeThatFits(self.frame.size)
         }
         
@@ -54,11 +84,6 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
             $0.top.leading.equalToSuperview().inset(24)
             $0.height.equalTo(22)
         }
-        
-        subTitleStackView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(7.5)
-            $0.leading.equalTo(titleLabel).offset(0.5)
-        }
     }
     
     // MARK: - Custom Method
@@ -66,10 +91,35 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
     func configureSubTitle() {
         
         self.addSubview(subTitleStackView)
+        
+        subTitleStackView.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom)
+            $0.leading.equalTo(titleLabel) // 여기 이상하게 잡힘 (후순위, 아이콘라벨스택뷰 확인요망, remake~)
+        }
     }
     
     func configurereviewSortButton() {
         
         self.addSubview(reviewSortButton)
+        
+        reviewSortButton.snp.makeConstraints {
+            $0.centerY.equalTo(titleLabel)
+            $0.trailing.equalToSuperview()
+            $0.width.equalTo(79)
+            $0.height.equalTo(36)
+        }
     }
+    
+    func getType(_ type: SectionType) {
+        switch type {
+        case .info:
+            configureSubTitle()
+        case .writtenReviews:
+            configurereviewSortButton()
+        default:
+            return
+        }
+    }
+    
+    
 }

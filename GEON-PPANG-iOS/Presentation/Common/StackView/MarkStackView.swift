@@ -84,4 +84,12 @@ final class MarkStackView: UIStackView {
             gmoIconView.isHidden = false
         }
     }
+    
+    func setMarkSize(_ size: Int) {
+        [hccpMarkIconView, veganIconView, gmoIconView].forEach {
+            $0.snp.remakeConstraints {
+                $0.size.equalTo(size)
+            }
+        }
+    }
 }

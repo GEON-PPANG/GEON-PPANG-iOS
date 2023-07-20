@@ -74,14 +74,6 @@ final class IconLabelStackView: UIStackView {
             return .gbbBlack!
         }
     }
-    private var labelLayout: Float {
-        switch iconType {
-        case .bookmark, .review, .basic:
-            return 0.5
-        case .notice:
-            return -0.5
-        }
-    }
     
     // MARK: - UI Property
     
@@ -134,7 +126,7 @@ final class IconLabelStackView: UIStackView {
         }
         
         label.snp.makeConstraints {
-            $0.top.equalTo(icon).offset(labelLayout)
+            $0.centerY.equalTo(icon)
             $0.height.equalTo(17)
         }
     }

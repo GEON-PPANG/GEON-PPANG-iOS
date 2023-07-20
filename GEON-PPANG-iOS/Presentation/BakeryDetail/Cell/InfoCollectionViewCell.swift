@@ -46,14 +46,19 @@ final class InfoCollectionViewCell: UICollectionViewCell {
     
     private func setUI() {
         
+        self.backgroundColor = .gbbWhite
+        
         homepageLinkImage.do {
             $0.image = .linkIcon
         }
         
         homepageLinkButton.do {
+            $0.setTitle("홈페이지로 이동", for: .normal)
+            $0.setTitleColor(.gbbGray400, for: .normal)
             $0.setUnderline()
-            $0.titleLabel?.basic(text: "홈페이지로 이동", font: .subHead!, color: .gbbGray400!)
-            $0.titleLabel?.textAlignment = .center
+            $0.titleLabel?.font = .subHead
+            $0.titleLabel?.adjustsFontSizeToFitWidth = true
+
         }
         
         bakeryAddressImage.do {
@@ -61,11 +66,16 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         }
         
         bakeryAddressLabel.do {
-            $0.basic(text: "경기 의왕시 신장승길 29 퍼스트힐5차 111호", font: .subHead!, color: .gbbGray400!)
+            $0.basic(text: "서울특별시 서대문구 남가좌동 152-44", font: .subHead!, color: .gbbGray400!)
+            $0.adjustsFontSizeToFitWidth = true
         }
         
         addressCopyButton.do {
             $0.setImage(.copyButton, for: .normal)
+        }
+        
+        regionStackView.do {
+            $0.getRegionName("가좌역", "가좌역 3번출구")
         }
         
         bakeryOpeningHoursImage.do {
@@ -78,6 +88,7 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         
         bakeryOpeningHoursLabel.do {
             $0.basic(text: "수-금: 12:00 ~ 19:00 / 토-일 13:00 ~ 19:00", font: .subHead!, color: .gbbGray400!)
+            $0.adjustsFontSizeToFitWidth = true
         }
         
         bakeryPhoneNumberImage.do {
@@ -94,7 +105,7 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         contentView.addSubviews(homepageLinkImage, homepageLinkButton, bakeryAddressImage, bakeryAddressLabel, addressCopyButton, regionStackView, bakeryOpeningHoursImage, bakeryClosedDaysLabel, bakeryOpeningHoursLabel, bakeryPhoneNumberImage, bakeryPhoneNumberLabel)
         
         homepageLinkImage.snp.makeConstraints {
-            $0.top.leading.equalToSuperview()
+            $0.top.leading.equalToSuperview().inset(24)
             $0.size.equalTo(24)
         }
         
@@ -106,24 +117,22 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         }
         
         bakeryAddressImage.snp.makeConstraints {
-            // TODO: 2줄이면 URL 기준 18만큼 아래, 1줄이면 아이콘 기준 18만큼 아래로
             $0.top.equalTo(homepageLinkImage.snp.bottom).offset(18)
-            $0.leading.equalToSuperview()
+            $0.leading.equalTo(homepageLinkImage)
             $0.size.equalTo(24)
         }
         
         bakeryAddressLabel.snp.makeConstraints {
             $0.centerY.equalTo(bakeryAddressImage)
             $0.leading.equalTo(homepageLinkButton)
-            // TODO: 동적으로 skrrr
-            $0.trailing.equalToSuperview().offset(44)
+            $0.trailing.equalToSuperview().inset(68)
             $0.width.equalTo(249)
             $0.height.equalTo(20)
         }
         
         addressCopyButton.snp.makeConstraints {
-            $0.top.equalTo(bakeryAddressImage)
-            $0.trailing.equalToSuperview()
+            $0.centerY.equalTo(bakeryAddressImage)
+            $0.trailing.equalToSuperview().inset(24)
             $0.size.equalTo(30)
         }
         
@@ -134,14 +143,14 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         
         bakeryOpeningHoursImage.snp.makeConstraints {
             $0.top.equalTo(regionStackView.snp.bottom).offset(18)
-            $0.leading.equalToSuperview()
+            $0.leading.equalToSuperview().inset(24)
             $0.size.equalTo(24)
         }
         
         bakeryClosedDaysLabel.snp.makeConstraints {
             $0.top.equalTo(bakeryOpeningHoursImage)
             $0.leading.equalTo(bakeryAddressLabel)
-            $0.trailing.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(24)
             $0.width.equalTo(293)
             $0.height.equalTo(20)
         }
@@ -149,22 +158,21 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         bakeryOpeningHoursLabel.snp.makeConstraints {
             $0.top.equalTo(bakeryClosedDaysLabel.snp.bottom).offset(2)
             $0.leading.equalTo(bakeryClosedDaysLabel)
-            // TODO: 동적으로 skrrr
-            $0.trailing.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(24)
             $0.width.equalTo(293)
             $0.height.equalTo(20)
         }
         
         bakeryPhoneNumberImage.snp.makeConstraints {
             $0.top.equalTo(bakeryOpeningHoursLabel.snp.bottom).offset(18)
-            $0.leading.equalToSuperview()
+            $0.leading.equalToSuperview().inset(24)
             $0.size.equalTo(24)
         }
         
         bakeryPhoneNumberLabel.snp.makeConstraints {
             $0.centerY.equalTo(bakeryPhoneNumberImage)
             $0.leading.equalTo(bakeryOpeningHoursLabel)
-            $0.trailing.equalToSuperview().inset(131)
+            $0.trailing.equalToSuperview().inset(155)
             $0.width.equalTo(162)
             $0.height.equalTo(20)
         }

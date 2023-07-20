@@ -120,7 +120,6 @@
 		3E7B21C02A61CB8C00C8F8B4 /* SortBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7B21BF2A61CB8C00C8F8B4 /* SortBottomSheetViewController.swift */; };
 		3E7B21C22A62172500C8F8B4 /* SortEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7B21C12A62172500C8F8B4 /* SortEnum.swift */; };
 		3E7B21C42A621A9A00C8F8B4 /* SortBakeryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7B21C32A621A9A00C8F8B4 /* SortBakeryCollectionViewCell.swift */; };
-		3E8B2FF92A6706A4001BD057 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3E8B2FF82A6706A4001BD057 /* Config.xcconfig */; };
 		3E8B2FFC2A67A58B001BD057 /* BreadResponseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8B2FFB2A67A58B001BD057 /* BreadResponseType.swift */; };
 		3E8B2FFE2A67A5B9001BD057 /* NutrientResponseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8B2FFD2A67A5B9001BD057 /* NutrientResponseType.swift */; };
 		3E8B30002A67A614001BD057 /* BreadRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8B2FFF2A67A614001BD057 /* BreadRequestType.swift */; };
@@ -279,7 +278,6 @@
 		3E7B21BF2A61CB8C00C8F8B4 /* SortBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortBottomSheetViewController.swift; sourceTree = "<group>"; };
 		3E7B21C12A62172500C8F8B4 /* SortEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortEnum.swift; sourceTree = "<group>"; };
 		3E7B21C32A621A9A00C8F8B4 /* SortBakeryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortBakeryCollectionViewCell.swift; sourceTree = "<group>"; };
-		3E8B2FF82A6706A4001BD057 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		3E8B2FFB2A67A58B001BD057 /* BreadResponseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreadResponseType.swift; sourceTree = "<group>"; };
 		3E8B2FFD2A67A5B9001BD057 /* NutrientResponseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientResponseType.swift; sourceTree = "<group>"; };
 		3E8B2FFF2A67A614001BD057 /* BreadRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreadRequestType.swift; sourceTree = "<group>"; };
@@ -1141,14 +1139,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		3EDC05C82A5DF25900EAD950 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				3ED40DFA2A5FD26200C7D5DA /* FilterDTO.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		DF697C082A686ABC008CE4CF /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1465,7 +1455,7 @@
 				09FD47D92A5E5148002020BD /* MySavedBakeryViewController.swift in Sources */,
 				093214022A5AE27800875EF6 /* Utils.swift in Sources */,
 				DF99C5F92A63D70500C2C78C /* TestViewController.swift in Sources */,
-				097682EB2A5D12BD0008F4FB /* BakeryListCollectionViewCell.swift in Sources */,
+				097682EB2A5D12BD0008F4FB /* BakeryCollectionViewListCell.swift in Sources */,
 				097682EB2A5D12BD0008F4FB /* BakeryCollectionViewListCell.swift in Sources */,
 				3E8B30002A67A614001BD057 /* BreadRequestType.swift in Sources */,
 				097682EB2A5D12BD0008F4FB /* BakeryCollectionViewListCell.swift in Sources */,
@@ -1531,6 +1521,7 @@
 /* Begin XCBuildConfiguration section */
 		098F32EF2A4200FE0092D09A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DFDE72DA2A66893900389A51 /* Config.xcconfig */;
 			buildSettings = {
 				ACCESS_TOKEN = "${ACCESS_TOKEN}";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1593,6 +1584,7 @@
 		};
 		098F32F02A4200FE0092D09A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DFDE72DA2A66893900389A51 /* Config.xcconfig */;
 			buildSettings = {
 				ACCESS_TOKEN = "${ACCESS_TOKEN}";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1649,6 +1641,7 @@
 		};
 		098F32F22A4200FE0092D09A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DFDE72DA2A66893900389A51 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1680,6 +1673,7 @@
 		};
 		098F32F32A4200FE0092D09A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DFDE72DA2A66893900389A51 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

@@ -38,18 +38,23 @@ final class TitleCollectionViewCell: UICollectionViewCell {
     
     private func setUI() {
         
+        self.backgroundColor = .gbbWhite
+        
         bakeryImage.do {
             $0.backgroundColor = .gbbPoint1
             $0.contentMode = .scaleToFill
         }
         
         markStackView.do {
+            $0.getIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
+            $0.getMarkStatus(true, true, true)
+            $0.setMarkSize(28)
             $0.spacing = 10
         }
         
         bakeryNameLabel.do {
-            $0.basic(text: "건대 초코빵", font: .title1!, color: .gbbGray700!)
-            $0.numberOfLines = 0
+            $0.basic(text: "건대 초코빵 건대 초코빵", font: .title1!, color: .gbbGray700!)
+            $0.adjustsFontSizeToFitWidth = true
         }
     }
     
