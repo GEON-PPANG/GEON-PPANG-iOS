@@ -14,7 +14,12 @@ final class MyPageViewController: BaseViewController {
     
     // MARK: - Property
     
-    private var memberData: MyPageResponseDTO = .emptyData()
+    private var memberData: MyPageResponseDTO = .emptyData() {
+        didSet {
+            myPageCollectionView.reloadData()
+        }
+        
+    }
     
     // MARK: - UI Property
     
@@ -29,16 +34,16 @@ final class MyPageViewController: BaseViewController {
         requestMemberData()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        requestMemberData()
-    }
-    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
         Utils.updateCollectionViewConstraint(of: myPageCollectionView)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        requestMemberData()
     }
     
     // MARK: - Setting
@@ -163,10 +168,8 @@ extension MyPageViewController: UICollectionViewDelegateFlowLayout {
             let trueOptions = memberData.breadType.configureTrueOptions()
             var letterCount = 0
             trueOptions.forEach { letterCount += $0.0.count }
-            
             return .init(width: SizeLiteral.Screen.width,
-                         height: letterCount <= 14 ? 344 : 379)
-            
+                         height: letterCount <= 14 ? 340 : 375)
         default:
             return .zero
         }
@@ -190,7 +193,7 @@ extension MyPageViewController {
             guard let response = response else { return }
             guard let data = response.data else { return }
             self.memberData = data
-            self.myPageCollectionView.reloadData()
+//            self.myPageCollectionView.reloadData()
         }
     }
 }
