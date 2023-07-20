@@ -64,7 +64,8 @@ class SignInTextField: UITextField {
     
     private func setLayout() {
         rightStackView.snp.makeConstraints {
-            $0.width.equalTo(40)
+            $0.width.equalTo(42)
+            $0.height.equalTo(24)
         }
         
         emptyView.snp.makeConstraints {
