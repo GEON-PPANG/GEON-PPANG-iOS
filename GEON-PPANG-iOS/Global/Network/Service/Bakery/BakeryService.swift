@@ -11,6 +11,8 @@ import Moya
 
 enum BakeryService {
     case bakeryList(sort: String, isHard: Bool, isDessert: Bool, isBrunch: Bool)
+    case fetchBakeryDetail(bakeryID: Int)
+    case fetchWrittenReviews(bakeryID: Int)
 }
 
 extension BakeryService: TargetType {
@@ -22,12 +24,20 @@ extension BakeryService: TargetType {
         switch self {
         case .bakeryList:
             return URLConstant.bakeryList
+        case .fetchBakeryDetail(bakeryID: let bakeryID):
+            return URLConstant.bakeryList + "/\(bakeryID)"
+        case .fetchWrittenReviews(bakeryID: let bakeryID):
+            return URLConstant.bakeryList + "/\(bakeryID)" + "/reviews"
         }
     }
     
     var method: Moya.Method {
         switch self {
         case .bakeryList:
+            return .get
+        case .fetchBakeryDetail:
+            return .get
+        case .fetchWrittenReviews:
             return .get
         }
     }
@@ -41,6 +51,10 @@ extension BakeryService: TargetType {
                                                    "isBrunch": isBrunch
                                                   ],
                                       encoding: URLEncoding.queryString)
+        case .fetchBakeryDetail:
+            return .requestPlain
+        case .fetchWrittenReviews:
+            return .requestPlain
         }
     }
     

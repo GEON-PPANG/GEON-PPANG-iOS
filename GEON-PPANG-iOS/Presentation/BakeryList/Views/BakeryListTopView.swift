@@ -11,7 +11,7 @@ import SnapKit
 import Then
 
 final class BakeryListTopView: UIView {
-        
+    
     // MARK: - UI Property
     
     private let hStackView = UIStackView()
@@ -62,9 +62,9 @@ final class BakeryListTopView: UIView {
         hStackView.addArrangedSubviews(bakeryTitle, bakeryIcon)
         
         hStackView.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(24)
-            $0.bottom.equalToSuperview().offset(-15)
             $0.top.equalToSuperview().offset(44)
+            $0.leading.equalToSuperview().offset(24)
+            $0.bottom.equalToSuperview().inset(15)
         }
         
         bakeryIcon.snp.makeConstraints {
@@ -72,9 +72,9 @@ final class BakeryListTopView: UIView {
         }
         
         searchButton.snp.makeConstraints {
-            $0.top.equalTo(hStackView.snp.top)
-            $0.trailing.equalToSuperview().offset(-23)
-            $0.bottom.equalToSuperview().offset(-15)
+            $0.size.equalTo(24)
+            $0.centerY.equalTo(hStackView.snp.centerY)
+            $0.trailing.equalToSuperview().inset(23)
         }
     }
     

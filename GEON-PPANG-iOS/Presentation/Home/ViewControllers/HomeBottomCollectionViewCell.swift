@@ -44,6 +44,7 @@ final class HomeBottomCollectionViewCell: UICollectionViewCell {
             $0.basic(text: I18N.Home.bottomSectionTitle,
                      font: .captionM2!,
                      color: .gbbGray300!)
+            $0.lineBreakMode = .byCharWrapping
         }
     }
     
