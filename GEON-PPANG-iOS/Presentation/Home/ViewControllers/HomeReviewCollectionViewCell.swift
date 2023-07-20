@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Kingfisher
 import SnapKit
 import Then
 
@@ -17,7 +18,7 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
     var updateData: ((Bool, Int) -> Void)?
     var index = 0
     private var keywords: [String] = []
-    private var reviewList: [HomeBestReviewResponseDTO]?
+    private var reviewList: [BestReviews] = []
     
     // MARK: - UI Property
     
@@ -34,7 +35,6 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         
         setLayout()
         setUI()
-        
         setRegister()
     }
     
@@ -54,12 +54,12 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         
         bakeryImage.do {
             $0.contentMode = .scaleAspectFill
-            $0.backgroundColor = .gbbPoint1
             $0.clipsToBounds = true
         }
         
         reviewTitle.do {
             $0.basic(font: .bodyB2!, color: .white)
+            $0.textAlignment = .left
             $0.numberOfLines = 2
         }
         
@@ -72,6 +72,8 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         
         bakeryTitle.do {
             $0.basic(font: .bodyB1!, color: .gbbGray700!)
+            $0.textAlignment = .left
+
         }
         
         bakeryReview.do {
@@ -81,7 +83,6 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         [bakeryTitle, bakeryReview].forEach {
             $0.do {
                 $0.numberOfLines = 1
-                $0.textAlignment = .left
             }
         }
     }
@@ -112,24 +113,25 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         }
         
         bakeryReview.snp.makeConstraints {
-            $0.top.equalTo(bakeryTitle.snp.bottom).offset(6)
-            $0.bottom.leading.equalToSuperview().inset(16)
+            $0.top.equalTo(bakeryTitle.snp.bottom).offset(7)
+            $0.bottom.equalToSuperview().inset(15)
+            $0.leading.equalToSuperview().offset(16)
         }
         
     }
     
-    func updateUI(data: BestReviews, index: Int) {
-        self.index = index
+    func updateUI(data: BestReviews) {
         let url = URL(string: data.bakeryPicture)
         bakeryImage.kf.setImage(with: url)
-        reviewTitle.text = "\"\(data.reviewText)\""
-        bakeryTitle.text = data.bakeryName
-        bakeryReview.text = "리뷰(\(data.reviewCount)) ⦁ 저장(\(data.bookMarkCount))"
+        reviewTitle.setLineHeight(by: 1.14, with: "\"\(data.reviewText)\"")
+        bakeryTitle.setLineHeight(by: 1.08, with: data.bakeryName)
+        bakeryReview.setLineHeight(by: 1.1,
+                                   with: "리뷰(\(data.reviewCount)) ⦁ 저장(\(data.bookMarkCount))")
+        self.keywords = []
         self.keywords.append(data.firstMaxRecommendKeyword)
-        
-        if self.reviewList?[index].secondMaxRecommendKeyword != nil {
-            self.keywords.append(data.secondMaxRecommendKeyword ?? "" )
-        }
+        guard let secondKeyword = data.secondMaxRecommendKeyword else { return }
+        self.keywords.append(secondKeyword)
+        self.collectionView.reloadData()
     }
 }
 
@@ -160,7 +162,7 @@ extension HomeReviewCollectionViewCell: UICollectionViewDataSource {
 extension HomeReviewCollectionViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let keywordsTitle = self.keywords[indexPath.item]
-        let itemSize = keywordsTitle.size(withAttributes: [NSAttributedString.Key.font: UIFont.pretendardMedium(13)])
+        let itemSize = keywordsTitle.size(withAttributes: [NSAttributedString.Key.font: UIFont.captionM1!])
         return CGSize(width: itemSize.width + 12, height: itemSize.height + 8)
     }
 }

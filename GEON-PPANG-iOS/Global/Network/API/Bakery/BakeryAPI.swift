@@ -22,6 +22,8 @@ final class BakeryAPI {
     
     public private(set) var bakeryList: GeneralArrayResponse<BakeryListResponseDTO>?
     public private(set) var writeReview: WriteReviewResponse?
+    public private(set) var bakeryDetail: GeneralResponse<BakeryDetailResponseDTO>?
+    public private(set) var writtenReviews: GeneralResponse<WrittenReviewsResponseDTO>?
     
     // MARK: - GET
     
@@ -56,6 +58,42 @@ final class BakeryAPI {
                     
                     completion(writeReview)
                     print("✅\(writeReview)")
+                } catch let err {
+                    print(err.localizedDescription, 500)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+                completion(nil)
+            }
+        }
+    }
+    
+    func getBakeryDetail(bakeryID: Int, completion: @escaping (GeneralResponse<BakeryDetailResponseDTO>?) -> Void) {
+        bakeryListProvider.request(.fetchBakeryDetail(bakeryID: bakeryID)) { result in
+            switch result {
+            case let .success(response):
+                do {
+                    self.bakeryDetail = try response.map(GeneralResponse<BakeryDetailResponseDTO>.self)
+                    guard let bakeryDetail = self.bakeryDetail else { return }
+                    completion(bakeryDetail)
+                } catch let err {
+                    print(err.localizedDescription, 500)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+                completion(nil)
+            }
+        }
+    }
+    
+    func getWrittenReviews(bakeryID: Int, completion: @escaping (GeneralResponse<WrittenReviewsResponseDTO>?) -> Void) {
+        bakeryListProvider.request(.fetchWrittenReviews(bakeryID: bakeryID)) { result in
+            switch result {
+            case let .success(response):
+                do {
+                    self.writtenReviews = try response.map(GeneralResponse<WrittenReviewsResponseDTO>.self)
+                    guard let writtenReviews = self.writtenReviews else { return }
+                    completion(writtenReviews)
                 } catch let err {
                     print(err.localizedDescription, 500)
                 }

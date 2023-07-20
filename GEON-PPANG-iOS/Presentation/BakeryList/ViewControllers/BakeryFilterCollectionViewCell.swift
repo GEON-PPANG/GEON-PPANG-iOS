@@ -50,8 +50,8 @@ final class BakeryFilterCollectionViewCell: UICollectionViewCell {
         hStackView.do {
             $0.axis = .horizontal
             $0.spacing = 4
-            $0.distribution = .fillProportionally
         }
+        
         filterTitle.do {
             $0.font = .captionM1
             $0.sizeToFit()
@@ -63,7 +63,7 @@ final class BakeryFilterCollectionViewCell: UICollectionViewCell {
         hStackView.addArrangedSubviews(iconView, filterTitle)
         
         hStackView.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12))
+            $0.center.equalToSuperview()
         }
         
         iconView.snp.makeConstraints {
@@ -79,6 +79,7 @@ final class BakeryFilterCollectionViewCell: UICollectionViewCell {
     
     func updateUI(_ isTapped: Bool) {
         filterTitle.textColor = isTapped ? .gbbGray700 : .gbbBackground2
+        filterTitle.font = .captionM1
         contentView.backgroundColor = isTapped ? .gbbGray100 : .gbbMain3
         contentView.makeBorder(width: 1, color: isTapped ? .gbbGray200! : .gbbMain2!)
     }

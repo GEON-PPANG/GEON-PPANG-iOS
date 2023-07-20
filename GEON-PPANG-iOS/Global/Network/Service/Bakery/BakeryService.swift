@@ -12,6 +12,8 @@ import Moya
 enum BakeryService {
     case bakeryList(sort: String, isHard: Bool, isDessert: Bool, isBrunch: Bool)
     case writeReview(bakeryID: Int, content: WriteReviewDTO)
+    case fetchBakeryDetail(bakeryID: Int)
+    case fetchWrittenReviews(bakeryID: Int)
 }
 
 extension BakeryService: TargetType {
@@ -25,6 +27,10 @@ extension BakeryService: TargetType {
             return URLConstant.bakeryList
         case .writeReview(bakeryID: let bakeryID, _):
             return URLConstant.writeReview + "/\(bakeryID)"
+        case .fetchBakeryDetail(bakeryID: let bakeryID):
+            return URLConstant.bakeryList + "/\(bakeryID)"
+        case .fetchWrittenReviews(bakeryID: let bakeryID):
+            return URLConstant.bakeryList + "/\(bakeryID)" + "/reviews"
         }
     }
     
@@ -34,6 +40,10 @@ extension BakeryService: TargetType {
             return .get
         case .writeReview:
             return .post
+        case .fetchBakeryDetail:
+            return .get
+        case .fetchWrittenReviews:
+            return .get
         }
     }
     
@@ -48,6 +58,10 @@ extension BakeryService: TargetType {
                                       encoding: URLEncoding.queryString)
         case .writeReview(_, content: let content):
             return .requestJSONEncodable(content)
+        case .fetchBakeryDetail:
+            return .requestPlain
+        case .fetchWrittenReviews:
+            return .requestPlain
         }
     }
     

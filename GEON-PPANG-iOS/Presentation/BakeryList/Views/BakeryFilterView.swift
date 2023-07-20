@@ -28,10 +28,10 @@ final class BakeryFilterView: UIView {
     
     private lazy var filterCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
     private lazy var filterButton = UIButton(configuration: .plain())
-
-    private let topView = UIView()
-    private let lineView = UIView()
-    private let bottomView = UIView()
+    
+    private let topView = LineView()
+    private let lineView = LineView()
+    private let bottomView = LineView()
     
     // MARK: - Life Cycle
     
@@ -57,27 +57,17 @@ final class BakeryFilterView: UIView {
             $0.delegate = self
             $0.showsHorizontalScrollIndicator = false
         }
-
+        
         filterButton.do {
-            $0.configuration?.contentInsets = .init(top: 6, leading: 12, bottom: 6, trailing: 12)
+            $0.configuration?.contentInsets = .init(top: 11, leading: 12, bottom: 11, trailing: 12)
             $0.configuration?.background.strokeWidth = 1
             $0.configuration?.background.strokeColor = .gbbGray200
-            $0.configuration?.baseForegroundColor = .black
-            $0.configuration?.image = .swapIcon
+            $0.configuration?.baseForegroundColor = .gbbGray700
+            $0.configuration?.image = .swapIcon.resize(to: CGSize(width: 16, height: 16))
             $0.configuration?.attributedTitle = AttributedString(I18N.BakeryList.defaultFilter,
-                                                                 attributes: AttributeContainer([.font: UIFont.pretendardBold(13)]))
+                                                                 attributes: AttributeContainer([.font: UIFont.captionB1]))
             $0.configuration?.cornerStyle = .capsule
             $0.configuration?.imagePadding = 5
-            $0.addAction(UIAction { _ in
-                print("tapped")
-            }, for: .touchUpInside)
-        }
-        
-        lineView.do {
-            $0.backgroundColor = .gbbGray200
-        }
-        [topView, bottomView].forEach {
-            $0.backgroundColor = .gbbGray200
         }
     }
     
@@ -88,7 +78,7 @@ final class BakeryFilterView: UIView {
             $0.top.directionalHorizontalEdges.equalToSuperview()
             $0.height.equalTo(1)
         }
-
+        
         filterButton.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(24)
             $0.centerY.equalToSuperview()
@@ -150,13 +140,15 @@ final class BakeryFilterView: UIView {
     
     func configureFilterButtonText(to text: String) {
         filterButton.do {
-            $0.configuration?.contentInsets = .init(top: 6, leading: 12, bottom: 6, trailing: 12)
+            $0.configuration?.contentInsets = .init(top: 11, leading: 12, bottom: 11, trailing: 12)
             $0.configuration?.attributedTitle = AttributedString(text,
-                                                                 attributes: AttributeContainer([.font: UIFont.pretendardBold(13)]))
+                                                                 attributes: AttributeContainer([.font: UIFont.captionB1]))
             
         }
     }
 }
+
+// MARK: - UICollectionViewDelegate
 
 extension BakeryFilterView: UICollectionViewDelegate {
     
@@ -184,6 +176,8 @@ extension BakeryFilterView: UICollectionViewDelegate {
         dataSource?.apply(snapshot, animatingDifferences: true)
     }
 }
+
+// MARK: - UICollectionViewDelegateFlowLayout
 
 extension BakeryFilterView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

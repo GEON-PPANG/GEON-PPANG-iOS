@@ -64,7 +64,7 @@ final class MyReviewsViewController: BaseViewController {
         }
         collectionView.do {
             $0.isScrollEnabled = false
-            $0.contentInset = .init(top: 20, left: 0, bottom: 0, right: 0)
+            $0.contentInset = .init(top: 18, left: 0, bottom: 0, right: 0)
         }
     }
     
@@ -117,6 +117,14 @@ final class MyReviewsViewController: BaseViewController {
         
         return section
     }
+    
+    func getListCount(_ count: Int) {
+        if count == 0 {
+            self.collectionView.isScrollEnabled = false
+        } else {
+            self.collectionView.isScrollEnabled = true
+        }
+    }
 }
 
 // MARK: - UICollectionViewDataSource
@@ -139,11 +147,11 @@ extension MyReviewsViewController: UICollectionViewDataSource {
         if myReviewslist.isEmpty {
             let cell: EmptyCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             cell.getViewType(.noReview)
+            cell.getEmtyText("내가 쓴 리뷰가 없어요!")
             return cell
         } else {
             let cell: MyReviewsCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             cell.updateUI(myReviewslist[indexPath.section])
-            cell.getViewType(.reviewType)
             return cell
         }
     }
@@ -172,6 +180,7 @@ extension MyReviewsViewController {
                 self.myReviewslist.append(item)
             }
             self.collectionView.reloadData()
+            self.getListCount(self.myReviewslist.count)
         }
     }
 }
