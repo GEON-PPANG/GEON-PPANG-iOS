@@ -73,6 +73,7 @@ final class PasswordViewController: BaseViewController {
         }
         
         bottomView.snp.makeConstraints {
+            $0.height.equalTo(96)
             $0.top.equalTo(scrollView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview().inset(34)
@@ -105,7 +106,7 @@ final class PasswordViewController: BaseViewController {
         nextButton.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.directionalHorizontalEdges.equalToSuperview().inset(24)
-            $0.directionalVerticalEdges.equalToSuperview().inset(16)
+            $0.directionalVerticalEdges.equalToSuperview().inset(20)
             $0.height.equalTo(56)
         }
     }
@@ -225,7 +226,7 @@ extension PasswordViewController {
         
         UIView.animate(withDuration: duration, animations: {
             self.bottomView.snp.updateConstraints {
-                $0.bottom.equalToSuperview().inset(19)
+                $0.bottom.equalToSuperview().inset(34)
             }
             self.view.layoutIfNeeded()
         })
