@@ -17,6 +17,7 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
     private var myPageData = MyPageResponseDTO.dummyData()
     private lazy var username = myPageData.memberNickname
     private lazy var myPageTagData = myPageData.breadType.configureTrueOptions()
+    var nextButtonTapped: (() -> Void)?
     var savedBakeryTapped: (() -> Void)?
     var myReviewsTapped: (() -> Void)?
     
@@ -56,7 +57,7 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        Utils.updateCollectionViewConstraint(of: filterCollectionView)
+//        Utils.updateCollectionViewConstraint(of: filterCollectionView, byOffset: 1)
     }
     
     // MARK: - Setting
@@ -77,7 +78,7 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
         
         addSubview(profileImageViewContainer)
         profileImageViewContainer.snp.makeConstraints {
-            $0.leading.equalTo(mainTitleLabel)
+            $0.leading.equalToSuperview().inset(24)
             $0.top.equalTo(mainTitleLabel.snp.bottom).offset(34)
             $0.size.equalTo(73)
         }
@@ -85,19 +86,22 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
         profileImageViewContainer.addSubview(profileImageView)
         profileImageView.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.size.equalTo(36)
+            $0.height.equalTo(36.5)
+            $0.width.equalTo(35.5)
         }
         
         addSubview(purposeFilterChipView)
         purposeFilterChipView.snp.makeConstraints {
             $0.leading.equalTo(profileImageViewContainer.snp.trailing).offset(10)
             $0.top.equalTo(profileImageViewContainer)
+            $0.height.equalTo(25)
         }
         
         addSubview(userNameLabel)
         userNameLabel.snp.makeConstraints {
             $0.leading.equalTo(purposeFilterChipView)
             $0.top.equalTo(purposeFilterChipView.snp.bottom).offset(14)
+            $0.height.equalTo(25)
         }
         
         addSubview(filterCollectionView)
@@ -119,7 +123,6 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
         addSubview(buttonsContainer)
         buttonsContainer.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(24)
-            $0.top.equalTo(filterCollectionView.snp.bottom).offset(24)
             $0.height.equalTo(87)
             $0.bottom.equalToSuperview().inset(20)
         }
@@ -131,8 +134,7 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
         
         addSubview(seperatorView)
         seperatorView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.centerY.equalTo(buttonsContainer)
+            $0.center.equalTo(buttonsContainer)
             $0.width.equalTo(1)
             $0.height.equalTo(42)
         }
@@ -175,6 +177,9 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
         
         rightChevronButton.do {
             $0.setImage(.rightArrowIcon, for: .normal)
+            $0.addAction(UIAction { _ in
+                self.nextButtonTapped?()
+            }, for: .touchUpInside)
         }
         
         buttonsContainer.do {
@@ -214,16 +219,11 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
     
     func configureMemberData(to memberData: MyPageResponseDTO) {
         self.myPageData = memberData
-        self.purposeFilterChipView.configureChip(toTag: convertFromData(memberData.mainPurpose))
+        self.purposeFilterChipView.configureChip(toTag: convertFromData(myPageData.mainPurpose))
         self.userNameLabel.text = memberData.memberNickname
+        self.myPageTagData = memberData.breadType.configureTrueOptions()
         
         filterCollectionView.reloadData()
-    }
-    
-    func addNextButtonAction(_ action: @escaping () -> Void) {
-        rightChevronButton.addAction(UIAction { _ in
-            action()
-        }, for: .touchUpInside)
     }
     
     func convertFromData(_ data: String) -> FilterPurposeType {
@@ -231,7 +231,7 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
         case "HEALTH": return .health
         case "DIET": return .diet
         case "VEGAN": return .vegan
-        default: return .diet
+        default: return .health
         }
     }
     

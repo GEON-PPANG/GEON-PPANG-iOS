@@ -23,6 +23,12 @@ final class MyPageViewController: BaseViewController {
     
     // MARK: - Life Cycle
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        requestMemberData()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -112,7 +118,7 @@ extension MyPageViewController: UICollectionViewDataSource {
         case 0:
             let header: MyPageCollectionViewHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
             header.configureMemberData(to: memberData)
-            header.addNextButtonAction {
+            header.nextButtonTapped = {
                 Utils.push(self.navigationController, FilterPurposeViewController(maxSteps: 3, username: self.memberData.memberNickname))
             }
             header.myReviewsTapped = {
@@ -152,14 +158,17 @@ extension MyPageViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let indexPath = IndexPath(item: 0, section: section)
-        let header: MyPageCollectionViewHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
         switch section {
-        case 0: return header.systemLayoutSizeFitting(.init(width: collectionView.frame.width,
-                                                            height: UIView.layoutFittingExpandedSize.height),
-                                                      withHorizontalFittingPriority: .required,
-                                                      verticalFittingPriority: .fittingSizeLevel)
-        default: return .zero
+        case 0:
+            let trueOptions = memberData.breadType.configureTrueOptions()
+            var letterCount = 0
+            trueOptions.forEach { letterCount += $0.0.count }
+            
+            return .init(width: SizeLiteral.Screen.width,
+                         height: letterCount <= 14 ? 344 : 379)
+            
+        default:
+            return .zero
         }
     }
     
