@@ -142,11 +142,11 @@ final class HomeViewController: BaseViewController {
             
             switch indexPath.section {
             case 0:
-                header.setctionHeaderTitle(self.nickname + Sections.bakery.title)
+                header.getSectionHeaderTitle(self.nickname + Sections.bakery.title)
             case 1:
-                header.setctionHeaderTitle(self.nickname + Sections.review.title)
+                header.getSectionHeaderTitle(self.nickname + Sections.review.title)
             default:
-                header.setctionHeaderTitle(self.nickname + Sections.bottom.title)
+                header.getSectionHeaderTitle(self.nickname + Sections.bottom.title)
             }
             return header
         }
