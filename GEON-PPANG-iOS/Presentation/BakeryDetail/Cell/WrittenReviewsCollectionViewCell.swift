@@ -15,11 +15,12 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
     // MARK: - UI Property
     
     private let profileImage = UIImageView()
-    private let userNicknameLabel = UILabel() // 서버
-    private let reviewDateLabel = UILabel() // 서버
+    private let userNicknameLabel = UILabel()
+    private let reviewDateLabel = UILabel()
     private let reportLabel = UILabel()
-    private lazy var reviewCategoryStackView = ReviewCategoryStackView() // 서버
-    private let reviewTextLabel = UILabel() // 서버
+    private lazy var reviewCategoryStackView = ReviewCategoryStackView()
+    private let reviewTextLabel = UILabel()
+    private let emptyView = UIImageView()
     
     // MARK: - Initializer
     
@@ -39,6 +40,9 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
     
     private func setUI() {
         
+        self.backgroundColor = .gbbBackground2
+        self.makeCornerRound(radius: 12)
+        
         profileImage.do {
             $0.image = .logoIcon20px
             $0.contentMode = .scaleToFill
@@ -46,12 +50,10 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
         
         userNicknameLabel.do {
             $0.basic(font: .bodyB2!, color: .gbbMain1!)
-            $0.text = "보연티비ㅇㅇㅇㅇㅇㅇ"
         }
         
         reviewDateLabel.do {
             $0.basic(font: .captionM1!, color: .gbbGray400!)
-            $0.text = "23.08.09"
             $0.textAlignment = .right
         }
         
@@ -61,8 +63,13 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
         
         reviewTextLabel.do {
             $0.basic(font: .subHead!, color: .gbbGray400!)
-            $0.text = "여기 소금빵 미친 존맛탱임 우리 건빵 가족들에게도 알려주고싶은 맛이에용앙아아아아아아아아아아아ㅏㅇ아ㅏ아아아아아아아아아ㅏ아아"
             $0.numberOfLines = 3
+            $0.adjustsFontSizeToFitWidth = true
+        }
+        
+        emptyView.do {
+            $0.image = .noReviewImage
+//            $0.contentMode = .scaleToFill
         }
     }
     
@@ -107,9 +114,25 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
         
         reviewTextLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(94)
-            $0.directionalHorizontalEdges.equalTo(25)
+            $0.directionalHorizontalEdges.equalToSuperview().inset(25)
             $0.width.equalTo(277)
             $0.height.equalTo(60)
+        }
+    }
+    
+    func updateUI(_ data: ReviewList) {
+        
+        userNicknameLabel.text = data.memberNickname
+        reviewDateLabel.text = data.createdAt
+        reviewTextLabel.text = data.reviewText
+        
+        if data.recommendKeywordList.isEmpty {
+            
+        } else {
+            let list = data.recommendKeywordList.map {
+                $0.recommendKeywordID
+            }
+            reviewCategoryStackView.getChipStatus(list)
         }
     }
 }
