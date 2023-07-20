@@ -89,6 +89,7 @@ final class SearchViewController: BaseViewController {
             $0.isScrollEnabled = false
             $0.backgroundColor = .clear
             $0.showsHorizontalScrollIndicator = false
+            $0.delegate = self
         }
     }
     
@@ -190,6 +191,18 @@ final class SearchViewController: BaseViewController {
         }
     }
 }
+
+// MARK: - UICollectionViewDelegate
+
+extension SearchViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let nextViewController = BakeryDetailViewController()
+        nextViewController.bakeryID = self.searchBakeryList[indexPath.item].bakeryId
+        Utils.push(self.navigationController, nextViewController)
+    }
+}
+
+// MARK: - API
 
 extension SearchViewController {
     func requestSearchBakery(bakeryName: String) {

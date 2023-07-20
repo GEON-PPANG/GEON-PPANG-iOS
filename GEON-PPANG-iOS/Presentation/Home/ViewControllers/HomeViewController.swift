@@ -25,21 +25,23 @@ final class HomeViewController: BaseViewController {
     
     // MARK: - Property
     
-    private var nickname =  UserDefaults.standard.string(forKey: "nickname") ?? ""
     typealias DataSource = UICollectionViewDiffableDataSource<Sections, AnyHashable>
     private var dataSource: DataSource?
+    
     private var bakeryList: [BestBakery] = [] {
         didSet {
             self.setReloadData()
         }
     }
+    
     private var reviewList: [BestReviews] = [] {
         didSet {
             self.setReloadData()
         }
     }
     
-    lazy var safeArea = self.view.safeAreaLayoutGuide
+    private lazy var safeArea = self.view.safeAreaLayoutGuide
+    private var nickname =  UserDefaults.standard.string(forKey: "nickname") ?? ""
     
     // MARK: - UI Property
     
@@ -203,6 +205,19 @@ final class HomeViewController: BaseViewController {
 // MARK: - UICollectionViewDelegate
 
 extension HomeViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let nextViewController = BakeryDetailViewController()
+        let section = Sections(rawValue: indexPath.section)!
+        switch section {
+        case .bakery:
+            nextViewController.bakeryID = self.bakeryList[indexPath.item].bakeryId
+        case .review:
+            nextViewController.bakeryID = self.reviewList[indexPath.item].bakeryId
+        case .bottom:
+            return
+        }
+        Utils.push(self.navigationController, nextViewController)
+    }
 }
 
 // MARK: - API
@@ -213,6 +228,7 @@ extension HomeViewController {
             guard let response = response else { return }
             guard let data = response.data else { return }
             var bakeryList: [BestBakery] = []
+            
             for item in data {
                 bakeryList.append(item.convertToBestBakery())
             }
