@@ -109,7 +109,7 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
             $0.leading.equalTo(purposeFilterChipView)
             $0.top.equalTo(userNameLabel.snp.bottom).offset(10)
             $0.height.equalTo(60)
-            $0.width.equalTo(170)
+            $0.width.equalTo(198)
         }
         
         addSubview(rightChevronButton)
@@ -262,12 +262,13 @@ extension MyPageCollectionViewHeader: UICollectionViewDataSource {
 extension MyPageCollectionViewHeader: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        print(indexPath)
-        dump(collectionView.visibleCells)
-        dump(myPageTagData)
-        let cell: DescriptionCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-//        guard let cell: DescriptionCollectionViewCell = collectionView.cellForItem(at: indexPath) as? DescriptionCollectionViewCell else { return .zero }
-        return cell.fittingSize(availableHeight: 25)
+        let dummyLabel = UILabel()
+        dummyLabel.do {
+            $0.text = myPageTagData[indexPath.item].0
+            $0.font = .captionM1
+        }
+        let size = dummyLabel.intrinsicContentSize
+        return .init(width: size.width + 12, height: size.height + 8)
     }
 
 }

@@ -169,7 +169,7 @@ extension MyPageViewController: UICollectionViewDelegateFlowLayout {
             var letterCount = 0
             trueOptions.forEach { letterCount += $0.0.count }
             return .init(width: SizeLiteral.Screen.width,
-                         height: letterCount <= 11 ? 340 : 375)
+                         height: letterCount <= 15 ? 340 : 375)
         default:
             return .zero
         }
