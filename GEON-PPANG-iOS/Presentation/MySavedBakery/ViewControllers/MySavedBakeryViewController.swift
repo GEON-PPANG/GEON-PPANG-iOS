@@ -61,7 +61,7 @@ final class MySavedBakeryViewController: BaseViewController {
         
         collectionView.snp.makeConstraints {
             $0.top.equalTo(naviView.snp.bottom)
-            $0.leading.equalToSuperview().offset(-24)
+            $0.leading.equalToSuperview()
             $0.trailing.equalTo(safeArea)
             $0.bottom.equalToSuperview()
         }
@@ -78,21 +78,23 @@ final class MySavedBakeryViewController: BaseViewController {
     }
     
     private func setRegistration() {
-        collectionView.register(cell: BakeryListCollectionViewCell.self)
+        collectionView.register(cell: BakeryCollectionViewListCell.self)
         collectionView.register(cell: EmptyCollectionViewCell.self)
     }
     
     private func setDataSource() {
+        let cellRegistration = UICollectionView.CellRegistration<BakeryCollectionViewListCell, BakeryList> { (cell, indexPath, item) in
+            cell.separatorLayoutGuide.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+            cell.getViewType(.defaultType)
+            if let bakeryListItem = item as? BakeryList {
+                cell.updateUI(data: bakeryListItem, index: indexPath.item)
+            }
+        }
         dataSource = DataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, item in
             let section = self.dataSource?.snapshot().sectionIdentifiers[indexPath.section]
             switch section {
             case .main:
-                let cell: BakeryListCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-                cell.getViewType(.defaultType)
-                if let bakeryListItem = item as? BakeryList {
-                    cell.updateUI(data: bakeryListItem, index: indexPath.item)
-                }
-                return cell
+                return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item as? BakeryList)
             case .empty, .none:
                 let cell: EmptyCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
                 cell.getViewType(.noBookmark)
