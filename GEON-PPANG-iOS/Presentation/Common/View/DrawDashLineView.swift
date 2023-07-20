@@ -9,7 +9,11 @@ import UIKit
 
 final class DrawDashLineView: UIView { // 코너가 들어간 점선 그리기
     
+    // MARK: - UI Property
+    
     private let borderLayer = CAShapeLayer()
+    
+    // MARK: - Initializer
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,6 +31,7 @@ final class DrawDashLineView: UIView { // 코너가 들어간 점선 그리기
         borderLayer.path = UIBezierPath(roundedRect: rect, cornerRadius: 15).cgPath
     }
     
+    @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

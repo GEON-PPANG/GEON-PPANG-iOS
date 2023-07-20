@@ -111,17 +111,17 @@ final class OnboardingViewController: BaseViewController {
         }
         
         appleButton.snp.makeConstraints {
-            $0.top.equalTo(kakaoButton.snp.top)
+            $0.top.equalTo(kakaoButton)
             $0.leading.equalTo(kakaoButton.snp.trailing).offset(convertByWidthRatio(20))
         }
         
         naverButton.snp.makeConstraints {
-            $0.top.equalTo(appleButton.snp.top)
+            $0.top.equalTo(appleButton)
             $0.leading.equalTo(appleButton.snp.trailing).offset(convertByWidthRatio(20))
         }
         
         googleButton.snp.makeConstraints {
-            $0.top.equalTo(naverButton.snp.top)
+            $0.top.equalTo(naverButton)
             $0.leading.equalTo(naverButton.snp.trailing).offset(convertByWidthRatio(20))
         }
     }

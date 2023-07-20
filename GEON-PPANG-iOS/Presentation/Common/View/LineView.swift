@@ -31,5 +31,4 @@ final class LineView: UIView {
             $0.backgroundColor = .gbbGray200
         }
     }
-        
 }
