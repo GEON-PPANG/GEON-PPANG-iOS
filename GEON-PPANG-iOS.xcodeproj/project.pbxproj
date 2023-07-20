@@ -47,7 +47,6 @@
 		0959F1702A658CA400E77CAF /* HomeBestBakeryResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F16F2A658CA400E77CAF /* HomeBestBakeryResponseDTO.swift */; };
 		0959F1742A658CBA00E77CAF /* BakeryResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F1732A658CBA00E77CAF /* BakeryResponseDTO.swift */; };
 		0959F1762A658CC100E77CAF /* MyPageResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F1752A658CC100E77CAF /* MyPageResponseDTO.swift */; };
-		0959F1782A658CCC00E77CAF /* BookmarkResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F1772A658CCC00E77CAF /* BookmarkResponseDTO.swift */; };
 		0959F17A2A658CD300E77CAF /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F1792A658CD300E77CAF /* AuthAPI.swift */; };
 		0959F17C2A658CDA00E77CAF /* FilterAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F17B2A658CDA00E77CAF /* FilterAPI.swift */; };
 		0959F17E2A658CE300E77CAF /* HomeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F17D2A658CE300E77CAF /* HomeAPI.swift */; };
@@ -102,6 +101,8 @@
 		09FD47DD2A5E57F2002020BD /* MyReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47DC2A5E57F2002020BD /* MyReviewsViewController.swift */; };
 		09FD47E22A5E69A2002020BD /* CommonBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47E12A5E69A2002020BD /* CommonBottomSheet.swift */; };
 		09FD47E42A5E82BB002020BD /* BottomSheetAppearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47E32A5E82BB002020BD /* BottomSheetAppearView.swift */; };
+		3E162D182A692C1400590C6F /* BookmarkRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E162D172A692C1400590C6F /* BookmarkRequestDTO.swift */; };
+		3E162D1A2A692C4900590C6F /* BookmarkResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E162D192A692C4900590C6F /* BookmarkResponseDTO.swift */; };
 		3E16E4F52A57CF3800B813D0 /* WriteReviewDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16E4F42A57CF3800B813D0 /* WriteReviewDTO.swift */; };
 		3E16E4FA2A57D1F400B813D0 /* RecommendationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16E4F92A57D1F400B813D0 /* RecommendationModel.swift */; };
 		3E16E4FC2A57D24900B813D0 /* LikeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16E4FB2A57D24900B813D0 /* LikeModel.swift */; };
@@ -188,7 +189,6 @@
 		0959F16F2A658CA400E77CAF /* HomeBestBakeryResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBestBakeryResponseDTO.swift; sourceTree = "<group>"; };
 		0959F1732A658CBA00E77CAF /* BakeryResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryResponseDTO.swift; sourceTree = "<group>"; };
 		0959F1752A658CC100E77CAF /* MyPageResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageResponseDTO.swift; sourceTree = "<group>"; };
-		0959F1772A658CCC00E77CAF /* BookmarkResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkResponseDTO.swift; sourceTree = "<group>"; };
 		0959F1792A658CD300E77CAF /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
 		0959F17B2A658CDA00E77CAF /* FilterAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterAPI.swift; sourceTree = "<group>"; };
 		0959F17D2A658CE300E77CAF /* HomeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAPI.swift; sourceTree = "<group>"; };
@@ -246,6 +246,8 @@
 		09FD47DC2A5E57F2002020BD /* MyReviewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewsViewController.swift; sourceTree = "<group>"; };
 		09FD47E12A5E69A2002020BD /* CommonBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonBottomSheet.swift; sourceTree = "<group>"; };
 		09FD47E32A5E82BB002020BD /* BottomSheetAppearView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetAppearView.swift; sourceTree = "<group>"; };
+		3E162D172A692C1400590C6F /* BookmarkRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkRequestDTO.swift; sourceTree = "<group>"; };
+		3E162D192A692C4900590C6F /* BookmarkResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkResponseDTO.swift; sourceTree = "<group>"; };
 		3E16E4F42A57CF3800B813D0 /* WriteReviewDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewDTO.swift; sourceTree = "<group>"; };
 		3E16E4F92A57D1F400B813D0 /* RecommendationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationModel.swift; sourceTree = "<group>"; };
 		3E16E4FB2A57D24900B813D0 /* LikeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeModel.swift; sourceTree = "<group>"; };
@@ -529,17 +531,8 @@
 				0959F1652A658C5200E77CAF /* Search */,
 				0959F1642A658C4E00E77CAF /* Bakery */,
 				0959F1632A658C4900E77CAF /* MyPage */,
-				0959F1622A658C4400E77CAF /* Bookmark */,
 			);
 			path = DataModel;
-			sourceTree = "<group>";
-		};
-		0959F1622A658C4400E77CAF /* Bookmark */ = {
-			isa = PBXGroup;
-			children = (
-				0959F1772A658CCC00E77CAF /* BookmarkResponseDTO.swift */,
-			);
-			path = Bookmark;
 			sourceTree = "<group>";
 		};
 		0959F1632A658C4900E77CAF /* MyPage */ = {
@@ -558,6 +551,8 @@
 				097682DE2A5C91280008F4FB /* BakeryListResponseDTO.swift */,
 				DFECBB072A690DBB007F054B /* BakeryDetailResponseDTO.swift */,
 				DFECBB092A691B9B007F054B /* WrittenReviewsResponseDTO.swift */,
+				3E162D172A692C1400590C6F /* BookmarkRequestDTO.swift */,
+				3E162D192A692C4900590C6F /* BookmarkResponseDTO.swift */,
 			);
 			path = Bakery;
 			sourceTree = "<group>";
@@ -1299,6 +1294,7 @@
 				0959F1842A658CF300E77CAF /* MyPageAPI.swift in Sources */,
 				0924632F2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift in Sources */,
 				097682E92A5D0B6B0008F4FB /* BakeryListTopView.swift in Sources */,
+				3E162D1A2A692C4900590C6F /* BookmarkResponseDTO.swift in Sources */,
 				0959F1862A658CF900E77CAF /* BookmarkAPI.swift in Sources */,
 				09B13F5A2A5946B700C0C723 /* TabBar+.swift in Sources */,
 				097682DF2A5C91280008F4FB /* BakeryListResponseDTO.swift in Sources */,
@@ -1369,7 +1365,6 @@
 				3E7B21C02A61CB8C00C8F8B4 /* SortBottomSheetViewController.swift in Sources */,
 				3E16E5022A58176800B813D0 /* ReviewDetailTextView.swift in Sources */,
 				DFB587B92A5D584800704B6C /* OnboardingViewController.swift in Sources */,
-				0959F1782A658CCC00E77CAF /* BookmarkResponseDTO.swift in Sources */,
 				DF959A6E2A568C9400E75774 /* UIColor+.swift in Sources */,
 				3E452B672A60E68000EA456D /* MyPageDTO.swift in Sources */,
 				09C626562A5B3572002C8110 /* HomeBestReviewResponseDTO.swift in Sources */,
@@ -1383,6 +1378,7 @@
 				3E16E4FE2A57F06D00B813D0 /* OptionsCollectionViewFlowLayout.swift in Sources */,
 				3E79B1B22A571E1F00D36A26 /* OptionsCollectionView.swift in Sources */,
 				3EDDA8AC2A69149400E04ECB /* DetailBottomView.swift in Sources */,
+				3E162D182A692C1400590C6F /* BookmarkRequestDTO.swift in Sources */,
 				0959F17A2A658CD300E77CAF /* AuthAPI.swift in Sources */,
 				0959F18A2A658D0C00E77CAF /* FilterService.swift in Sources */,
 				3E79B1B52A571E7100D36A26 /* OptionsCollectionViewCell.swift in Sources */,
