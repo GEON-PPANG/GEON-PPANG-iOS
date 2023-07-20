@@ -35,12 +35,14 @@ final class MenuCollectionViewCell: UICollectionViewCell {
     
     private func setUI() {
         
+        self.backgroundColor = .gbbWhite
+        
         bakeryMenuLabel.do {
-            $0.basic(text: "요거요거요거바라 블루베리 케이크", font: .subHead!, color: .gbbGray500!)
+            $0.basic(font: .subHead!, color: .gbbGray500!)
         }
         
         menuPriceLabel.do {
-            $0.basic(text: "32,500원", font: .subHead!, color: .gbbGray400!)
+            $0.basic(font: .subHead!, color: .gbbGray400!)
             $0.textAlignment = .right
         }
     }
@@ -50,15 +52,23 @@ final class MenuCollectionViewCell: UICollectionViewCell {
         contentView.addSubviews(bakeryMenuLabel, menuPriceLabel)
         
         bakeryMenuLabel.snp.makeConstraints {
-            $0.top.leading.equalToSuperview()
+            $0.top.equalToSuperview()
+            $0.leading.equalToSuperview().inset(24)
             $0.width.equalTo(223)
             $0.height.equalTo(20)
         }
         
         menuPriceLabel.snp.makeConstraints {
-            $0.top.trailing.equalToSuperview()
+            $0.top.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(24)
             $0.width.equalTo(80)
             $0.height.equalTo(20)
         }
+    }
+    
+    func updateUI(_ data: MenuList) {
+        
+        bakeryMenuLabel.text = data.menuName
+        menuPriceLabel.text = data.menuPrice.priceText
     }
 }
