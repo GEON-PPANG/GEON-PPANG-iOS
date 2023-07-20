@@ -11,7 +11,7 @@ import SnapKit
 import Then
 
 final class BookmarkReviewNumberStackView: UIStackView {
-
+    
     // MARK: - UI Property
     
     private lazy var bookmarkCountStackView = IconLabelStackView(type: .bookmark)
@@ -45,5 +45,11 @@ final class BookmarkReviewNumberStackView: UIStackView {
     private func setLayout() {
         
         self.addArrangedSubviews(bookmarkCountStackView, reviewCountStackView)
+    }
+    
+    func updateCount(bookmarkCount: Int, reviewCount: Int) {
+        
+        bookmarkCountStackView.updateCount(bookmarkCount)
+        reviewCountStackView.updateCount(reviewCount)
     }
 }

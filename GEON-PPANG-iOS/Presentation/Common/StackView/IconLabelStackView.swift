@@ -18,7 +18,7 @@ enum IconType {
 }
 
 final class IconLabelStackView: UIStackView {
-
+    
     // MARK: - Property
     
     private let iconType: IconType
@@ -43,15 +43,16 @@ final class IconLabelStackView: UIStackView {
         }
     }
     
-    private var bookmarkCount: UInt16 = 18
-    private var reviewCount: UInt16 = 28
+    private var count: Int = 0 {
+        didSet {
+            label.text = labelText
+        }
+    }
     
     private var labelText: String {
         switch iconType {
-        case .bookmark:
-            return "(\(bookmarkCount))"
-        case .review:
-            return "(\(reviewCount))"
+        case .bookmark, .review:
+            return "(\(count))"
         case .notice:
             return "홈페이지에 성분정보가 있어요!"
         case .basic:
@@ -129,5 +130,10 @@ final class IconLabelStackView: UIStackView {
             $0.centerY.equalTo(icon)
             $0.height.equalTo(17)
         }
+    }
+    
+    func updateCount(_ count: Int) {
+        
+        self.count = count
     }
 }

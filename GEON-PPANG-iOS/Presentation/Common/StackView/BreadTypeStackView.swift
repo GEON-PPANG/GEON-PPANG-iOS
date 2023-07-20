@@ -67,4 +67,27 @@ final class BreadTypeStackView: UIStackView {
             }
         }
     }
+    
+    func getChipStatus(_ isGlutenFree: Bool, _ isveganBread: Bool, _ isnutFree: Bool, _ isnoSugarChip: Bool) {
+        if !isGlutenFree {
+            glutenFreeChip.isHidden = true
+        } else {
+            glutenFreeChip.isHidden = false
+        }
+        if !isveganBread {
+            veganBreadChip.isHidden = true
+        } else {
+            veganBreadChip.isHidden = false
+        }
+        if !isnutFree {
+            nutFreeChip.isHidden = true
+        } else {
+            nutFreeChip.isHidden = false
+        }
+        if !isnoSugarChip {
+            noSugarChip.isHidden = true
+        } else {
+            noSugarChip.isHidden = false
+        }
+    }
 }

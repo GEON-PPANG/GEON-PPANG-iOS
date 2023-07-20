@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Kingfisher
 import SnapKit
 import Then
 
@@ -14,11 +15,11 @@ final class TitleCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI Property
     
-    private let bakeryImage = UIImageView() // 서버
-    private lazy var markStackView = MarkStackView() // 서버
-    private let bakeryNameLabel = UILabel() // 서버
-    private lazy var breadTypeStackView = BreadTypeStackView() // 서버
-    private lazy var bookmarkReviewStackView = BookmarkReviewNumberStackView() // 서버
+    private let bakeryImage = UIImageView()
+    private lazy var markStackView = MarkStackView()
+    private let bakeryNameLabel = UILabel()
+    private lazy var breadTypeStackView = BreadTypeStackView()
+    private lazy var bookmarkReviewStackView = BookmarkReviewNumberStackView()
     
     // MARK: - Initializer
     
@@ -41,20 +42,21 @@ final class TitleCollectionViewCell: UICollectionViewCell {
         self.backgroundColor = .gbbWhite
         
         bakeryImage.do {
-            $0.backgroundColor = .gbbPoint1
             $0.contentMode = .scaleToFill
         }
         
         markStackView.do {
-            $0.getIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
-            $0.getMarkStatus(true, true, true)
             $0.setMarkSize(28)
             $0.spacing = 10
         }
         
         bakeryNameLabel.do {
-            $0.basic(text: "건대 초코빵 건대 초코빵", font: .title1!, color: .gbbGray700!)
+            $0.basic(font: .title1!, color: .gbbGray700!)
             $0.adjustsFontSizeToFitWidth = true
+        }
+        
+        breadTypeStackView.do {
+            $0.getChipStatus(false, false, false, false)
         }
     }
     
@@ -73,11 +75,9 @@ final class TitleCollectionViewCell: UICollectionViewCell {
         }
         
         bakeryNameLabel.snp.makeConstraints {
-            // TODO: 스택뷰 갯수 카운트해서 0개 되면 remakeConstraints 하는 거 넣기 (정은쓰가 해주기로 함)
             $0.top.equalTo(markStackView.snp.bottom).offset(16)
             $0.directionalHorizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(32)
-            // TODO: 가게 이름 길어졌을 때 높이 동적으로 되는지 확인
         }
         
         breadTypeStackView.snp.makeConstraints {
@@ -85,9 +85,28 @@ final class TitleCollectionViewCell: UICollectionViewCell {
             $0.leading.equalTo(bakeryNameLabel)
         }
         
+        // TODO: 통신 전 쓰레기 값 hidden 시키기
         bookmarkReviewStackView.snp.makeConstraints {
             $0.top.equalTo(breadTypeStackView.snp.bottom).offset(16)
             $0.leading.equalTo(breadTypeStackView)
         }
+    }
+    
+    func updateUI(_ data: BakeryDetailResponseDTO) {
+        
+        guard let url = URL(string: data.bakeryPicture) else { return }
+        bakeryImage.kf.setImage(with: url)
+        bakeryNameLabel.text = data.bakeryName
+        markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)
+        
+        if !data.isHACCP && !data.isVegan && !data.isNonGMO {
+            bakeryNameLabel.snp.remakeConstraints {
+                $0.top.equalTo(bakeryImage.snp.bottom).offset(30)
+                $0.directionalHorizontalEdges.equalToSuperview().inset(24)
+                $0.height.equalTo(32)
+            }
+        }
+        breadTypeStackView.getChipStatus(data.breadType.isGlutenFree, data.breadType.isVegan, data.breadType.isNutFree, data.breadType.isSugarFree)
+        bookmarkReviewStackView.updateCount(bookmarkCount: data.bookMarkCount, reviewCount: data.reviewCount)
     }
 }
