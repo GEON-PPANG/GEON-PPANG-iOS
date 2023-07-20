@@ -111,11 +111,6 @@ final class PasswordViewController: BaseViewController {
     }
     
     override func setUI() {
-//        view.backgroundColor = .black
-//
-//        scrollView.backgroundColor = .systemGray2
-//        contentView.backgroundColor = .systemGray5
-//        bottomView.backgroundColor = .red
         
         scrollView.do {
             $0.horizontalScrollIndicatorInsets = .zero
@@ -126,7 +121,7 @@ final class PasswordViewController: BaseViewController {
         
         naviView.do {
             $0.backgroundColor = .white
-            $0.configureRightCount(4, by: 6)
+            $0.configureRightCount(2, by: 6)
             $0.addBackButtonAction(UIAction { _ in
                 self.navigationController?.popViewController(animated: true)
             })

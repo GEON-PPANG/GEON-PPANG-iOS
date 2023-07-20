@@ -66,7 +66,7 @@ final class NickNameViewController: BaseViewController {
     
     override func setUI() {
         naviView.do {
-            $0.configureRightCount(5, by: 6)
+            $0.configureRightCount(3, by: 6)
             $0.addBackButtonAction(UIAction { _ in
                 self.navigationController?.popViewController(animated: true)
             })
