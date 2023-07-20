@@ -37,8 +37,8 @@ final class BakeryDetailViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        getBakeryDetail(bakeryID: 1)
-        getWrittenReviews(bakeryID: 1)
+        getBakeryDetail(bakeryID: 15)
+        getWrittenReviews(bakeryID: 15)
     }
     
     // MARK: - Setting
@@ -72,7 +72,7 @@ final class BakeryDetailViewController: BaseViewController {
                 self.detailBottomView.configureBookmarkButton(to: self.isBookmarked)
             }
             $0.tappedWriteReviewButton = {
-                Utils.push(self.navigationController, WriteReviewViewController())
+                Utils.push(self.navigationController, WriteReviewViewController(bakeryData: self.configureSimpleBakeryData()))
             }
         }
     }
@@ -98,6 +98,18 @@ final class BakeryDetailViewController: BaseViewController {
         
         collectionView.delegate = self
         collectionView.dataSource = self
+    }
+    
+    // MARK: - Custom Method
+    
+    private func configureSimpleBakeryData() -> SimpleBakeryModel {
+        var bakeryData = SimpleBakeryModel.emptyModel()
+        bakeryData.bakeryID = overviewData.bakeryID
+        bakeryData.bakeryName = overviewData.bakeryName
+        bakeryData.bakeryImageURL = overviewData.bakeryPicture
+        bakeryData.bakeryIngredients = overviewData.breadType.configureTrueOptions().filter { $0.1 == true }.map { $0.0 }
+        bakeryData.bakeryRegion = [overviewData.firstNearStation, overviewData.secondNearStation]
+        return bakeryData
     }
 }
 
