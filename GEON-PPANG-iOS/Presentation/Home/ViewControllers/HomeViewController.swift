@@ -65,7 +65,7 @@ final class HomeViewController: BaseViewController {
                 Utils.push(self.navigationController, SearchViewController())
             }
             $0.addActionToFilterButton {
-                Utils.push(self.navigationController, FilterPurposeViewController(maxSteps: 3, username: "찐빵대빵"))
+                Utils.push(self.navigationController, FilterPurposeViewController(maxSteps: 3, username: self.nickname))
             }
         }
         

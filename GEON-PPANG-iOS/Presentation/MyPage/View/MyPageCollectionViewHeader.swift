@@ -16,7 +16,6 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
     
     private var username =  UserDefaults.standard.string(forKey: "nickname") ?? ""
     private var myPageData = MyPageResponseDTO.dummyData()
-//    private lazy var username = myPageData.memberNickname
     private lazy var myPageTagData = myPageData.breadType.configureTrueOptions()
     var nextButtonTapped: (() -> Void)?
     var savedBakeryTapped: (() -> Void)?
@@ -58,7 +57,7 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        Utils.updateCollectionViewConstraint(of: filterCollectionView, byOffset: 1)
+        Utils.updateCollectionViewConstraint(of: filterCollectionView, byOffset: 2)
     }
     
     // MARK: - Setting
@@ -256,4 +255,19 @@ extension MyPageCollectionViewHeader: UICollectionViewDataSource {
         return cell
     }
     
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout extension
+
+extension MyPageCollectionViewHeader: UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        print(indexPath)
+        dump(collectionView.visibleCells)
+        dump(myPageTagData)
+        let cell: DescriptionCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+//        guard let cell: DescriptionCollectionViewCell = collectionView.cellForItem(at: indexPath) as? DescriptionCollectionViewCell else { return .zero }
+        return cell.fittingSize(availableHeight: 25)
+    }
+
 }
