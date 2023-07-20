@@ -42,35 +42,42 @@ final class PasswordViewController: BaseViewController {
         super.viewDidLoad()
         
         setNavigationBarHidden()
-        
-        setKeyboardNotificationCenterOnScrollView()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
         dismissKeyboardWhenTappedAround()
+        setNotificationCenter()
     }
     
     // MARK: - Setting
     
     override func setLayout() {
-        view.addSubviews(scrollView, naviView, bottomView)
+        view.addSubviews(naviView,
+                         scrollView,
+                         bottomView)
+        
         scrollView.addSubview(contentView)
-        contentView.addSubviews(titleLabel, passwordTextField, checkPasswordTextField)
+        
+        contentView.addSubviews(titleLabel,
+                                passwordTextField,
+                                checkPasswordTextField)
+        
         bottomView.addSubview(nextButton)
         
         naviView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.directionalHorizontalEdges.equalToSuperview()
+            $0.height.equalTo(118)
         }
         
         scrollView.snp.makeConstraints {
             $0.top.equalTo(naviView.snp.bottom)
-            $0.horizontalEdges.equalToSuperview()
-            $0.bottom.equalTo(bottomView.snp.top)
+            $0.leading.trailing.equalToSuperview()
         }
-
+        
+        bottomView.snp.makeConstraints {
+            $0.top.equalTo(scrollView.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(19)
+        }
+        
         contentView.snp.makeConstraints {
             $0.edges.equalTo(scrollView.contentLayoutGuide)
             $0.height.equalTo(scrollView.frameLayoutGuide).priority(.low)
@@ -79,36 +86,37 @@ final class PasswordViewController: BaseViewController {
         
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.leading.equalTo(safeArea).offset(24)
+            $0.leading.equalToSuperview().offset(24)
         }
         
         passwordTextField.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(40)
-            $0.directionalHorizontalEdges.equalTo(safeArea).inset(24)
+            $0.directionalHorizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(74)
         }
         
         checkPasswordTextField.snp.makeConstraints {
             $0.top.equalTo(passwordTextField.snp.bottom).offset(36)
-            $0.directionalHorizontalEdges.equalTo(safeArea).inset(24)
+            $0.directionalHorizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(74)
-            $0.bottom.equalToSuperview().inset(20)
-        }
-        
-        bottomView.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview()
-            $0.bottom.equalToSuperview()
-            $0.height.equalTo(92)
+            $0.bottom.lessThanOrEqualToSuperview().inset(30)
         }
         
         nextButton.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.directionalHorizontalEdges.equalToSuperview().inset(24)
+            $0.directionalVerticalEdges.equalToSuperview().inset(16)
             $0.height.equalTo(56)
         }
     }
     
     override func setUI() {
+//        view.backgroundColor = .black
+//
+//        scrollView.backgroundColor = .systemGray2
+//        contentView.backgroundColor = .systemGray5
+//        bottomView.backgroundColor = .red
+        
         scrollView.do {
             $0.horizontalScrollIndicatorInsets = .zero
             $0.verticalScrollIndicatorInsets = .zero
@@ -136,16 +144,11 @@ final class PasswordViewController: BaseViewController {
             $0.duplicatedCheck = { data in
                 self.password = data
             }
-            $0.changeLayout = {
-                self.bottomView.transform = CGAffineTransform(translationX: 0, y: -50)
-            }
         }
         
         checkPasswordTextField.do {
             $0.getType(.checkPassword)
-            $0.changeLayout = {
-                self.bottomView.transform = CGAffineTransform(translationX: 0, y: -50)
-            }
+            
             $0.textFieldData = { [weak self] data in
                 if self?.password == data {
                     self?.checkPasswordTextField.clearErrorMessage(true)
@@ -158,7 +161,6 @@ final class PasswordViewController: BaseViewController {
         }
         
         bottomView.do {
-            $0.backgroundColor = .white
             $0.layer.masksToBounds = false
         }
         
@@ -181,46 +183,56 @@ final class PasswordViewController: BaseViewController {
         }
     }
     
-    private func setKeyboardNotificationCenterOnScrollView() {
-        NotificationCenter.default.addObserver(self, selector: #selector(moveUpAboutKeyboardOnScrollView), name: UIResponder.keyboardWillShowNotification, object: nil)
+    private func setNotificationCenter() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
 
-    }
-    
-    
-    @objc
-    func moveUpAboutKeyboardOnScrollView(_ notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            
-            self.keyboardHeight = keyboardSize.height
-            bottomView.snp.remakeConstraints {
-                $0.bottom.equalToSuperview().inset(keyboardHeight)
-                $0.horizontalEdges.equalToSuperview()
-                $0.height.equalTo(92)
-            }
-            
-            UIView.animate(withDuration: 0.2, animations: {
-                self.view.layoutIfNeeded()
-            })
-        }
     }
     
     func dismissKeyboardWhenTappedAround() {
        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
-                                                                action: #selector(updateBottomView))
+                                                                action: #selector(endEditingView))
        tap.cancelsTouchesInView = true
        self.view.addGestureRecognizer(tap)
     }
+}
+
+// MARK: - Keyboard Action
+extension PasswordViewController {
     
     @objc
-    func updateBottomView() {
-        view.endEditing(true)
-        bottomView.snp.remakeConstraints {
-            $0.bottom.equalToSuperview()
-            $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(92)
+    func keyboardWillShow(_ notification: NSNotification) {
+        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        guard let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else { return }
+        let keyboardRectangle = keyboardFrame.cgRectValue
+        let keyboardHeight = keyboardRectangle.height
+                
+        UIView.animate(withDuration: duration) {
+            self.bottomView.snp.updateConstraints {
+                $0.bottom.equalToSuperview().inset(keyboardHeight)
+            }
+            self.view.layoutIfNeeded()
         }
         
-        UIView.animate(withDuration: 0.2, animations: {
+        scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.bounds.height), animated: true)
+    }
+    
+    @objc
+    func keyboardWillHide(notification: NSNotification) {
+        guard let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else { return }
+        
+        
+        UIView.animate(withDuration: duration, animations: {
+            self.bottomView.snp.updateConstraints {
+                $0.bottom.equalToSuperview().inset(19)
+            }
             self.view.layoutIfNeeded()
         })
     }
