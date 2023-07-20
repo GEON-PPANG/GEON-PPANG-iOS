@@ -27,18 +27,6 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
         }
     }
     private var reviewCount: UInt16 = 28
-    private var titleText: String {
-        switch sectionType {
-        case .info:
-            return "가게 상세정보"
-        case .menu:
-            return "가게 메뉴"
-        case .reviewCategory:
-            return "건빵집 리뷰"
-        case .writtenReviews:
-            return "작성된 리뷰 (\(reviewCount))개"
-        }
-    }
     
     // MARK: - UI Property
     
@@ -60,6 +48,13 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        subTitleStackView.isHidden = true
+        reviewSortButton.isHidden = true
+        setUI()
+    }
+    
     // MARK: - Setting
     
     private func setUI() {
@@ -67,7 +62,7 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
         self.backgroundColor = .gbbWhite
         
         titleLabel.do {
-            $0.basic(text: titleText, font: .bodyB1!, color: .gbbBlack!)
+            $0.basic(font: .bodyB1!, color: .gbbBlack!)
             $0.frame.size = $0.sizeThatFits(self.frame.size)
         }
         
@@ -89,8 +84,10 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
     // MARK: - Custom Method
     
     func configureSubTitle() {
-        
+
         self.addSubview(subTitleStackView)
+        
+        subTitleStackView.isHidden = false
         
         subTitleStackView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom)
@@ -98,13 +95,15 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
         }
     }
     
-    func configurereviewSortButton() {
+    func configureReviewSortButton() {
         
         self.addSubview(reviewSortButton)
         
+        reviewSortButton.isHidden = false
+        
         reviewSortButton.snp.makeConstraints {
             $0.centerY.equalTo(titleLabel)
-            $0.trailing.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(24)
             $0.width.equalTo(79)
             $0.height.equalTo(36)
         }
@@ -113,13 +112,16 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
     func getType(_ type: SectionType) {
         switch type {
         case .info:
+            titleLabel.text = "가게 상세정보"
             configureSubTitle()
+        case .menu:
+            titleLabel.text = "가게 메뉴"
+        case .reviewCategory:
+            titleLabel.text = "건빵집 리뷰"
         case .writtenReviews:
-            configurereviewSortButton()
-        default:
-            return
+            titleLabel.text = "작성된 리뷰 (\(reviewCount))개"
+            titleLabel.partColorChange(targetString: "\(reviewCount)", textColor: .gbbPoint1!) // 특정 문자열의 textColor를 변경
+            configureReviewSortButton()
         }
     }
-    
-    
 }
