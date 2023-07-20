@@ -207,6 +207,7 @@ extension HomeViewController {
             for item in data {
                 self.bakeryList.append(item.convertToBestBakery())
             }
+            self.setReloadData()
         }
         
         HomeAPI.shared.getBestReviews { response in
@@ -216,6 +217,7 @@ extension HomeViewController {
             for item in data {
                 self.reviewList.append(item.convertToBakeryReviews())
             }
+            self.setReloadData()
         }
     }
 }
