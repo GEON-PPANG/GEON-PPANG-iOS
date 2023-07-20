@@ -33,6 +33,7 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
         markStackView.getMarkStatus(false, false, false)
         markStackView.getIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
     }
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
@@ -56,9 +57,9 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
         
         bakeryImage.do {
             $0.contentMode = .scaleAspectFill
-            $0.backgroundColor = .gbbPoint1
             $0.clipsToBounds = true
         }
+        
         markStackView.do {
             $0.getIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
         }
@@ -90,11 +91,11 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
         
         markStackView.snp.makeConstraints {
             $0.top.leading.equalToSuperview().offset(10)
-            $0.size.equalTo(CGSize(width: 67, height: 28))
+            $0.size.equalTo(CGSize(width: 68, height: 28))
         }
         
         bakeryTitle.snp.makeConstraints {
-            $0.top.equalTo(bakeryImage.snp.bottom).offset(15)
+            $0.top.equalTo(bakeryImage.snp.bottom).offset(13)
             $0.leading.equalToSuperview().offset(16)
         }
         
@@ -115,8 +116,9 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     func updateUI(data: BestBakery) {
         let url = URL(string: data.bakeryPicture)
         bakeryImage.kf.setImage(with: url)
-        bakeryTitle.text = data.bakeryName
-        bakeryReview.text = "리뷰(\(data.reviewCount)) ⦁ 저장(\(data.bookMarkCount))"
+        bakeryTitle.setLineHeight(by: 1.08, with: data.bakeryName)
+        bakeryReview.setLineHeight(by: 1.09,
+                                   with: "리뷰(\(data.reviewCount)) ⦁ 저장(\(data.bookMarkCount))")
         markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)
         if data.secondNearStation == "" {
             regionStackView.removeSecondRegion()
