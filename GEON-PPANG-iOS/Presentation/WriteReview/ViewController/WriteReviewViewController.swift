@@ -47,7 +47,8 @@ final class WriteReviewViewController: BaseViewController {
     private let aboutReviewLabel = UILabel()
     
     private let backgroundView = BottomSheetAppearView()
-    private let bottomSheetView = WriteReviewBottomSheetView()
+    private let exitBottomSheetView = WriteReviewBottomSheetView()
+    private let confirmBottomSheetView = CommonBottomSheet()
     
     // MARK: - life cycle
     
@@ -239,7 +240,7 @@ final class WriteReviewViewController: BaseViewController {
             }, for: .touchUpInside)
         }
         
-        bottomSheetView.do {
+        exitBottomSheetView.do {
             $0.dismissClosure = {
                 self.backgroundView.dissmissFromSuperview()
             }
@@ -249,6 +250,14 @@ final class WriteReviewViewController: BaseViewController {
             }
             $0.addContinueButtonAction {
                 self.backgroundView.dissmissFromSuperview()
+            }
+        }
+        
+        confirmBottomSheetView.do {
+            $0.getEmojiType(.smile)
+            $0.getBottonSheetTitle(I18N.WriteReview.confirmSheetTitle)
+            $0.dismissClosure = {
+                self.navigationController?.popViewController(animated: true)
             }
         }
     }
@@ -278,13 +287,15 @@ final class WriteReviewViewController: BaseViewController {
         UIView.animate(withDuration: 0.2, animations: {
             self.bottomView.transform = .identity
             self.scrollView.transform = .identity
-        })
+        }) { _ in
+            self.backgroundView.appearBottomSheetView(subView: self.confirmBottomSheetView, CGFloat().heightConsideringBottomSafeArea(281))
+        }
         view.endEditing(true)
         dump(writeReviewData)
     }
     
     private func backButtonTapped() {
-        backgroundView.appearBottomSheetView(subView: bottomSheetView, CGFloat().heightConsideringBottomSafeArea(309))
+        backgroundView.appearBottomSheetView(subView: exitBottomSheetView, CGFloat().heightConsideringBottomSafeArea(309))
     }
     
     // MARK: - Custom Method
