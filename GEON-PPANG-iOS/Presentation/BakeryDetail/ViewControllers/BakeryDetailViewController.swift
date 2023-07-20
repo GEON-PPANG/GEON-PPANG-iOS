@@ -12,7 +12,8 @@ import Then
 
 final class BakeryDetailViewController: BaseViewController {
     
-    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    // MARK: - Property
+    
     private var overviewData: BakeryDetailResponseDTO = BakeryDetailResponseDTO(bakeryID: 0, bakeryName: "", bakeryPicture: "", isHACCP: false, isVegan: false, isNonGMO: false, firstNearStation: "", secondNearStation: "", isBookMarked: false, bookMarkCount: 0, reviewCount: 0, breadType: BreadResponseType(breadTypeID: 0, name: "", isGlutenFree: false, isVegan: false, isNutFree: false, isSugarFree: false), homepage: "", address: "", openingTime: "", closedDay: "", phoneNumber: "", menuList: [MenuList(menuID: 0, menuName: "", menuPrice: 0)]) {
         didSet {
             self.collectionView.reloadData()
@@ -24,6 +25,13 @@ final class BakeryDetailViewController: BaseViewController {
         }
     }
     
+    // MARK: - UI Property
+    
+    private let navigationBar = CustomNavigationBar()
+    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    
+    // MARK: - Life Cycle
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -31,12 +39,16 @@ final class BakeryDetailViewController: BaseViewController {
         getWrittenReviews(bakeryID: 1)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
+    // MARK: - Setting
     
     override func setUI() {
+        
+        navigationBar.do {
+            //            $0.addBackButtonAction()
+            $0.backgroundColor = .gbbWhite
+            $0.configureBottomLine()
+            $0.configureRightMapButton()
+        }
         
         collectionView.do {
             $0.registerCells(cells: [TitleCollectionViewCell.self,
@@ -53,7 +65,11 @@ final class BakeryDetailViewController: BaseViewController {
     
     override func setLayout() {
         
-        view.addSubview(collectionView)
+        view.addSubviews(collectionView, navigationBar)
+        
+        navigationBar.snp.makeConstraints {
+            $0.top.horizontalEdges.equalToSuperview()
+        }
         
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
@@ -67,7 +83,11 @@ final class BakeryDetailViewController: BaseViewController {
     }
 }
 
+// MARK: - UICollectionViewDelegate
+
 extension BakeryDetailViewController: UICollectionViewDelegate { }
+
+// MARK: - UICollectionViewDataSource
 
 extension BakeryDetailViewController: UICollectionViewDataSource {
     
@@ -82,6 +102,7 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
         case 2:
             return overviewData.menuList.count
         case 4:
+            // TODO: EmptyView 구현 시 사용
             //            if reviewData.data.reviewList.isEmpty {
             //                return 1
             //            }
@@ -178,6 +199,8 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
+
 extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -242,6 +265,8 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
         }
     }
 }
+
+// MARK: - API
 
 extension BakeryDetailViewController {
     
