@@ -139,6 +139,7 @@
 		3EDC05C22A5DED9D00EAD950 /* FilterIngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05C12A5DED9D00EAD950 /* FilterIngredientViewController.swift */; };
 		3EDC05C42A5DEE3600EAD950 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05C32A5DEE3600EAD950 /* FilterCollectionViewCell.swift */; };
 		3EDC05D02A5E4FF900EAD950 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05CF2A5E4FF900EAD950 /* String+.swift */; };
+		3EDDA8AC2A69149400E04ECB /* DetailBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDA8AB2A69149400E04ECB /* DetailBottomView.swift */; };
 		3EE343142A6440EB0010C187 /* UICollectionViewCell+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE343132A6440EB0010C187 /* UICollectionViewCell+.swift */; };
 		3EE343182A65396C0010C187 /* FilterCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE343172A65396C0010C187 /* FilterCompleteViewController.swift */; };
 		3EFA97862A5EBCA9002E70FA /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFA97852A5EBCA9002E70FA /* LineView.swift */; };
@@ -280,6 +281,7 @@
 		3EDC05C12A5DED9D00EAD950 /* FilterIngredientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterIngredientViewController.swift; sourceTree = "<group>"; };
 		3EDC05C32A5DEE3600EAD950 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		3EDC05CF2A5E4FF900EAD950 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		3EDDA8AB2A69149400E04ECB /* DetailBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBottomView.swift; sourceTree = "<group>"; };
 		3EE343132A6440EB0010C187 /* UICollectionViewCell+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+.swift"; sourceTree = "<group>"; };
 		3EE343172A65396C0010C187 /* FilterCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCompleteViewController.swift; sourceTree = "<group>"; };
 		3EFA97852A5EBCA9002E70FA /* LineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
@@ -962,6 +964,7 @@
 			children = (
 				3EFA97852A5EBCA9002E70FA /* LineView.swift */,
 				3E2EEF742A5C93010093BCA9 /* BottomView.swift */,
+				3EDDA8AB2A69149400E04ECB /* DetailBottomView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1372,6 +1375,7 @@
 				090556312A51DDD800752067 /* UITableView+.swift in Sources */,
 				3E16E4FE2A57F06D00B813D0 /* OptionsCollectionViewFlowLayout.swift in Sources */,
 				3E79B1B22A571E1F00D36A26 /* OptionsCollectionView.swift in Sources */,
+				3EDDA8AC2A69149400E04ECB /* DetailBottomView.swift in Sources */,
 				0959F17A2A658CD300E77CAF /* AuthAPI.swift in Sources */,
 				0959F18A2A658D0C00E77CAF /* FilterService.swift in Sources */,
 				3E79B1B52A571E7100D36A26 /* OptionsCollectionViewCell.swift in Sources */,
