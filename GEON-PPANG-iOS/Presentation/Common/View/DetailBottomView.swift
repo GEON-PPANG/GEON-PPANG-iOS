@@ -14,7 +14,13 @@ final class DetailBottomView: UIView {
     
     // MARK: - Property
     
-    private var isBookmarked: Bool = false
+    var isBookmarked: Bool = false {
+        didSet {
+            configureBookmarkButton(to: isBookmarked)
+        }
+    }
+    var tappedBookmarkButton: (() -> Void)?
+    var tappedWriteReviewButton: (() -> Void)?
     
     // MARK: - UI Property
     
@@ -77,12 +83,18 @@ final class DetailBottomView: UIView {
     
     private func setUI() {
         bookmarkButton.do {
-            
+            $0.setImage(.disabledBookmarkButton.resize(to: .init(width: 48, height: 48)), for: .normal)
+            $0.addAction(UIAction { _ in
+                self.tappedBookmarkButton?()
+            }, for: .touchUpInside)
         }
         
         writeReviewButton.do {
             $0.backgroundColor = .gbbPoint1
             $0.makeCornerRound(radius: 24)
+            $0.addAction(UIAction { _ in
+                self.tappedWriteReviewButton?()
+            }, for: .touchUpInside)
         }
         
         writeReviewButtonTitle.do {
@@ -100,16 +112,11 @@ final class DetailBottomView: UIView {
                                blur: 10)
     }
     
-    // MARK: - Action Helper
-    
-    
-    
     // MARK: - Custom Method
     
     func configureBookmarkButton(to isSelected: Bool) {
         bookmarkButton.do {
-            $0.backgroundColor = isSelected ? .gbbBackground2 : .gbbPoint2
-            
+            $0.setImage((isSelected ? UIImage.enabledBookmarkButton : UIImage.disabledBookmarkButton).resize(to: .init(width: 48, height: 48)), for: .normal)
         }
     }
     
