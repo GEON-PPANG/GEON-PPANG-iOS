@@ -11,7 +11,7 @@ import Moya
 
 enum BakeryService {
     case bakeryList(sort: String, isHard: Bool, isDessert: Bool, isBrunch: Bool)
-    case writeReview(bakeryID: Int, content: WriteReviewDTO)
+    case writeReview(bakeryID: Int, content: WriteReviewRequestDTO)
     case fetchBakeryDetail(bakeryID: Int)
     case fetchWrittenReviews(bakeryID: Int)
     case bookmark(bakeryID: Int, request: BookmarkRequestDTO)

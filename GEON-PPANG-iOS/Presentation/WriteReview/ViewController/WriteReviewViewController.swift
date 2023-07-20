@@ -486,7 +486,7 @@ extension WriteReviewViewController: UITextViewDelegate {
 // MARK: API
 
 extension WriteReviewViewController {
-    func requestWriteReview(_ content: WriteReviewDTO) {
+    func requestWriteReview(_ content: WriteReviewRequestDTO) {
         BakeryAPI.shared.postWriteReview(content: content) { response in
             guard let response = response else { return }
             guard let data = response.data else { return }

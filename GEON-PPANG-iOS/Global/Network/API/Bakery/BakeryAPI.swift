@@ -11,7 +11,7 @@ import Moya
 
 final class BakeryAPI {
     
-    typealias WriteReviewRequest = WriteReviewDTO
+    typealias WriteReviewRequest = WriteReviewRequestDTO
     typealias WriteReviewResponse = GeneralResponse<VoidType>
     typealias BookmarkResponse = GeneralResponse<BookmarkResponseDTO>
     
@@ -107,7 +107,7 @@ final class BakeryAPI {
     }
     
     func postBookmark(bakeryID: Int, with request: BookmarkRequestDTO, completion: @escaping (BookmarkResponse?) -> Void) {
-        bakeryListProvider.request(.bookmark(bakeryID: bakeryID, request: request)) { result in
+        bakeryProvider.request(.bookmark(bakeryID: bakeryID, request: request)) { result in
             switch result {
             case let .success(response):
                 do {
