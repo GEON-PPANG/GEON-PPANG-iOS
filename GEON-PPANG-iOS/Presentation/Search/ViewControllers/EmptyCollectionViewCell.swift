@@ -85,7 +85,7 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
     private func myReviewsLayout() {
         emptyIcon.snp.remakeConstraints {
             $0.size.equalTo(CGSize(width: 154, height: 132))
-            $0.center.equalToSuperview()
+            $0.centerX.equalToSuperview().offset(10)
             $0.centerY.equalToSuperview().offset(-35)
         }
         
@@ -98,13 +98,13 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
     private func myPageLayout() {
         emptyIcon.snp.remakeConstraints {
             $0.size.equalTo(CGSize(width: 154, height: 132))
-            $0.centerX.equalToSuperview().offset(24)
+            $0.centerX.equalToSuperview().offset(10)
             $0.centerY.equalToSuperview().offset(-35)
         }
         
         emptyLabel.snp.remakeConstraints {
             $0.top.equalTo(emptyIcon.snp.bottom).offset(20)
-            $0.centerX.equalToSuperview().offset(15)
+            $0.centerX.equalToSuperview().offset(5)
         }
     }
     
@@ -115,7 +115,6 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
         
         emptyLabel.do {
             $0.numberOfLines = 0
-            $0.textAlignment = .center
             $0.basic(font: .title2!, color: .gbbGray300!)
         }
     }
@@ -123,7 +122,8 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
     func getViewType(_ type: EmptyType) {
         emptyType = type
         emptyIcon.image = type.icon
-        emptyLabel.text = type.rawValue
+        emptyLabel.setLineHeight(by: 1.05, with: type.rawValue)
+        emptyLabel.textAlignment = .center
         
         switch type {
         case .initialize, .noBookmark, .noReview:
