@@ -13,6 +13,7 @@ final class BakeryAPI {
     
     typealias WriteReviewRequest = WriteReviewDTO
     typealias WriteReviewResponse = GeneralResponse<VoidType>
+    typealias BookmarkResponse = GeneralResponse<BookmarkResponseDTO>
     
     static let shared: BakeryAPI = BakeryAPI()
     
@@ -24,6 +25,7 @@ final class BakeryAPI {
     public private(set) var writeReview: WriteReviewResponse?
     public private(set) var bakeryDetail: GeneralResponse<BakeryDetailResponseDTO>?
     public private(set) var writtenReviews: GeneralResponse<WrittenReviewsResponseDTO>?
+    public private(set) var bookmark: BookmarkResponse?
     
     // MARK: - GET
     
@@ -94,6 +96,25 @@ final class BakeryAPI {
                     self.writtenReviews = try response.map(GeneralResponse<WrittenReviewsResponseDTO>.self)
                     guard let writtenReviews = self.writtenReviews else { return }
                     completion(writtenReviews)
+                } catch let err {
+                    print(err.localizedDescription, 500)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+                completion(nil)
+            }
+        }
+    }
+    
+    func postBookmark(bakeryID: Int, with request: BookmarkRequestDTO, completion: @escaping (BookmarkResponse?) -> Void) {
+        bakeryListProvider.request(.bookmark(bakeryID: bakeryID, request: request)) { result in
+            switch result {
+            case let .success(response):
+                do {
+                    self.bookmark = try response.map(BookmarkResponse.self)
+                    guard let bookmark = self.bookmark else { return }
+                    
+                    completion(bookmark)
                 } catch let err {
                     print(err.localizedDescription, 500)
                 }

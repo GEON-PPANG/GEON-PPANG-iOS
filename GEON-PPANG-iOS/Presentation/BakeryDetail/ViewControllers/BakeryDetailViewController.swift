@@ -24,19 +24,21 @@ final class BakeryDetailViewController: BaseViewController {
             self.collectionView.reloadData()
         }
     }
+    private var isBookmarked: Bool = false
     
     // MARK: - UI Property
     
     private let navigationBar = CustomNavigationBar()
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    private lazy var detailBottomView = DetailBottomView()
     
     // MARK: - Life Cycle
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        getBakeryDetail(bakeryID: 1)
-        getWrittenReviews(bakeryID: 1)
+        getBakeryDetail(bakeryID: 15)
+        getWrittenReviews(bakeryID: 15)
     }
     
     // MARK: - Setting
@@ -61,14 +63,30 @@ final class BakeryDetailViewController: BaseViewController {
             
             $0.backgroundColor = .gbbGray200
         }
+        
+        detailBottomView.do {
+            $0.backgroundColor = .gbbWhite
+            $0.tappedBookmarkButton = {
+                self.isBookmarked.toggle()
+                self.requestBakeryBookmark(self.isBookmarked)
+                self.detailBottomView.configureBookmarkButton(to: self.isBookmarked)
+            }
+            $0.tappedWriteReviewButton = {
+                Utils.push(self.navigationController, WriteReviewViewController(bakeryData: self.configureSimpleBakeryData()))
+            }
+        }
     }
     
     override func setLayout() {
         
-        view.addSubviews(collectionView, navigationBar)
+        view.addSubviews(collectionView, navigationBar, detailBottomView)
         
         navigationBar.snp.makeConstraints {
             $0.top.horizontalEdges.equalToSuperview()
+        }
+        
+        detailBottomView.snp.makeConstraints {
+            $0.horizontalEdges.bottom.equalToSuperview()
         }
         
         collectionView.snp.makeConstraints {
@@ -80,6 +98,18 @@ final class BakeryDetailViewController: BaseViewController {
         
         collectionView.delegate = self
         collectionView.dataSource = self
+    }
+    
+    // MARK: - Custom Method
+    
+    private func configureSimpleBakeryData() -> SimpleBakeryModel {
+        var bakeryData = SimpleBakeryModel.emptyModel()
+        bakeryData.bakeryID = overviewData.bakeryID
+        bakeryData.bakeryName = overviewData.bakeryName
+        bakeryData.bakeryImageURL = overviewData.bakeryPicture
+        bakeryData.bakeryIngredients = overviewData.breadType.configureTrueOptions().filter { $0.1 == true }.map { $0.0 }
+        bakeryData.bakeryRegion = [overviewData.firstNearStation, overviewData.secondNearStation]
+        return bakeryData
     }
 }
 
@@ -259,7 +289,8 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
             return UIEdgeInsets(top: 0, left: 0, bottom: 1, right: 0)
             //        case 2:
             //        case 3:
-            //        case 4:
+        case 4:
+            return UIEdgeInsets(top: 0, left: 0, bottom: CGFloat().heightConsideringBottomSafeArea(112), right: 0)
         default:
             return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
@@ -277,6 +308,9 @@ extension BakeryDetailViewController {
             guard let data = response.data else { return }
             
             self.overviewData = data
+            self.isBookmarked = data.isBookMarked
+            self.detailBottomView.configureBookmarkButton(to: data.isBookMarked)
+            dump(data)
         }
     }
     
@@ -287,6 +321,13 @@ extension BakeryDetailViewController {
             guard let data = response.data else { return }
             
             self.reviewData = data
+        }
+    }
+    
+    func requestBakeryBookmark(_ value: Bool) {
+        let bookmarkRequest = BookmarkRequestDTO(isAddingBookMark: value)
+        BakeryAPI.shared.postBookmark(bakeryID: 1, with: bookmarkRequest) { response in
+            dump(response)
         }
     }
 }

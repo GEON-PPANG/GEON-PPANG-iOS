@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Kingfisher
 import SnapKit
 import Then
 
@@ -17,7 +18,8 @@ final class WriteReviewViewController: BaseViewController {
     private let keywordList = KeywordDescriptionList.Keyword.allCases.map { $0.rawValue }
     private let keywordRequestList = KeywordDescriptionList.Request.allCases.map { $0.rawValue }
     
-    private var writeReviewData: WriteReviewDTO = .init(bakeryID: 1, isLike: false, keywordList: [], reviewText: "")
+    private var bakeryData: SimpleBakeryModel
+    private var writeReviewData: WriteReviewRequestDTO = .init(bakeryID: 0, isLike: false, keywordList: [], reviewText: "")
     
     // MARK: - UI Property
     
@@ -27,10 +29,12 @@ final class WriteReviewViewController: BaseViewController {
     private let bottomView = BottomView()
     private let nextButton = CommonButton()
     
-    private let bakeryOverviewView = BakeryOverviewView(bakeryImage: .actions,
-                                                        ingredients: ["넛프리", "비건빵", "글루텐프리"],
-                                                        firstRegion: "tset",
-                                                        secondRegion: "efqerqf")
+    private lazy var bakeryOverviewView = BakeryOverviewView(
+        bakeryImage: bakeryData.bakeryImageURL,
+        ingredients: bakeryData.bakeryIngredients,
+        firstRegion: bakeryData.bakeryRegion[0],
+        secondRegion: bakeryData.bakeryRegion[1]
+    )
     
     private let lineView = LineView()
     
@@ -51,6 +55,17 @@ final class WriteReviewViewController: BaseViewController {
     private let confirmBottomSheetView = CommonBottomSheet()
     
     // MARK: - life cycle
+    
+    init(bakeryData: SimpleBakeryModel) {
+        self.bakeryData = bakeryData
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -165,7 +180,7 @@ final class WriteReviewViewController: BaseViewController {
     override func setUI() {
         navigationBar.do {
             $0.backgroundColor = .white
-            $0.configureLeftTitle(to: "건대 초코빵")
+            $0.configureLeftTitle(to: bakeryData.bakeryName)
             $0.configureBottomLine()
             $0.addBackButtonAction(UIAction { [weak self] _ in
                 self?.backButtonTapped()
@@ -316,6 +331,10 @@ final class WriteReviewViewController: BaseViewController {
         else { return false }
         let isOverLimit = text.count + newText.count <= limit
         return isOverLimit
+    }
+    
+    func configureBakeryData() {
+        
     }
     
     // MARK: - objc

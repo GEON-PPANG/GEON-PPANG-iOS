@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Kingfisher
 import SnapKit
 import Then
 
@@ -25,7 +26,7 @@ final class BakeryOverviewView: UIView {
     
     // MARK: - Life Cycle
     
-    init(bakeryImage: UIImage, ingredients: [String], firstRegion: String, secondRegion: String) {
+    init(bakeryImage: String, ingredients: [String], firstRegion: String, secondRegion: String) {
         super.init(frame: .zero)
         
         setProperties(bakeryImage, ingredients, firstRegion, secondRegion)
@@ -41,8 +42,9 @@ final class BakeryOverviewView: UIView {
     
     // MARK: - Setting
     
-    private func setProperties(_ bakeryImage: UIImage, _ ingredients: [String], _ firstRegion: String, _ secondRegion: String) {
-        self.bakeryImageView.image = bakeryImage
+    private func setProperties(_ bakeryImage: String, _ ingredients: [String], _ firstRegion: String, _ secondRegion: String) {
+        let url = URL(string: bakeryImage)
+        self.bakeryImageView.kf.setImage(with: url)
         self.ingredientsData = ingredients
         if secondRegion == "" {
             regionStackView.removeSecondRegion()
