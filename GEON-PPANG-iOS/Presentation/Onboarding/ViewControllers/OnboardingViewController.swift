@@ -41,6 +41,9 @@ final class OnboardingViewController: BaseViewController {
         signupButton.do {
             $0.getButtonTitle(.signIn)
             $0.getButtonUI(.gbbWhite!, .gbbGray300)
+            $0.addAction {
+                Utils.push(self.navigationController, EmailViewController())
+            }
         }
         
         latelySigninLabel.do {
