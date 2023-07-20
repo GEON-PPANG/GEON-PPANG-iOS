@@ -145,7 +145,7 @@ final class PasswordViewController: BaseViewController {
             $0.getType(.checkPassword)
             
             $0.textFieldData = { [weak self] data in
-                if self?.password == data {
+                if self?.password == data && data.count > 7 {
                     self?.checkPasswordTextField.clearErrorMessage(true)
                     self?.isValid = true
                 } else {
