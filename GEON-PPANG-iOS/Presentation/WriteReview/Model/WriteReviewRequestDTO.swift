@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WriteReviewDTO: Codable {
+struct WriteReviewRequestDTO: Codable {
     let bakeryID: Int
     var isLike: Bool
     var keywordList: [String]
