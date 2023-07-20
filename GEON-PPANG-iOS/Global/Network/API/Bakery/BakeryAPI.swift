@@ -19,6 +19,7 @@ final class BakeryAPI {
     
     public private(set) var bakeryList: GeneralArrayResponse<BakeryListResponseDTO>?
     public private(set) var bakeryDetail: GeneralResponse<BakeryDetailResponseDTO>?
+    public private(set) var writtenRiviews: GeneralResponse<WrittenReviewsResponseDTO>?
     
     // MARK: - GET
     
@@ -48,6 +49,24 @@ final class BakeryAPI {
                     self.bakeryDetail = try response.map(GeneralResponse<BakeryDetailResponseDTO>.self)
                     guard let bakeryDetail = self.bakeryDetail else { return }
                     completion(bakeryDetail)
+                } catch let err {
+                    print(err.localizedDescription, 500)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+                completion(nil)
+            }
+        }
+    }
+    
+    func getWrittenReviews(bakeryID: Int, completion: @escaping (GeneralResponse<WrittenReviewsResponseDTO>?) -> Void) {
+        bakeryListProvider.request(.fetchWrittenReviews(bakeryID: bakeryID)) { result in
+            switch result {
+            case let .success(response):
+                do {
+                    self.writtenRiviews = try response.map(GeneralResponse<WrittenReviewsResponseDTO>.self)
+                    guard let writtenRiviews = self.writtenRiviews else { return }
+                    completion(writtenRiviews)
                 } catch let err {
                     print(err.localizedDescription, 500)
                 }
