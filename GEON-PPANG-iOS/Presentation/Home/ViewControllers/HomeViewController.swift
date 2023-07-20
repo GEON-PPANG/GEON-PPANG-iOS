@@ -41,6 +41,7 @@ final class HomeViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         requestHomeBestData()
     }
     
@@ -150,18 +151,6 @@ final class HomeViewController: BaseViewController {
         }
     }
     
-    private func updateBestBakeryData(_ bakery: [BestBakery]) {
-        guard var snapshot = dataSource?.snapshot() else { return }
-        snapshot.appendItems(bakery, toSection: .bakery)
-        dataSource?.apply(snapshot)
-    }
-    
-    private func updateReviewsData(_ reviews: [BestReviews]) {
-        guard var snapshot = dataSource?.snapshot() else { return }
-        snapshot.appendItems(reviews, toSection: .review)
-        dataSource?.apply(snapshot)
-    }
-    
     func layout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { (sectionIndex, _) -> NSCollectionLayoutSection? in
             let section = Sections(rawValue: sectionIndex)!
@@ -207,24 +196,26 @@ final class HomeViewController: BaseViewController {
 extension HomeViewController: UICollectionViewDelegate {
 }
 
+// MARK: - API
+
 extension HomeViewController {
     private func requestHomeBestData() {
         HomeAPI.shared.getBestBakery { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
+            self.bakeryList = []
             for item in data {
                 self.bakeryList.append(item.convertToBestBakery())
             }
-            self.updateBestBakeryData(self.bakeryList)
         }
         
         HomeAPI.shared.getBestReviews { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
+            self.reviewList = []
             for item in data {
                 self.reviewList.append(item.convertToBakeryReviews())
             }
-            self.updateReviewsData(self.reviewList)
         }
     }
 }
