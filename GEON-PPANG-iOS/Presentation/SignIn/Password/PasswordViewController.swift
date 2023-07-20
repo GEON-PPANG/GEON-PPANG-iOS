@@ -227,8 +227,7 @@ extension PasswordViewController {
     @objc
     func keyboardWillHide(notification: NSNotification) {
         guard let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else { return }
-        
-        
+                
         UIView.animate(withDuration: duration, animations: {
             self.bottomView.snp.updateConstraints {
                 $0.bottom.equalToSuperview().inset(19)

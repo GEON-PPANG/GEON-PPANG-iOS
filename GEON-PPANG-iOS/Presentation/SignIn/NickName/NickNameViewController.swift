@@ -91,6 +91,7 @@ final class NickNameViewController: BaseViewController {
                 self?.isValid = valid
             }
             $0.duplicatedCheck = { [weak self] nickname in
+                guard let self else { return }
                 UserDefaults.standard.setValue(nickname, forKey: "nickname")
             }
         }
