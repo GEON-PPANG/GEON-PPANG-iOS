@@ -13,6 +13,23 @@ import Then
 final class BakeryDetailViewController: BaseViewController {
     
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    private var overviewData: BakeryDetailResponseDTO = BakeryDetailResponseDTO(bakeryID: 0, bakeryName: "", bakeryPicture: "", isHACCP: false, isVegan: false, isNonGMO: false, firstNearStation: "", secondNearStation: "", isBookMarked: false, bookMarkCount: 0, reviewCount: 0, breadType: BreadResponseType(breadTypeID: 0, name: "", isGlutenFree: false, isVegan: false, isNutFree: false, isSugarFree: false), homepage: "", address: "", openingTime: "", closedDay: "", phoneNumber: "", menuList: [MenuList(menuID: 0, menuName: "", menuPrice: 0)]) {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
+    private var reviewData: WrittenReviewsResponseDTO = WrittenReviewsResponseDTO(tastePercent: 0, specialPercent: 0, kindPercent: 0, zeroPercent: 0, totalReviewCount: 0, reviewList: [ReviewList(reviewID: 0, recommendKeywordList: [RecommendKeywordList(recommendKeywordID: 0, recommendKeywordName: "")], reviewText: "", memberNickname: "", createdAt: "")]) {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        getBakeryDetail(bakeryID: 1)
+        getWrittenReviews(bakeryID: 1)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,9 +80,12 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
         
         switch section {
         case 2:
-            return 3 // 예시
+            return overviewData.menuList.count
         case 4:
-            return 4 // 예시
+            //            if reviewData.data.reviewList.isEmpty {
+            //                return 1
+            //            }
+            return reviewData.reviewList.count
         default:
             return 1
         }
@@ -77,21 +97,45 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
         case 0:
             let cell: TitleCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             
+            DispatchQueue.main.async {
+                cell.updateUI(self.overviewData)
+            }
+            
             return cell
         case 1:
             let cell: InfoCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+            
+            DispatchQueue.main.async {
+                cell.updateUI(self.overviewData)
+            }
             
             return cell
         case 2:
             let cell: MenuCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             
+            let menu = overviewData.menuList[indexPath.item]
+            
+            DispatchQueue.main.async {
+                cell.updateUI(menu)
+            }
+            
             return cell
         case 3:
             let cell: ReviewCategoryCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             
+            DispatchQueue.main.async {
+                cell.updateUI(self.reviewData)
+            }
+            
             return cell
         case 4:
             let cell: WrittenReviewsCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+            
+            let review = reviewData.reviewList[indexPath.item]
+            
+            DispatchQueue.main.async {
+                cell.updateUI(review)
+            }
             
             return cell
         default:
@@ -140,13 +184,16 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
         
         switch indexPath.section {
         case 0:
+            if !overviewData.isHACCP && !overviewData.isVegan && !overviewData.isNonGMO {
+                return CGSize(width: getDeviceWidth(), height: 399)
+            }
             return CGSize(width: getDeviceWidth(), height: 443)
         case 1:
             return CGSize(width: getDeviceWidth(), height: 235)
         case 2:
-            return CGSize(width: getDeviceWidth() - 48, height: 20)
+            return CGSize(width: getDeviceWidth(), height: 20)
         case 3:
-            return CGSize(width: getDeviceWidth() - 48, height: 134)
+            return CGSize(width: getDeviceWidth(), height: 134)
         case 4:
             return CGSize(width: getDeviceWidth() - 48, height: 173)
         default:
@@ -170,18 +217,51 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        
+        switch section {
+        case 2:
+            return CGSize(width: collectionView.frame.width, height: 108)
+        default:
+            return CGSize()
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-
+        
         switch section {
         case 0:
             return UIEdgeInsets(top: 0, left: 0, bottom: 1, right: 0)
         case 1:
             return UIEdgeInsets(top: 0, left: 0, bottom: 1, right: 0)
-//        case 2:
-//        case 3:
-//        case 4:
+            //        case 2:
+            //        case 3:
+            //        case 4:
         default:
             return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }
+    }
+}
+
+extension BakeryDetailViewController {
+    
+    func getBakeryDetail(bakeryID: Int) {
+        BakeryAPI.shared.getBakeryDetail(bakeryID: bakeryID) { response in
+            
+            guard let response = response else { return }
+            guard let data = response.data else { return }
+            
+            self.overviewData = data
+        }
+    }
+    
+    func getWrittenReviews(bakeryID: Int) {
+        BakeryAPI.shared.getWrittenReviews(bakeryID: bakeryID) { response in
+            
+            guard let response = response else { return }
+            guard let data = response.data else { return }
+            
+            self.reviewData = data
         }
     }
 }

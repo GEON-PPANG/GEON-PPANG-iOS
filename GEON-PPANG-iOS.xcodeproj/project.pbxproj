@@ -168,6 +168,7 @@
 		DFDE72DD2A668FFE00389A51 /* ReviewCategoryStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDE72DC2A668FFE00389A51 /* ReviewCategoryStackView.swift */; };
 		DFECBB082A690DBB007F054B /* BakeryDetailResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFECBB072A690DBB007F054B /* BakeryDetailResponseDTO.swift */; };
 		DFECBB0A2A691B9B007F054B /* WrittenReviewsResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFECBB092A691B9B007F054B /* WrittenReviewsResponseDTO.swift */; };
+		DFF196342A697EF8005D8233 /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF196332A697EF8005D8233 /* Int+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -328,6 +329,7 @@
 		DFDE72DC2A668FFE00389A51 /* ReviewCategoryStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCategoryStackView.swift; sourceTree = "<group>"; };
 		DFECBB072A690DBB007F054B /* BakeryDetailResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryDetailResponseDTO.swift; sourceTree = "<group>"; };
 		DFECBB092A691B9B007F054B /* WrittenReviewsResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrittenReviewsResponseDTO.swift; sourceTree = "<group>"; };
+		DFF196332A697EF8005D8233 /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -376,6 +378,7 @@
 				3EDC05CF2A5E4FF900EAD950 /* String+.swift */,
 				3EE343132A6440EB0010C187 /* UICollectionViewCell+.swift */,
 				DF483ACF2A65D03A00FCD507 /* UIButton+.swift */,
+				DFF196332A697EF8005D8233 /* Int+.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1426,6 +1429,7 @@
 				3EE343142A6440EB0010C187 /* UICollectionViewCell+.swift in Sources */,
 				3EDC05C22A5DED9D00EAD950 /* FilterIngredientViewController.swift in Sources */,
 				09C6264E2A5B29F8002C8110 /* SearchEnum.swift in Sources */,
+				DFF196342A697EF8005D8233 /* Int+.swift in Sources */,
 				0959F17C2A658CDA00E77CAF /* FilterAPI.swift in Sources */,
 				0915C16A2A5BFC5900ACB8D4 /* HomeBottomCollectionViewCell.swift in Sources */,
 				09CA3F082A569EBA0063897A /* Service.swift in Sources */,
