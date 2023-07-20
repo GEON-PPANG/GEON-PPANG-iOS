@@ -15,7 +15,7 @@ final class FilterPurposeViewController: BaseViewController {
     // MARK: - Property
     
     private var maxSteps: Int = 0
-    private var userName: String = "Id"
+    private var userName =  UserDefaults.standard.string(forKey: "nickname") ?? ""
     
     private var filterType: FilterType = .purpose
     
@@ -49,6 +49,7 @@ final class FilterPurposeViewController: BaseViewController {
         super.viewDidLoad()
         
         setNextButtonAction()
+        print("3 - ", UserDefaults.standard.string(forKey: "nickname") ?? "")
     }
     
     // MARK: - Setting
@@ -136,6 +137,7 @@ final class FilterPurposeViewController: BaseViewController {
     
     private func popFilterViewController() -> UIAction {
         let action = UIAction { [weak self] _ in
+            print(UserDefaults.standard.string(forKey: "nickname") ?? "")
             FilterRequestDTO.sharedData.mainPurpose = ""
             self?.navigationController?.popViewController(animated: true)
         }

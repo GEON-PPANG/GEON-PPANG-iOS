@@ -14,8 +14,9 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
     
     // MARK: - Prperty
     
+    private var username =  UserDefaults.standard.string(forKey: "nickname") ?? ""
     private var myPageData = MyPageResponseDTO.dummyData()
-    private lazy var username = myPageData.memberNickname
+//    private lazy var username = myPageData.memberNickname
     private lazy var myPageTagData = myPageData.breadType.configureTrueOptions()
     var nextButtonTapped: (() -> Void)?
     var savedBakeryTapped: (() -> Void)?
@@ -57,7 +58,7 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-//        Utils.updateCollectionViewConstraint(of: filterCollectionView, byOffset: 1)
+        Utils.updateCollectionViewConstraint(of: filterCollectionView, byOffset: 1)
     }
     
     // MARK: - Setting
@@ -65,7 +66,7 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
     private func setLayout() {
         addSubview(mainTitleLabel)
         mainTitleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(CGFloat().heightConsideringNotch(44))
+            $0.top.equalToSuperview().inset(44)
             $0.leading.equalToSuperview().inset(24)
         }
         
@@ -220,7 +221,7 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
     func configureMemberData(to memberData: MyPageResponseDTO) {
         self.myPageData = memberData
         self.purposeFilterChipView.configureChip(toTag: convertFromData(myPageData.mainPurpose))
-        self.userNameLabel.text = memberData.memberNickname
+        self.userNameLabel.text = username
         self.myPageTagData = memberData.breadType.configureTrueOptions()
         
         filterCollectionView.reloadData()

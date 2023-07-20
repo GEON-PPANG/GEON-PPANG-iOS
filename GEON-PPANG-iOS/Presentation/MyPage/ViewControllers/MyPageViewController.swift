@@ -18,8 +18,8 @@ final class MyPageViewController: BaseViewController {
         didSet {
             myPageCollectionView.reloadData()
         }
-        
     }
+    private var nickname =  UserDefaults.standard.string(forKey: "nickname") ?? ""
     
     // MARK: - UI Property
     
@@ -124,7 +124,7 @@ extension MyPageViewController: UICollectionViewDataSource {
             let header: MyPageCollectionViewHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
             header.configureMemberData(to: memberData)
             header.nextButtonTapped = {
-                Utils.push(self.navigationController, FilterPurposeViewController(maxSteps: 3, username: self.memberData.memberNickname))
+                Utils.push(self.navigationController, FilterPurposeViewController(maxSteps: 3, username: self.nickname))
             }
             header.myReviewsTapped = {
                 Utils.push(self.navigationController, MyReviewsViewController())
@@ -193,7 +193,7 @@ extension MyPageViewController {
             guard let response = response else { return }
             guard let data = response.data else { return }
             self.memberData = data
-//            self.myPageCollectionView.reloadData()
+            self.myPageCollectionView.reloadData()
         }
     }
 }
