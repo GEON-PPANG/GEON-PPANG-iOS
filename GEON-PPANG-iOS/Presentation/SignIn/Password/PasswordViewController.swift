@@ -42,8 +42,14 @@ final class PasswordViewController: BaseViewController {
         super.viewDidLoad()
         
         setNavigationBarHidden()
-        setKeyboardHideGesture()
+        
         setKeyboardNotificationCenterOnScrollView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        dismissKeyboardWhenTappedAround()
     }
     
     // MARK: - Setting
@@ -60,33 +66,38 @@ final class PasswordViewController: BaseViewController {
         }
         
         scrollView.snp.makeConstraints {
-            $0.edges.equalTo(safeArea)
+            $0.top.equalTo(naviView.snp.bottom)
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalTo(bottomView.snp.top)
         }
-        
+
         contentView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-            $0.size.equalToSuperview()
+            $0.edges.equalTo(scrollView.contentLayoutGuide)
+            $0.height.equalTo(scrollView.frameLayoutGuide).priority(.low)
+            $0.width.equalTo(scrollView.frameLayoutGuide)
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(68)
-            $0.leading.equalToSuperview().offset(24)
+            $0.top.equalToSuperview()
+            $0.leading.equalTo(safeArea).offset(24)
         }
         
         passwordTextField.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(40)
-            $0.directionalHorizontalEdges.equalToSuperview().inset(24)
+            $0.directionalHorizontalEdges.equalTo(safeArea).inset(24)
             $0.height.equalTo(74)
         }
         
         checkPasswordTextField.snp.makeConstraints {
             $0.top.equalTo(passwordTextField.snp.bottom).offset(36)
-            $0.directionalHorizontalEdges.equalToSuperview().inset(24)
+            $0.directionalHorizontalEdges.equalTo(safeArea).inset(24)
             $0.height.equalTo(74)
+            $0.bottom.equalToSuperview().inset(20)
         }
         
         bottomView.snp.makeConstraints {
-            $0.bottom.directionalHorizontalEdges.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalToSuperview()
             $0.height.equalTo(92)
         }
         
@@ -172,25 +183,45 @@ final class PasswordViewController: BaseViewController {
     
     private func setKeyboardNotificationCenterOnScrollView() {
         NotificationCenter.default.addObserver(self, selector: #selector(moveUpAboutKeyboardOnScrollView), name: UIResponder.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(moveDownAboutKeyboardOnScrollView), name: UIResponder.keyboardWillHideNotification, object: nil)
 
     }
+    
     
     @objc
     func moveUpAboutKeyboardOnScrollView(_ notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            
+            self.keyboardHeight = keyboardSize.height
+            bottomView.snp.remakeConstraints {
+                $0.bottom.equalToSuperview().inset(keyboardHeight)
+                $0.horizontalEdges.equalToSuperview()
+                $0.height.equalTo(92)
+            }
+            
             UIView.animate(withDuration: 0.2, animations: {
-                self.keyboardHeight = keyboardSize.height
-                self.scrollView.transform = CGAffineTransform(translationX: 0, y: -50)
-                self.bottomView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height)
+                self.view.layoutIfNeeded()
             })
         }
     }
-//    @objc
-//    func moveDownAboutKeyboardOnScrollView(_ notification: NSNotification) {
-//        UIView.animate(withDuration: 0.2, animations: {
-//            self.scrollView.transform = .identity
-//            self.bottomView.transform = .identity
-//        })
-//    }
+    
+    func dismissKeyboardWhenTappedAround() {
+       let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                                action: #selector(updateBottomView))
+       tap.cancelsTouchesInView = true
+       self.view.addGestureRecognizer(tap)
+    }
+    
+    @objc
+    func updateBottomView() {
+        view.endEditing(true)
+        bottomView.snp.remakeConstraints {
+            $0.bottom.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(92)
+        }
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            self.view.layoutIfNeeded()
+        })
+    }
 }
