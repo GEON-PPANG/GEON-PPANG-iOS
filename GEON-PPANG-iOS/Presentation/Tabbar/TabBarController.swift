@@ -52,6 +52,7 @@ final class TabBarController: UITabBarController {
     }
     
     private func setTabBarUI() {
+        tabBar.tintColor = .gbbMain3
         tabBar.layer.applyShadow()
         tabBar.layer.cornerRadius = convertByHeightRatio(12)
         tabBar.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner)
