@@ -288,6 +288,7 @@ final class WriteReviewViewController: BaseViewController {
             self.bottomView.transform = .identity
             self.scrollView.transform = .identity
         }) { _ in
+            self.backgroundView.dimmedView.isUserInteractionEnabled = false
             self.backgroundView.appearBottomSheetView(subView: self.confirmBottomSheetView, CGFloat().heightConsideringBottomSafeArea(281))
         }
         view.endEditing(true)
