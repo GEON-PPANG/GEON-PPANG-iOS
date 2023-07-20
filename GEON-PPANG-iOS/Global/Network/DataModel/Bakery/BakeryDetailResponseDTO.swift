@@ -15,16 +15,16 @@ struct BakeryDetailResponseDTO: Codable {
     let bakeryPicture: String
     let isHACCP, isVegan, isNonGMO: Bool
     let firstNearStation, secondNearStation: String
-    let isBooked: Bool
+    let isBookMarked: Bool
     let bookMarkCount, reviewCount: Int
-    let breadType: BreadType
+    let breadType: BreadResponseType
     let homepage: String
     let address, openingTime, closedDay, phoneNumber: String
     let menuList: [MenuList]
 
     enum CodingKeys: String, CodingKey {
         case bakeryID = "bakeryId"
-        case bakeryName, bakeryPicture, isHACCP, isVegan, isNonGMO, firstNearStation, secondNearStation, isBooked, bookMarkCount, reviewCount, breadType, homepage, address, openingTime, closedDay, phoneNumber, menuList
+        case bakeryName, bakeryPicture, isHACCP, isVegan, isNonGMO, firstNearStation, secondNearStation, isBookMarked, bookMarkCount, reviewCount, breadType, homepage, address, openingTime, closedDay, phoneNumber, menuList
     }
 }
 

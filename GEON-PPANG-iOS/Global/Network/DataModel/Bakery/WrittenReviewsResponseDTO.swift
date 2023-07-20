@@ -7,15 +7,11 @@
 
 import Foundation
 
+import UIKit
+
 // MARK: - WrittenReviewsResponseDTO
 struct WrittenReviewsResponseDTO: Codable {
-    let data: DataClass
-}
-
-// MARK: - DataClass
-struct DataClass: Codable {
-    let tastePercent, specialPercent, kindPercent: Int
-    let zeroPercent: Double
+    let tastePercent, specialPercent, kindPercent, zeroPercent: Float
     let totalReviewCount: Int
     let reviewList: [ReviewList]
 }

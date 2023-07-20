@@ -19,7 +19,7 @@ final class BakeryAPI {
     
     public private(set) var bakeryList: GeneralArrayResponse<BakeryListResponseDTO>?
     public private(set) var bakeryDetail: GeneralResponse<BakeryDetailResponseDTO>?
-    public private(set) var writtenRiviews: GeneralResponse<WrittenReviewsResponseDTO>?
+    public private(set) var writtenReviews: GeneralResponse<WrittenReviewsResponseDTO>?
     
     // MARK: - GET
     
@@ -64,9 +64,9 @@ final class BakeryAPI {
             switch result {
             case let .success(response):
                 do {
-                    self.writtenRiviews = try response.map(GeneralResponse<WrittenReviewsResponseDTO>.self)
-                    guard let writtenRiviews = self.writtenRiviews else { return }
-                    completion(writtenRiviews)
+                    self.writtenReviews = try response.map(GeneralResponse<WrittenReviewsResponseDTO>.self)
+                    guard let writtenReviews = self.writtenReviews else { return }
+                    completion(writtenReviews)
                 } catch let err {
                     print(err.localizedDescription, 500)
                 }
