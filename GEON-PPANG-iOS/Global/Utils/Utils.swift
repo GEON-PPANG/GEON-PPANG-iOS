@@ -34,4 +34,13 @@ final class Utils {
         let size = collectionView.collectionViewLayout.collectionViewContentSize
         return size
     }
+    
+    class func getHeight(_ list: [String]) -> CGFloat {
+        var width: CGFloat = 0
+        list.forEach {
+            width += $0.size(withAttributes: [NSAttributedString.Key.font: UIFont.pretendardMedium(13)]).width + 4 + 12
+        }
+        width -= 4
+        return width < (UIScreen.main.bounds.width - 152) ? 25 : 56
+    }
 }
