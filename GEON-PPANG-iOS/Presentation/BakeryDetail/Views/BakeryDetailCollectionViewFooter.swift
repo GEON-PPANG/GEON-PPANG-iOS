@@ -48,6 +48,8 @@ final class BakeryDetailCollectionViewFooter: UICollectionReusableView {
     
     private func setLayout() {
         
+        self.addSubview(label)
+        
         label.snp.makeConstraints {
             $0.directionalVerticalEdges.equalToSuperview().inset(18)
             $0.directionalHorizontalEdges.equalToSuperview().inset(21)
