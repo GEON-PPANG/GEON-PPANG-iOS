@@ -14,10 +14,8 @@ final class InfoCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI Property
     
-    //    private let bakeryDetailInfoLabel = UILabel()
-    //    private let ingredientNoticeLabel = UILabel()
     private let homepageLinkImage = UIImageView()
-    private let homepageLinkButton = UIButton() // 서버
+    private let homepageLinkButton = UIButton()
     private let bakeryAddressImage = UIImageView()
     private lazy var bakeryAddressLabel = UILabel() // 서버
     private lazy var addressCopyButton = UIButton() // 서버
@@ -52,13 +50,13 @@ final class InfoCollectionViewCell: UICollectionViewCell {
             $0.image = .linkIcon
         }
         
+        // TODO: 클릭 시 사파리로 이동 (API 통신 필요)
         homepageLinkButton.do {
             $0.setTitle("홈페이지로 이동", for: .normal)
             $0.setTitleColor(.gbbGray400, for: .normal)
             $0.setUnderline()
             $0.titleLabel?.font = .subHead
             $0.titleLabel?.adjustsFontSizeToFitWidth = true
-
         }
         
         bakeryAddressImage.do {
@@ -66,7 +64,7 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         }
         
         bakeryAddressLabel.do {
-            $0.basic(text: "서울특별시 서대문구 남가좌동 152-44", font: .subHead!, color: .gbbGray400!)
+            $0.basic(font: .subHead!, color: .gbbGray400!)
             $0.adjustsFontSizeToFitWidth = true
         }
         
@@ -83,11 +81,11 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         }
         
         bakeryClosedDaysLabel.do {
-            $0.basic(text: "월,화 휴무", font: .subHead!, color: .gbbError!)
+            $0.basic(font: .subHead!, color: .gbbError!)
         }
         
         bakeryOpeningHoursLabel.do {
-            $0.basic(text: "수-금: 12:00 ~ 19:00 / 토-일 13:00 ~ 19:00", font: .subHead!, color: .gbbGray400!)
+            $0.basic(font: .subHead!, color: .gbbGray400!)
             $0.adjustsFontSizeToFitWidth = true
         }
         
@@ -96,7 +94,7 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         }
         
         bakeryPhoneNumberLabel.do {
-            $0.basic(text: "02-033-3333", font: .subHead!, color: .gbbGray400!)
+            $0.basic(font: .subHead!, color: .gbbGray400!)
         }
     }
     
@@ -176,5 +174,14 @@ final class InfoCollectionViewCell: UICollectionViewCell {
             $0.width.equalTo(162)
             $0.height.equalTo(20)
         }
+    }
+    
+    func updateUI(_ data: BakeryDetailResponseDTO) {
+        
+        bakeryAddressLabel.text = data.address
+        // TODO: 지하철역 API 통신
+        bakeryClosedDaysLabel.text = data.closedDay
+        bakeryOpeningHoursLabel.text = data.openingTime
+        bakeryPhoneNumberLabel.text = data.phoneNumber
     }
 }
