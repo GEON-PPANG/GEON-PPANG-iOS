@@ -21,8 +21,8 @@ final class SearchAPI {
     
     // MARK: - GET
     
-    func searchBakeryList(bakeryID: String, completion: @escaping (GeneralResponse<SearchResponseDTO>?) -> Void) {
-        searchProvider.request(.searchBakery(bakeryID: bakeryID)) { result in
+    func searchBakeryList(bakeryName: String, completion: @escaping (GeneralResponse<SearchResponseDTO>?) -> Void) {
+        searchProvider.request(.searchBakery(bakeryName: bakeryName)) { result in
             switch result {
             case let .success(response):
                 do {

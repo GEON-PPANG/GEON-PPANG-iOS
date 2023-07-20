@@ -38,11 +38,11 @@ final class HomeHeaderView: UICollectionReusableView {
         }
     }
     
-    func setctionHeaderTitle(_ section: String) {
+    func getSectionHeaderTitle(_ section: String) {
         let attributedString = NSMutableAttributedString(
             string: section,
             attributes: [
-                .font: UIFont.pretendardBold(20),
+                .font: UIFont.title2!,
                 .foregroundColor: UIColor.gbbGray700!
             ]
         )
