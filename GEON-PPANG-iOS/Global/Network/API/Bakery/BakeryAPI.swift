@@ -69,7 +69,7 @@ final class BakeryAPI {
     }
     
     func getBakeryDetail(bakeryID: Int, completion: @escaping (GeneralResponse<BakeryDetailResponseDTO>?) -> Void) {
-        bakeryListProvider.request(.fetchBakeryDetail(bakeryID: bakeryID)) { result in
+        bakeryProvider.request(.fetchBakeryDetail(bakeryID: bakeryID)) { result in
             switch result {
             case let .success(response):
                 do {
@@ -87,7 +87,7 @@ final class BakeryAPI {
     }
     
     func getWrittenReviews(bakeryID: Int, completion: @escaping (GeneralResponse<WrittenReviewsResponseDTO>?) -> Void) {
-        bakeryListProvider.request(.fetchWrittenReviews(bakeryID: bakeryID)) { result in
+        bakeryProvider.request(.fetchWrittenReviews(bakeryID: bakeryID)) { result in
             switch result {
             case let .success(response):
                 do {
