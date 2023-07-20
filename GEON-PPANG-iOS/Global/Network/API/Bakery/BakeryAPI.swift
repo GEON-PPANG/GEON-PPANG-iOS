@@ -11,6 +11,8 @@ import Moya
 
 final class BakeryAPI {
     
+    typealias BookmarkResponse = GeneralResponse<BookmarkResponseDTO>
+    
     static let shared: BakeryAPI = BakeryAPI()
     
     private init() { }
@@ -20,6 +22,7 @@ final class BakeryAPI {
     public private(set) var bakeryList: GeneralArrayResponse<BakeryListResponseDTO>?
     public private(set) var bakeryDetail: GeneralResponse<BakeryDetailResponseDTO>?
     public private(set) var writtenRiviews: GeneralResponse<WrittenReviewsResponseDTO>?
+    public private(set) var bookmark: BookmarkResponse?
     
     // MARK: - GET
     
@@ -67,6 +70,25 @@ final class BakeryAPI {
                     self.writtenRiviews = try response.map(GeneralResponse<WrittenReviewsResponseDTO>.self)
                     guard let writtenRiviews = self.writtenRiviews else { return }
                     completion(writtenRiviews)
+                } catch let err {
+                    print(err.localizedDescription, 500)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+                completion(nil)
+            }
+        }
+    }
+    
+    func postBookmark(bakeryID: Int, with request: BookmarkRequestDTO, completion: @escaping (BookmarkResponse?) -> Void) {
+        bakeryListProvider.request(.bookmark(bakeryID: bakeryID, request: request)) { result in
+            switch result {
+            case let .success(response):
+                do {
+                    self.bookmark = try response.map(BookmarkResponse.self)
+                    guard let bookmark = self.bookmark else { return }
+                    
+                    completion(bookmark)
                 } catch let err {
                     print(err.localizedDescription, 500)
                 }

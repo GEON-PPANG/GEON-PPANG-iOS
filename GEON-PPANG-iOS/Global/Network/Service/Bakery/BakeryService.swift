@@ -13,6 +13,7 @@ enum BakeryService {
     case bakeryList(sort: String, isHard: Bool, isDessert: Bool, isBrunch: Bool)
     case fetchBakeryDetail(bakeryID: Int)
     case fetchWrittenReviews(bakeryID: Int)
+    case bookmark(bakeryID: Int, request: BookmarkRequestDTO)
 }
 
 extension BakeryService: TargetType {
@@ -28,6 +29,8 @@ extension BakeryService: TargetType {
             return URLConstant.bakeryList + "/\(bakeryID)"
         case .fetchWrittenReviews(bakeryID: let bakeryID):
             return URLConstant.bakeryList + "/\(bakeryID)" + "/reviews"
+        case .bookmark(bakeryID: let bakeryID, _):
+            return URLConstant.bookmark + "/\(bakeryID)"
         }
     }
     
@@ -39,6 +42,8 @@ extension BakeryService: TargetType {
             return .get
         case .fetchWrittenReviews:
             return .get
+        case .bookmark:
+            return .post
         }
     }
     
@@ -55,6 +60,8 @@ extension BakeryService: TargetType {
             return .requestPlain
         case .fetchWrittenReviews:
             return .requestPlain
+        case .bookmark(_, request: let request):
+            return .requestJSONEncodable(request)
         }
     }
     

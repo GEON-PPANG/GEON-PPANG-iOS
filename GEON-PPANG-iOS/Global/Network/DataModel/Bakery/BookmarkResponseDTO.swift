@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct BookmarkResponseDTO: Codable {
+    let bookMarkCount: Int
+    let isBookMarked: Bool
+}

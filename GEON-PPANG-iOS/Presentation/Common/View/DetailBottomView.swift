@@ -121,3 +121,39 @@ final class DetailBottomView: UIView {
     }
     
 }
+
+
+//var isBookmarked: Bool = false
+
+//private let detailBottomView = DetailBottomView()
+
+
+//view.addSubview(detailBottomView)
+//detailBottomView.snp.makeConstraints {
+//    $0.bottom.equalToSuperview().inset(300)
+//    $0.horizontalEdges.equalToSuperview()
+//}
+
+
+
+//detailBottomView.do {
+//    $0.backgroundColor = .white
+//    $0.tappedBookmarkButton = {
+//        self.detailBottomView.isBookmarked.toggle()
+//        self.requestBakeryBookmark(self.isBookmarked)
+//    }
+//    $0.tappedWriteReviewButton = {
+//        Utils.push(self.navigationController, WriteReviewViewController())
+//    }
+//}
+
+
+//extension MyPageViewController {
+//    func requestBakeryBookmark(_ value: Bool) {
+//        let bookmarkRequest = BookmarkRequestDTO(isAddingBookMark: value)
+//        BakeryAPI.shared.postBookmark(bakeryID: 3, with: bookmarkRequest) { response in
+//            dump(response)
+//        }
+//        isBookmarked.toggle()
+//    }
+//}
