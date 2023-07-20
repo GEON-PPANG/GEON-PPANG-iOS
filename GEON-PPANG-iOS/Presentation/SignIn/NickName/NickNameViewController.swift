@@ -110,7 +110,7 @@ final class NickNameViewController: BaseViewController {
                     $0.isUserInteractionEnabled = true
                     $0.getButtonUI(.gbbMain2!)
                     $0.addAction {
-                        Utils.push(self.navigationController, HomeViewController())
+                        Utils.push(self.navigationController, TabBarController())
                     }
                 }
             }
