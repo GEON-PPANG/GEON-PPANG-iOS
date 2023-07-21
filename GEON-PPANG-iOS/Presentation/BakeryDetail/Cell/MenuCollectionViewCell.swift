@@ -14,8 +14,9 @@ final class MenuCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI Property
     
-    private let bakeryMenuLabel = UILabel() // 서버
-    private let menuPriceLabel = UILabel() // 서버
+    private let bakeryMenuLabel = UILabel()
+    private let menuPriceLabel = UILabel()
+    private let emptyView = UIView()
     
     // MARK: - Initializer
     
@@ -49,7 +50,7 @@ final class MenuCollectionViewCell: UICollectionViewCell {
     
     private func setLayout() {
         
-        contentView.addSubviews(bakeryMenuLabel, menuPriceLabel)
+        contentView.addSubviews(bakeryMenuLabel, menuPriceLabel, emptyView)
         
         bakeryMenuLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
@@ -63,6 +64,12 @@ final class MenuCollectionViewCell: UICollectionViewCell {
             $0.trailing.equalToSuperview().inset(24)
             $0.width.equalTo(80)
             $0.height.equalTo(20)
+        }
+        
+        emptyView.snp.makeConstraints {
+            $0.top.equalTo(bakeryMenuLabel.snp.bottom)
+            $0.directionalHorizontalEdges.equalToSuperview()
+            $0.height.equalTo(12)
         }
     }
     
