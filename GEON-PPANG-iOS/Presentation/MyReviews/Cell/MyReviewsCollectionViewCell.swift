@@ -66,11 +66,6 @@ final class MyReviewsCollectionViewCell: UICollectionViewCell {
             $0.delegate = self
             $0.dataSource = self
         }
-        
-        regionStackView.do {
-            $0.getBackgroundColor(.gbbGray700!)
-        }
-        
     }
     
     private func setLayout() {
@@ -110,6 +105,7 @@ final class MyReviewsCollectionViewCell: UICollectionViewCell {
     }
     
     func updateUI(_ data: MyReviewsResponseDTO) {
+        
         bakeryTitle.setLineHeight(by: 1.05, with: data.bakeryName)
         guard let url = URL(string: data.bakeryPicture) else { return }
         bakeryImage.kf.setImage(with: url)
@@ -135,6 +131,10 @@ final class MyReviewsCollectionViewCell: UICollectionViewCell {
         
         if data.breadType.isSugarFree {
             breadTypeTag.append(I18N.BakeryList.noSugar)
+        }
+
+        regionStackView.do {
+            $0.getBackgroundColor(.gbbGray700!)
         }
         
         collectionView.snp.remakeConstraints {

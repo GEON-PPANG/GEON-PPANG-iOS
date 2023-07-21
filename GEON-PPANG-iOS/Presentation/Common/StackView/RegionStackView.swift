@@ -11,7 +11,7 @@ import SnapKit
 import Then
 
 final class RegionStackView: UIStackView {
-    
+
     // MARK: - UI Property
     
     private lazy var regionFirstTag = PaddingLabel()
