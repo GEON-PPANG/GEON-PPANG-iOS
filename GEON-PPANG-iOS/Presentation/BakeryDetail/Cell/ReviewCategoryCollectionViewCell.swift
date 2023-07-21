@@ -14,13 +14,16 @@ final class ReviewCategoryCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI Property
     
-    private lazy var reviewProgressBarStackView = ReviewProgressBarStackView() // 서버
+    private let leftEmptyView = UIView()
+    private lazy var reviewProgressBarStackView = ReviewProgressBarStackView()
+    private let rightEmptyView = UIView()
     
     // MARK: - Initializer
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
+        setUI()
         setLayout()
     }
     
@@ -31,9 +34,28 @@ final class ReviewCategoryCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Setting
     
+    private func setUI() {
+        
+        [leftEmptyView, rightEmptyView].forEach {
+            $0.backgroundColor = .gbbWhite
+        }
+    }
+    
     private func setLayout() {
         
-        contentView.addSubview(reviewProgressBarStackView)
+        contentView.addSubviews(leftEmptyView, reviewProgressBarStackView, rightEmptyView)
+        
+        leftEmptyView.snp.makeConstraints {
+            $0.top.leading.equalToSuperview()
+            $0.width.equalTo(33.5)
+            $0.height.equalTo(134)
+        }
+        
+        rightEmptyView.snp.makeConstraints {
+            $0.top.trailing.equalToSuperview()
+            $0.width.equalTo(33.5)
+            $0.height.equalTo(134)
+        }
         
         reviewProgressBarStackView.snp.makeConstraints {
             $0.top.equalToSuperview()

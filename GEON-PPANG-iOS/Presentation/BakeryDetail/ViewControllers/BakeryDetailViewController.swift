@@ -67,6 +67,8 @@ final class BakeryDetailViewController: BaseViewController {
             
             $0.backgroundColor = .gbbGray200
             $0.bounces = false
+            // TODO: 기기대응
+            $0.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 92, right: 0)
         }
         
         detailBottomView.do {
@@ -74,7 +76,7 @@ final class BakeryDetailViewController: BaseViewController {
             $0.tappedBookmarkButton = {
 //                self.isBookmarked.toggle()
                 self.requestBakeryBookmark(!self.isBookmarked)
-//                self.detailBottomView.configureBookmarkButton(to: self.isBookmarked)
+                self.collectionView.reloadData()
             }
             $0.tappedWriteReviewButton = {
                 Utils.push(self.navigationController, WriteReviewViewController(bakeryData: self.configureSimpleBakeryData()))
@@ -84,7 +86,7 @@ final class BakeryDetailViewController: BaseViewController {
     
     override func setLayout() {
         
-        view.addSubviews(navigationBar, detailBottomView, collectionView)
+        view.addSubviews(navigationBar, collectionView, detailBottomView)
         
         navigationBar.snp.makeConstraints {
             $0.top.directionalHorizontalEdges.equalToSuperview()
@@ -93,7 +95,7 @@ final class BakeryDetailViewController: BaseViewController {
         collectionView.snp.makeConstraints {
             $0.top.equalTo(navigationBar.snp.bottom)
             $0.directionalHorizontalEdges.equalToSuperview()
-            $0.bottom.equalTo(detailBottomView.snp.top)
+            $0.bottom.equalToSuperview()
         }
         
         detailBottomView.snp.makeConstraints {
@@ -251,11 +253,11 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
         case 1:
             return CGSize(width: getDeviceWidth(), height: 235)
         case 2:
-            return CGSize(width: getDeviceWidth(), height: 20)
+            return CGSize(width: getDeviceWidth(), height: 32)
         case 3:
             return CGSize(width: getDeviceWidth(), height: 134)
         case 4:
-            return CGSize(width: getDeviceWidth() - 48, height: 173)
+            return CGSize(width: getDeviceWidth(), height: 186)
         default:
             return CGSize()
         }
@@ -281,7 +283,7 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
         
         switch section {
         case 2:
-            return CGSize(width: collectionView.frame.width, height: 108)
+            return CGSize(width: collectionView.frame.width, height: 121)
         default:
             return CGSize()
         }
@@ -290,17 +292,17 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
         switch section {
-        case 0:
+        case 0, 1:
             return UIEdgeInsets(top: 0, left: 0, bottom: 1, right: 0)
-        case 1:
-            return UIEdgeInsets(top: 0, left: 0, bottom: 1, right: 0)
-            //        case 2:
-            //        case 3:
         case 4:
-            return UIEdgeInsets(top: 0, left: 0, bottom: CGFloat().heightConsideringBottomSafeArea(112), right: 0)
+            return UIEdgeInsets(top: 0, left: 0, bottom: CGFloat().heightConsideringBottomSafeArea(92), right: 0)
         default:
             return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
 }
 

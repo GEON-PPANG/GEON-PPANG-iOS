@@ -14,7 +14,9 @@ final class BakeryDetailCollectionViewFooter: UICollectionReusableView {
     
     // MARK: - UIProperty
     
+    private let labelContainer = UIView()
     private let label = UILabel()
+    private let underLineView = LineView()
     
     // MARK: - Initializer
     
@@ -34,7 +36,9 @@ final class BakeryDetailCollectionViewFooter: UICollectionReusableView {
     
     private func setUI() {
         
-        self.do {
+        self.backgroundColor = .gbbWhite
+        
+        labelContainer.do {
             $0.backgroundColor = .gbbGray100
             $0.makeCornerRound(radius: 12)
         }
@@ -48,11 +52,22 @@ final class BakeryDetailCollectionViewFooter: UICollectionReusableView {
     
     private func setLayout() {
         
-        self.addSubview(label)
+        self.addSubviews(labelContainer, underLineView)
+        labelContainer.addSubview((label))
+        
+        labelContainer.snp.makeConstraints {
+            $0.edges.equalToSuperview().inset(24)
+        }
         
         label.snp.makeConstraints {
             $0.directionalVerticalEdges.equalToSuperview().inset(18)
             $0.directionalHorizontalEdges.equalToSuperview().inset(21)
+        }
+        
+        underLineView.snp.makeConstraints {
+            $0.top.equalTo(labelContainer.snp.bottom).offset(24)
+            $0.directionalHorizontalEdges.equalToSuperview()
+            $0.height.equalTo(1)
         }
     }
 }
