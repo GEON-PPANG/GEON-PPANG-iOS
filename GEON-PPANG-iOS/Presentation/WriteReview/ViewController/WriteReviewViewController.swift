@@ -258,12 +258,9 @@ final class WriteReviewViewController: BaseViewController {
         exitBottomSheetView.do {
             $0.dismissClosure = {
                 self.backgroundView.dissmissFromSuperview()
-            }
-            $0.addQuitButtonAction {
-                self.backgroundView.dissmissFromSuperview()
                 self.navigationController?.popViewController(animated: true)
             }
-            $0.addContinueButtonAction {
+            $0.continueClosure = {
                 self.backgroundView.dissmissFromSuperview()
             }
         }
