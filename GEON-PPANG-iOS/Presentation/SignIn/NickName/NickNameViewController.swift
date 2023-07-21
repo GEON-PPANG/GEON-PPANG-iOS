@@ -20,6 +20,8 @@ final class NickNameViewController: BaseViewController {
         }
     }
     
+    private var nickname =  UserDefaults.standard.string(forKey: "nickname") ?? ""
+    
     // MARK: - UI Property
     
     private let naviView = CustomNavigationBar()
@@ -92,7 +94,9 @@ final class NickNameViewController: BaseViewController {
             }
             $0.duplicatedCheck = { [weak self] nickname in
                 guard let self else { return }
+                print("1 - ", UserDefaults.standard.string(forKey: "nickname") ?? "")
                 UserDefaults.standard.setValue(nickname, forKey: "nickname")
+                print("2 - ", UserDefaults.standard.string(forKey: "nickname") ?? "")
             }
         }
         
@@ -110,8 +114,8 @@ final class NickNameViewController: BaseViewController {
                 self.nextButton.do {
                     $0.isUserInteractionEnabled = true
                     $0.getButtonUI(.gbbMain2!)
-                    $0.addAction {
-                        Utils.push(self.navigationController, TabBarController())
+                    $0.tapAction = {
+                        Utils.push(self.navigationController, FilterPurposeViewController(maxSteps: 6, username: UserDefaults.standard.string(forKey: "nickname") ?? ""))
                     }
                 }
             }

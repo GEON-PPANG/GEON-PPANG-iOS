@@ -29,6 +29,8 @@ struct URLConstant {
     
     // MARK: - MyPage
     
+    static let member = "/member"
+    
     // MARK: - Bookmark
     
     static let bookmarks = "member/bookMarks"
