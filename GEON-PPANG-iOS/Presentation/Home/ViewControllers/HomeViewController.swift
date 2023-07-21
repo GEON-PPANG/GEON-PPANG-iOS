@@ -25,13 +25,23 @@ final class HomeViewController: BaseViewController {
     
     // MARK: - Property
     
-    private var nickname =  UserDefaults.standard.string(forKey: "nickname") ?? ""
     typealias DataSource = UICollectionViewDiffableDataSource<Sections, AnyHashable>
     private var dataSource: DataSource?
-    private var bakeryList: [BestBakery] = []
-    private var reviewList: [BestReviews] = []
     
-    lazy var safeArea = self.view.safeAreaLayoutGuide
+    private var bakeryList: [BestBakery] = [] {
+        didSet {
+            self.setReloadData()
+        }
+    }
+    
+    private var reviewList: [BestReviews] = [] {
+        didSet {
+            self.setReloadData()
+        }
+    }
+    
+    private lazy var safeArea = self.view.safeAreaLayoutGuide
+    private var nickname =  UserDefaults.standard.string(forKey: "nickname") ?? ""
     
     // MARK: - UI Property
     
@@ -195,6 +205,19 @@ final class HomeViewController: BaseViewController {
 // MARK: - UICollectionViewDelegate
 
 extension HomeViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let nextViewController = BakeryDetailViewController()
+        let section = Sections(rawValue: indexPath.section)!
+        switch section {
+        case .bakery:
+            nextViewController.bakeryID = self.bakeryList[indexPath.item].bakeryId
+        case .review:
+            nextViewController.bakeryID = self.reviewList[indexPath.item].bakeryId
+        case .bottom:
+            return
+        }
+        Utils.push(self.navigationController, nextViewController)
+    }
 }
 
 // MARK: - API
@@ -204,26 +227,22 @@ extension HomeViewController {
         HomeAPI.shared.getBestBakery { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
-            self.bakeryList = []
+            var bakeryList: [BestBakery] = []
+            
             for item in data {
-                self.bakeryList.append(item.convertToBestBakery())
+                bakeryList.append(item.convertToBestBakery())
             }
-            DispatchQueue.main.async {
-                self.setReloadData()
-            }
+            self.bakeryList = bakeryList
         }
         
         HomeAPI.shared.getBestReviews { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
-            self.reviewList = []
+            var reviewsList: [BestReviews] = []
             for item in data {
-                self.reviewList.append(item.convertToBakeryReviews())
+                reviewsList.append(item.convertToBakeryReviews())
             }
-            
-            DispatchQueue.main.async {
-                self.setReloadData()
-            }
+            self.reviewList = reviewsList
         }
     }
 }

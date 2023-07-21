@@ -26,6 +26,8 @@ final class BakeryDetailViewController: BaseViewController {
     }
     private var isBookmarked: Bool = false
     
+    var bakeryID: Int?
+    
     // MARK: - UI Property
     
     private let navigationBar = CustomNavigationBar()
@@ -36,9 +38,9 @@ final class BakeryDetailViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        getBakeryDetail(bakeryID: 15)
-        getWrittenReviews(bakeryID: 15)
+        guard let bakeryID = self.bakeryID else { return }
+        getBakeryDetail(bakeryID: bakeryID)
+        getWrittenReviews(bakeryID: bakeryID)
     }
     
     // MARK: - Setting
@@ -46,7 +48,9 @@ final class BakeryDetailViewController: BaseViewController {
     override func setUI() {
         
         navigationBar.do {
-            //            $0.addBackButtonAction()
+            $0.addBackButtonAction(UIAction { [weak self] _ in
+                self?.navigationController?.popViewController(animated: true)
+            })
             $0.backgroundColor = .gbbWhite
             $0.configureBottomLine()
             $0.configureRightMapButton()

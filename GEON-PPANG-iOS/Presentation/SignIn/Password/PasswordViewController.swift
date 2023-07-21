@@ -26,7 +26,7 @@ final class PasswordViewController: BaseViewController {
     // MARK: - UI Property
     
     private let naviView = CustomNavigationBar()
-
+    
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     private let titleLabel = UILabel()
@@ -73,9 +73,10 @@ final class PasswordViewController: BaseViewController {
         }
         
         bottomView.snp.makeConstraints {
+            $0.height.equalTo(96)
             $0.top.equalTo(scrollView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(19)
+            $0.bottom.equalToSuperview().inset(34)
         }
         
         contentView.snp.makeConstraints {
@@ -105,7 +106,7 @@ final class PasswordViewController: BaseViewController {
         nextButton.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.directionalHorizontalEdges.equalToSuperview().inset(24)
-            $0.directionalVerticalEdges.equalToSuperview().inset(16)
+            $0.directionalVerticalEdges.equalToSuperview().inset(20)
             $0.height.equalTo(56)
         }
     }
@@ -145,7 +146,7 @@ final class PasswordViewController: BaseViewController {
             $0.getType(.checkPassword)
             
             $0.textFieldData = { [weak self] data in
-                if self?.password == data {
+                if self?.password == data && data.count > 7 {
                     self?.checkPasswordTextField.clearErrorMessage(true)
                     self?.isValid = true
                 } else {
@@ -188,14 +189,14 @@ final class PasswordViewController: BaseViewController {
                                                selector: #selector(keyboardWillHide),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
-
+        
     }
     
     func dismissKeyboardWhenTappedAround() {
-       let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
-                                                                action: #selector(endEditingView))
-       tap.cancelsTouchesInView = true
-       self.view.addGestureRecognizer(tap)
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                                 action: #selector(endEditingView))
+        tap.cancelsTouchesInView = true
+        self.view.addGestureRecognizer(tap)
     }
 }
 
@@ -208,7 +209,7 @@ extension PasswordViewController {
         guard let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else { return }
         let keyboardRectangle = keyboardFrame.cgRectValue
         let keyboardHeight = keyboardRectangle.height
-                
+        
         UIView.animate(withDuration: duration) {
             self.bottomView.snp.updateConstraints {
                 $0.bottom.equalToSuperview().inset(keyboardHeight)
@@ -222,10 +223,10 @@ extension PasswordViewController {
     @objc
     func keyboardWillHide(notification: NSNotification) {
         guard let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else { return }
-                
+        
         UIView.animate(withDuration: duration, animations: {
             self.bottomView.snp.updateConstraints {
-                $0.bottom.equalToSuperview().inset(19)
+                $0.bottom.equalToSuperview().inset(34)
             }
             self.view.layoutIfNeeded()
         })

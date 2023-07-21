@@ -135,7 +135,7 @@ extension CommonTextView: UITextFieldDelegate {
                 clearErrorMessage(true)
             }
         case .password:
-            if !text.isContainNumberAndAlphabet() {
+            if !text.isContainNumberAndAlphabet() && text.count < 8 {
                 setErrorMessage("영문, 숫자 포함 8자리 이상")
             } else {
                 clearErrorMessage(true)

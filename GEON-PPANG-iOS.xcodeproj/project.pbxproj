@@ -415,6 +415,42 @@
 			path = Label;
 			sourceTree = "<group>";
 		};
+		092F11B12A69A6CC00852CA5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				097682EA2A5D12BD0008F4FB /* BakeryCollectionViewListCell.swift */,
+				097682E22A5C95750008F4FB /* BakeryFilterCollectionViewCell.swift */,
+				3E7B21C32A621A9A00C8F8B4 /* SortBakeryCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		092F11B22A69A6E200852CA5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0924632E2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift */,
+				0915C1742A5C533900ACB8D4 /* HomeReviewCollectionViewCell.swift */,
+				0915C1692A5BFC5900ACB8D4 /* HomeBottomCollectionViewCell.swift */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		092F11B32A69A6F000852CA5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				09FD47D12A5DF892002020BD /* EmptyCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		092F11B42A69A6FA00852CA5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0949750F2A67FB5900A63420 /* MyReviewsCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		093213FC2A5A74C200875EF6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -445,6 +481,7 @@
 		093214032A5AE3C000875EF6 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				092F11B32A69A6F000852CA5 /* Cell */,
 				09FD47C62A5DC97E002020BD /* Views */,
 				093214052A5AE3D600875EF6 /* ViewControllers */,
 			);
@@ -455,7 +492,6 @@
 			isa = PBXGroup;
 			children = (
 				093214072A5AE40900875EF6 /* SearchViewController.swift */,
-				09FD47D12A5DF892002020BD /* EmptyCollectionViewCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -851,7 +887,6 @@
 			children = (
 				097682E82A5D0B6B0008F4FB /* BakeryListTopView.swift */,
 				097682E62A5CF0080008F4FB /* BakeryFilterView.swift */,
-				3E7B21C32A621A9A00C8F8B4 /* SortBakeryCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -904,6 +939,7 @@
 		09B13F492A593C5900C0C723 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				092F11B22A69A6E200852CA5 /* Cell */,
 				093213FC2A5A74C200875EF6 /* Views */,
 				09B13F4A2A593C6300C0C723 /* ViewControllers */,
 			);
@@ -914,9 +950,6 @@
 			isa = PBXGroup;
 			children = (
 				09B13F4B2A593C6F00C0C723 /* HomeViewController.swift */,
-				0924632E2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift */,
-				0915C1742A5C533900ACB8D4 /* HomeReviewCollectionViewCell.swift */,
-				0915C1692A5BFC5900ACB8D4 /* HomeBottomCollectionViewCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -924,6 +957,7 @@
 		09B13F4D2A593C7600C0C723 /* BakeryList */ = {
 			isa = PBXGroup;
 			children = (
+				092F11B12A69A6CC00852CA5 /* Cell */,
 				0979852E2A5D9DBF004263E5 /* Views */,
 				09B13F4E2A593CAE00C0C723 /* ViewControllers */,
 			);
@@ -935,8 +969,6 @@
 			children = (
 				3E7B21BF2A61CB8C00C8F8B4 /* SortBottomSheetViewController.swift */,
 				09B13F4F2A593CB800C0C723 /* BakeryListViewController.swift */,
-				097682E22A5C95750008F4FB /* BakeryFilterCollectionViewCell.swift */,
-				097682EA2A5D12BD0008F4FB /* BakeryCollectionViewListCell.swift */,
 				097682DD2A5C91050008F4FB /* Model */,
 			);
 			path = ViewControllers;
@@ -996,6 +1028,7 @@
 		09FD47DA2A5E57CC002020BD /* MyReviews */ = {
 			isa = PBXGroup;
 			children = (
+				092F11B42A69A6FA00852CA5 /* Cell */,
 				098716B92A613B6A00538D05 /* Views */,
 				09FD47DB2A5E57E3002020BD /* ViewControllers */,
 			);
@@ -1006,7 +1039,6 @@
 			isa = PBXGroup;
 			children = (
 				09FD47DC2A5E57F2002020BD /* MyReviewsViewController.swift */,
-				0949750F2A67FB5900A63420 /* MyReviewsCollectionViewCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
