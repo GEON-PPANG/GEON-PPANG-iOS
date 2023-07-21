@@ -58,7 +58,7 @@ final class EmailViewController: BaseViewController {
         }
         
         nextButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(21)
+            $0.bottom.equalToSuperview().inset(54)
             $0.directionalHorizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(56)
         }
@@ -91,7 +91,7 @@ final class EmailViewController: BaseViewController {
                 self?.isValid = valid
             }
         }
-
+        
         nextButton.do {
             $0.isUserInteractionEnabled = false
             $0.getButtonUI(.gbbGray200!)

@@ -1,8 +1,8 @@
 //
-//  BakeryListCollectionViewCell.swift
+//  MyReviewsCollectionViewCell.swift
 //  GEON-PPANG-iOS
 //
-//  Created by JEONGEUN KIM on 2023/07/11.
+//  Created by JEONGEUN KIM on 2023/07/19.
 //
 
 import UIKit
@@ -11,13 +11,12 @@ import Kingfisher
 import SnapKit
 import Then
 
-final class BakeryCollectionViewListCell: UICollectionViewListCell {
+final class MyReviewsCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Property
     
     var updateData: ((Bool, Int) -> Void)?
     private var breadTypeTag: [String] = []
-    private var ingredientList: [BakeryListResponseDTO] = []
     
     // MARK: - UI Property
     
@@ -25,18 +24,10 @@ final class BakeryCollectionViewListCell: UICollectionViewListCell {
     private let bakeryImage = UIImageView()
     private let bakeryTitle = UILabel()
     private let regionStackView = RegionStackView()
-    private let reviewStacView = UIStackView()
-    private let reviewIcon = UIImageView()
-    private let reviewCount = UILabel()
     private lazy var arrowButton = UIButton()
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: OptionsCollectionViewFlowLayout())
     
     // MARK: - Life Cycle
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        ingredientList = []
-    }
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -76,29 +67,19 @@ final class BakeryCollectionViewListCell: UICollectionViewListCell {
             $0.dataSource = self
         }
         
-        reviewStacView.do {
-            $0.addArrangedSubviews(reviewIcon, reviewCount)
-            $0.axis = .horizontal
-            $0.spacing = 1
+        regionStackView.do {
+            $0.getBackgroundColor(.gbbGray700!)
         }
         
-        reviewIcon.do {
-            $0.image = .bookmarkIcon16px400
-            $0.contentMode = .scaleAspectFit
-        }
-        
-        reviewCount.do {
-            $0.basic(font: .captionB1!, color: .gbbGray400!)
-        }
     }
     
     private func setLayout() {
-        contentView.addSubviews(bakeryImage, bakeryTitle, collectionView, regionStackView, reviewStacView)
+        contentView.addSubviews(bakeryImage, bakeryTitle, collectionView, regionStackView)
         bakeryImage.addSubview(markStackView)
         
         bakeryImage.snp.makeConstraints {
             $0.size.equalTo(90)
-            $0.top.equalToSuperview().offset(24)
+            $0.top.equalToSuperview().offset(10)
             $0.leading.equalToSuperview().inset(24)
         }
         
@@ -116,7 +97,7 @@ final class BakeryCollectionViewListCell: UICollectionViewListCell {
             $0.height.equalTo(25)
             $0.top.equalTo(bakeryTitle.snp.bottom).offset(8)
             $0.leading.equalTo(bakeryImage.snp.trailing).offset(14)
-            $0.trailing.equalToSuperview().inset(24)
+            $0.trailing.equalToSuperview().inset(27)
         }
         
         regionStackView.snp.makeConstraints {
@@ -126,23 +107,14 @@ final class BakeryCollectionViewListCell: UICollectionViewListCell {
             $0.bottom.equalToSuperview().inset(24)
         }
         
-        reviewStacView.snp.makeConstraints {
-            $0.top.equalTo(bakeryImage.snp.top)
-            $0.trailing.equalToSuperview().inset(24)
-            $0.height.equalTo(16)
-        }
-        
-        reviewIcon.snp.makeConstraints {
-            $0.size.equalTo(16)
-        }
     }
     
-    func updateUI<T: BakeryListProtocol>(data: T) {
+    func updateUI(_ data: MyReviewsResponseDTO) {
         bakeryTitle.setLineHeight(by: 1.05, with: data.bakeryName)
-        reviewCount.setLineHeight(by: 1.1, with: "(\(data.reviewCount))")
         guard let url = URL(string: data.bakeryPicture) else { return }
         bakeryImage.kf.setImage(with: url)
         markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)
+        
         if data.secondNearStation == "" {
             regionStackView.removeSecondRegion()
         }
@@ -165,20 +137,21 @@ final class BakeryCollectionViewListCell: UICollectionViewListCell {
             breadTypeTag.append(I18N.BakeryList.noSugar)
         }
         
-        collectionView.reloadData()
-
         collectionView.snp.remakeConstraints {
             $0.height.equalTo(Utils.getHeight(breadTypeTag))
-            $0.top.equalTo(bakeryTitle.snp.bottom).offset(10)
+            $0.top.equalTo(bakeryTitle.snp.bottom).offset(8)
             $0.leading.equalTo(bakeryImage.snp.trailing).offset(14)
-            $0.trailing.equalToSuperview().inset(24)
+            $0.trailing.equalToSuperview().inset(27)
         }
+        
+        collectionView.reloadData()
     }
+    
 }
 
 // MARK: - CollectionView Register
 
-extension BakeryCollectionViewListCell {
+extension MyReviewsCollectionViewCell {
     private func setRegistration() {
         collectionView.register(cell: DescriptionCollectionViewCell.self)
     }
@@ -186,7 +159,7 @@ extension BakeryCollectionViewListCell {
 
 // MARK: - UICollectionViewDataSource
 
-extension BakeryCollectionViewListCell: UICollectionViewDataSource {
+extension MyReviewsCollectionViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return breadTypeTag.count
     }
@@ -200,10 +173,10 @@ extension BakeryCollectionViewListCell: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegateFlowLayout
 
-extension BakeryCollectionViewListCell: UICollectionViewDelegateFlowLayout {
+extension MyReviewsCollectionViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let tagTitle = self.breadTypeTag[indexPath.item]
-        let itemSize = tagTitle.size(withAttributes: [NSAttributedString.Key.font: UIFont.captionM1])
+        let itemSize = tagTitle.size(withAttributes: [NSAttributedString.Key.font: UIFont.pretendardMedium(13)])
         return CGSize(width: itemSize.width + 12, height: itemSize.height + 8)
     }
 }
