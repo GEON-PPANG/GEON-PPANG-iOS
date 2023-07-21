@@ -24,7 +24,6 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
     // MARK: - UI Property
     
     private let mainTitleLabel = UILabel()
-    private let mainTitleLogoImageView = UIImageView(image: .enabledStorelistIcon)
     private let profileImageViewContainer = UIView()
     private let profileImageView = UIImageView(image: .profileIcon)
     private let purposeFilterChipView = MyPagePurposeChipView()
@@ -67,13 +66,6 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
         mainTitleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(44)
             $0.leading.equalToSuperview().inset(24)
-        }
-        
-        addSubview(mainTitleLogoImageView)
-        mainTitleLogoImageView.snp.makeConstraints {
-            $0.leading.equalTo(mainTitleLabel.snp.trailing).offset(8)
-            $0.centerY.equalTo(mainTitleLabel)
-            $0.size.equalTo(24)
         }
         
         addSubview(profileImageViewContainer)
