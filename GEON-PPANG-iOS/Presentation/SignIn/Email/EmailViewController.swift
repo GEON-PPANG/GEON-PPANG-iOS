@@ -68,6 +68,9 @@ final class EmailViewController: BaseViewController {
     override func setUI() {
         naviView.do {
             $0.configureRightCount(1, by: 6)
+            $0.addBackButtonAction(UIAction { [weak self] _ in
+                self?.navigationController?.popViewController(animated: true)
+            })
         }
         
         titleLabel.do {
