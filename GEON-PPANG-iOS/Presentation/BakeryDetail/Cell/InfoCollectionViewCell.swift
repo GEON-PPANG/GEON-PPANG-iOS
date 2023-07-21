@@ -175,10 +175,10 @@ final class InfoCollectionViewCell: UICollectionViewCell {
     func updateUI(_ data: BakeryDetailResponseDTO) {
         
         bakeryAddressLabel.text = data.address
-        if data.secondNearStation == "" {
+        regionStackView.getRegionName(data.firstNearStation, data.secondNearStation)
+        if data.firstNearStation != "" && data.secondNearStation == "" {
             regionStackView.removeSecondRegion()
         }
-        regionStackView.getRegionName(data.firstNearStation, data.secondNearStation)
         bakeryClosedDaysLabel.text = data.closedDay
         bakeryOpeningHoursLabel.text = data.openingTime
         bakeryPhoneNumberLabel.text = data.phoneNumber

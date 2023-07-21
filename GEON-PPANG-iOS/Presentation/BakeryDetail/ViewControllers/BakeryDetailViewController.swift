@@ -66,6 +66,7 @@ final class BakeryDetailViewController: BaseViewController {
             $0.register(footer: BakeryDetailCollectionViewFooter.self)
             
             $0.backgroundColor = .gbbGray200
+            $0.bounces = false
         }
         
         detailBottomView.do {
@@ -83,7 +84,7 @@ final class BakeryDetailViewController: BaseViewController {
     
     override func setLayout() {
         
-        view.addSubviews(navigationBar, collectionView, detailBottomView)
+        view.addSubviews(navigationBar, detailBottomView, collectionView)
         
         navigationBar.snp.makeConstraints {
             $0.top.directionalHorizontalEdges.equalToSuperview()
@@ -92,7 +93,7 @@ final class BakeryDetailViewController: BaseViewController {
         collectionView.snp.makeConstraints {
             $0.top.equalTo(navigationBar.snp.bottom)
             $0.directionalHorizontalEdges.equalToSuperview()
-            $0.bottom.equalToSuperview()
+            $0.bottom.equalTo(detailBottomView.snp.top)
         }
         
         detailBottomView.snp.makeConstraints {
