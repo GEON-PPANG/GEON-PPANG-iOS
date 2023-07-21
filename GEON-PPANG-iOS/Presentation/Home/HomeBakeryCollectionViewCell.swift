@@ -123,10 +123,6 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
         bakeryReview.setLineHeight(by: 1.09,
                                    with: "리뷰(\(data.reviewCount)) ⦁ 저장(\(data.bookMarkCount))")
         markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)
-//        if data.secondNearStation == "" {
-//            regionStackView.removeSecondRegion()
-//        }
-//
         regionStackView.getRegionName(data.firstNearStation, data.secondNearStation ?? "")
     }
 }
