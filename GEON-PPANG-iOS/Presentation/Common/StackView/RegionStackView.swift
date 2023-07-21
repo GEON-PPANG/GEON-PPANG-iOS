@@ -18,11 +18,10 @@ final class RegionStackView: UIStackView {
     private lazy var regionSecondTag = PaddingLabel()
     
     // MARK: - Life Cycle
-    
+        
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        setUI()
     }
     
     required init(coder: NSCoder) {
@@ -31,9 +30,13 @@ final class RegionStackView: UIStackView {
     
     // MARK: - Setting
     
-    private func setUI() {
+    private func setUI(_ hasSecond: Bool) {
         self.do {
-            $0.addArrangedSubviews(regionFirstTag, regionSecondTag)
+            if hasSecond {
+                $0.addArrangedSubviews(regionFirstTag, regionSecondTag)
+            } else {
+                $0.addArrangedSubview(regionFirstTag)
+            }
             $0.axis = .horizontal
             $0.spacing = 5
             $0.distribution = .fillProportionally
@@ -51,6 +54,8 @@ final class RegionStackView: UIStackView {
     func getRegionName(_ first: String, _ second: String) {
         regionFirstTag.text = first
         regionSecondTag.text = second
+        setUI(!second.isEmpty)
+        print("✅🤍✅\(second)")
     }
     
     func getBackgroundColor(_ color: UIColor) {
@@ -60,6 +65,7 @@ final class RegionStackView: UIStackView {
     }
     
     func removeSecondRegion() {
+        
         self.removeArrangedSubview(regionSecondTag)
         regionSecondTag.removeFromSuperview()
     }

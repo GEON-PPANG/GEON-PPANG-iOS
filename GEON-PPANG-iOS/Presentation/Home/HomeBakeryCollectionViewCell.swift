@@ -32,6 +32,9 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         markStackView.getMarkStatus(false, false, false)
         markStackView.getIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
+        regionStackView.arrangedSubviews.forEach {
+            regionStackView.removeArrangedSubview($0)
+        }
     }
     
     override init(frame: CGRect) {
@@ -120,9 +123,10 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
         bakeryReview.setLineHeight(by: 1.09,
                                    with: "리뷰(\(data.reviewCount)) ⦁ 저장(\(data.bookMarkCount))")
         markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)
-        if data.secondNearStation == "" {
-            regionStackView.removeSecondRegion()
-        }
+//        if data.secondNearStation == "" {
+//            regionStackView.removeSecondRegion()
+//        }
+//
         regionStackView.getRegionName(data.firstNearStation, data.secondNearStation ?? "")
     }
 }
