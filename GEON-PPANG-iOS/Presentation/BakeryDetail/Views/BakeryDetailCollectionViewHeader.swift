@@ -26,7 +26,7 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
             getType(sectionType)
         }
     }
-    private var reviewCount: UInt16 = 28
+    private var reviewCount: Int = 0
     
     // MARK: - UI Property
     
@@ -50,6 +50,7 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        
         subTitleStackView.isHidden = true
         reviewSortButton.isHidden = true
         setUI()
@@ -123,5 +124,10 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
             titleLabel.partColorChange(targetString: "\(reviewCount)", textColor: .gbbPoint1!) // 특정 문자열의 textColor를 변경
             configureReviewSortButton()
         }
+    }
+    
+    func updateUI(_ data: BakeryDetailResponseDTO) {
+        
+        reviewCount = data.reviewCount
     }
 }
