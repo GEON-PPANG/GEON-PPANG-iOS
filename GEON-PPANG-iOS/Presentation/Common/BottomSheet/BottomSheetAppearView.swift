@@ -18,7 +18,7 @@ final class BottomSheetAppearView: UIView {
     private var customAction: (() -> Void)?
     
     var addedSubView = UIView()
-    private lazy var dimmedView = UIView()
+    lazy var dimmedView = UIView()
     private lazy var halfView =  UIView()
     private lazy var handlerView = UIView()
     

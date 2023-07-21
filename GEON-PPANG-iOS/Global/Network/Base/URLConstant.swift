@@ -25,6 +25,7 @@ struct URLConstant {
     // MARK: - Bakery
     
     static let bakeryList = "/bakeries"
+    static let writeReview = "/reviews"
     
     // MARK: - MyPage
     
@@ -34,5 +35,6 @@ struct URLConstant {
     
     static let bookmarks = "member/bookMarks"
     static let myReviews = "member/reviews"
+    static let bookmark = "/bookMarks"
     
 }
