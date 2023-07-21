@@ -33,9 +33,15 @@ final class BakeryListViewController: BaseViewController {
     
     // MARK: - Life Cycle
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        requestBakeryList(sort: self.sortBakeryName, isHard: false, isDessert: false, isBrunch: false)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        requestBakeryList(sort: self.sortBakeryName, isHard: false, isDessert: false, isBrunch: false)
+  
         setDataSource()
         setReloadData()
         

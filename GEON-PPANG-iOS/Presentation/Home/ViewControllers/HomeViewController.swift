@@ -33,7 +33,7 @@ final class HomeViewController: BaseViewController {
             self.setReloadData()
         }
     }
-    
+
     private var reviewList: [BestReviews] = [] {
         didSet {
             self.setReloadData()
@@ -160,6 +160,7 @@ final class HomeViewController: BaseViewController {
             }
             return header
         }
+        
     }
     
     func layout() -> UICollectionViewLayout {

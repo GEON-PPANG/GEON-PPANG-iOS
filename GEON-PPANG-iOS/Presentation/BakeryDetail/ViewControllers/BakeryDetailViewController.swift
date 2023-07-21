@@ -38,9 +38,9 @@ final class BakeryDetailViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        guard let bakeryID = self.bakeryID else { return }
-        getBakeryDetail(bakeryID: 66)
-        getWrittenReviews(bakeryID: 66)
+        guard let bakeryID = self.bakeryID else { return }
+        getBakeryDetail(bakeryID: bakeryID)
+        getWrittenReviews(bakeryID: bakeryID)
     }
     
     // MARK: - Setting
@@ -336,7 +336,8 @@ extension BakeryDetailViewController {
     
     private func requestBakeryBookmark(_ value: Bool) {
         let bookmarkRequest = BookmarkRequestDTO(isAddingBookMark: value)
-        BakeryAPI.shared.postBookmark(bakeryID: 1, with: bookmarkRequest) { response in
+        guard let bakeryID = self.bakeryID else { return }
+        BakeryAPI.shared.postBookmark(bakeryID: bakeryID, with: bookmarkRequest) { response in
             dump(response)
             self.detailBottomView.configureBookmarkButton(to: value)
             self.isBookmarked = value

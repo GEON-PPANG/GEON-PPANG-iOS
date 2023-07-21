@@ -32,6 +32,14 @@ final class NickNameViewController: BaseViewController {
     private var backGroundView = BottomSheetAppearView()
     private var bottomSheet = CommonBottomSheet()
     
+    // MARK: - Life Cycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        dismissKeyboardWhenTappedAround()
+    }
+    
     // MARK: - Setting
     
     override func setLayout() {
@@ -94,9 +102,7 @@ final class NickNameViewController: BaseViewController {
             }
             $0.duplicatedCheck = { [weak self] nickname in
                 guard let self else { return }
-                print("1 - ", UserDefaults.standard.string(forKey: "nickname") ?? "")
                 UserDefaults.standard.setValue(nickname, forKey: "nickname")
-                print("2 - ", UserDefaults.standard.string(forKey: "nickname") ?? "")
             }
         }
         
@@ -134,5 +140,12 @@ final class NickNameViewController: BaseViewController {
                 $0.getButtonUI(.gbbGray200!)
             }
         }
+    }
+    
+    func dismissKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                                 action: #selector(endEditingView))
+        tap.cancelsTouchesInView = true
+        self.view.addGestureRecognizer(tap)
     }
 }

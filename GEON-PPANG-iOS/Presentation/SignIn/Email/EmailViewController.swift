@@ -30,6 +30,14 @@ final class EmailViewController: BaseViewController {
     private lazy var backGroundView = BottomSheetAppearView()
     private lazy var bottomSheet = CommonBottomSheet()
     
+    // MARK: - Life Cycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        dismissKeyboardWhenTappedAround()
+    }
+    
     // MARK: - Setting
     
     override func setLayout() {
@@ -109,7 +117,7 @@ final class EmailViewController: BaseViewController {
                 self.nextButton.do {
                     $0.isUserInteractionEnabled = true
                     $0.getButtonUI(.gbbMain2!)
-                    $0.addAction {
+                    $0.tapAction = {
                         Utils.push(self.navigationController, PasswordViewController())
                     }
                 }
@@ -129,5 +137,12 @@ final class EmailViewController: BaseViewController {
                 $0.getButtonUI(.gbbGray200!)
             }
         }
+    }
+    
+    func dismissKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                                 action: #selector(endEditingView))
+        tap.cancelsTouchesInView = true
+        self.view.addGestureRecognizer(tap)
     }
 }

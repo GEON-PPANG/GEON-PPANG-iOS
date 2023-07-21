@@ -30,14 +30,17 @@ final class MySavedBakeryViewController: BaseViewController {
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
     
     // MARK: - Life Cycle
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getSavedBakeryList()
+    }
+            
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setRegistration()
         setDataSource()
         setReloadData()
-        getSavedBakeryList()
     }
     
     // MARK: - Setting
@@ -184,6 +187,7 @@ extension MySavedBakeryViewController {
         MyPageAPI.shared.getBookmarks { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
+            self.savedList = []
             for item in data {
                 self.savedList.append(item.convertToBakeryList())
             }
