@@ -100,15 +100,15 @@ final class ReviewDetailTextView: UIView {
         }
         
         textLimitLabel.do {
-            $0.text = "0/500"
+            $0.text = "0/70"
             $0.font = .captionM1
-            $0.textColor = .gbbGray500
+            $0.textColor = .gbbGray300
         }
         
         textMinimumLimitLabel.do {
             $0.text = "(최소 10자)"
             $0.font = .captionM1
-            $0.textColor = .gbbGray500
+            $0.textColor = .gbbGray300
         }
     }
     
@@ -120,6 +120,14 @@ final class ReviewDetailTextView: UIView {
         detailTextView.do {
             $0.textColor = textColor
             $0.makeBorder(width: 1, color: borderColor)
+        }
+        
+        textLimitLabel.do {
+            $0.textColor = textColor
+        }
+        
+        textMinimumLimitLabel.do {
+            $0.textColor = textColor
         }
     }
     

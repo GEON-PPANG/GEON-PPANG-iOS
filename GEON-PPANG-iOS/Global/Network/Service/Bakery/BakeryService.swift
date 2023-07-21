@@ -11,8 +11,10 @@ import Moya
 
 enum BakeryService {
     case bakeryList(sort: String, isHard: Bool, isDessert: Bool, isBrunch: Bool)
+    case writeReview(bakeryID: Int, content: WriteReviewRequestDTO)
     case fetchBakeryDetail(bakeryID: Int)
     case fetchWrittenReviews(bakeryID: Int)
+    case bookmark(bakeryID: Int, request: BookmarkRequestDTO)
 }
 
 extension BakeryService: TargetType {
@@ -24,10 +26,14 @@ extension BakeryService: TargetType {
         switch self {
         case .bakeryList:
             return URLConstant.bakeryList
+        case .writeReview(bakeryID: let bakeryID, _):
+            return URLConstant.writeReview + "/\(bakeryID)"
         case .fetchBakeryDetail(bakeryID: let bakeryID):
             return URLConstant.bakeryList + "/\(bakeryID)"
         case .fetchWrittenReviews(bakeryID: let bakeryID):
             return URLConstant.bakeryList + "/\(bakeryID)" + "/reviews"
+        case .bookmark(bakeryID: let bakeryID, _):
+            return URLConstant.bookmark + "/\(bakeryID)"
         }
     }
     
@@ -35,10 +41,14 @@ extension BakeryService: TargetType {
         switch self {
         case .bakeryList:
             return .get
+        case .writeReview:
+            return .post
         case .fetchBakeryDetail:
             return .get
         case .fetchWrittenReviews:
             return .get
+        case .bookmark:
+            return .post
         }
     }
     
@@ -51,10 +61,14 @@ extension BakeryService: TargetType {
                                                    "isBrunch": isBrunch
                                                   ],
                                       encoding: URLEncoding.queryString)
+        case .writeReview(_, content: let content):
+            return .requestJSONEncodable(content)
         case .fetchBakeryDetail:
             return .requestPlain
         case .fetchWrittenReviews:
             return .requestPlain
+        case .bookmark(_, request: let request):
+            return .requestJSONEncodable(request)
         }
     }
     

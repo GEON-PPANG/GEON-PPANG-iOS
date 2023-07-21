@@ -50,6 +50,8 @@ struct I18N {
         static let sheetDescription = "고객님의 리뷰가 다른 고객님들에게\n도움이 될 수 있어요"
         static let sheetQuit = "그만하기"
         static let sheetContinue = "계속쓰기"
+        
+        static let confirmSheetTitle = "작성이 완료되었어요!"
     }
     
     /// BakeryList
@@ -100,5 +102,10 @@ struct I18N {
         static let sortBy = "정렬"
         static let byDefault = "기본순"
         static let byReviews = "리뷰 많은 순"
+    }
+    
+    /// Detail
+    struct Detail {
+        static let writeReview = "리뷰 작성하기"
     }
 }
