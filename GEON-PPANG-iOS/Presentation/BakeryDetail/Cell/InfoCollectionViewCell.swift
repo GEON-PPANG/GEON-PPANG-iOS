@@ -72,10 +72,6 @@ final class InfoCollectionViewCell: UICollectionViewCell {
             $0.setImage(.copyButton, for: .normal)
         }
         
-        regionStackView.do {
-            $0.getRegionName("가좌역", "가좌역 3번출구")
-        }
-        
         bakeryOpeningHoursImage.do {
             $0.image = .timeIcon
         }
@@ -179,7 +175,10 @@ final class InfoCollectionViewCell: UICollectionViewCell {
     func updateUI(_ data: BakeryDetailResponseDTO) {
         
         bakeryAddressLabel.text = data.address
-        // TODO: 지하철역 API 통신
+        regionStackView.getRegionName(data.firstNearStation, data.secondNearStation)
+        if data.firstNearStation != "" && data.secondNearStation == "" {
+            regionStackView.removeSecondRegion()
+        }
         bakeryClosedDaysLabel.text = data.closedDay
         bakeryOpeningHoursLabel.text = data.openingTime
         bakeryPhoneNumberLabel.text = data.phoneNumber
