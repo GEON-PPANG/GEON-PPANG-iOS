@@ -330,7 +330,8 @@ extension BakeryDetailViewController {
     
     func requestBakeryBookmark(_ value: Bool) {
         let bookmarkRequest = BookmarkRequestDTO(isAddingBookMark: value)
-        BakeryAPI.shared.postBookmark(bakeryID: 1, with: bookmarkRequest) { response in
+        guard let bakeryID = self.bakeryID else { return }
+        BakeryAPI.shared.postBookmark(bakeryID: bakeryID, with: bookmarkRequest) { response in
             dump(response)
             self.detailBottomView.configureBookmarkButton(to: value)
             self.isBookmarked = value
