@@ -39,7 +39,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func changeRootViewControllerToTabBarController() {
         guard let window = window else { return }
-        window.rootViewController = TabBarController()
+        let rootViewController = TabBarController()
+        let navigationController = UINavigationController(rootViewController: rootViewController)
+        navigationController.isNavigationBarHidden = true
+        window.rootViewController = navigationController
         UIView.transition(with: window, duration: 0.2, options: [.transitionCrossDissolve], animations: nil)
     }
 

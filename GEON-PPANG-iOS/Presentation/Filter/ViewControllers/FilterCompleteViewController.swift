@@ -14,7 +14,7 @@ final class FilterCompleteViewController: BaseViewController {
     
     // MARK: - Property
     
-    private let username: String = "Id"
+    private var username =  UserDefaults.standard.string(forKey: "nickname") ?? ""
     
     // MARK: - UI Property
     

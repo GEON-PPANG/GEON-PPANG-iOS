@@ -12,6 +12,15 @@ import Then
 
 final class MyPageViewController: BaseViewController {
     
+    // MARK: - Property
+    
+    private var memberData: MyPageResponseDTO = .emptyData() {
+        didSet {
+            myPageCollectionView.reloadData()
+        }
+    }
+    private var nickname =  UserDefaults.standard.string(forKey: "nickname") ?? ""
+    
     // MARK: - UI Property
     
     private let flowLayout = UICollectionViewFlowLayout()
@@ -19,10 +28,22 @@ final class MyPageViewController: BaseViewController {
     
     // MARK: - Life Cycle
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        requestMemberData()
+    }
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
         Utils.updateCollectionViewConstraint(of: myPageCollectionView)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        requestMemberData()
     }
     
     // MARK: - Setting
@@ -101,8 +122,9 @@ extension MyPageViewController: UICollectionViewDataSource {
         switch indexPath.section {
         case 0:
             let header: MyPageCollectionViewHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
-            header.addNextButtonAction {
-                Utils.push(self.navigationController, FilterPurposeViewController(maxSteps: 3, username: "찐빵대빵"))
+            header.configureMemberData(to: memberData)
+            header.nextButtonTapped = {
+                Utils.push(self.navigationController, FilterPurposeViewController(maxSteps: 3, username: self.nickname))
             }
             header.myReviewsTapped = {
                 Utils.push(self.navigationController, MyReviewsViewController())
@@ -141,14 +163,15 @@ extension MyPageViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let indexPath = IndexPath(item: 0, section: section)
-        let header: MyPageCollectionViewHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
         switch section {
-        case 0: return header.systemLayoutSizeFitting(.init(width: collectionView.frame.width,
-                                                            height: UIView.layoutFittingExpandedSize.height),
-                                                      withHorizontalFittingPriority: .required,
-                                                      verticalFittingPriority: .fittingSizeLevel)
-        default: return .zero
+        case 0:
+            let trueOptions = memberData.breadType.configureTrueOptions()
+            var letterCount = 0
+            trueOptions.forEach { letterCount += $0.0.count }
+            return .init(width: SizeLiteral.Screen.width,
+                         height: letterCount <= 15 ? 340 : 375)
+        default:
+            return .zero
         }
     }
     
@@ -160,4 +183,17 @@ extension MyPageViewController: UICollectionViewDelegateFlowLayout {
         }
     }
     
+}
+
+// MARK: - API
+
+extension MyPageViewController {
+    func requestMemberData() {
+        MyPageAPI.shared.getMemberData { response in
+            guard let response = response else { return }
+            guard let data = response.data else { return }
+            self.memberData = data
+            self.myPageCollectionView.reloadData()
+        }
+    }
 }
