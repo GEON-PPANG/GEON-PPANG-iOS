@@ -30,11 +30,11 @@ Firebase | 비정상 종료를 유발하는 상황 트래킹을 위한 라이브
 <br>
 
 ## 🔐 Code Convention
-[🍞 건빵 코드 컨벤션 🍞](https://www.notion.so/sungah/Code-Convention-cb3894459c7948a3bdc07fc2a24eb143)
+[🍞 건빵 코드 컨벤션 🍞](https://sungah.notion.site/Code-Convention-cb3894459c7948a3bdc07fc2a24eb143?pvs=4)
 <br>
 
 ## 🪶 Git Convention
-[🍞 깃 컨벤션 🍞](https://www.notion.so/sungah/Git-Convention-c418744d1360420695b31c39c352d16d)
+[🍞 깃 컨벤션 🍞](https://sungah.notion.site/Git-Convention-c418744d1360420695b31c39c352d16d?pvs=4)
 <br>
 
 ## 📂 Project Structure
@@ -95,3 +95,6 @@ Firebase | 비정상 종료를 유발하는 상황 트래킹을 위한 라이브
 <img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/59dfdde4-6230-4644-80f0-db2607d9dfdd" width="200">|<img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/b7a33a9e-bac3-46e8-8683-27841bd4dd4c" width="200">|<img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/7e9aef4e-91d7-4d2a-88c6-03c925ff0be7" width="200">|
 :---------:|:----------:|:---------:|
 필터 선택 | 마이페이지 | 리뷰 작성 | 
+
+## 👊🏻 Trouble Shooting
+[🍞 건빵 트러블슈팅 🍞](https://sungah.notion.site/a661a8943f34461f82cc6687f1e6d52e?pvs=4)
