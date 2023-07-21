@@ -83,18 +83,20 @@ final class BakeryDetailViewController: BaseViewController {
     
     override func setLayout() {
         
-        view.addSubviews(collectionView, navigationBar, detailBottomView)
+        view.addSubviews(navigationBar, collectionView, detailBottomView)
         
         navigationBar.snp.makeConstraints {
-            $0.top.horizontalEdges.equalToSuperview()
+            $0.top.directionalHorizontalEdges.equalToSuperview()
+        }
+        
+        collectionView.snp.makeConstraints {
+            $0.top.equalTo(navigationBar.snp.bottom)
+            $0.directionalHorizontalEdges.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
         
         detailBottomView.snp.makeConstraints {
             $0.horizontalEdges.bottom.equalToSuperview()
-        }
-        
-        collectionView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
         }
     }
     
@@ -160,14 +162,11 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
         case 1:
             let cell: InfoCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             
-            DispatchQueue.main.async {
                 cell.updateUI(self.overviewData)
-            }
             
             return cell
         case 2:
             let cell: MenuCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-            
             let menu = overviewData.menuList[indexPath.item]
             
             DispatchQueue.main.async {
@@ -185,7 +184,6 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
             return cell
         case 4:
             let cell: WrittenReviewsCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-            
             let review = reviewData.reviewList[indexPath.item]
             
             DispatchQueue.main.async {
@@ -224,7 +222,11 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
             return header
         case 4:
             let header: BakeryDetailCollectionViewHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
-            header.getType(.writtenReviews)
+            
+            DispatchQueue.main.async {
+                header.updateUI(self.overviewData)
+                header.getType(.writtenReviews)
+            }
             
             return header
         default:
