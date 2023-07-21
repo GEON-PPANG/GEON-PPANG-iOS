@@ -15,7 +15,8 @@ final class MyPageCollectionViewFooter: UICollectionReusableView {
     // MARK: - UI Property
     
     private let appVersionLabel = UILabel()
-    private let appVersionNumLabel = UILabel()
+//    private let appVersionNumLabel = UILabel()
+    private let appVersionNumButton = UIButton()
     
     // MARK: - Life Cycle
     
@@ -40,8 +41,8 @@ final class MyPageCollectionViewFooter: UICollectionReusableView {
             $0.top.equalToSuperview().inset(12)
         }
         
-        addSubview(appVersionNumLabel)
-        appVersionNumLabel.snp.makeConstraints {
+        addSubview(appVersionNumButton)
+        appVersionNumButton.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(24)
             $0.centerY.equalTo(appVersionLabel)
         }
@@ -58,11 +59,28 @@ final class MyPageCollectionViewFooter: UICollectionReusableView {
             $0.textColor = .gbbMain1
         }
         
-        appVersionNumLabel.do {
-            $0.text = I18N.MyPage.appVersionNum
-            $0.font = .captionM1
-            $0.textColor = .gbbMain1
+//        앱잼 때에는 button 으로 대체
+//        appVersionNumLabel.do {
+//            $0.text = I18N.MyPage.appVersionNum
+//            $0.font = .captionM1
+//            $0.textColor = .gbbMain1
+//        }
+        
+        appVersionNumButton.do {
+            $0.setTitle(I18N.MyPage.appVersionNum, for: .normal)
+            $0.setTitleColor(.gbbMain1, for: .normal)
+            $0.titleLabel?.font = .captionM1
+            $0.addAction(UIAction { [weak self] _ in
+                self?.appVersionButtonTapped()
+            }, for: .touchUpInside)
         }
+    }
+    
+    // MARK: - Action Helper
+    
+    private func appVersionButtonTapped() {
+        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+        sceneDelegate?.changeRootViewControllerToOnboardingViewController()
     }
     
 }

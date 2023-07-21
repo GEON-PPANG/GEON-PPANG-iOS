@@ -92,7 +92,7 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
         
         addSubview(purposeFilterChipView)
         purposeFilterChipView.snp.makeConstraints {
-            $0.leading.equalTo(profileImageViewContainer.snp.trailing).offset(10)
+            $0.leading.equalTo(profileImageViewContainer.snp.trailing).offset(14)
             $0.top.equalTo(profileImageViewContainer)
             $0.height.equalTo(25)
         }
