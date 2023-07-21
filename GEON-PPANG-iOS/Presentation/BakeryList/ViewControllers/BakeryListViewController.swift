@@ -67,6 +67,10 @@ final class BakeryListViewController: BaseViewController {
                                        isBrunch: self.filterStatus[2])
             }
         }
+        
+        bakeryListCollectionView.do {
+            $0.delegate = self
+        }
     }
     
     override func setLayout() {
@@ -143,6 +147,14 @@ final class BakeryListViewController: BaseViewController {
                                    isBrunch: self.filterStatus[2])
         }
         self.present(sortBottomSheet, animated: false)
+    }
+}
+
+extension BakeryListViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let nextViewController = BakeryDetailViewController()
+        nextViewController.bakeryID = self.bakeryList[indexPath.item].bakeryId
+        Utils.push(self.navigationController, nextViewController)
     }
 }
 

@@ -58,7 +58,7 @@ final class NickNameViewController: BaseViewController {
         }
         
         nextButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(48)
+            $0.bottom.equalToSuperview().inset(54)
             $0.directionalHorizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(56)
         }

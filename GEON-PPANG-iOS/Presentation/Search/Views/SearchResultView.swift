@@ -11,7 +11,7 @@ import SnapKit
 import Then
 
 final class SearchResultView: UIView {
-        
+    
     // MARK: - UI Property
     
     private let resultLabel = UILabel()
