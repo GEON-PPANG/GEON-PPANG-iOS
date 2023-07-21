@@ -25,6 +25,7 @@ final class SearchViewController: BaseViewController {
     private var searchBakeryList: [SearchBakeryList] = []
     private var bakeryListCount: Int?
     private var currentSection: [Section] = [.initial]
+    private var bakeryName: String?
     
     // MARK: - UI Property
     
@@ -34,6 +35,13 @@ final class SearchViewController: BaseViewController {
     
     // MARK: - Life Cycle
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let bakeryName = self.bakeryName {
+            requestSearchBakery(bakeryName: bakeryName)
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -77,6 +85,7 @@ final class SearchViewController: BaseViewController {
                 self.navigationController?.popViewController(animated: true)
             }
             $0.textFieldClosure = { text in
+                self.bakeryName = text
                 self.requestSearchBakery(bakeryName: text)
             }
         }
