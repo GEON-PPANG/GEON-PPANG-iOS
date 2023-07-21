@@ -7,7 +7,7 @@
 
 ## 🍞 iOS Developer
 <img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/70fdab77-8a2f-4992-9853-55087a098de3" width="200"> | <img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/a6b640f4-9380-439a-a16d-5f7fac6fcb6d" width="200"> | <img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/93eec23b-d40f-4d31-9e2d-75202625cbca" width="200"> |
-:---------:|:----------:|:---------:
+:---------|:----------:|:---------:
 김정은 | 김창균 | 이성민 |
 [jeongdung-eo](https://github.com/jeongdung-eo) | [ckkim817](https://github.com/ckkim817) | [seongmin221](https://github.com/seongmin221) |
 <br>
@@ -74,3 +74,24 @@ Firebase | 비정상 종료를 유발하는 상황 트래킹을 위한 라이브
 └─  └─ └─ 📜 GoogleService-Info
 ~~~
 <br>
+
+## 🖥 맡은 뷰
+
+
+#### 👑 김정은
+
+<img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/cb16a9a9-b1ba-4345-8c59-700e964bc7c5" width="200"> | <img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/86686c2e-af18-4d82-ba89-167e715daedd" width="200"> | <img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/446a8091-d44e-4e51-9632-7b0deff35f42" width="200">| <img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/a6c6482a-cb75-4159-a104-1d5bcbdf1bbc" width="200">|<img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/a566f6fb-f190-4b2a-a777-074a9fe2e633" width="200">|
+:---------:|:----------:|:---------:|:---------:|:---------:
+회원가입 | 홈 | 빵집 리스트 | 검색뷰 | 저장 목록 ⦁ 내가 쓴 리뷰|
+
+#### 🎩 김창균
+
+<img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/5aeb5c32-d8fe-4861-ad57-f04401516ff4" width="200">|<img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/26adab80-cede-49d8-9f8f-d5bbe57014f5" width="200">|<img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/186c4e3f-e158-442f-891d-ccee71b84bff" width="200">|<img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/186c4e3f-e158-442f-891d-ccee71b84bff" width="200">|
+:---------:|:----------:|:---------:|:---------:|
+온보딩 | 로그인⦁회원가입 | 빵집 디테일 | 저장하기 토스트|
+
+#### 🎩 이성민 
+
+<img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/59dfdde4-6230-4644-80f0-db2607d9dfdd" width="200">|<img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/b7a33a9e-bac3-46e8-8683-27841bd4dd4c" width="200">|<img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/7e9aef4e-91d7-4d2a-88c6-03c925ff0be7" width="200">|
+:---------:|:----------:|:---------:|
+필터 선택 | 마이페이지 | 리뷰 작성 | 
