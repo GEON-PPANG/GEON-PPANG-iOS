@@ -252,11 +252,11 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
             }
             return CGSize(width: getDeviceWidth(), height: 443)
         case 1:
-            return CGSize(width: getDeviceWidth(), height: 235)
+            return CGSize(width: getDeviceWidth(), height: 259)
         case 2:
             return CGSize(width: getDeviceWidth(), height: 32)
         case 3:
-            return CGSize(width: getDeviceWidth(), height: 134)
+            return CGSize(width: getDeviceWidth(), height: 157)
         case 4:
             return CGSize(width: getDeviceWidth(), height: 186)
         default:
@@ -296,7 +296,7 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
         case 0, 1:
             return UIEdgeInsets(top: 0, left: 0, bottom: 1, right: 0)
         case 4:
-            return UIEdgeInsets(top: 0, left: 0, bottom: CGFloat().heightConsideringBottomSafeArea(92), right: 0)
+            return UIEdgeInsets(top: 0, left: 0, bottom: 92, right: 0)
         default:
             return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }

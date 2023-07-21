@@ -296,7 +296,7 @@ final class WriteReviewViewController: BaseViewController {
     
     private func nextButtonTapped() {
         writeReviewData.reviewText = reviewDetailTextView.detailTextView.text
-//        requestWriteReview(writeReviewData)
+        requestWriteReview(writeReviewData)
         UIView.animate(withDuration: 0.2, animations: {
             self.bottomView.transform = .identity
             self.scrollView.transform = .identity

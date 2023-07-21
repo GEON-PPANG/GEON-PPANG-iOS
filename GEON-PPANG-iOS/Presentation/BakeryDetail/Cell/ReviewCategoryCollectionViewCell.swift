@@ -48,19 +48,19 @@ final class ReviewCategoryCollectionViewCell: UICollectionViewCell {
         leftEmptyView.snp.makeConstraints {
             $0.top.leading.equalToSuperview()
             $0.width.equalTo(33.5)
-            $0.height.equalTo(134)
+            $0.height.equalTo(157)
         }
         
         rightEmptyView.snp.makeConstraints {
             $0.top.trailing.equalToSuperview()
             $0.width.equalTo(33.5)
-            $0.height.equalTo(134)
+            $0.height.equalTo(157)
         }
         
         reviewProgressBarStackView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.directionalHorizontalEdges.equalToSuperview().inset(33.5)
-            $0.height.equalTo(134)
+            $0.height.equalTo(157)
         }
     }
     
