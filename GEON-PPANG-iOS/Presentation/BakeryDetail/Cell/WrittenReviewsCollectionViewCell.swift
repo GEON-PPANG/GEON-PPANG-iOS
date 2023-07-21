@@ -14,13 +14,13 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI Property
     
+    private let reviewContainer = UIView()
     private let profileImage = UIImageView()
     private let userNicknameLabel = UILabel()
     private let reviewDateLabel = UILabel()
     private let reportLabel = UILabel()
     private lazy var reviewCategoryStackView = ReviewCategoryStackView()
     private let reviewTextLabel = UILabel()
-    private let emptyView = UIImageView()
     
     // MARK: - Initializer
     
@@ -40,8 +40,12 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
     
     private func setUI() {
         
-        self.backgroundColor = .gbbBackground2
-        self.makeCornerRound(radius: 12)
+        self.backgroundColor = .gbbWhite
+        
+        reviewContainer.do {
+            $0.backgroundColor = .gbbBackground2
+            $0.makeCornerRound(radius: 12)
+        }
         
         profileImage.do {
             $0.image = .logoIcon20px
@@ -66,16 +70,19 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
             $0.numberOfLines = 3
             $0.adjustsFontSizeToFitWidth = true
         }
-        
-        emptyView.do {
-            $0.image = .noReviewImage
-//            $0.contentMode = .scaleToFill
-        }
     }
     
     private func setLayout() {
         
-        contentView.addSubviews(profileImage, userNicknameLabel, reviewDateLabel, reportLabel, reviewCategoryStackView, reviewTextLabel)
+        contentView.addSubview(reviewContainer)
+        reviewContainer.addSubviews(profileImage, userNicknameLabel, reviewDateLabel, reportLabel, reviewCategoryStackView, reviewTextLabel)
+        
+        reviewContainer.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.directionalHorizontalEdges.equalToSuperview().inset(24)
+            $0.width.equalTo(327)
+            $0.height.equalTo(174)
+        }
         
         profileImage.snp.makeConstraints {
             $0.top.equalToSuperview().inset(20)
@@ -101,8 +108,8 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
         
         reportLabel.snp.makeConstraints {
             $0.centerY.equalTo(userNicknameLabel)
-            $0.leading.equalToSuperview().inset(279)
-            $0.trailing.equalToSuperview().inset(25)
+            $0.leading.equalToSuperview().inset(convertByWidthRatio(279))
+            $0.trailing.equalToSuperview().inset(convertByWidthRatio(25))
             $0.width.equalTo(23)
             $0.height.equalTo(17)
         }
