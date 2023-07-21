@@ -71,9 +71,9 @@ final class BakeryDetailViewController: BaseViewController {
         detailBottomView.do {
             $0.backgroundColor = .gbbWhite
             $0.tappedBookmarkButton = {
-                self.isBookmarked.toggle()
-                self.requestBakeryBookmark(self.isBookmarked)
-                self.detailBottomView.configureBookmarkButton(to: self.isBookmarked)
+//                self.isBookmarked.toggle()
+                self.requestBakeryBookmark(!self.isBookmarked)
+//                self.detailBottomView.configureBookmarkButton(to: self.isBookmarked)
             }
             $0.tappedWriteReviewButton = {
                 Utils.push(self.navigationController, WriteReviewViewController(bakeryData: self.configureSimpleBakeryData()))
@@ -310,11 +310,11 @@ extension BakeryDetailViewController {
             
             guard let response = response else { return }
             guard let data = response.data else { return }
+            dump(data)
             
             self.overviewData = data
             self.isBookmarked = data.isBookMarked
             self.detailBottomView.configureBookmarkButton(to: data.isBookMarked)
-            dump(data)
         }
     }
     
@@ -332,6 +332,9 @@ extension BakeryDetailViewController {
         let bookmarkRequest = BookmarkRequestDTO(isAddingBookMark: value)
         BakeryAPI.shared.postBookmark(bakeryID: 1, with: bookmarkRequest) { response in
             dump(response)
+            self.detailBottomView.configureBookmarkButton(to: value)
+            self.isBookmarked = value
+            self.collectionView.reloadData()
         }
     }
 }
