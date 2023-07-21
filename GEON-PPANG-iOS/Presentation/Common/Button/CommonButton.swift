@@ -24,6 +24,10 @@ enum ButtonTitle: String, CaseIterable {
 
 final class CommonButton: UIButton {
     
+    // MARK: - Property
+    
+    var tapAction: (() -> Void)?
+    
     // MARK: - Life Cycle
     
     override init(frame: CGRect) {
@@ -42,6 +46,9 @@ final class CommonButton: UIButton {
         self.do {
             $0.makeCornerRound(radius: 12)
             $0.titleLabel?.font = .headLine
+            $0.addAction(UIAction { _ in
+                self.tapAction?()
+            }, for: .touchUpInside)
         }
     }
     
@@ -59,6 +66,7 @@ final class CommonButton: UIButton {
         
         if border != .clear {
             makeBorder(width: 1, color: border!)
+            setTitleColor(border!, for: .normal)
         }
     }
     

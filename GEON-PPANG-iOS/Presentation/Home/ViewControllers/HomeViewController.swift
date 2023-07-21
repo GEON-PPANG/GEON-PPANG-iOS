@@ -15,8 +15,8 @@ enum Sections: Int, Hashable, CaseIterable {
     
     var title: String {
         switch self {
-        case .bakery: return "바이블님 맞춤 BEST 건빵집"
-        case .review: return "바이블님 맞춤 BEST 리뷰"
+        case .bakery: return "님 맞춤 BEST 건빵집"
+        case .review: return "님 맞춤 BEST 리뷰"
         case .bottom: return ""
         }
     }
@@ -27,10 +27,21 @@ final class HomeViewController: BaseViewController {
     
     typealias DataSource = UICollectionViewDiffableDataSource<Sections, AnyHashable>
     private var dataSource: DataSource?
-    private var bakeryList: [BestBakery] = []
-    private var reviewList: [BestReviews] = []
     
-    lazy var safeArea = self.view.safeAreaLayoutGuide
+    private var bakeryList: [BestBakery] = [] {
+        didSet {
+            self.setReloadData()
+        }
+    }
+    
+    private var reviewList: [BestReviews] = [] {
+        didSet {
+            self.setReloadData()
+        }
+    }
+    
+    private lazy var safeArea = self.view.safeAreaLayoutGuide
+    private var nickname =  UserDefaults.standard.string(forKey: "nickname") ?? ""
     
     // MARK: - UI Property
     
@@ -59,12 +70,12 @@ final class HomeViewController: BaseViewController {
         }
         
         topView.do {
-            $0.setTitle("정둥어")
+            $0.setTitle(nickname)
             $0.gotoNextView = {
                 Utils.push(self.navigationController, SearchViewController())
             }
             $0.addActionToFilterButton {
-                Utils.push(self.navigationController, FilterPurposeViewController(maxSteps: 3, username: "찐빵대빵"))
+                Utils.push(self.navigationController, FilterPurposeViewController(maxSteps: 3, username: self.nickname))
             }
         }
         
@@ -141,11 +152,11 @@ final class HomeViewController: BaseViewController {
             
             switch indexPath.section {
             case 0:
-                header.getSectionHeaderTitle(Sections.bakery.title)
+                header.getSectionHeaderTitle(self.nickname + Sections.bakery.title)
             case 1:
-                header.getSectionHeaderTitle(Sections.review.title)
+                header.getSectionHeaderTitle(self.nickname + Sections.review.title)
             default:
-                header.getSectionHeaderTitle(Sections.bottom.title)
+                header.getSectionHeaderTitle(self.nickname + Sections.bottom.title)
             }
             return header
         }
@@ -194,6 +205,19 @@ final class HomeViewController: BaseViewController {
 // MARK: - UICollectionViewDelegate
 
 extension HomeViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let nextViewController = BakeryDetailViewController()
+        let section = Sections(rawValue: indexPath.section)!
+        switch section {
+        case .bakery:
+            nextViewController.bakeryID = self.bakeryList[indexPath.item].bakeryId
+        case .review:
+            nextViewController.bakeryID = self.reviewList[indexPath.item].bakeryId
+        case .bottom:
+            return
+        }
+        Utils.push(self.navigationController, nextViewController)
+    }
 }
 
 // MARK: - API
@@ -203,21 +227,22 @@ extension HomeViewController {
         HomeAPI.shared.getBestBakery { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
-            self.bakeryList = []
+            var bakeryList: [BestBakery] = []
+            
             for item in data {
-                self.bakeryList.append(item.convertToBestBakery())
+                bakeryList.append(item.convertToBestBakery())
             }
-            self.setReloadData()
+            self.bakeryList = bakeryList
         }
         
         HomeAPI.shared.getBestReviews { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
-            self.reviewList = []
+            var reviewsList: [BestReviews] = []
             for item in data {
-                self.reviewList.append(item.convertToBakeryReviews())
+                reviewsList.append(item.convertToBakeryReviews())
             }
-            self.setReloadData()
+            self.reviewList = reviewsList
         }
     }
 }

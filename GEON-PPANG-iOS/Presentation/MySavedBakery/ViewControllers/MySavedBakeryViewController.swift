@@ -27,7 +27,6 @@ final class MySavedBakeryViewController: BaseViewController {
     // MARK: - UI Property
     
     private let naviView = CustomNavigationBar()
-    private let lineView = LineView()
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
     
     // MARK: - Life Cycle
@@ -46,17 +45,10 @@ final class MySavedBakeryViewController: BaseViewController {
     override func setLayout() {
         
         view.addSubviews(naviView, collectionView)
-        naviView.addSubview(lineView)
         
         naviView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.directionalHorizontalEdges.equalTo(safeArea)
-        }
-        
-        lineView.snp.makeConstraints {
-            $0.height.equalTo(1)
-            $0.directionalHorizontalEdges.equalToSuperview()
-            $0.bottom.equalToSuperview()
         }
         
         collectionView.snp.makeConstraints {
@@ -73,7 +65,12 @@ final class MySavedBakeryViewController: BaseViewController {
                 dump(self.navigationController)
                 self.navigationController?.popViewController(animated: true)
             })
+            $0.configureBottomLine()
             $0.configureLeftTitle(to: I18N.MySavedBakery.naviTitle)
+        }
+        
+        collectionView.do {
+            $0.delegate = self
         }
     }
     
@@ -83,7 +80,7 @@ final class MySavedBakeryViewController: BaseViewController {
     }
     
     private func setDataSource() {
-        let cellRegistration = UICollectionView.CellRegistration<BakeryCollectionViewListCell, BakeryList> { (cell, indexPath, item) in
+        let cellRegistration = UICollectionView.CellRegistration<BakeryCollectionViewListCell, BakeryList> { (cell, _, item) in
             cell.separatorLayoutGuide.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
             if let bakeryListItem = item as? BakeryList {
                 cell.updateUI(data: bakeryListItem)
@@ -171,6 +168,14 @@ final class MySavedBakeryViewController: BaseViewController {
         } else {
             collectionView.isScrollEnabled = true
         }
+    }
+}
+
+extension MySavedBakeryViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let nextViewController = BakeryDetailViewController()
+        nextViewController.bakeryID = self.savedList[indexPath.item].bakeryId
+        Utils.push(self.navigationController, nextViewController)
     }
 }
 

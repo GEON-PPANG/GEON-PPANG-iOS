@@ -19,4 +19,10 @@ struct NutrientRequestType: Codable {
             return false
         }
     }
+    
+    mutating func clearData() {
+        isNutrientOpen = false
+        isIngredientOpen = false
+        isNotOpen = false
+    }
 }

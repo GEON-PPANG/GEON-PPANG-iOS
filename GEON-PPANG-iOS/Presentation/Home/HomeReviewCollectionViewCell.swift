@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Kingfisher
 import SnapKit
 import Then
 
@@ -21,7 +22,7 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI Property
     
-    private lazy var bakeryImage = GradientImageView(colors: [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.3).cgColor])
+    private lazy var bakeryImage = GradientImageView(colors: [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.5).cgColor])
     private let reviewTitle = UILabel()
     private let bakeryTitle = UILabel()
     private let bakeryReview = UILabel()
@@ -72,7 +73,7 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         bakeryTitle.do {
             $0.basic(font: .bodyB1!, color: .gbbGray700!)
             $0.textAlignment = .left
-
+            
         }
         
         bakeryReview.do {
