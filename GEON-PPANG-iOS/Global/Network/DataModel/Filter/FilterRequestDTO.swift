@@ -24,4 +24,10 @@ struct FilterRequestDTO: Codable {
                                   isIngredientOpen: false,
                                   isNotOpen: false)
     }
+    
+    mutating func clearData() {
+        mainPurpose = ""
+        breadType.clearData()
+        nutrientType.clearData()
+    }
 }

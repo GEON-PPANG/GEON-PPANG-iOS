@@ -136,6 +136,8 @@ final class FilterIngredientViewController: BaseViewController {
                 dump(response)
             }
             
+            FilterRequestDTO.sharedData.clearData()
+            
             if self?.maxSteps != 6 {
                 self?.navigationController?.popToRootViewController(animated: true)
             } else {

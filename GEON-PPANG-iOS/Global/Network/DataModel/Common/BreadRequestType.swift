@@ -20,4 +20,11 @@ struct BreadRequestType: Codable {
             return false
         }
     }
+    
+    mutating func clearData() {
+        isGlutenFree = false
+        isVegan = false
+        isNutFree = false
+        isSugarFree = false
+    }
 }
