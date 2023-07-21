@@ -32,6 +32,14 @@ final class NickNameViewController: BaseViewController {
     private var backGroundView = BottomSheetAppearView()
     private var bottomSheet = CommonBottomSheet()
     
+    // MARK: - Life Cycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        dismissKeyboardWhenTappedAround()
+    }
+    
     // MARK: - Setting
     
     override func setLayout() {
@@ -134,5 +142,12 @@ final class NickNameViewController: BaseViewController {
                 $0.getButtonUI(.gbbGray200!)
             }
         }
+    }
+    
+    func dismissKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                                 action: #selector(endEditingView))
+        tap.cancelsTouchesInView = true
+        self.view.addGestureRecognizer(tap)
     }
 }

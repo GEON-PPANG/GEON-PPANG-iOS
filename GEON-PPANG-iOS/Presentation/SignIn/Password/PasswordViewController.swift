@@ -171,8 +171,8 @@ final class PasswordViewController: BaseViewController {
         self.nextButton.do {
             $0.isEnabled = isValid
             $0.getButtonUI(isValid ? .gbbMain2! : .gbbGray200!)
-            $0.addAction {
-                if isValid {
+            if isValid {
+                $0.tapAction = {
                     Utils.push(self.navigationController, NickNameViewController())
                 }
             }
