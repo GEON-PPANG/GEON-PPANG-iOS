@@ -25,9 +25,9 @@ final class BakeryCollectionViewListCell: UICollectionViewListCell {
     private let bakeryImage = UIImageView()
     private let bakeryTitle = UILabel()
     private let regionStackView = RegionStackView()
-    private let reviewStacView = UIStackView()
-    private let reviewIcon = UIImageView()
-    private let reviewCount = UILabel()
+    private let bookmarkStacView = UIStackView()
+    private let bookmarkIcon = UIImageView()
+    private let bookmarkCount = UILabel()
     private lazy var arrowButton = UIButton()
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: OptionsCollectionViewFlowLayout())
     
@@ -76,24 +76,24 @@ final class BakeryCollectionViewListCell: UICollectionViewListCell {
             $0.dataSource = self
         }
         
-        reviewStacView.do {
-            $0.addArrangedSubviews(reviewIcon, reviewCount)
+        bookmarkStacView.do {
+            $0.addArrangedSubviews(bookmarkIcon, bookmarkCount)
             $0.axis = .horizontal
             $0.spacing = 1
         }
         
-        reviewIcon.do {
+        bookmarkIcon.do {
             $0.image = .bookmarkIcon16px400
             $0.contentMode = .scaleAspectFit
         }
         
-        reviewCount.do {
+        bookmarkCount.do {
             $0.basic(font: .captionB1!, color: .gbbGray400!)
         }
     }
     
     private func setLayout() {
-        contentView.addSubviews(bakeryImage, bakeryTitle, collectionView, regionStackView, reviewStacView)
+        contentView.addSubviews(bakeryImage, bakeryTitle, collectionView, regionStackView, bookmarkStacView)
         bakeryImage.addSubview(markStackView)
         
         bakeryImage.snp.makeConstraints {
@@ -126,20 +126,20 @@ final class BakeryCollectionViewListCell: UICollectionViewListCell {
             $0.bottom.equalToSuperview().inset(24)
         }
         
-        reviewStacView.snp.makeConstraints {
+        bookmarkStacView.snp.makeConstraints {
             $0.top.equalTo(bakeryImage.snp.top)
             $0.trailing.equalToSuperview().inset(24)
             $0.height.equalTo(16)
         }
         
-        reviewIcon.snp.makeConstraints {
+        bookmarkIcon.snp.makeConstraints {
             $0.size.equalTo(16)
         }
     }
     
     func updateUI<T: BakeryListProtocol>(data: T) {
         bakeryTitle.setLineHeight(by: 1.05, with: data.bakeryName)
-        reviewCount.setLineHeight(by: 1.1, with: "(\(data.reviewCount))")
+        bookmarkCount.setLineHeight(by: 1.1, with: "(\(data.bookMarkCount))")
         guard let url = URL(string: data.bakeryPicture) else { return }
         bakeryImage.kf.setImage(with: url)
         markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)

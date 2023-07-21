@@ -48,8 +48,6 @@
 		0959F16E2A658C9D00E77CAF /* FilterResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F16D2A658C9D00E77CAF /* FilterResponseDTO.swift */; };
 		0959F1702A658CA400E77CAF /* HomeBestBakeryResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F16F2A658CA400E77CAF /* HomeBestBakeryResponseDTO.swift */; };
 		0959F1742A658CBA00E77CAF /* BakeryResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F1732A658CBA00E77CAF /* BakeryResponseDTO.swift */; };
-		0959F1782A658CCC00E77CAF /* BookmarkResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F1772A658CCC00E77CAF /* BookmarkResponseDTO.swift */; };
-		0959F1762A658CC100E77CAF /* MyPageResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F1752A658CC100E77CAF /* MyPageResponseDTO.swift */; };
 		0959F17A2A658CD300E77CAF /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F1792A658CD300E77CAF /* AuthAPI.swift */; };
 		0959F17C2A658CDA00E77CAF /* FilterAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F17B2A658CDA00E77CAF /* FilterAPI.swift */; };
 		0959F17E2A658CE300E77CAF /* HomeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F17D2A658CE300E77CAF /* HomeAPI.swift */; };
@@ -212,8 +210,6 @@
 		0959F16D2A658C9D00E77CAF /* FilterResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterResponseDTO.swift; sourceTree = "<group>"; };
 		0959F16F2A658CA400E77CAF /* HomeBestBakeryResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBestBakeryResponseDTO.swift; sourceTree = "<group>"; };
 		0959F1732A658CBA00E77CAF /* BakeryResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryResponseDTO.swift; sourceTree = "<group>"; };
-		0959F1772A658CCC00E77CAF /* BookmarkResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkResponseDTO.swift; sourceTree = "<group>"; };
-		0959F1752A658CC100E77CAF /* MyPageResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageResponseDTO.swift; sourceTree = "<group>"; };
 		0959F1792A658CD300E77CAF /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
 		0959F17B2A658CDA00E77CAF /* FilterAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterAPI.swift; sourceTree = "<group>"; };
 		0959F17D2A658CE300E77CAF /* HomeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAPI.swift; sourceTree = "<group>"; };
@@ -671,7 +667,6 @@
 			isa = PBXGroup;
 			children = (
 				0959F1732A658CBA00E77CAF /* BakeryResponseDTO.swift */,
-				3E16E4F42A57CF3800B813D0 /* WriteReviewDTO.swift */,
 				097682DE2A5C91280008F4FB /* BakeryListResponseDTO.swift */,
 				DFECBB072A690DBB007F054B /* BakeryDetailResponseDTO.swift */,
 				DFECBB092A691B9B007F054B /* WrittenReviewsResponseDTO.swift */,
@@ -979,7 +974,6 @@
 		09B13F512A593CC200C0C723 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
-				3ED40DFD2A608B2F00C7D5DA /* Model */,
 				3ED40DFC2A608B2B00C7D5DA /* View */,
 				09B13F522A593CC800C0C723 /* ViewControllers */,
 			);
@@ -1185,13 +1179,6 @@
 				3E452B6A2A614AAD00EA456D /* ImageWithSubtitleButton.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		3ED40DFD2A608B2F00C7D5DA /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		3EDC05BA2A5DEB7500EAD950 /* Filter */ = {
