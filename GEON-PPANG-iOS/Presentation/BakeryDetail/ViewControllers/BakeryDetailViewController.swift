@@ -38,9 +38,9 @@ final class BakeryDetailViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        guard let bakeryID = self.bakeryID else { return }
-        getBakeryDetail(bakeryID: 66)
-        getWrittenReviews(bakeryID: 66)
+        guard let bakeryID = self.bakeryID else { return }
+        getBakeryDetail(bakeryID: bakeryID)
+        getWrittenReviews(bakeryID: bakeryID)
     }
     
     // MARK: - Setting
