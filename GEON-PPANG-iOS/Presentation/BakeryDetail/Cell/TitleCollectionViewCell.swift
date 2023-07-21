@@ -42,7 +42,8 @@ final class TitleCollectionViewCell: UICollectionViewCell {
         self.backgroundColor = .gbbWhite
         
         bakeryImage.do {
-            $0.contentMode = .scaleToFill
+            $0.contentMode = .scaleAspectFill
+            $0.clipsToBounds = true
         }
         
         markStackView.do {

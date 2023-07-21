@@ -66,7 +66,7 @@ final class CommonBottomSheet: UIView {
         }
         
         confirmButton.snp.makeConstraints {
-            $0.top.equalTo(bottonSheetTitle.snp.bottom).offset(30)
+            $0.bottom.equalToSuperview().inset(CGFloat().heightConsideringBottomSafeArea(54))
             $0.directionalHorizontalEdges.equalToSuperview().inset(25)
             $0.height.equalTo(56)
         }
