@@ -46,6 +46,10 @@ final class OnboardingViewController: BaseViewController {
             }
         }
         
+        latelySigninView.do {
+            $0.isHidden = true
+        }
+        
         latelySigninLabel.do {
             $0.text = I18N.Onboarding.latelySigninText
             $0.font = .captionB1
