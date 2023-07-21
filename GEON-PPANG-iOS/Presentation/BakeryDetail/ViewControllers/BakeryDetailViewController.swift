@@ -38,9 +38,9 @@ final class BakeryDetailViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard let bakeryID = self.bakeryID else { return }
-        getBakeryDetail(bakeryID: bakeryID)
-        getWrittenReviews(bakeryID: bakeryID)
+//        guard let bakeryID = self.bakeryID else { return }
+        getBakeryDetail(bakeryID: 66)
+        getWrittenReviews(bakeryID: 66)
     }
     
     // MARK: - Setting
@@ -74,9 +74,10 @@ final class BakeryDetailViewController: BaseViewController {
         detailBottomView.do {
             $0.backgroundColor = .gbbWhite
             $0.tappedBookmarkButton = {
-//                self.isBookmarked.toggle()
                 self.requestBakeryBookmark(!self.isBookmarked)
-                self.collectionView.reloadData()
+                if !self.isBookmarked {
+                    self.showToast(message: "저장되었습니다!")
+                }
             }
             $0.tappedWriteReviewButton = {
                 Utils.push(self.navigationController, WriteReviewViewController(bakeryData: self.configureSimpleBakeryData()))
@@ -333,7 +334,7 @@ extension BakeryDetailViewController {
         }
     }
     
-    func requestBakeryBookmark(_ value: Bool) {
+    private func requestBakeryBookmark(_ value: Bool) {
         let bookmarkRequest = BookmarkRequestDTO(isAddingBookMark: value)
         BakeryAPI.shared.postBookmark(bakeryID: 1, with: bookmarkRequest) { response in
             dump(response)
@@ -341,5 +342,33 @@ extension BakeryDetailViewController {
             self.isBookmarked = value
             self.collectionView.reloadData()
         }
+    }
+    
+    private func showToast(message: String) {
+        let toastLabel = UILabel()
+        
+        toastLabel.backgroundColor = .gbbGray600
+        toastLabel.textColor = UIColor.white
+        toastLabel.textAlignment = .center
+        toastLabel.font = .bodyB2
+        toastLabel.text = message
+        toastLabel.alpha = 0.9
+        toastLabel.makeCornerRound(radius: 22.5)
+        
+        let toastWidth = 141.0
+        let toastHeight = 45.0
+        
+        toastLabel.frame = CGRect(x: getDeviceWidth() / 2 - toastWidth / 2,
+                                   y: getDeviceHeight() - toastHeight - 154,
+                                   width: toastWidth,
+                                   height: toastHeight)
+        
+        view.addSubview(toastLabel)
+        
+        UIView.animate(withDuration: 1.5, delay: 0.1, options: .curveEaseOut, animations: {
+            toastLabel.alpha = 0.0
+        }, completion: {(isCompleted) in
+            toastLabel.removeFromSuperview()
+        })
     }
 }
