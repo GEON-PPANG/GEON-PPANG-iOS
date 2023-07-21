@@ -272,6 +272,7 @@ final class WriteReviewViewController: BaseViewController {
             $0.getEmojiType(.smile)
             $0.getBottonSheetTitle(I18N.WriteReview.confirmSheetTitle)
             $0.dismissClosure = {
+                self.backgroundView.dissmissFromSuperview()
                 self.navigationController?.popViewController(animated: true)
             }
         }
@@ -298,7 +299,7 @@ final class WriteReviewViewController: BaseViewController {
     
     private func nextButtonTapped() {
         writeReviewData.reviewText = reviewDetailTextView.detailTextView.text
-        requestWriteReview(writeReviewData)
+//        requestWriteReview(writeReviewData)
         UIView.animate(withDuration: 0.2, animations: {
             self.bottomView.transform = .identity
             self.scrollView.transform = .identity
