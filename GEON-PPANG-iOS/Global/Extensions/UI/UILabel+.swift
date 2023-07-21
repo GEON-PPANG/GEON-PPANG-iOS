@@ -8,6 +8,7 @@
 import UIKit
 
 extension UILabel {
+    
     /// 라벨 일부 textColor 변경해주는 함수
     /// - targetString에는 바꾸고자 하는 특정 문자열을 넣어주세요
     /// - textColor에는 targetString에 적용하고자 하는 특정 UIColor에 넣어주세요
@@ -15,6 +16,7 @@ extension UILabel {
         let fullText = self.text ?? ""
         let range = (fullText as NSString).range(of: targetString)
         let attributedString = NSMutableAttributedString(string: fullText)
+        
         attributedString.addAttribute(.foregroundColor, value: textColor, range: range)
         self.attributedText = attributedString
     }
@@ -49,11 +51,10 @@ extension UILabel {
     }
     
     func setLineHeight(by multiple: CGFloat, with text: String) {
-        var paragraphStyle = NSMutableParagraphStyle()
+        let paragraphStyle = NSMutableParagraphStyle() // var -> let으로 수정합니다 (#99)
         paragraphStyle.lineHeightMultiple = multiple
         attributedText = NSMutableAttributedString(string: text, attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
     }
-    
 }
 
 extension UILabel {
@@ -63,6 +64,7 @@ extension UILabel {
         self.textColor = color
     }
 }
+
 extension NSMutableAttributedString {
     func addImageInBetweenString(firstSentence: String, image: UIImage?, lastSentence: String) -> NSMutableAttributedString {
         
@@ -89,6 +91,7 @@ extension NSAttributedString {
         attributedString.addAttribute(.paragraphStyle,
                                       value: paragraphStyle,
                                       range: NSRange(location: 0, length: string.count))
+        
         return NSAttributedString(attributedString: attributedString)
     }
 }

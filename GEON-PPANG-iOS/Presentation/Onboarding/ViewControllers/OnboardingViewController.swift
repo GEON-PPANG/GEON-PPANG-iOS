@@ -46,6 +46,10 @@ final class OnboardingViewController: BaseViewController {
             }
         }
         
+        latelySigninView.do {
+            $0.isHidden = true
+        }
+        
         latelySigninLabel.do {
             $0.text = I18N.Onboarding.latelySigninText
             $0.font = .captionB1
@@ -56,18 +60,30 @@ final class OnboardingViewController: BaseViewController {
         
         kakaoButton.do {
             $0.setImage(.kakaoLoginButton, for: .normal)
+            $0.contentMode = .scaleAspectFit
+            $0.contentVerticalAlignment = .fill
+            $0.contentHorizontalAlignment = .fill
         }
         
         appleButton.do {
             $0.setImage(.appleLoginButton, for: .normal)
+            $0.contentMode = .scaleAspectFit
+            $0.contentVerticalAlignment = .fill
+            $0.contentHorizontalAlignment = .fill
         }
         
         naverButton.do {
             $0.setImage(.naverLoginButton, for: .normal)
+            $0.contentMode = .scaleAspectFit
+            $0.contentVerticalAlignment = .fill
+            $0.contentHorizontalAlignment = .fill
         }
         
         googleButton.do {
             $0.setImage(.googleLoginButton, for: .normal)
+            $0.contentMode = .scaleAspectFit
+            $0.contentVerticalAlignment = .fill
+            $0.contentHorizontalAlignment = .fill
         }
     }
     
@@ -85,19 +101,19 @@ final class OnboardingViewController: BaseViewController {
         
         signinButton.snp.makeConstraints {
             $0.top.equalTo(logoImage.snp.bottom).offset(convertByHeightRatio(71))
-            $0.directionalHorizontalEdges.equalToSuperview().inset(24)
+            $0.directionalHorizontalEdges.equalToSuperview().inset(convertByWidthRatio(24))
             $0.height.equalTo(convertByHeightRatio(56))
         }
         
         signupButton.snp.makeConstraints {
             $0.top.equalTo(signinButton.snp.bottom).offset(convertByHeightRatio(20))
-            $0.directionalHorizontalEdges.equalToSuperview().inset(24)
+            $0.directionalHorizontalEdges.equalToSuperview().inset(convertByWidthRatio(24))
             $0.height.equalTo(convertByHeightRatio(56))
         }
         
         latelySigninView.snp.makeConstraints {
             $0.top.equalTo(signupButton.snp.bottom).offset(convertByHeightRatio(65))
-            $0.directionalHorizontalEdges.equalToSuperview().inset(77)
+            $0.directionalHorizontalEdges.equalToSuperview().inset(convertByWidthRatio(77))
             $0.height.equalTo(convertByHeightRatio(30))
         }
         
@@ -107,22 +123,26 @@ final class OnboardingViewController: BaseViewController {
         
         kakaoButton.snp.makeConstraints {
             $0.top.equalTo(latelySigninView.snp.bottom).offset(convertByHeightRatio(23))
-            $0.leading.equalToSuperview().inset(convertByWidthRatio(45))
+            $0.leading.equalToSuperview().inset(convertByWidthRatio(45.5))
+            $0.size.equalTo(convertByWidthRatio(56))
         }
         
         appleButton.snp.makeConstraints {
             $0.top.equalTo(kakaoButton)
             $0.leading.equalTo(kakaoButton.snp.trailing).offset(convertByWidthRatio(20))
+            $0.size.equalTo(convertByWidthRatio(56))
         }
         
         naverButton.snp.makeConstraints {
             $0.top.equalTo(appleButton)
             $0.leading.equalTo(appleButton.snp.trailing).offset(convertByWidthRatio(20))
+            $0.size.equalTo(convertByWidthRatio(56))
         }
         
         googleButton.snp.makeConstraints {
             $0.top.equalTo(naverButton)
             $0.leading.equalTo(naverButton.snp.trailing).offset(convertByWidthRatio(20))
+            $0.size.equalTo(convertByWidthRatio(56))
         }
     }
 }
