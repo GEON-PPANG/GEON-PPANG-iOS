@@ -15,6 +15,7 @@ final class WriteReviewBottomSheetView: UIView {
     // MARK: - Property
     
     var dismissClosure: (() -> Void)?
+    var continueClosure: (() -> Void)?
     
     // MARK: - UI Property
     
@@ -113,12 +114,18 @@ final class WriteReviewBottomSheetView: UIView {
             $0.setTitle(I18N.WriteReview.sheetQuit, for: .normal)
             $0.setTitleColor(.gbbGray400, for: .normal)
             $0.titleLabel?.font = .bodyM2
+            $0.addAction(UIAction { [weak self] _ in
+                self?.dismissClosure?()
+            }, for: .touchUpInside)
         }
         
         continueButton.do {
             $0.setTitle(I18N.WriteReview.sheetContinue, for: .normal)
             $0.setTitleColor(.gbbGray700, for: .normal)
             $0.titleLabel?.font = .bodyM2
+            $0.addAction(UIAction { [weak self] _ in
+                self?.continueClosure?()
+            }, for: .touchUpInside)
         }
         
         buttonStackView.do {
@@ -133,22 +140,6 @@ final class WriteReviewBottomSheetView: UIView {
         buttonSeperator.do {
             $0.backgroundColor = .gbbGray200
         }
-    }
-    
-    // MARK: - Custom Method
-    
-    func addQuitButtonAction(_ action: @escaping () -> Void) {
-        let action = UIAction { _ in
-            action()
-        }
-        quitButton.addAction(action, for: .touchUpInside)
-    }
-    
-    func addContinueButtonAction(_ action: @escaping () -> Void) {
-        let action = UIAction { _ in
-            action()
-        }
-        quitButton.addAction(action, for: .touchUpInside)
     }
     
 }

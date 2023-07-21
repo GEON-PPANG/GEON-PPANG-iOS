@@ -66,7 +66,7 @@ final class EmailViewController: BaseViewController {
         }
         
         nextButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(54)
+            $0.bottom.equalToSuperview().inset(CGFloat().heightConsideringBottomSafeArea(54))
             $0.directionalHorizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(56)
         }
@@ -76,7 +76,7 @@ final class EmailViewController: BaseViewController {
     override func setUI() {
         naviView.do {
             $0.configureRightCount(1, by: 6)
-            $0.addBackButtonAction(UIAction {[weak self] _ in
+            $0.addBackButtonAction(UIAction { [weak self] _ in
                 self?.navigationController?.popViewController(animated: true)
             })
         }
@@ -92,7 +92,7 @@ final class EmailViewController: BaseViewController {
             $0.getButtonUI(.clear, .gbbGray300)
             $0.getButtonTitle(.duplicate)
             $0.addAction {
-                self.backGroundView.appearBottomSheetView(subView: self.bottomSheet, 281)
+                self.backGroundView.appearBottomSheetView(subView: self.bottomSheet, CGFloat().heightConsideringBottomSafeArea(281))
             }
         }
         

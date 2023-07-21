@@ -45,4 +45,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.rootViewController = navigationController
         UIView.transition(with: window, duration: 0.2, options: [.transitionCrossDissolve], animations: nil)
     }
+    
+    func changeRootViewControllerToOnboardingViewController() {
+        guard let window = window else { return }
+        let rootViewController = OnboardingViewController()
+        let navigationController = UINavigationController(rootViewController: rootViewController)
+        navigationController.isNavigationBarHidden = true
+        window.rootViewController = navigationController
+        UIView.transition(with: window, duration: 0.2, options: [.transitionCrossDissolve], animations: nil)
+    }
 }
