@@ -49,8 +49,8 @@ final class BakeryOverviewView: UIView {
         if secondRegion == "" {
             regionStackView.removeSecondRegion()
         }
-        regionStackView.getRegionName(firstRegion, secondRegion)
-        regionStackView.getBackgroundColor(.gbbGray700!)
+        regionStackView.configureRegionName(firstRegion, secondRegion)
+        regionStackView.configureBackgroundColor(.gbbGray700!)
     }
     
     private func setLayout() {

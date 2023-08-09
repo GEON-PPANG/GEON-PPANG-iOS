@@ -26,7 +26,7 @@ final class CommonButton: UIButton {
     
     // MARK: - Property
     
-    var tapAction: (() -> Void)?
+    var tappedCommonButton: (() -> Void)?
     
     // MARK: - Life Cycle
     
@@ -43,20 +43,23 @@ final class CommonButton: UIButton {
     // MARK: - Setting
     
     private func setUI() {
+        
         self.do {
             $0.makeCornerRound(radius: 12)
             $0.titleLabel?.font = .headLine
             $0.addAction(UIAction { _ in
-                self.tapAction?()
+                self.tappedCommonButton?()
             }, for: .touchUpInside)
         }
     }
     
-    func getButtonTitle(_ title: ButtonTitle) {
+    func configureButtonTitle(_ title: ButtonTitle) {
+        
         setTitle(title.rawValue, for: .normal)
     }
     
-    func getButtonUI(_ color: UIColor, _ border: UIColor? = .clear) {
+    func configureButtonUI(_ color: UIColor, _ border: UIColor? = .clear) {
+        
         self.backgroundColor = color
         switch color {
         case .gbbMain2!, .gbbGray700!: setTitleColor(.gbbGray100, for: .normal)
@@ -70,7 +73,8 @@ final class CommonButton: UIButton {
         }
     }
     
-    func updateUI(_ isTrue: @escaping () -> Void, _ isFalse: @escaping () -> Void) {
+    func toggleUI(_ isTrue: @escaping () -> Void, _ isFalse: @escaping () -> Void) {
+        
         let action = UIAction { [weak self] _ in
             self?.isSelected.toggle()
             if let isSelected = self?.isSelected {
@@ -84,7 +88,8 @@ final class CommonButton: UIButton {
         addAction(action, for: .touchUpInside)
     }
     
-    func addAction(completion: @escaping () -> Void) {
+    func addActionToCommonButton(completion: @escaping () -> Void) {
+        
         let action = UIAction { _ in
             completion()
         }

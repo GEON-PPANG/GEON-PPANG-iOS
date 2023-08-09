@@ -114,8 +114,8 @@ final class FilterPurposeViewController: BaseViewController {
         }
         
         nextButton.do {
-            $0.getButtonTitle(.next)
-            $0.getButtonUI(.gbbGray200!)
+            $0.configureButtonTitle(.next)
+            $0.configureButtonUI(.gbbGray200!)
             $0.isUserInteractionEnabled = false
         }
     }
@@ -149,7 +149,7 @@ final class FilterPurposeViewController: BaseViewController {
     private func enableNextButton() {
         UIView.animate(withDuration: 0.2) {
             self.nextButton.do {
-                $0.getButtonUI(.gbbMain2!)
+                $0.configureButtonUI(.gbbMain2!)
                 $0.isUserInteractionEnabled = true
             }
         }
