@@ -8,7 +8,7 @@
 import UIKit
 
 final class TabBarController: UITabBarController {
-
+    
     // MARK: - Property
     
     private var tabs: [UIViewController] = []
@@ -18,13 +18,14 @@ final class TabBarController: UITabBarController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         tabBar.initailizeTabBarUI()
-
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setTabBarItems()
         setTabBarUI()
     }
@@ -36,13 +37,14 @@ final class TabBarController: UITabBarController {
     }
     
     // MARK: - Setting
-
+    
     private func setTabBarItems() {
+        
         tabs = [
             HomeViewController(),
             BakeryListViewController(),
             MyPageViewController()
-                ]
+        ]
         
         TabBarItemType.allCases.forEach {
             tabs[$0.rawValue].tabBarItem = $0.setTabBarItem()
@@ -52,6 +54,7 @@ final class TabBarController: UITabBarController {
     }
     
     private func setTabBarUI() {
+        
         tabBar.tintColor = .gbbMain3
         tabBar.layer.applyShadow()
         tabBar.layer.cornerRadius = convertByHeightRatio(12)
@@ -59,12 +62,13 @@ final class TabBarController: UITabBarController {
     }
     
     private func setTabBarHeight() {
+        
         let newTabBarHeight = defaultTabBarHeight + convertByHeightRatio(13)
         
         var newFrame = tabBar.frame
         newFrame.size.height = newTabBarHeight
         newFrame.origin.y = view.frame.size.height - newTabBarHeight
-
+        
         tabBar.frame = newFrame
     }
 }
