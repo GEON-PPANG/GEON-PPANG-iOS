@@ -14,8 +14,8 @@ final class SearchNavigationView: UIView {
     
     // MARK: - Property
     
-    var dismissClosure: (() -> Void)?
-    var textFieldClosure: ((String) -> Void)?
+    var dismissSearchView: (() -> Void)?
+    var fetchBakeryList: ((String) -> Void)?
     
     // MARK: - UI Property
     
@@ -38,14 +38,15 @@ final class SearchNavigationView: UIView {
     // MARK: - Setting
     
     private func setLayout() {
-        addSubviews(backButton, searchTextField)
         
+        self.addSubview(backButton)
         backButton.snp.makeConstraints {
             $0.top.equalToSuperview().offset(10)
             $0.leading.equalToSuperview().offset(5)
             $0.size.equalTo(48)
         }
         
+        self.addSubview(searchTextField)
         searchTextField.snp.makeConstraints {
             $0.height.equalTo(44)
             $0.centerY.equalTo(backButton.snp.centerY)
@@ -55,17 +56,18 @@ final class SearchNavigationView: UIView {
     }
     
     private func setUI() {
+        
         searchTextField.do {
-            $0.viewType(.search)
-            $0.textFieldClosure = { text in
-                self.textFieldClosure?(text)
+            $0.configureViewType(.search)
+            $0.searchToBakeryList = { text in
+                self.fetchBakeryList?(text)
             }
         }
         
         backButton.do {
             $0.setImage(.leftArrowIcon, for: .normal)
             $0.addAction(UIAction { [weak self] _ in
-                self?.dismissClosure?()
+                self?.dismissSearchView?()
             }, for: .touchUpInside)
         }
     }
