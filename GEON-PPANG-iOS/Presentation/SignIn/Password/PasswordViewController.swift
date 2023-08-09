@@ -16,7 +16,7 @@ final class PasswordViewController: BaseViewController {
     
     private var isValid: Bool = false {
         didSet {
-            updateUI(isValid)
+            configureButtonUI(isValid)
         }
     }
     private lazy var safeArea = self.view.safeAreaLayoutGuide
@@ -26,7 +26,6 @@ final class PasswordViewController: BaseViewController {
     // MARK: - UI Property
     
     private let naviView = CustomNavigationBar()
-    
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     private let titleLabel = UILabel()
@@ -49,29 +48,21 @@ final class PasswordViewController: BaseViewController {
     // MARK: - Setting
     
     override func setLayout() {
-        view.addSubviews(naviView,
-                         scrollView,
-                         bottomView)
         
-        scrollView.addSubview(contentView)
-        
-        contentView.addSubviews(titleLabel,
-                                passwordTextField,
-                                checkPasswordTextField)
-        
-        bottomView.addSubview(nextButton)
-        
+        view.addSubview(naviView)
         naviView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.directionalHorizontalEdges.equalToSuperview()
             $0.height.equalTo(118)
         }
         
+        view.addSubview(scrollView)
         scrollView.snp.makeConstraints {
             $0.top.equalTo(naviView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
         }
         
+        view.addSubview(bottomView)
         bottomView.snp.makeConstraints {
             $0.height.equalTo(96)
             $0.top.equalTo(scrollView.snp.bottom)
@@ -79,23 +70,27 @@ final class PasswordViewController: BaseViewController {
             $0.bottom.equalToSuperview().inset(CGFloat().heightConsideringBottomSafeArea(34))
         }
         
+        scrollView.addSubview(contentView)
         contentView.snp.makeConstraints {
             $0.edges.equalTo(scrollView.contentLayoutGuide)
             $0.height.equalTo(scrollView.frameLayoutGuide).priority(.low)
             $0.width.equalTo(scrollView.frameLayoutGuide)
         }
         
+        contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalToSuperview().offset(24)
         }
         
+        contentView.addSubview(passwordTextField)
         passwordTextField.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(40)
             $0.directionalHorizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(74)
         }
         
+        contentView.addSubview(checkPasswordTextField)
         checkPasswordTextField.snp.makeConstraints {
             $0.top.equalTo(passwordTextField.snp.bottom).offset(36)
             $0.directionalHorizontalEdges.equalToSuperview().inset(24)
@@ -103,6 +98,7 @@ final class PasswordViewController: BaseViewController {
             $0.bottom.lessThanOrEqualToSuperview().inset(30)
         }
         
+        bottomView.addSubview(nextButton)
         nextButton.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.directionalHorizontalEdges.equalToSuperview().inset(24)
@@ -136,14 +132,14 @@ final class PasswordViewController: BaseViewController {
         }
         
         passwordTextField.do {
-            $0.getType(.password)
+            $0.cofigureSignInType(.password)
             $0.duplicatedCheck = { data in
                 self.password = data
             }
         }
         
         checkPasswordTextField.do {
-            $0.getType(.checkPassword)
+            $0.cofigureSignInType(.checkPassword)
             
             $0.textFieldData = { [weak self] data in
                 if self?.password == data && data.count > 7 {
@@ -162,17 +158,18 @@ final class PasswordViewController: BaseViewController {
         
         nextButton.do {
             $0.isEnabled = false
-            $0.getButtonUI(.gbbGray200!)
-            $0.getButtonTitle(.next)
+            $0.configureButtonUI(.gbbGray200!)
+            $0.configureButtonTitle(.next)
         }
     }
     
-    func updateUI(_ isValid: Bool) {
+    func configureButtonUI(_ isValid: Bool) {
+        
         self.nextButton.do {
             $0.isEnabled = isValid
-            $0.getButtonUI(isValid ? .gbbMain2! : .gbbGray200!)
+            $0.configureButtonUI(isValid ? .gbbMain2! : .gbbGray200!)
             if isValid {
-                $0.tapAction = {
+                $0.tappedCommonButton = {
                     Utils.push(self.navigationController, NickNameViewController())
                 }
             }
@@ -180,6 +177,7 @@ final class PasswordViewController: BaseViewController {
     }
     
     private func setNotificationCenter() {
+        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillShow),
                                                name: UIResponder.keyboardWillShowNotification,
@@ -193,6 +191,7 @@ final class PasswordViewController: BaseViewController {
     }
     
     func dismissKeyboardWhenTappedAround() {
+        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
                                                                  action: #selector(endEditingView))
         tap.cancelsTouchesInView = true
@@ -205,6 +204,7 @@ extension PasswordViewController {
     
     @objc
     func keyboardWillShow(_ notification: NSNotification) {
+        
         guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         guard let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else { return }
         let keyboardRectangle = keyboardFrame.cgRectValue
@@ -222,6 +222,7 @@ extension PasswordViewController {
     
     @objc
     func keyboardWillHide(notification: NSNotification) {
+        
         guard let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else { return }
         
         UIView.animate(withDuration: duration, animations: {
