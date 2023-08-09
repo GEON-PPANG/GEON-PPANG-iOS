@@ -16,11 +16,12 @@ final class HomeHeaderView: UICollectionReusableView {
     
     private let headerLabel = UILabel()
     
+    // MARK: - Life Cycle
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
         setLayout()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -30,15 +31,15 @@ final class HomeHeaderView: UICollectionReusableView {
     // MAKR: - Setting
     
     private func setLayout() {
-        addSubview(headerLabel)
         
+        self.addSubview(headerLabel)
         headerLabel.snp.makeConstraints {
             $0.leading.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
     }
     
-    func getSectionHeaderTitle(_ section: String) {
+    func configureSectionHeaderTitle(_ section: String) {
         let attributedString = NSMutableAttributedString(
             string: section,
             attributes: [
@@ -55,6 +56,5 @@ final class HomeHeaderView: UICollectionReusableView {
             )
         )
         headerLabel.attributedText = attributedString
-        
     }
 }
