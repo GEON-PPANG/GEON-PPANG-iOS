@@ -33,31 +33,50 @@ struct BakeryFilterItems: Hashable {
     var filter: Filter
     var status: Status
     var leftIcon: UIImage
-    static var item: [BakeryFilterItems] = [BakeryFilterItems(filter: .HARD, status: .off, leftIcon: .disabledHardIcon),
-                                            BakeryFilterItems(filter: .DESSERT, status: .off, leftIcon: .disabledCakeIcon),
-                                            BakeryFilterItems(filter: .BRUNCH, status: .off, leftIcon: .disabledSandwichIcon)
+    static var item: [BakeryFilterItems] = [BakeryFilterItems(filter: .HARD,
+                                                              status: .off,
+                                                              leftIcon: .disabledHardIcon),
+                                            BakeryFilterItems(filter: .DESSERT,
+                                                              status: .off,
+                                                              leftIcon: .disabledCakeIcon),
+                                            BakeryFilterItems(filter: .BRUNCH,
+                                                              status: .off,
+                                                              leftIcon: .disabledSandwichIcon)
     ]
     
     public func isSelected() -> Self {
+        
         switch self.status {
         case .off:
             switch self.filter {
             case .HARD:
-                return BakeryFilterItems(filter: filter, status: status, leftIcon: .disabledHardIcon)
+                return BakeryFilterItems(filter: filter,
+                                         status: status,
+                                         leftIcon: .disabledHardIcon)
             case .DESSERT:
-                return BakeryFilterItems(filter: filter, status: .off, leftIcon: .disabledCakeIcon)
+                return BakeryFilterItems(filter: filter,
+                                         status: .off,
+                                         leftIcon: .disabledCakeIcon)
             case .BRUNCH:
-                return BakeryFilterItems(filter: filter, status: .off, leftIcon: .disabledSandwichIcon)
+                return BakeryFilterItems(filter: filter,
+                                         status: .off,
+                                         leftIcon: .disabledSandwichIcon)
             }
             
         case .on:
             switch self.filter {
             case .HARD:
-                return BakeryFilterItems(filter: filter, status: status, leftIcon: .enabledHardIcon)
+                return BakeryFilterItems(filter: filter,
+                                         status: status,
+                                         leftIcon: .enabledHardIcon)
             case .DESSERT:
-                return BakeryFilterItems(filter: filter, status: status, leftIcon: .enabledCakeIcon)
+                return BakeryFilterItems(filter: filter,
+                                         status: status,
+                                         leftIcon: .enabledCakeIcon)
             case .BRUNCH:
-                return BakeryFilterItems(filter: filter, status: status, leftIcon: .enabledSandwichIcon)
+                return BakeryFilterItems(filter: filter,
+                                         status: status,
+                                         leftIcon: .enabledSandwichIcon)
             }
         }
     }
@@ -65,6 +84,7 @@ struct BakeryFilterItems: Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(identifier)
     }
+    
     static func == (lhs: BakeryFilterItems, rhs: BakeryFilterItems) -> Bool {
         return lhs.identifier == rhs.identifier
     }
