@@ -15,7 +15,6 @@ final class MyReviewsCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Property
     
-    var updateData: ((Bool, Int) -> Void)?
     private var breadTypeTag: [String] = []
     
     // MARK: - UI Property
@@ -44,6 +43,7 @@ final class MyReviewsCollectionViewCell: UICollectionViewCell {
     // MARK: - Setting
     
     private func setUI() {
+        
         self.do {
             $0.contentView.backgroundColor = .white
         }
@@ -53,7 +53,7 @@ final class MyReviewsCollectionViewCell: UICollectionViewCell {
         }
         
         markStackView.do {
-            $0.getIconImage(.smallHACCPMark, .smallVeganMark, .smallGMOMark)
+            $0.confiureIconImage(.smallHACCPMark, .smallVeganMark, .smallGMOMark)
         }
         
         bakeryTitle.do {
@@ -69,25 +69,21 @@ final class MyReviewsCollectionViewCell: UICollectionViewCell {
     }
     
     private func setLayout() {
-        contentView.addSubviews(bakeryImage, bakeryTitle, collectionView, regionStackView)
-        bakeryImage.addSubview(markStackView)
-        
+ 
+        contentView.addSubview(bakeryImage)
         bakeryImage.snp.makeConstraints {
             $0.size.equalTo(90)
             $0.top.equalToSuperview().offset(10)
             $0.leading.equalToSuperview().inset(24)
         }
-        
-        markStackView.snp.makeConstraints {
-            $0.top.leading.equalToSuperview().offset(8)
-            $0.size.equalTo(CGSize(width: 55, height: 22))
-        }
-        
+               
+        contentView.addSubview(bakeryTitle)
         bakeryTitle.snp.makeConstraints {
             $0.top.equalTo(bakeryImage.snp.top)
             $0.leading.equalTo(bakeryImage.snp.trailing).offset(14)
         }
         
+        contentView.addSubview(collectionView)
         collectionView.snp.makeConstraints {
             $0.height.equalTo(25)
             $0.top.equalTo(bakeryTitle.snp.bottom).offset(8)
@@ -95,6 +91,7 @@ final class MyReviewsCollectionViewCell: UICollectionViewCell {
             $0.trailing.equalToSuperview().inset(27)
         }
         
+        contentView.addSubview(regionStackView)
         regionStackView.snp.makeConstraints {
             $0.top.equalTo(collectionView.snp.bottom).offset(10)
             $0.height.equalTo(29)
@@ -102,9 +99,15 @@ final class MyReviewsCollectionViewCell: UICollectionViewCell {
             $0.bottom.equalToSuperview().inset(24)
         }
         
+        bakeryImage.addSubview(markStackView)
+        markStackView.snp.makeConstraints {
+            $0.top.leading.equalToSuperview().offset(8)
+            $0.size.equalTo(CGSize(width: 55, height: 22))
+        }
+        
     }
     
-    func updateUI(_ data: MyReviewsResponseDTO) {
+    func configureCellUI(_ data: MyReviewsResponseDTO) {
         
         bakeryTitle.setLineHeight(by: 1.05, with: data.bakeryName)
         guard let url = URL(string: data.bakeryPicture) else { return }
@@ -114,7 +117,7 @@ final class MyReviewsCollectionViewCell: UICollectionViewCell {
         if data.secondNearStation == "" {
             regionStackView.removeSecondRegion()
         }
-        regionStackView.getRegionName(data.firstNearStation, data.secondNearStation ?? "")
+        regionStackView.configureRegionName(data.firstNearStation, data.secondNearStation ?? "")
         
         breadTypeTag = []
         if data.breadType.isGlutenFree {
@@ -134,7 +137,7 @@ final class MyReviewsCollectionViewCell: UICollectionViewCell {
         }
 
         regionStackView.do {
-            $0.getBackgroundColor(.gbbGray700!)
+            $0.configureBackgroundColor(.gbbGray700!)
         }
         
         collectionView.snp.remakeConstraints {
@@ -152,6 +155,7 @@ final class MyReviewsCollectionViewCell: UICollectionViewCell {
 // MARK: - CollectionView Register
 
 extension MyReviewsCollectionViewCell {
+    
     private func setRegistration() {
         collectionView.register(cell: DescriptionCollectionViewCell.self)
     }
@@ -160,6 +164,7 @@ extension MyReviewsCollectionViewCell {
 // MARK: - UICollectionViewDataSource
 
 extension MyReviewsCollectionViewCell: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return breadTypeTag.count
     }
@@ -174,6 +179,7 @@ extension MyReviewsCollectionViewCell: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension MyReviewsCollectionViewCell: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let tagTitle = self.breadTypeTag[indexPath.item]
         let itemSize = tagTitle.size(withAttributes: [NSAttributedString.Key.font: UIFont.pretendardMedium(13)])

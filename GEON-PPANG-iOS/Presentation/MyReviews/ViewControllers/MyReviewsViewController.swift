@@ -25,21 +25,26 @@ final class MyReviewsViewController: BaseViewController {
     
     // MARK: - Setting
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        getSavedBakeryList()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setRegistration()
-        getSavedBakeryList()
     }
     
     override func setLayout() {
-        view.addSubviews(naviView, collectionView)
         
+        view.addSubview(naviView)
         naviView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.directionalHorizontalEdges.equalTo(safeArea)
         }
         
+        view.addSubview(collectionView)
         collectionView.snp.makeConstraints {
             $0.top.equalTo(naviView.snp.bottom)
             $0.directionalHorizontalEdges.equalTo(safeArea)
@@ -48,6 +53,7 @@ final class MyReviewsViewController: BaseViewController {
     }
     
     override func setUI() {
+        
         naviView.do {
             $0.configureBottomLine()
             $0.addBackButtonAction(UIAction { _ in
@@ -63,11 +69,13 @@ final class MyReviewsViewController: BaseViewController {
     }
     
     override func setDelegate() {
+        
         collectionView.delegate = self
         collectionView.dataSource = self
     }
     
     private func setRegistration() {
+        
         collectionView.register(cell: MyReviewsCollectionViewCell.self)
         collectionView.register(cell: EmptyCollectionViewCell.self)
         collectionView.register(header: MyReviewsHeaderView.self)
@@ -75,6 +83,7 @@ final class MyReviewsViewController: BaseViewController {
     }
     
     private func layout() -> UICollectionViewLayout {
+        
         let layout = UICollectionViewCompositionalLayout {_, layoutEnvirnment  in
             if self.myReviewslist.isEmpty {
                 return self.normalSection()
@@ -94,6 +103,7 @@ final class MyReviewsViewController: BaseViewController {
     }
     
     private func normalSection() -> NSCollectionLayoutSection {
+        
         let item = NSCollectionLayoutItem(layoutSize: .init(
             widthDimension: .fractionalWidth(1),
             heightDimension: .fractionalHeight(convertByHeightRatio(694) / convertByHeightRatio(812))
@@ -112,7 +122,7 @@ final class MyReviewsViewController: BaseViewController {
         return section
     }
     
-    func getListCount(_ count: Int) {
+    func configureScrollable(_ count: Int) {
         if count == 0 {
             self.collectionView.isScrollEnabled = false
         } else {
@@ -126,6 +136,7 @@ final class MyReviewsViewController: BaseViewController {
 extension MyReviewsViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
+        
         if myReviewslist.isEmpty {
             return 1
         } else {
@@ -138,14 +149,15 @@ extension MyReviewsViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         if myReviewslist.isEmpty {
             let cell: EmptyCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-            cell.getViewType(.noReview)
-            cell.getEmtyText("내가 쓴 리뷰가 없어요!")
+            cell.configureViewType(.noReview)
+            cell.configureEmptyText("내가 쓴 리뷰가 없어요!")
             return cell
         } else {
             let cell: MyReviewsCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-            cell.updateUI(myReviewslist[indexPath.section])
+            cell.configureCellUI(myReviewslist[indexPath.section])
             return cell
         }
     }
@@ -159,7 +171,7 @@ extension MyReviewsViewController: UICollectionViewDelegateFlowLayout {
             return UICollectionReusableView()
         } else {
             let header: MyReviewsHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
-            header.getReviewDate(self.myReviewslist[indexPath.item].createdAt)
+            header.configuteDateText(self.myReviewslist[indexPath.item].createdAt)
             return header
         }
     }
@@ -169,6 +181,7 @@ extension MyReviewsViewController: UICollectionViewDelegateFlowLayout {
 
 extension MyReviewsViewController {
     private func getSavedBakeryList() {
+        
         MyPageAPI.shared.getMyReviews { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
@@ -176,7 +189,7 @@ extension MyReviewsViewController {
                 self.myReviewslist.append(item)
             }
             self.collectionView.reloadData()
-            self.getListCount(self.myReviewslist.count)
+            self.configureScrollable(self.myReviewslist.count)
         }
     }
 }
