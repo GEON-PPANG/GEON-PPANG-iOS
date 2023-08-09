@@ -11,23 +11,47 @@ import Foundation
 
 struct HomeBestReviewResponseDTO: Codable, Hashable {
     
-    let bakeryId: Int
+    let bakeryID: Int
     let bakeryName: String
+    let bakeryPicture: String
     let isHACCP: Bool
     let isVegan: Bool
     let isNonGMO: Bool
     let firstNearStation: String
     let secondNearStation: String?
-    let isBookMarked: Bool
-    let bookMarkCount: Int
-    let bakeryPicture: String
+    let isBookmarked: Bool
+    let bookmarkCount: Int
     let reviewCount: Int
     let reviewText: String
     let firstMaxRecommendKeyword: String
     let secondMaxRecommendKeyword: String?
     
+    enum CodingKeys: String, CodingKey {
+        case bakeryID = "breadId"
+        case bakeryName, bakeryPicture
+        case isHACCP, isVegan, isNonGMO
+        case firstNearStation, secondNearStation
+        case isBookmarked = "isBookMarked"
+        case bookmarkCount = "bookMarkCount"
+        case reviewCount, reviewText
+        case firstMaxRecommendKeyword, secondMaxRecommendKeyword
+    }
+    
     func convertToBakeryReviews() -> BestReviews {
-        return BestReviews(bakeryId: bakeryId, bakeryName: bakeryName, isHACCP: isHACCP, isVegan: isVegan, isNonGMO: isNonGMO, firstNearStation: firstNearStation, secondNearStation: secondNearStation, isBookMarked: isBookMarked, bookMarkCount: bookMarkCount, bakeryPicture: bakeryPicture, reviewCount: reviewCount, reviewText: reviewText, firstMaxRecommendKeyword: firstMaxRecommendKeyword, secondMaxRecommendKeyword: secondMaxRecommendKeyword)
+        return BestReviews(bakeryID: bakeryID,
+                           bakeryName: bakeryName,
+                           isHACCP: isHACCP,
+                           isVegan: isVegan,
+                           isNonGMO: isNonGMO,
+                           firstNearStation: firstNearStation,
+                           secondNearStation: secondNearStation,
+                           isBookmarked: isBookmarked,
+                           bookmarkCount: bookmarkCount,
+                           bakeryPicture: bakeryPicture,
+                           reviewCount: reviewCount,
+                           reviewText: reviewText,
+                           firstMaxRecommendKeyword: firstMaxRecommendKeyword,
+                           secondMaxRecommendKeyword: secondMaxRecommendKeyword)
     }
 }
 
@@ -41,19 +65,18 @@ struct BestReviews: Codable, Hashable {
         lhs.id == rhs.id
     }
     
-    let bakeryId: Int
+    let bakeryID: Int
     let bakeryName: String
     let isHACCP: Bool
     let isVegan: Bool
     let isNonGMO: Bool
     let firstNearStation: String
     let secondNearStation: String?
-    let isBookMarked: Bool
-    let bookMarkCount: Int
+    let isBookmarked: Bool
+    let bookmarkCount: Int
     let bakeryPicture: String
     let reviewCount: Int
     let reviewText: String
     let firstMaxRecommendKeyword: String
     let secondMaxRecommendKeyword: String?
-
 }

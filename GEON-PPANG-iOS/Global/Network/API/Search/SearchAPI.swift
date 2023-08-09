@@ -28,7 +28,7 @@ final class SearchAPI {
                 do {
                     self.searchBakery = try response.map(GeneralResponse<SearchResponseDTO>.self)
                     guard let searchBakery = self.searchBakery else { return }
-
+                    
                     completion(searchBakery)
                     print("✅\(searchBakery)")
                 } catch let err {
