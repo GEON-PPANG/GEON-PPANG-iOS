@@ -16,7 +16,10 @@ final class BackButton: UIButton {
     // MARK: - Init
     
     override init(frame: CGRect) {
-        super.init(frame: .init(x: 0, y: 0, width: 48, height: 48))
+        super.init(frame: .init(x: 0,
+                                y: 0,
+                                width: 48,
+                                height: 48))
         
         setLayout()
         setStyle()
@@ -30,7 +33,8 @@ final class BackButton: UIButton {
     // MARK: - Setting
     
     private func setLayout() {
-        addSubview(leftChevron)
+        
+        self.addSubview(leftChevron)
         leftChevron.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.width.equalTo(10)
@@ -38,6 +42,7 @@ final class BackButton: UIButton {
     }
     
     private func setStyle() {
+        
         leftChevron.do {
             $0.contentMode = .scaleAspectFill
         }

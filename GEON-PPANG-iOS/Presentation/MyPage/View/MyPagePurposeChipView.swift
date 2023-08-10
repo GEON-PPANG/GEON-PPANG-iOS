@@ -37,7 +37,8 @@ final class MyPagePurposeChipView: UIView {
     // MARK: - Setting
     
     private func setLayout() {
-        addSubview(purposeLabel)
+        
+        self.addSubview(purposeLabel)
         purposeLabel.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(11)
             $0.verticalEdges.equalToSuperview().inset(4)
@@ -45,6 +46,7 @@ final class MyPagePurposeChipView: UIView {
     }
     
     private func setUI() {
+        
         self.do {
             $0.backgroundColor = .gbbPoint2
             $0.makeCornerRound(radius: 12.5)
@@ -61,6 +63,7 @@ final class MyPagePurposeChipView: UIView {
     // MARK: - Custom Method
     
     func configureChip(toTag tag: FilterPurposeType) {
+        
         purposeLabel.do {
             $0.text = tag.rawValue
         }

@@ -69,7 +69,8 @@ final class OptionsCollectionViewCell: UICollectionViewCell {
     // MARK: - Setting
     
     private func setLayout() {
-        addSubview(cellLabel)
+        
+        self.addSubview(cellLabel)
         cellLabel.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(16)
             $0.verticalEdges.equalToSuperview().inset(10)
@@ -78,6 +79,7 @@ final class OptionsCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUI() {
+        
         self.do {
             $0.makeCornerRound(radius: 18.5)
             $0.makeBorder(width: 1.5, color: cellBorderColor)
@@ -94,6 +96,7 @@ final class OptionsCollectionViewCell: UICollectionViewCell {
     // MARK: - Custom Method
     
     func configureCell(to status: CellStatus) {
+        
         self.status = status
         
         self.do {
@@ -106,6 +109,7 @@ final class OptionsCollectionViewCell: UICollectionViewCell {
     }
     
     func configureCellText(to text: String) {
+        
         self.cellText = text
         
         cellLabel.do {

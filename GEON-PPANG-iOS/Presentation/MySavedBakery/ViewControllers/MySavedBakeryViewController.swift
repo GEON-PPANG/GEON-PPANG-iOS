@@ -64,7 +64,7 @@ final class MySavedBakeryViewController: BaseViewController {
     
     override func setUI() {
         naviView.do {
-            $0.addBackButtonAction(UIAction { _ in
+            $0.configureBackButtonAction(UIAction { _ in
                 dump(self.navigationController)
                 self.navigationController?.popViewController(animated: true)
             })

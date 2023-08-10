@@ -16,7 +16,7 @@ final class FilterCollectionViewCell: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
-            toggleSelection()
+            configureSelection()
         }
     }
     
@@ -48,6 +48,7 @@ final class FilterCollectionViewCell: UICollectionViewCell {
     // MARK: - Custom Method
     
     private func configureLayout() {
+        
         contentView.addSubview(labelStackView)
         labelStackView.snp.makeConstraints {
             $0.center.equalToSuperview()
@@ -55,6 +56,7 @@ final class FilterCollectionViewCell: UICollectionViewCell {
     }
     
     private func configureUI() {
+        
         self.do {
             $0.backgroundColor = .gbbBackground2
             $0.makeBorder(width: 1, color: .gbbGray300!)
@@ -79,18 +81,21 @@ final class FilterCollectionViewCell: UICollectionViewCell {
     }
     
     private func configureLabelText(type typeText: String) {
+        
         typeLabel.do {
             $0.text = typeText
         }
     }
     
     private func configureLabelText(description descriptionText: String) {
+        
         descriptionLabel.do {
             $0.text = descriptionText
         }
     }
     
-    private func toggleSelection() {
+    private func configureSelection() {
+        
         UIView.animate(withDuration: 0.2) {
             self.do {
                 $0.makeBorder(width: self.isSelected ? 2 : 1, color: self.isSelected ? .gbbMain1! : .gbbGray300!)

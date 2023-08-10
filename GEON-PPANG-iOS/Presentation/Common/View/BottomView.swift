@@ -29,12 +29,14 @@ final class BottomView: UIView {
     // MARK: - Setting
     
     private func setLayout() {
+        
         self.snp.makeConstraints {
             $0.height.equalTo(CGFloat().heightConsideringBottomSafeArea(126))
         }
     }
 
     private func setShadow() {
+        
         self.layer.applyShadow(color: .init(red: 0, green: 0, blue: 0, alpha: 0.1),
                                alpha: 1,
                                x: 0,
@@ -45,6 +47,7 @@ final class BottomView: UIView {
     // MARK: - Custom Method
     
     func applyAdditionalSubview(_ view: UIView, withTopOffset offset: CGFloat = 21) {
+        
         addSubview(view)
         view.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(24)

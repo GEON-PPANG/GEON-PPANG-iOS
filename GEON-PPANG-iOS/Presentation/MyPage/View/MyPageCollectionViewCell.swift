@@ -35,6 +35,7 @@ final class MyPageCollectionViewCell: UICollectionViewCell {
     // MARK: - Setting
     
     private func setLayout() {
+        
         contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(24)
@@ -55,6 +56,7 @@ final class MyPageCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUI() {
+        
         contentView.do {
             $0.backgroundColor = .gbbWhite
         }
@@ -68,12 +70,14 @@ final class MyPageCollectionViewCell: UICollectionViewCell {
     // MARK: - Custom Method
     
     func configureTitle(to text: String) {
+        
         titleLabel.do {
             $0.text = text
         }
     }
     
     func applyTopThickBorder() {
+        
         let borderView = UIView()
         contentView.addSubview(borderView)
         borderView.snp.makeConstraints {
@@ -88,6 +92,7 @@ final class MyPageCollectionViewCell: UICollectionViewCell {
     }
     
     func applyTopThinBorder() {
+        
         let borderView = UIView()
         contentView.addSubview(borderView)
         borderView.snp.makeConstraints {

@@ -67,20 +67,21 @@ final class ReviewDetailTextView: UIView {
     // MARK: - Setting
     
     private func setLayout() {
-        addSubview(detailTextView)
+        
+        self.addSubview(detailTextView)
         detailTextView.snp.makeConstraints {
             $0.top.horizontalEdges.equalToSuperview()
             $0.height.equalTo(196)
         }
         
-        addSubview(textMinimumLimitLabel)
+        self.addSubview(textMinimumLimitLabel)
         textMinimumLimitLabel.snp.makeConstraints {
             $0.bottom.equalTo(detailTextView.snp.bottom).offset(-10)
             $0.trailing.equalTo(detailTextView).offset(-12)
             $0.height.equalTo(17)
         }
         
-        addSubview(textLimitLabel)
+        self.addSubview(textLimitLabel)
         textLimitLabel.snp.makeConstraints {
             $0.bottom.equalTo(detailTextView.snp.bottom).offset(-10)
             $0.trailing.equalTo(textMinimumLimitLabel.snp.leading).offset(-4)
@@ -89,6 +90,7 @@ final class ReviewDetailTextView: UIView {
     }
     
     private func setUI() {
+        
         detailTextView.do {
             $0.text = I18N.WriteReview.likePlaceholder
             $0.font = .subHead
@@ -115,6 +117,7 @@ final class ReviewDetailTextView: UIView {
     // MARK: - Custom Method
     
     func configureTextView(to status: TextViewStatus) {
+        
         self.status = status
         
         detailTextView.do {
@@ -132,18 +135,21 @@ final class ReviewDetailTextView: UIView {
     }
     
     func configurePlaceholder(with isLike: Bool) {
+        
         detailTextView.do {
             $0.text = isLike ? I18N.WriteReview.likePlaceholder : I18N.WriteReview.dislikePlaceholder
         }
     }
     
     func updateTextLimitLabel(to num: Int) {
+        
         textLimitLabel.do {
             $0.text = "\(num)/70"
         }
     }
     
     func checkTextCount() {
+        
         if detailTextView.text.count < 10 {
             configureTextView(to: .error)
         }

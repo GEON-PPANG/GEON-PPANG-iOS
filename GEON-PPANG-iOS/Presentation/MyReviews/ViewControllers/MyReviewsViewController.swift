@@ -50,7 +50,7 @@ final class MyReviewsViewController: BaseViewController {
     override func setUI() {
         naviView.do {
             $0.configureBottomLine()
-            $0.addBackButtonAction(UIAction { _ in
+            $0.configureBackButtonAction(UIAction { _ in
                 self.navigationController?.popViewController(animated: true)
             })
             $0.configureLeftTitle(to: I18N.MyReviews.naviTitle)

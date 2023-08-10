@@ -11,6 +11,7 @@ class OptionsCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
     override init() {
         super.init()
+        
         self.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         self.minimumLineSpacing = 6
         self.minimumInteritemSpacing = 4
@@ -24,6 +25,7 @@ class OptionsCollectionViewFlowLayout: UICollectionViewFlowLayout {
     let cellSpacing: CGFloat = 4
 
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        
         let attributes = super.layoutAttributesForElements(in: rect)
         var leftMargin = sectionInset.left
         var maxY: CGFloat = -1.0
