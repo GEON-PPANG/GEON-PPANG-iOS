@@ -31,8 +31,8 @@ final class InfoCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        setUI()
         setLayout()
+        setUI()
     }
     
     @available(*, unavailable)
@@ -41,58 +41,6 @@ final class InfoCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Setting
-    
-    private func setUI() {
-        
-        self.backgroundColor = .gbbWhite
-        
-        homepageLinkImage.do {
-            $0.image = .linkIcon
-        }
-        
-        // TODO: 클릭 시 사파리로 이동 (API 통신 필요)
-        homepageLinkButton.do {
-            $0.setTitle("홈페이지로 이동", for: .normal)
-            $0.setTitleColor(.gbbGray400, for: .normal)
-            $0.setUnderline()
-            $0.titleLabel?.font = .subHead
-            $0.titleLabel?.adjustsFontSizeToFitWidth = true
-        }
-        
-        bakeryAddressImage.do {
-            $0.image = .storeIcon
-        }
-        
-        bakeryAddressLabel.do {
-            $0.basic(font: .subHead!, color: .gbbGray400!)
-            $0.adjustsFontSizeToFitWidth = true
-        }
-        
-        addressCopyButton.do {
-            $0.setImage(.copyButton, for: .normal)
-        }
-        
-        bakeryOpeningHoursImage.do {
-            $0.image = .timeIcon
-        }
-        
-        bakeryClosedDaysLabel.do {
-            $0.basic(font: .subHead!, color: .gbbError!)
-        }
-        
-        bakeryOpeningHoursLabel.do {
-            $0.basic(font: .subHead!, color: .gbbGray400!)
-            $0.adjustsFontSizeToFitWidth = true
-        }
-        
-        bakeryPhoneNumberImage.do {
-            $0.image = .callIcon
-        }
-        
-        bakeryPhoneNumberLabel.do {
-            $0.basic(font: .subHead!, color: .gbbGray400!)
-        }
-    }
     
     private func setLayout() {
         
@@ -169,6 +117,58 @@ final class InfoCollectionViewCell: UICollectionViewCell {
             $0.trailing.equalToSuperview().inset(155)
             $0.width.equalTo(162)
             $0.height.equalTo(20)
+        }
+    }
+    
+    private func setUI() {
+        
+        self.backgroundColor = .gbbWhite
+        
+        homepageLinkImage.do {
+            $0.image = .linkIcon
+        }
+        
+        // TODO: 클릭 시 사파리로 이동 (API 통신 필요)
+        homepageLinkButton.do {
+            $0.setTitle("홈페이지로 이동", for: .normal)
+            $0.setTitleColor(.gbbGray400, for: .normal)
+            $0.setUnderline()
+            $0.titleLabel?.font = .subHead
+            $0.titleLabel?.adjustsFontSizeToFitWidth = true
+        }
+        
+        bakeryAddressImage.do {
+            $0.image = .storeIcon
+        }
+        
+        bakeryAddressLabel.do {
+            $0.basic(font: .subHead!, color: .gbbGray400!)
+            $0.adjustsFontSizeToFitWidth = true
+        }
+        
+        addressCopyButton.do {
+            $0.setImage(.copyButton, for: .normal)
+        }
+        
+        bakeryOpeningHoursImage.do {
+            $0.image = .timeIcon
+        }
+        
+        bakeryClosedDaysLabel.do {
+            $0.basic(font: .subHead!, color: .gbbError!)
+        }
+        
+        bakeryOpeningHoursLabel.do {
+            $0.basic(font: .subHead!, color: .gbbGray400!)
+            $0.adjustsFontSizeToFitWidth = true
+        }
+        
+        bakeryPhoneNumberImage.do {
+            $0.image = .callIcon
+        }
+        
+        bakeryPhoneNumberLabel.do {
+            $0.basic(font: .subHead!, color: .gbbGray400!)
         }
     }
     

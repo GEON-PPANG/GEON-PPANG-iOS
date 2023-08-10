@@ -26,8 +26,8 @@ final class TitleCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        setUI()
         setLayout()
+        setUI()
     }
     
     @available(*, unavailable)
@@ -36,30 +36,6 @@ final class TitleCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Setting
-    
-    private func setUI() {
-        
-        self.backgroundColor = .gbbWhite
-        
-        bakeryImage.do {
-            $0.contentMode = .scaleAspectFill
-            $0.clipsToBounds = true
-        }
-        
-        markStackView.do {
-            $0.setMarkSize(28)
-            $0.spacing = 10
-        }
-        
-        bakeryNameLabel.do {
-            $0.basic(font: .title1!, color: .gbbGray700!)
-            $0.adjustsFontSizeToFitWidth = true
-        }
-        
-        breadTypeStackView.do {
-            $0.getChipStatus(false, false, false, false)
-        }
-    }
     
     private func setLayout() {
         
@@ -90,6 +66,30 @@ final class TitleCollectionViewCell: UICollectionViewCell {
         bookmarkReviewStackView.snp.makeConstraints {
             $0.top.equalTo(breadTypeStackView.snp.bottom).offset(16)
             $0.leading.equalTo(breadTypeStackView)
+        }
+    }
+    
+    private func setUI() {
+        
+        self.backgroundColor = .gbbWhite
+        
+        bakeryImage.do {
+            $0.contentMode = .scaleAspectFill
+            $0.clipsToBounds = true
+        }
+        
+        markStackView.do {
+            $0.setMarkSize(28)
+            $0.spacing = 10
+        }
+        
+        bakeryNameLabel.do {
+            $0.basic(font: .title1!, color: .gbbGray700!)
+            $0.adjustsFontSizeToFitWidth = true
+        }
+        
+        breadTypeStackView.do {
+            $0.getChipStatus(false, false, false, false)
         }
     }
     

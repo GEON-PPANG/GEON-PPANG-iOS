@@ -22,8 +22,8 @@ final class ReviewSortButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        setUI()
         setLayout()
+        setUI()
     }
     
     @available(*, unavailable)
@@ -32,18 +32,6 @@ final class ReviewSortButton: UIButton {
     }
     
     // MARK: - Setting
-    
-    private func setUI() {
-        
-        iconLabelStackVIewContainer.do {
-            $0.makeBorder(width: 1, color: .gbbGray200!)
-            $0.makeCornerRound(radius: 18)
-        }
-        
-        iconLabelStackVIew.do {
-            $0.spacing = 5
-        }
-    }
     
     private func setLayout() {
         
@@ -56,6 +44,18 @@ final class ReviewSortButton: UIButton {
         iconLabelStackVIew.snp.makeConstraints {
             $0.top.equalToSuperview().inset(10)
             $0.leading.equalToSuperview().inset(12)
+        }
+    }
+    
+    private func setUI() {
+        
+        iconLabelStackVIewContainer.do {
+            $0.makeBorder(width: 1, color: .gbbGray200!)
+            $0.makeCornerRound(radius: 18)
+        }
+        
+        iconLabelStackVIew.do {
+            $0.spacing = 5
         }
     }
 }

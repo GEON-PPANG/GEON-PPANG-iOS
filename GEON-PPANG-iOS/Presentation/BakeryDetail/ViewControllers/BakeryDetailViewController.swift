@@ -45,6 +45,25 @@ final class BakeryDetailViewController: BaseViewController {
     
     // MARK: - Setting
     
+    override func setLayout() {
+        
+        view.addSubviews(navigationBar, collectionView, detailBottomView)
+        
+        navigationBar.snp.makeConstraints {
+            $0.top.directionalHorizontalEdges.equalToSuperview()
+        }
+        
+        collectionView.snp.makeConstraints {
+            $0.top.equalTo(navigationBar.snp.bottom)
+            $0.directionalHorizontalEdges.equalToSuperview()
+            $0.bottom.equalToSuperview()
+        }
+        
+        detailBottomView.snp.makeConstraints {
+            $0.horizontalEdges.bottom.equalToSuperview()
+        }
+    }
+    
     override func setUI() {
         
         navigationBar.do {
@@ -82,25 +101,6 @@ final class BakeryDetailViewController: BaseViewController {
             $0.tappedWriteReviewButton = {
                 Utils.push(self.navigationController, WriteReviewViewController(bakeryData: self.configureSimpleBakeryData()))
             }
-        }
-    }
-    
-    override func setLayout() {
-        
-        view.addSubviews(navigationBar, collectionView, detailBottomView)
-        
-        navigationBar.snp.makeConstraints {
-            $0.top.directionalHorizontalEdges.equalToSuperview()
-        }
-        
-        collectionView.snp.makeConstraints {
-            $0.top.equalTo(navigationBar.snp.bottom)
-            $0.directionalHorizontalEdges.equalToSuperview()
-            $0.bottom.equalToSuperview()
-        }
-        
-        detailBottomView.snp.makeConstraints {
-            $0.horizontalEdges.bottom.equalToSuperview()
         }
     }
     

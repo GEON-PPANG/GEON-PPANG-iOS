@@ -23,8 +23,8 @@ final class MenuCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        setUI()
         setLayout()
+        setUI()
     }
     
     @available(*, unavailable)
@@ -33,20 +33,6 @@ final class MenuCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Setting
-    
-    private func setUI() {
-        
-        self.backgroundColor = .gbbWhite
-        
-        bakeryMenuLabel.do {
-            $0.basic(font: .subHead!, color: .gbbGray500!)
-        }
-        
-        menuPriceLabel.do {
-            $0.basic(font: .subHead!, color: .gbbGray400!)
-            $0.textAlignment = .right
-        }
-    }
     
     private func setLayout() {
         
@@ -70,6 +56,20 @@ final class MenuCollectionViewCell: UICollectionViewCell {
             $0.top.equalTo(bakeryMenuLabel.snp.bottom)
             $0.directionalHorizontalEdges.equalToSuperview()
             $0.height.equalTo(12)
+        }
+    }
+    
+    private func setUI() {
+        
+        self.backgroundColor = .gbbWhite
+        
+        bakeryMenuLabel.do {
+            $0.basic(font: .subHead!, color: .gbbGray500!)
+        }
+        
+        menuPriceLabel.do {
+            $0.basic(font: .subHead!, color: .gbbGray400!)
+            $0.textAlignment = .right
         }
     }
     

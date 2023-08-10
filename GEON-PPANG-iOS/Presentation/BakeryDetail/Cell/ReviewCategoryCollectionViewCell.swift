@@ -23,8 +23,8 @@ final class ReviewCategoryCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        setUI()
         setLayout()
+        setUI()
     }
     
     @available(*, unavailable)
@@ -33,13 +33,6 @@ final class ReviewCategoryCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Setting
-    
-    private func setUI() {
-        
-        [leftEmptyView, rightEmptyView].forEach {
-            $0.backgroundColor = .gbbWhite
-        }
-    }
     
     private func setLayout() {
         
@@ -61,6 +54,13 @@ final class ReviewCategoryCollectionViewCell: UICollectionViewCell {
             $0.top.equalToSuperview()
             $0.directionalHorizontalEdges.equalToSuperview().inset(33.5)
             $0.height.equalTo(157)
+        }
+    }
+    
+    private func setUI() {
+        
+        [leftEmptyView, rightEmptyView].forEach {
+            $0.backgroundColor = .gbbWhite
         }
     }
     

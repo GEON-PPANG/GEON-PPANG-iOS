@@ -38,9 +38,9 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-            
-        setUI()
+        
         setLayout()
+        setUI()
     }
     
     @available(*, unavailable)
@@ -58,6 +58,16 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
     
     // MARK: - Setting
     
+    private func setLayout() {
+        
+        self.addSubview(titleLabel)
+        
+        titleLabel.snp.makeConstraints {
+            $0.top.leading.equalToSuperview().inset(24)
+            $0.height.equalTo(22)
+        }
+    }
+    
     private func setUI() {
         
         self.backgroundColor = .gbbWhite
@@ -72,20 +82,10 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
         }
     }
     
-    private func setLayout() {
-        
-        self.addSubview(titleLabel)
-        
-        titleLabel.snp.makeConstraints {
-            $0.top.leading.equalToSuperview().inset(24)
-            $0.height.equalTo(22)
-        }
-    }
-    
     // MARK: - Custom Method
     
     func configureSubTitle() {
-
+        
         self.addSubview(subTitleStackView)
         
         subTitleStackView.isHidden = false

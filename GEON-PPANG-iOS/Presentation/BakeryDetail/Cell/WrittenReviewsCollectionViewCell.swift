@@ -27,8 +27,8 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        setUI()
         setLayout()
+        setUI()
     }
     
     @available(*, unavailable)
@@ -37,40 +37,6 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Setting
-    
-    private func setUI() {
-        
-        self.backgroundColor = .gbbWhite
-        
-        reviewContainer.do {
-            $0.backgroundColor = .gbbBackground2
-            $0.makeCornerRound(radius: 12)
-        }
-        
-        profileImage.do {
-            $0.image = .logoIcon20px
-            $0.contentMode = .scaleToFill
-        }
-        
-        userNicknameLabel.do {
-            $0.basic(font: .bodyB2!, color: .gbbMain1!)
-        }
-        
-        reviewDateLabel.do {
-            $0.basic(font: .captionM1!, color: .gbbGray400!)
-            $0.textAlignment = .right
-        }
-        
-        reportLabel.do {
-            $0.basic(text: "신고", font: .captionM1!, color: .gbbGray300!)
-        }
-        
-        reviewTextLabel.do {
-            $0.basic(font: .subHead!, color: .gbbGray400!)
-            $0.numberOfLines = 3
-            $0.adjustsFontSizeToFitWidth = true
-        }
-    }
     
     private func setLayout() {
         
@@ -127,15 +93,47 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    private func setUI() {
+        
+        self.backgroundColor = .gbbWhite
+        
+        reviewContainer.do {
+            $0.backgroundColor = .gbbBackground2
+            $0.makeCornerRound(radius: 12)
+        }
+        
+        profileImage.do {
+            $0.image = .logoIcon20px
+            $0.contentMode = .scaleToFill
+        }
+        
+        userNicknameLabel.do {
+            $0.basic(font: .bodyB2!, color: .gbbMain1!)
+        }
+        
+        reviewDateLabel.do {
+            $0.basic(font: .captionM1!, color: .gbbGray400!)
+            $0.textAlignment = .right
+        }
+        
+        reportLabel.do {
+            $0.basic(text: "신고", font: .captionM1!, color: .gbbGray300!)
+        }
+        
+        reviewTextLabel.do {
+            $0.basic(font: .subHead!, color: .gbbGray400!)
+            $0.numberOfLines = 3
+            $0.adjustsFontSizeToFitWidth = true
+        }
+    }
+    
     func updateUI(_ data: ReviewList) {
         
         userNicknameLabel.text = data.memberNickname
         reviewDateLabel.text = data.createdAt
         reviewTextLabel.text = data.reviewText
         
-        if data.recommendKeywordList.isEmpty {
-            
-        } else {
+        if !data.recommendKeywordList.isEmpty {
             let list = data.recommendKeywordList.map {
                 $0.recommendKeywordID
             }

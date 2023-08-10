@@ -34,8 +34,8 @@ final class ReviewProgressView: UIView {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        setUI()
         setLayout()
+        setUI()
         setProgressBar()
     }
     
@@ -46,7 +46,27 @@ final class ReviewProgressView: UIView {
     
     // MARK: - Setting
     
+    private func setLayout() {
+        
+        self.addSubviews(reviewProgressBar, reviewLabel)
+        
+        reviewProgressBar.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(47)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(102)
+            $0.height.equalTo(8)
+        }
+        
+        reviewLabel.snp.makeConstraints {
+            $0.top.equalTo(reviewProgressBar.snp.bottom).offset(63.25)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(17)
+        }
+    }
+    
     private func setUI() {
+        
+        self.backgroundColor = .gbbWhite
         
         reviewProgressBar.do {
             $0.progress = 0
@@ -61,25 +81,6 @@ final class ReviewProgressView: UIView {
             $0.basic(text: "맛있어요", font: .captionB1!, color: .gbbMain2!)
             $0.textAlignment = .center
             $0.numberOfLines = 1
-        }
-    }
-    
-    private func setLayout() {
-        
-        self.addSubviews(reviewProgressBar, reviewLabel)
-        self.backgroundColor = .gbbWhite
-        
-        reviewProgressBar.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(47)
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(102)
-            $0.height.equalTo(8)
-        }
-        
-        reviewLabel.snp.makeConstraints {
-            $0.top.equalTo(reviewProgressBar.snp.bottom).offset(63.25)
-            $0.centerX.equalToSuperview()
-            $0.height.equalTo(17)
         }
     }
     

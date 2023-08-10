@@ -22,8 +22,8 @@ final class BookmarkReviewNumberStackView: UIStackView {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        setUI()
         setLayout()
+        setUI()
     }
     
     @available(*, unavailable)
@@ -32,15 +32,6 @@ final class BookmarkReviewNumberStackView: UIStackView {
     }
     
     // MARK: - Setting
-    
-    private func setUI() {
-        
-        self.do {
-            $0.axis = .horizontal
-            $0.spacing = 6
-            $0.distribution = .equalSpacing
-        }
-    }
     
     private func setLayout() {
         
@@ -51,5 +42,14 @@ final class BookmarkReviewNumberStackView: UIStackView {
         
         bookmarkCountStackView.updateCount(bookmarkCount)
         reviewCountStackView.updateCount(reviewCount)
+    }
+    
+    private func setUI() {
+        
+        self.do {
+            $0.axis = .horizontal
+            $0.spacing = 6
+            $0.distribution = .equalSpacing
+        }
     }
 }

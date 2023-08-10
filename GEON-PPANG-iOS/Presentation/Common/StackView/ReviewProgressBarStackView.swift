@@ -11,7 +11,7 @@ import SnapKit
 import Then
 
 final class ReviewProgressBarStackView: UIStackView {
-
+    
     // MARK: - UI Property
     
     private let deliciousProgressView = ReviewProgressView()
@@ -31,8 +31,8 @@ final class ReviewProgressBarStackView: UIStackView {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        setUI()
         setLayout()
+        setUI()
     }
     
     @available(*, unavailable)
@@ -41,6 +41,17 @@ final class ReviewProgressBarStackView: UIStackView {
     }
     
     // MARK: - Setting
+    
+    private func setLayout() {
+        
+        self.addArrangedSubviews(deliciousProgressView, specialProgressView, kindProgressView, zeroWasteProgressView)
+        
+        [deliciousProgressView, specialProgressView, kindProgressView, zeroWasteProgressView].enumerated().forEach { index, view in
+            view.snp.makeConstraints {
+                $0.width.equalTo(tempWidth[index])
+            }
+        }
+    }
     
     private func setUI() {
         
@@ -55,17 +66,6 @@ final class ReviewProgressBarStackView: UIStackView {
             view.do {
                 $0.reviewLabel.text = labeling[index]
                 $0.gauge = tempGauge[index]
-            }
-        }
-    }
-    
-    private func setLayout() {
-        
-        self.addArrangedSubviews(deliciousProgressView, specialProgressView, kindProgressView, zeroWasteProgressView)
-        
-        [deliciousProgressView, specialProgressView, kindProgressView, zeroWasteProgressView].enumerated().forEach { index, view in
-            view.snp.makeConstraints {
-                $0.width.equalTo(tempWidth[index])
             }
         }
     }
