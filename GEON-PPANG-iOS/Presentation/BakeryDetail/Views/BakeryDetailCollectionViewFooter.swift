@@ -36,13 +36,12 @@ final class BakeryDetailCollectionViewFooter: UICollectionReusableView {
     
     private func setLayout() {
         
-        self.addSubviews(labelContainer, underLineView)
-        labelContainer.addSubview((label))
-        
+        self.addSubview(labelContainer)
         labelContainer.snp.makeConstraints {
             $0.edges.equalToSuperview().inset(24)
         }
         
+        labelContainer.addSubview((label))
         label.snp.makeConstraints {
             $0.directionalVerticalEdges.equalToSuperview().inset(18)
             $0.directionalHorizontalEdges.equalToSuperview().inset(21)
@@ -50,6 +49,7 @@ final class BakeryDetailCollectionViewFooter: UICollectionReusableView {
             $0.height.equalTo(36)
         }
         
+        self.addSubview(underLineView)
         underLineView.snp.makeConstraints {
             $0.top.equalTo(labelContainer.snp.bottom).offset(24)
             $0.directionalHorizontalEdges.equalToSuperview()

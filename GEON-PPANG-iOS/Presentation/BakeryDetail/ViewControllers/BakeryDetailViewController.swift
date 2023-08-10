@@ -14,18 +14,50 @@ final class BakeryDetailViewController: BaseViewController {
     
     // MARK: - Property
     
-    private var overviewData: BakeryDetailResponseDTO = BakeryDetailResponseDTO(bakeryID: 0, bakeryName: "", bakeryPicture: "", isHACCP: false, isVegan: false, isNonGMO: false, firstNearStation: "", secondNearStation: "", isBookMarked: false, bookMarkCount: 0, reviewCount: 0, breadType: BreadResponseType(breadTypeID: 0, name: "", isGlutenFree: false, isVegan: false, isNutFree: false, isSugarFree: false), homepage: "", address: "", openingTime: "", closedDay: "", phoneNumber: "", menuList: [MenuList(menuID: 0, menuName: "", menuPrice: 0)]) {
+    private var overviewData: BakeryDetailResponseDTO = BakeryDetailResponseDTO(bakeryID: 0,
+                                                                                bakeryName: "",
+                                                                                bakeryPicture: "",
+                                                                                isHACCP: false,
+                                                                                isVegan: false,
+                                                                                isNonGMO: false,
+                                                                                firstNearStation: "",
+                                                                                secondNearStation: "",
+                                                                                isBookMarked: false,
+                                                                                bookMarkCount: 0,
+                                                                                reviewCount: 0,
+                                                                                breadType: BreadResponseType(breadTypeID: 0,
+                                                                                                             name: "",
+                                                                                                             isGlutenFree: false,
+                                                                                                             isVegan: false,
+                                                                                                             isNutFree: false,
+                                                                                                             isSugarFree: false),
+                                                                                homepage: "",
+                                                                                address: "",
+                                                                                openingTime: "",
+                                                                                closedDay: "",
+                                                                                phoneNumber: "",
+                                                                                menuList: [MenuList(menuID: 0,
+                                                                                                    menuName: "",
+                                                                                                    menuPrice: 0)]) {
         didSet {
             self.collectionView.reloadData()
         }
     }
-    private var reviewData: WrittenReviewsResponseDTO = WrittenReviewsResponseDTO(tastePercent: 0, specialPercent: 0, kindPercent: 0, zeroPercent: 0, totalReviewCount: 0, reviewList: [ReviewList(reviewID: 0, recommendKeywordList: [RecommendKeywordList(recommendKeywordID: 0, recommendKeywordName: "")], reviewText: "", memberNickname: "", createdAt: "")]) {
+    private var reviewData: WrittenReviewsResponseDTO = WrittenReviewsResponseDTO(tastePercent: 0,
+                                                                                  specialPercent: 0,
+                                                                                  kindPercent: 0,
+                                                                                  zeroPercent: 0,
+                                                                                  totalReviewCount: 0,
+                                                                                  reviewList: [ReviewList(reviewID: 0,
+                                                                                                          recommendKeywordList: [RecommendKeywordList(recommendKeywordID: 0, recommendKeywordName: "")],
+                                                                                                          reviewText: "",
+                                                                                                          memberNickname: "",
+                                                                                                          createdAt: "")]) {
         didSet {
             self.collectionView.reloadData()
         }
     }
     private var isBookmarked: Bool = false
-    
     var bakeryID: Int?
     
     // MARK: - UI Property
@@ -37,6 +69,7 @@ final class BakeryDetailViewController: BaseViewController {
     // MARK: - Life Cycle
     
     override func viewWillAppear(_ animated: Bool) {
+        
         super.viewWillAppear(animated)
         guard let bakeryID = self.bakeryID else { return }
         getBakeryDetail(bakeryID: bakeryID)
@@ -47,18 +80,19 @@ final class BakeryDetailViewController: BaseViewController {
     
     override func setLayout() {
         
-        view.addSubviews(navigationBar, collectionView, detailBottomView)
-        
+        view.addSubview(navigationBar)
         navigationBar.snp.makeConstraints {
             $0.top.directionalHorizontalEdges.equalToSuperview()
         }
         
+        view.addSubview(collectionView)
         collectionView.snp.makeConstraints {
             $0.top.equalTo(navigationBar.snp.bottom)
             $0.directionalHorizontalEdges.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
         
+        view.addSubview(detailBottomView)
         detailBottomView.snp.makeConstraints {
             $0.horizontalEdges.bottom.equalToSuperview()
         }
@@ -113,12 +147,14 @@ final class BakeryDetailViewController: BaseViewController {
     // MARK: - Custom Method
     
     private func configureSimpleBakeryData() -> SimpleBakeryModel {
+        
         var bakeryData = SimpleBakeryModel.emptyModel()
         bakeryData.bakeryID = overviewData.bakeryID
         bakeryData.bakeryName = overviewData.bakeryName
         bakeryData.bakeryImageURL = overviewData.bakeryPicture
         bakeryData.bakeryIngredients = overviewData.breadType.configureTrueOptions().filter { $0.1 == true }.map { $0.0 }
         bakeryData.bakeryRegion = [overviewData.firstNearStation, overviewData.secondNearStation]
+        
         return bakeryData
     }
 }
@@ -159,14 +195,14 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
             let cell: TitleCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             
             DispatchQueue.main.async {
-                cell.updateUI(self.overviewData)
+                cell.configureCellUI(self.overviewData)
             }
             
             return cell
         case 1:
             let cell: InfoCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             
-                cell.updateUI(self.overviewData)
+            cell.configureCellUI(self.overviewData)
             
             return cell
         case 2:
@@ -174,7 +210,7 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
             let menu = overviewData.menuList[indexPath.item]
             
             DispatchQueue.main.async {
-                cell.updateUI(menu)
+                cell.configureCellUI(menu)
             }
             
             return cell
@@ -182,7 +218,7 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
             let cell: ReviewCategoryCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             
             DispatchQueue.main.async {
-                cell.updateUI(self.reviewData)
+                cell.configureCellUI(self.reviewData)
             }
             
             return cell
@@ -191,7 +227,7 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
             let review = reviewData.reviewList[indexPath.item]
             
             DispatchQueue.main.async {
-                cell.updateUI(review)
+                cell.configureCellUI(review)
             }
             
             return cell
@@ -228,7 +264,7 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
             let header: BakeryDetailCollectionViewHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
             
             DispatchQueue.main.async {
-                header.updateUI(self.overviewData)
+                header.configureHeaderUI(self.overviewData)
                 header.getType(.writtenReviews)
             }
             
@@ -249,8 +285,9 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
         case 0:
             if !overviewData.isHACCP && !overviewData.isVegan && !overviewData.isNonGMO {
                 return CGSize(width: getDeviceWidth(), height: 399)
+            } else {
+                return CGSize(width: getDeviceWidth(), height: 443)
             }
-            return CGSize(width: getDeviceWidth(), height: 443)
         case 1:
             return CGSize(width: getDeviceWidth(), height: 259)
         case 2:
@@ -303,6 +340,7 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        
         return 0
     }
 }
@@ -312,6 +350,7 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
 extension BakeryDetailViewController {
     
     func getBakeryDetail(bakeryID: Int) {
+        
         BakeryAPI.shared.getBakeryDetail(bakeryID: bakeryID) { response in
             
             guard let response = response else { return }
@@ -325,20 +364,27 @@ extension BakeryDetailViewController {
     }
     
     func getWrittenReviews(bakeryID: Int) {
+        
         BakeryAPI.shared.getWrittenReviews(bakeryID: bakeryID) { response in
             
             guard let response = response else { return }
             guard let data = response.data else { return }
+            dump(data)
             
             self.reviewData = data
         }
     }
     
     private func requestBakeryBookmark(_ value: Bool) {
+        
         let bookmarkRequest = BookmarkRequestDTO(isAddingBookMark: value)
+        
         guard let bakeryID = self.bakeryID else { return }
+        
         BakeryAPI.shared.postBookmark(bakeryID: bakeryID, with: bookmarkRequest) { response in
+            
             dump(response)
+            
             self.detailBottomView.configureBookmarkButton(to: value)
             self.isBookmarked = value
             self.collectionView.reloadData()
@@ -346,7 +392,16 @@ extension BakeryDetailViewController {
     }
     
     private func showToast(message: String) {
+        
         let toastLabel = UILabel()
+        let toastWidth = 141.0
+        let toastHeight = 45.0
+        
+        view.addSubview(toastLabel)
+        toastLabel.frame = CGRect(x: getDeviceWidth() / 2 - toastWidth / 2,
+                                  y: getDeviceHeight() - toastHeight - 154,
+                                  width: toastWidth,
+                                  height: toastHeight)
         
         toastLabel.backgroundColor = .gbbGray600
         toastLabel.textColor = UIColor.white
@@ -356,20 +411,10 @@ extension BakeryDetailViewController {
         toastLabel.alpha = 0.9
         toastLabel.makeCornerRound(radius: 22.5)
         
-        let toastWidth = 141.0
-        let toastHeight = 45.0
-        
-        toastLabel.frame = CGRect(x: getDeviceWidth() / 2 - toastWidth / 2,
-                                   y: getDeviceHeight() - toastHeight - 154,
-                                   width: toastWidth,
-                                   height: toastHeight)
-        
-        view.addSubview(toastLabel)
-        
-        UIView.animate(withDuration: 1.5, delay: 0.1, options: .curveEaseOut, animations: {
-            toastLabel.alpha = 0.0
-        }, completion: {(isCompleted) in
-            toastLabel.removeFromSuperview()
-        })
+        UIView.animate(withDuration: 1.5,
+                       delay: 0.1,
+                       options: .curveEaseOut,
+                       animations: { toastLabel.alpha = 0.0 },
+                       completion: { (isCompleted) in toastLabel.removeFromSuperview() })
     }
 }

@@ -14,15 +14,12 @@ final class ReviewProgressView: UIView {
     
     // MARK: - Property
     
-    // 회전할 각도 설정
-    private let rotationAngle: CGFloat = .pi / -2 // 90도 반시계 방향 회전
+    private let rotationAngle: CGFloat = .pi / -2 // 90도 반시계 방향으로 회전할 각도 설정
     
     private var time: Float = 0.0 // 애니메이션 지속 시간 커스텀을 위한 변수 선언
     private var timer: Timer?
     
     var gauge: Float = 1
-    
-    // 진행 바를 수직으로 회전
     
     // MARK: - UI Property
     
@@ -36,7 +33,7 @@ final class ReviewProgressView: UIView {
         
         setLayout()
         setUI()
-        setProgressBar()
+        setProgressBarAnimation()
     }
     
     @available(*, unavailable)
@@ -48,8 +45,7 @@ final class ReviewProgressView: UIView {
     
     private func setLayout() {
         
-        self.addSubviews(reviewProgressBar, reviewLabel)
-        
+        self.addSubview(reviewProgressBar)
         reviewProgressBar.snp.makeConstraints {
             $0.top.equalToSuperview().inset(47)
             $0.centerX.equalToSuperview()
@@ -57,6 +53,7 @@ final class ReviewProgressView: UIView {
             $0.height.equalTo(8)
         }
         
+        self.addSubview(reviewLabel)
         reviewLabel.snp.makeConstraints {
             $0.top.equalTo(reviewProgressBar.snp.bottom).offset(63.25)
             $0.centerX.equalToSuperview()
@@ -86,7 +83,8 @@ final class ReviewProgressView: UIView {
     
     // MARK: - Custom Method
     
-    @objc private func setProgressBarAnimation() {
+    @objc
+    private func makeProgressBarAnimated() {
         
         time += gauge / 20
         reviewProgressBar.setProgress(time, animated: true)
@@ -96,8 +94,8 @@ final class ReviewProgressView: UIView {
         }
     }
     
-    private func setProgressBar() {
+    private func setProgressBarAnimation() {
         
-        timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(setProgressBarAnimation), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(makeProgressBarAnimated), userInfo: nil, repeats: true)
     }
 }

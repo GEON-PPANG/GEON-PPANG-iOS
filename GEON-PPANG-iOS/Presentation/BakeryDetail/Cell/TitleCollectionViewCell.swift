@@ -39,30 +39,33 @@ final class TitleCollectionViewCell: UICollectionViewCell {
     
     private func setLayout() {
         
-        contentView.addSubviews(bakeryImage, markStackView, bakeryNameLabel, breadTypeStackView, bookmarkReviewStackView)
-        
+        contentView.addSubview(bakeryImage)
         bakeryImage.snp.makeConstraints {
             $0.top.directionalHorizontalEdges.equalToSuperview()
             $0.height.equalTo(243)
         }
         
+        contentView.addSubview(markStackView)
         markStackView.snp.makeConstraints {
             $0.top.equalTo(bakeryImage.snp.bottom).offset(30)
             $0.leading.equalToSuperview().inset(24)
         }
         
+        contentView.addSubview(bakeryNameLabel)
         bakeryNameLabel.snp.makeConstraints {
             $0.top.equalTo(markStackView.snp.bottom).offset(16)
             $0.directionalHorizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(32)
         }
         
+        contentView.addSubview(breadTypeStackView)
         breadTypeStackView.snp.makeConstraints {
             $0.top.equalTo(bakeryNameLabel.snp.bottom).offset(12)
             $0.leading.equalTo(bakeryNameLabel)
         }
         
         // TODO: 통신 전 쓰레기 값 hidden 시키기
+        contentView.addSubview(bookmarkReviewStackView)
         bookmarkReviewStackView.snp.makeConstraints {
             $0.top.equalTo(breadTypeStackView.snp.bottom).offset(16)
             $0.leading.equalTo(breadTypeStackView)
@@ -93,7 +96,9 @@ final class TitleCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func updateUI(_ data: BakeryDetailResponseDTO) {
+    // MARK: - Custom Method
+    
+    func configureCellUI(_ data: BakeryDetailResponseDTO) {
         
         guard let url = URL(string: data.bakeryPicture) else { return }
         bakeryImage.kf.setImage(with: url)
@@ -108,7 +113,8 @@ final class TitleCollectionViewCell: UICollectionViewCell {
                 $0.height.equalTo(32)
             }
         }
+        
         breadTypeStackView.getChipStatus(data.breadType.isGlutenFree, data.breadType.isVegan, data.breadType.isNutFree, data.breadType.isSugarFree)
-        bookmarkReviewStackView.updateCount(bookmarkCount: data.bookMarkCount, reviewCount: data.reviewCount)
+        bookmarkReviewStackView.configureCount(bookmarkCount: data.bookMarkCount, reviewCount: data.reviewCount)
     }
 }

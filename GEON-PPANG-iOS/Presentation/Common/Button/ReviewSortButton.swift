@@ -35,12 +35,12 @@ final class ReviewSortButton: UIButton {
     
     private func setLayout() {
         
-        self.addSubviews(iconLabelStackVIewContainer, iconLabelStackVIew)
-        
+        self.addSubview(iconLabelStackVIewContainer)
         iconLabelStackVIewContainer.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         
+        self.addSubview(iconLabelStackVIew)
         iconLabelStackVIew.snp.makeConstraints {
             $0.top.equalToSuperview().inset(10)
             $0.leading.equalToSuperview().inset(12)

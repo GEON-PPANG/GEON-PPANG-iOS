@@ -101,13 +101,13 @@ final class IconLabelStackView: UIStackView {
     
     private func setLayout() {
         
-        self.addArrangedSubviews(icon, label)
-        
+        self.addArrangedSubview(icon)
         icon.snp.makeConstraints {
             $0.top.leading.equalToSuperview().inset(0.5)
             $0.size.equalTo(icSize)
         }
         
+        self.addArrangedSubview(label)
         label.snp.makeConstraints {
             $0.centerY.equalTo(icon)
             $0.height.equalTo(17)
@@ -132,7 +132,9 @@ final class IconLabelStackView: UIStackView {
         }
     }
     
-    func updateCount(_ count: Int) {
+    // MARK: - Custom Method
+    
+    func getCount(_ count: Int) {
         
         self.count = count
     }

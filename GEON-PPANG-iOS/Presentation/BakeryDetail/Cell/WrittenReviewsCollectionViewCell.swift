@@ -41,8 +41,6 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
     private func setLayout() {
         
         contentView.addSubview(reviewContainer)
-        reviewContainer.addSubviews(profileImage, userNicknameLabel, reviewDateLabel, reportLabel, reviewCategoryStackView, reviewTextLabel)
-        
         reviewContainer.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.directionalHorizontalEdges.equalToSuperview().inset(24)
@@ -50,12 +48,14 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
             $0.height.equalTo(174)
         }
         
+        reviewContainer.addSubview(profileImage)
         profileImage.snp.makeConstraints {
             $0.top.equalToSuperview().inset(20)
             $0.leading.equalToSuperview().inset(25)
             $0.size.equalTo(20) // 기기대응 생각하기
         }
         
+        reviewContainer.addSubview(userNicknameLabel)
         userNicknameLabel.snp.makeConstraints {
             $0.centerY.equalTo(profileImage)
             $0.leading.equalToSuperview().inset(52)
@@ -64,6 +64,7 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
             $0.height.equalTo(19)
         }
         
+        reviewContainer.addSubview(reviewDateLabel)
         reviewDateLabel.snp.makeConstraints {
             $0.centerY.equalTo(userNicknameLabel)
             $0.leading.equalToSuperview().inset(201)
@@ -72,6 +73,7 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
             $0.height.equalTo(17)
         }
         
+        reviewContainer.addSubview(reportLabel)
         reportLabel.snp.makeConstraints {
             $0.centerY.equalTo(userNicknameLabel)
             $0.leading.equalToSuperview().inset(convertByWidthRatio(279))
@@ -80,11 +82,13 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
             $0.height.equalTo(17)
         }
         
+        reviewContainer.addSubview(reviewCategoryStackView)
         reviewCategoryStackView.snp.makeConstraints {
             $0.top.equalTo(profileImage.snp.bottom).offset(15)
             $0.leading.equalTo(profileImage)
         }
         
+        reviewContainer.addSubview(reviewTextLabel)
         reviewTextLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(94)
             $0.directionalHorizontalEdges.equalToSuperview().inset(25)
@@ -127,7 +131,9 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func updateUI(_ data: ReviewList) {
+    // MARK: - Custom Method
+    
+    func configureCellUI(_ data: ReviewList) {
         
         userNicknameLabel.text = data.memberNickname
         reviewDateLabel.text = data.createdAt

@@ -37,13 +37,7 @@ final class BookmarkReviewNumberStackView: UIStackView {
         
         self.addArrangedSubviews(bookmarkCountStackView, reviewCountStackView)
     }
-    
-    func updateCount(bookmarkCount: Int, reviewCount: Int) {
-        
-        bookmarkCountStackView.updateCount(bookmarkCount)
-        reviewCountStackView.updateCount(reviewCount)
-    }
-    
+
     private func setUI() {
         
         self.do {
@@ -51,5 +45,13 @@ final class BookmarkReviewNumberStackView: UIStackView {
             $0.spacing = 6
             $0.distribution = .equalSpacing
         }
+    }
+    
+    // MARK: - Custom Method
+    
+    func configureCount(bookmarkCount: Int, reviewCount: Int) {
+        
+        bookmarkCountStackView.getCount(bookmarkCount)
+        reviewCountStackView.getCount(reviewCount)
     }
 }

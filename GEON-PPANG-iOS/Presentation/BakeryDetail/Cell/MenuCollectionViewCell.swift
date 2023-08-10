@@ -36,8 +36,7 @@ final class MenuCollectionViewCell: UICollectionViewCell {
     
     private func setLayout() {
         
-        contentView.addSubviews(bakeryMenuLabel, menuPriceLabel, emptyView)
-        
+        contentView.addSubview(bakeryMenuLabel)
         bakeryMenuLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalToSuperview().inset(24)
@@ -45,6 +44,7 @@ final class MenuCollectionViewCell: UICollectionViewCell {
             $0.height.equalTo(20)
         }
         
+        contentView.addSubview(menuPriceLabel)
         menuPriceLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.trailing.equalToSuperview().inset(24)
@@ -52,6 +52,7 @@ final class MenuCollectionViewCell: UICollectionViewCell {
             $0.height.equalTo(20)
         }
         
+        contentView.addSubview(emptyView)
         emptyView.snp.makeConstraints {
             $0.top.equalTo(bakeryMenuLabel.snp.bottom)
             $0.directionalHorizontalEdges.equalToSuperview()
@@ -73,7 +74,9 @@ final class MenuCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func updateUI(_ data: MenuList) {
+    // MARK: - Custom Method
+    
+    func configureCellUI(_ data: MenuList) {
         
         bakeryMenuLabel.text = data.menuName
         menuPriceLabel.text = data.menuPrice.priceText

@@ -70,7 +70,9 @@ final class ReviewProgressBarStackView: UIStackView {
         }
     }
     
-    func updateGauge (_ deliciousPercent: Float, _ specialPercent: Float, _ kindPercent: Float, _ zerowastePercent: Float) {
+    // MARK: - Custom Method
+    
+    func configureGauge (_ deliciousPercent: Float, _ specialPercent: Float, _ kindPercent: Float, _ zerowastePercent: Float) {
         
         tempGauge[0] = deliciousPercent
         tempGauge[1] = specialPercent

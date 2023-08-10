@@ -36,20 +36,21 @@ final class ReviewCategoryCollectionViewCell: UICollectionViewCell {
     
     private func setLayout() {
         
-        contentView.addSubviews(leftEmptyView, reviewProgressBarStackView, rightEmptyView)
-        
+        contentView.addSubview(leftEmptyView)
         leftEmptyView.snp.makeConstraints {
             $0.top.leading.equalToSuperview()
             $0.width.equalTo(33.5)
             $0.height.equalTo(157)
         }
         
+        contentView.addSubview(rightEmptyView)
         rightEmptyView.snp.makeConstraints {
             $0.top.trailing.equalToSuperview()
             $0.width.equalTo(33.5)
             $0.height.equalTo(157)
         }
         
+        contentView.addSubview(reviewProgressBarStackView)
         reviewProgressBarStackView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.directionalHorizontalEdges.equalToSuperview().inset(33.5)
@@ -64,10 +65,10 @@ final class ReviewCategoryCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func updateUI(_ data: WrittenReviewsResponseDTO) {
+    // MARK: - Custom Method
+    
+    func configureCellUI(_ data: WrittenReviewsResponseDTO) {
         
-        reviewProgressBarStackView.updateGauge(data.tastePercent, data.specialPercent, data.kindPercent, data.zeroPercent)
-        
-        print(data)
+        reviewProgressBarStackView.configureGauge(data.tastePercent, data.specialPercent, data.kindPercent, data.zeroPercent)
     }
 }
