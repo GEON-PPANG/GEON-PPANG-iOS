@@ -383,8 +383,6 @@ extension BakeryDetailViewController {
         
         BakeryAPI.shared.postBookmark(bakeryID: bakeryID, with: bookmarkRequest) { response in
             
-            dump(response)
-            
             self.detailBottomView.configureBookmarkButton(to: value)
             self.isBookmarked = value
             self.collectionView.reloadData()

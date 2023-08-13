@@ -59,7 +59,9 @@ final class BakeryDetailCollectionViewFooter: UICollectionReusableView {
     
     private func setUI() {
         
-        self.backgroundColor = .gbbWhite
+        self.do {
+            $0.backgroundColor = .gbbWhite
+        }
         
         labelContainer.do {
             $0.backgroundColor = .gbbGray100

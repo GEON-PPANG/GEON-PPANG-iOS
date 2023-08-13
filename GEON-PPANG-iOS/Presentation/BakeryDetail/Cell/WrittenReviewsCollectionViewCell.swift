@@ -99,7 +99,9 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
     
     private func setUI() {
         
-        self.backgroundColor = .gbbWhite
+        self.do {
+            $0.backgroundColor = .gbbWhite
+        }
         
         reviewContainer.do {
             $0.backgroundColor = .gbbBackground2

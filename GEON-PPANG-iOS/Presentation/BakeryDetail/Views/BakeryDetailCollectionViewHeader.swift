@@ -69,7 +69,9 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
     
     private func setUI() {
         
-        self.backgroundColor = .gbbWhite
+        self.do {
+            $0.backgroundColor = .gbbWhite
+        }
         
         titleLabel.do {
             $0.basic(font: .bodyB1!, color: .gbbBlack!)

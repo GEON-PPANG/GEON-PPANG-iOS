@@ -131,7 +131,9 @@ final class InfoCollectionViewCell: UICollectionViewCell {
     
     private func setUI() {
         
-        self.backgroundColor = .gbbWhite
+        self.do {
+            $0.backgroundColor = .gbbWhite
+        }
         
         homepageLinkImage.do {
             $0.image = .linkIcon

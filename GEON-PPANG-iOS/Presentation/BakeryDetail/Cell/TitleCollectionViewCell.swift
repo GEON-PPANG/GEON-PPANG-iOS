@@ -74,7 +74,9 @@ final class TitleCollectionViewCell: UICollectionViewCell {
     
     private func setUI() {
         
-        self.backgroundColor = .gbbWhite
+        self.do {
+            $0.backgroundColor = .gbbWhite
+        }
         
         bakeryImage.do {
             $0.contentMode = .scaleAspectFill

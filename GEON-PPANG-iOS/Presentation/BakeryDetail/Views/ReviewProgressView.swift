@@ -63,7 +63,9 @@ final class ReviewProgressView: UIView {
     
     private func setUI() {
         
-        self.backgroundColor = .gbbWhite
+        self.do {
+            $0.backgroundColor = .gbbWhite
+        }
         
         reviewProgressBar.do {
             $0.progress = 0

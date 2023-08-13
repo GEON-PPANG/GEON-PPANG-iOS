@@ -62,7 +62,9 @@ final class MenuCollectionViewCell: UICollectionViewCell {
     
     private func setUI() {
         
-        self.backgroundColor = .gbbWhite
+        self.do {
+            $0.backgroundColor = .gbbWhite
+        }
         
         bakeryMenuLabel.do {
             $0.basic(font: .subHead!, color: .gbbGray500!)
