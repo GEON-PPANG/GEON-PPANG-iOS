@@ -56,13 +56,6 @@ final class CustomNavigationBar: UIView {
         }
     }
     
-    private func setStyle() {
-        
-        backButton.do {
-            $0.tintColor = .gbbGray700
-        }
-    }
-    
     // MARK: - Custom Method
     
     func configureBackButtonAction(_ action: UIAction) {
