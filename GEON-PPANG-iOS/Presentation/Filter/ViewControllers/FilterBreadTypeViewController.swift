@@ -120,8 +120,8 @@ final class FilterBreadTypeViewController: BaseViewController {
         }
         
         nextButton.do {
-            $0.getButtonTitle(.next)
-            $0.getButtonUI(.gbbGray200!)
+            $0.configureButtonTitle(.next)
+            $0.configureButtonUI(.gbbGray200!)
             $0.isUserInteractionEnabled = false
         }
     }
@@ -159,12 +159,12 @@ final class FilterBreadTypeViewController: BaseViewController {
         if FilterRequestDTO.sharedData.breadType.isNoneSelected() {
             nextButton.isUserInteractionEnabled = false
             UIView.animate(withDuration: 0.2) {
-                self.nextButton.getButtonUI(.gbbGray200!)
+                self.nextButton.configureButtonUI(.gbbGray200!)
             }
         } else {
             nextButton.isUserInteractionEnabled = true
             UIView.animate(withDuration: 0.2) {
-                self.nextButton.getButtonUI(.gbbMain2!)
+                self.nextButton.configureButtonUI(.gbbMain2!)
             }
         }
     }

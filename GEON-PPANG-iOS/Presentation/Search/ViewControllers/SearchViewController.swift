@@ -39,7 +39,7 @@ final class SearchViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         if let bakeryName = self.bakeryName {
-            requestSearchBakery(bakeryName: bakeryName)
+            getSearchBakery(bakeryName: bakeryName)
         }
     }
     override func viewDidLoad() {
@@ -58,20 +58,22 @@ final class SearchViewController: BaseViewController {
     }
     
     override func setLayout() {
-        view.addSubviews(naviView, searchResultView, collectionView)
         
+        view.addSubview(naviView)
         naviView.snp.makeConstraints {
             $0.top.equalTo(safeArea)
             $0.directionalHorizontalEdges.equalTo(safeArea)
             $0.height.equalTo(convertByHeightRatio(68))
         }
         
+        view.addSubview(searchResultView)
         searchResultView.snp.makeConstraints {
             $0.top.equalTo(naviView.snp.bottom)
             $0.directionalHorizontalEdges.equalTo(safeArea)
             $0.height.equalTo(convertByHeightRatio(55))
         }
         
+        view.addSubview(collectionView)
         collectionView.snp.makeConstraints {
             $0.top.equalTo(searchResultView.snp.bottom)
             $0.directionalHorizontalEdges.equalTo(safeArea)
@@ -80,13 +82,14 @@ final class SearchViewController: BaseViewController {
     }
     
     override func setUI() {
+        
         naviView.do {
-            $0.dismissClosure = {
+            $0.dismissSearchView = {
                 self.navigationController?.popViewController(animated: true)
             }
-            $0.textFieldClosure = { text in
+            $0.fetchBakeryList = { text in
                 self.bakeryName = text
-                self.requestSearchBakery(bakeryName: text)
+                self.getSearchBakery(bakeryName: text)
             }
         }
         
@@ -103,26 +106,29 @@ final class SearchViewController: BaseViewController {
     }
     
     private func setRegistration() {
+        
         collectionView.register(cell: EmptyCollectionViewCell.self)
     }
     
     private func setDataSource() {
+        
         let cellRegistration = UICollectionView.CellRegistration<BakeryCollectionViewListCell, Item> { (cell, _, item) in
             cell.separatorLayoutGuide.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
             if let searchBakeryItem = item as? SearchBakeryList {
-                cell.updateUI(data: searchBakeryItem)
+                cell.configureCellUI(data: searchBakeryItem)
             }
         }
+        
         dataSource = DataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, item in
             let section = self.dataSource?.snapshot().sectionIdentifiers[indexPath.section]
             switch section {
             case .initial:
                 let cell: EmptyCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-                cell.getViewType(.initialize)
+                cell.configureViewType(.initialize)
                 return cell
             case .empty:
                 let cell: EmptyCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-                cell.getViewType(.noSearch)
+                cell.configureViewType(.noSearch)
                 return cell
             case .main, .none:
                 return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
@@ -131,13 +137,14 @@ final class SearchViewController: BaseViewController {
     }
     
     private func setReloadData() {
+        
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         defer { dataSource?.apply(snapshot, animatingDifferences: false)}
         snapshot.appendSections([.initial])
         snapshot.appendItems([0])
     }
     
-    private func updateDataSource(data: [SearchBakeryList]) {
+    private func configureDataSource(data: [SearchBakeryList]) {
         guard var snapshot = dataSource?.snapshot() else { return }
         if self.bakeryListCount == 0 {
             searchResultView.isHidden = false
@@ -192,7 +199,7 @@ final class SearchViewController: BaseViewController {
         return section
     }
     
-    func getListCount(_ count: Int) {
+    func configureisScrollable(_ count: Int) {
         if count == 0 {
             self.collectionView.isScrollEnabled = false
         } else {
@@ -206,7 +213,7 @@ final class SearchViewController: BaseViewController {
 extension SearchViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let nextViewController = BakeryDetailViewController()
-        nextViewController.bakeryID = self.searchBakeryList[indexPath.item].bakeryId
+        nextViewController.bakeryID = self.searchBakeryList[indexPath.item].bakeryID
         Utils.push(self.navigationController, nextViewController)
     }
 }
@@ -214,18 +221,19 @@ extension SearchViewController: UICollectionViewDelegate {
 // MARK: - API
 
 extension SearchViewController {
-    func requestSearchBakery(bakeryName: String) {
+    func getSearchBakery(bakeryName: String) {
+        
         SearchAPI.shared.searchBakeryList(bakeryName: bakeryName) { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
             self.searchBakeryList = []
             self.bakeryListCount = data.resultCount
-            self.searchResultView.updateUI(count: data.resultCount)
+            self.searchResultView.configureUI(count: data.resultCount)
             for item in data.bakeryList {
                 self.searchBakeryList.append(item)
             }
-            self.updateDataSource(data: self.searchBakeryList)
-            self.getListCount(data.resultCount)
+            self.configureDataSource(data: self.searchBakeryList)
+            self.configureisScrollable(data.resultCount)
         }
     }
 }

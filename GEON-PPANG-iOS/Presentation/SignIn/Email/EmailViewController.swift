@@ -16,7 +16,7 @@ final class EmailViewController: BaseViewController {
     
     private var isValid: Bool = false {
         didSet {
-            updateUI(isValid)
+            configureButtonUI(isValid)
         }
     }
     
@@ -41,39 +41,45 @@ final class EmailViewController: BaseViewController {
     // MARK: - Setting
     
     override func setLayout() {
-        view.addSubviews(naviView, titleLabel, emailTextField, checkButton, nextButton, backGroundView)
-        
+
+        view.addSubview(naviView)
         naviView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.directionalHorizontalEdges.equalToSuperview()
         }
         
+        view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(naviView.snp.bottom).offset(20)
             $0.leading.equalToSuperview().offset(24)
         }
         
+        view.addSubview(emailTextField)
         emailTextField.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(40)
             $0.directionalHorizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(74)
         }
         
+        view.addSubview(checkButton)
         checkButton.snp.makeConstraints {
             $0.top.equalTo(emailTextField.snp.bottom).offset(36)
             $0.directionalHorizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(56)
         }
         
+        view.addSubview(nextButton)
         nextButton.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(CGFloat().heightConsideringBottomSafeArea(54))
             $0.directionalHorizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(56)
         }
         
+        view.addSubview(backGroundView)
     }
     
     override func setUI() {
+        
         naviView.do {
             $0.configureRightCount(1, by: 6)
             $0.addBackButtonAction(UIAction { [weak self] _ in
@@ -89,15 +95,15 @@ final class EmailViewController: BaseViewController {
         }
         
         checkButton.do {
-            $0.getButtonUI(.clear, .gbbGray300)
-            $0.getButtonTitle(.duplicate)
-            $0.addAction {
+            $0.configureButtonUI(.clear, .gbbGray300)
+            $0.configureButtonTitle(.duplicate)
+            $0.addActionToCommonButton {
                 self.backGroundView.appearBottomSheetView(subView: self.bottomSheet, CGFloat().heightConsideringBottomSafeArea(281))
             }
         }
         
         emailTextField.do {
-            $0.getType(.email)
+            $0.cofigureSignInType(.email)
             $0.validCheck = { [weak self] valid in
                 self?.isValid = valid
             }
@@ -105,19 +111,19 @@ final class EmailViewController: BaseViewController {
         
         nextButton.do {
             $0.isUserInteractionEnabled = false
-            $0.getButtonUI(.gbbGray200!)
-            $0.getButtonTitle(.next)
+            $0.configureButtonUI(.gbbGray200!)
+            $0.configureButtonTitle(.next)
         }
         
         bottomSheet.do {
             $0.getEmojiType(.smile)
             $0.getBottonSheetTitle(I18N.Bottomsheet.email)
-            $0.dismissClosure = {
+            $0.dismissBottomSheet = {
                 self.backGroundView.dissmissFromSuperview()
                 self.nextButton.do {
                     $0.isUserInteractionEnabled = true
-                    $0.getButtonUI(.gbbMain2!)
-                    $0.tapAction = {
+                    $0.configureButtonUI(.gbbMain2!)
+                    $0.tappedCommonButton = {
                         Utils.push(self.navigationController, PasswordViewController())
                     }
                 }
@@ -125,16 +131,17 @@ final class EmailViewController: BaseViewController {
         }
     }
     
-    func updateUI(_ isValid: Bool) {
+    func configureButtonUI(_ isValid: Bool) {
+        
         self.checkButton.do {
             $0.isEnabled = isValid
-            $0.getButtonUI(.clear, isValid ? .gbbMain2! : .gbbGray300!)
+            $0.configureButtonUI(.clear, isValid ? .gbbMain2! : .gbbGray300!)
         }
         
         if !isValid {
             nextButton.do {
                 $0.isUserInteractionEnabled = false
-                $0.getButtonUI(.gbbGray200!)
+                $0.configureButtonUI(.gbbGray200!)
             }
         }
     }

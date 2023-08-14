@@ -13,11 +13,6 @@ import Kingfisher
 
 final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     
-    // MARK: - Property
-    
-    var updateData: ((Bool, Int) -> Void)?
-    var index = 0
-    
     // MARK: - UI Property
     
     private let bakeryImage = UIImageView()
@@ -30,8 +25,9 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        
         markStackView.getMarkStatus(false, false, false)
-        markStackView.getIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
+        markStackView.confiureIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
         regionStackView.arrangedSubviews.forEach {
             regionStackView.removeArrangedSubview($0)
         }
@@ -50,6 +46,40 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Setting
     
+    private func setLayout() {
+        
+        contentView.addSubview(bakeryImage)
+        bakeryImage.snp.makeConstraints {
+            $0.top.directionalHorizontalEdges.equalToSuperview()
+            $0.height.equalTo(118)
+        }
+        
+        contentView.addSubview(bakeryTitle)
+        bakeryTitle.snp.makeConstraints {
+            $0.top.equalTo(bakeryImage.snp.bottom).offset(13)
+            $0.leading.equalToSuperview().offset(16)
+        }
+        
+        contentView.addSubview(bakeryReview)
+        bakeryReview.snp.makeConstraints {
+            $0.top.equalTo(bakeryTitle.snp.bottom).offset(9)
+            $0.leading.equalTo(bakeryTitle.snp.leading)
+        }
+        
+        contentView.addSubview(regionStackView)
+        regionStackView.snp.makeConstraints {
+            $0.top.equalTo(bakeryReview.snp.bottom).offset(10)
+            $0.leading.equalTo(bakeryTitle.snp.leading)
+            $0.bottom.equalToSuperview().inset(16)
+        }
+        
+        bakeryImage.addSubview(markStackView)
+        markStackView.snp.makeConstraints {
+            $0.top.leading.equalToSuperview().offset(10)
+            $0.size.equalTo(CGSize(width: 68, height: 28))
+        }
+    }
+    
     private func setUI() {
         self.do {
             $0.layer.applyShadow(alpha: 0.1, x: 0, y: 0, blur: 10)
@@ -64,7 +94,7 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
         }
         
         markStackView.do {
-            $0.getIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
+            $0.confiureIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
         }
         
         bakeryTitle.do {
@@ -83,46 +113,18 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    private func setLayout() {
-        contentView.addSubviews(bakeryImage, bakeryTitle, bakeryReview, regionStackView)
-        bakeryImage.addSubview(markStackView)
-        
-        bakeryImage.snp.makeConstraints {
-            $0.top.directionalHorizontalEdges.equalToSuperview()
-            $0.height.equalTo(118)
-        }
-        
-        markStackView.snp.makeConstraints {
-            $0.top.leading.equalToSuperview().offset(10)
-            $0.size.equalTo(CGSize(width: 68, height: 28))
-        }
-        
-        bakeryTitle.snp.makeConstraints {
-            $0.top.equalTo(bakeryImage.snp.bottom).offset(13)
-            $0.leading.equalToSuperview().offset(16)
-        }
-        
-        bakeryReview.snp.makeConstraints {
-            $0.top.equalTo(bakeryTitle.snp.bottom).offset(9)
-            $0.leading.equalTo(bakeryTitle.snp.leading)
-        }
-        
-        regionStackView.snp.makeConstraints {
-            $0.top.equalTo(bakeryReview.snp.bottom).offset(10)
-            $0.leading.equalTo(bakeryTitle.snp.leading)
-            $0.bottom.equalToSuperview().inset(16)
-        }
-    }
-    
     // MARK: - Custom Method
     
-    func updateUI(data: BestBakery) {
+    func configureCellUI(data: BestBakery) {
+        
         let url = URL(string: data.bakeryPicture)
         bakeryImage.kf.setImage(with: url)
         bakeryTitle.setLineHeight(by: 1.08, with: data.bakeryName)
         bakeryReview.setLineHeight(by: 1.09,
-                                   with: "리뷰(\(data.reviewCount)) ⦁ 저장(\(data.bookMarkCount))")
-        markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)
-        regionStackView.getRegionName(data.firstNearStation, data.secondNearStation ?? "")
+                                   with: "리뷰(\(data.reviewCount)) ⦁ 저장(\(data.bookmarkCount))")
+        markStackView.getMarkStatus(data.isHACCP,
+                                    data.isVegan,
+                                    data.isNonGMO)
+        regionStackView.configureRegionName(data.firstNearStation, data.secondNearStation ?? "")
     }
 }

@@ -248,8 +248,8 @@ final class WriteReviewViewController: BaseViewController {
             $0.backgroundColor = .gbbPoint1
             $0.isUserInteractionEnabled = false
             $0.makeCornerRound(radius: 12)
-            $0.getButtonTitle(.write)
-            $0.getButtonUI(.gbbGray200!)
+            $0.configureButtonTitle(.write)
+            $0.configureButtonUI(.gbbGray200!)
             $0.addAction(UIAction { [weak self] _ in
                 self?.nextButtonTapped()
             }, for: .touchUpInside)
@@ -268,7 +268,7 @@ final class WriteReviewViewController: BaseViewController {
         confirmBottomSheetView.do {
             $0.getEmojiType(.smile)
             $0.getBottonSheetTitle(I18N.WriteReview.confirmSheetTitle)
-            $0.dismissClosure = {
+            $0.dismissBottomSheet = {
                 self.backgroundView.dissmissFromSuperview()
                 self.navigationController?.popViewController(animated: true)
             }
@@ -451,12 +451,12 @@ extension WriteReviewViewController: UITextViewDelegate {
         if textCount < 10 && 0 < textCount {
             reviewDetailTextView.configureTextView(to: .error)
             
-            nextButton.getButtonUI(.gbbGray200!)
+            nextButton.configureButtonUI(.gbbGray200!)
             nextButton.isUserInteractionEnabled = false
         } else {
             reviewDetailTextView.configureTextView(to: .activated)
             
-            nextButton.getButtonUI(.gbbGray700!)
+            nextButton.configureButtonUI(.gbbGray700!)
             nextButton.isUserInteractionEnabled = true
         }
         reviewDetailTextView.updateTextLimitLabel(to: textCount)

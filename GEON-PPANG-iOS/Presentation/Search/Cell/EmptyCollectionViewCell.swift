@@ -57,7 +57,8 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
     // MARK: - Setting
     
     private func setLayout() {
-        addSubviews(emptyIcon, emptyLabel)
+        
+        contentView.addSubviews(emptyIcon, emptyLabel)
         
         switch emptyType {
         case .noBookmark:
@@ -70,6 +71,7 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
     }
     
     private func defaultLayout() {
+        
         emptyIcon.snp.makeConstraints {
             $0.size.equalTo(CGSize(width: 154, height: 132))
             $0.centerX.equalToSuperview()
@@ -83,6 +85,7 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
     }
     
     private func myReviewsLayout() {
+        
         emptyIcon.snp.remakeConstraints {
             $0.size.equalTo(CGSize(width: 154, height: 132))
             $0.centerX.equalToSuperview().offset(10)
@@ -96,6 +99,7 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
     }
     
     private func myPageLayout() {
+        
         emptyIcon.snp.remakeConstraints {
             $0.size.equalTo(CGSize(width: 154, height: 132))
             $0.centerX.equalToSuperview().offset(10)
@@ -119,7 +123,7 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func getViewType(_ type: EmptyType) {
+    func configureViewType(_ type: EmptyType) {
         emptyType = type
         emptyIcon.image = type.icon
         emptyLabel.setLineHeight(by: 1.05, with: type.rawValue)
@@ -127,13 +131,16 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
         
         switch type {
         case .initialize, .noBookmark, .noReview:
-            return emptyLabel.basic(text: emptyType.rawValue, font: .title2!, color: .gbbGray300!)
+            return emptyLabel.basic(text: emptyType.rawValue,
+                                    font: .title2!,
+                                    color: .gbbGray300!)
         case .noSearch:
-            return emptyLabel.partFontChange(targetString: "다른 키워드로 검색해보세요!", font: .subHead!)
+            return emptyLabel.partFontChange(targetString: "다른 키워드로 검색해보세요!",
+                                             font: .subHead!)
         }
     }
     
-    func getEmtyText(_ text: String) {
+    func configureEmptyText(_ text: String) {
         emptyLabel.text = text
     }
 }

@@ -26,8 +26,8 @@ class SignInTextField: UITextField {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        setUI()
         setLayout()
+        setUI()
     }
     
     required init?(coder: NSCoder) {
@@ -36,7 +36,24 @@ class SignInTextField: UITextField {
     
     // MARK: - Setting
     
+    private func setLayout() {
+        
+        rightStackView.snp.makeConstraints {
+            $0.width.equalTo(42)
+            $0.height.equalTo(24)
+        }
+        
+        emptyView.snp.makeConstraints {
+            $0.width.equalTo(18)
+        }
+        
+        securityButton.snp.makeConstraints {
+            $0.size.equalTo(24)
+        }
+    }
+    
     private func setUI() {
+        
         self.do {
             $0.backgroundColor = .gbbBackground2
             $0.makeCornerRound(radius: 10)
@@ -62,22 +79,8 @@ class SignInTextField: UITextField {
         }
     }
     
-    private func setLayout() {
-        rightStackView.snp.makeConstraints {
-            $0.width.equalTo(42)
-            $0.height.equalTo(24)
-        }
+    func configureViewType(_ viewType: SignInPropetyType) {
         
-        emptyView.snp.makeConstraints {
-            $0.width.equalTo(18)
-        }
-        
-        securityButton.snp.makeConstraints {
-            $0.size.equalTo(24)
-        }
-    }
-    
-    func getViewType(_ viewType: SignInPropetyType) {
         switch viewType {
         case .checkPassword, .password:
             self.isSecureTextEntry = true
@@ -88,22 +91,38 @@ class SignInTextField: UITextField {
     }
         
     override func textRect(forBounds bounds: CGRect) -> CGRect {
+        
         let rect = super.textRect(forBounds: bounds)
-        return rect.inset(by: UIEdgeInsets(top: topPadding, left: 0, bottom: 0, right: 0))
+        return rect.inset(by: UIEdgeInsets(top: topPadding,
+                                           left: 0,
+                                           bottom: 0,
+                                           right: 0))
     }
     
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
+        
         let rect = super.editingRect(forBounds: bounds)
-        return rect.inset(by: UIEdgeInsets(top: topPadding, left: 0, bottom: 0, right: 0))
+        return rect.inset(by: UIEdgeInsets(top: topPadding,
+                                           left: 0,
+                                           bottom: 0,
+                                           right: 0))
     }
     
     override public func placeholderRect(forBounds bounds: CGRect) -> CGRect {
+        
         let rect = super.textRect(forBounds: bounds)
-        return rect.inset(by: UIEdgeInsets(top: topPadding, left: 0, bottom: 0, right: 0))
+        return rect.inset(by: UIEdgeInsets(top: topPadding,
+                                           left: 0,
+                                           bottom: 0,
+                                           right: 0))
     }
     
     override public func rightViewRect(forBounds bounds: CGRect) -> CGRect {
+        
         let rect = super.rightViewRect(forBounds: bounds)
-        return rect.inset(by: UIEdgeInsets(top: topPadding - 5, left: 0, bottom: 0, right: 0))
+        return rect.inset(by: UIEdgeInsets(top: topPadding - 5,
+                                           left: 0,
+                                           bottom: 0,
+                                           right: 0))
     }
 }

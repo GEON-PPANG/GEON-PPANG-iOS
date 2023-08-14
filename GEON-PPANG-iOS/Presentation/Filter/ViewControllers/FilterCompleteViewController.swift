@@ -65,9 +65,9 @@ final class FilterCompleteViewController: BaseViewController {
         }
         
         startButton.do {
-            $0.getButtonTitle(.start)
-            $0.getButtonUI(.gbbMain2!)
-            $0.addAction {
+            $0.configureButtonTitle(.start)
+            $0.configureButtonUI(.gbbMain2!)
+            $0.addActionToCommonButton {
                 self.startButtonTapped()
             }
         }

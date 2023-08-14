@@ -34,14 +34,14 @@ final class OnboardingViewController: BaseViewController {
         }
         
         signinButton.do {
-            $0.getButtonTitle(.login)
-            $0.getButtonUI(.gbbMain2!)
+            $0.configureButtonTitle(.login)
+            $0.configureButtonUI(.gbbMain2!)
         }
         
         signupButton.do {
-            $0.getButtonTitle(.signIn)
-            $0.getButtonUI(.gbbWhite!, .gbbGray300)
-            $0.addAction {
+            $0.configureButtonTitle(.signIn)
+            $0.configureButtonUI(.gbbWhite!, .gbbGray300)
+            $0.addActionToCommonButton {
                 Utils.push(self.navigationController, EmailViewController())
             }
         }

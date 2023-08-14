@@ -14,9 +14,7 @@ import Then
 final class HomeReviewCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Property
-    
-    var updateData: ((Bool, Int) -> Void)?
-    var index = 0
+
     private var keywords: [String] = []
     private var reviewList: [BestReviews] = []
     
@@ -88,45 +86,48 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
     }
     
     private func setLayout() {
-        contentView.addSubviews(bakeryImage, collectionView, bakeryTitle, bakeryReview)
-        bakeryImage.addSubview(reviewTitle)
-        
+   
+        contentView.addSubview(bakeryImage)
         bakeryImage.snp.makeConstraints {
             $0.top.directionalHorizontalEdges.equalToSuperview()
             $0.height.equalTo(130)
         }
-        
-        reviewTitle.snp.makeConstraints {
-            $0.bottom.equalTo(bakeryImage.snp.bottom).inset(13)
-            $0.directionalHorizontalEdges.equalToSuperview().inset(15)
-        }
-        
+             
+        contentView.addSubview(collectionView)
         collectionView.snp.makeConstraints {
             $0.top.equalTo(bakeryImage.snp.bottom).offset(16)
             $0.directionalHorizontalEdges.equalToSuperview().inset(16)
             $0.height.equalTo(25)
         }
         
+        contentView.addSubview(bakeryTitle)
         bakeryTitle.snp.makeConstraints {
             $0.top.equalTo(collectionView.snp.bottom).offset(6)
             $0.leading.equalToSuperview().offset(16)
         }
         
+        contentView.addSubview(bakeryReview)
         bakeryReview.snp.makeConstraints {
             $0.top.equalTo(bakeryTitle.snp.bottom).offset(7)
             $0.bottom.equalToSuperview().inset(15)
             $0.leading.equalToSuperview().offset(16)
         }
         
+        bakeryImage.addSubview(reviewTitle)
+        reviewTitle.snp.makeConstraints {
+            $0.bottom.equalTo(bakeryImage.snp.bottom).inset(13)
+            $0.directionalHorizontalEdges.equalToSuperview().inset(15)
+        }
     }
     
-    func updateUI(data: BestReviews) {
+    func configureCellUI(data: BestReviews) {
+        
         let url = URL(string: data.bakeryPicture)
         bakeryImage.kf.setImage(with: url)
         reviewTitle.setLineHeight(by: 1.14, with: "\"\(data.reviewText)\"")
         bakeryTitle.setLineHeight(by: 1.08, with: data.bakeryName)
         bakeryReview.setLineHeight(by: 1.1,
-                                   with: "리뷰(\(data.reviewCount)) ⦁ 저장(\(data.bookMarkCount))")
+                                   with: "리뷰(\(data.reviewCount)) ⦁ 저장(\(data.bookmarkCount))")
         self.keywords = []
         self.keywords.append(data.firstMaxRecommendKeyword)
         guard let secondKeyword = data.secondMaxRecommendKeyword else { return }
@@ -139,6 +140,7 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
 
 extension HomeReviewCollectionViewCell {
     private func setRegister() {
+        
         collectionView.register(cell: DescriptionCollectionViewCell.self)
     }
 }
