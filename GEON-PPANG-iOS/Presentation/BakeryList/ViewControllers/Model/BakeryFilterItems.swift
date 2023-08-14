@@ -55,11 +55,11 @@ struct BakeryFilterItems: Hashable {
                                          leftIcon: .disabledHardIcon)
             case .DESSERT:
                 return BakeryFilterItems(filter: filter,
-                                         status: .off,
+                                         status: status,
                                          leftIcon: .disabledCakeIcon)
             case .BRUNCH:
                 return BakeryFilterItems(filter: filter,
-                                         status: .off,
+                                         status: status,
                                          leftIcon: .disabledSandwichIcon)
             }
             

@@ -24,7 +24,7 @@ final class BakeryCollectionViewListCell: UICollectionViewListCell {
     private let bakeryImage = UIImageView()
     private let bakeryTitle = UILabel()
     private let regionStackView = RegionStackView()
-    private let bookmarkStacView = UIStackView()
+    private let bookmarkStackView = UIStackView()
     private let bookmarkIcon = UIImageView()
     private let bookmarkCount = UILabel()
     private lazy var arrowButton = UIButton()
@@ -82,8 +82,8 @@ final class BakeryCollectionViewListCell: UICollectionViewListCell {
             $0.bottom.equalToSuperview().inset(24)
         }
         
-        contentView.addSubview(bookmarkStacView)
-        bookmarkStacView.snp.makeConstraints {
+        contentView.addSubview(bookmarkStackView)
+        bookmarkStackView.snp.makeConstraints {
             $0.top.equalTo(bakeryImage.snp.top)
             $0.trailing.equalToSuperview().inset(24)
             $0.height.equalTo(16)
@@ -121,7 +121,7 @@ final class BakeryCollectionViewListCell: UICollectionViewListCell {
             $0.dataSource = self
         }
         
-        bookmarkStacView.do {
+        bookmarkStackView.do {
             $0.addArrangedSubviews(bookmarkIcon, bookmarkCount)
             $0.axis = .horizontal
             $0.spacing = 1
