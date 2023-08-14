@@ -82,7 +82,7 @@ final class BakeryCollectionViewListCell: UICollectionViewListCell {
             $0.bottom.equalToSuperview().inset(24)
         }
         
-        contentView.addSubview(bookmarkStacView)
+        contentView.addSubview(bookmarkStackView)
         bookmarkStackView.snp.makeConstraints {
             $0.top.equalTo(bakeryImage.snp.top)
             $0.trailing.equalToSuperview().inset(24)
