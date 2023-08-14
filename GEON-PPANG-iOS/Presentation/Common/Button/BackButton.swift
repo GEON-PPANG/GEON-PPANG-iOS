@@ -22,7 +22,7 @@ final class BackButton: UIButton {
                                 height: 48))
         
         setLayout()
-        setStyle()
+        setUI()
     }
     
     @available(*, unavailable)
@@ -41,7 +41,7 @@ final class BackButton: UIButton {
         }
     }
     
-    private func setStyle() {
+    private func setUI() {
         
         leftChevron.do {
             $0.contentMode = .scaleAspectFill
