@@ -88,8 +88,8 @@ final class IconLabelStackView: UIStackView {
         
         super.init(frame: .zero)
         
-        setUI()
         setLayout()
+        setUI()
     }
     
     @available(*, unavailable)
@@ -98,6 +98,21 @@ final class IconLabelStackView: UIStackView {
     }
     
     // MARK: - Setting
+    
+    private func setLayout() {
+        
+        self.addArrangedSubview(icon)
+        icon.snp.makeConstraints {
+            $0.top.leading.equalToSuperview().inset(0.5)
+            $0.size.equalTo(icSize)
+        }
+        
+        self.addArrangedSubview(label)
+        label.snp.makeConstraints {
+            $0.centerY.equalTo(icon)
+            $0.height.equalTo(17)
+        }
+    }
     
     private func setUI() {
         
@@ -117,22 +132,9 @@ final class IconLabelStackView: UIStackView {
         }
     }
     
-    private func setLayout() {
-        
-        self.addArrangedSubviews(icon, label)
-        
-        icon.snp.makeConstraints {
-            $0.top.leading.equalToSuperview().inset(0.5)
-            $0.size.equalTo(icSize)
-        }
-        
-        label.snp.makeConstraints {
-            $0.centerY.equalTo(icon)
-            $0.height.equalTo(17)
-        }
-    }
+    // MARK: - Custom Method
     
-    func updateCount(_ count: Int) {
+    func getCount(_ count: Int) {
         
         self.count = count
     }

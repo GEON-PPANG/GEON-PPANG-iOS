@@ -14,16 +14,16 @@ final class ReviewSortButton: UIButton {
     
     // MARK: - UI Property
     
-    private let iconLabelStackVIewContainer = UIView()
-    private lazy var iconLabelStackVIew = IconLabelStackView(type: .basic)
+    private let iconLabelStackViewContainer = UIView()
+    private lazy var iconLabelStackView = IconLabelStackView(type: .basic)
     
     // MARK: - Initializer
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        setUI()
         setLayout()
+        setUI()
     }
     
     @available(*, unavailable)
@@ -33,29 +33,29 @@ final class ReviewSortButton: UIButton {
     
     // MARK: - Setting
     
+    private func setLayout() {
+        
+        self.addSubview(iconLabelStackViewContainer)
+        iconLabelStackViewContainer.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        self.addSubview(iconLabelStackView)
+        iconLabelStackView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(10)
+            $0.leading.equalToSuperview().inset(12)
+        }
+    }
+    
     private func setUI() {
         
-        iconLabelStackVIewContainer.do {
+        iconLabelStackViewContainer.do {
             $0.makeBorder(width: 1, color: .gbbGray200!)
             $0.makeCornerRound(radius: 18)
         }
         
-        iconLabelStackVIew.do {
+        iconLabelStackView.do {
             $0.spacing = 5
-        }
-    }
-    
-    private func setLayout() {
-        
-        self.addSubviews(iconLabelStackVIewContainer, iconLabelStackVIew)
-        
-        iconLabelStackVIewContainer.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        
-        iconLabelStackVIew.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(10)
-            $0.leading.equalToSuperview().inset(12)
         }
     }
 }

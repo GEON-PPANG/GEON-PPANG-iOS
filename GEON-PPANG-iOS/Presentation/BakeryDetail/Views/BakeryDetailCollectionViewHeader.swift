@@ -38,9 +38,9 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-            
-        setUI()
+        
         setLayout()
+        setUI()
     }
     
     @available(*, unavailable)
@@ -58,9 +58,20 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
     
     // MARK: - Setting
     
+    private func setLayout() {
+        
+        self.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints {
+            $0.top.leading.equalToSuperview().inset(24)
+            $0.height.equalTo(22)
+        }
+    }
+    
     private func setUI() {
         
-        self.backgroundColor = .gbbWhite
+        self.do {
+            $0.backgroundColor = .gbbWhite
+        }
         
         titleLabel.do {
             $0.basic(font: .bodyB1!, color: .gbbBlack!)
@@ -72,24 +83,13 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
         }
     }
     
-    private func setLayout() {
-        
-        self.addSubview(titleLabel)
-        
-        titleLabel.snp.makeConstraints {
-            $0.top.leading.equalToSuperview().inset(24)
-            $0.height.equalTo(22)
-        }
-    }
-    
     // MARK: - Custom Method
     
     func configureSubTitle() {
-
-        self.addSubview(subTitleStackView)
         
         subTitleStackView.isHidden = false
         
+        self.addSubview(subTitleStackView)
         subTitleStackView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(8)
             $0.leading.equalTo(titleLabel) // 여기 이상하게 잡힘 (후순위, 아이콘라벨스택뷰 확인요망, remake~)
@@ -98,10 +98,9 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
     
     func configureReviewSortButton() {
         
-        self.addSubview(reviewSortButton)
-        
         reviewSortButton.isHidden = false
         
+        self.addSubview(reviewSortButton)
         reviewSortButton.snp.makeConstraints {
             $0.centerY.equalTo(titleLabel)
             $0.trailing.equalToSuperview().inset(24)
@@ -126,7 +125,7 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
         }
     }
     
-    func updateUI(_ data: BakeryDetailResponseDTO) {
+    func configureHeaderUI(_ data: BakeryDetailResponseDTO) {
         
         reviewCount = data.reviewCount
     }
