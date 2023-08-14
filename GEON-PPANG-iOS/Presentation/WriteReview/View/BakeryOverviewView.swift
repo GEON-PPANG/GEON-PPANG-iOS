@@ -29,7 +29,10 @@ final class BakeryOverviewView: UIView {
     init(bakeryImage: String, ingredients: [String], firstRegion: String, secondRegion: String) {
         super.init(frame: .zero)
         
-        setProperties(bakeryImage, ingredients, firstRegion, secondRegion)
+        setProperties(bakeryImage,
+                      ingredients,
+                      firstRegion,
+                      secondRegion)
         setLayout()
         setUI()
         setDelegate()
@@ -42,7 +45,11 @@ final class BakeryOverviewView: UIView {
     
     // MARK: - Setting
     
-    private func setProperties(_ bakeryImage: String, _ ingredients: [String], _ firstRegion: String, _ secondRegion: String) {
+    private func setProperties(_ bakeryImage: String,
+                               _ ingredients: [String],
+                               _ firstRegion: String,
+                               _ secondRegion: String) {
+        
         let url = URL(string: bakeryImage)
         self.bakeryImageView.kf.setImage(with: url)
         self.ingredientsData = ingredients
@@ -54,18 +61,19 @@ final class BakeryOverviewView: UIView {
     }
     
     private func setLayout() {
+        
         self.snp.makeConstraints {
             $0.height.greaterThanOrEqualTo(90)
         }
         
-        addSubview(bakeryImageView)
+        self.addSubview(bakeryImageView)
         bakeryImageView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalToSuperview()
             $0.width.height.equalTo(90)
         }
         
-        addSubview(bakeryIngredientsCollectionView)
+        self.addSubview(bakeryIngredientsCollectionView)
         bakeryIngredientsCollectionView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalTo(bakeryImageView.snp.trailing).offset(20)
@@ -73,7 +81,7 @@ final class BakeryOverviewView: UIView {
             $0.height.equalTo(20)
         }
         
-        addSubview(regionStackView)
+        self.addSubview(regionStackView)
         regionStackView.snp.makeConstraints {
             $0.leading.equalTo(bakeryImageView.snp.trailing).offset(20)
             $0.top.equalTo(bakeryIngredientsCollectionView.snp.bottom).offset(16)
@@ -81,6 +89,7 @@ final class BakeryOverviewView: UIView {
     }
     
     private func setUI() {
+        
         bakeryImageView.do {
             $0.backgroundColor = .gbbPoint1
             $0.makeCornerRound(radius: 5)
@@ -93,6 +102,7 @@ final class BakeryOverviewView: UIView {
     }
     
     private func setDelegate() {
+        
         bakeryIngredientsCollectionView.delegate = self
         bakeryIngredientsCollectionView.dataSource = self
     }
@@ -108,10 +118,12 @@ extension BakeryOverviewView: UICollectionViewDelegate {}
 extension BakeryOverviewView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return ingredientsData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell: DescriptionCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
         cell.configureTagTitle(ingredientsData[indexPath.item])
         return cell
@@ -120,7 +132,10 @@ extension BakeryOverviewView: UICollectionViewDataSource {
 }
 
 extension BakeryOverviewView: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         let cell: DescriptionCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
         return cell.fittingSize(availableHeight: 25)
     }

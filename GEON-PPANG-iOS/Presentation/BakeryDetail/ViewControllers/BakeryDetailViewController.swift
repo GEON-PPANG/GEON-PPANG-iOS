@@ -48,7 +48,7 @@ final class BakeryDetailViewController: BaseViewController {
     override func setUI() {
         
         navigationBar.do {
-            $0.addBackButtonAction(UIAction { [weak self] _ in
+            $0.configureBackButtonAction(UIAction { [weak self] _ in
                 self?.navigationController?.popViewController(animated: true)
             })
             $0.backgroundColor = .gbbWhite
