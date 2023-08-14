@@ -22,8 +22,8 @@ final class BookmarkReviewNumberStackView: UIStackView {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        setUI()
         setLayout()
+        setUI()
     }
     
     @available(*, unavailable)
@@ -33,6 +33,11 @@ final class BookmarkReviewNumberStackView: UIStackView {
     
     // MARK: - Setting
     
+    private func setLayout() {
+        
+        self.addArrangedSubviews(bookmarkCountStackView, reviewCountStackView)
+    }
+
     private func setUI() {
         
         self.do {
@@ -42,14 +47,11 @@ final class BookmarkReviewNumberStackView: UIStackView {
         }
     }
     
-    private func setLayout() {
-        
-        self.addArrangedSubviews(bookmarkCountStackView, reviewCountStackView)
-    }
+    // MARK: - Custom Method
     
-    func updateCount(bookmarkCount: Int, reviewCount: Int) {
+    func configureCount(bookmarkCount: Int, reviewCount: Int) {
         
-        bookmarkCountStackView.updateCount(bookmarkCount)
-        reviewCountStackView.updateCount(reviewCount)
+        bookmarkCountStackView.getCount(bookmarkCount)
+        reviewCountStackView.getCount(reviewCount)
     }
 }

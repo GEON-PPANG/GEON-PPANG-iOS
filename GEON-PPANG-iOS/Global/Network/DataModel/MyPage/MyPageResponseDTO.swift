@@ -16,6 +16,7 @@ struct MyPageResponseDTO: Codable {
 extension MyPageResponseDTO {
     
     static func dummyData() -> MyPageResponseDTO {
+        
         return .init(memberNickname: "Id",
                      mainPurpose: "HEALTH",
                      breadType: .init(breadTypeID: 1,
@@ -27,6 +28,9 @@ extension MyPageResponseDTO {
     }
     
     static func emptyData() -> MyPageResponseDTO {
-        return .init(memberNickname: "", mainPurpose: "", breadType: .emptyBreadType())
+        
+        return .init(memberNickname: "",
+                     mainPurpose: "",
+                     breadType: .emptyBreadType())
     }
 }

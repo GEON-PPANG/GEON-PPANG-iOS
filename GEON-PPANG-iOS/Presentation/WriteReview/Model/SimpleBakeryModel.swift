@@ -15,6 +15,7 @@ struct SimpleBakeryModel {
     var bakeryRegion: [String]
     
     static func emptyModel() -> SimpleBakeryModel {
+        
         return .init(bakeryID: 0,
                      bakeryName: "",
                      bakeryImageURL: "",

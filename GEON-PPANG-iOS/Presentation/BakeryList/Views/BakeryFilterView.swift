@@ -52,7 +52,43 @@ final class BakeryFilterView: UIView {
     
     // MARK: - Setting
     
+    private func setLayout() {
+        
+        self.addSubview(topView)
+        topView.snp.makeConstraints {
+            $0.top.directionalHorizontalEdges.equalToSuperview()
+            $0.height.equalTo(1)
+        }
+        
+        self.addSubview(filterButton)
+        filterButton.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(24)
+            $0.centerY.equalToSuperview()
+        }
+        
+        self.addSubview(lineView)
+        lineView.snp.makeConstraints {
+            $0.width.equalTo(1)
+            $0.leading.equalTo(filterButton.snp.trailing).offset(12)
+            $0.directionalVerticalEdges.equalToSuperview().inset(15)
+        }
+        
+        self.addSubview(filterCollectionView)
+        filterCollectionView.snp.makeConstraints {
+            $0.leading.equalTo(lineView.snp.trailing)
+            $0.centerY.trailing.equalToSuperview()
+            $0.height.equalTo(42)
+        }
+        
+        self.addSubview(bottomView)
+        bottomView.snp.makeConstraints {
+            $0.directionalHorizontalEdges.bottom.equalToSuperview()
+            $0.height.equalTo(1)
+        }
+    }
+    
     private func setUI() {
+        
         filterCollectionView.do {
             $0.delegate = self
             $0.showsHorizontalScrollIndicator = false
@@ -65,44 +101,14 @@ final class BakeryFilterView: UIView {
             $0.configuration?.baseForegroundColor = .gbbGray700
             $0.configuration?.image = .swapIcon.resize(to: CGSize(width: 16, height: 16))
             $0.configuration?.attributedTitle = AttributedString(I18N.BakeryList.defaultFilter,
-                                                                 attributes: AttributeContainer([.font: UIFont.captionB1]))
+                                                                 attributes: AttributeContainer([.font: UIFont.captionB1!]))
             $0.configuration?.cornerStyle = .capsule
             $0.configuration?.imagePadding = 5
         }
     }
     
-    private func setLayout() {
-        addSubviews(topView, filterButton, lineView, filterCollectionView, bottomView)
-        
-        topView.snp.makeConstraints {
-            $0.top.directionalHorizontalEdges.equalToSuperview()
-            $0.height.equalTo(1)
-        }
-        
-        filterButton.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(24)
-            $0.centerY.equalToSuperview()
-        }
-        
-        lineView.snp.makeConstraints {
-            $0.width.equalTo(1)
-            $0.leading.equalTo(filterButton.snp.trailing).offset(12)
-            $0.directionalVerticalEdges.equalToSuperview().inset(15)
-        }
-        
-        filterCollectionView.snp.makeConstraints {
-            $0.leading.equalTo(lineView.snp.trailing)
-            $0.centerY.trailing.equalToSuperview()
-            $0.height.equalTo(42)
-        }
-        
-        bottomView.snp.makeConstraints {
-            $0.directionalHorizontalEdges.bottom.equalToSuperview()
-            $0.height.equalTo(1)
-        }
-    }
-    
     func layout() -> UICollectionViewFlowLayout {
+        
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 10
         layout.scrollDirection = .horizontal
@@ -111,18 +117,21 @@ final class BakeryFilterView: UIView {
     }
     
     private func setRegistration() {
+        
         filterCollectionView.register(cell: BakeryFilterCollectionViewCell.self)
     }
     
     private func setDataSource() {
+        
         dataSource = DataSource(collectionView: filterCollectionView, cellProvider: { collectionView, indexPath, item in
             let cell: BakeryFilterCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-            cell.bind(item: item, index: indexPath.item)
+            cell.configureFilterUI(item: item, index: indexPath.item)
             return cell
         })
     }
     
     private func setReloadData() {
+        
         var snapshot = NSDiffableDataSourceSnapshot<Section, BakeryFilterItems>()
         defer { dataSource?.apply(snapshot, animatingDifferences: false)}
         snapshot.appendSections([.main])
@@ -132,6 +141,7 @@ final class BakeryFilterView: UIView {
     // MARK: - Custom Method
     
     func applyAction(_ action: @escaping () -> Void) {
+        
         let action = UIAction { _ in
             action()
         }
@@ -139,10 +149,11 @@ final class BakeryFilterView: UIView {
     }
     
     func configureFilterButtonText(to text: String) {
+        
         filterButton.do {
             $0.configuration?.contentInsets = .init(top: 11, leading: 12, bottom: 11, trailing: 12)
             $0.configuration?.attributedTitle = AttributedString(text,
-                                                                 attributes: AttributeContainer([.font: UIFont.captionB1]))
+                                                                 attributes: AttributeContainer([.font: UIFont.captionB1!]))
             
         }
     }
@@ -153,11 +164,13 @@ final class BakeryFilterView: UIView {
 extension BakeryFilterView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         if self.filterlist[indexPath.item].status == .off {
             self.filterlist[indexPath.item].status = .on
         } else {
             self.filterlist[indexPath.item].status = .off
         }
+        
         self.filterlist[indexPath.item] = self.filterlist[indexPath.item].isSelected()
         
         switch self.filterlist[indexPath.item].filter {
@@ -181,10 +194,11 @@ extension BakeryFilterView: UICollectionViewDelegate {
 
 extension BakeryFilterView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         let cellWidth: CGFloat
         let cell: BakeryFilterCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
         cell.filterTitle.text = filterlist[indexPath.row].filter.title
-        cell.getSize()
+        cell.configureFilterSize()
         cellWidth = cell.filterTitle.frame.width + 48
         
         return CGSize(width: cellWidth, height: 36)

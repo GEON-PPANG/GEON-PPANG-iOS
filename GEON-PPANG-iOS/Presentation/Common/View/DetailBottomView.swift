@@ -43,18 +43,19 @@ final class DetailBottomView: UIView {
     // MARK: - Setting
     
     private func setLayout() {
+        
         self.snp.makeConstraints {
             $0.height.equalTo(CGFloat().heightConsideringBottomSafeArea(126))
         }
         
-        addSubview(bookmarkButton)
+        self.addSubview(bookmarkButton)
         bookmarkButton.snp.makeConstraints {
             $0.top.equalToSuperview().inset(18)
             $0.leading.equalToSuperview().inset(24)
             $0.size.equalTo(48)
         }
         
-        addSubview(writeReviewButton)
+        self.addSubview(writeReviewButton)
         writeReviewButton.snp.makeConstraints {
             $0.centerY.equalTo(bookmarkButton)
             $0.leading.equalTo(bookmarkButton.snp.trailing).offset(32)
@@ -77,6 +78,7 @@ final class DetailBottomView: UIView {
     }
     
     private func setUI() {
+        
         bookmarkButton.do {
             $0.setImage(.disabledBookmarkButton.resize(to: .init(width: 48, height: 48)), for: .normal)
             $0.addAction(UIAction { _ in
@@ -100,6 +102,7 @@ final class DetailBottomView: UIView {
     }
 
     private func setShadow() {
+        
         self.layer.applyShadow(color: .init(red: 0, green: 0, blue: 0, alpha: 0.1),
                                alpha: 1,
                                x: 0,
@@ -110,6 +113,7 @@ final class DetailBottomView: UIView {
     // MARK: - Custom Method
     
     func configureBookmarkButton(to isSelected: Bool) {
+        
         bookmarkButton.do {
             $0.setImage((isSelected ? UIImage.enabledBookmarkButton : UIImage.disabledBookmarkButton).resize(to: .init(width: 48, height: 48)), for: .normal)
         }

@@ -23,8 +23,8 @@ final class MenuCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        setUI()
         setLayout()
+        setUI()
     }
     
     @available(*, unavailable)
@@ -34,9 +34,37 @@ final class MenuCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Setting
     
+    private func setLayout() {
+        
+        contentView.addSubview(bakeryMenuLabel)
+        bakeryMenuLabel.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.leading.equalToSuperview().inset(24)
+            $0.width.equalTo(223)
+            $0.height.equalTo(20)
+        }
+        
+        contentView.addSubview(menuPriceLabel)
+        menuPriceLabel.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(24)
+            $0.width.equalTo(80)
+            $0.height.equalTo(20)
+        }
+        
+        contentView.addSubview(emptyView)
+        emptyView.snp.makeConstraints {
+            $0.top.equalTo(bakeryMenuLabel.snp.bottom)
+            $0.directionalHorizontalEdges.equalToSuperview()
+            $0.height.equalTo(12)
+        }
+    }
+    
     private func setUI() {
         
-        self.backgroundColor = .gbbWhite
+        self.do {
+            $0.backgroundColor = .gbbWhite
+        }
         
         bakeryMenuLabel.do {
             $0.basic(font: .subHead!, color: .gbbGray500!)
@@ -48,32 +76,9 @@ final class MenuCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    private func setLayout() {
-        
-        contentView.addSubviews(bakeryMenuLabel, menuPriceLabel, emptyView)
-        
-        bakeryMenuLabel.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.leading.equalToSuperview().inset(24)
-            $0.width.equalTo(223)
-            $0.height.equalTo(20)
-        }
-        
-        menuPriceLabel.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.trailing.equalToSuperview().inset(24)
-            $0.width.equalTo(80)
-            $0.height.equalTo(20)
-        }
-        
-        emptyView.snp.makeConstraints {
-            $0.top.equalTo(bakeryMenuLabel.snp.bottom)
-            $0.directionalHorizontalEdges.equalToSuperview()
-            $0.height.equalTo(12)
-        }
-    }
+    // MARK: - Custom Method
     
-    func updateUI(_ data: MenuList) {
+    func configureCellUI(_ data: MenuList) {
         
         bakeryMenuLabel.text = data.menuName
         menuPriceLabel.text = data.menuPrice.priceText

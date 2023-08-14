@@ -14,6 +14,7 @@ struct BreadRequestType: Codable {
     var isSugarFree: Bool
     
     func isNoneSelected() -> Bool {
+        
         if isGlutenFree == false && isVegan == false && isNutFree == false && isSugarFree == false {
             return true
         } else {
@@ -22,6 +23,7 @@ struct BreadRequestType: Codable {
     }
     
     mutating func clearData() {
+        
         isGlutenFree = false
         isVegan = false
         isNutFree = false

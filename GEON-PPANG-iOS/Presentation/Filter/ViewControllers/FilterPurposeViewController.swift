@@ -36,8 +36,8 @@ final class FilterPurposeViewController: BaseViewController {
     init(maxSteps: Int, username: String) {
         super.init(nibName: nil, bundle: nil)
         
-        setMaxSteps(to: maxSteps)
-        setUsername(to: username)
+        initMaxSteps(to: maxSteps)
+        initUsername(to: username)
     }
     
     @available(*, unavailable)
@@ -54,15 +54,18 @@ final class FilterPurposeViewController: BaseViewController {
     
     // MARK: - Setting
     
-    private func setMaxSteps(to steps: Int) {
+    private func initMaxSteps(to steps: Int) {
+        
         self.maxSteps = steps
     }
     
-    private func setUsername(to name: String) {
+    private func initUsername(to name: String) {
+        
         self.userName = name
     }
     
     override func setLayout() {
+        
         view.addSubview(navigationBar)
         navigationBar.snp.makeConstraints {
             $0.top.horizontalEdges.equalToSuperview()
@@ -90,8 +93,9 @@ final class FilterPurposeViewController: BaseViewController {
     }
     
     override func setUI() {
+        
         navigationBar.do {
-            $0.addBackButtonAction(popFilterViewController())
+            $0.configureBackButtonAction(popFilterViewController())
             $0.configureRightCount(maxSteps - 2, by: maxSteps)
         }
         
@@ -114,18 +118,20 @@ final class FilterPurposeViewController: BaseViewController {
         }
         
         nextButton.do {
-            $0.getButtonTitle(.next)
-            $0.getButtonUI(.gbbGray200!)
+            $0.configureButtonTitle(.next)
+            $0.configureButtonUI(.gbbGray200!)
             $0.isUserInteractionEnabled = false
         }
     }
     
     override func setDelegate() {
+        
         filterCollectionView.delegate = self
         filterCollectionView.dataSource = self
     }
     
     private func setNextButtonAction() {
+        
         let action = UIAction { [weak self] _ in
             Utils.push(self?.navigationController, FilterBreadTypeViewController(maxSteps: self?.maxSteps ?? 0))
             dump(FilterRequestDTO.sharedData)
@@ -149,7 +155,7 @@ final class FilterPurposeViewController: BaseViewController {
     private func enableNextButton() {
         UIView.animate(withDuration: 0.2) {
             self.nextButton.do {
-                $0.getButtonUI(.gbbMain2!)
+                $0.configureButtonUI(.gbbMain2!)
                 $0.isUserInteractionEnabled = true
             }
         }

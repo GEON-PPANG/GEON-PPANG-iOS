@@ -31,13 +31,14 @@ final class MyReviewsHeaderView: UICollectionReusableView {
     }
     
     private func setLayout() {
-        self.addSubviews(dateLabel, dotButton)
         
+        self.addSubview(dateLabel)
         dateLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(24)
             $0.centerY.equalToSuperview()
         }
         
+        self.addSubview(dotButton)
         dotButton.snp.makeConstraints {
             $0.size.equalTo(24)
             $0.directionalVerticalEdges.equalToSuperview()
@@ -46,6 +47,7 @@ final class MyReviewsHeaderView: UICollectionReusableView {
     }
     
     private func setUI() {
+        
         dateLabel.do {
             $0.basic(font: .captionM1!,
                      color: .gbbGray400!)
@@ -59,7 +61,7 @@ final class MyReviewsHeaderView: UICollectionReusableView {
         }
     }
     
-    func getReviewDate(_ date: String) {
+    func configuteDateText(_ date: String) {
         dateLabel.text = date
     }
 }

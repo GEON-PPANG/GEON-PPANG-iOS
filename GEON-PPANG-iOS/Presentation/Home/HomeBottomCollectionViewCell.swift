@@ -31,13 +31,21 @@ final class HomeBottomCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Setting
     
+    private func setLayout() {
+        
+        contentView.addSubview(footerLabel)
+        footerLabel.snp.makeConstraints {
+            $0.directionalVerticalEdges.equalToSuperview().inset(20)
+            $0.directionalHorizontalEdges.equalToSuperview().inset(30)
+        }
+    }
+    
     private func setUI() {
+        
         contentView.do {
             $0.backgroundColor = .gbbGray100
         }
-        
-        // markdown으로 변경
-        
+
         footerLabel.do {
             $0.textAlignment = .left
             $0.numberOfLines = 0
@@ -45,15 +53,6 @@ final class HomeBottomCollectionViewCell: UICollectionViewCell {
                      font: .captionM2!,
                      color: .gbbGray300!)
             $0.lineBreakMode = .byCharWrapping
-        }
-    }
-    
-    private func setLayout() {
-        contentView.addSubview(footerLabel)
-        
-        footerLabel.snp.makeConstraints {
-            $0.directionalVerticalEdges.equalToSuperview().inset(20)
-            $0.directionalHorizontalEdges.equalToSuperview().inset(30)
         }
     }
 }

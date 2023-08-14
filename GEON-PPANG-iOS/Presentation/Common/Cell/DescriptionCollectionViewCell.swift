@@ -52,11 +52,6 @@ final class DescriptionCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Life Cycle
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        descriptionLabel.text = ""
-    }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -69,10 +64,17 @@ final class DescriptionCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        configureTagTitle("")
+    }
+    
     // MARK: - Setting
     
     private func setLayout() {
-        addSubview(descriptionLabel)
+        
+        self.addSubview(descriptionLabel)
         descriptionLabel.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(6)
             $0.verticalEdges.equalToSuperview().inset(4)
@@ -80,6 +82,7 @@ final class DescriptionCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUI() {
+        
         self.do {
             $0.backgroundColor = cellBackgroundColor
             $0.makeBorder(width: 0.5, color: cellBorderColor)
@@ -95,6 +98,7 @@ final class DescriptionCollectionViewCell: UICollectionViewCell {
     // MARK: - Custom Method
     
     func configureTagTitle(_ text: String) {
+        
         descriptionLabel.text = text
     }
     
