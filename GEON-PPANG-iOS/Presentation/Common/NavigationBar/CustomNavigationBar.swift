@@ -68,6 +68,23 @@ final class CustomNavigationBar: UIView {
         rightMapButton.addAction(action, for: .touchUpInside)
     }
     
+    // FIXME: 1릴 때에는 사용하지 않을 함수
+    // FIXME: 대신 가운데에 title 이 추가될듯 !
+    func configureLeftTitle(to title: String) {
+        
+        self.addSubview(leftTitleLabel)
+        leftTitleLabel.snp.makeConstraints {
+            $0.leading.equalTo(backButton.snp.trailing).offset(8)
+            $0.centerY.equalTo(backButton)
+        }
+        
+        leftTitleLabel.do {
+            $0.text = title
+            $0.font = .title2
+            $0.textColor = .black
+        }
+    }
+    
     func configureRightCount(_ currentCount: Int, by maxCount: Int) {
         
         self.addSubview(rightCountLabel)
