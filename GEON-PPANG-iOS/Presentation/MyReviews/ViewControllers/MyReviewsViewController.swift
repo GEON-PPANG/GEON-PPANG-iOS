@@ -48,6 +48,7 @@ final class MyReviewsViewController: BaseViewController {
     }
     
     override func setUI() {
+        
         naviView.do {
             $0.configureBottomLine()
             $0.configureBackButtonAction(UIAction { _ in
