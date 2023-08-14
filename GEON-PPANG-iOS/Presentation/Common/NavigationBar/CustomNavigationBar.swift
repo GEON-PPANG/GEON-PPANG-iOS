@@ -68,21 +68,6 @@ final class CustomNavigationBar: UIView {
         rightMapButton.addAction(action, for: .touchUpInside)
     }
     
-    func configureLeftTitle(to title: String) {
-        
-        self.addSubview(leftTitleLabel)
-        leftTitleLabel.snp.makeConstraints {
-            $0.leading.equalTo(backButton.snp.trailing).offset(8)
-            $0.centerY.equalTo(backButton)
-        }
-        
-        leftTitleLabel.do {
-            $0.text = title
-            $0.font = .title2
-            $0.textColor = .black
-        }
-    }
-    
     func configureRightCount(_ currentCount: Int, by maxCount: Int) {
         
         self.addSubview(rightCountLabel)
