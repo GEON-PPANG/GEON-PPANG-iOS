@@ -16,8 +16,8 @@ final class SearchTextField: UITextField {
     
     var rightButtonType: RightButtonType = .searchButton
     var viewType: ViewType = .home
-    var textFieldClosure: ((String) -> Void)?
-    var gotoNextView: (() -> Void)?
+    var searchToBakeryList: ((String) -> Void)?
+    var pushToSearchView: (() -> Void)?
     
     // MARK: - UI Property
     
@@ -30,8 +30,9 @@ final class SearchTextField: UITextField {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setUI()
+        
         setLayout()
+        setUI()
         setDelegate()
     }
     
@@ -41,7 +42,25 @@ final class SearchTextField: UITextField {
     
     // MARK: - Setting
     
+    private func setLayout() {
+        
+        rightStackView.snp.makeConstraints {
+            $0.width.equalTo(40)
+        }
+        
+        emptyView.snp.makeConstraints {
+            $0.width.equalTo(15)
+        }
+        
+        [clearButton, searchButton].forEach {
+            $0.snp.makeConstraints {
+                $0.size.equalTo(24)
+            }
+        }
+    }
+    
     private func setUI() {
+        
         clearButtonMode = .never
         
         searchButton.do {
@@ -69,32 +88,19 @@ final class SearchTextField: UITextField {
         }
     }
     
-    private func setLayout() {
-        rightStackView.snp.makeConstraints {
-            $0.width.equalTo(40)
-        }
-        
-        emptyView.snp.makeConstraints {
-            $0.width.equalTo(15)
-        }
-        
-        [clearButton, searchButton].forEach {
-            $0.snp.makeConstraints {
-                $0.size.equalTo(24)
-            }
-        }
-    }
-    
     private func setDelegate() {
+        
         self.delegate = self
     }
     
     private func addRightButton(_ buttonType: RightButtonType) {
+        
         rightButtonType = buttonType
         updateRightViewMode()
     }
     
     private func updateRightViewMode() {
+        
         switch rightButtonType {
         case .searchButton:
             rightStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
@@ -107,11 +113,13 @@ final class SearchTextField: UITextField {
         }
     }
     
-    func viewType(_ viewtype: ViewType) {
+    func configureViewType(_ viewtype: ViewType) {
+        
         self.viewType = viewtype
     }
     
-    func getText() -> String {
+    func fetchText() -> String {
+        
         return text ?? ""
     }
 }
@@ -130,17 +138,18 @@ extension SearchTextField: UITextFieldDelegate {
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        
         switch viewType {
         case .home:
-            self.gotoNextView?()
+            self.pushToSearchView?()
             return false
         case .search: return true
         }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("🤍\(getText())")
-        textFieldClosure?(getText())
+        
+        searchToBakeryList?(fetchText())
         resignFirstResponder()
         return true
     }

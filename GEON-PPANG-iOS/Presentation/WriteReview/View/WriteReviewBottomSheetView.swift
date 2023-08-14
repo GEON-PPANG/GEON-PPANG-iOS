@@ -46,26 +46,27 @@ final class WriteReviewBottomSheetView: UIView {
     // MARK: - Setting
     
     private func setLayout() {
-        addSubview(emojiImageView)
+        
+        self.addSubview(emojiImageView)
         emojiImageView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(27)
             $0.centerX.equalToSuperview()
             $0.size.equalTo(32)
         }
         
-        addSubview(sheetTitleLabel)
+        self.addSubview(sheetTitleLabel)
         sheetTitleLabel.snp.makeConstraints {
             $0.top.equalTo(emojiImageView.snp.bottom).offset(22)
             $0.centerX.equalToSuperview()
         }
         
-        addSubview(sheetDescriptionLabel)
+        self.addSubview(sheetDescriptionLabel)
         sheetDescriptionLabel.snp.makeConstraints {
             $0.top.equalTo(sheetTitleLabel.snp.bottom).offset(22)
             $0.centerX.equalToSuperview()
         }
         
-        addSubview(buttonStackView)
+        self.addSubview(buttonStackView)
         buttonStackView.snp.makeConstraints {
             $0.height.equalTo(53)
             $0.bottom.equalToSuperview().inset(CGFloat().heightConsideringBottomSafeArea(41))
@@ -80,7 +81,7 @@ final class WriteReviewBottomSheetView: UIView {
             $0.width.equalTo(SizeLiteral.Screen.width / 2)
         }
         
-        addSubview(lineView)
+        self.addSubview(lineView)
         lineView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(7)
             $0.bottom.equalTo(buttonStackView.snp.top)
@@ -96,6 +97,7 @@ final class WriteReviewBottomSheetView: UIView {
     }
     
     private func setUI() {
+        
         sheetTitleLabel.do {
             $0.text = I18N.WriteReview.sheetTitle
             $0.font = .title2

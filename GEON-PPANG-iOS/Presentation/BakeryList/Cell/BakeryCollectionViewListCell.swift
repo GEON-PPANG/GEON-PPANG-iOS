@@ -15,7 +15,6 @@ final class BakeryCollectionViewListCell: UICollectionViewListCell {
     
     // MARK: - Property
     
-    var updateData: ((Bool, Int) -> Void)?
     private var breadTypeTag: [String] = []
     private var ingredientList: [BakeryListResponseDTO] = []
     
@@ -25,7 +24,7 @@ final class BakeryCollectionViewListCell: UICollectionViewListCell {
     private let bakeryImage = UIImageView()
     private let bakeryTitle = UILabel()
     private let regionStackView = RegionStackView()
-    private let bookmarkStacView = UIStackView()
+    private let bookmarkStackView = UIStackView()
     private let bookmarkIcon = UIImageView()
     private let bookmarkCount = UILabel()
     private lazy var arrowButton = UIButton()
@@ -51,8 +50,54 @@ final class BakeryCollectionViewListCell: UICollectionViewListCell {
     }
     
     // MARK: - Setting
+
+    private func setLayout() {
+        
+        contentView.addSubview(bakeryImage)
+        bakeryImage.snp.makeConstraints {
+            $0.size.equalTo(90)
+            $0.top.equalToSuperview().offset(24)
+            $0.leading.equalToSuperview().inset(24)
+        }
+ 
+        contentView.addSubview(bakeryTitle)
+        bakeryTitle.snp.makeConstraints {
+            $0.top.equalTo(bakeryImage.snp.top)
+            $0.leading.equalTo(bakeryImage.snp.trailing).offset(14)
+        }
+        
+        contentView.addSubview(collectionView)
+        collectionView.snp.makeConstraints {
+            $0.height.equalTo(25)
+            $0.top.equalTo(bakeryTitle.snp.bottom).offset(8)
+            $0.leading.equalTo(bakeryImage.snp.trailing).offset(14)
+            $0.trailing.equalToSuperview().inset(24)
+        }
+        
+        contentView.addSubview(regionStackView)
+        regionStackView.snp.makeConstraints {
+            $0.top.equalTo(collectionView.snp.bottom).offset(10)
+            $0.height.equalTo(29)
+            $0.leading.equalTo(bakeryImage.snp.trailing).offset(14)
+            $0.bottom.equalToSuperview().inset(24)
+        }
+        
+        contentView.addSubview(bookmarkStackView)
+        bookmarkStackView.snp.makeConstraints {
+            $0.top.equalTo(bakeryImage.snp.top)
+            $0.trailing.equalToSuperview().inset(24)
+            $0.height.equalTo(16)
+        }
+        
+        bakeryImage.addSubview(markStackView)
+        markStackView.snp.makeConstraints {
+            $0.top.leading.equalToSuperview().offset(8)
+            $0.size.equalTo(CGSize(width: 55, height: 22))
+        }
+    }
     
     private func setUI() {
+        
         self.do {
             $0.contentView.backgroundColor = .white
         }
@@ -62,7 +107,7 @@ final class BakeryCollectionViewListCell: UICollectionViewListCell {
         }
         
         markStackView.do {
-            $0.getIconImage(.smallHACCPMark, .smallVeganMark, .smallGMOMark)
+            $0.confiureIconImage(.smallHACCPMark, .smallVeganMark, .smallGMOMark)
         }
         
         bakeryTitle.do {
@@ -76,7 +121,7 @@ final class BakeryCollectionViewListCell: UICollectionViewListCell {
             $0.dataSource = self
         }
         
-        bookmarkStacView.do {
+        bookmarkStackView.do {
             $0.addArrangedSubviews(bookmarkIcon, bookmarkCount)
             $0.axis = .horizontal
             $0.spacing = 1
@@ -92,61 +137,17 @@ final class BakeryCollectionViewListCell: UICollectionViewListCell {
         }
     }
     
-    private func setLayout() {
-        contentView.addSubviews(bakeryImage, bakeryTitle, collectionView, regionStackView, bookmarkStacView)
-        bakeryImage.addSubview(markStackView)
+    func configureCellUI<T: BakeryListProtocol>(data: T) {
         
-        bakeryImage.snp.makeConstraints {
-            $0.size.equalTo(90)
-            $0.top.equalToSuperview().offset(24)
-            $0.leading.equalToSuperview().inset(24)
-        }
-        
-        markStackView.snp.makeConstraints {
-            $0.top.leading.equalToSuperview().offset(8)
-            $0.size.equalTo(CGSize(width: 55, height: 22))
-        }
-        
-        bakeryTitle.snp.makeConstraints {
-            $0.top.equalTo(bakeryImage.snp.top)
-            $0.leading.equalTo(bakeryImage.snp.trailing).offset(14)
-        }
-        
-        collectionView.snp.makeConstraints {
-            $0.height.equalTo(25)
-            $0.top.equalTo(bakeryTitle.snp.bottom).offset(8)
-            $0.leading.equalTo(bakeryImage.snp.trailing).offset(14)
-            $0.trailing.equalToSuperview().inset(24)
-        }
-        
-        regionStackView.snp.makeConstraints {
-            $0.top.equalTo(collectionView.snp.bottom).offset(10)
-            $0.height.equalTo(29)
-            $0.leading.equalTo(bakeryImage.snp.trailing).offset(14)
-            $0.bottom.equalToSuperview().inset(24)
-        }
-        
-        bookmarkStacView.snp.makeConstraints {
-            $0.top.equalTo(bakeryImage.snp.top)
-            $0.trailing.equalToSuperview().inset(24)
-            $0.height.equalTo(16)
-        }
-        
-        bookmarkIcon.snp.makeConstraints {
-            $0.size.equalTo(16)
-        }
-    }
-    
-    func updateUI<T: BakeryListProtocol>(data: T) {
         bakeryTitle.setLineHeight(by: 1.05, with: data.bakeryName)
-        bookmarkCount.setLineHeight(by: 1.1, with: "(\(data.bookMarkCount))")
+        bookmarkCount.setLineHeight(by: 1.1, with: "(\(data.bookmarkCount))")
         guard let url = URL(string: data.bakeryPicture) else { return }
         bakeryImage.kf.setImage(with: url)
         markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)
         if data.secondNearStation == "" {
             regionStackView.removeSecondRegion()
         }
-        regionStackView.getRegionName(data.firstNearStation, data.secondNearStation ?? "")
+        regionStackView.configureRegionName(data.firstNearStation, data.secondNearStation ?? "")
         
         breadTypeTag = []
         if data.breadType.isGlutenFree {
@@ -180,6 +181,7 @@ final class BakeryCollectionViewListCell: UICollectionViewListCell {
 
 extension BakeryCollectionViewListCell {
     private func setRegistration() {
+        
         collectionView.register(cell: DescriptionCollectionViewCell.self)
     }
 }

@@ -84,7 +84,7 @@ final class TitleCollectionViewCell: UICollectionViewCell {
         }
         
         markStackView.do {
-            $0.setMarkSize(28)
+            $0.configureMarkSize(28)
             $0.spacing = 10
         }
         
@@ -106,7 +106,7 @@ final class TitleCollectionViewCell: UICollectionViewCell {
         bakeryImage.kf.setImage(with: url)
         bakeryNameLabel.text = data.bakeryName
         markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)
-        markStackView.getIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
+        markStackView.confiureIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
         
         if !data.isHACCP && !data.isVegan && !data.isNonGMO {
             bakeryNameLabel.snp.remakeConstraints {

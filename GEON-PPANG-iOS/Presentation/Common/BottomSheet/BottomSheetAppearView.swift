@@ -46,6 +46,7 @@ final class BottomSheetAppearView: UIView {
 extension BottomSheetAppearView {
     
     func initializeMainView(_ halfViewHeight: CGFloat? = nil) {
+        
         if let window = UIApplication.shared.windows.first(where: {$0.isKeyWindow}) {
             window.endEditing(true)
             dimmedView.frame = window.frame
@@ -69,11 +70,14 @@ extension BottomSheetAppearView {
         }
     }
     
-    @objc func dismiss(gesture: UITapGestureRecognizer?) {
+    @objc
+    func dismiss(gesture: UITapGestureRecognizer?) {
+        
         dissmissFromSuperview()
     }
     
     func dissmissFromSuperview() {
+        
         if UIApplication.shared.windows.first(where: { $0.isKeyWindow }) != nil {
             let transform = CGAffineTransform(translationX: 0, y: 200)
             UIView.animate(
@@ -99,6 +103,7 @@ extension BottomSheetAppearView {
 extension BottomSheetAppearView {
     
     func appearBottomSheetView(subView: UIView, _ halfViewHeight: CGFloat? = nil) {
+        
         initializeMainView(halfViewHeight)
         addedSubView = subView
         halfView.addSubview(addedSubView)

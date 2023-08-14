@@ -15,6 +15,7 @@ struct FilterRequestDTO: Codable {
     static var sharedData = FilterRequestDTO()
     
     private init() {
+        
         self.mainPurpose = ""
         self.breadType = .init(isGlutenFree: false,
                                isVegan: false,
@@ -26,6 +27,7 @@ struct FilterRequestDTO: Codable {
     }
     
     mutating func clearData() {
+        
         mainPurpose = ""
         breadType.clearData()
         nutrientType.clearData()

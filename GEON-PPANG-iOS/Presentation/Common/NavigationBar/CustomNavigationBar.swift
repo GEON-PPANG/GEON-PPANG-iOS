@@ -43,11 +43,12 @@ final class CustomNavigationBar: UIView {
     // MARK: - Setting
     
     private func setLayout() {
+        
         self.snp.makeConstraints {
             $0.height.equalTo(CGFloat().heightConsideringNotch(118))
         }
         
-        addSubview(backButton)
+        self.addSubview(backButton)
         backButton.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(5)
             $0.bottom.equalToSuperview().inset(10)
@@ -55,28 +56,28 @@ final class CustomNavigationBar: UIView {
         }
     }
     
-    private func setStyle() {
-        backButton.do {
-            $0.tintColor = .gbbGray700
-        }
-    }
-    
     // MARK: - Custom Method
     
-    func addBackButtonAction(_ action: UIAction) {
+    func configureBackButtonAction(_ action: UIAction) {
+        
         backButton.addAction(action, for: .touchUpInside)
     }
     
-    func addMapButtonAction(_ action: UIAction) {
+    func configureMapButtonAction(_ action: UIAction) {
+        
         rightMapButton.addAction(action, for: .touchUpInside)
     }
     
+    // FIXME: 1릴 때에는 사용하지 않을 함수
+    // FIXME: 대신 가운데에 title 이 추가될듯 !
     func configureLeftTitle(to title: String) {
-        addSubview(leftTitleLabel)
+        
+        self.addSubview(leftTitleLabel)
         leftTitleLabel.snp.makeConstraints {
             $0.leading.equalTo(backButton.snp.trailing).offset(8)
             $0.centerY.equalTo(backButton)
         }
+        
         leftTitleLabel.do {
             $0.text = title
             $0.font = .title2
@@ -85,11 +86,13 @@ final class CustomNavigationBar: UIView {
     }
     
     func configureRightCount(_ currentCount: Int, by maxCount: Int) {
-        addSubview(rightCountLabel)
+        
+        self.addSubview(rightCountLabel)
         rightCountLabel.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(24)
             $0.centerY.equalTo(backButton)
         }
+        
         rightCountLabel.do {
             $0.text = "\(currentCount)/\(maxCount)"
             $0.font = .pretendardMedium(15)
@@ -98,7 +101,8 @@ final class CustomNavigationBar: UIView {
     }
     
     func configureRightMapButton() {
-        addSubview(rightMapButton)
+        
+        self.addSubview(rightMapButton)
         rightMapButton.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(18)
             $0.centerY.equalTo(backButton)
@@ -106,19 +110,23 @@ final class CustomNavigationBar: UIView {
         }
         
         let mapImageView = UIImageView(image: UIImage.mapButton)
+        
         rightMapButton.addSubview(mapImageView)
         mapImageView.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.width.height.equalTo(Size.buttonSize)
         }
+        
         mapImageView.do {
             $0.tintColor = .gbbGray500
         }
     }
     
     func configureBottomLine() {
+        
         let bottomLine = LineView()
-        addSubview(bottomLine)
+        
+        self.addSubview(bottomLine)
         bottomLine.snp.makeConstraints {
             $0.bottom.horizontalEdges.equalToSuperview()
             $0.height.equalTo(1)
