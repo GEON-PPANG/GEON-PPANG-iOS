@@ -188,7 +188,7 @@ final class InfoCollectionViewCell: UICollectionViewCell {
     func configureCellUI(_ data: BakeryDetailResponseDTO) {
         
         bakeryAddressLabel.text = data.address
-        regionStackView.getRegionName(data.firstNearStation, data.secondNearStation)
+        regionStackView.configureRegionName(data.firstNearStation, data.secondNearStation)
         
         if data.firstNearStation != "" && data.secondNearStation == "" {
             regionStackView.removeSecondRegion()

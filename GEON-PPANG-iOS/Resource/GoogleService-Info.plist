@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>926933764902-b6l76ohr3l3bd8lr2s0rng276a72s6j7.apps.googleusercontent.com</string>
+	<string>926933764902-di4tt32k8lh2on1m1j9k9jrfsrucljfc.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.926933764902-b6l76ohr3l3bd8lr2s0rng276a72s6j7</string>
+	<string>com.googleusercontent.apps.926933764902-di4tt32k8lh2on1m1j9k9jrfsrucljfc</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAfYQbYFP_LXEa8qcYTpVE0MH78NKniFf0</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>geonbbang.GEON-PPANG-iOS</string>
+	<string>com.gunbbang.GUN-BBANG-iOS</string>
 	<key>PROJECT_ID</key>
 	<string>geon-bbang</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:926933764902:ios:026e61046aacbb3c608fe7</string>
+	<string>1:926933764902:ios:261258a720fc6f8c608fe7</string>
 </dict>
 </plist>

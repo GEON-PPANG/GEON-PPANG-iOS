@@ -37,6 +37,7 @@
 		093214022A5AE27800875EF6 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093214012A5AE27700875EF6 /* Utils.swift */; };
 		093214082A5AE40900875EF6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093214072A5AE40900875EF6 /* SearchViewController.swift */; };
 		093EFA592A61F62D003228CD /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093EFA582A61F62D003228CD /* EmailViewController.swift */; };
+		094392CF2A84E68700984310 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 094392CE2A84E68700984310 /* GoogleService-Info.plist */; };
 		0949750E2A67EC9B00A63420 /* MyReviewsResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0949750D2A67EC9B00A63420 /* MyReviewsResponseDTO.swift */; };
 		094975102A67FB5900A63420 /* MyReviewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0949750F2A67FB5900A63420 /* MyReviewsCollectionViewCell.swift */; };
 		0959F1482A6583C200E77CAF /* NetworkLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F1472A6583C200E77CAF /* NetworkLoggerPlugin.swift */; };
@@ -79,7 +80,6 @@
 		0987288D2A5BA1F000A29402 /* BookmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0987288C2A5BA1F000A29402 /* BookmarkButton.swift */; };
 		098F32EA2A4200FE0092D09A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 098F32E92A4200FE0092D09A /* Assets.xcassets */; };
 		098F32ED2A4200FE0092D09A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 098F32EB2A4200FE0092D09A /* LaunchScreen.storyboard */; };
-		099FC1C62A51F19300116D00 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 099FC1C52A51F19300116D00 /* GoogleService-Info.plist */; };
 		09B13F482A5931DC00C0C723 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B13F472A5931DC00C0C723 /* TabBarController.swift */; };
 		09B13F4C2A593C6F00C0C723 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B13F4B2A593C6F00C0C723 /* HomeViewController.swift */; };
 		09B13F502A593CB800C0C723 /* BakeryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B13F4F2A593CB800C0C723 /* BakeryListViewController.swift */; };
@@ -199,6 +199,7 @@
 		093214012A5AE27700875EF6 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		093214072A5AE40900875EF6 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		093EFA582A61F62D003228CD /* EmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
+		094392CE2A84E68700984310 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0949750D2A67EC9B00A63420 /* MyReviewsResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewsResponseDTO.swift; sourceTree = "<group>"; };
 		0949750F2A67FB5900A63420 /* MyReviewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewsCollectionViewCell.swift; sourceTree = "<group>"; };
 		0959F1472A6583C200E77CAF /* NetworkLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerPlugin.swift; sourceTree = "<group>"; };
@@ -244,7 +245,6 @@
 		098F32E92A4200FE0092D09A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		098F32EC2A4200FE0092D09A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		098F32EE2A4200FE0092D09A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		099FC1C52A51F19300116D00 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		09B13F472A5931DC00C0C723 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		09B13F4B2A593C6F00C0C723 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		09B13F4F2A593CB800C0C723 /* BakeryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryListViewController.swift; sourceTree = "<group>"; };
@@ -833,7 +833,7 @@
 				0961C36D2A501F380031A822 /* Fonts */,
 				0961C36C2A501F280031A822 /* Assets */,
 				098F32EE2A4200FE0092D09A /* Info.plist */,
-				099FC1C52A51F19300116D00 /* GoogleService-Info.plist */,
+				094392CE2A84E68700984310 /* GoogleService-Info.plist */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -1360,8 +1360,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				099FC1C62A51F19300116D00 /* GoogleService-Info.plist in Resources */,
 				DF959A612A539FBE00E75774 /* Pretendard-Bold.otf in Resources */,
+				094392CF2A84E68700984310 /* GoogleService-Info.plist in Resources */,
 				090668F82A4FF1D900F413FA /* .swiftlint.yml in Resources */,
 				098F32ED2A4200FE0092D09A /* LaunchScreen.storyboard in Resources */,
 				DFDE72DB2A66893900389A51 /* Config.xcconfig in Resources */,
@@ -1723,25 +1723,28 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BASE_URL = "${BASE_URL}";
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = ZLLGCJ8XUL;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZLLGCJ8XUL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "GEON-PPANG-iOS/Resource/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "건빵";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "geonbbang.GEON-PPANG-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gunbbang.GUN-BBANG-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = gunbbangDebug;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1756,25 +1759,28 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BASE_URL = "${BASE_URL}";
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = ZLLGCJ8XUL;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZLLGCJ8XUL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "GEON-PPANG-iOS/Resource/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "건빵";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "geonbbang.GEON-PPANG-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gunbbang.GUN-BBANG-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = gunbbangRelease;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
