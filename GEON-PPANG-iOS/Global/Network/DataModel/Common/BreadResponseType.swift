@@ -25,6 +25,7 @@ struct BreadResponseType: Codable, Hashable, BakeryTypeProtocol {
     }
     
     func configureTrueOptions() -> [(String, Bool)] {
+        
         var optionsBoolArray: [(String, Bool)] = []
         if isGlutenFree { optionsBoolArray.append((I18N.BakeryList.glutenfree, true)) }
         if isVegan { optionsBoolArray.append((I18N.BakeryList.vegan, true)) }
@@ -34,6 +35,12 @@ struct BreadResponseType: Codable, Hashable, BakeryTypeProtocol {
     }
     
     static func emptyBreadType() -> BreadResponseType {
-        return BreadResponseType(breadTypeID: 0, name: "", isGlutenFree: false, isVegan: false, isNutFree: false, isSugarFree: false)
+        
+        return BreadResponseType(breadTypeID: 0,
+                                 name: "",
+                                 isGlutenFree: false,
+                                 isVegan: false,
+                                 isNutFree: false,
+                                 isSugarFree: false)
     }
 }

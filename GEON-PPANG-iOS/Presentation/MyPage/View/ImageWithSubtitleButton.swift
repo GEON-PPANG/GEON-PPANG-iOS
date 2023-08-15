@@ -59,18 +59,19 @@ final class ImageWithSubtitleButton: UIButton {
     // MARK: - Setting
     
     private func setLayout() {
+        
         self.snp.makeConstraints {
             $0.width.equalTo(66)
             $0.height.equalTo(45)
         }
         
-        addSubview(buttonImageView)
+        self.addSubview(buttonImageView)
         buttonImageView.snp.makeConstraints {
             $0.top.centerX.equalToSuperview()
             $0.size.equalTo(24)
         }
         
-        addSubview(buttonSubtitleLabel)
+        self.addSubview(buttonSubtitleLabel)
         buttonSubtitleLabel.snp.makeConstraints {
             $0.top.equalTo(buttonImageView.snp.bottom).offset(4)
             $0.centerX.equalTo(buttonImageView)
@@ -78,6 +79,7 @@ final class ImageWithSubtitleButton: UIButton {
     }
     
     private func setUI() {
+        
         buttonSubtitleLabel.do {
             $0.text = buttonSubtitle
             $0.font = .captionB1
@@ -87,7 +89,8 @@ final class ImageWithSubtitleButton: UIButton {
     
     // MARK: - Custom Method
     
-    func addButtonAction(_ tapped: @escaping () -> Void) {
+    func configureButtonAction(_ tapped: @escaping () -> Void) {
+        
         let action = UIAction { _ in
             tapped()
         }

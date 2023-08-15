@@ -82,7 +82,7 @@ final class NickNameViewController: BaseViewController {
         
         naviView.do {
             $0.configureRightCount(3, by: 6)
-            $0.addBackButtonAction(UIAction { _ in
+            $0.configureBackButtonAction(UIAction { _ in
                 self.navigationController?.popViewController(animated: true)
             })
         }

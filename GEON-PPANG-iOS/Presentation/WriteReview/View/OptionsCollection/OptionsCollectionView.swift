@@ -35,6 +35,7 @@ final class OptionsCollectionView: UICollectionView {
     // MARK: - Setting
     
     private func setUI() {
+        
         self.do {
             $0.register(cell: OptionsCollectionViewCell.self)
             $0.isScrollEnabled = false
@@ -45,12 +46,14 @@ final class OptionsCollectionView: UICollectionView {
     // MARK: - Custom Method
     
     private func resetCellsAreSelected() {
+        
         self.indexPathsForSelectedItems?.forEach({ indexPath in
             self.deselectItem(at: indexPath, animated: false)
         })
     }
     
     func toggleIsEnabled(to isLikeSelected: Bool) {
+        
         self.isUserInteractionEnabled = isLikeSelected
         self.resetCellsAreSelected()
         self.visibleCells.forEach { cell in

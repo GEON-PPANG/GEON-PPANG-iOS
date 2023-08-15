@@ -13,6 +13,7 @@ struct NutrientRequestType: Codable {
     var isNotOpen: Bool
     
     func isNoneSelected() -> Bool {
+        
         if isNutrientOpen == false && isIngredientOpen == false && isNotOpen == false {
             return true
         } else {
@@ -21,6 +22,7 @@ struct NutrientRequestType: Codable {
     }
     
     mutating func clearData() {
+        
         isNutrientOpen = false
         isIngredientOpen = false
         isNotOpen = false

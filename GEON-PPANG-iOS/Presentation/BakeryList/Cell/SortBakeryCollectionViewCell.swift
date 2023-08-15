@@ -44,13 +44,14 @@ final class SortBakeryCollectionViewCell: UICollectionViewCell {
     // MARK: - Setting
     
     private func setLayout() {
-        addSubview(sortByLabel)
+        
+        self.addSubview(sortByLabel)
         sortByLabel.snp.makeConstraints {
             $0.leading.equalToSuperview()
             $0.centerY.equalToSuperview()
         }
         
-        addSubview(checkImageView)
+        self.addSubview(checkImageView)
         checkImageView.snp.makeConstraints {
             $0.trailing.equalToSuperview()
             $0.centerY.equalTo(sortByLabel)
@@ -59,6 +60,7 @@ final class SortBakeryCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUI() {
+        
         sortByLabel.do {
             $0.textColor = .gbbGray400
             $0.font = .bodyM1
@@ -72,12 +74,14 @@ final class SortBakeryCollectionViewCell: UICollectionViewCell {
     // MARK: - Custom Method
     
     func configureLabel(to text: String) {
+        
         sortByLabel.do {
             $0.text = text
         }
     }
     
     func configureSelected() {
+        
         sortByLabel.do {
             $0.textColor = .gbbMain3
             $0.font = .bodyB1
@@ -89,6 +93,7 @@ final class SortBakeryCollectionViewCell: UICollectionViewCell {
     }
     
     private func toggleUI() {
+        
         sortByLabel.do {
             $0.textColor = isSelected ? .gbbMain3 : .gbbGray400
             $0.font = isSelected ? .bodyB1 : .bodyM1

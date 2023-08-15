@@ -17,7 +17,7 @@ final class BreadTypeStackView: UIStackView {
     private var padding = UIEdgeInsets(top: 4, left: 6, bottom: 4, right: 6)
     
     // MARK: - UI Property
-
+    
     private lazy var glutenFreeChip = PaddingLabel(padding: padding)
     private lazy var veganBreadChip = PaddingLabel(padding: padding)
     private lazy var nutFreeChip = PaddingLabel(padding: padding)
@@ -29,8 +29,8 @@ final class BreadTypeStackView: UIStackView {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        setUI()
         setLayout()
+        setUI()
     }
     
     @available(*, unavailable)
@@ -39,6 +39,17 @@ final class BreadTypeStackView: UIStackView {
     }
     
     // MARK: - Setting
+    
+    private func setLayout() {
+        
+        self.addArrangedSubviews(glutenFreeChip, veganBreadChip, nutFreeChip, noSugarChip)
+
+        [glutenFreeChip, veganBreadChip, nutFreeChip, noSugarChip].forEach {
+            $0.snp.makeConstraints {
+                $0.height.equalTo(25)
+            }
+        }
+    }
     
     private func setUI() {
         
@@ -57,16 +68,7 @@ final class BreadTypeStackView: UIStackView {
         }
     }
     
-    private func setLayout() {
-        
-        self.addArrangedSubviews(glutenFreeChip, veganBreadChip, nutFreeChip, noSugarChip)
-        
-        [glutenFreeChip, veganBreadChip, nutFreeChip, noSugarChip].forEach {
-            $0.snp.makeConstraints {
-                $0.height.equalTo(25)
-            }
-        }
-    }
+    // MARK: - Custom Method
     
     func getChipStatus(_ isGlutenFree: Bool, _ isveganBread: Bool, _ isnutFree: Bool, _ isnoSugarChip: Bool) {
         if !isGlutenFree {

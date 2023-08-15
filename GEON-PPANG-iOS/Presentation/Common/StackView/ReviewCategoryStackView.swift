@@ -29,8 +29,8 @@ final class ReviewCategoryStackView: UIStackView {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        setUI()
         setLayout()
+        setUI()
     }
     
     @available(*, unavailable)
@@ -39,6 +39,17 @@ final class ReviewCategoryStackView: UIStackView {
     }
     
     // MARK: - Setting
+    
+    private func setLayout() {
+        
+        self.addArrangedSubviews(deliciousChip, specialChip, kindChip, zerowasteChip)
+        
+        [deliciousChip, specialChip, kindChip, zerowasteChip].forEach {
+            $0.snp.makeConstraints {
+                $0.height.equalTo(25)
+            }
+        }
+    }
     
     private func setUI() {
         
@@ -57,16 +68,7 @@ final class ReviewCategoryStackView: UIStackView {
         }
     }
     
-    private func setLayout() {
-        
-        self.addArrangedSubviews(deliciousChip, specialChip, kindChip, zerowasteChip)
-        
-        [deliciousChip, specialChip, kindChip, zerowasteChip].forEach {
-            $0.snp.makeConstraints {
-                $0.height.equalTo(25)
-            }
-        }
-    }
+    // MARK: - Custom Method
     
     func getChipStatus(_ recommendKeywordList: [Int]) {
         
