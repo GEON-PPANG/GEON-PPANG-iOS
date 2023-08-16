@@ -1,5 +1,5 @@
 //
-//  EmailViewController.swift
+//  SignInViewController.swift
 //  GEON-PPANG-iOS
 //
 //  Created by JEONGEUN KIM on 2023/07/15.
@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class EmailViewController: BaseViewController {
+final class SignInViewController: BaseViewController {
     
     // MARK: - Property
     

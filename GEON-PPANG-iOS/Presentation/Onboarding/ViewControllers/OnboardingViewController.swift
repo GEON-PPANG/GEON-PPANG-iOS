@@ -106,7 +106,7 @@ final class OnboardingViewController: BaseViewController {
             $0.configureButtonTitle(.signIn)
             $0.configureButtonUI(.gbbWhite!, .gbbGray300)
             $0.addActionToCommonButton {
-                Utils.push(self.navigationController, EmailViewController())
+                Utils.push(self.navigationController, SignInViewController())
             }
         }
         

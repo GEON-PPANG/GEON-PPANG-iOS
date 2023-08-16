@@ -36,7 +36,7 @@
 		092EFCA42A6195D900E7C262 /* CommonTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092EFCA32A6195D900E7C262 /* CommonTextView.swift */; };
 		093214022A5AE27800875EF6 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093214012A5AE27700875EF6 /* Utils.swift */; };
 		093214082A5AE40900875EF6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093214072A5AE40900875EF6 /* SearchViewController.swift */; };
-		093EFA592A61F62D003228CD /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093EFA582A61F62D003228CD /* EmailViewController.swift */; };
+		093EFA592A61F62D003228CD /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093EFA582A61F62D003228CD /* SignInViewController.swift */; };
 		094392CF2A84E68700984310 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 094392CE2A84E68700984310 /* GoogleService-Info.plist */; };
 		0949750E2A67EC9B00A63420 /* MyReviewsResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0949750D2A67EC9B00A63420 /* MyReviewsResponseDTO.swift */; };
 		094975102A67FB5900A63420 /* MyReviewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0949750F2A67FB5900A63420 /* MyReviewsCollectionViewCell.swift */; };
@@ -198,7 +198,7 @@
 		092EFCA32A6195D900E7C262 /* CommonTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTextView.swift; sourceTree = "<group>"; };
 		093214012A5AE27700875EF6 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		093214072A5AE40900875EF6 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		093EFA582A61F62D003228CD /* EmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
+		093EFA582A61F62D003228CD /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		094392CE2A84E68700984310 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0949750D2A67EC9B00A63420 /* MyReviewsResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewsResponseDTO.swift; sourceTree = "<group>"; };
 		0949750F2A67FB5900A63420 /* MyReviewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -497,27 +497,10 @@
 		093EFA542A61F5E4003228CD /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
-				093EFA572A61F611003228CD /* NickName */,
-				093EFA562A61F5F6003228CD /* Password */,
-				093EFA552A61F5EB003228CD /* Email */,
+				09CD078D2A62074900A078DE /* PasswordViewController.swift */,
+				093EFA582A61F62D003228CD /* SignInViewController.swift */,
 			);
 			path = SignIn;
-			sourceTree = "<group>";
-		};
-		093EFA552A61F5EB003228CD /* Email */ = {
-			isa = PBXGroup;
-			children = (
-				093EFA582A61F62D003228CD /* EmailViewController.swift */,
-			);
-			path = Email;
-			sourceTree = "<group>";
-		};
-		093EFA562A61F5F6003228CD /* Password */ = {
-			isa = PBXGroup;
-			children = (
-				09CD078D2A62074900A078DE /* PasswordViewController.swift */,
-			);
-			path = Password;
 			sourceTree = "<group>";
 		};
 		093EFA572A61F611003228CD /* NickName */ = {
@@ -810,6 +793,7 @@
 			children = (
 				DFB585F52A5F314D0077D272 /* BakeryDetail */,
 				3EDC05BA2A5DEB7500EAD950 /* Filter */,
+				093EFA572A61F611003228CD /* NickName */,
 				093EFA542A61F5E4003228CD /* SignIn */,
 				DFB587B72A5D580B00704B6C /* Onboarding */,
 				3E79B1A42A566F0700D36A26 /* WriteReview */,
@@ -1462,7 +1446,7 @@
 				090556492A51E7EC00752067 /* UIScreen+.swift in Sources */,
 				09B71C022A59D99200076AC2 /* SearchTextField.swift in Sources */,
 				0959F17E2A658CE300E77CAF /* HomeAPI.swift in Sources */,
-				093EFA592A61F62D003228CD /* EmailViewController.swift in Sources */,
+				093EFA592A61F62D003228CD /* SignInViewController.swift in Sources */,
 				09B13F482A5931DC00C0C723 /* TabBarController.swift in Sources */,
 				3E2EEF752A5C93010093BCA9 /* BottomView.swift in Sources */,
 				0961C3642A501EBF0031A822 /* Strings.swift in Sources */,
