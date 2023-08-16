@@ -11,6 +11,7 @@ import SnapKit
 import Then
 
 enum SignInPropetyType: String, CaseIterable {
+    
     case email = "이메일"
     case password = "비밀번호"
     case checkPassword = "비밀번호 재확인"
@@ -48,7 +49,6 @@ final class CommonTextView: UIView {
     private let commonTextField = SignInTextField()
     private let titleLabel = UILabel()
     private let checkLabel = UILabel()
-    private lazy var secureButton = UIButton()
     var password: String = ""
     
     // MARK: - Life Cycle
@@ -104,7 +104,6 @@ final class CommonTextView: UIView {
         
         self.signInType = type
         commonTextField.configureViewType(type)
-        commonTextField.placeholder = type.placeHolder
     }
     
     private func setDelegate() {
