@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-class SignInTextField: UITextField {
+final class SignInTextField: UITextField {
     
     // MARK: - Property
     
@@ -20,8 +20,9 @@ class SignInTextField: UITextField {
     // MARK: - UI Property
     
     private lazy var securityButton = UIButton()
-    private let emptyView = UIView()
-    private let rightStackView = UIStackView()
+    private lazy var duplicatedButton = UIButton()
+    
+    // MARK: - Life Cycle
 
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -37,18 +38,13 @@ class SignInTextField: UITextField {
     // MARK: - Setting
     
     private func setLayout() {
-        
-        rightStackView.snp.makeConstraints {
-            $0.width.equalTo(42)
-            $0.height.equalTo(24)
-        }
-        
-        emptyView.snp.makeConstraints {
-            $0.width.equalTo(18)
+
+        duplicatedButton.snp.makeConstraints {
+            $0.size.equalTo(CGSize(width: 70, height: 25))
         }
         
         securityButton.snp.makeConstraints {
-            $0.size.equalTo(24)
+            $0.size.equalTo(CGSize(width: 24, height: 34))
         }
     }
     
@@ -56,17 +52,22 @@ class SignInTextField: UITextField {
         
         self.do {
             $0.backgroundColor = .gbbBackground2
-            $0.makeCornerRound(radius: 10)
-            $0.makeBorder(width: 1, color: .clear)
             $0.contentVerticalAlignment = .center
-            $0.setLeftPadding(amount: 18)
-            $0.setPlaceholder(color: .gbbGray300!, font: .headLine!)
             $0.rightViewMode = .always
 
+            $0.makeCornerRound(radius: 10)
+            $0.makeBorder(width: 1, color: .clear)
+            $0.setLeftPadding(amount: 18)
+            $0.setPlaceholder(color: .gbbGray300!, font: .headLine!)
+            
         }
+    }
+    
+    private func configureSecurityButton() {
         
-        rightStackView.do {
-            $0.addArrangedSubviews(securityButton, emptyView)
+        self.do {
+            $0.isSecureTextEntry = true
+            $0.rightView = securityButton
         }
         
         securityButton.do {
@@ -77,14 +78,45 @@ class SignInTextField: UITextField {
                 self?.securityButton.isSelected.toggle()
             }, for: .touchUpInside)
         }
+        
     }
     
+    private func configureDuplicatedButton() {
+        
+        var configuration = UIButton.Configuration.filled()
+        configuration.baseBackgroundColor = .gbbMain3
+        configuration.baseForegroundColor = .gbbWhite
+        configuration.cornerStyle = .capsule
+        configuration.attributedTitle = AttributedString("중복확인",
+                                                         attributes: AttributeContainer([.font: UIFont.captionM1!]))
+        configuration.contentInsets = .init(top: 10,
+                                            leading: 10,
+                                            bottom: 10,
+                                            trailing: 10)
+        
+        self.do {
+            $0.rightView = duplicatedButton
+        }
+
+        duplicatedButton.do {
+            $0.configuration = configuration
+        }
+    }
+
+    func addActionToDuplicatedButton(_ action: UIAction) {
+        
+        duplicatedButton.addAction(action, for: .touchUpInside)
+    }
+
     func configureViewType(_ viewType: SignInPropetyType) {
+        
+        self.placeholder = viewType.placeHolder
         
         switch viewType {
         case .checkPassword, .password:
-            self.isSecureTextEntry = true
-            self.rightView = rightStackView
+            configureSecurityButton()
+        case .email:
+            configureDuplicatedButton()
         default:
             self.rightView = .none
         }
@@ -121,8 +153,8 @@ class SignInTextField: UITextField {
         
         let rect = super.rightViewRect(forBounds: bounds)
         return rect.inset(by: UIEdgeInsets(top: topPadding - 5,
-                                           left: 0,
+                                           left: -18,
                                            bottom: 0,
-                                           right: 0))
+                                           right: 18))
     }
 }
