@@ -11,10 +11,8 @@
 		090556222A51DB3300752067 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556212A51DB3300752067 /* UIFont+.swift */; };
 		090556252A51DB9600752067 /* UICollectionView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556242A51DB9600752067 /* UICollectionView+.swift */; };
 		090556272A51DBB100752067 /* NSObject+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556262A51DBB100752067 /* NSObject+.swift */; };
-		090556292A51DBC000752067 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556282A51DBC000752067 /* UIView+.swift */; };
 		0905562B2A51DBCE00752067 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905562A2A51DBCE00752067 /* UIStackView+.swift */; };
 		0905562D2A51DBE700752067 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905562C2A51DBE700752067 /* UILabel+.swift */; };
-		090556312A51DDD800752067 /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556302A51DDD800752067 /* UITableView+.swift */; };
 		090556382A51E16B00752067 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 090556372A51E16B00752067 /* Then */; };
 		0905563B2A51E17800752067 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0905563A2A51E17800752067 /* SnapKit */; };
 		0905563E2A51E2C700752067 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 0905563D2A51E2C700752067 /* FirebaseAnalytics */; };
@@ -73,7 +71,6 @@
 		097682E52A5C99340008F4FB /* BakeryFilterItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682E42A5C99340008F4FB /* BakeryFilterItems.swift */; };
 		097682E72A5CF0080008F4FB /* BakeryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682E62A5CF0080008F4FB /* BakeryFilterView.swift */; };
 		097682E92A5D0B6B0008F4FB /* BakeryListTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682E82A5D0B6B0008F4FB /* BakeryListTopView.swift */; };
-		097682EB2A5D12BD0008F4FB /* BakeryCollectionViewListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682EA2A5D12BD0008F4FB /* BakeryCollectionViewListCell.swift */; };
 		098716B42A6061F500538D05 /* SearchResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098716B32A6061F500538D05 /* SearchResponseDTO.swift */; };
 		098716B62A60F52200538D05 /* BakeryTypeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098716B52A60F52200538D05 /* BakeryTypeProtocol.swift */; };
 		098716B82A6138BD00538D05 /* MyReviewsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098716B72A6138BD00538D05 /* MyReviewsHeaderView.swift */; };
@@ -110,6 +107,9 @@
 		3E16E4F52A57CF3800B813D0 /* WriteReviewRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16E4F42A57CF3800B813D0 /* WriteReviewRequestDTO.swift */; };
 		3E16E4FE2A57F06D00B813D0 /* OptionsCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16E4FD2A57F06D00B813D0 /* OptionsCollectionViewFlowLayout.swift */; };
 		3E16E5022A58176800B813D0 /* ReviewDetailTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16E5012A58176800B813D0 /* ReviewDetailTextView.swift */; };
+		3E23CCF52A8BD9950091957D /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556282A51DBC000752067 /* UIView+.swift */; };
+		3E23CCF62A8BD9A40091957D /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556302A51DDD800752067 /* UITableView+.swift */; };
+		3E23CCF72A8BD9C30091957D /* BakeryCollectionViewListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682EA2A5D12BD0008F4FB /* BakeryCollectionViewListCell.swift */; };
 		3E2EEF752A5C93010093BCA9 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2EEF742A5C93010093BCA9 /* BottomView.swift */; };
 		3E452B672A60E68000EA456D /* MyPageResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E452B662A60E68000EA456D /* MyPageResponseDTO.swift */; };
 		3E452B692A60FF7900EA456D /* MyPageCollectionViewFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E452B682A60FF7900EA456D /* MyPageCollectionViewFooter.swift */; };
@@ -1421,6 +1421,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E23CCF72A8BD9C30091957D /* BakeryCollectionViewListCell.swift in Sources */,
+				3E23CCF62A8BD9A40091957D /* UITableView+.swift in Sources */,
+				3E23CCF52A8BD9950091957D /* UIView+.swift in Sources */,
 				0959F18E2A658D1700E77CAF /* SearchService.swift in Sources */,
 				0959F1802A658CE800E77CAF /* SearchAPI.swift in Sources */,
 				0959F14A2A6583DF00E77CAF /* GeneralResponse.swift in Sources */,
@@ -1435,8 +1438,6 @@
 				097682E72A5CF0080008F4FB /* BakeryFilterView.swift in Sources */,
 				3ED40DFB2A5FD26200C7D5DA /* FilterRequestDTO.swift in Sources */,
 				0959F1962A658E7400E77CAF /* Config.swift in Sources */,
-				090556292A51DBC000752067 /* UIView+.swift in Sources */,
-				090556292A51DBC000752067 /* UIView+.swift in Sources */,
 				090668FC2A4FF3C600F413FA /* AppDelegate.swift in Sources */,
 				0959F1482A6583C200E77CAF /* NetworkLoggerPlugin.swift in Sources */,
 				DF99C5FE2A6412F800C2C78C /* ReviewProgressBarStackView.swift in Sources */,
@@ -1527,10 +1528,7 @@
 				09B13F502A593CB800C0C723 /* BakeryListViewController.swift in Sources */,
 				09FD47D92A5E5148002020BD /* MySavedBakeryViewController.swift in Sources */,
 				093214022A5AE27800875EF6 /* Utils.swift in Sources */,
-				097682EB2A5D12BD0008F4FB /* BakeryCollectionViewListCell.swift in Sources */,
-				097682EB2A5D12BD0008F4FB /* BakeryCollectionViewListCell.swift in Sources */,
 				3E8B30002A67A614001BD057 /* BreadRequestType.swift in Sources */,
-				097682EB2A5D12BD0008F4FB /* BakeryCollectionViewListCell.swift in Sources */,
 				090556452A51E79B00752067 /* UITextField+.swift in Sources */,
 				0959F14E2A65840300E77CAF /* NetworkResult.swift in Sources */,
 				0959F16C2A658C9500E77CAF /* AuthResponseDTO.swift in Sources */,
@@ -1546,10 +1544,8 @@
 				3EDC05D02A5E4FF900EAD950 /* String+.swift in Sources */,
 				09FD47E42A5E82BB002020BD /* BottomSheetAppearView.swift in Sources */,
 				0905562B2A51DBCE00752067 /* UIStackView+.swift in Sources */,
-				090556312A51DDD800752067 /* UITableView+.swift in Sources */,
 				09B13F562A59410C00C0C723 /* CALayer+.swift in Sources */,
 				09CD07902A620D7D00A078DE /* NickNameViewController.swift in Sources */,
-				090556312A51DDD800752067 /* UITableView+.swift in Sources */,
 				DFB1343D2A6284BB00BAB52E /* ReviewProgressView.swift in Sources */,
 				3E16E4FE2A57F06D00B813D0 /* OptionsCollectionViewFlowLayout.swift in Sources */,
 				3E79B1B22A571E1F00D36A26 /* OptionsCollectionView.swift in Sources */,
@@ -1558,7 +1554,6 @@
 				0959F17A2A658CD300E77CAF /* AuthAPI.swift in Sources */,
 				0959F18A2A658D0C00E77CAF /* FilterService.swift in Sources */,
 				3E79B1B52A571E7100D36A26 /* OptionsCollectionViewCell.swift in Sources */,
-				090556312A51DDD800752067 /* UITableView+.swift in Sources */,
 				3ED40E002A608B4700C7D5DA /* MyPageCollectionViewCell.swift in Sources */,
 				097682E52A5C99340008F4FB /* BakeryFilterItems.swift in Sources */,
 				098716B42A6061F500538D05 /* SearchResponseDTO.swift in Sources */,
