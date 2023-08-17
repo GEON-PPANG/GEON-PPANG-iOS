@@ -146,7 +146,16 @@ extension OnboardingViewController {
                 // TODO: api 나오면 연결
             }
         } else {
-            print("no kakaotalk")
+            UserApi.shared.loginWithKakaoAccount { token, error in
+                guard error == nil
+                else {
+                    print("login with kakaoTalk failed with error: \(String(describing: error))")
+                    return
+                }
+                print("🪙 token 🪙: \(String(describing: token))")
+                
+                // TODO: api 나오면 연결
+            }
         }
     }
     
