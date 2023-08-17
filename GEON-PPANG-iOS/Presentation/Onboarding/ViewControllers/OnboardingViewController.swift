@@ -6,10 +6,14 @@
 //
 
 import UIKit
-import AuthenticationServices
 
 import SnapKit
 import Then
+
+import AuthenticationServices
+import KakaoSDKAuth
+import KakaoSDKUser
+import KakaoSDKCommon
 
 final class OnboardingViewController: BaseViewController {
     
@@ -24,6 +28,14 @@ final class OnboardingViewController: BaseViewController {
     private let emailSignUpButton = UIButton()
     private let seperatorView = UIView()
     private let emailButtonStackView = UIStackView()
+    
+    // MARK: - life cycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setSocialLoginButtonActions()
+    }
     
     // MARK: - Setting
     
@@ -109,4 +121,33 @@ final class OnboardingViewController: BaseViewController {
             $0.addArrangedSubviews(emailSignInButton, seperatorView, emailSignUpButton)
         }
     }
+    
+    private func setSocialLoginButtonActions() {
+        let kakaoLoginAction = UIAction { [weak self] _ in
+            self?.kakaoLoginButtonTapped()
+        }
+        kakaoLoginButton.addAction(kakaoLoginAction, for: .touchUpInside)
+    }
+    
+}
+
+extension OnboardingViewController {
+    
+    private func kakaoLoginButtonTapped() {
+        if UserApi.isKakaoTalkLoginAvailable() {
+            UserApi.shared.loginWithKakaoTalk { token, error in
+                guard error == nil
+                else {
+                    print("login with kakaoTalk failed with error: \(String(describing: error))")
+                    return
+                }
+                print("🪙 token 🪙: \(String(describing: token))")
+                
+                // TODO: api 나오면 연결
+            }
+        } else {
+            print("no kakaotalk")
+        }
+    }
+    
 }
