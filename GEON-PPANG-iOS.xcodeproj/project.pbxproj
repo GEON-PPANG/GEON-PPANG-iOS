@@ -111,6 +111,9 @@
 		3E16E4FE2A57F06D00B813D0 /* OptionsCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16E4FD2A57F06D00B813D0 /* OptionsCollectionViewFlowLayout.swift */; };
 		3E16E5022A58176800B813D0 /* ReviewDetailTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16E5012A58176800B813D0 /* ReviewDetailTextView.swift */; };
 		3E2EEF752A5C93010093BCA9 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2EEF742A5C93010093BCA9 /* BottomView.swift */; };
+		3E36D7CD2A8DE65D00B2C1CC /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 3E36D7CC2A8DE65D00B2C1CC /* KakaoSDKAuth */; };
+		3E36D7CF2A8DE65D00B2C1CC /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 3E36D7CE2A8DE65D00B2C1CC /* KakaoSDKCommon */; };
+		3E36D7D12A8DE65D00B2C1CC /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = 3E36D7D02A8DE65D00B2C1CC /* KakaoSDKUser */; };
 		3E452B672A60E68000EA456D /* MyPageResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E452B662A60E68000EA456D /* MyPageResponseDTO.swift */; };
 		3E452B692A60FF7900EA456D /* MyPageCollectionViewFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E452B682A60FF7900EA456D /* MyPageCollectionViewFooter.swift */; };
 		3E452B6B2A614AAE00EA456D /* ImageWithSubtitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E452B6A2A614AAD00EA456D /* ImageWithSubtitleButton.swift */; };
@@ -345,12 +348,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E36D7CF2A8DE65D00B2C1CC /* KakaoSDKCommon in Frameworks */,
+				3E36D7CD2A8DE65D00B2C1CC /* KakaoSDKAuth in Frameworks */,
 				0959F19A2A65D45700E77CAF /* Kingfisher in Frameworks */,
 				090556382A51E16B00752067 /* Then in Frameworks */,
 				090556402A51E2C700752067 /* FirebaseCrashlytics in Frameworks */,
 				0905563B2A51E17800752067 /* SnapKit in Frameworks */,
 				090556432A51E6FC00752067 /* Moya in Frameworks */,
 				0905563E2A51E2C700752067 /* FirebaseAnalytics in Frameworks */,
+				3E36D7D12A8DE65D00B2C1CC /* KakaoSDKUser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1310,6 +1316,9 @@
 				0905563F2A51E2C700752067 /* FirebaseCrashlytics */,
 				090556422A51E6FC00752067 /* Moya */,
 				0959F1992A65D45700E77CAF /* Kingfisher */,
+				3E36D7CC2A8DE65D00B2C1CC /* KakaoSDKAuth */,
+				3E36D7CE2A8DE65D00B2C1CC /* KakaoSDKCommon */,
+				3E36D7D02A8DE65D00B2C1CC /* KakaoSDKUser */,
 			);
 			productName = "GEON-PPANG-iOS";
 			productReference = 098F32DD2A4200FD0092D09A /* GEON-PPANG-iOS.app */;
@@ -1345,6 +1354,7 @@
 				0905563C2A51E2C700752067 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				090556412A51E6FC00752067 /* XCRemoteSwiftPackageReference "Moya" */,
 				0959F1982A65D45700E77CAF /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				3E36D7CB2A8DE65D00B2C1CC /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 			);
 			productRefGroup = 098F32DE2A4200FD0092D09A /* Products */;
 			projectDirPath = "";
@@ -1851,6 +1861,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		3E36D7CB2A8DE65D00B2C1CC /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1883,6 +1901,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0959F1982A65D45700E77CAF /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		3E36D7CC2A8DE65D00B2C1CC /* KakaoSDKAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3E36D7CB2A8DE65D00B2C1CC /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKAuth;
+		};
+		3E36D7CE2A8DE65D00B2C1CC /* KakaoSDKCommon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3E36D7CB2A8DE65D00B2C1CC /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKCommon;
+		};
+		3E36D7D02A8DE65D00B2C1CC /* KakaoSDKUser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3E36D7CB2A8DE65D00B2C1CC /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKUser;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
