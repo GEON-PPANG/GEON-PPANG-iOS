@@ -123,10 +123,16 @@ final class OnboardingViewController: BaseViewController {
     }
     
     private func setSocialLoginButtonActions() {
+        
         let kakaoLoginAction = UIAction { [weak self] _ in
             self?.kakaoLoginButtonTapped()
         }
         kakaoLoginButton.addAction(kakaoLoginAction, for: .touchUpInside)
+        
+        let appleLoginAction = UIAction { [weak self] _ in
+            self?.appleLoginButtonTapped()
+        }
+        appleLoginButton.addAction(appleLoginAction, for: .touchUpInside)
     }
     
 }
@@ -134,6 +140,7 @@ final class OnboardingViewController: BaseViewController {
 extension OnboardingViewController {
     
     private func kakaoLoginButtonTapped() {
+        
         if UserApi.isKakaoTalkLoginAvailable() {
             UserApi.shared.loginWithKakaoTalk { token, error in
                 guard error == nil
@@ -157,6 +164,46 @@ extension OnboardingViewController {
                 // TODO: api 나오면 연결
             }
         }
+    }
+    
+    private func appleLoginButtonTapped() {
+        
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+            let request = appleIDProvider.createRequest()
+            request.requestedScopes = [.fullName, .email]
+            
+            let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+            authorizationController.delegate = self
+            authorizationController.presentationContextProvider = self
+            authorizationController.performRequests()
+    }
+    
+}
+
+// MARK: - Delegate
+
+extension OnboardingViewController: ASAuthorizationControllerDelegate {
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        
+        // TODO: 받아온 credential 처리 로직 고민해보기
+        switch authorization.credential {
+        case let idCredential as ASAuthorizationAppleIDCredential:
+            print("id: \(idCredential)")
+        case let pwCredential as ASPasswordCredential:
+            print("pw: \(pwCredential)")
+        default:
+            break
+        }
+    }
+    
+}
+
+extension OnboardingViewController: ASAuthorizationControllerPresentationContextProviding {
+    
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        
+        return self.view.window!
     }
     
 }
