@@ -152,7 +152,6 @@ extension OnboardingViewController {
                     return
                 }
                 print("🪙 token 🪙: \(String(describing: token))")
-                
                 // TODO: api 나오면 연결
             }
         } else {
@@ -163,7 +162,6 @@ extension OnboardingViewController {
                     return
                 }
                 print("🪙 token 🪙: \(String(describing: token))")
-                
                 // TODO: api 나오면 연결
             }
         }
@@ -179,6 +177,14 @@ extension OnboardingViewController {
             authorizationController.delegate = self
             authorizationController.presentationContextProvider = self
             authorizationController.performRequests()
+    }
+    
+    private func emailSignInButtonTapped() {
+        // TODO: 로그인 뷰 나오면 연결
+    }
+    
+    private func emailSignUpButtonTapped() {
+        // TODO: 회원가입 뷰 나오면 연결
     }
     
 }
