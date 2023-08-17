@@ -20,9 +20,8 @@ final class OnboardingViewController: BaseViewController {
     // MARK: - UI Property
     
     private let logoImage = UIImageView()
-    // FIXME: 소셜로그인 버튼 커스텀 디자인 완성되면 바꾸기
     private let kakaoLoginButton = UIButton()
-    private let appleLoginButton = ASAuthorizationAppleIDButton()
+    private let appleLoginButton = UIButton()
     private let socialLoginButtonStackView = UIStackView()
     private let emailSignInButton = UIButton()
     private let emailSignUpButton = UIButton()
@@ -90,7 +89,11 @@ final class OnboardingViewController: BaseViewController {
         }
         
         kakaoLoginButton.do {
-            $0.backgroundColor = .systemYellow
+            $0.setImage(.kakaoLoginButton, for: .normal)
+        }
+        
+        appleLoginButton.do {
+            $0.setImage(.appleLoginButton, for: .normal)
         }
         
         socialLoginButtonStackView.do {
