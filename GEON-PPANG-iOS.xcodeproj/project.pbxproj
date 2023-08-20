@@ -1075,6 +1075,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		3E232AC12A9282BE00125B76 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3E36D7D92A8E758A00B2C1CC /* FilterCellModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		3E2EEF722A5C928F0093BCA9 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1184,9 +1192,9 @@
 		3EDC05BA2A5DEB7500EAD950 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
+				3E232AC12A9282BE00125B76 /* Model */,
 				3EDC05BC2A5DEB7F00EAD950 /* Views */,
 				3EDC05BB2A5DEB7B00EAD950 /* ViewControllers */,
-				3E36D7D92A8E758A00B2C1CC /* FilterCellModel.swift */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
