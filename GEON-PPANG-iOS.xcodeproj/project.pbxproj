@@ -140,14 +140,10 @@
 		3ED40E022A608B8600C7D5DA /* MyPageSectionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED40E012A608B8600C7D5DA /* MyPageSectionEnum.swift */; };
 		3ED40E042A608EF000C7D5DA /* MyPageCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED40E032A608EF000C7D5DA /* MyPageCollectionViewHeader.swift */; };
 		3ED40E062A60916000C7D5DA /* MyPagePurposeChipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED40E052A60916000C7D5DA /* MyPagePurposeChipView.swift */; };
-		3EDC05BE2A5DED4400EAD950 /* FilterPurposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05BD2A5DED4400EAD950 /* FilterPurposeViewController.swift */; };
-		3EDC05C02A5DED9200EAD950 /* FilterBreadTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05BF2A5DED9200EAD950 /* FilterBreadTypeViewController.swift */; };
-		3EDC05C22A5DED9D00EAD950 /* FilterIngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05C12A5DED9D00EAD950 /* FilterIngredientViewController.swift */; };
 		3EDC05C42A5DEE3600EAD950 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05C32A5DEE3600EAD950 /* FilterCollectionViewCell.swift */; };
 		3EDC05D02A5E4FF900EAD950 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05CF2A5E4FF900EAD950 /* String+.swift */; };
 		3EDDA8AC2A69149400E04ECB /* DetailBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDA8AB2A69149400E04ECB /* DetailBottomView.swift */; };
 		3EE343142A6440EB0010C187 /* UICollectionViewCell+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE343132A6440EB0010C187 /* UICollectionViewCell+.swift */; };
-		3EE343182A65396C0010C187 /* FilterCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE343172A65396C0010C187 /* FilterCompleteViewController.swift */; };
 		3EE466A42A69CAC6007C3C77 /* SimpleBakeryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE466A32A69CAC6007C3C77 /* SimpleBakeryModel.swift */; };
 		3EFA97862A5EBCA9002E70FA /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFA97852A5EBCA9002E70FA /* LineView.swift */; };
 		3EFA97882A5EBCED002E70FA /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFA97872A5EBCED002E70FA /* CustomNavigationBar.swift */; };
@@ -309,14 +305,10 @@
 		3ED40E012A608B8600C7D5DA /* MyPageSectionEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageSectionEnum.swift; sourceTree = "<group>"; };
 		3ED40E032A608EF000C7D5DA /* MyPageCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCollectionViewHeader.swift; sourceTree = "<group>"; };
 		3ED40E052A60916000C7D5DA /* MyPagePurposeChipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePurposeChipView.swift; sourceTree = "<group>"; };
-		3EDC05BD2A5DED4400EAD950 /* FilterPurposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPurposeViewController.swift; sourceTree = "<group>"; };
-		3EDC05BF2A5DED9200EAD950 /* FilterBreadTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBreadTypeViewController.swift; sourceTree = "<group>"; };
-		3EDC05C12A5DED9D00EAD950 /* FilterIngredientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterIngredientViewController.swift; sourceTree = "<group>"; };
 		3EDC05C32A5DEE3600EAD950 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		3EDC05CF2A5E4FF900EAD950 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		3EDDA8AB2A69149400E04ECB /* DetailBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBottomView.swift; sourceTree = "<group>"; };
 		3EE343132A6440EB0010C187 /* UICollectionViewCell+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+.swift"; sourceTree = "<group>"; };
-		3EE343172A65396C0010C187 /* FilterCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCompleteViewController.swift; sourceTree = "<group>"; };
 		3EE466A32A69CAC6007C3C77 /* SimpleBakeryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleBakeryModel.swift; sourceTree = "<group>"; };
 		3EFA97852A5EBCA9002E70FA /* LineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 		3EFA97872A5EBCED002E70FA /* CustomNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
@@ -1202,10 +1194,6 @@
 		3EDC05BB2A5DEB7B00EAD950 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				3EDC05BD2A5DED4400EAD950 /* FilterPurposeViewController.swift */,
-				3EDC05BF2A5DED9200EAD950 /* FilterBreadTypeViewController.swift */,
-				3EDC05C12A5DED9D00EAD950 /* FilterIngredientViewController.swift */,
-				3EE343172A65396C0010C187 /* FilterCompleteViewController.swift */,
 				3E36D7D52A8E6AF000B2C1CC /* FilterViewController.swift */,
 			);
 			path = ViewControllers;
@@ -1455,7 +1443,6 @@
 				0959F1482A6583C200E77CAF /* NetworkLoggerPlugin.swift in Sources */,
 				DF99C5FE2A6412F800C2C78C /* ReviewProgressBarStackView.swift in Sources */,
 				DFB134372A62110900BAB52E /* MenuCollectionViewCell.swift in Sources */,
-				3EDC05C02A5DED9200EAD950 /* FilterBreadTypeViewController.swift in Sources */,
 				DFDE72D72A65E84700389A51 /* WrittenReviewsCollectionViewCell.swift in Sources */,
 				09FD47C82A5DC991002020BD /* SearchNavigationView.swift in Sources */,
 				090668FD2A4FF3C600F413FA /* SceneDelegate.swift in Sources */,
@@ -1495,13 +1482,10 @@
 				3E7B21C42A621A9A00C8F8B4 /* SortBakeryCollectionViewCell.swift in Sources */,
 				DFB587BB2A5D588500704B6C /* DrawDashLineView.swift in Sources */,
 				090556222A51DB3300752067 /* UIFont+.swift in Sources */,
-				3EE343182A65396C0010C187 /* FilterCompleteViewController.swift in Sources */,
 				09CA3EFC2A569E4A0063897A /* URLConstant.swift in Sources */,
 				0959F1922A658D2A00E77CAF /* MyPageService.swift in Sources */,
 				0959F1502A65840F00E77CAF /* NetworkBase.swift in Sources */,
-				3EDC05BE2A5DED4400EAD950 /* FilterPurposeViewController.swift in Sources */,
 				3EE343142A6440EB0010C187 /* UICollectionViewCell+.swift in Sources */,
-				3EDC05C22A5DED9D00EAD950 /* FilterIngredientViewController.swift in Sources */,
 				09C6264E2A5B29F8002C8110 /* SearchEnum.swift in Sources */,
 				DFF196342A697EF8005D8233 /* Int+.swift in Sources */,
 				0959F17C2A658CDA00E77CAF /* FilterAPI.swift in Sources */,
