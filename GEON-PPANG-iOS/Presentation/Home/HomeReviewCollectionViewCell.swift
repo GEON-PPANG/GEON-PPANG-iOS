@@ -16,7 +16,7 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
     // MARK: - Property
 
     private var keywords: [String] = []
-    private var reviewList: [BestReviews] = []
+    private var reviewList: [HomeBestReviewResponseDTO] = []
     
     // MARK: - UI Property
     
@@ -120,17 +120,17 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func configureCellUI(data: BestReviews) {
+    func configureCellUI(data: HomeBestReviewResponseDTO) {
         
-        let url = URL(string: data.bakeryPicture)
+        let url = URL(string: data.picture)
         bakeryImage.kf.setImage(with: url)
-        reviewTitle.setLineHeight(by: 1.14, with: "\"\(data.reviewText)\"")
-        bakeryTitle.setLineHeight(by: 1.08, with: data.bakeryName)
+        reviewTitle.setLineHeight(by: 1.14, with: "\"\(data.text)\"")
+        bakeryTitle.setLineHeight(by: 1.08, with: data.name)
         bakeryReview.setLineHeight(by: 1.1,
                                    with: "리뷰(\(data.reviewCount)) ⦁ 저장(\(data.bookmarkCount))")
         self.keywords = []
-        self.keywords.append(data.firstMaxRecommendKeyword)
-        guard let secondKeyword = data.secondMaxRecommendKeyword else { return }
+        self.keywords.append(data.keywords.firstKeyword)
+        guard let secondKeyword = data.keywords.secondKeyword else { return }
         self.keywords.append(secondKeyword)
         self.collectionView.reloadData()
     }

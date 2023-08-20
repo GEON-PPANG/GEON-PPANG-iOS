@@ -34,7 +34,7 @@ final class HomeViewController: BaseViewController {
         }
     }
 
-    private var reviewList: [BestReviews] = [] {
+    private var reviewList: [HomeBestReviewResponseDTO] = [] {
         didSet {
             self.setReloadData()
         }
@@ -126,7 +126,7 @@ final class HomeViewController: BaseViewController {
                 return cell
             case .review:
                 let cell: HomeReviewCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-                cell.configureCellUI(data: item as! BestReviews)
+                cell.configureCellUI(data: item as! HomeBestReviewResponseDTO)
                 return cell
             case .bottom, .none:
                 let cell: HomeBottomCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
@@ -244,10 +244,7 @@ extension HomeViewController {
         HomeAPI.shared.getBestReviews { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
-            var reviewsList: [BestReviews] = []
-            for item in data {
-                reviewsList.append(item.convertToBakeryReviews())
-            }
+            var reviewsList = data.map { $0 }
             self.reviewList = reviewsList
         }
     }
