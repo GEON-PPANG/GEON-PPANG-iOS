@@ -28,7 +28,7 @@ final class HomeViewController: BaseViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Sections, AnyHashable>
     private var dataSource: DataSource?
     
-    private var bakeryList: [BestBakery] = [] {
+    private var bakeryList: [HomeBestBakeryResponseDTO] = [] {
         didSet {
             self.setReloadData()
         }
@@ -122,7 +122,7 @@ final class HomeViewController: BaseViewController {
             switch section {
             case .bakery:
                 let cell: HomeBakeryCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-                cell.configureCellUI(data: item as! BestBakery)
+                cell.configureCellUI(data: item as! HomeBestBakeryResponseDTO)
                 return cell
             case .review:
                 let cell: HomeReviewCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
@@ -216,9 +216,9 @@ extension HomeViewController: UICollectionViewDelegate {
         let section = Sections(rawValue: indexPath.section)!
         switch section {
         case .bakery:
-            nextViewController.bakeryID = self.bakeryList[indexPath.item].bakeryID
+            nextViewController.bakeryID = self.bakeryList[indexPath.item].bakeries.bakeryID
         case .review:
-            nextViewController.bakeryID = self.reviewList[indexPath.item].bakeryID
+            nextViewController.bakeryID = self.reviewList[indexPath.item].reviews.bakeryID
         case .bottom:
             return
         }
@@ -233,11 +233,7 @@ extension HomeViewController {
         HomeAPI.shared.getBestBakery { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
-            var bakeryList: [BestBakery] = []
-            
-            for item in data {
-                bakeryList.append(item.convertToBestBakery())
-            }
+            var bakeryList = data.map { $0 }
             self.bakeryList = bakeryList
         }
         

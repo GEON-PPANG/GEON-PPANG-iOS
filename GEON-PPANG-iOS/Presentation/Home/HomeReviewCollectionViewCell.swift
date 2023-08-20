@@ -122,12 +122,12 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
     
     func configureCellUI(data: HomeBestReviewResponseDTO) {
         
-        let url = URL(string: data.picture)
+        let url = URL(string: data.reviews.picture)
         bakeryImage.kf.setImage(with: url)
         reviewTitle.setLineHeight(by: 1.14, with: "\"\(data.text)\"")
-        bakeryTitle.setLineHeight(by: 1.08, with: data.name)
+        bakeryTitle.setLineHeight(by: 1.08, with: data.reviews.name)
         bakeryReview.setLineHeight(by: 1.1,
-                                   with: "리뷰(\(data.reviewCount)) ⦁ 저장(\(data.bookmarkCount))")
+                                   with: "리뷰(\(data.reviews.reviewCount)) ⦁ 저장(\(data.reviews.bookmarkCount))")
         self.keywords = []
         self.keywords.append(data.keywords.firstKeyword)
         guard let secondKeyword = data.keywords.secondKeyword else { return }
