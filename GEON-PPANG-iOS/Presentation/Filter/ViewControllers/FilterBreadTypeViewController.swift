@@ -104,7 +104,7 @@ final class FilterBreadTypeViewController: BaseViewController {
         }
         
         filterSubtitleLabel.do {
-            $0.text = I18N.Filter.breadTypeSubtitle
+            $0.text = I18N.Filter.subtitle
             $0.font = .subHead
             $0.textColor = .gbbGray400
         }
