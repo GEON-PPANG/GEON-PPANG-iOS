@@ -23,6 +23,7 @@ final class FilterViewController: BaseViewController {
     private let filterCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private lazy var filterDataSource = FilterDiffableDataSource(filterCollectionView, currentFilterType)
     private let nextButton = CommonButton()
+    private let skipButton = UIButton()
     
     // MARK: - Life Cycle
     
@@ -59,6 +60,14 @@ final class FilterViewController: BaseViewController {
             $0.horizontalEdges.equalToSuperview().inset(24)
             $0.bottom.equalTo(nextButton.snp.top).offset(-100)
         }
+        
+        view.addSubview(skipButton)
+        skipButton.snp.makeConstraints {
+            $0.bottom.equalTo(nextButton.snp.top).offset(-20)
+            $0.trailing.equalToSuperview().inset(12)
+            $0.height.equalTo(27)
+            $0.width.equalTo(85)
+        }
     }
     
     override func setUI() {
@@ -84,6 +93,19 @@ final class FilterViewController: BaseViewController {
                 self.nextButtonTapped()
             }
             $0.isUserInteractionEnabled = false
+        }
+        
+        skipButton.do {
+            $0.setTitle("건너뛰기 ", for: .normal)
+            $0.setTitleColor(.gbbGray500, for: .normal)
+            $0.titleLabel?.font = .bodyM2
+            $0.setImage(.rightArrowIcon.resize(to: .init(width: 16, height: 16)),
+                        for: .normal)
+            $0.semanticContentAttribute = .forceRightToLeft
+            $0.isHidden = !isInitial
+            $0.addAction(UIAction { [weak self] _ in
+                self?.skipButtonTapped()
+            }, for: .touchUpInside)
         }
     }
     
@@ -132,6 +154,11 @@ final class FilterViewController: BaseViewController {
         configureNextButton()
         configureBackButton()
         configureStepCount()
+    }
+    
+    private func skipButtonTapped() {
+        // TODO: FilterComplete view 완성되면 추가
+        // Utils.push(self?.navigationController, FilterCompleteViewController())
     }
     
     // MARK: - Custom Method
