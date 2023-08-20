@@ -20,8 +20,7 @@ final class FilterDiffableDataSource {
     
     var filterType: FilterType {
         didSet {
-            self.configureData()
-            self.configureLayout()
+            self.configureCollectionView()
         }
     }
     
@@ -65,10 +64,11 @@ final class FilterDiffableDataSource {
         }
         
         dataSource = DiffableDataSource(collectionView: collectionView) { collectionView, indexPath, id -> UICollectionViewCell in
-            let content = FilterCellModel.contents(of: self.filterType).first { $0.id == id }
-            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration,
-                                                                for: indexPath,
-                                                                item: content)
+            let content = FilterCellModel.item(of: id)
+            return collectionView.dequeueConfiguredReusableCell(
+                using: cellRegistration,
+                for: indexPath,
+                item: content)
         }
         
         dataSource.supplementaryViewProvider = { collectionView, _, indexPath in
@@ -80,6 +80,7 @@ final class FilterDiffableDataSource {
     // MARK: - Custom Method
     
     func configureData() {
+        
         var data: [FilterCellModel] = []
         switch filterType {
         case .purpose: data = FilterCellModel.purpose
@@ -103,6 +104,19 @@ final class FilterDiffableDataSource {
             $0.sectionInset = .init(top: 32, left: 0, bottom: 0, right: 0)
         }
         self.collectionView.collectionViewLayout = layout
+    }
+    
+    private func configureCollectionView() {
+        
+        configureData()
+        configureLayout()
+        
+        switch filterType {
+        case .purpose:
+            collectionView.allowsMultipleSelection = false
+        case .breadType, .ingredient:
+            collectionView.allowsMultipleSelection = true
+        }
     }
     
 }

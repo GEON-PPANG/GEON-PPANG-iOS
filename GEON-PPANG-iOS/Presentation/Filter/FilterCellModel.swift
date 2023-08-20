@@ -73,18 +73,8 @@ extension FilterCellModel {
 
 extension FilterCellModel {
     
-    static func contents(of type: FilterType) -> [FilterCellModel] {
-        switch type {
-        case .purpose:
-            return FilterCellModel.purpose
-        case .breadType:
-            return FilterCellModel.breadType
-        case .ingredient:
-            return FilterCellModel.ingredient
-        }
-    }
-    
     static func item(of id: Int) -> FilterCellModel {
+        
         let allItems = FilterCellModel.purpose + FilterCellModel.breadType + FilterCellModel.ingredient
         guard let item = allItems.first(where: { $0.id == id })
         else { return FilterCellModel.init() }
@@ -105,7 +95,31 @@ extension FilterCellModel {
     }
     
     static func deselectContents(of type: FilterType) {
-        
+        switch type {
+        case .purpose:
+            [0, 1, 2].forEach {
+                FilterCellModel.purpose[$0].selected = false
+            }
+        case .breadType:
+            [0, 1, 2, 3].forEach {
+                FilterCellModel.breadType[$0].selected = false
+            }
+        case .ingredient:
+            [0, 1, 2].forEach {
+                FilterCellModel.ingredient[$0].selected = false
+            }
+        }
+    }
+    
+    static func isAnySelected(of filters: FilterType) -> Bool {
+        switch filters {
+        case .purpose:
+            return !FilterCellModel.purpose.filter { $0.selected == true }.isEmpty
+        case .breadType:
+            return !FilterCellModel.breadType.filter { $0.selected == true }.isEmpty
+        case .ingredient:
+            return !FilterCellModel.ingredient.filter { $0.selected == true }.isEmpty
+        }
     }
     
 }

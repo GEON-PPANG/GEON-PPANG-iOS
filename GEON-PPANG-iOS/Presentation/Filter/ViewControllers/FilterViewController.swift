@@ -14,11 +14,6 @@ final class FilterViewController: BaseViewController {
     
     // MARK: - Property
     
-    var currentStep: Int = 1 {
-        willSet {
-            navigationBar.configureRightCount(newValue, by: 3)
-        }
-    }
     var currentFilterType: FilterType = .purpose
     
     // MARK: - UI Property
@@ -59,7 +54,7 @@ final class FilterViewController: BaseViewController {
             $0.configureBackButtonAction(UIAction { [weak self] _ in
                 self?.backButtonTapped()
             })
-//            $0.hideBackButton(true)
+            $0.hideBackButton(true)
         }
         
         filterCollectionView.do {
@@ -74,7 +69,7 @@ final class FilterViewController: BaseViewController {
             $0.addActionToCommonButton {
                 self.nextButtonTapped()
             }
-//            $0.isUserInteractionEnabled = false
+            $0.isUserInteractionEnabled = false
         }
     }
     
@@ -87,61 +82,117 @@ final class FilterViewController: BaseViewController {
     
     private func nextButtonTapped() {
         
-        filterDataSource.filterType = .breadType
-        filterDataSource.configureData()
-        currentFilterType = .breadType
-        print("-------")
-        dump(FilterCellModel.purpose.map { $0.selected })
+        var newFilterType: FilterType = currentFilterType
+        switch currentFilterType {
+        case .purpose:
+            newFilterType = .breadType
+        case .breadType:
+            newFilterType = .ingredient
+        case .ingredient:
+            
+            return
+        }
+        
+        filterDataSource.filterType = newFilterType
+        currentFilterType = newFilterType
+        
+        configureNextButton()
+        configureBackButton()
+        configureStepCount()
+//
+//        print("-------")
+//        print(FilterCellModel.purpose.map { $0.selected })
+//        print(FilterCellModel.breadType.map { $0.selected })
+//        print(FilterCellModel.ingredient.map { $0.selected })
     }
     
     private func backButtonTapped() {
-        filterDataSource.filterType = .purpose
-        currentFilterType = .purpose
-        print("-------")
-        dump(FilterCellModel.purpose.map { $0.selected })
+        
+        var newFilterType: FilterType = currentFilterType
+        switch currentFilterType {
+        case .purpose: break
+        case .breadType: newFilterType = .purpose
+        case .ingredient: newFilterType = .breadType
+        }
+        
+        FilterCellModel.deselectContents(of: currentFilterType)
+        FilterCellModel.deselectContents(of: newFilterType)
+        filterDataSource.filterType = newFilterType
+        currentFilterType = newFilterType
+        
+        configureNextButton()
+        configureBackButton()
+        configureStepCount()
     }
     
     // MARK: - Custom Method
     
-//    private func updateCurrentFilter(to type: FilterType) {
-//
-//        currentFilterType = type
-//        filterDataSource.type = type
-//        filterCollectionView.allowsMultipleSelection = type.isMultipleSelectionEnabled
-//    }
-//
-//    private func configureNextButton() {
-//
-//        UIView.animate(withDuration: 0.2) {
-//            self.nextButton.do {
-//                $0.configureButtonUI(self.isFilterSelected ? .gbbMain2! : .gbbGray200!)
-//                $0.isUserInteractionEnabled = self.isFilterSelected
-//            }
-//        }
-//    }
+    private func configureNextButton() {
+        
+        var isAnySelected = FilterCellModel.isAnySelected(of: currentFilterType)
+        nextButton.isUserInteractionEnabled = isAnySelected ? true : false
+        UIView.animate(withDuration: 0.2) {
+            self.nextButton.configureButtonUI(isAnySelected ? .gbbMain2! : .gbbGray200!)
+        }
+    }
     
-//    private func selectedFilterID(of indexPath: IndexPath) -> FilterModel.ID {
-//        
-//    }
+    private func configureBackButton() {
+        
+        switch currentFilterType {
+        case .purpose:
+            navigationBar.hideBackButton(true)
+        case .breadType, .ingredient:
+            navigationBar.hideBackButton(false)
+        }
+    }
+    
+    private func configureStepCount() {
+        
+        switch currentFilterType {
+        case .purpose:
+            navigationBar.configureRightCount(1, by: 3)
+        case .breadType:
+            navigationBar.configureRightCount(2, by: 3)
+        case .ingredient:
+            navigationBar.configureRightCount(3, by: 3)
+        }
+    }
     
 }
 
 extension FilterViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         FilterCellModel.configureSelection(
             of: currentFilterType,
             at: indexPath.item,
             to: true
         )
+        
+        if currentFilterType == .purpose {
+            nextButton.isUserInteractionEnabled = true
+            UIView.animate(withDuration: 0.2) {
+                self.nextButton.configureButtonUI(.gbbMain2!)
+            }
+        } else {
+            configureNextButton()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        
         FilterCellModel.configureSelection(
             of: currentFilterType,
             at: indexPath.item,
             to: false
         )
+        
+        if currentFilterType == .purpose {
+            return
+        } else {
+            configureNextButton()
+        }
     }
     
 }
