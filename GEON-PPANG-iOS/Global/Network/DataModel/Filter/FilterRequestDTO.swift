@@ -11,6 +11,14 @@ struct FilterRequestDTO: Codable {
     var mainPurpose: String
     var breadType: BreadRequestType
     var nutrientType: NutrientRequestType
+    
+    init(mainPurpose: String = "",
+         breadType: BreadRequestType = .init(),
+         nutrientType: NutrientRequestType = .init()) {
+        self.mainPurpose = mainPurpose
+        self.breadType = breadType
+        self.nutrientType = nutrientType
+    }
 }
 
 extension FilterRequestDTO {
