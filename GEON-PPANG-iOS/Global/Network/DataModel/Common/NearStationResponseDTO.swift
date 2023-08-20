@@ -9,7 +9,19 @@ import Foundation
 
 struct NearStationResponseDTO: Hashable, Codable {
     
-    let firstNearStation: String
-    let secondNearStation: String?
+    let firstStation: String
+    let secondStation: String?
+    
+    private enum CodingKeys: String, CodingKey {
+        
+        case firstStation = "firstNearStation"
+        case secondStation = "secondNearStation"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        firstStation = try container.decode(String.self, forKey: .firstStation)
+        secondStation = try container.decodeIfPresent(String.self, forKey: .secondStation)
+    }
     
 }
