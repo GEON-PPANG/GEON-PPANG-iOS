@@ -84,16 +84,7 @@ enum FilterType: Int, CaseIterable {
         case .breadType, .ingredient: return true
         }
     }
-    
-}
 
-extension FilterType {
-    
-    static func everyCases() -> [FilterType] {
-        
-        return self.allCases.map { $0 }
-    }
-    
 }
 
 enum FilterPurposeType: String, CaseIterable {
