@@ -103,7 +103,7 @@ final class FilterIngredientViewController: BaseViewController {
         }
         
         filterSubtitleLabel.do {
-            $0.text = I18N.Filter.ingredientSubtitle
+            $0.text = I18N.Filter.subtitle
             $0.font = .subHead
             $0.textColor = .gbbGray400
         }
