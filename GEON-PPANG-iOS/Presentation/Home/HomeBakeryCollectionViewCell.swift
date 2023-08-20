@@ -115,16 +115,16 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Custom Method
     
-    func configureCellUI(data: BestBakery) {
+    func configureCellUI(data: HomeBestBakeryResponseDTO) {
         
-        let url = URL(string: data.bakeryPicture)
+        let url = URL(string: data.bakeries.picture)
         bakeryImage.kf.setImage(with: url)
-        bakeryTitle.setLineHeight(by: 1.08, with: data.bakeryName)
+        bakeryTitle.setLineHeight(by: 1.08, with: data.bakeries.name)
         bakeryReview.setLineHeight(by: 1.09,
-                                   with: "리뷰(\(data.reviewCount)) ⦁ 저장(\(data.bookmarkCount))")
-        markStackView.getMarkStatus(data.isHACCP,
-                                    data.isVegan,
-                                    data.isNonGMO)
-        regionStackView.configureRegionName(data.firstNearStation, data.secondNearStation ?? "")
+                                   with: "리뷰(\(data.bakeries.reviewCount)) ⦁ 저장(\(data.bakeries.bookmarkCount))")
+        markStackView.getMarkStatus(data.bakeries.mark.isHACCP,
+                                    data.bakeries.mark.isVegan,
+                                    data.bakeries.mark.isNonGMO)
+        regionStackView.configureRegionName(data.bakeries.station.firstStation, data.bakeries.station.secondStation ?? "")
     }
 }
