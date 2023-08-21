@@ -696,6 +696,7 @@
 		0959F1662A658C5600E77CAF /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				0930D2602A92937B00A75C7E /* HomeCommonResponseDTO.swift */,
 				0959F16F2A658CA400E77CAF /* HomeBestBakeryResponseDTO.swift */,
 				09C626552A5B3572002C8110 /* HomeBestReviewResponseDTO.swift */,
 			);
@@ -1151,7 +1152,6 @@
 				0930D25A2A928B8000A75C7E /* CertificationMarkResponseType.swift */,
 				0930D25C2A928BF200A75C7E /* NearStationResponseDTO.swift */,
 				0930D25E2A928C2300A75C7E /* RecomendKeywordResponseDTO.swift */,
-				0930D2602A92937B00A75C7E /* HomeCommonResponseDTO.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
