@@ -23,7 +23,8 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
     private let markStackView = MarkStackView()
     private let bakeryImage = UIImageView()
     private let bakeryTitle = UILabel()
-    private let regionStackView = RegionStackView()
+    // TODO: - merge 후 추가
+//    private let regionStackView = IconWithTextStackView()
     private let bookmarkStackView = UIStackView()
     private let bookmarkIcon = UIImageView()
     private let bookmarkCount = UILabel()
@@ -58,6 +59,8 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
             $0.size.equalTo(86)
             $0.top.equalToSuperview().offset(24)
             $0.leading.equalToSuperview().inset(24)
+            $0.bottom.equalToSuperview().inset(24)
+
         }
  
         contentView.addSubview(bakeryTitle)
@@ -74,13 +77,13 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
             $0.trailing.equalToSuperview().inset(24)
         }
         
-        contentView.addSubview(regionStackView)
-        regionStackView.snp.makeConstraints {
-            $0.top.equalTo(collectionView.snp.bottom).offset(12)
-            $0.height.equalTo(29)
-            $0.leading.equalTo(bakeryImage.snp.trailing).offset(8)
-            $0.bottom.equalToSuperview().inset(24)
-        }
+        // TODO: - merge 후 추가
+//        contentView.addSubview(regionStackView)
+//        regionStackView.snp.makeConstraints {
+//            $0.top.equalTo(collectionView.snp.bottom).offset(12)
+//            $0.height.equalTo(18)
+//            $0.leading.equalTo(bakeryImage.snp.trailing).offset(8)
+//        }
         
         contentView.addSubview(bookmarkStackView)
         bookmarkStackView.snp.makeConstraints {
@@ -145,10 +148,9 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
         guard let url = URL(string: data.bakeryPicture) else { return }
         bakeryImage.kf.setImage(with: url)
         markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)
-        if data.secondNearStation == "" {
-            regionStackView.removeSecondRegion()
-        }
-        regionStackView.configureRegionName(data.firstNearStation, data.secondNearStation ?? "")
+
+        // TODO: - merge 후 추가
+//        regionStackView.configureListUI(text: data.station)
         
         breadTypeTag = []
         if data.breadType.isGlutenFree {
