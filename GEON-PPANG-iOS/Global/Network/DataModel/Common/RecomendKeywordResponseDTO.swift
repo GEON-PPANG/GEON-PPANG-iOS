@@ -9,19 +9,27 @@ import Foundation
 
 struct RecomendKeywordResponseDTO: Hashable, Codable {
     
-    let firstKeyword: String
-    let secondKeyword: String?
+    let first: String
+    let second: String?
     
     private enum CodingKeys: String, CodingKey {
         
-        case firstKeyword = "firstMaxRecommendKeyword"
-        case secondKeyword = "secondMaxRecommendKeyword "
+        case first = "firstMaxRecommendKeyword"
+        case second = "secondMaxRecommendKeyword"
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        firstKeyword = try container.decode(String.self, forKey: .firstKeyword)
-        secondKeyword = try container.decodeIfPresent(String.self, forKey: .secondKeyword)
+        first = try container.decode(String.self, forKey: .first)
+        second = try container.decodeIfPresent(String.self, forKey: .second)
     }
     
+    var keywords: [String] {
+            if let secondKeyword = second {
+                return [first, secondKeyword]
+            } else {
+                return [first]
+            }
+        }
+   
 }
