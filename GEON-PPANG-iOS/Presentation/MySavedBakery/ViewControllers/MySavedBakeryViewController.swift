@@ -21,9 +21,7 @@ final class MySavedBakeryViewController: BaseViewController {
     private var dataSource: DataSource?
     private var savedList: [BakeryList] = []
     private var currentSection: [Section] = [.empty]
-    
-    private lazy var safeArea = self.view.safeAreaLayoutGuide
-    
+        
     // MARK: - UI Property
     
     private let naviView = CustomNavigationBar()
