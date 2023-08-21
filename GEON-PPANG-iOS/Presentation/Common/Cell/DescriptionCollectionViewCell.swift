@@ -94,8 +94,9 @@ final class DescriptionCollectionViewCell: UICollectionViewCell {
         }
         
         descriptionLabel.do {
-            $0.font = .captionM1
+            $0.font = .captionM2
             $0.textColor = cellTextColor
+            $0.setLineHeight(by: 1.37, with: "")
         }
     }
     
