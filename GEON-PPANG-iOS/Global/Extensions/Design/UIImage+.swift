@@ -51,6 +51,7 @@ extension UIImage {
     static let listIcon = UIImage(named: "ic_list")!.withRenderingMode(.alwaysOriginal) // 건빵집 리스트 옆에 얘 써야 됨, 탭바의 storelist 아님!
     static let logoIcon16px = UIImage(named: "ic_logo_16px")!.withRenderingMode(.alwaysOriginal)
     static let logoIcon20px = UIImage(named: "ic_logo_20px")!.withRenderingMode(.alwaysOriginal)
+    static let mapIcon = UIImage(named: "ic_map")!.withRenderingMode(.alwaysOriginal)
     static let noticeIcon18px = UIImage(named: "ic_notice_18px")!.withRenderingMode(.alwaysOriginal)
     static let profileIcon = UIImage(named: "ic_profile")!.withRenderingMode(.alwaysOriginal)
     static let reviewIcon16px = UIImage(named: "ic_review_16px")!.withRenderingMode(.alwaysOriginal)
