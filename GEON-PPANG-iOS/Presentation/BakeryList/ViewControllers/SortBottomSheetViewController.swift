@@ -55,12 +55,13 @@ final class SortBottomSheetViewController: BaseViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        updateCollectionViewConstraint(of: sortBakeryCollectionView)
+        Utils.updateCollectionViewConstraint(of: sortBakeryCollectionView)
     }
     
     // MARK: - Setting
     
     override func setLayout() {
+        
         view.addSubview(dimmedView)
         dimmedView.snp.makeConstraints {
             $0.edges.equalToSuperview()
@@ -87,6 +88,7 @@ final class SortBottomSheetViewController: BaseViewController {
     }
     
     override func setUI() {
+        
         view.do {
             $0.backgroundColor = .clear
         }
@@ -115,17 +117,20 @@ final class SortBottomSheetViewController: BaseViewController {
     }
     
     override func setDelegate() {
+        
         sortBakeryCollectionView.delegate = self
         sortBakeryCollectionView.dataSource = self
     }
     
     private func setDimmedViewTapGesture() {
+        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissingComponentTapped(_:)))
         dimmedView.addGestureRecognizer(tapGesture)
         dimmedView.isUserInteractionEnabled = true
     }
     
     private func showBottomSheet() {
+        
         UIView.animate(withDuration: 0.2) {
             self.dimmedView.do {
                 $0.backgroundColor = .black.withAlphaComponent(0.4)
@@ -141,12 +146,14 @@ final class SortBottomSheetViewController: BaseViewController {
     
     @objc
     private func dismissingComponentTapped(_ tapRecognizer: UITapGestureRecognizer) {
+        
         dismissBottomSheetViewController()
     }
     
     // MARK: - Custom Method
     
     private func dismissBottomSheetViewController() {
+        
         UIView.animate(withDuration: 0.2) {
             self.dimmedView.do {
                 $0.backgroundColor = .black.withAlphaComponent(0.0)
@@ -160,15 +167,6 @@ final class SortBottomSheetViewController: BaseViewController {
         }
     }
     
-    // TODO: Utils 로 빠진 함수 사용
-    func updateCollectionViewConstraint(of collectionView: UICollectionView) {
-        let height = collectionView.collectionViewLayout.collectionViewContentSize.height
-        guard height != 0 else { return }
-        collectionView.snp.updateConstraints {
-            $0.height.equalTo(height)
-        }
-    }
-    
 }
 
 // MARK: - UICollectionViewDelegate extension
@@ -176,6 +174,7 @@ final class SortBottomSheetViewController: BaseViewController {
 extension SortBottomSheetViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         switch indexPath.item {
         case 0: selectedSortBy = .byDefault
         case 1: selectedSortBy = .byReviews
@@ -192,10 +191,12 @@ extension SortBottomSheetViewController: UICollectionViewDelegate {
 extension SortBottomSheetViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return SortBakery.allCases.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell: SortBakeryCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
         let data = SortBakery.allCases.map { $0.description }
         cell.configureLabel(to: data[indexPath.item])
@@ -213,7 +214,10 @@ extension SortBottomSheetViewController: UICollectionViewDataSource {
 
 extension SortBottomSheetViewController: UICollectionViewDelegateFlowLayout {
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         return .init(width: collectionView.bounds.width, height: 24)
     }
     

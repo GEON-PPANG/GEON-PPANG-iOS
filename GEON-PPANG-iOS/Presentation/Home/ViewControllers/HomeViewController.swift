@@ -53,7 +53,7 @@ final class HomeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        requestHomeBestData()
+        getHomeBestData()
     }
     
     override func viewDidLoad() {
@@ -64,14 +64,34 @@ final class HomeViewController: BaseViewController {
         setReloadData()
     }
     
+    // MARK: - Setting
+    
+    override func setLayout() {
+        
+        view.addSubview(topView)
+        topView.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(heightConsideringNotch(44))
+            $0.directionalHorizontalEdges.equalTo(safeArea)
+            $0.height.equalTo(200)
+        }
+        
+        view.addSubview(collectionView)
+        collectionView.snp.makeConstraints {
+            $0.top.equalTo(topView.snp.bottom)
+            $0.directionalHorizontalEdges.equalTo(safeArea)
+            $0.bottom.equalToSuperview()
+        }
+    }
+    
     override func setUI() {
+        
         self.do {
             $0.view.backgroundColor = .white
         }
         
         topView.do {
-            $0.setTitle(nickname)
-            $0.gotoNextView = {
+            $0.configureTitleText(nickname)
+            $0.pushToSearchView = {
                 Utils.push(self.navigationController, SearchViewController())
             }
             $0.addActionToFilterButton {
@@ -86,26 +106,9 @@ final class HomeViewController: BaseViewController {
             $0.delegate = self
         }
     }
-    
-    override func setLayout() {
-        view.addSubviews(topView, collectionView)
         
-        topView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(heightConsideringNotch(44))
-            $0.directionalHorizontalEdges.equalTo(safeArea)
-            $0.height.equalTo(200)
-        }
-        
-        collectionView.snp.makeConstraints {
-            $0.top.equalTo(topView.snp.bottom)
-            $0.directionalHorizontalEdges.equalTo(safeArea)
-            $0.bottom.equalToSuperview()
-        }
-    }
-    
-    // MARK: - Setting
-    
     private func setRegistration() {
+        
         collectionView.register(cell: HomeBakeryCollectionViewCell.self)
         collectionView.register(cell: HomeReviewCollectionViewCell.self)
         collectionView.register(cell: HomeBottomCollectionViewCell.self)
@@ -113,16 +116,17 @@ final class HomeViewController: BaseViewController {
     }
     
     private func setDataSource() {
+        
         dataSource = DataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, item in
             let section = self.dataSource?.snapshot().sectionIdentifiers[indexPath.section]
             switch section {
             case .bakery:
                 let cell: HomeBakeryCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-                cell.updateUI(data: item as! BestBakery)
+                cell.configureCellUI(data: item as! BestBakery)
                 return cell
             case .review:
                 let cell: HomeReviewCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-                cell.updateUI(data: item as! BestReviews)
+                cell.configureCellUI(data: item as! BestReviews)
                 return cell
             case .bottom, .none:
                 let cell: HomeBottomCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
@@ -132,6 +136,7 @@ final class HomeViewController: BaseViewController {
     }
     
     private func setReloadData() {
+        
         var snapshot = NSDiffableDataSourceSnapshot<Sections, AnyHashable>()
         defer { dataSource?.apply(snapshot, animatingDifferences: false)}
         
@@ -152,11 +157,11 @@ final class HomeViewController: BaseViewController {
             
             switch indexPath.section {
             case 0:
-                header.getSectionHeaderTitle(self.nickname + Sections.bakery.title)
+                header.configureSectionHeaderTitle(self.nickname + Sections.bakery.title)
             case 1:
-                header.getSectionHeaderTitle(self.nickname + Sections.review.title)
+                header.configureSectionHeaderTitle(self.nickname + Sections.review.title)
             default:
-                header.getSectionHeaderTitle(self.nickname + Sections.bottom.title)
+                header.configureSectionHeaderTitle(self.nickname + Sections.bottom.title)
             }
             return header
         }
@@ -211,9 +216,9 @@ extension HomeViewController: UICollectionViewDelegate {
         let section = Sections(rawValue: indexPath.section)!
         switch section {
         case .bakery:
-            nextViewController.bakeryID = self.bakeryList[indexPath.item].bakeryId
+            nextViewController.bakeryID = self.bakeryList[indexPath.item].bakeryID
         case .review:
-            nextViewController.bakeryID = self.reviewList[indexPath.item].bakeryId
+            nextViewController.bakeryID = self.reviewList[indexPath.item].bakeryID
         case .bottom:
             return
         }
@@ -224,7 +229,7 @@ extension HomeViewController: UICollectionViewDelegate {
 // MARK: - API
 
 extension HomeViewController {
-    private func requestHomeBestData() {
+    private func getHomeBestData() {
         HomeAPI.shared.getBestBakery { response in
             guard let response = response else { return }
             guard let data = response.data else { return }

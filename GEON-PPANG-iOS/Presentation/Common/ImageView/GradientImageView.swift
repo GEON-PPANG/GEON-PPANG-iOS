@@ -34,15 +34,22 @@ final class GradientImageView: UIImageView {
     // MARK: - Setting
     
     func setGradient(colors: [CGColor]) {
+        
         gradient.colors = colors
         gradient.locations = [0, 1.0]
         gradient.startPoint = CGPoint(x: 0.25, y: 0.5)
         gradient.endPoint = CGPoint(x: 0.75, y: 0.5)
-        gradient.transform = CATransform3DMakeAffineTransform(CGAffineTransform(a: 0, b: 1, c: -1, d: 0, tx: 1, ty: 0))
+        gradient.transform = CATransform3DMakeAffineTransform(CGAffineTransform(a: 0,
+                                                                                b: 1,
+                                                                                c: -1,
+                                                                                d: 0,
+                                                                                tx: 1,
+                                                                                ty: 0))
         layer.addSublayer(gradient)
     }
     
     func setLayout() {
+        
         gradient.bounds = self.bounds.insetBy(dx: -0.5*self.bounds.size.width, dy: -0.5*self.bounds.size.height)
         gradient.frame = bounds
     }

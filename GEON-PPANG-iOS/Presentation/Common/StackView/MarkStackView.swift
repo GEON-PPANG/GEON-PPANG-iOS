@@ -11,13 +11,13 @@ import SnapKit
 import Then
 
 final class MarkStackView: UIStackView {
-            
+    
     // MARK: - UI Property
     
     private lazy var hccpMarkIconView = UIImageView()
     private lazy var veganIconView = UIImageView()
     private lazy var gmoIconView = UIImageView()
-   
+    
     // MARK: - Life Cycle
     
     override init(frame: CGRect) {
@@ -33,7 +33,17 @@ final class MarkStackView: UIStackView {
     
     // MARK: - Setting
     
+    private func setLayout() {
+        
+        [hccpMarkIconView, veganIconView, gmoIconView].forEach {
+            $0.snp.makeConstraints {
+                $0.size.equalTo(24)
+            }
+        }
+    }
+    
     private func setUI() {
+        
         self.do {
             $0.addArrangedSubviews(hccpMarkIconView, veganIconView, gmoIconView)
             $0.spacing = -8
@@ -53,21 +63,15 @@ final class MarkStackView: UIStackView {
         }
     }
     
-    private func setLayout() {
-        [hccpMarkIconView, veganIconView, gmoIconView].forEach {
-            $0.snp.makeConstraints {
-                $0.size.equalTo(24)
-            }
-        }
-    }
-    
-    func getIconImage(_ haccp: UIImage, _ vegan: UIImage, _ gmo: UIImage) {
+    func confiureIconImage(_ haccp: UIImage, _ vegan: UIImage, _ gmo: UIImage) {
+        
         hccpMarkIconView.image = haccp
         veganIconView.image = vegan
         gmoIconView.image = gmo
     }
-
+    
     func getMarkStatus(_ isHACCP: Bool, _ isVegan: Bool, _ isNONGMO: Bool) {
+        
         if !isHACCP {
             hccpMarkIconView.isHidden = true
         } else {
@@ -85,7 +89,8 @@ final class MarkStackView: UIStackView {
         }
     }
     
-    func setMarkSize(_ size: Int) {
+    func configureMarkSize(_ size: Int) {
+        
         [hccpMarkIconView, veganIconView, gmoIconView].forEach {
             $0.snp.remakeConstraints {
                 $0.size.equalTo(size)

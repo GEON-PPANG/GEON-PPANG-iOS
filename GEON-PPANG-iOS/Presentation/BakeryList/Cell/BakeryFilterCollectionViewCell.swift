@@ -16,7 +16,7 @@ final class BakeryFilterCollectionViewCell: UICollectionViewCell {
     
     private var isTapped: Bool = true {
         didSet {
-            updateUI(isTapped)
+            configureCellUI(isTapped)
         }
     }
     
@@ -41,7 +41,22 @@ final class BakeryFilterCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Setting
     
+    private func setLayout() {
+        
+        contentView.addSubview(hStackView)
+        hStackView.addArrangedSubviews(iconView, filterTitle)
+        
+        hStackView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+        
+        iconView.snp.makeConstraints {
+            $0.size.equalTo(20)
+        }
+    }
+    
     private func setUI() {
+        
         contentView.do {
             $0.makeCornerRound(radius: 18)
             $0.makeBorder(width: 1, color: .gbbGray200!)
@@ -58,33 +73,23 @@ final class BakeryFilterCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    private func setLayout() {
-        contentView.addSubview(hStackView)
-        hStackView.addArrangedSubviews(iconView, filterTitle)
+    func configureFilterUI(item: BakeryFilterItems, index: Int) {
         
-        hStackView.snp.makeConstraints {
-            $0.center.equalToSuperview()
-        }
-        
-        iconView.snp.makeConstraints {
-            $0.size.equalTo(20)
-        }
-    }
-    
-    func bind(item: BakeryFilterItems, index: Int) {
         iconView.image = item.leftIcon
         filterTitle.text = item.filter.title
         isTapped = item.status == .on ? false : true
     }
     
-    func updateUI(_ isTapped: Bool) {
+    func configureCellUI(_ isTapped: Bool) {
+        
         filterTitle.textColor = isTapped ? .gbbGray700 : .gbbBackground2
         filterTitle.font = .captionM1
         contentView.backgroundColor = isTapped ? .gbbGray100 : .gbbMain3
         contentView.makeBorder(width: 1, color: isTapped ? .gbbGray200! : .gbbMain2!)
     }
     
-    func getSize() {
+    func configureFilterSize() {
+        
         return filterTitle.sizeToFit()
     }
 }

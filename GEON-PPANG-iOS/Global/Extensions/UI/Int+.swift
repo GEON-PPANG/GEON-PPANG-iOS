@@ -16,6 +16,7 @@ extension Int {
             
             var priceString = numberFormatter.string(for: self) ?? "-1"
             priceString = priceString + "원"
+            
             return priceString
         }
     }

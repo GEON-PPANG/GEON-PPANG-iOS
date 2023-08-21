@@ -9,7 +9,7 @@ import Foundation
 
 struct HomeBestBakeryResponseDTO: Codable, Hashable {
     
-    let bakeryId: Int
+    let bakeryID: Int
     let bakeryName: String
     let bakeryPicture: String
     let isHACCP: Bool
@@ -17,12 +17,32 @@ struct HomeBestBakeryResponseDTO: Codable, Hashable {
     let isNonGMO: Bool
     let firstNearStation: String
     let secondNearStation: String?
-    let isBookMarked: Bool
-    let bookMarkCount: Int
+    let isBookmarked: Bool
+    let bookmarkCount: Int
     let reviewCount: Int
     
+    enum CodingKeys: String, CodingKey {
+        case bakeryID = "breadId"
+        case bakeryName, bakeryPicture
+        case isHACCP, isVegan, isNonGMO
+        case firstNearStation, secondNearStation
+        case isBookmarked = "isBookMarked"
+        case bookmarkCount = "bookMarkCount"
+        case reviewCount
+    }
+    
     func convertToBestBakery() -> BestBakery {
-        return BestBakery(bakeryId: bakeryId, bakeryName: bakeryName, bakeryPicture: bakeryPicture, isHACCP: isHACCP, isVegan: isVegan, isNonGMO: isNonGMO, firstNearStation: firstNearStation, secondNearStation: secondNearStation, isBookMarked: isBookMarked, bookMarkCount: bookMarkCount, reviewCount: reviewCount)
+        return BestBakery(bakeryID: bakeryID,
+                          bakeryName: bakeryName,
+                          bakeryPicture: bakeryPicture,
+                          isHACCP: isHACCP,
+                          isVegan: isVegan,
+                          isNonGMO: isNonGMO,
+                          firstNearStation: firstNearStation,
+                          secondNearStation: secondNearStation,
+                          isBookmarked: isBookmarked,
+                          bookmarkCount: bookmarkCount,
+                          reviewCount: reviewCount)
     }
     
 }
@@ -37,7 +57,7 @@ struct BestBakery: Codable, Hashable {
         lhs.id == rhs.id
     }
     
-    let bakeryId: Int
+    let bakeryID: Int
     let bakeryName: String
     let bakeryPicture: String
     let isHACCP: Bool
@@ -45,8 +65,8 @@ struct BestBakery: Codable, Hashable {
     let isNonGMO: Bool
     let firstNearStation: String
     let secondNearStation: String?
-    let isBookMarked: Bool
-    let bookMarkCount: Int
+    let isBookmarked: Bool
+    let bookmarkCount: Int
     let reviewCount: Int
     
 }

@@ -7,9 +7,8 @@
 
 import Foundation
 
-import UIKit
-
 // MARK: - WrittenReviewsResponseDTO
+
 struct WrittenReviewsResponseDTO: Codable {
     let tastePercent, specialPercent, kindPercent, zeroPercent: Float
     let totalReviewCount: Int
@@ -17,11 +16,12 @@ struct WrittenReviewsResponseDTO: Codable {
 }
 
 // MARK: - ReviewList
+
 struct ReviewList: Codable {
     let reviewID: Int
     let recommendKeywordList: [RecommendKeywordList]
     let reviewText, memberNickname, createdAt: String
-
+    
     enum CodingKeys: String, CodingKey {
         case reviewID = "reviewId"
         case recommendKeywordList, reviewText, memberNickname, createdAt
@@ -29,10 +29,11 @@ struct ReviewList: Codable {
 }
 
 // MARK: - RecommendKeywordList
+
 struct RecommendKeywordList: Codable {
     let recommendKeywordID: Int
     let recommendKeywordName: String
-
+    
     enum CodingKeys: String, CodingKey {
         case recommendKeywordID = "recommendKeywordId"
         case recommendKeywordName

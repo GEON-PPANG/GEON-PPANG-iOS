@@ -34,7 +34,7 @@ final class FilterBreadTypeViewController: BaseViewController {
     init(maxSteps: Int) {
         super.init(nibName: nil, bundle: nil)
         
-        setMaxSteps(to: maxSteps)
+        initMaxSteps(to: maxSteps)
     }
     
     @available(*, unavailable)
@@ -50,11 +50,13 @@ final class FilterBreadTypeViewController: BaseViewController {
     
     // MARK: - Setting
     
-    private func setMaxSteps(to steps: Int) {
+    private func initMaxSteps(to steps: Int) {
+        
         self.maxSteps = steps
     }
     
     override func setLayout() {
+        
         view.addSubview(navigationBar)
         navigationBar.snp.makeConstraints {
             $0.top.horizontalEdges.equalToSuperview()
@@ -88,8 +90,9 @@ final class FilterBreadTypeViewController: BaseViewController {
     }
     
     override func setUI() {
+        
         navigationBar.do {
-            $0.addBackButtonAction(popFilterViewController())
+            $0.configureBackButtonAction(popFilterViewController())
             $0.configureRightCount(maxSteps - 1, by: maxSteps)
         }
         
@@ -120,18 +123,20 @@ final class FilterBreadTypeViewController: BaseViewController {
         }
         
         nextButton.do {
-            $0.getButtonTitle(.next)
-            $0.getButtonUI(.gbbGray200!)
+            $0.configureButtonTitle(.next)
+            $0.configureButtonUI(.gbbGray200!)
             $0.isUserInteractionEnabled = false
         }
     }
     
     override func setDelegate() {
+        
         filterCollectionView.delegate = self
         filterCollectionView.dataSource = self
     }
     
     private func setNextButtonAction() {
+        
         let action = UIAction { [weak self] _ in
             Utils.push(self?.navigationController, FilterIngredientViewController(maxSteps: self?.maxSteps ?? 0))
         }
@@ -141,6 +146,7 @@ final class FilterBreadTypeViewController: BaseViewController {
     // MARK: - Action Helper
     
     private func popFilterViewController() -> UIAction {
+        
         let action = UIAction { [weak self] _ in
             FilterRequestDTO.sharedData.breadType = .init(
                 isGlutenFree: false,
@@ -156,15 +162,16 @@ final class FilterBreadTypeViewController: BaseViewController {
     // MARK: - Custom Method
     
     private func checkNextButtonStatus() {
+        
         if FilterRequestDTO.sharedData.breadType.isNoneSelected() {
             nextButton.isUserInteractionEnabled = false
             UIView.animate(withDuration: 0.2) {
-                self.nextButton.getButtonUI(.gbbGray200!)
+                self.nextButton.configureButtonUI(.gbbGray200!)
             }
         } else {
             nextButton.isUserInteractionEnabled = true
             UIView.animate(withDuration: 0.2) {
-                self.nextButton.getButtonUI(.gbbMain2!)
+                self.nextButton.configureButtonUI(.gbbMain2!)
             }
         }
     }
@@ -176,6 +183,7 @@ final class FilterBreadTypeViewController: BaseViewController {
 extension FilterBreadTypeViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         switch indexPath.item {
         case 0: FilterRequestDTO.sharedData.breadType.isGlutenFree = true
         case 1: FilterRequestDTO.sharedData.breadType.isVegan = true
@@ -187,6 +195,7 @@ extension FilterBreadTypeViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        
         switch indexPath.item {
         case 0: FilterRequestDTO.sharedData.breadType.isGlutenFree = false
         case 1: FilterRequestDTO.sharedData.breadType.isVegan = false
@@ -204,10 +213,12 @@ extension FilterBreadTypeViewController: UICollectionViewDelegate {
 extension FilterBreadTypeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return filterTypes.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell: FilterCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
         cell.filterType = self.filterType
         cell.typeLabelText = filterTypes[indexPath.item]
@@ -219,7 +230,10 @@ extension FilterBreadTypeViewController: UICollectionViewDataSource {
 
 extension FilterBreadTypeViewController: UICollectionViewDelegateFlowLayout {
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         return filterType.cellSize
     }
     

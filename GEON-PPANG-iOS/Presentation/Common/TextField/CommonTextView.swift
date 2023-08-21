@@ -42,7 +42,7 @@ final class CommonTextView: UIView {
     var duplicatedCheck: ((String) -> Void)?
     var textFieldData: ((String) -> Void)?
     var changeLayout: (() -> Void)?
-
+    
     // MARK: - UI Property
     
     private let commonTextField = SignInTextField()
@@ -56,8 +56,8 @@ final class CommonTextView: UIView {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        setUI()
         setLayout()
+        setUI()
         setDelegate()
     }
     
@@ -67,7 +67,29 @@ final class CommonTextView: UIView {
     
     // MARK: - Setting
     
+    private func setLayout() {
+        
+        self.addSubview(commonTextField)
+        commonTextField.snp.makeConstraints {
+            $0.top.directionalHorizontalEdges.equalToSuperview()
+            $0.height.equalTo(74)
+        }
+        
+        self.addSubview(checkLabel)
+        checkLabel.snp.makeConstraints {
+            $0.top.equalTo(commonTextField.snp.bottom).offset(7)
+            $0.trailing.equalToSuperview()
+        }
+        
+        commonTextField.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(14)
+            $0.leading.equalToSuperview().offset(18)
+        }
+    }
+    
     private func setUI() {
+        
         titleLabel.do {
             $0.basic(font: .bodyB2!, color: .gbbGray400!)
             $0.text = signInType.rawValue
@@ -78,37 +100,20 @@ final class CommonTextView: UIView {
         }
     }
     
-    private func setLayout() {
-        addSubviews(commonTextField, checkLabel)
-        commonTextField.addSubview(titleLabel)
+    func cofigureSignInType(_ type: SignInPropetyType) {
         
-        commonTextField.snp.makeConstraints {
-            $0.top.directionalHorizontalEdges.equalToSuperview()
-            $0.height.equalTo(74)
-        }
-        
-        titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(14)
-            $0.leading.equalToSuperview().offset(18)
-        }
-        
-        checkLabel.snp.makeConstraints {
-            $0.top.equalTo(commonTextField.snp.bottom).offset(7)
-            $0.trailing.equalToSuperview()
-        }
-    }
-    
-    func getType(_ type: SignInPropetyType) {
         self.signInType = type
-        commonTextField.getViewType(type)
+        commonTextField.configureViewType(type)
         commonTextField.placeholder = type.placeHolder
     }
     
     private func setDelegate() {
+        
         commonTextField.delegate = self
     }
     
-    func getText() -> String {
+    func fetchText() -> String {
+        
         return commonTextField.text ?? ""
     }
 }
@@ -116,8 +121,9 @@ final class CommonTextView: UIView {
 // MARK: - UITextFieldDelegate
 
 extension CommonTextView: UITextFieldDelegate {
-
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        
         guard let text = textField.text else { return }
         if text.isEmpty {
             self.validCheck?(false)
@@ -126,6 +132,7 @@ extension CommonTextView: UITextFieldDelegate {
     }
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
+        
         guard let text = textField.text else { return }
         switch signInType {
         case .email:
@@ -147,7 +154,7 @@ extension CommonTextView: UITextFieldDelegate {
                 clearErrorMessage(true)
             }
         case .checkPassword:
-            self.textFieldData?(getText())
+            self.textFieldData?(fetchText())
         }
         
         if text.isEmpty {
@@ -156,6 +163,7 @@ extension CommonTextView: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
         guard let currentText = textField.text else { return false }
         let changedText = (currentText as NSString).replacingCharacters(in: range, with: string)
         
@@ -167,26 +175,32 @@ extension CommonTextView: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        duplicatedCheck?(getText())
+        
+        duplicatedCheck?(fetchText())
         textField.resignFirstResponder()
         return true
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        duplicatedCheck?(getText())
+        
+        duplicatedCheck?(fetchText())
         self.changeLayout?()
         textField.resignFirstResponder()
         return true
     }
     
-     func setErrorMessage(_ message: String) {
+    func setErrorMessage(_ message: String) {
+        
         self.validCheck?(false)
         titleLabel.textColor = .gbbError
-        checkLabel.basic(text: message, font: .captionM1!, color: .gbbError!)
+        checkLabel.basic(text: message,
+                         font: .captionM1!,
+                         color: .gbbError!)
         commonTextField.layer.borderColor = UIColor.gbbError?.cgColor
     }
     
-     func clearErrorMessage(_ isValid: Bool) {
+    func clearErrorMessage(_ isValid: Bool) {
+        
         self.validCheck?(isValid)
         titleLabel.textColor = .gbbGray400
         checkLabel.text = ""

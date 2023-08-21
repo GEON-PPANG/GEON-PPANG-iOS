@@ -9,9 +9,8 @@ import Foundation
 
 // MARK: - MyReviewsResponseDTO
 
-struct MyReviewsResponseDTO: Codable {    
-        
-    let bakeryId: Int
+struct MyReviewsResponseDTO: Codable {
+    let bakeryID: Int
     let bakeryName: String
     let bakeryPicture: String
     let isHACCP: Bool
@@ -19,16 +18,21 @@ struct MyReviewsResponseDTO: Codable {
     let isNonGMO: Bool
     let firstNearStation: String
     let secondNearStation: String?
-    let isBookMarked: Bool?
-    let bookMarkCount: Int?
+    let isBookmarked: Bool?
+    let bookmarkCount: Int?
     let reviewID: Int
     let breadType: BreadResponseType
     let createdAt: String
-
+    
     enum CodingKeys: String, CodingKey {
-        case bakeryId = "bakeryId"
-        case bakeryName, bakeryPicture, isHACCP, isVegan, isNonGMO, firstNearStation, secondNearStation, isBookMarked, bookMarkCount, breadType
+        case bakeryID = "bakeryId"
+        case bakeryName, bakeryPicture
+        case isHACCP, isVegan, isNonGMO
+        case firstNearStation, secondNearStation
+        case isBookmarked = "isBookMarked"
+        case bookmarkCount = "bookMarkCount"
         case reviewID = "reviewId"
+        case breadType
         case createdAt
     }
 }

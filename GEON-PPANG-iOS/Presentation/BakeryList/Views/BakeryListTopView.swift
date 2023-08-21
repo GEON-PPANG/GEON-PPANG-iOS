@@ -34,7 +34,30 @@ final class BakeryListTopView: UIView {
     
     // MARK: - Setting
     
+    private func setLayout() {
+        
+        self.addSubview(hStackView)
+        hStackView.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(44)
+            $0.leading.equalToSuperview().offset(24)
+            $0.bottom.equalToSuperview().inset(15)
+        }
+    
+        self.addSubview(searchButton)
+        searchButton.snp.makeConstraints {
+            $0.size.equalTo(24)
+            $0.centerY.equalTo(hStackView.snp.centerY)
+            $0.trailing.equalToSuperview().inset(23)
+        }
+        
+        hStackView.addArrangedSubviews(bakeryTitle, bakeryIcon)
+        bakeryIcon.snp.makeConstraints {
+            $0.size.equalTo(24)
+        }
+    }
+    
     private func setUI() {
+        
         hStackView.do {
             $0.axis = .horizontal
             $0.spacing = 8
@@ -57,28 +80,8 @@ final class BakeryListTopView: UIView {
         }
     }
     
-    private func setLayout() {
-        addSubviews(hStackView, searchButton)
-        hStackView.addArrangedSubviews(bakeryTitle, bakeryIcon)
-        
-        hStackView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(44)
-            $0.leading.equalToSuperview().offset(24)
-            $0.bottom.equalToSuperview().inset(15)
-        }
-        
-        bakeryIcon.snp.makeConstraints {
-            $0.size.equalTo(24)
-        }
-        
-        searchButton.snp.makeConstraints {
-            $0.size.equalTo(24)
-            $0.centerY.equalTo(hStackView.snp.centerY)
-            $0.trailing.equalToSuperview().inset(23)
-        }
-    }
-    
     func addActionToSearchButton(_ action: @escaping () -> Void) {
+        
         searchButton.addAction(UIAction { _ in
             action()
         }, for: .touchUpInside)

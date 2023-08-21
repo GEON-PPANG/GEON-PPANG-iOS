@@ -62,13 +62,14 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
     // MARK: - Setting
     
     private func setLayout() {
-        addSubview(mainTitleLabel)
+        
+        self.addSubview(mainTitleLabel)
         mainTitleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(44)
             $0.leading.equalToSuperview().inset(24)
         }
         
-        addSubview(profileImageViewContainer)
+        self.addSubview(profileImageViewContainer)
         profileImageViewContainer.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(24)
             $0.top.equalTo(mainTitleLabel.snp.bottom).offset(34)
@@ -82,21 +83,21 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
             $0.width.equalTo(35.5)
         }
         
-        addSubview(purposeFilterChipView)
+        self.addSubview(purposeFilterChipView)
         purposeFilterChipView.snp.makeConstraints {
             $0.leading.equalTo(profileImageViewContainer.snp.trailing).offset(14)
             $0.top.equalTo(profileImageViewContainer)
             $0.height.equalTo(25)
         }
         
-        addSubview(userNameLabel)
+        self.addSubview(userNameLabel)
         userNameLabel.snp.makeConstraints {
             $0.leading.equalTo(purposeFilterChipView)
             $0.top.equalTo(purposeFilterChipView.snp.bottom).offset(14)
             $0.height.equalTo(25)
         }
         
-        addSubview(filterCollectionView)
+        self.addSubview(filterCollectionView)
         filterCollectionView.snp.makeConstraints {
             $0.leading.equalTo(purposeFilterChipView)
             $0.top.equalTo(userNameLabel.snp.bottom).offset(10)
@@ -104,7 +105,7 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
             $0.width.equalTo(198)
         }
         
-        addSubview(rightChevronButton)
+        self.addSubview(rightChevronButton)
         rightChevronButton.snp.makeConstraints {
             $0.top.equalTo(purposeFilterChipView)
             $0.trailing.equalToSuperview().inset(5)
@@ -112,19 +113,19 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
             $0.width.equalTo(48)
         }
         
-        addSubview(buttonsContainer)
+        self.addSubview(buttonsContainer)
         buttonsContainer.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(87)
             $0.bottom.equalToSuperview().inset(20)
         }
         
-        addSubview(buttonsStackView)
+        self.addSubview(buttonsStackView)
         buttonsStackView.snp.makeConstraints {
             $0.center.equalTo(buttonsContainer)
         }
         
-        addSubview(seperatorView)
+        self.addSubview(seperatorView)
         seperatorView.snp.makeConstraints {
             $0.center.equalTo(buttonsContainer)
             $0.width.equalTo(1)
@@ -133,6 +134,7 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
     }
     
     private func setUI() {
+        
         self.do {
             $0.backgroundColor = .gbbWhite
         }
@@ -190,19 +192,20 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
         }
         
         bookmarkButton.do {
-            $0.addButtonAction {
+            $0.configureButtonAction {
                 self.savedBakeryTapped?()
             }
         }
         
         myReviewButton.do {
-            $0.addButtonAction {
+            $0.configureButtonAction {
                 self.myReviewsTapped?()
             }
         }
     }
     
     private func setDelegate() {
+        
         filterCollectionView.delegate = self
         filterCollectionView.dataSource = self
     }
@@ -210,6 +213,7 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
     // MARK: - Custom Method
     
     func configureMemberData(to memberData: MyPageResponseDTO) {
+        
         self.myPageData = memberData
         self.purposeFilterChipView.configureChip(toTag: convertFromData(myPageData.mainPurpose))
         self.userNameLabel.text = username
@@ -219,6 +223,7 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
     }
     
     func convertFromData(_ data: String) -> FilterPurposeType {
+        
         switch data {
         case "HEALTH": return .health
         case "DIET": return .diet
@@ -238,10 +243,12 @@ extension MyPageCollectionViewHeader: UICollectionViewDelegate {}
 extension MyPageCollectionViewHeader: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return myPageTagData.filter { $0.1 == true }.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell: DescriptionCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
         cell.configureTagTitle(myPageTagData[indexPath.item].0)
         return cell
@@ -253,7 +260,10 @@ extension MyPageCollectionViewHeader: UICollectionViewDataSource {
 
 extension MyPageCollectionViewHeader: UICollectionViewDelegateFlowLayout {
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         let dummyLabel = UILabel()
         dummyLabel.do {
             $0.text = myPageTagData[indexPath.item].0

@@ -30,7 +30,7 @@ final class CommonBottomSheet: UIView {
     // MARK: - Property
     
     private var emojiType: EmojiType = .smile
-    var dismissClosure: (() -> Void)?
+    var dismissBottomSheet: (() -> Void)?
     
     // MARK: - UI Property
     
@@ -51,20 +51,24 @@ final class CommonBottomSheet: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Setting
+    
     private func setLayout() {
-        addSubviews(emojiIcon, bottonSheetTitle, confirmButton)
         
+        self.addSubview(emojiIcon)
         emojiIcon.snp.makeConstraints {
             $0.size.equalTo(32)
             $0.top.equalToSuperview().offset(34)
             $0.centerX.equalToSuperview()
         }
         
+        self.addSubview(bottonSheetTitle)
         bottonSheetTitle.snp.makeConstraints {
             $0.top.equalTo(emojiIcon.snp.bottom).offset(23)
             $0.centerX.equalToSuperview()
         }
         
+        self.addSubview(confirmButton)
         confirmButton.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(CGFloat().heightConsideringBottomSafeArea(54))
             $0.directionalHorizontalEdges.equalToSuperview().inset(25)
@@ -74,6 +78,7 @@ final class CommonBottomSheet: UIView {
     }
     
     private func setUI() {
+        
         emojiIcon.do {
             $0.contentMode = .scaleAspectFit
         }
@@ -83,19 +88,21 @@ final class CommonBottomSheet: UIView {
             $0.basic(font: .pretendardBold(20), color: .gbbGray500!)
         }
         confirmButton.do {
-            $0.getButtonUI(.gbbGray700!)
-            $0.getButtonTitle(.confirm)
-            $0.addAction {
-                self.dismissClosure?()
+            $0.configureButtonUI(.gbbGray700!)
+            $0.configureButtonTitle(.confirm)
+            $0.addActionToCommonButton {
+                self.dismissBottomSheet?()
             }
         }
     }
     
     func getEmojiType(_ type: EmojiType) {
+        
         emojiIcon.image = type.icon
     }
     
     func getBottonSheetTitle(_ title: String) {
+        
         bottonSheetTitle.text = title
     }
 }

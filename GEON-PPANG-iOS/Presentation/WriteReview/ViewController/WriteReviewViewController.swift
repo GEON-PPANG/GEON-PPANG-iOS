@@ -86,6 +86,7 @@ final class WriteReviewViewController: BaseViewController {
     // MARK: - Setting
     
     override func setLayout() {
+        
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints {
             $0.edges.equalToSuperview()
@@ -178,11 +179,12 @@ final class WriteReviewViewController: BaseViewController {
     }
     
     override func setUI() {
+        
         navigationBar.do {
             $0.backgroundColor = .white
             $0.configureLeftTitle(to: bakeryData.bakeryName)
             $0.configureBottomLine()
-            $0.addBackButtonAction(UIAction { [weak self] _ in
+            $0.configureBackButtonAction(UIAction { [weak self] _ in
                 self?.backButtonTapped()
             })
         }
@@ -248,8 +250,8 @@ final class WriteReviewViewController: BaseViewController {
             $0.backgroundColor = .gbbPoint1
             $0.isUserInteractionEnabled = false
             $0.makeCornerRound(radius: 12)
-            $0.getButtonTitle(.write)
-            $0.getButtonUI(.gbbGray200!)
+            $0.configureButtonTitle(.write)
+            $0.configureButtonUI(.gbbGray200!)
             $0.addAction(UIAction { [weak self] _ in
                 self?.nextButtonTapped()
             }, for: .touchUpInside)
@@ -268,7 +270,7 @@ final class WriteReviewViewController: BaseViewController {
         confirmBottomSheetView.do {
             $0.getEmojiType(.smile)
             $0.getBottonSheetTitle(I18N.WriteReview.confirmSheetTitle)
-            $0.dismissClosure = {
+            $0.dismissBottomSheet = {
                 self.backgroundView.dissmissFromSuperview()
                 self.navigationController?.popViewController(animated: true)
             }
@@ -276,6 +278,7 @@ final class WriteReviewViewController: BaseViewController {
     }
     
     override func setDelegate() {
+        
         scrollView.delegate = self
         
         likeCollectionView.delegate = self
@@ -288,6 +291,7 @@ final class WriteReviewViewController: BaseViewController {
     }
     
     private func setupNotificationCenterOnScrollView() {
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowOnScrollView), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideOnScrollView), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -295,6 +299,7 @@ final class WriteReviewViewController: BaseViewController {
     // MARK: - Action Helper
     
     private func nextButtonTapped() {
+        
         writeReviewData.reviewText = reviewDetailTextView.detailTextView.text
         requestWriteReview(writeReviewData)
         UIView.animate(withDuration: 0.2, animations: {
@@ -305,40 +310,40 @@ final class WriteReviewViewController: BaseViewController {
             self.backgroundView.appearBottomSheetView(subView: self.confirmBottomSheetView, CGFloat().heightConsideringBottomSafeArea(281))
         }
         view.endEditing(true)
-        dump(writeReviewData)
     }
     
     private func backButtonTapped() {
+        
         backgroundView.appearBottomSheetView(subView: exitBottomSheetView, CGFloat().heightConsideringBottomSafeArea(309))
     }
     
     // MARK: - Custom Method
     
     private func configureCollectionViewHeader(to color: UIColor) {
+        
         optionsCollectionViewHeaderLabel.do {
             $0.textColor = color
         }
     }
     
     private func checkTextViewLength(_ textView: UITextView) {
+        
         reviewDetailTextView.configureTextView(to: textView.text.count <= 10 ? .error : .activated)
     }
     
     private func textLimit(_ existingText: String?, to newText: String, with limit: Int) -> Bool {
+        
         guard let text = existingText
         else { return false }
         let isOverLimit = text.count + newText.count <= limit
         return isOverLimit
     }
     
-    func configureBakeryData() {
-        
-    }
-    
     // MARK: - objc
     
     @objc
     private func keyboardWillShowOnScrollView(notification: NSNotification) {
+        
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             UIView.animate(withDuration: 0.2, animations: {
                 self.bottomView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + 30)
@@ -349,6 +354,7 @@ final class WriteReviewViewController: BaseViewController {
 
     @objc
     private func keyboardWillHideOnScrollView(notification: NSNotification) {
+        
         UIView.animate(withDuration: 0.2, animations: {
             self.bottomView.transform = .identity
             self.scrollView.transform = .identity
@@ -362,6 +368,7 @@ final class WriteReviewViewController: BaseViewController {
 extension WriteReviewViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         switch collectionView {
         case likeCollectionView:
             guard let isLikeSelected = collectionView.cellForItem(at: [0, 0])?.isSelected
@@ -394,6 +401,7 @@ extension WriteReviewViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        
         guard collectionView == optionsCollectionView else { return }
         
         if let keywordIndex = writeReviewData.keywordList.firstIndex(of: SingleKeyword(keywordName: keywordRequestList[indexPath.item])) {
@@ -413,6 +421,7 @@ extension WriteReviewViewController: UICollectionViewDelegate {
 extension WriteReviewViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         switch collectionView {
         case likeCollectionView: return 2
         case optionsCollectionView: return 4
@@ -421,6 +430,7 @@ extension WriteReviewViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell: OptionsCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
         
         switch collectionView {
@@ -436,7 +446,10 @@ extension WriteReviewViewController: UICollectionViewDataSource {
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        
         return UIEdgeInsets(top: 18, left: 0, bottom: 0, right: 0)
     }
     
@@ -447,22 +460,24 @@ extension WriteReviewViewController: UICollectionViewDataSource {
 extension WriteReviewViewController: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
+        
         let textCount = textView.text.count
         if textCount < 10 && 0 < textCount {
             reviewDetailTextView.configureTextView(to: .error)
             
-            nextButton.getButtonUI(.gbbGray200!)
+            nextButton.configureButtonUI(.gbbGray200!)
             nextButton.isUserInteractionEnabled = false
         } else {
             reviewDetailTextView.configureTextView(to: .activated)
             
-            nextButton.getButtonUI(.gbbGray700!)
+            nextButton.configureButtonUI(.gbbGray700!)
             nextButton.isUserInteractionEnabled = true
         }
         reviewDetailTextView.updateTextLimitLabel(to: textCount)
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
+        
         if textView.text == I18N.WriteReview.likePlaceholder || textView.text == I18N.WriteReview.dislikePlaceholder {
             textView.text = nil
             textView.textColor = .black
@@ -470,13 +485,17 @@ extension WriteReviewViewController: UITextViewDelegate {
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
+        
         if textView.text.isEmpty {
             textView.text = reviewDetailTextView.isLike ? I18N.WriteReview.likePlaceholder : I18N.WriteReview.dislikePlaceholder
             textView.textColor = .gbbGray300
         }
     }
     
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+    func textView(_ textView: UITextView,
+                  shouldChangeTextIn range: NSRange,
+                  replacementText text: String) -> Bool {
+        
         return self.textLimit(textView.text, to: text, with: 70)
     }
 }
@@ -484,7 +503,9 @@ extension WriteReviewViewController: UITextViewDelegate {
 // MARK: API
 
 extension WriteReviewViewController {
+    
     func requestWriteReview(_ content: WriteReviewRequestDTO) {
+        
         BakeryAPI.shared.postWriteReview(content: content) { response in
             guard let response = response else { return }
             guard let data = response.data else { return }

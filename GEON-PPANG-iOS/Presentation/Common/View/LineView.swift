@@ -27,6 +27,7 @@ final class LineView: UIView {
     // MARK: - Setting
     
     private func setUI() {
+        
         self.do {
             $0.backgroundColor = .gbbGray200
         }

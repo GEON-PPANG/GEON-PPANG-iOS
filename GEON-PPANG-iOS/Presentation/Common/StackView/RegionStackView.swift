@@ -11,14 +11,14 @@ import SnapKit
 import Then
 
 final class RegionStackView: UIStackView {
-
+    
     // MARK: - UI Property
     
     private lazy var regionFirstTag = PaddingLabel()
     private lazy var regionSecondTag = PaddingLabel()
     
     // MARK: - Life Cycle
-        
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
@@ -31,6 +31,7 @@ final class RegionStackView: UIStackView {
     // MARK: - Setting
     
     private func setUI(_ hasSecond: Bool) {
+        
         self.do {
             if hasSecond {
                 $0.addArrangedSubviews(regionFirstTag, regionSecondTag)
@@ -50,15 +51,16 @@ final class RegionStackView: UIStackView {
             $0.adjustsFontSizeToFitWidth = true
         }
     }
+    
+    func configureRegionName(_ first: String, _ second: String) {
         
-    func getRegionName(_ first: String, _ second: String) {
         regionFirstTag.text = first
         regionSecondTag.text = second
         setUI(!second.isEmpty)
-        print("✅🤍✅\(second)")
     }
     
-    func getBackgroundColor(_ color: UIColor) {
+    func configureBackgroundColor(_ color: UIColor) {
+        
         [regionFirstTag, regionSecondTag] .forEach {
             $0.backgroundColor = color
         }

@@ -27,8 +27,8 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        setUI()
         setLayout()
+        setUI()
     }
     
     @available(*, unavailable)
@@ -38,9 +38,70 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Setting
     
+    private func setLayout() {
+        
+        contentView.addSubview(reviewContainer)
+        reviewContainer.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.directionalHorizontalEdges.equalToSuperview().inset(24)
+            $0.width.equalTo(327)
+            $0.height.equalTo(174)
+        }
+        
+        reviewContainer.addSubview(profileImage)
+        profileImage.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(20)
+            $0.leading.equalToSuperview().inset(25)
+            $0.size.equalTo(20) // 기기대응 생각하기
+        }
+        
+        reviewContainer.addSubview(userNicknameLabel)
+        userNicknameLabel.snp.makeConstraints {
+            $0.centerY.equalTo(profileImage)
+            $0.leading.equalToSuperview().inset(52)
+            $0.trailing.equalToSuperview().inset(150)
+            $0.width.equalTo(125)
+            $0.height.equalTo(19)
+        }
+        
+        reviewContainer.addSubview(reviewDateLabel)
+        reviewDateLabel.snp.makeConstraints {
+            $0.centerY.equalTo(userNicknameLabel)
+            $0.leading.equalToSuperview().inset(201)
+            $0.trailing.equalToSuperview().inset(59)
+            $0.width.equalTo(67)
+            $0.height.equalTo(17)
+        }
+        
+        reviewContainer.addSubview(reportLabel)
+        reportLabel.snp.makeConstraints {
+            $0.centerY.equalTo(userNicknameLabel)
+            $0.leading.equalToSuperview().inset(convertByWidthRatio(279))
+            $0.trailing.equalToSuperview().inset(convertByWidthRatio(25))
+            $0.width.equalTo(23)
+            $0.height.equalTo(17)
+        }
+        
+        reviewContainer.addSubview(reviewCategoryStackView)
+        reviewCategoryStackView.snp.makeConstraints {
+            $0.top.equalTo(profileImage.snp.bottom).offset(15)
+            $0.leading.equalTo(profileImage)
+        }
+        
+        reviewContainer.addSubview(reviewTextLabel)
+        reviewTextLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(94)
+            $0.directionalHorizontalEdges.equalToSuperview().inset(25)
+            $0.width.equalTo(277)
+            $0.height.equalTo(60)
+        }
+    }
+    
     private func setUI() {
         
-        self.backgroundColor = .gbbWhite
+        self.do {
+            $0.backgroundColor = .gbbWhite
+        }
         
         reviewContainer.do {
             $0.backgroundColor = .gbbBackground2
@@ -72,70 +133,15 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    private func setLayout() {
-        
-        contentView.addSubview(reviewContainer)
-        reviewContainer.addSubviews(profileImage, userNicknameLabel, reviewDateLabel, reportLabel, reviewCategoryStackView, reviewTextLabel)
-        
-        reviewContainer.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.directionalHorizontalEdges.equalToSuperview().inset(24)
-            $0.width.equalTo(327)
-            $0.height.equalTo(174)
-        }
-        
-        profileImage.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(20)
-            $0.leading.equalToSuperview().inset(25)
-            $0.size.equalTo(20) // 기기대응 생각하기
-        }
-        
-        userNicknameLabel.snp.makeConstraints {
-            $0.centerY.equalTo(profileImage)
-            $0.leading.equalToSuperview().inset(52)
-            $0.trailing.equalToSuperview().inset(150)
-            $0.width.equalTo(125)
-            $0.height.equalTo(19)
-        }
-        
-        reviewDateLabel.snp.makeConstraints {
-            $0.centerY.equalTo(userNicknameLabel)
-            $0.leading.equalToSuperview().inset(201)
-            $0.trailing.equalToSuperview().inset(59)
-            $0.width.equalTo(67)
-            $0.height.equalTo(17)
-        }
-        
-        reportLabel.snp.makeConstraints {
-            $0.centerY.equalTo(userNicknameLabel)
-            $0.leading.equalToSuperview().inset(convertByWidthRatio(279))
-            $0.trailing.equalToSuperview().inset(convertByWidthRatio(25))
-            $0.width.equalTo(23)
-            $0.height.equalTo(17)
-        }
-        
-        reviewCategoryStackView.snp.makeConstraints {
-            $0.top.equalTo(profileImage.snp.bottom).offset(15)
-            $0.leading.equalTo(profileImage)
-        }
-        
-        reviewTextLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(94)
-            $0.directionalHorizontalEdges.equalToSuperview().inset(25)
-            $0.width.equalTo(277)
-            $0.height.equalTo(60)
-        }
-    }
+    // MARK: - Custom Method
     
-    func updateUI(_ data: ReviewList) {
+    func configureCellUI(_ data: ReviewList) {
         
         userNicknameLabel.text = data.memberNickname
         reviewDateLabel.text = data.createdAt
         reviewTextLabel.text = data.reviewText
         
-        if data.recommendKeywordList.isEmpty {
-            
-        } else {
+        if !data.recommendKeywordList.isEmpty {
             let list = data.recommendKeywordList.map {
                 $0.recommendKeywordID
             }

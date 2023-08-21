@@ -14,7 +14,7 @@ final class BookmarkButton: UIButton {
     
     // MARK: - Property
     
-    var updateData: ((Bool) -> Void)?
+    var tappedBookmarkButton: ((Bool) -> Void)?
     
     // MARK: - Life Cycle
     
@@ -22,7 +22,7 @@ final class BookmarkButton: UIButton {
         super.init(frame: .zero)
         
         setUI()
-        setAction()
+        addActionToBookmarkButton()
     }
     
     required init?(coder: NSCoder) {
@@ -53,15 +53,17 @@ final class BookmarkButton: UIButton {
         }
     }
     
-    private func setAction() {
+    private func addActionToBookmarkButton() {
+        
         self.addAction(UIAction { _ in
-            self.updateData?(self.isSelected)
+            self.tappedBookmarkButton?(self.isSelected)
             self.isSelected.toggle()
             self.setUI()
         }, for: .touchUpInside)
     }
     
-    func getCount(_ count: Int) {
+    func configureButtonTitle(_ count: Int) {
+        
         if count == 0 {
             configuration?.title = ""
         } else {

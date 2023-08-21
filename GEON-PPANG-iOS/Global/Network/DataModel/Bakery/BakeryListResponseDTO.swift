@@ -11,7 +11,7 @@ import Foundation
 
 struct BakeryListResponseDTO: Codable, Hashable, BakeryListProtocol {
 
-    let bakeryId: Int
+    let bakeryID: Int
     let bakeryName: String
     let bakeryPicture: String
     let isHACCP: Bool
@@ -19,13 +19,24 @@ struct BakeryListResponseDTO: Codable, Hashable, BakeryListProtocol {
     let isNonGMO: Bool
     let firstNearStation: String
     var secondNearStation: String?
-    let isBookMarked: Bool
-    let bookMarkCount: Int
+    let isBookmarked: Bool
+    let bookmarkCount: Int
     let reviewCount: Int
     let breadType: BreadResponseType
 
     func convertToBakeryList() -> BakeryList {
-        return BakeryList(bakeryId: bakeryId, bakeryName: bakeryName, bakeryPicture: bakeryPicture, isHACCP: isHACCP, isVegan: isVegan, isNonGMO: isNonGMO, firstNearStation: firstNearStation, secondNearStation: secondNearStation, isBookMarked: isBookMarked, bookMarkCount: bookMarkCount, reviewCount: reviewCount, breadType: breadType)
+        return BakeryList(bakeryID: bakeryID,
+                          bakeryName: bakeryName,
+                          bakeryPicture: bakeryPicture,
+                          isHACCP: isHACCP,
+                          isVegan: isVegan,
+                          isNonGMO: isNonGMO,
+                          firstNearStation: firstNearStation,
+                          secondNearStation: secondNearStation,
+                          isBookmarked: isBookmarked,
+                          bookmarkCount: bookmarkCount,
+                          reviewCount: reviewCount,
+                          breadType: breadType)
     }
 }
 
@@ -40,7 +51,7 @@ struct BakeryList: Codable, Hashable, BakeryListProtocol {
         lhs.id == rhs.id
     }
     
-    let bakeryId: Int
+    let bakeryID: Int
     let bakeryName: String
     let bakeryPicture: String
     let isHACCP: Bool
@@ -48,8 +59,8 @@ struct BakeryList: Codable, Hashable, BakeryListProtocol {
     let isNonGMO: Bool
     let firstNearStation: String
     let secondNearStation: String?
-    let isBookMarked: Bool
-    let bookMarkCount: Int
+    let isBookmarked: Bool
+    let bookmarkCount: Int
     let reviewCount: Int
     let breadType: BreadResponseType
 

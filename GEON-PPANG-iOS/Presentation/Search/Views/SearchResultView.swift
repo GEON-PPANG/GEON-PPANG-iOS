@@ -33,13 +33,14 @@ final class SearchResultView: UIView {
     // MARK: - Setting
     
     private func setLayout() {
-        addSubviews(resultLabel, lineView)
         
+        self.addSubview(resultLabel)
         resultLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(12)
             $0.leading.equalToSuperview().offset(24)
         }
         
+        self.addSubview(lineView)
         lineView.snp.makeConstraints {
             $0.height.equalTo(1)
             $0.directionalHorizontalEdges.equalToSuperview()
@@ -48,6 +49,7 @@ final class SearchResultView: UIView {
     }
     
     private func setUI() {
+        
         resultLabel.do {
             $0.basic(font: .headLine!, color: .gbbGray600!)
         }
@@ -57,7 +59,7 @@ final class SearchResultView: UIView {
         }
     }
     
-    func updateUI(count: Int) {
+    func configureUI(count: Int) {
         resultLabel.text = "건빵집 결과 \(count)개"
         resultLabel.partColorChange(targetString: "\(count)개", textColor: .gbbPoint1!)
     }

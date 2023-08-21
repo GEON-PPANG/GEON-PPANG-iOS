@@ -17,7 +17,7 @@ struct SearchResponseDTO: Codable, Hashable {
 // MARK: - SearchBakeryList
 
 struct SearchBakeryList: Codable, Hashable, BakeryListProtocol {
-    let bakeryId: Int
+    let bakeryID: Int
     let bakeryName: String
     let bakeryPicture: String
     let isHACCP: Bool
@@ -25,8 +25,20 @@ struct SearchBakeryList: Codable, Hashable, BakeryListProtocol {
     let isNonGMO: Bool
     let firstNearStation: String
     var secondNearStation: String?
-    let isBookMarked: Bool
-    let bookMarkCount: Int
+    let isBookmarked: Bool
+    let bookmarkCount: Int
     let reviewCount: Int
     let breadType: BreadResponseType
+    
+    enum CodingKeys: String, CodingKey {
+        case bakeryID = "breadId"
+        case bakeryName, bakeryPicture
+        case isHACCP, isVegan, isNonGMO
+        case firstNearStation, secondNearStation
+        case isBookmarked = "isBookMarked"
+        case bookmarkCount = "bookMarkCount"
+        case reviewCount
+        case breadType
+    }
+    
 }

@@ -31,8 +31,8 @@ final class InfoCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        setUI()
         setLayout()
+        setUI()
     }
     
     @available(*, unavailable)
@@ -42,9 +42,98 @@ final class InfoCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Setting
     
+    private func setLayout() {
+        
+        contentView.addSubview(homepageLinkImage)
+        homepageLinkImage.snp.makeConstraints {
+            $0.top.leading.equalToSuperview().inset(24)
+            $0.size.equalTo(24)
+        }
+        
+        contentView.addSubview(homepageLinkButton)
+        homepageLinkButton.snp.makeConstraints {
+            $0.centerY.equalTo(homepageLinkImage)
+            $0.leading.equalTo(homepageLinkImage.snp.trailing).offset(10)
+            $0.width.equalTo(95)
+            $0.height.equalTo(20)
+        }
+        
+        contentView.addSubview(bakeryAddressImage)
+        bakeryAddressImage.snp.makeConstraints {
+            $0.top.equalTo(homepageLinkImage.snp.bottom).offset(18)
+            $0.leading.equalTo(homepageLinkImage)
+            $0.size.equalTo(24)
+        }
+        
+        contentView.addSubview(bakeryAddressLabel)
+        bakeryAddressLabel.snp.makeConstraints {
+            $0.centerY.equalTo(bakeryAddressImage)
+            $0.leading.equalTo(homepageLinkButton)
+            $0.trailing.equalToSuperview().inset(68)
+            $0.width.equalTo(249)
+            $0.height.equalTo(20)
+        }
+        
+        contentView.addSubview(addressCopyButton)
+        addressCopyButton.snp.makeConstraints {
+            $0.centerY.equalTo(bakeryAddressImage)
+            $0.trailing.equalToSuperview().inset(24)
+            $0.size.equalTo(30)
+        }
+        
+        contentView.addSubview(regionStackView)
+        regionStackView.snp.makeConstraints {
+            $0.top.equalTo(bakeryAddressLabel.snp.bottom).offset(13)
+            $0.leading.equalTo(bakeryAddressLabel)
+        }
+        
+        contentView.addSubview(bakeryOpeningHoursImage)
+        bakeryOpeningHoursImage.snp.makeConstraints {
+            $0.top.equalTo(regionStackView.snp.bottom).offset(18)
+            $0.leading.equalToSuperview().inset(24)
+            $0.size.equalTo(24)
+        }
+        
+        contentView.addSubview(bakeryClosedDaysLabel)
+        bakeryClosedDaysLabel.snp.makeConstraints {
+            $0.top.equalTo(bakeryOpeningHoursImage)
+            $0.leading.equalTo(bakeryAddressLabel)
+            $0.trailing.equalToSuperview().inset(24)
+            $0.width.equalTo(293)
+            $0.height.equalTo(20)
+        }
+        
+        contentView.addSubview(bakeryOpeningHoursLabel)
+        bakeryOpeningHoursLabel.snp.makeConstraints {
+            $0.top.equalTo(bakeryClosedDaysLabel.snp.bottom).offset(2)
+            $0.leading.equalTo(bakeryClosedDaysLabel)
+            $0.trailing.equalToSuperview().inset(24)
+            $0.width.equalTo(293)
+            $0.height.equalTo(20)
+        }
+        
+        contentView.addSubview(bakeryPhoneNumberImage)
+        bakeryPhoneNumberImage.snp.makeConstraints {
+            $0.top.equalTo(bakeryOpeningHoursLabel.snp.bottom).offset(18)
+            $0.leading.equalToSuperview().inset(24)
+            $0.size.equalTo(24)
+        }
+        
+        contentView.addSubview(bakeryPhoneNumberLabel)
+        bakeryPhoneNumberLabel.snp.makeConstraints {
+            $0.centerY.equalTo(bakeryPhoneNumberImage)
+            $0.leading.equalTo(bakeryOpeningHoursLabel)
+            $0.trailing.equalToSuperview().inset(155)
+            $0.width.equalTo(162)
+            $0.height.equalTo(20)
+        }
+    }
+    
     private func setUI() {
         
-        self.backgroundColor = .gbbWhite
+        self.do {
+            $0.backgroundColor = .gbbWhite
+        }
         
         homepageLinkImage.do {
             $0.image = .linkIcon
@@ -94,91 +183,17 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    private func setLayout() {
-        
-        contentView.addSubviews(homepageLinkImage, homepageLinkButton, bakeryAddressImage, bakeryAddressLabel, addressCopyButton, regionStackView, bakeryOpeningHoursImage, bakeryClosedDaysLabel, bakeryOpeningHoursLabel, bakeryPhoneNumberImage, bakeryPhoneNumberLabel)
-        
-        homepageLinkImage.snp.makeConstraints {
-            $0.top.leading.equalToSuperview().inset(24)
-            $0.size.equalTo(24)
-        }
-        
-        homepageLinkButton.snp.makeConstraints {
-            $0.centerY.equalTo(homepageLinkImage)
-            $0.leading.equalTo(homepageLinkImage.snp.trailing).offset(10)
-            $0.width.equalTo(95)
-            $0.height.equalTo(20)
-        }
-        
-        bakeryAddressImage.snp.makeConstraints {
-            $0.top.equalTo(homepageLinkImage.snp.bottom).offset(18)
-            $0.leading.equalTo(homepageLinkImage)
-            $0.size.equalTo(24)
-        }
-        
-        bakeryAddressLabel.snp.makeConstraints {
-            $0.centerY.equalTo(bakeryAddressImage)
-            $0.leading.equalTo(homepageLinkButton)
-            $0.trailing.equalToSuperview().inset(68)
-            $0.width.equalTo(249)
-            $0.height.equalTo(20)
-        }
-        
-        addressCopyButton.snp.makeConstraints {
-            $0.centerY.equalTo(bakeryAddressImage)
-            $0.trailing.equalToSuperview().inset(24)
-            $0.size.equalTo(30)
-        }
-        
-        regionStackView.snp.makeConstraints {
-            $0.top.equalTo(bakeryAddressLabel.snp.bottom).offset(13)
-            $0.leading.equalTo(bakeryAddressLabel)
-        }
-        
-        bakeryOpeningHoursImage.snp.makeConstraints {
-            $0.top.equalTo(regionStackView.snp.bottom).offset(18)
-            $0.leading.equalToSuperview().inset(24)
-            $0.size.equalTo(24)
-        }
-        
-        bakeryClosedDaysLabel.snp.makeConstraints {
-            $0.top.equalTo(bakeryOpeningHoursImage)
-            $0.leading.equalTo(bakeryAddressLabel)
-            $0.trailing.equalToSuperview().inset(24)
-            $0.width.equalTo(293)
-            $0.height.equalTo(20)
-        }
-        
-        bakeryOpeningHoursLabel.snp.makeConstraints {
-            $0.top.equalTo(bakeryClosedDaysLabel.snp.bottom).offset(2)
-            $0.leading.equalTo(bakeryClosedDaysLabel)
-            $0.trailing.equalToSuperview().inset(24)
-            $0.width.equalTo(293)
-            $0.height.equalTo(20)
-        }
-        
-        bakeryPhoneNumberImage.snp.makeConstraints {
-            $0.top.equalTo(bakeryOpeningHoursLabel.snp.bottom).offset(18)
-            $0.leading.equalToSuperview().inset(24)
-            $0.size.equalTo(24)
-        }
-        
-        bakeryPhoneNumberLabel.snp.makeConstraints {
-            $0.centerY.equalTo(bakeryPhoneNumberImage)
-            $0.leading.equalTo(bakeryOpeningHoursLabel)
-            $0.trailing.equalToSuperview().inset(155)
-            $0.width.equalTo(162)
-            $0.height.equalTo(20)
-        }
-    }
+    // MARK: - Custom Method
     
-    func updateUI(_ data: BakeryDetailResponseDTO) {
+    func configureCellUI(_ data: BakeryDetailResponseDTO) {
         
         bakeryAddressLabel.text = data.address
-        regionStackView.getRegionName(data.firstNearStation, data.secondNearStation)
+        regionStackView.configureRegionName(data.firstNearStation, data.secondNearStation)
+        
         if data.firstNearStation != "" && data.secondNearStation == "" {
             regionStackView.removeSecondRegion()
         }
+        
         bakeryClosedDaysLabel.text = data.closedDay
         bakeryOpeningHoursLabel.text = data.openingTime
         bakeryPhoneNumberLabel.text = data.phoneNumber
