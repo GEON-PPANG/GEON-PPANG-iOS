@@ -15,24 +15,25 @@ final class BakeryOverviewView: UIView {
     
     // MARK: - Property
     
-    private var ingredientsData: [String] = []
+    private let data: SimpleBakeryModel
     
     // MARK: - UI Property
     
     private let bakeryImageView = UIImageView()
+    private let bakeryNameLabel = UILabel()
     private let flowLayout = OptionsCollectionViewFlowLayout()
     lazy var bakeryIngredientsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-    private let regionStackView = RegionStackView()
+    private var bookmarkCountLabel = BookmarkCountLabel(count: 23)
+    private var regionLabel: RegionLabel?
     
     // MARK: - Life Cycle
     
-    init(bakeryImage: String, ingredients: [String], firstRegion: String, secondRegion: String) {
+    init(of bakery: SimpleBakeryModel) {
+        self.data = bakery
+        
         super.init(frame: .zero)
         
-        setProperties(bakeryImage,
-                      ingredients,
-                      firstRegion,
-                      secondRegion)
+        setProperties()
         setLayout()
         setUI()
         setDelegate()
@@ -45,19 +46,13 @@ final class BakeryOverviewView: UIView {
     
     // MARK: - Setting
     
-    private func setProperties(_ bakeryImage: String,
-                               _ ingredients: [String],
-                               _ firstRegion: String,
-                               _ secondRegion: String) {
+    private func setProperties() {
         
-        let url = URL(string: bakeryImage)
-        self.bakeryImageView.kf.setImage(with: url)
-        self.ingredientsData = ingredients
-        if secondRegion == "" {
-            regionStackView.removeSecondRegion()
+        var regions = data.bakeryRegion
+        if !regions.isEmpty {
+            self.regionLabel = RegionLabel(regions.removeFirst(),
+                                           regions.removeFirst())
         }
-        regionStackView.configureRegionName(firstRegion, secondRegion)
-        regionStackView.configureBackgroundColor(.gbbGray700!)
     }
     
     private func setLayout() {
@@ -70,30 +65,50 @@ final class BakeryOverviewView: UIView {
         bakeryImageView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalToSuperview()
-            $0.width.height.equalTo(90)
+            $0.width.height.equalTo(86)
+        }
+        
+        self.addSubview(bakeryNameLabel)
+        bakeryNameLabel.snp.makeConstraints {
+            $0.top.equalTo(bakeryImageView)
+            $0.leading.equalTo(bakeryImageView.snp.trailing).offset(8)
+        }
+        
+        self.addSubview(bookmarkCountLabel)
+        bookmarkCountLabel.snp.makeConstraints {
+            $0.trailing.equalToSuperview()
+            $0.centerY.equalTo(bakeryNameLabel)
         }
         
         self.addSubview(bakeryIngredientsCollectionView)
         bakeryIngredientsCollectionView.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.leading.equalTo(bakeryImageView.snp.trailing).offset(20)
-            $0.trailing.equalToSuperview().inset(24)
-            $0.height.equalTo(20)
+            $0.top.equalTo(bakeryNameLabel.snp.bottom).offset(9)
+            $0.leading.equalTo(bakeryNameLabel)
+            $0.trailing.equalToSuperview()
+            $0.height.equalTo(22)
         }
         
-        self.addSubview(regionStackView)
-        regionStackView.snp.makeConstraints {
-            $0.leading.equalTo(bakeryImageView.snp.trailing).offset(20)
-            $0.top.equalTo(bakeryIngredientsCollectionView.snp.bottom).offset(16)
+        guard let regionLabel = self.regionLabel else { return }
+        self.addSubview(regionLabel)
+        regionLabel.snp.makeConstraints {
+            $0.leading.equalTo(bakeryNameLabel)
+            $0.bottom.equalTo(bakeryImageView).offset(-2)
         }
     }
     
     private func setUI() {
         
         bakeryImageView.do {
+            $0.kf.setImage(with: URL(string: data.bakeryImageURL))
             $0.backgroundColor = .gbbPoint1
             $0.makeCornerRound(radius: 5)
             $0.contentMode = .scaleAspectFill
+        }
+        
+        bakeryNameLabel.do {
+            $0.setLineHeight(by: 1.05, with: data.bakeryName)
+            $0.textColor = .gbbGray700
+            $0.font = .title2
         }
         
         bakeryIngredientsCollectionView.do {
@@ -119,13 +134,14 @@ extension BakeryOverviewView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return ingredientsData.count
+        return data.bakeryIngredients.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell: DescriptionCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-        cell.configureTagTitle(ingredientsData[indexPath.item])
+        cell.cellColor = .sub
+        cell.configureTagTitle(data.bakeryIngredients[indexPath.item])
         return cell
     }
     
@@ -137,6 +153,6 @@ extension BakeryOverviewView: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let cell: DescriptionCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-        return cell.fittingSize(availableHeight: 25)
+        return cell.fittingSize(availableHeight: 22)
     }
 }
