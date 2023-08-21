@@ -20,7 +20,7 @@ enum HomeIconType {
         }
     }
 }
-final class CountStackView: UIStackView {
+final class IconWithTextStackView: UIStackView {
 
     // MARK: - Property
     

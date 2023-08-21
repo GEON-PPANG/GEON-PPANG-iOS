@@ -23,8 +23,8 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
     private lazy var bakeryImage = GradientImageView(colors: [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.5).cgColor])
     private let reviewTitle = UILabel()
     private let bakeryTitle = UILabel()
-    private let reviewCount = CountStackView()
-    private let bookmarkCount = CountStackView()
+    private let reviewCount = IconWithTextStackView()
+    private let bookmarkCount = IconWithTextStackView()
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: OptionsCollectionViewFlowLayout())
     
     // MARK: - Life Cycle

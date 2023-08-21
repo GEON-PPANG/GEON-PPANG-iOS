@@ -18,8 +18,8 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     private let bakeryImage = UIImageView()
     private let markStackView = MarkStackView()
     private let bakeryTitle = UILabel()
-    private let reviewCount = CountStackView()
-    private let bookmarkCount = CountStackView()
+    private let reviewCount = IconWithTextStackView()
+    private let bookmarkCount = IconWithTextStackView()
     private let regionStackView = RegionStackView()
     
     // MARK: - Life Cycle
