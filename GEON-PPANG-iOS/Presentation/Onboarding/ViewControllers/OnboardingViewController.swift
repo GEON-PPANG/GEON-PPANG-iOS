@@ -112,4 +112,8 @@ final class OnboardingViewController: BaseViewController {
             $0.addArrangedSubviews(emailSignInButton, seperatorView, emailSignUpButton)
         }
     }
+    
+    // TODO: 로그인 / 회원가입 API 추가
+    // TODO: 완료 시 rootVC 변경
+    // TODO: 이메일로 로그인 / 회원가입 완료 시 연결하기
 }
