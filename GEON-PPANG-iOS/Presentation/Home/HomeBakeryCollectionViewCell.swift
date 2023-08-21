@@ -18,7 +18,8 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     private let bakeryImage = UIImageView()
     private let markStackView = MarkStackView()
     private let bakeryTitle = UILabel()
-    private let bakeryReview = UILabel()
+    private let reviewCount = CountStackView()
+    private let bookmarkCount = CountStackView()
     private let regionStackView = RegionStackView()
     
     // MARK: - Life Cycle
@@ -57,18 +58,24 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(bakeryTitle)
         bakeryTitle.snp.makeConstraints {
             $0.top.equalTo(bakeryImage.snp.bottom).offset(13)
+            $0.horizontalEdges.equalToSuperview().inset(16)
+        }
+        
+        contentView.addSubview(bookmarkCount)
+        bookmarkCount.snp.makeConstraints {
+            $0.top.equalTo(bakeryTitle.snp.bottom).offset(8)
             $0.leading.equalToSuperview().offset(16)
         }
         
-        contentView.addSubview(bakeryReview)
-        bakeryReview.snp.makeConstraints {
+        contentView.addSubview(reviewCount)
+        reviewCount.snp.makeConstraints {
             $0.top.equalTo(bakeryTitle.snp.bottom).offset(9)
-            $0.leading.equalTo(bakeryTitle.snp.leading)
+            $0.leading.equalTo(bookmarkCount.snp.trailing).offset(6)
         }
         
         contentView.addSubview(regionStackView)
         regionStackView.snp.makeConstraints {
-            $0.top.equalTo(bakeryReview.snp.bottom).offset(10)
+            $0.top.equalTo(bookmarkCount.snp.bottom).offset(13)
             $0.leading.equalTo(bakeryTitle.snp.leading)
             $0.bottom.equalToSuperview().inset(16)
         }
@@ -81,6 +88,7 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUI() {
+        
         self.do {
             $0.layer.applyShadow(alpha: 0.1, x: 0, y: 0, blur: 10)
             $0.contentView.backgroundColor = .white
@@ -98,19 +106,11 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
         }
         
         bakeryTitle.do {
+            $0.numberOfLines = 1
             $0.basic(font: .bodyB1!, color: .gbbGray700!)
+            $0.sizeToFit()
         }
         
-        bakeryReview.do {
-            $0.basic(font: .captionB1!, color: .gbbGray400!)
-        }
-        
-        [bakeryTitle, bakeryReview].forEach {
-            $0.do {
-                $0.numberOfLines = 1
-                $0.textAlignment = .left
-            }
-        }
     }
     
     // MARK: - Custom Method
@@ -120,11 +120,11 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
         let url = URL(string: data.bakeries.picture)
         bakeryImage.kf.setImage(with: url)
         bakeryTitle.setLineHeight(by: 1.08, with: data.bakeries.name)
-        bakeryReview.setLineHeight(by: 1.09,
-                                   with: "리뷰(\(data.bakeries.reviewCount)) ⦁ 저장(\(data.bakeries.bookmarkCount))")
+        bookmarkCount.iconViewType(.bookmark, count: data.bakeries.bookmarkCount)
+        reviewCount.iconViewType(.reviews, count: data.bakeries.reviewCount)
         markStackView.getMarkStatus(data.bakeries.mark.isHACCP,
                                     data.bakeries.mark.isVegan,
                                     data.bakeries.mark.isNonGMO)
-        regionStackView.configureRegionName(data.bakeries.station.firstStation, data.bakeries.station.secondStation ?? "")
+        regionStackView.configureRegionName(data.bakeries.station.first, data.bakeries.station.second ?? "")
     }
 }

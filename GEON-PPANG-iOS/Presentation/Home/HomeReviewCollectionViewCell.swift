@@ -14,7 +14,7 @@ import Then
 final class HomeReviewCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Property
-
+    
     private var keywords: [String] = []
     private var reviewList: [HomeBestReviewResponseDTO] = []
     
@@ -43,49 +43,14 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Setting
     
-    private func setUI() {
-        self.do {
-            $0.layer.applyShadow(alpha: 0.1, x: 0, y: 0, blur: 10)
-            $0.contentView.backgroundColor = .white
-            $0.contentView.makeCornerRound(radius: 5)
-            $0.contentView.clipsToBounds = true
-        }
-        
-        bakeryImage.do {
-            $0.contentMode = .scaleAspectFill
-            $0.clipsToBounds = true
-        }
-        
-        reviewTitle.do {
-            $0.basic(font: .bodyB2!, color: .white)
-            $0.textAlignment = .left
-            $0.numberOfLines = 2
-        }
-        
-        collectionView.do {
-            $0.isScrollEnabled = false
-            $0.backgroundColor = .clear
-            $0.delegate = self
-            $0.dataSource = self
-        }
-        
-        bakeryTitle.do {
-            $0.numberOfLines = 1
-            $0.basic(font: .bodyB1!, color: .gbbGray700!)
-            $0.textAlignment = .left
-            
-        }
-
-    }
-    
     private func setLayout() {
-   
+        
         contentView.addSubview(bakeryImage)
         bakeryImage.snp.makeConstraints {
             $0.top.directionalHorizontalEdges.equalToSuperview()
             $0.height.equalTo(130)
         }
-             
+        
         contentView.addSubview(collectionView)
         collectionView.snp.makeConstraints {
             $0.top.equalTo(bakeryImage.snp.bottom).offset(16)
@@ -120,6 +85,42 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    private func setUI() {
+        
+        self.do {
+            $0.layer.applyShadow(alpha: 0.1, x: 0, y: 0, blur: 10)
+            $0.contentView.backgroundColor = .white
+            $0.contentView.makeCornerRound(radius: 5)
+            $0.contentView.clipsToBounds = true
+        }
+        
+        bakeryImage.do {
+            $0.contentMode = .scaleAspectFill
+            $0.clipsToBounds = true
+        }
+        
+        reviewTitle.do {
+            $0.basic(font: .bodyB2!, color: .white)
+            $0.textAlignment = .left
+            $0.numberOfLines = 2
+        }
+        
+        collectionView.do {
+            $0.isScrollEnabled = false
+            $0.backgroundColor = .clear
+            $0.delegate = self
+            $0.dataSource = self
+        }
+        
+        bakeryTitle.do {
+            $0.numberOfLines = 1
+            $0.basic(font: .bodyB1!, color: .gbbGray700!)
+            $0.textAlignment = .left
+            
+        }
+        
+    }
+    
     func configureCellUI(data: HomeBestReviewResponseDTO) {
         
         let url = URL(string: data.reviews.picture)
@@ -130,7 +131,7 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         
         reviewCount.iconViewType(.reviews, count: data.reviews.reviewCount)
         bookmarkCount.iconViewType(.bookmark, count: data.reviews.bookmarkCount)
-
+        
         keywords = data.keywords.keywords
         collectionView.reloadData()
     }
