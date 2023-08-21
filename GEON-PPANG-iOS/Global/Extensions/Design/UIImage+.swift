@@ -61,6 +61,8 @@ extension UIImage {
     static let storeIcon = UIImage(named: "ic_store")!.withRenderingMode(.alwaysOriginal)
     static let swapIcon = UIImage(named: "ic_swap")!.withRenderingMode(.alwaysOriginal)
     static let timeIcon = UIImage(named: "ic_time")!.withRenderingMode(.alwaysOriginal)
+    static let mapIcon = UIImage(named: "ic_map")!.withRenderingMode(.alwaysOriginal)
+
     
     // Images
     static let noBookmarkImage = UIImage(named: "img_no_bookmark")!.withRenderingMode(.alwaysOriginal)
