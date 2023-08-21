@@ -16,12 +16,14 @@ final class DescriptionCollectionViewCell: UICollectionViewCell {
     
     enum CellColor {
         case basic
+        case sub
         case point
     }
     
     private var cellBorderColor: UIColor {
         switch cellColor {
         case .basic: return .gbbGray300!
+        case .sub: return .gbbPoint1!
         case .point: return .clear
         }
     }
@@ -29,6 +31,7 @@ final class DescriptionCollectionViewCell: UICollectionViewCell {
     private var cellBackgroundColor: UIColor {
         switch cellColor {
         case .basic: return .clear
+        case .sub: return .gbbBackground1!
         case .point: return .gbbPoint2!
         }
     }
@@ -36,6 +39,7 @@ final class DescriptionCollectionViewCell: UICollectionViewCell {
     private var cellTextColor: UIColor {
         switch cellColor {
         case .basic: return .gbbGray400!
+        case .sub: return .gbbPoint1!
         case .point: return .gbbPoint1!
         }
     }
