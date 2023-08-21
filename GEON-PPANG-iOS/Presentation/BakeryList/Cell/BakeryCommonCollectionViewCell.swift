@@ -141,6 +141,11 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    func configureReviewsUI() {
+        
+        bookmarkStackView.removeFromSuperview()
+    }
+    
     func configureCellUI<T: BakeryListProtocol>(data: T) {
         
         bakeryTitle.setLineHeight(by: 1.05, with: data.bakeryName)
