@@ -23,7 +23,8 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
     private lazy var bakeryImage = GradientImageView(colors: [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.5).cgColor])
     private let reviewTitle = UILabel()
     private let bakeryTitle = UILabel()
-    private let bakeryReview = UILabel()
+    private let reviewCount = CountStackView()
+    private let bookmarkCount = CountStackView()
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: OptionsCollectionViewFlowLayout())
     
     // MARK: - Life Cycle
@@ -69,20 +70,12 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         }
         
         bakeryTitle.do {
+            $0.numberOfLines = 1
             $0.basic(font: .bodyB1!, color: .gbbGray700!)
             $0.textAlignment = .left
             
         }
-        
-        bakeryReview.do {
-            $0.basic(font: .captionB1!, color: .gbbGray400!)
-        }
-        
-        [bakeryTitle, bakeryReview].forEach {
-            $0.do {
-                $0.numberOfLines = 1
-            }
-        }
+
     }
     
     private func setLayout() {
@@ -106,11 +99,18 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
             $0.leading.equalToSuperview().offset(16)
         }
         
-        contentView.addSubview(bakeryReview)
-        bakeryReview.snp.makeConstraints {
-            $0.top.equalTo(bakeryTitle.snp.bottom).offset(7)
+        contentView.addSubview(bookmarkCount)
+        bookmarkCount.snp.makeConstraints {
+            $0.top.equalTo(bakeryTitle.snp.bottom).offset(9)
             $0.bottom.equalToSuperview().inset(15)
             $0.leading.equalToSuperview().offset(16)
+        }
+        
+        contentView.addSubview(reviewCount)
+        reviewCount.snp.makeConstraints {
+            $0.top.equalTo(bakeryTitle.snp.bottom).offset(9)
+            $0.bottom.equalToSuperview().inset(15)
+            $0.leading.equalTo(bookmarkCount.snp.trailing).offset(6)
         }
         
         bakeryImage.addSubview(reviewTitle)
@@ -127,9 +127,10 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         
         reviewTitle.setLineHeight(by: 1.14, with: "\"\(data.text)\"")
         bakeryTitle.setLineHeight(by: 1.08, with: data.reviews.name)
-        bakeryReview.setLineHeight(by: 1.1,
-                                   with: "리뷰(\(data.reviews.reviewCount)) ⦁ 저장(\(data.reviews.bookmarkCount))")
         
+        reviewCount.iconViewType(.reviews, count: data.reviews.reviewCount)
+        bookmarkCount.iconViewType(.bookmark, count: data.reviews.bookmarkCount)
+
         keywords = data.keywords.keywords
         collectionView.reloadData()
     }
