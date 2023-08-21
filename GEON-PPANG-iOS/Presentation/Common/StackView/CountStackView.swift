@@ -10,14 +10,13 @@ import UIKit
 import SnapKit
 import Then
 
-
 enum HomeIconType {
     case reviews, bookmark
     
     var icon: UIImage {
         switch self {
-        case .reviews: return .reviewIcon
-        case .bookmark: return .bookmarkIcon
+        case .reviews: return .reviewIcon16px400
+        case .bookmark: return .bookmarkIcon16px400
         }
     }
 }
@@ -63,15 +62,15 @@ final class CountStackView: UIStackView {
             $0.spacing = 1
             $0.axis = .horizontal
         }
-        
-        countLabel.do {
-            $0.font = .captionB1
-            $0.textColor = .gbbGray400
-        }
+
     }
     
-    func iconViewType(_ type: HomeIconType) {
+    func iconViewType(_ type: HomeIconType, count: Int) {
+        
         icon.image = type.icon
+        countLabel.basic(text: "(\(count))",
+                         font: .captionB1!,
+                         color: .gbbGray400!)
     }
 
 }
