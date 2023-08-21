@@ -73,7 +73,7 @@
 		097682E52A5C99340008F4FB /* BakeryFilterItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682E42A5C99340008F4FB /* BakeryFilterItems.swift */; };
 		097682E72A5CF0080008F4FB /* BakeryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682E62A5CF0080008F4FB /* BakeryFilterView.swift */; };
 		097682E92A5D0B6B0008F4FB /* BakeryListTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682E82A5D0B6B0008F4FB /* BakeryListTopView.swift */; };
-		097682EB2A5D12BD0008F4FB /* BakeryCollectionViewListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682EA2A5D12BD0008F4FB /* BakeryCollectionViewListCell.swift */; };
+		097682EB2A5D12BD0008F4FB /* BakeryCommonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682EA2A5D12BD0008F4FB /* BakeryCommonCollectionViewCell.swift */; };
 		098716B42A6061F500538D05 /* SearchResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098716B32A6061F500538D05 /* SearchResponseDTO.swift */; };
 		098716B62A60F52200538D05 /* BakeryTypeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098716B52A60F52200538D05 /* BakeryTypeProtocol.swift */; };
 		098716B82A6138BD00538D05 /* MyReviewsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098716B72A6138BD00538D05 /* MyReviewsHeaderView.swift */; };
@@ -234,7 +234,7 @@
 		097682E42A5C99340008F4FB /* BakeryFilterItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryFilterItems.swift; sourceTree = "<group>"; };
 		097682E62A5CF0080008F4FB /* BakeryFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryFilterView.swift; sourceTree = "<group>"; };
 		097682E82A5D0B6B0008F4FB /* BakeryListTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryListTopView.swift; sourceTree = "<group>"; };
-		097682EA2A5D12BD0008F4FB /* BakeryCollectionViewListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryCollectionViewListCell.swift; sourceTree = "<group>"; };
+		097682EA2A5D12BD0008F4FB /* BakeryCommonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryCommonCollectionViewCell.swift; sourceTree = "<group>"; };
 		098716B32A6061F500538D05 /* SearchResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponseDTO.swift; sourceTree = "<group>"; };
 		098716B52A60F52200538D05 /* BakeryTypeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryTypeProtocol.swift; sourceTree = "<group>"; };
 		098716B72A6138BD00538D05 /* MyReviewsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewsHeaderView.swift; sourceTree = "<group>"; };
@@ -416,7 +416,7 @@
 		092F11B12A69A6CC00852CA5 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				097682EA2A5D12BD0008F4FB /* BakeryCollectionViewListCell.swift */,
+				097682EA2A5D12BD0008F4FB /* BakeryCommonCollectionViewCell.swift */,
 				097682E22A5C95750008F4FB /* BakeryFilterCollectionViewCell.swift */,
 				3E7B21C32A621A9A00C8F8B4 /* SortBakeryCollectionViewCell.swift */,
 			);
@@ -1527,10 +1527,10 @@
 				09B13F502A593CB800C0C723 /* BakeryListViewController.swift in Sources */,
 				09FD47D92A5E5148002020BD /* MySavedBakeryViewController.swift in Sources */,
 				093214022A5AE27800875EF6 /* Utils.swift in Sources */,
-				097682EB2A5D12BD0008F4FB /* BakeryCollectionViewListCell.swift in Sources */,
-				097682EB2A5D12BD0008F4FB /* BakeryCollectionViewListCell.swift in Sources */,
+				097682EB2A5D12BD0008F4FB /* BakeryCommonCollectionViewCell.swift in Sources */,
+				097682EB2A5D12BD0008F4FB /* BakeryCommonCollectionViewCell.swift in Sources */,
 				3E8B30002A67A614001BD057 /* BreadRequestType.swift in Sources */,
-				097682EB2A5D12BD0008F4FB /* BakeryCollectionViewListCell.swift in Sources */,
+				097682EB2A5D12BD0008F4FB /* BakeryCommonCollectionViewCell.swift in Sources */,
 				090556452A51E79B00752067 /* UITextField+.swift in Sources */,
 				0959F14E2A65840300E77CAF /* NetworkResult.swift in Sources */,
 				0959F16C2A658C9500E77CAF /* AuthResponseDTO.swift in Sources */,

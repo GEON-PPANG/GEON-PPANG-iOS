@@ -11,7 +11,7 @@ import Kingfisher
 import SnapKit
 import Then
 
-final class BakeryCollectionViewListCell: UICollectionViewListCell {
+final class BakeryCommonCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Property
     
@@ -179,7 +179,7 @@ final class BakeryCollectionViewListCell: UICollectionViewListCell {
 
 // MARK: - CollectionView Register
 
-extension BakeryCollectionViewListCell {
+extension BakeryCommonCollectionViewCell {
     private func setRegistration() {
         
         collectionView.register(cell: DescriptionCollectionViewCell.self)
@@ -188,7 +188,7 @@ extension BakeryCollectionViewListCell {
 
 // MARK: - UICollectionViewDataSource
 
-extension BakeryCollectionViewListCell: UICollectionViewDataSource {
+extension BakeryCommonCollectionViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return breadTypeTag.count
     }
@@ -202,7 +202,7 @@ extension BakeryCollectionViewListCell: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegateFlowLayout
 
-extension BakeryCollectionViewListCell: UICollectionViewDelegateFlowLayout {
+extension BakeryCommonCollectionViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let tagTitle = self.breadTypeTag[indexPath.item]
         let itemSize = tagTitle.size(withAttributes: [NSAttributedString.Key.font: UIFont.captionM1])
