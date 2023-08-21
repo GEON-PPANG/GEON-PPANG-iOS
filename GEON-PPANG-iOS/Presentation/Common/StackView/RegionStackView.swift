@@ -59,6 +59,13 @@ final class RegionStackView: UIStackView {
         setUI(!second.isEmpty)
     }
     
+    func configureRegion(_ data: NearStationResponseDTO) {
+        
+        regionFirstTag.text = data.stations[0]
+        regionSecondTag.text = data.stations[1]
+        setUI(!data.stations[1].isEmpty)
+    }
+    
     func configureBackgroundColor(_ color: UIColor) {
         
         [regionFirstTag, regionSecondTag] .forEach {

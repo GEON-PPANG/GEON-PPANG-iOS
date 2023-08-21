@@ -125,6 +125,11 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
         markStackView.getMarkStatus(data.bakeries.mark.isHACCP,
                                     data.bakeries.mark.isVegan,
                                     data.bakeries.mark.isNonGMO)
-        regionStackView.configureRegionName(data.bakeries.station.first, data.bakeries.station.second ?? "")
+        
+        if data.bakeries.station.second == "" {
+            regionStackView.removeSecondRegion()
+        }
+        
+        regionStackView.configureRegion(data.bakeries.station)
     }
 }
