@@ -240,10 +240,9 @@ final class WriteReviewViewController: BaseViewController {
         
         nextButton.do {
             $0.backgroundColor = .gbbPoint1
-            $0.isUserInteractionEnabled = false
             $0.makeCornerRound(radius: 12)
             $0.configureButtonTitle(.write)
-            $0.configureButtonUI(.gbbGray200!)
+            $0.configureInteraction(to: false)
             $0.addAction(UIAction { [weak self] _ in
                 self?.nextButtonTapped()
             }, for: .touchUpInside)
@@ -292,7 +291,6 @@ final class WriteReviewViewController: BaseViewController {
     
     private func nextButtonTapped() {
         
-        writeReviewData.reviewText = reviewDetailTextView.detailTextView.text
         requestWriteReview(writeReviewData)
         UIView.animate(withDuration: 0.2, animations: {
             self.bottomView.transform = .identity
@@ -316,11 +314,6 @@ final class WriteReviewViewController: BaseViewController {
         optionsCollectionViewHeaderLabel.do {
             $0.textColor = color
         }
-    }
-    
-    private func checkTextViewLength(_ textView: UITextView) {
-        
-        reviewDetailTextView.configureTextView(to: textView.text.count <= 10 ? .error : .activated)
     }
     
     private func textLimit(_ existingText: String?, to newText: String, with limit: Int) -> Bool {
@@ -383,9 +376,8 @@ extension WriteReviewViewController: UICollectionViewDelegate {
             let hasSelection = collectionView.indexPathsForSelectedItems != nil
             reviewDetailTextView.isUserInteractionEnabled = hasSelection
             reviewDetailTextView.configureTextView(to: hasSelection ? .activated : .deactivated)
-            reviewDetailTextView.checkTextCount()
-            
             writeReviewData.keywordList.append(SingleKeyword(keywordName: keywordRequestList[indexPath.item]))
+            nextButton.configureInteraction(to: hasSelection)
             
         default:
             return
@@ -394,13 +386,11 @@ extension WriteReviewViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         
-        guard collectionView == optionsCollectionView else { return }
-        
         if let keywordIndex = writeReviewData.keywordList.firstIndex(of: SingleKeyword(keywordName: keywordRequestList[indexPath.item])) {
             writeReviewData.keywordList.remove(at: keywordIndex)
         }
         
-        if collectionView.indexPathsForSelectedItems == [] {
+        if optionsCollectionView.indexPathsForSelectedItems == [] {
             reviewDetailTextView.isUserInteractionEnabled = false
             reviewDetailTextView.configureTextView(to: .deactivated)
         }
@@ -454,18 +444,13 @@ extension WriteReviewViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         
         let textCount = textView.text.count
-        if textCount < 10 && 0 < textCount {
-            reviewDetailTextView.configureTextView(to: .error)
-            
-            nextButton.configureButtonUI(.gbbGray200!)
-            nextButton.isUserInteractionEnabled = false
-        } else {
-            reviewDetailTextView.configureTextView(to: .activated)
-            
-            nextButton.configureButtonUI(.gbbGray700!)
-            nextButton.isUserInteractionEnabled = true
-        }
+        nextButton.configureInteraction(to: true)
+        reviewDetailTextView.configureTextView(to: .activated)
         reviewDetailTextView.updateTextLimitLabel(to: textCount)
+        
+        if textView.text.isEmpty && !reviewDetailTextView.isLike {
+            nextButton.configureInteraction(to: false)
+        }
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -481,6 +466,7 @@ extension WriteReviewViewController: UITextViewDelegate {
         if textView.text.isEmpty {
             textView.text = reviewDetailTextView.isLike ? I18N.WriteReview.likePlaceholder : I18N.WriteReview.dislikePlaceholder
             textView.textColor = .gbbGray300
+            writeReviewData.reviewText = ""
         }
     }
     
@@ -488,7 +474,7 @@ extension WriteReviewViewController: UITextViewDelegate {
                   shouldChangeTextIn range: NSRange,
                   replacementText text: String) -> Bool {
         
-        return self.textLimit(textView.text, to: text, with: 70)
+        return self.textLimit(textView.text, to: text, with: 120)
     }
 }
 

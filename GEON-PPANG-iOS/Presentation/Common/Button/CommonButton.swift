@@ -95,4 +95,9 @@ final class CommonButton: UIButton {
         }
         addAction(action, for: .touchUpInside)
     }
+    
+    func configureInteraction(to value: Bool) {
+        self.isUserInteractionEnabled = value
+        self.configureButtonUI(value ? .gbbGray700! : .gbbGray200!)
+    }
 }
