@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class SearchResultView: UIView {
+final class SearchResultHeaderView: UICollectionReusableView {
     
     // MARK: - UI Property
     
