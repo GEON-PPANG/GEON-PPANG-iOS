@@ -29,21 +29,14 @@ final class WriteReviewViewController: BaseViewController {
     private let bottomView = BottomView()
     private let nextButton = CommonButton()
     
-    private lazy var bakeryOverviewView = BakeryOverviewView(
-        bakeryImage: bakeryData.bakeryImageURL,
-        ingredients: bakeryData.bakeryIngredients,
-        firstRegion: bakeryData.bakeryRegion[0],
-        secondRegion: bakeryData.bakeryRegion[1]
-    )
+    private lazy var bakeryOverviewView = BakeryOverviewView(of: bakeryData)
     
     private let lineView = LineView()
     
-    private let likeCollectionViewFlowLayout = OptionsCollectionViewFlowLayout()
-    private let optionsCollectionViewFlowLayout = OptionsCollectionViewFlowLayout()
     private let likeCollectionViewHeaderLabel = UILabel()
-    private lazy var likeCollectionView = OptionsCollectionView(frame: .zero, collectionViewLayout: likeCollectionViewFlowLayout)
+    private let likeCollectionView = OptionsCollectionView(frame: .zero, collectionViewLayout: OptionsCollectionViewFlowLayout())
     private let optionsCollectionViewHeaderLabel = UILabel()
-    private lazy var optionsCollectionView = OptionsCollectionView(frame: .zero, collectionViewLayout: optionsCollectionViewFlowLayout)
+    private let optionsCollectionView = OptionsCollectionView(frame: .zero, collectionViewLayout: OptionsCollectionViewFlowLayout())
     
     private let reviewDetailTextView = ReviewDetailTextView()
     private let aboutReviewContainerView = UIView()
@@ -78,7 +71,6 @@ final class WriteReviewViewController: BaseViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        Utils.updateCollectionViewConstraint(of: bakeryOverviewView.bakeryIngredientsCollectionView, byOffset: 1)
         Utils.updateCollectionViewConstraint(of: likeCollectionView)
         Utils.updateCollectionViewConstraint(of: optionsCollectionView)
     }
@@ -116,7 +108,7 @@ final class WriteReviewViewController: BaseViewController {
         
         contentView.addSubview(lineView)
         lineView.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(20)
             $0.top.equalTo(bakeryOverviewView.snp.bottom).offset(24)
             $0.height.equalTo(1)
         }
@@ -182,7 +174,7 @@ final class WriteReviewViewController: BaseViewController {
         
         navigationBar.do {
             $0.backgroundColor = .white
-            $0.configureLeftTitle(to: bakeryData.bakeryName)
+            $0.configureCenterTitle(to: "리뷰 쓰기")
             $0.configureBottomLine()
             $0.configureBackButtonAction(UIAction { [weak self] _ in
                 self?.backButtonTapped()
