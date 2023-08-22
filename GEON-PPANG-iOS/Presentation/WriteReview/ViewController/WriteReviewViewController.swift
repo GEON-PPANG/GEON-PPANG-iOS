@@ -304,7 +304,7 @@ final class WriteReviewViewController: BaseViewController {
     
     private func backButtonTapped() {
         
-        backgroundView.appearBottomSheetView(subView: exitBottomSheetView, CGFloat().heightConsideringBottomSafeArea(309))
+        backgroundView.appearBottomSheetView(subView: exitBottomSheetView, CGFloat().heightConsideringBottomSafeArea(347))
     }
     
     // MARK: - Custom Method
