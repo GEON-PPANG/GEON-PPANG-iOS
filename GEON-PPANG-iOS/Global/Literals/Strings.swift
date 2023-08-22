@@ -51,7 +51,7 @@ struct I18N {
         static let sheetQuit = "네, 그만 쓸게요"
         static let sheetContinue = "아니요, 계속 쓸게요"
         
-        static let confirmSheetTitle = "작성이 완료되었어요!"
+        static let confirmSheetTitle = "작성이 완료됐어요!"
     }
     
     /// BakeryList

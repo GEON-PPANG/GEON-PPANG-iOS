@@ -259,8 +259,8 @@ final class WriteReviewViewController: BaseViewController {
         }
         
         confirmBottomSheetView.do {
-            $0.getEmojiType(.smile)
-            $0.getBottonSheetTitle(I18N.WriteReview.confirmSheetTitle)
+            $0.configureEmojiType(.smile)
+            $0.configureBottonSheetTitle(I18N.WriteReview.confirmSheetTitle)
             $0.dismissBottomSheet = {
                 self.backgroundView.dissmissFromSuperview()
                 self.navigationController?.popViewController(animated: true)
@@ -297,7 +297,7 @@ final class WriteReviewViewController: BaseViewController {
             self.scrollView.transform = .identity
         }) { _ in
             self.backgroundView.dimmedView.isUserInteractionEnabled = false
-            self.backgroundView.appearBottomSheetView(subView: self.confirmBottomSheetView, CGFloat().heightConsideringBottomSafeArea(281))
+            self.backgroundView.appearBottomSheetView(subView: self.confirmBottomSheetView, CGFloat().heightConsideringBottomSafeArea(292))
         }
         view.endEditing(true)
     }
