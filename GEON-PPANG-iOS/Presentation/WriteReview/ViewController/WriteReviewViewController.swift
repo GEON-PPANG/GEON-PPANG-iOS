@@ -372,6 +372,10 @@ extension WriteReviewViewController: UICollectionViewDelegate {
             
             writeReviewData.isLike = isLikeSelected
             
+            if !isLikeSelected {
+                nextButton.configureInteraction(to: false)
+            }
+            
         case optionsCollectionView:
             let hasSelection = collectionView.indexPathsForSelectedItems != nil
             reviewDetailTextView.isUserInteractionEnabled = hasSelection
