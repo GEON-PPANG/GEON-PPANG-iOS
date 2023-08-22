@@ -55,7 +55,17 @@ final class CommonButton: UIButton {
     
     func configureButtonTitle(_ title: ButtonTitle) {
         
-        setTitle(title.rawValue, for: .normal)
+        self.setTitle(title.rawValue, for: .normal)
+    }
+    
+    func configureButtonTitle(to text: String) {
+        
+        self.setTitle(text, for: .normal)
+    }
+    
+    func configureButtonTitle(color: UIColor) {
+        
+        self.setTitleColor(color, for: .normal)
     }
     
     func configureButtonUI(_ color: UIColor, _ border: UIColor? = .clear) {
