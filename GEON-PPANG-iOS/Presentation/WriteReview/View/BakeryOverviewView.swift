@@ -51,7 +51,7 @@ final class BakeryOverviewView: UIView {
         var regions = data.bakeryRegion
         if !regions.isEmpty {
             self.regionLabel = RegionLabel(regions.removeFirst(),
-                                           regions.removeFirst())
+                                           regions.popLast())
         }
     }
     
