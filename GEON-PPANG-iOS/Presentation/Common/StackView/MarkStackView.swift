@@ -63,7 +63,7 @@ final class MarkStackView: UIStackView {
         }
     }
     
-    func confiureIconImage(_ haccp: UIImage, _ vegan: UIImage, _ gmo: UIImage) {
+    func configureIconImage(_ haccp: UIImage, _ vegan: UIImage, _ gmo: UIImage) {
         
         hccpMarkIconView.image = haccp
         veganIconView.image = vegan
