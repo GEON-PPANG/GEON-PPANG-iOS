@@ -10,7 +10,8 @@ import UIKit
 import Then
 import SnapKit
 
-enum Sections: Int, Hashable, CaseIterable {
+enum Sections: Int, CaseIterable {
+    
     case bakery, review, bottom
     
     var title: String {
@@ -27,13 +28,13 @@ enum Item: Hashable {
     case bakery(HomeBestBakeryResponseDTO)
     case reviews(HomeBestReviewResponseDTO)
     case bottom
-
+    
 }
 
 final class HomeViewController: BaseViewController {
     
     // MARK: - Property
-
+    
     typealias DataSource = UICollectionViewDiffableDataSource<Sections, Item>
     typealias Snapshot = NSDiffableDataSourceSnapshot<Sections, Item>
     
@@ -106,7 +107,7 @@ final class HomeViewController: BaseViewController {
             $0.delegate = self
         }
     }
-        
+    
     private func setRegistration() {
         
         collectionView.registerCells(cells: [HomeBakeryCollectionViewCell.self,
@@ -136,10 +137,10 @@ final class HomeViewController: BaseViewController {
     }
     
     private func setSnapshot() {
-
+        
         var snapshot = Snapshot()
         defer { dataSource?.apply(snapshot, animatingDifferences: false)}
-
+        
         snapshot.appendSections(Sections.allCases)
         
         let itemsDictionary: [Sections: [Item]] = [
@@ -147,12 +148,12 @@ final class HomeViewController: BaseViewController {
             .review: reviewList.map { .reviews($0) },
             .bottom: [.bottom]
         ]
-
+        
         for (section, items) in itemsDictionary {
             snapshot.appendItems(items, toSection: section)
         }
-
-   }
+        
+    }
     
     private func setSupplementaryView() {
         
@@ -172,7 +173,7 @@ final class HomeViewController: BaseViewController {
         
     }
     
-    func layout() -> UICollectionViewCompositionalLayout {
+    private func layout() -> UICollectionViewCompositionalLayout {
         
         return UICollectionViewCompositionalLayout(sectionProvider: { [weak self] sectionIndex, _ in
             switch sectionIndex {
@@ -238,11 +239,11 @@ extension HomeViewController: UICollectionViewDelegate {
         case .bakery:
             nextViewController.bakeryID = self.bakeryList[indexPath.item].bakeries.bakeryID
             Utils.push(self.navigationController, nextViewController)
-
+            
         case .review:
             nextViewController.bakeryID = self.reviewList[indexPath.item].reviews.bakeryID
             Utils.push(self.navigationController, nextViewController)
-
+            
         default:
             break
         }
@@ -270,7 +271,7 @@ extension HomeViewController {
             let reviewsList = data.map { $0 }
             self.reviewList = reviewsList
             self.setSnapshot()
-
+            
         }
     }
 }
