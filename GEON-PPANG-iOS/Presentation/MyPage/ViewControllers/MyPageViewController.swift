@@ -23,6 +23,7 @@ final class MyPageViewController: BaseViewController {
     
     // MARK: - UI Property
     
+    private let navigationBar = CustomNavigationBar()
     private let flowLayout = UICollectionViewFlowLayout()
     private lazy var myPageCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
     
@@ -31,13 +32,8 @@ final class MyPageViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setNavigationBarHidden()
         requestMemberData()
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-        Utils.updateCollectionViewConstraint(of: myPageCollectionView)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -49,15 +45,25 @@ final class MyPageViewController: BaseViewController {
     // MARK: - Setting
     
     override func setLayout() {
+        
+        view.addSubview(navigationBar)
+        navigationBar.snp.makeConstraints {
+            $0.top.horizontalEdges.equalToSuperview()
+        }
+        
         view.addSubview(myPageCollectionView)
         myPageCollectionView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.top.equalTo(navigationBar.snp.bottom)
             $0.horizontalEdges.bottom.equalToSuperview()
-            $0.height.equalTo(50)
         }
     }
     
     override func setUI() {
+        
+        navigationBar.do {
+            $0.configureLeftTitle(to: I18N.MyPage.title)
+            $0.configureBottomLine()
+        }
         
         flowLayout.do {
             $0.scrollDirection = .vertical
@@ -73,6 +79,7 @@ final class MyPageViewController: BaseViewController {
     }
     
     override func setDelegate() {
+        
         myPageCollectionView.delegate = self
         myPageCollectionView.dataSource = self
     }
@@ -163,13 +170,14 @@ extension MyPageViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
         switch section {
         case 0:
             let trueOptions = memberData.breadType.configureTrueOptions()
             var letterCount = 0
             trueOptions.forEach { letterCount += $0.0.count }
-            return .init(width: SizeLiteral.Screen.width,
-                         height: letterCount <= 15 ? 340 : 375)
+            return .init(width: collectionView.frame.width,
+                         height: letterCount <= 15 ? 288 : 323)
         default:
             return .zero
         }
@@ -188,7 +196,9 @@ extension MyPageViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - API
 
 extension MyPageViewController {
+    
     func requestMemberData() {
+        
         MyPageAPI.shared.getMemberData { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
