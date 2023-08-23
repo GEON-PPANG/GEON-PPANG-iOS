@@ -24,6 +24,11 @@ struct I18N {
         static let latelySigninSNS = "카카오톡"
     }
     
+    /// Welcome
+    struct Welcome {
+        static let welcomeText = "님:)\n건빵에 오신 걸 환영해요!"
+    }
+    
     /// Bottomsheet
     struct Bottomsheet {
         static let email = "사용 가능한 이메일입니다."
