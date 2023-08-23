@@ -23,7 +23,7 @@ protocol BakeryListProtocol {
     var isHACCP: Bool { get }
     var isVegan: Bool { get }
     var isNonGMO: Bool { get }
-    var station: String { get }
+//    var station: String { get }
 
     var bookmarkCount: Int { get }
     var reviewCount: Int { get }

@@ -82,14 +82,14 @@ final class MySavedBakeryViewController: BaseViewController {
     
     private func setRegistration() {
         
-        collectionView.register(cell: BakeryCollectionViewListCell.self)
+        collectionView.register(cell: BakeryCommonCollectionViewCell.self)
         collectionView.register(cell: EmptyCollectionViewCell.self)
     }
     
     private func setDataSource() {
         
-        let cellRegistration = UICollectionView.CellRegistration<BakeryCollectionViewListCell, BakeryList> { (cell, _, item) in
-            cell.separatorLayoutGuide.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        let cellRegistration = UICollectionView.CellRegistration<BakeryCommonCollectionViewCell, BakeryList> { (cell, _, item) in
+
             if let bakeryListItem = item as? BakeryList {
                 cell.configureCellUI(data: bakeryListItem)
             }
