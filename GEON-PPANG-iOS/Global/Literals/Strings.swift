@@ -40,12 +40,7 @@ struct I18N {
         static let like = "좋아요"
         static let dislike = "별로예요"
         static let optionTitle = "어떤것을 추천하나요?"
-        static let aboutReview = """
-            솔직하게 작성해주신 리뷰는 건빵 소비자에게 도움이 됩니다!
-            하지만 선량한 업주나 제3자의 권리를 침해하는 게시물 (허위 리뷰,
-            명예훼손, 욕설, 타인 비방글 등)은 안내 없이 삭제되며, 관련법률에 따라
-            제재를 받을 수 있습니다. 또한, 건빵은 이에 대한 책임을 지지 않습니다.
-        """
+        static let aboutReview = "솔직하게 작성해주신 리뷰는 건빵 소비자에게 도움이 됩니다! 하지만 선량한 업주나 제3자의 권리를 침해하는 게시물 (허위 리뷰, 명예훼손, 욕설, 타인 비방글 등)은 안내 없이 삭제되며, 관련법률에 따라 제재를 받을 수 있습니다. 또한, 건빵은 이에 대한 책임을 지지 않습니다."
         static let sheetTitle = "정말 리뷰 작성을 그만하실 건가요?"
         static let sheetDescription = "여러분이 작성해주신 리뷰가\n다른 유저의 건빵생활을 도울 수 있어요 "
         static let sheetQuit = "네, 그만 쓸게요"

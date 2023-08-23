@@ -40,7 +40,6 @@ final class WriteReviewViewController: BaseViewController {
     
     private let reviewDetailTextView = ReviewDetailTextView()
     private let aboutReviewContainerView = UIView()
-    private let dotView = UILabel()
     private let aboutReviewLabel = UILabel()
     
     private let backgroundView = BottomSheetAppearView()
@@ -156,16 +155,9 @@ final class WriteReviewViewController: BaseViewController {
             $0.height.equalTo(207)
         }
         
-        aboutReviewContainerView.addSubview(dotView)
-        dotView.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(24)
-            $0.top.equalToSuperview().offset(16)
-        }
-        
         aboutReviewContainerView.addSubview(aboutReviewLabel)
         aboutReviewLabel.snp.makeConstraints {
-            $0.leading.equalTo(dotView.snp.trailing)
-            $0.trailing.equalToSuperview().inset(24)
+            $0.horizontalEdges.equalToSuperview().inset(24)
             $0.top.equalToSuperview().offset(16)
         }
     }
@@ -214,13 +206,6 @@ final class WriteReviewViewController: BaseViewController {
         
         aboutReviewContainerView.do {
             $0.backgroundColor = .gbbGray100
-        }
-        
-        dotView.do {
-            $0.font = .captionM2
-            $0.textColor = .gbbGray300
-            $0.textAlignment = .center
-            $0.setLineHeight(by: 1.37, with: "•")
         }
         
         aboutReviewLabel.do {
