@@ -75,6 +75,8 @@ final class MyPageViewController: BaseViewController {
             $0.register(header: MyPageCollectionViewHeader.self)
             $0.register(cell: MyPageCollectionViewCell.self)
             $0.register(footer: MyPageCollectionViewFooter.self)
+            $0.backgroundColor = .gbbGray100
+            $0.bounces = false
         }
     }
     
@@ -100,8 +102,8 @@ extension MyPageViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
-        case 0: return MyPageSectionEnum.terms.items.count
-        case 1: return MyPageSectionEnum.questions.items.count
+        case 0: return MyPageSectionEnum.basic.items.count
+        case 1: return MyPageSectionEnum.version.items.count
         default: return 0
         }
     }
@@ -111,15 +113,9 @@ extension MyPageViewController: UICollectionViewDataSource {
         let section = indexPath.section
         switch section {
         case 0:
-            cell.configureTitle(to: MyPageSectionEnum.terms.items[indexPath.item])
-            cell.applyTopThickBorder()
+            cell.configureTitle(to: MyPageSectionEnum.basic.items[indexPath.item])
         case 1:
-            cell.configureTitle(to: MyPageSectionEnum.questions.items[indexPath.item])
-            if indexPath.item == 0 {
-                cell.applyTopThickBorder()
-            } else {
-                cell.applyTopThinBorder()
-            }
+            cell.configureTitle(to: MyPageSectionEnum.version.items[indexPath.item])
         default: return UICollectionViewCell()
         }
         return cell
@@ -160,9 +156,9 @@ extension MyPageViewController: UICollectionViewDelegateFlowLayout {
             return .init(width: SizeLiteral.Screen.width, height: 68 + 8)
         case 1:
             if indexPath.item == 0 {
-                return .init(width: SizeLiteral.Screen.width, height: 68 + 8)
+                return .init(width: SizeLiteral.Screen.width, height: 64)
             } else {
-                return .init(width: SizeLiteral.Screen.width, height: 68 + 1)
+                return .init(width: SizeLiteral.Screen.width, height: 64)
             }
         default:
             return .zero
