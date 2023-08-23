@@ -17,20 +17,23 @@ final class SearchViewController: BaseViewController {
     enum Section {
         case initial, main, empty
     }
+    
     private lazy var safeArea = self.view.safeAreaLayoutGuide
     typealias Item = AnyHashable
+    
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Item>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Item>
+    
     private var dataSource: DataSource?
-    private var searchList: SearchResponseDTO?
     private var searchBakeryList: [SearchBakeryList] = []
-    private var bakeryListCount: Int?
     private var currentSection: [Section] = [.initial]
+    
     private var bakeryName: String?
+    private var bakeryListCount: Int?
     
     // MARK: - UI Property
     
     private let naviView = SearchNavigationView()
-    private let searchResultView = SearchResultView()
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
     
     // MARK: - Life Cycle
@@ -42,12 +45,14 @@ final class SearchViewController: BaseViewController {
             getSearchBakery(bakeryName: bakeryName)
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setRegistration()
         setDataSource()
-        setReloadData()
+        setSanpshot()
+        setSupplementView()
     }
     
     // MARK: - Setting
@@ -65,17 +70,10 @@ final class SearchViewController: BaseViewController {
             $0.directionalHorizontalEdges.equalTo(safeArea)
             $0.height.equalTo(convertByHeightRatio(68))
         }
-        
-        view.addSubview(searchResultView)
-        searchResultView.snp.makeConstraints {
-            $0.top.equalTo(naviView.snp.bottom)
-            $0.directionalHorizontalEdges.equalTo(safeArea)
-            $0.height.equalTo(convertByHeightRatio(55))
-        }
-        
+
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints {
-            $0.top.equalTo(searchResultView.snp.bottom)
+            $0.top.equalTo(naviView.snp.bottom)
             $0.directionalHorizontalEdges.equalTo(safeArea)
             $0.bottom.equalToSuperview()
         }
@@ -92,14 +90,10 @@ final class SearchViewController: BaseViewController {
                 self.getSearchBakery(bakeryName: text)
             }
         }
-        
-        searchResultView.do {
-            $0.isHidden = true
-        }
-        
+
         collectionView.do {
             $0.isScrollEnabled = false
-            $0.backgroundColor = .clear
+            $0.backgroundColor = .gbbBackground1
             $0.showsHorizontalScrollIndicator = false
             $0.delegate = self
         }
@@ -108,12 +102,13 @@ final class SearchViewController: BaseViewController {
     private func setRegistration() {
         
         collectionView.register(cell: EmptyCollectionViewCell.self)
+        collectionView.register(header: SearchResultHeaderView.self)
     }
     
     private func setDataSource() {
         
-        let cellRegistration = UICollectionView.CellRegistration<BakeryCollectionViewListCell, Item> { (cell, _, item) in
-            cell.separatorLayoutGuide.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        let cellRegistration = UICollectionView.CellRegistration<BakeryCommonCollectionViewCell, Item> { (cell, _, item) in
+            
             if let searchBakeryItem = item as? SearchBakeryList {
                 cell.configureCellUI(data: searchBakeryItem)
             }
@@ -136,25 +131,43 @@ final class SearchViewController: BaseViewController {
         })
     }
     
-    private func setReloadData() {
+    private func setSanpshot() {
         
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+        var snapshot = Snapshot()
         defer { dataSource?.apply(snapshot, animatingDifferences: false)}
         snapshot.appendSections([.initial])
         snapshot.appendItems([0])
     }
     
+    private func setSupplementView() {
+        dataSource?.supplementaryViewProvider = {[weak self] collectionView, kind, indexPath -> UICollectionReusableView in
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SearchResultHeaderView.identifier, for: indexPath)
+            
+            let section = self?.dataSource?.sectionIdentifier(for: indexPath.section)
+            switch section {
+            case .empty, .main:
+                
+                (header as? SearchResultHeaderView)?.configureUI(count: self?.bakeryListCount ?? 0)
+                
+            default:
+                break
+            }
+            
+            return header
+        }
+    }
+    
     private func configureDataSource(data: [SearchBakeryList]) {
+        
         guard var snapshot = dataSource?.snapshot() else { return }
+        
         if self.bakeryListCount == 0 {
-            searchResultView.isHidden = false
             snapshot.deleteSections(currentSection)
             snapshot.appendSections([.empty])
             snapshot.appendItems([0], toSection: .empty)
             currentSection = [.empty]
             dataSource?.apply(snapshot)
         } else {
-            searchResultView.isHidden = false
             snapshot.deleteSections(currentSection)
             snapshot.appendSections([.main])
             snapshot.appendItems(data, toSection: .main)
@@ -169,34 +182,67 @@ final class SearchViewController: BaseViewController {
             let section = self.dataSource?.snapshot().sectionIdentifiers[sectionIndex]
             switch section {
             case .main:
-                var config = UICollectionLayoutListConfiguration(appearance: .plain)
-                config.backgroundColor = .clear
-                config.showsSeparators = true
+                var config = UICollectionLayoutListConfiguration(appearance: .grouped)
+                config.backgroundColor = .gbbBackground1
+                config.headerMode = .supplementary
+                config.headerTopPadding = 0
+                config.separatorConfiguration.topSeparatorVisibility = .hidden
                 
-                let layoutSection = NSCollectionLayoutSection.list(using: config, layoutEnvironment: layoutEnvirnment)
-                return layoutSection
-            case .initial, .empty, .none:
-                return self.normalSection()
+                config.itemSeparatorHandler = { indexPath, config in
+                    var config = config
+                    guard let itemCount = self.dataSource?.snapshot().itemIdentifiers(inSection: .main).count else { return config }
+
+                    let isLastItem = indexPath.item == itemCount - 1
+                    config.bottomSeparatorVisibility = isLastItem ? .hidden : .visible
+                    return config
+                }
+                
+                let section = NSCollectionLayoutSection.list(using: config, layoutEnvironment: layoutEnvirnment)
+                section.boundarySupplementaryItems = [self.configureHeaderSize(55)]
+                           
+                return section
+                
+            case .empty:
+                return self.normalSection(55)
+            case .initial, .none:
+                return self.normalSection(0)
             }
         }
         return layout
     }
     
-    private func normalSection() -> NSCollectionLayoutSection {
+    private func normalSection(_ headerSize: CGFloat) -> NSCollectionLayoutSection {
+        
         let item = NSCollectionLayoutItem(layoutSize: .init(
-            widthDimension: .fractionalWidth(1),
-            heightDimension: .fractionalHeight(1))
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalWidth(1.0))
         )
         let group = NSCollectionLayoutGroup.vertical(
             layoutSize: .init(
-                widthDimension: .fractionalWidth(1),
-                heightDimension: .fractionalHeight(1)
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .absolute(getDeviceHeight() - 150)
             ),
             subitem: item,
             count: 1
         )
+        
         let section = NSCollectionLayoutSection(group: group)
+        section.boundarySupplementaryItems = [self.configureHeaderSize(headerSize)]
+        
         return section
+    }
+    
+    func configureHeaderSize(_ headerSize: CGFloat) -> NSCollectionLayoutBoundarySupplementaryItem {
+        
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(headerSize))
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top)
+        
+        return header
     }
     
     func configureisScrollable(_ count: Int) {
@@ -212,9 +258,15 @@ final class SearchViewController: BaseViewController {
 
 extension SearchViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         let nextViewController = BakeryDetailViewController()
-        nextViewController.bakeryID = self.searchBakeryList[indexPath.item].bakeryID
-        Utils.push(self.navigationController, nextViewController)
+        let section = dataSource?.sectionIdentifier(for: indexPath.section)
+        switch section {
+        case .empty, .initial, .none: break
+        case .main:
+            nextViewController.bakeryID = self.searchBakeryList[indexPath.item].bakeryID
+            Utils.push(self.navigationController, nextViewController)
+        }
     }
 }
 
@@ -226,13 +278,10 @@ extension SearchViewController {
         SearchAPI.shared.searchBakeryList(bakeryName: bakeryName) { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
-            self.searchBakeryList = []
             self.bakeryListCount = data.resultCount
-            self.searchResultView.configureUI(count: data.resultCount)
-            for item in data.bakeryList {
-                self.searchBakeryList.append(item)
-            }
-            self.configureDataSource(data: self.searchBakeryList)
+            let searchList = data.bakeryList.map { $0 }
+            self.searchBakeryList = searchList
+            self.configureDataSource(data: searchList)
             self.configureisScrollable(data.resultCount)
         }
     }

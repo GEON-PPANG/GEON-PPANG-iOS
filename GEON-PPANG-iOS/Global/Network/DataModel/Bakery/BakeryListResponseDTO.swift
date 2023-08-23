@@ -10,20 +10,21 @@ import Foundation
 // MARK: - BakeryListResponseDTO
 
 struct BakeryListResponseDTO: Codable, Hashable, BakeryListProtocol {
-
+    
     let bakeryID: Int
     let bakeryName: String
     let bakeryPicture: String
     let isHACCP: Bool
     let isVegan: Bool
     let isNonGMO: Bool
+    let station: String
     let firstNearStation: String
     var secondNearStation: String?
     let isBookmarked: Bool
     let bookmarkCount: Int
     let reviewCount: Int
     let breadType: BreadResponseType
-
+    
     func convertToBakeryList() -> BakeryList {
         return BakeryList(bakeryID: bakeryID,
                           bakeryName: bakeryName,
@@ -31,6 +32,7 @@ struct BakeryListResponseDTO: Codable, Hashable, BakeryListProtocol {
                           isHACCP: isHACCP,
                           isVegan: isVegan,
                           isNonGMO: isNonGMO,
+                          station: station,
                           firstNearStation: firstNearStation,
                           secondNearStation: secondNearStation,
                           isBookmarked: isBookmarked,
@@ -57,11 +59,13 @@ struct BakeryList: Codable, Hashable, BakeryListProtocol {
     let isHACCP: Bool
     let isVegan: Bool
     let isNonGMO: Bool
+    let station: String
+
     let firstNearStation: String
     let secondNearStation: String?
     let isBookmarked: Bool
     let bookmarkCount: Int
     let reviewCount: Int
     let breadType: BreadResponseType
-
+    
 }

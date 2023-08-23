@@ -23,9 +23,7 @@ protocol BakeryListProtocol {
     var isHACCP: Bool { get }
     var isVegan: Bool { get }
     var isNonGMO: Bool { get }
-    var firstNearStation: String { get }
-    var secondNearStation: String? { get }
-    var isBookmarked: Bool { get }
+    var station: String { get }
     var bookmarkCount: Int { get }
     var reviewCount: Int { get }
     var breadType: BreadResponseType { get }

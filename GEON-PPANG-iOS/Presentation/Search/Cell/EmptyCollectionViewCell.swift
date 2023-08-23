@@ -40,6 +40,7 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
     
     private let emptyIcon = UIImageView()
     private let emptyLabel = UILabel()
+    private let emptyStackView = UIStackView()
     
     // MARK: - Life Cycle
     
@@ -73,13 +74,13 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
     private func defaultLayout() {
         
         emptyIcon.snp.makeConstraints {
-            $0.size.equalTo(CGSize(width: 154, height: 132))
+            $0.size.equalTo(CGSize(width: 154, height: 134))
             $0.centerX.equalToSuperview()
         }
         
         emptyLabel.snp.makeConstraints {
             $0.top.equalTo(emptyIcon.snp.bottom).offset(20)
-            $0.centerX.equalToSuperview()
+            $0.centerX.equalTo(emptyIcon)
             $0.centerY.equalToSuperview().inset(-33)
         }
     }
@@ -88,8 +89,8 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
         
         emptyIcon.snp.remakeConstraints {
             $0.size.equalTo(CGSize(width: 154, height: 132))
-            $0.centerX.equalToSuperview().offset(10)
-            $0.centerY.equalToSuperview().offset(-35)
+            $0.centerX.equalToSuperview()
+
         }
         
         emptyLabel.snp.remakeConstraints {
@@ -121,9 +122,11 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
             $0.numberOfLines = 0
             $0.basic(font: .title2!, color: .gbbGray300!)
         }
+        
     }
     
     func configureViewType(_ type: EmptyType) {
+        
         emptyType = type
         emptyIcon.image = type.icon
         emptyLabel.setLineHeight(by: 1.05, with: type.rawValue)

@@ -114,11 +114,11 @@ final class MyReviewsCollectionViewCell: UICollectionViewCell {
         bakeryImage.kf.setImage(with: url)
         markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)
         
-        if data.secondNearStation == "" {
-            regionStackView.removeSecondRegion()
-        }
-        regionStackView.configureRegionName(data.firstNearStation, data.secondNearStation ?? "")
-        
+//        if data.secondNearStation == "" {
+//            regionStackView.removeSecondRegion()
+//        }
+//        regionStackView.configureRegionName(data.firstNearStation, data.secondNearStation ?? "")
+//        
         breadTypeTag = []
         if data.breadType.isGlutenFree {
             breadTypeTag.append(I18N.BakeryList.glutenfree)
