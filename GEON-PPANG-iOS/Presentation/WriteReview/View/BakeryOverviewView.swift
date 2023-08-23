@@ -20,6 +20,7 @@ final class BakeryOverviewView: UIView {
     // MARK: - UI Property
     
     private let bakeryImageView = UIImageView()
+    private let markStackView = MarkStackView()
     private let bakeryNameLabel = UILabel()
     private let flowLayout = OptionsCollectionViewFlowLayout()
     lazy var bakeryIngredientsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
@@ -68,6 +69,12 @@ final class BakeryOverviewView: UIView {
             $0.width.height.equalTo(86)
         }
         
+        self.addSubview(markStackView)
+        markStackView.snp.makeConstraints {
+            $0.leading.top.equalTo(bakeryImageView).offset(8)
+            $0.height.equalTo(14)
+        }
+        
         self.addSubview(bakeryNameLabel)
         bakeryNameLabel.snp.makeConstraints {
             $0.top.equalTo(bakeryImageView)
@@ -103,6 +110,10 @@ final class BakeryOverviewView: UIView {
             $0.backgroundColor = .gbbPoint1
             $0.makeCornerRound(radius: 5)
             $0.contentMode = .scaleAspectFill
+        }
+        
+        markStackView.do {
+            $0.configureIconImage(.smallHACCPMark, .smallVeganMark, .smallGMOMark)
         }
         
         bakeryNameLabel.do {
