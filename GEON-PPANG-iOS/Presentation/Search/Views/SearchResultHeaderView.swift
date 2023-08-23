@@ -15,7 +15,6 @@ final class SearchResultHeaderView: UICollectionReusableView {
     // MARK: - UI Property
     
     private let resultLabel = UILabel()
-    private let lineView = UIView()
     
     // MARK: - Life Cycle
     
@@ -36,26 +35,17 @@ final class SearchResultHeaderView: UICollectionReusableView {
         
         self.addSubview(resultLabel)
         resultLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(12)
+            $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().offset(24)
         }
-        
-        self.addSubview(lineView)
-        lineView.snp.makeConstraints {
-            $0.height.equalTo(1)
-            $0.directionalHorizontalEdges.equalToSuperview()
-            $0.bottom.equalToSuperview()
-        }
+
     }
     
     private func setUI() {
         
         resultLabel.do {
             $0.basic(font: .headLine!, color: .gbbGray600!)
-        }
-        
-        lineView.do {
-            $0.makeBorder(width: 1, color: .gbbGray200!)
+            
         }
     }
     
