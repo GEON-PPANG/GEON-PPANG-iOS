@@ -156,8 +156,8 @@ extension MyReviewsViewController: UICollectionViewDataSource {
             cell.configureEmptyText("내가 쓴 리뷰가 없어요!")
             return cell
         } else {
-            let cell: MyReviewsCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-            cell.configureCellUI(myReviewslist[indexPath.section])
+            let cell: BakeryCommonCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+            cell.configureCellUI(data: myReviewslist[indexPath.section])
             return cell
         }
     }
