@@ -11,7 +11,7 @@ final class FilterDiffableDataSource {
     
     typealias CollectionViewHeader = FilterCollectionViewHeader
     typealias CollectionViewCell = FilterCollectionViewCell
-    typealias DiffableDataSource = UICollectionViewDiffableDataSource
+    typealias DiffableDataSource = UICollectionViewDiffableDataSource<FilterType, FilterCellModel.ID>
     typealias Snapshot = NSDiffableDataSourceSnapshot<FilterType, FilterCellModel.ID>
     
     let headerKind = UICollectionView.elementKindSectionHeader
@@ -26,7 +26,7 @@ final class FilterDiffableDataSource {
     
     // MARK: - UI Property
     
-    var dataSource: DiffableDataSource<FilterType, FilterCellModel.ID>!
+    var dataSource: DiffableDataSource!
     private let collectionView: UICollectionView
     
     // MARK: - Life Cycle
