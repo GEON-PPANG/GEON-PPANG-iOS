@@ -14,12 +14,14 @@ enum EmojiType {
     case smile
     case sad
     case memo
+    case crying
     
     var icon: UIImage? {
         switch self {
         case .smile: return .smileEmoji
         case .sad: return .sadEmoji
         case .memo: return .memoEmoji
+        case .crying: return .cryingEmoji
             
         }
     }
@@ -57,14 +59,14 @@ final class CommonBottomSheet: UIView {
         
         self.addSubview(emojiIcon)
         emojiIcon.snp.makeConstraints {
-            $0.size.equalTo(32)
-            $0.top.equalToSuperview().offset(34)
+            $0.size.equalTo(64)
+            $0.top.equalToSuperview().offset(28)
             $0.centerX.equalToSuperview()
         }
         
         self.addSubview(bottonSheetTitle)
         bottonSheetTitle.snp.makeConstraints {
-            $0.top.equalTo(emojiIcon.snp.bottom).offset(23)
+            $0.top.equalTo(emojiIcon.snp.bottom).offset(18)
             $0.centerX.equalToSuperview()
         }
         
