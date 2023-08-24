@@ -96,7 +96,7 @@ final class FilterViewController: BaseViewController {
         }
         
         skipButton.do {
-            $0.setTitle("건너뛰기 ", for: .normal)
+            $0.setTitle(I18N.Filter.skip, for: .normal)
             $0.setTitleColor(.gbbGray500, for: .normal)
             $0.titleLabel?.font = .bodyM2
             $0.setImage(.rightArrowIcon.resize(to: .init(width: 16, height: 16)),
@@ -130,9 +130,7 @@ final class FilterViewController: BaseViewController {
         filterDataSource.filterType = newFilterType
         currentFilterType = newFilterType
         
-        configureNextButton()
-        configureBackButton()
-        configureStepCount()
+        configureOnFilterChange()
     }
     
     private func backButtonTapped() {
@@ -151,9 +149,7 @@ final class FilterViewController: BaseViewController {
         filterDataSource.filterType = newFilterType
         currentFilterType = newFilterType
         
-        configureNextButton()
-        configureBackButton()
-        configureStepCount()
+        configureOnFilterChange()
     }
     
     private func skipButtonTapped() {
@@ -187,6 +183,13 @@ final class FilterViewController: BaseViewController {
         case .breadType: navigationBar.configureRightCount(2, by: 3)
         case .ingredient: navigationBar.configureRightCount(3, by: 3)
         }
+    }
+    
+    private func configureOnFilterChange() {
+        
+        configureNextButton()
+        configureBackButton()
+        configureStepCount()
     }
     
     private func sendRequest() {
