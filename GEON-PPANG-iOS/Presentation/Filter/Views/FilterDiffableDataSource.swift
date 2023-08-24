@@ -111,12 +111,7 @@ final class FilterDiffableDataSource {
         configureData()
         configureLayout()
         
-        switch filterType {
-        case .purpose:
-            collectionView.allowsMultipleSelection = false
-        case .breadType, .ingredient:
-            collectionView.allowsMultipleSelection = true
-        }
+        collectionView.allowsMultipleSelection = filterType == .purpose ? false : true
     }
     
 }
