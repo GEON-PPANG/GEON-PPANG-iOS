@@ -51,7 +51,7 @@ final class SearchViewController: BaseViewController {
         
         setRegistration()
         setDataSource()
-        setSanpshot()
+        setSnapshot()
         setSupplementView()
     }
     
@@ -131,7 +131,7 @@ final class SearchViewController: BaseViewController {
         })
     }
     
-    private func setSanpshot() {
+    private func setSnapshot() {
         
         var snapshot = Snapshot()
         defer { dataSource?.apply(snapshot, animatingDifferences: false)}
