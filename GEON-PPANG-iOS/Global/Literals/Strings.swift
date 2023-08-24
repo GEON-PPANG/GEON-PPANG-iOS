@@ -71,6 +71,7 @@ struct I18N {
         static let ingredientTitle = "어떤 성분을 원하시나요?"
         static let subtitle = "중복선택이 가능해요!"
         static let welcomeTitle = "님:)\n건빵에 오신 걸 환영해요!"
+        static let skip = "건너뛰기 "
     }
     
     /// MyPage
