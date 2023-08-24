@@ -20,6 +20,7 @@ enum HomeIconType {
         }
     }
 }
+
 final class IconWithTextStackView: UIStackView {
 
     // MARK: - Property
@@ -38,7 +39,6 @@ final class IconWithTextStackView: UIStackView {
         
         setLayout()
         setUI()
-        
     }
     
     required init(coder: NSCoder) {
