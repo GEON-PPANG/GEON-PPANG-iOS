@@ -25,11 +25,11 @@ struct RecomendKeywordResponseDTO: Hashable, Codable {
     }
     
     var keywords: [String] {
-            if let secondKeyword = second {
-                return [first, secondKeyword]
-            } else {
-                return [first]
-            }
+        if let secondKeyword = second {
+            return [first, secondKeyword]
+        } else {
+            return [first]
         }
-   
+    }
+    
 }

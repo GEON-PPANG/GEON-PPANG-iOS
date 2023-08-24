@@ -25,11 +25,11 @@ struct NearStationResponseDTO: Hashable, Codable {
     }
     
     var stations: [String] {
-            if let secondKeyword = second {
-                return [first, secondKeyword]
-            } else {
-                return [first]
-            }
+        if let secondKeyword = second {
+            return [first, secondKeyword]
+        } else {
+            return [first]
         }
+    }
     
 }
