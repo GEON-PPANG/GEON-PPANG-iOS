@@ -80,6 +80,7 @@
 		0987288D2A5BA1F000A29402 /* BookmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0987288C2A5BA1F000A29402 /* BookmarkButton.swift */; };
 		098F32EA2A4200FE0092D09A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 098F32E92A4200FE0092D09A /* Assets.xcassets */; };
 		098F32ED2A4200FE0092D09A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 098F32EB2A4200FE0092D09A /* LaunchScreen.storyboard */; };
+		09980CFB2A99A9800098550C /* SignInPropertyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09980CFA2A99A9800098550C /* SignInPropertyType.swift */; };
 		09B13F482A5931DC00C0C723 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B13F472A5931DC00C0C723 /* TabBarController.swift */; };
 		09B13F4C2A593C6F00C0C723 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B13F4B2A593C6F00C0C723 /* HomeViewController.swift */; };
 		09B13F502A593CB800C0C723 /* BakeryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B13F4F2A593CB800C0C723 /* BakeryListViewController.swift */; };
@@ -245,6 +246,7 @@
 		098F32E92A4200FE0092D09A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		098F32EC2A4200FE0092D09A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		098F32EE2A4200FE0092D09A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		09980CFA2A99A9800098550C /* SignInPropertyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPropertyType.swift; sourceTree = "<group>"; };
 		09B13F472A5931DC00C0C723 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		09B13F4B2A593C6F00C0C723 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		09B13F4F2A593CB800C0C723 /* BakeryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryListViewController.swift; sourceTree = "<group>"; };
@@ -1213,6 +1215,7 @@
 				3E7B21C12A62172500C8F8B4 /* SortEnum.swift */,
 				3ED40DF82A5FCF3800C7D5DA /* FilterEnum.swift */,
 				3ED40E012A608B8600C7D5DA /* MyPageSectionEnum.swift */,
+				09980CFA2A99A9800098550C /* SignInPropertyType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -1428,6 +1431,7 @@
 				3EDC05C02A5DED9200EAD950 /* FilterBreadTypeViewController.swift in Sources */,
 				DFDE72D72A65E84700389A51 /* WrittenReviewsCollectionViewCell.swift in Sources */,
 				09FD47C82A5DC991002020BD /* SearchNavigationView.swift in Sources */,
+				09980CFB2A99A9800098550C /* SignInPropertyType.swift in Sources */,
 				090668FD2A4FF3C600F413FA /* SceneDelegate.swift in Sources */,
 				DF483ACC2A652E0100FCD507 /* BookmarkReviewNumberStackView.swift in Sources */,
 				097682DC2A5C83910008F4FB /* CGFloat+.swift in Sources */,
