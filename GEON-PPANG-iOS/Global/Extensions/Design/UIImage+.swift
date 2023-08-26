@@ -85,10 +85,8 @@ extension UIImage {
     static let mapButton = UIImage(named: "map_button")!.withRenderingMode(.alwaysOriginal)
     
     // Social Login
-    static let appleLoginButton = UIImage(named: "apple_login_button_56px")!.withRenderingMode(.alwaysOriginal)
-    static let googleLoginButton = UIImage(named: "google_login_button_56px")!.withRenderingMode(.alwaysOriginal)
-    static let kakaoLoginButton = UIImage(named: "kakao_login_button_56px")!.withRenderingMode(.alwaysOriginal)
-    static let naverLoginButton = UIImage(named: "naver_login_button_56px")!.withRenderingMode(.alwaysOriginal)
+    static let kakaoLoginButton = UIImage(named: "KakaoSocialLogin")!.withRenderingMode(.alwaysOriginal)
+    static let appleLoginButton = UIImage(named: "AppleSocialLogin")!.withRenderingMode(.alwaysOriginal)
     
     // TabBar
     static let disabledHomeIcon = UIImage(named: "ic_home_disable")!.withRenderingMode(.alwaysOriginal)

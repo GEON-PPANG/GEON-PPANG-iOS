@@ -22,6 +22,8 @@ struct I18N {
     struct Onboarding {
         static let latelySigninText = "최근에 카카오톡으로 로그인 했습니다."
         static let latelySigninSNS = "카카오톡"
+        static let emailSignIn = "이메일로 로그인"
+        static let emailSignUp = "이메일로 회원가입"
     }
     
     /// Bottomsheet
