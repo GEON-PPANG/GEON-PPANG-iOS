@@ -14,7 +14,7 @@ struct HomeBestReviewResponseDTO: Codable, Hashable {
     var id = UUID()
     
     let reviews: HomeCommonResponseDTO
-    let keywords: RecomendKeywordResponseDTO
+    let keywords: RecommendKeywordResponseDTO
     let text: String
     
     private enum CodingKeys: String, CodingKey {
@@ -26,7 +26,7 @@ struct HomeBestReviewResponseDTO: Codable, Hashable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         reviews = try HomeCommonResponseDTO(from: decoder)
         text = try container.decode(String.self, forKey: .text)
-        keywords = try RecomendKeywordResponseDTO(from: decoder)
+        keywords = try RecommendKeywordResponseDTO(from: decoder)
     }
     
     func hash(into hasher: inout Hasher) {

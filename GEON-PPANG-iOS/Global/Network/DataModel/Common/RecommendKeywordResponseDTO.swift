@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RecomendKeywordResponseDTO: Hashable, Codable {
+struct RecommendKeywordResponseDTO: Hashable, Codable {
     
     let first: String
     let second: String?
