@@ -71,6 +71,10 @@ final class FilterCollectionViewCell: UICollectionViewCell {
         descriptionLabel.do {
             $0.font = .bodyM1
             $0.textColor = .gbbGray300
+            $0.setLineHeight(by: 1.12)
+            $0.textAlignment = .center
+            $0.numberOfLines = 2
+            $0.isHidden = filterType.hideDescription
         }
         
         labelStackView.do {
@@ -94,7 +98,7 @@ final class FilterCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    private func configureSelection() {
+    func configureSelection() {
         
         UIView.animate(withDuration: 0.2) {
             self.do {
