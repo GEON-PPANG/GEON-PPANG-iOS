@@ -41,7 +41,7 @@ extension TabBarItemType {
         case .home:
             return "홈"
         case .bakeryList:
-            return "빵집리스트"
+            return "건빵집리스트"
         case .mypage:
             return "마이페이지"
         }
