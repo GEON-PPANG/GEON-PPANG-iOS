@@ -21,8 +21,7 @@ extension UIImage {
     
     // Emoji
     static let memoEmoji = UIImage(named: "memo_32px")!.withRenderingMode(.alwaysOriginal)
-    static let sadEmoji = UIImage(named: "sad_32px")!.withRenderingMode(.alwaysOriginal)
-    static let smileEmoji = UIImage(named: "smile_32px")!.withRenderingMode(.alwaysOriginal)
+    static let sadIcon = UIImage(named: "sad_32px")!.withRenderingMode(.alwaysOriginal)
     
     // Environmental Marks
     static let smallGMOMark = UIImage(named: "gmo_mark_22px")!.withRenderingMode(.alwaysOriginal)

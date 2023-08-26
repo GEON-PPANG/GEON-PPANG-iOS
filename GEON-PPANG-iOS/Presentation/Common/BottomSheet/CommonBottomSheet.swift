@@ -13,14 +13,11 @@ import Then
 enum EmojiType {
     case smile
     case sad
-    case memo
     
     var icon: UIImage? {
         switch self {
         case .smile: return .smileIcon
-        case .sad: return .sadEmoji
-        case .memo: return .memoEmoji
-            
+        case .sad: return .sadIcon
         }
     }
 }
