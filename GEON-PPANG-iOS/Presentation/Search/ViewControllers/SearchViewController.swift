@@ -17,7 +17,6 @@ final class SearchViewController: BaseViewController {
     enum Section {
         case initial, main, empty
     }
-    private lazy var safeArea = self.view.safeAreaLayoutGuide
     typealias Item = AnyHashable
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Item>
     private var dataSource: DataSource?

@@ -55,6 +55,7 @@ extension UIImage {
     static let profileIcon = UIImage(named: "ic_profile")!.withRenderingMode(.alwaysOriginal)
     static let reviewIcon16px = UIImage(named: "ic_review_16px")!.withRenderingMode(.alwaysOriginal)
     static let reviewIcon = UIImage(named: "ic_review")!.withRenderingMode(.alwaysOriginal)
+    static let reviewIcon16px400 = UIImage(named: "ic_review_16px_400")!.withRenderingMode(.alwaysOriginal)
     static let searchIcon400 = UIImage(named: "ic_search_400")!.withRenderingMode(.alwaysOriginal) /// gray400
     static let searchIcon600 = UIImage(named: "ic_search_600")!.withRenderingMode(.alwaysOriginal) /// gray600
     static let showIcon = UIImage(named: "ic_show")!.withRenderingMode(.alwaysOriginal)
