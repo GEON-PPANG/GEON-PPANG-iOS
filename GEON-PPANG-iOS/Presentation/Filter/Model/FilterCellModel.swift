@@ -84,6 +84,7 @@ extension FilterCellModel {
     static func configureSelection(of type: FilterType,
                                    at index: Int,
                                    to value: Bool) {
+        
         switch type {
         case .purpose:
             FilterCellModel.purpose[index].selected = value
@@ -95,6 +96,7 @@ extension FilterCellModel {
     }
     
     static func deselectContents(of type: FilterType) {
+        
         switch type {
         case .purpose:
             [0, 1, 2].forEach {
@@ -112,6 +114,7 @@ extension FilterCellModel {
     }
     
     static func isAnySelected(of filters: FilterType) -> Bool {
+        
         switch filters {
         case .purpose:
             return !FilterCellModel.purpose.filter { $0.selected == true }.isEmpty
