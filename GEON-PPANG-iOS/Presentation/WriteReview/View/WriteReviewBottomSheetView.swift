@@ -19,15 +19,13 @@ final class WriteReviewBottomSheetView: UIView {
     
     // MARK: - UI Property
     
-    private let emojiImageView = UIImageView(image: .memoEmoji)
+    private let emojiImageView = UIImageView(image: .reviewBreadIcon)
     private let sheetTitleLabel = UILabel()
     private let sheetDescriptionLabel = UILabel()
     
-    private let lineView = UIView()
-    private lazy var quitButton = UIButton()
-    private lazy var continueButton = UIButton()
+    private let quitButton = CommonButton()
+    private let continueButton = CommonButton()
     private lazy var buttonStackView = UIStackView(arrangedSubviews: [quitButton, continueButton])
-    private let buttonSeperator = UIView()
     
     // MARK: - Life Cycle
     
@@ -49,50 +47,37 @@ final class WriteReviewBottomSheetView: UIView {
         
         self.addSubview(emojiImageView)
         emojiImageView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(27)
+            $0.top.equalToSuperview().inset(28)
             $0.centerX.equalToSuperview()
-            $0.size.equalTo(32)
         }
         
         self.addSubview(sheetTitleLabel)
         sheetTitleLabel.snp.makeConstraints {
-            $0.top.equalTo(emojiImageView.snp.bottom).offset(22)
+            $0.top.equalTo(emojiImageView.snp.bottom).offset(18)
             $0.centerX.equalToSuperview()
         }
         
         self.addSubview(sheetDescriptionLabel)
         sheetDescriptionLabel.snp.makeConstraints {
-            $0.top.equalTo(sheetTitleLabel.snp.bottom).offset(22)
+            $0.top.equalTo(sheetTitleLabel.snp.bottom).offset(16)
             $0.centerX.equalToSuperview()
         }
         
         self.addSubview(buttonStackView)
         buttonStackView.snp.makeConstraints {
-            $0.height.equalTo(53)
-            $0.bottom.equalToSuperview().inset(CGFloat().heightConsideringBottomSafeArea(41))
-            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(56)
+            $0.bottom.equalToSuperview().inset(CGFloat().heightConsideringBottomSafeArea(58))
+            $0.centerX.equalToSuperview()
         }
         
         quitButton.snp.makeConstraints {
-            $0.width.equalTo(SizeLiteral.Screen.width / 2)
+            $0.width.equalTo(157)
+            $0.verticalEdges.equalToSuperview()
         }
         
         continueButton.snp.makeConstraints {
-            $0.width.equalTo(SizeLiteral.Screen.width / 2)
-        }
-        
-        self.addSubview(lineView)
-        lineView.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(7)
-            $0.bottom.equalTo(buttonStackView.snp.top)
-            $0.height.equalTo(1)
-        }
-        
-        buttonStackView.addSubview(buttonSeperator)
-        buttonSeperator.snp.makeConstraints {
-            $0.verticalEdges.equalToSuperview().inset(14)
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(1)
+            $0.width.equalTo(157)
+            $0.verticalEdges.equalToSuperview()
         }
     }
     
@@ -113,34 +98,26 @@ final class WriteReviewBottomSheetView: UIView {
         }
         
         quitButton.do {
-            $0.setTitle(I18N.WriteReview.sheetQuit, for: .normal)
-            $0.setTitleColor(.gbbGray400, for: .normal)
-            $0.titleLabel?.font = .bodyM2
-            $0.addAction(UIAction { [weak self] _ in
-                self?.dismissClosure?()
-            }, for: .touchUpInside)
+            $0.configureButtonUI(.gbbGray100!)
+            $0.configureButtonTitle(to: I18N.WriteReview.sheetQuit)
+            $0.configureButtonTitle(color: .gbbGray300!)
+            $0.addActionToCommonButton {
+                self.dismissClosure!()
+            }
         }
         
         continueButton.do {
-            $0.setTitle(I18N.WriteReview.sheetContinue, for: .normal)
-            $0.setTitleColor(.gbbGray700, for: .normal)
-            $0.titleLabel?.font = .bodyM2
-            $0.addAction(UIAction { [weak self] _ in
-                self?.continueClosure?()
-            }, for: .touchUpInside)
+            $0.configureButtonUI(.gbbBlack!)
+            $0.configureButtonTitle(to: I18N.WriteReview.sheetContinue)
+            $0.configureButtonTitle(color: .gbbGray100!)
+            $0.addActionToCommonButton {
+                self.continueClosure!()
+            }
         }
         
         buttonStackView.do {
             $0.axis = .horizontal
-            $0.distribution = .equalSpacing
-        }
-        
-        lineView.do {
-            $0.backgroundColor = .gbbGray200
-        }
-        
-        buttonSeperator.do {
-            $0.backgroundColor = .gbbGray200
+            $0.spacing = 12
         }
     }
     

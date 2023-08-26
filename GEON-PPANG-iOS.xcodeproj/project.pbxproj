@@ -116,6 +116,8 @@
 		3E23CCF52A8BD9950091957D /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556282A51DBC000752067 /* UIView+.swift */; };
 		3E23CCF62A8BD9A40091957D /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556302A51DDD800752067 /* UITableView+.swift */; };
 		3E23CCF72A8BD9C30091957D /* BakeryCollectionViewListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682EA2A5D12BD0008F4FB /* BakeryCollectionViewListCell.swift */; };
+		3E232AC32A93554C00125B76 /* RegionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E232AC22A93554C00125B76 /* RegionLabel.swift */; };
+		3E232AC52A938F6400125B76 /* BookmarkCountLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E232AC42A938F6400125B76 /* BookmarkCountLabel.swift */; };
 		3E2EEF752A5C93010093BCA9 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2EEF742A5C93010093BCA9 /* BottomView.swift */; };
 		3E36D7D62A8E6AF000B2C1CC /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E36D7D52A8E6AF000B2C1CC /* FilterViewController.swift */; };
 		3E36D7D82A8E6BC500B2C1CC /* FilterDiffableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E36D7D72A8E6BC500B2C1CC /* FilterDiffableDataSource.swift */; };
@@ -289,6 +291,8 @@
 		3E16E4FD2A57F06D00B813D0 /* OptionsCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		3E16E5012A58176800B813D0 /* ReviewDetailTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailTextView.swift; sourceTree = "<group>"; };
 		3E232ABB2A8FDB8F00125B76 /* FilterCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewHeader.swift; sourceTree = "<group>"; };
+		3E232AC22A93554C00125B76 /* RegionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionLabel.swift; sourceTree = "<group>"; };
+		3E232AC42A938F6400125B76 /* BookmarkCountLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkCountLabel.swift; sourceTree = "<group>"; };
 		3E2EEF742A5C93010093BCA9 /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
 		3E36D7D52A8E6AF000B2C1CC /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		3E36D7D72A8E6BC500B2C1CC /* FilterDiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDiffableDataSource.swift; sourceTree = "<group>"; };
@@ -426,6 +430,8 @@
 			isa = PBXGroup;
 			children = (
 				0915C1712A5C3D3700ACB8D4 /* PaddingLabel.swift */,
+				3E232AC22A93554C00125B76 /* RegionLabel.swift */,
+				3E232AC42A938F6400125B76 /* BookmarkCountLabel.swift */,
 			);
 			path = Label;
 			sourceTree = "<group>";
@@ -1462,12 +1468,14 @@
 				3E36D7D62A8E6AF000B2C1CC /* FilterViewController.swift in Sources */,
 				0959F14A2A6583DF00E77CAF /* GeneralResponse.swift in Sources */,
 				3EFA97882A5EBCED002E70FA /* CustomNavigationBar.swift in Sources */,
+				3E232AC32A93554C00125B76 /* RegionLabel.swift in Sources */,
 				0915C1702A5C3C5600ACB8D4 /* RegionStackView.swift in Sources */,
 				3EBFB5702A63B2B60058F968 /* WriteReviewBottomSheetView.swift in Sources */,
 				3E79B1AE2A56F14A00D36A26 /* BakeryOverviewView.swift in Sources */,
 				3ED40E042A608EF000C7D5DA /* MyPageCollectionViewHeader.swift in Sources */,
 				3E452B6B2A614AAE00EA456D /* ImageWithSubtitleButton.swift in Sources */,
 				0930D2612A92937B00A75C7E /* HomeCommonResponseDTO.swift in Sources */,
+				3E232AC52A938F6400125B76 /* BookmarkCountLabel.swift in Sources */,
 				0959F1522A65844A00E77CAF /* NetworkConstant.swift in Sources */,
 				3E79B1A62A566F6400D36A26 /* WriteReviewViewController.swift in Sources */,
 				097682E72A5CF0080008F4FB /* BakeryFilterView.swift in Sources */,

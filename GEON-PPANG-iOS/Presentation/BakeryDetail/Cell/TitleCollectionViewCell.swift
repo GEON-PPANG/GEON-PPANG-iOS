@@ -106,7 +106,7 @@ final class TitleCollectionViewCell: UICollectionViewCell {
         bakeryImage.kf.setImage(with: url)
         bakeryNameLabel.text = data.bakeryName
         markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)
-        markStackView.confiureIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
+        markStackView.configureIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
         
         if !data.isHACCP && !data.isVegan && !data.isNonGMO {
             bakeryNameLabel.snp.remakeConstraints {

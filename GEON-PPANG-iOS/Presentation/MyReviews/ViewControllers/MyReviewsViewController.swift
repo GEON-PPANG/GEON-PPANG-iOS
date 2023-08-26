@@ -58,7 +58,7 @@ final class MyReviewsViewController: BaseViewController {
             $0.configureBackButtonAction(UIAction { _ in
                 self.navigationController?.popViewController(animated: true)
             })
-            $0.configureLeftTitle(to: I18N.MyReviews.naviTitle)
+            $0.configureCenterTitle(to: I18N.MyReviews.naviTitle)
         }
         
         collectionView.do {

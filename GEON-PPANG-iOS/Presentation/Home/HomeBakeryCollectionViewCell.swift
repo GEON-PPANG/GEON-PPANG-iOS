@@ -28,7 +28,7 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         
         markStackView.getMarkStatus(false, false, false)
-        markStackView.confiureIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
+        markStackView.configureIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
         regionStackView.arrangedSubviews.forEach {
             regionStackView.removeArrangedSubview($0)
         }
@@ -102,7 +102,7 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
         }
         
         markStackView.do {
-            $0.confiureIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
+            $0.configureIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
         }
         
         bakeryTitle.do {
