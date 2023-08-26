@@ -133,4 +133,9 @@ final class CustomNavigationBar: UIView {
         }
     }
     
+    func hideBackButton(_ isHidden: Bool) {
+        
+        backButton.isHidden = isHidden
+    }
+    
 }
