@@ -46,12 +46,13 @@ final class RegionLabel: UILabel {
         
         self.addSubview(imageView)
         imageView.snp.makeConstraints {
-            $0.leading.verticalEdges.equalToSuperview()
+            $0.leading.equalToSuperview().inset(3)
+            $0.verticalEdges.equalToSuperview()
         }
         
         self.addSubview(label)
         label.snp.makeConstraints {
-            $0.leading.equalTo(imageView.snp.trailing).offset(8)
+            $0.leading.equalTo(imageView.snp.trailing).offset(8.25)
             $0.centerY.equalTo(imageView)
             $0.trailing.equalToSuperview()
         }
