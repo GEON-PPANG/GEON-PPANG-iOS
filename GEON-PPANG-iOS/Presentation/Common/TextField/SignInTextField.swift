@@ -15,7 +15,7 @@ final class SignInTextField: UITextField {
     // MARK: - Property
     
     private let topPadding: CGFloat = 15
-    private let signIntype: SignInPropetyType = .email
+    private let signIntype: SignInPropertyType = .email
 
     // MARK: - UI Property
     
@@ -108,7 +108,7 @@ final class SignInTextField: UITextField {
         duplicatedButton.addAction(action, for: .touchUpInside)
     }
 
-    func configureViewType(_ viewType: SignInPropetyType) {
+    func configureViewType(_ viewType: SignInPropertyType) {
         
         self.placeholder = viewType.placeHolder
         

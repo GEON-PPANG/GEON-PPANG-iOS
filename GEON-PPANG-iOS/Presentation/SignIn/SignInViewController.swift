@@ -14,6 +14,8 @@ final class SignInViewController: BaseViewController {
     
     // MARK: - Property
     
+    private var password: String = ""
+    
     private var isValid: Bool = false {
         didSet {
             configureButtonUI(isValid)
@@ -25,7 +27,8 @@ final class SignInViewController: BaseViewController {
     private let naviView = CustomNavigationBar()
     private let titleLabel = UILabel()
     private let emailTextField = CommonTextView()
-    private lazy var checkButton = CommonButton()
+    private let passwordTextField = CommonTextView()
+    private let checkPasswordTextField = CommonTextView()
     private lazy var nextButton = CommonButton()
     private lazy var backGroundView = BottomSheetAppearView()
     private lazy var bottomSheet = CommonBottomSheet()
@@ -56,17 +59,26 @@ final class SignInViewController: BaseViewController {
         
         view.addSubview(emailTextField)
         emailTextField.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(40)
-            $0.directionalHorizontalEdges.equalToSuperview().inset(24)
-            $0.height.equalTo(74)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(32)
         }
         
-        view.addSubview(checkButton)
-        checkButton.snp.makeConstraints {
-            $0.top.equalTo(emailTextField.snp.bottom).offset(36)
-            $0.directionalHorizontalEdges.equalToSuperview().inset(24)
-            $0.height.equalTo(56)
+        view.addSubview(passwordTextField)
+        passwordTextField.snp.makeConstraints {
+            $0.top.equalTo(emailTextField.snp.bottom).offset(29)
         }
+        
+        view.addSubview(checkPasswordTextField)
+        checkPasswordTextField.snp.makeConstraints {
+            $0.top.equalTo(passwordTextField.snp.bottom).offset(29)
+        }
+        
+        [emailTextField, passwordTextField, checkPasswordTextField]
+            .forEach {
+                $0.snp.makeConstraints {
+                    $0.directionalHorizontalEdges.equalToSuperview().inset(24)
+                    $0.height.equalTo(74)
+                }
+            }
         
         view.addSubview(nextButton)
         nextButton.snp.makeConstraints {
@@ -81,6 +93,7 @@ final class SignInViewController: BaseViewController {
     override func setUI() {
         
         naviView.do {
+            $0.configureBottomLine()
             $0.configureRightCount(1, by: 6)
             $0.configureBackButtonAction(UIAction { [weak self] _ in
                 self?.navigationController?.popViewController(animated: true)
@@ -89,17 +102,9 @@ final class SignInViewController: BaseViewController {
         
         titleLabel.do {
             $0.numberOfLines = 0
-            $0.basic(text: "회원가입을 위한 \n이메일을 입력해주세요!",
+            $0.basic(text: "회원가입을 위한 \n정보를 입력해주세요!",
                      font: .title1!,
                      color: .gbbGray700!)
-        }
-        
-        checkButton.do {
-            $0.configureButtonUI(.clear, .gbbGray300)
-            $0.configureButtonTitle(.duplicate)
-            $0.addActionToCommonButton {
-                self.backGroundView.appearBottomSheetView(subView: self.bottomSheet, CGFloat().heightConsideringBottomSafeArea(281))
-            }
         }
         
         emailTextField.do {
@@ -109,6 +114,27 @@ final class SignInViewController: BaseViewController {
             }
         }
         
+        passwordTextField.do {
+            $0.cofigureSignInType(.password)
+            $0.duplicatedCheck = { data in
+                self.password = data
+            }
+        }
+        
+        checkPasswordTextField.do {
+            $0.cofigureSignInType(.checkPassword)
+            
+            $0.textFieldData = { [weak self] data in
+                if self?.password == data && data.count > 7 {
+                    self?.checkPasswordTextField.clearErrorMessage(true)
+                    self?.isValid = true
+                } else {
+                    self?.checkPasswordTextField.setErrorMessage("비밀번호를 확인해주세요")
+                    self?.isValid = false
+                }
+            }
+        }
+                
         nextButton.do {
             $0.isUserInteractionEnabled = false
             $0.configureButtonUI(.gbbGray200!)
@@ -133,11 +159,6 @@ final class SignInViewController: BaseViewController {
     
     func configureButtonUI(_ isValid: Bool) {
         
-        self.checkButton.do {
-            $0.isEnabled = isValid
-            $0.configureButtonUI(.clear, isValid ? .gbbMain2! : .gbbGray300!)
-        }
-        
         if !isValid {
             nextButton.do {
                 $0.isUserInteractionEnabled = false
@@ -152,4 +173,5 @@ final class SignInViewController: BaseViewController {
         tap.cancelsTouchesInView = true
         self.view.addGestureRecognizer(tap)
     }
+
 }
