@@ -22,7 +22,6 @@ final class BakeryListViewController: BaseViewController {
     private var bakeryList: [BakeryList] = []
     private var sortBakeryBy: SortBakery = .byDefault
     private var sortBakeryName: String = SortBakery.byDefault.sortValue
-    private lazy var safeArea = self.view.safeAreaLayoutGuide
     private var filterStatus: [Bool] = [false, false, false ]
     
     // MARK: - UI Property
