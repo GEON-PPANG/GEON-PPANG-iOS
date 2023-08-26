@@ -23,7 +23,7 @@ final class SearchViewController: BaseViewController {
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Item>
     
     private var dataSource: DataSource?
-    private var searchBakeryList: [SearchBakeryList] = []
+    private var searchBakeryList: [BakeryCommonListResponseDTO] = []
     private var currentSection: [Section] = [.initial]
     
     private var bakeryName: String?
@@ -107,7 +107,7 @@ final class SearchViewController: BaseViewController {
         
         let cellRegistration = UICollectionView.CellRegistration<BakeryCommonCollectionViewCell, Item> { (cell, _, item) in
             
-            if let searchBakeryItem = item as? SearchBakeryList {
+            if let searchBakeryItem = item as? BakeryCommonListResponseDTO {
                 cell.configureCellUI(data: searchBakeryItem)
             }
         }
@@ -155,7 +155,7 @@ final class SearchViewController: BaseViewController {
         }
     }
     
-    private func configureDataSource(data: [SearchBakeryList]) {
+    private func configureDataSource(data: [BakeryCommonListResponseDTO]) {
         
         guard var snapshot = dataSource?.snapshot() else { return }
         

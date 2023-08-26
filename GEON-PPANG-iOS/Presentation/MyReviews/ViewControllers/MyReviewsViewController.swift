@@ -14,7 +14,7 @@ final class MyReviewsViewController: BaseViewController {
     
     // MARK: - Property
     
-    private var myReviewslist: [MyReviewsResponseDTO] = []
+    private var myReviewsList: [MyReviewsResponseDTO] = []
     
     // MARK: - UI Property
     
@@ -84,7 +84,7 @@ final class MyReviewsViewController: BaseViewController {
     private func layout() -> UICollectionViewLayout {
         
         let layout = UICollectionViewCompositionalLayout {_, layoutEnvirnment  in
-            if self.myReviewslist.isEmpty {
+            if self.myReviewsList.isEmpty {
                 return self.normalSection()
             } else {
                 var config = UICollectionLayoutListConfiguration(appearance: .grouped)
@@ -136,10 +136,10 @@ extension MyReviewsViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         
-        if myReviewslist.isEmpty {
+        if myReviewsList.isEmpty {
             return 1
         } else {
-            return myReviewslist.count
+            return myReviewsList.count
         }
     }
     
@@ -149,14 +149,14 @@ extension MyReviewsViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if myReviewslist.isEmpty {
+        if myReviewsList.isEmpty {
             let cell: EmptyCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             cell.configureViewType(.noReview)
             cell.configureEmptyText("내가 쓴 리뷰가 없어요!")
             return cell
         } else {
             let cell: BakeryCommonCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-            cell.configureCellUI(data: myReviewslist[indexPath.section])
+            cell.configureCellUI(data: myReviewsList[indexPath.section].bakeryList)
             return cell
         }
     }
@@ -166,11 +166,11 @@ extension MyReviewsViewController: UICollectionViewDataSource {
 
 extension MyReviewsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if myReviewslist.isEmpty {
+        if myReviewsList.isEmpty {
             return UICollectionReusableView()
         } else {
             let header: MyReviewsHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
-            header.configuteDateText(self.myReviewslist[indexPath.item].createdAt)
+            header.configuteDateText(self.myReviewsList[indexPath.row].createdAt)
             return header
         }
     }
@@ -184,11 +184,9 @@ extension MyReviewsViewController {
         MyPageAPI.shared.getMyReviews { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
-            for item in data {
-                self.myReviewslist.append(item)
-            }
+            self.myReviewsList = data.map {$0}
             self.collectionView.reloadData()
-            self.configureScrollable(self.myReviewslist.count)
+            self.configureScrollable(self.myReviewsList.count)
         }
     }
 }

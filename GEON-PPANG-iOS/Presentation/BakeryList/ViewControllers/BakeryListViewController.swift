@@ -17,9 +17,9 @@ final class BakeryListViewController: BaseViewController {
     enum Section {
         case main
     }
-    typealias DataSource = UICollectionViewDiffableDataSource<Section, BakeryList>
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, BakeryCommonListResponseDTO>
     private var dataSource: DataSource?
-    private var bakeryList: [BakeryList] = []
+    private var bakeryList: [BakeryCommonListResponseDTO] = []
     private var sortBakeryBy: SortBakery = .byDefault
     private var sortBakeryName: String = SortBakery.byDefault.sortValue
     private var filterStatus: [Bool] = [false, false, false ]
@@ -119,7 +119,7 @@ final class BakeryListViewController: BaseViewController {
     
     private func setDataSource() {
         
-        let cellRegistration = UICollectionView.CellRegistration<BakeryCommonCollectionViewCell, BakeryList> { (cell, _, item) in
+        let cellRegistration = UICollectionView.CellRegistration<BakeryCommonCollectionViewCell, BakeryCommonListResponseDTO> { (cell, _, item) in
             cell.configureCellUI(data: item)
         }
         
@@ -130,7 +130,7 @@ final class BakeryListViewController: BaseViewController {
     
     private func setReloadData() {
         
-        var snapshot = NSDiffableDataSourceSnapshot<Section, BakeryList>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, BakeryCommonListResponseDTO>()
         defer { dataSource?.apply(snapshot, animatingDifferences: false)}
         
         snapshot.appendSections([.main])
@@ -185,13 +185,9 @@ extension BakeryListViewController {
                                        isBrunch: isBrunch) { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
-            self.bakeryList = []
-            
-            for item in data {
-                self.bakeryList.append(item.convertToBakeryList())
-            }
+            let bakeryList = data.map { $0 }
+            self.bakeryList = bakeryList
             self.setReloadData()
-            self.bakeryListCollectionView.reloadData()
         }
     }
 }

@@ -16,7 +16,7 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
     // MARK: - Property
     
     private var breadTypeTag: [String] = []
-    private var ingredientList: [BakeryListResponseDTO] = []
+    private var ingredientList: [BakeryCommonListResponseDTO] = []
     
     // MARK: - UI Property
     
@@ -139,16 +139,14 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
     
     func configureCellUI<T: BakeryListProtocol>(data: T) {
         
-        bakeryTitle.setLineHeight(by: 1.05, with: data.bakeryName)
+        bakeryTitle.setLineHeight(by: 1.05, with: data.name)
         bookmarkCount.setLineHeight(by: 1.1, with: "(\(data.bookmarkCount))")
-        guard let url = URL(string: data.bakeryPicture) else { return }
+        guard let url = URL(string: data.picture) else { return }
         bakeryImage.kf.setImage(with: url)
-        markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)
-//        if data.secondNearStation == "" {
-//            regionStackView.removeSecondRegion()
-//        }
-//        regionStackView.configureRegionName(data.firstNearStation, data.secondNearStation ?? "")
-//        
+        
+        markStackView.getMarkStatus(data.mark.isHACCP, data.mark.isVegan, data.mark.isNonGMO)
+        
+ 
         breadTypeTag = []
         if data.breadType.isGlutenFree {
             breadTypeTag.append(I18N.BakeryList.glutenfree)

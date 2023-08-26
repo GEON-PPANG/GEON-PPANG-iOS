@@ -19,7 +19,7 @@ final class MySavedBakeryViewController: BaseViewController {
     }
     typealias DataSource = UICollectionViewDiffableDataSource<Section, AnyHashable>
     private var dataSource: DataSource?
-    private var savedList: [BakeryList] = []
+    private var savedList: [BakeryCommonListResponseDTO] = []
     private var currentSection: [Section] = [.empty]
         
     // MARK: - UI Property
@@ -86,8 +86,8 @@ final class MySavedBakeryViewController: BaseViewController {
     
     private func setDataSource() {
         
-        let cellRegistration = UICollectionView.CellRegistration<BakeryCommonCollectionViewCell, BakeryList> { (cell, _, item) in
-            if let bakeryListItem = item as? BakeryList {
+        let cellRegistration = UICollectionView.CellRegistration<BakeryCommonCollectionViewCell, BakeryCommonListResponseDTO> { (cell, _, item) in
+            if let bakeryListItem = item as? BakeryCommonListResponseDTO {
                 cell.configureCellUI(data: bakeryListItem)
             }
         }
@@ -96,7 +96,7 @@ final class MySavedBakeryViewController: BaseViewController {
             let section = self.dataSource?.snapshot().sectionIdentifiers[indexPath.section]
             switch section {
             case .main:
-                return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item as? BakeryList)
+                return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item as? BakeryCommonListResponseDTO)
             case .empty, .none:
                 let cell: EmptyCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
                 cell.configureViewType(.noBookmark)
@@ -113,7 +113,7 @@ final class MySavedBakeryViewController: BaseViewController {
         snapshot.appendItems([0])
     }
     
-    private func configureDataSource(data: [BakeryList]) {
+    private func configureDataSource(data: [BakeryCommonListResponseDTO]) {
         
         guard var snapshot = dataSource?.snapshot() else { return }
         
@@ -196,10 +196,8 @@ extension MySavedBakeryViewController {
         MyPageAPI.shared.getBookmarks { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
-            self.savedList = []
-            for item in data {
-                self.savedList.append(item.convertToBakeryList())
-            }
+            let savedList = data.map{ $0 }
+            self.savedList = savedList
             self.configureDataSource(data: self.savedList)
             self.configureScollable(data.count)
         }
