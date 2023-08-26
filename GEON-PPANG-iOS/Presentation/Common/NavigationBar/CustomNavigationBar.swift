@@ -22,7 +22,7 @@ final class CustomNavigationBar: UIView {
     
     private let backButton = BackButton()
     
-    private lazy var leftTitleLabel = UILabel()
+    private lazy var centerTitleLabel = UILabel()
     
     private lazy var rightCountLabel = UILabel()
     private lazy var rightMapButton = UIButton()
@@ -68,17 +68,15 @@ final class CustomNavigationBar: UIView {
         rightMapButton.addAction(action, for: .touchUpInside)
     }
     
-    // FIXME: 1릴 때에는 사용하지 않을 함수
-    // FIXME: 대신 가운데에 title 이 추가될듯 !
-    func configureLeftTitle(to title: String) {
+    func configureCenterTitle(to title: String) {
         
-        self.addSubview(leftTitleLabel)
-        leftTitleLabel.snp.makeConstraints {
-            $0.leading.equalTo(backButton.snp.trailing).offset(8)
+        self.addSubview(centerTitleLabel)
+        centerTitleLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
             $0.centerY.equalTo(backButton)
         }
         
-        leftTitleLabel.do {
+        centerTitleLabel.do {
             $0.text = title
             $0.font = .title2
             $0.textColor = .black
@@ -131,6 +129,11 @@ final class CustomNavigationBar: UIView {
             $0.bottom.horizontalEdges.equalToSuperview()
             $0.height.equalTo(1)
         }
+    }
+    
+    func hideBackButton(_ isHidden: Bool) {
+        
+        backButton.isHidden = isHidden
     }
     
 }

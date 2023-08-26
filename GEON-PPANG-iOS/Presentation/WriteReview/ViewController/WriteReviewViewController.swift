@@ -29,25 +29,17 @@ final class WriteReviewViewController: BaseViewController {
     private let bottomView = BottomView()
     private let nextButton = CommonButton()
     
-    private lazy var bakeryOverviewView = BakeryOverviewView(
-        bakeryImage: bakeryData.bakeryImageURL,
-        ingredients: bakeryData.bakeryIngredients,
-        firstRegion: bakeryData.bakeryRegion[0],
-        secondRegion: bakeryData.bakeryRegion[1]
-    )
+    private lazy var bakeryOverviewView = BakeryOverviewView(of: bakeryData)
     
     private let lineView = LineView()
     
-    private let likeCollectionViewFlowLayout = OptionsCollectionViewFlowLayout()
-    private let optionsCollectionViewFlowLayout = OptionsCollectionViewFlowLayout()
     private let likeCollectionViewHeaderLabel = UILabel()
-    private lazy var likeCollectionView = OptionsCollectionView(frame: .zero, collectionViewLayout: likeCollectionViewFlowLayout)
+    private let likeCollectionView = OptionsCollectionView(frame: .zero, collectionViewLayout: OptionsCollectionViewFlowLayout())
     private let optionsCollectionViewHeaderLabel = UILabel()
-    private lazy var optionsCollectionView = OptionsCollectionView(frame: .zero, collectionViewLayout: optionsCollectionViewFlowLayout)
+    private let optionsCollectionView = OptionsCollectionView(frame: .zero, collectionViewLayout: OptionsCollectionViewFlowLayout())
     
     private let reviewDetailTextView = ReviewDetailTextView()
     private let aboutReviewContainerView = UIView()
-    private let dotView = UILabel()
     private let aboutReviewLabel = UILabel()
     
     private let backgroundView = BottomSheetAppearView()
@@ -78,7 +70,6 @@ final class WriteReviewViewController: BaseViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        Utils.updateCollectionViewConstraint(of: bakeryOverviewView.bakeryIngredientsCollectionView, byOffset: 1)
         Utils.updateCollectionViewConstraint(of: likeCollectionView)
         Utils.updateCollectionViewConstraint(of: optionsCollectionView)
     }
@@ -116,7 +107,7 @@ final class WriteReviewViewController: BaseViewController {
         
         contentView.addSubview(lineView)
         lineView.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(20)
             $0.top.equalTo(bakeryOverviewView.snp.bottom).offset(24)
             $0.height.equalTo(1)
         }
@@ -164,16 +155,9 @@ final class WriteReviewViewController: BaseViewController {
             $0.height.equalTo(207)
         }
         
-        aboutReviewContainerView.addSubview(dotView)
-        dotView.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(24)
-            $0.top.equalToSuperview().offset(16)
-        }
-        
         aboutReviewContainerView.addSubview(aboutReviewLabel)
         aboutReviewLabel.snp.makeConstraints {
-            $0.leading.equalTo(dotView.snp.trailing)
-            $0.trailing.equalToSuperview().inset(24)
+            $0.horizontalEdges.equalToSuperview().inset(24)
             $0.top.equalToSuperview().offset(16)
         }
     }
@@ -182,7 +166,7 @@ final class WriteReviewViewController: BaseViewController {
         
         navigationBar.do {
             $0.backgroundColor = .white
-            $0.configureLeftTitle(to: bakeryData.bakeryName)
+            $0.configureCenterTitle(to: I18N.WriteReview.writeReview)
             $0.configureBottomLine()
             $0.configureBackButtonAction(UIAction { [weak self] _ in
                 self?.backButtonTapped()
@@ -224,13 +208,6 @@ final class WriteReviewViewController: BaseViewController {
             $0.backgroundColor = .gbbGray100
         }
         
-        dotView.do {
-            $0.font = .captionM2
-            $0.textColor = .gbbGray300
-            $0.textAlignment = .center
-            $0.setLineHeight(by: 1.37, with: "•")
-        }
-        
         aboutReviewLabel.do {
             $0.text = I18N.WriteReview.aboutReview
             $0.font = .captionM2
@@ -248,10 +225,9 @@ final class WriteReviewViewController: BaseViewController {
         
         nextButton.do {
             $0.backgroundColor = .gbbPoint1
-            $0.isUserInteractionEnabled = false
             $0.makeCornerRound(radius: 12)
             $0.configureButtonTitle(.write)
-            $0.configureButtonUI(.gbbGray200!)
+            $0.configureInteraction(to: false)
             $0.addAction(UIAction { [weak self] _ in
                 self?.nextButtonTapped()
             }, for: .touchUpInside)
@@ -268,8 +244,8 @@ final class WriteReviewViewController: BaseViewController {
         }
         
         confirmBottomSheetView.do {
-            $0.getEmojiType(.smile)
-            $0.getBottonSheetTitle(I18N.WriteReview.confirmSheetTitle)
+            $0.configureEmojiType(.smile)
+            $0.configureBottonSheetTitle(I18N.WriteReview.confirmSheetTitle)
             $0.dismissBottomSheet = {
                 self.backgroundView.dissmissFromSuperview()
                 self.navigationController?.popViewController(animated: true)
@@ -300,21 +276,20 @@ final class WriteReviewViewController: BaseViewController {
     
     private func nextButtonTapped() {
         
-        writeReviewData.reviewText = reviewDetailTextView.detailTextView.text
         requestWriteReview(writeReviewData)
         UIView.animate(withDuration: 0.2, animations: {
             self.bottomView.transform = .identity
             self.scrollView.transform = .identity
         }) { _ in
             self.backgroundView.dimmedView.isUserInteractionEnabled = false
-            self.backgroundView.appearBottomSheetView(subView: self.confirmBottomSheetView, CGFloat().heightConsideringBottomSafeArea(281))
+            self.backgroundView.appearBottomSheetView(subView: self.confirmBottomSheetView, CGFloat().heightConsideringBottomSafeArea(292))
         }
         view.endEditing(true)
     }
     
     private func backButtonTapped() {
         
-        backgroundView.appearBottomSheetView(subView: exitBottomSheetView, CGFloat().heightConsideringBottomSafeArea(309))
+        backgroundView.appearBottomSheetView(subView: exitBottomSheetView, CGFloat().heightConsideringBottomSafeArea(347))
     }
     
     // MARK: - Custom Method
@@ -324,11 +299,6 @@ final class WriteReviewViewController: BaseViewController {
         optionsCollectionViewHeaderLabel.do {
             $0.textColor = color
         }
-    }
-    
-    private func checkTextViewLength(_ textView: UITextView) {
-        
-        reviewDetailTextView.configureTextView(to: textView.text.count <= 10 ? .error : .activated)
     }
     
     private func textLimit(_ existingText: String?, to newText: String, with limit: Int) -> Bool {
@@ -387,13 +357,16 @@ extension WriteReviewViewController: UICollectionViewDelegate {
             
             writeReviewData.isLike = isLikeSelected
             
+            if !isLikeSelected {
+                nextButton.configureInteraction(to: false)
+            }
+            
         case optionsCollectionView:
             let hasSelection = collectionView.indexPathsForSelectedItems != nil
             reviewDetailTextView.isUserInteractionEnabled = hasSelection
             reviewDetailTextView.configureTextView(to: hasSelection ? .activated : .deactivated)
-            reviewDetailTextView.checkTextCount()
-            
             writeReviewData.keywordList.append(SingleKeyword(keywordName: keywordRequestList[indexPath.item]))
+            nextButton.configureInteraction(to: hasSelection)
             
         default:
             return
@@ -402,13 +375,11 @@ extension WriteReviewViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         
-        guard collectionView == optionsCollectionView else { return }
-        
         if let keywordIndex = writeReviewData.keywordList.firstIndex(of: SingleKeyword(keywordName: keywordRequestList[indexPath.item])) {
             writeReviewData.keywordList.remove(at: keywordIndex)
         }
         
-        if collectionView.indexPathsForSelectedItems == [] {
+        if optionsCollectionView.indexPathsForSelectedItems == [] {
             reviewDetailTextView.isUserInteractionEnabled = false
             reviewDetailTextView.configureTextView(to: .deactivated)
         }
@@ -462,18 +433,13 @@ extension WriteReviewViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         
         let textCount = textView.text.count
-        if textCount < 10 && 0 < textCount {
-            reviewDetailTextView.configureTextView(to: .error)
-            
-            nextButton.configureButtonUI(.gbbGray200!)
-            nextButton.isUserInteractionEnabled = false
-        } else {
-            reviewDetailTextView.configureTextView(to: .activated)
-            
-            nextButton.configureButtonUI(.gbbGray700!)
-            nextButton.isUserInteractionEnabled = true
-        }
+        nextButton.configureInteraction(to: true)
+        reviewDetailTextView.configureTextView(to: .activated)
         reviewDetailTextView.updateTextLimitLabel(to: textCount)
+        
+        if textView.text.isEmpty && !reviewDetailTextView.isLike {
+            nextButton.configureInteraction(to: false)
+        }
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -489,6 +455,7 @@ extension WriteReviewViewController: UITextViewDelegate {
         if textView.text.isEmpty {
             textView.text = reviewDetailTextView.isLike ? I18N.WriteReview.likePlaceholder : I18N.WriteReview.dislikePlaceholder
             textView.textColor = .gbbGray300
+            writeReviewData.reviewText = ""
         }
     }
     
@@ -496,7 +463,7 @@ extension WriteReviewViewController: UITextViewDelegate {
                   shouldChangeTextIn range: NSRange,
                   replacementText text: String) -> Bool {
         
-        return self.textLimit(textView.text, to: text, with: 70)
+        return self.textLimit(textView.text, to: text, with: 120)
     }
 }
 

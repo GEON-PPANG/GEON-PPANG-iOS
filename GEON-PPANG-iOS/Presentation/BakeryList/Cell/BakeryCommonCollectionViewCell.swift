@@ -107,7 +107,7 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
         }
         
         markStackView.do {
-            $0.confiureIconImage(.smallHACCPMark, .smallVeganMark, .smallGMOMark)
+            $0.configureIconImage(.smallHACCPMark, .smallVeganMark, .smallGMOMark)
         }
         
         bakeryTitle.do {
