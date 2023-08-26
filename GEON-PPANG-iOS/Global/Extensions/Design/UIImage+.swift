@@ -56,6 +56,7 @@ extension UIImage {
     static let profileIcon = UIImage(named: "ic_profile")!.withRenderingMode(.alwaysOriginal)
     static let reviewIcon16px = UIImage(named: "ic_review_16px")!.withRenderingMode(.alwaysOriginal)
     static let reviewIcon = UIImage(named: "ic_review")!.withRenderingMode(.alwaysOriginal)
+    static let reviewIcon16px400 = UIImage(named: "ic_review_16px_400")!.withRenderingMode(.alwaysOriginal)
     static let reviewBreadIcon = UIImage(named: "ic_review_bread")!.withRenderingMode(.alwaysOriginal)
     static let searchIcon400 = UIImage(named: "ic_search_400")!.withRenderingMode(.alwaysOriginal) /// gray400
     static let searchIcon600 = UIImage(named: "ic_search_600")!.withRenderingMode(.alwaysOriginal) /// gray600
@@ -87,10 +88,8 @@ extension UIImage {
     static let mapButton = UIImage(named: "map_button")!.withRenderingMode(.alwaysOriginal)
     
     // Social Login
-    static let appleLoginButton = UIImage(named: "apple_login_button_56px")!.withRenderingMode(.alwaysOriginal)
-    static let googleLoginButton = UIImage(named: "google_login_button_56px")!.withRenderingMode(.alwaysOriginal)
-    static let kakaoLoginButton = UIImage(named: "kakao_login_button_56px")!.withRenderingMode(.alwaysOriginal)
-    static let naverLoginButton = UIImage(named: "naver_login_button_56px")!.withRenderingMode(.alwaysOriginal)
+    static let kakaoLoginButton = UIImage(named: "KakaoSocialLogin")!.withRenderingMode(.alwaysOriginal)
+    static let appleLoginButton = UIImage(named: "AppleSocialLogin")!.withRenderingMode(.alwaysOriginal)
     
     // TabBar
     static let disabledHomeIcon = UIImage(named: "ic_home_disable")!.withRenderingMode(.alwaysOriginal)

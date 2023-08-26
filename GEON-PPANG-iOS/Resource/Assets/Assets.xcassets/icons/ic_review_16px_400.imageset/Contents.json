@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "naver_login_button_56px@1x.png",
+      "filename" : "ic_review_16px_400@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "naver_login_button_56px@2x.png",
+      "filename" : "ic_review_16px_400@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "naver_login_button_56px@3x.png",
+      "filename" : "ic_review_16px_400@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

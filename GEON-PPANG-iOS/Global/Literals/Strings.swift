@@ -14,7 +14,7 @@ struct I18N {
         static let searchPlaceholder = "궁금한 건빵집을 입력해주세요!"
         static let bottomSectionTitle =
             """
-            ⦁ 건빵은 건강한 빵집의 위치와 성분 정보를 제공하여 소비자의 선택을 돕는 용도의 서비스입니다. 건빵의 모든 정보는 제조사에서 제공한 정보입니다. 이는 소비자의 구매를 돕기 위한 참고 사항이며, 제공 정보의 오류에 대한 책임을 지지 않습니다.
+            건빵은 건강한 빵집의 위치와 성분 정보를 제공하여 소비자의 선택을 돕는 용도의 서비스입니다. 건빵의 모든 정보는 제조사에서 제공한 정보입니다. 이는 소비자의 구매를 돕기 위한 참고 사항이며, 제공 정보의 오류에 대한 책임을 지지 않습니다.
             """
     }
     
@@ -22,6 +22,8 @@ struct I18N {
     struct Onboarding {
         static let latelySigninText = "최근에 카카오톡으로 로그인 했습니다."
         static let latelySigninSNS = "카카오톡"
+        static let emailSignIn = "이메일로 로그인"
+        static let emailSignUp = "이메일로 회원가입"
     }
     
     /// Bottomsheet
@@ -61,13 +63,12 @@ struct I18N {
     
     /// Filter Selection
     struct Filter {
-        static let purposeTitle = "반가워요 님 :)\n건빵을 찾은 이유를 알려주세요!"
+        static let purposeTitle = "맞춤 빵집 추천을 위해\n건빵을 찾은 이유를 알려주세요!"
         static let breadTypeTitle = "어떤 빵을 원하시나요?"
-        static let breadTypeSubtitle = "중복선택이 가능해요!"
         static let ingredientTitle = "어떤 성분을 원하시나요?"
-        static let ingredientSubtitle = "중복선택이 가능해요!"
-        // TODO: 문구 약간 변경
-        static let welcomeTitle = "님\n건빵에 오신 걸 환영해요!"
+        static let subtitle = "중복선택이 가능해요!"
+        static let welcomeTitle = "님:)\n건빵에 오신 걸 환영해요!"
+        static let skip = "건너뛰기 "
     }
     
     /// MyPage

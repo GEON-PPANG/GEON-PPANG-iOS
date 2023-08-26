@@ -23,8 +23,6 @@ final class SearchTextField: UITextField {
     
     private lazy var searchButton = UIButton()
     private lazy var clearButton = UIButton()
-    private let emptyView = UIView()
-    private let rightStackView = UIStackView()
     
     // MARK: - Life Cycle
     
@@ -44,14 +42,6 @@ final class SearchTextField: UITextField {
     
     private func setLayout() {
         
-        rightStackView.snp.makeConstraints {
-            $0.width.equalTo(40)
-        }
-        
-        emptyView.snp.makeConstraints {
-            $0.width.equalTo(15)
-        }
-        
         [clearButton, searchButton].forEach {
             $0.snp.makeConstraints {
                 $0.size.equalTo(24)
@@ -60,9 +50,7 @@ final class SearchTextField: UITextField {
     }
     
     private func setUI() {
-        
-        clearButtonMode = .never
-        
+                
         searchButton.do {
             $0.setImage(.searchIcon400, for: .normal)
             $0.addAction(UIAction { _ in
@@ -84,7 +72,6 @@ final class SearchTextField: UITextField {
             $0.setPlaceholder(color: .gbbGray300!, font: .bodyM1!)
             $0.setLeftPadding(amount: 15)
             updateRightViewMode()
-            $0.rightView = rightStackView
         }
     }
     
@@ -103,12 +90,10 @@ final class SearchTextField: UITextField {
         
         switch rightButtonType {
         case .searchButton:
-            rightStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
-            rightStackView.addArrangedSubviews(searchButton, emptyView)
+            rightView = searchButton
             rightViewMode = .unlessEditing
         case .clearButton:
-            rightStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
-            rightStackView.addArrangedSubviews(clearButton, emptyView)
+            rightView = clearButton
             rightViewMode = .whileEditing
         }
     }
@@ -152,5 +137,14 @@ extension SearchTextField: UITextFieldDelegate {
         searchToBakeryList?(fetchText())
         resignFirstResponder()
         return true
+    }
+    
+    override public func rightViewRect(forBounds bounds: CGRect) -> CGRect {
+        
+        let rect = super.rightViewRect(forBounds: bounds)
+        return rect.inset(by: UIEdgeInsets(top: 0,
+                                           left: -15,
+                                           bottom: 0,
+                                           right: 15))
     }
 }

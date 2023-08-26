@@ -128,7 +128,7 @@ final class NickNameViewController: BaseViewController {
                     $0.isUserInteractionEnabled = true
                     $0.configureButtonUI(.gbbMain2!)
                     $0.tappedCommonButton = {
-                        Utils.push(self.navigationController, FilterPurposeViewController(maxSteps: 6, username: UserDefaults.standard.string(forKey: "nickname") ?? ""))
+                        Utils.push(self.navigationController, FilterViewController(isInitial: true))
                     }
                 }
             }

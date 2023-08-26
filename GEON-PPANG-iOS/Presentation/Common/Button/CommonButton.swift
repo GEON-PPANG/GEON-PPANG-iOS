@@ -19,6 +19,7 @@ enum ButtonTitle: String, CaseIterable {
     case duplicate = "중복확인"
     case write = "작성하기"
     case start = "시작하기"
+    case apply = "적용하기"
     
 }
 
