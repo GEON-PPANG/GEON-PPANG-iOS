@@ -63,14 +63,18 @@ final class MarkStackView: UIStackView {
         }
     }
     
-    func configureIconImage(_ haccp: UIImage, _ vegan: UIImage, _ gmo: UIImage) {
+    func configureIconImage(_ haccp: UIImage,
+                            _ vegan: UIImage,
+                            _ gmo: UIImage) {
         
         hccpMarkIconView.image = haccp
         veganIconView.image = vegan
         gmoIconView.image = gmo
     }
     
-    func getMarkStatus(_ isHACCP: Bool, _ isVegan: Bool, _ isNONGMO: Bool) {
+    func getMarkStatus(_ isHACCP: Bool,
+                       _ isVegan: Bool,
+                       _ isNONGMO: Bool) {
         
         if !isHACCP {
             hccpMarkIconView.isHidden = true
