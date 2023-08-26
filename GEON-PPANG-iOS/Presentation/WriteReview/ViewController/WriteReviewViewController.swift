@@ -166,7 +166,7 @@ final class WriteReviewViewController: BaseViewController {
         
         navigationBar.do {
             $0.backgroundColor = .white
-            $0.configureCenterTitle(to: "리뷰 쓰기")
+            $0.configureCenterTitle(to: I18N.WriteReview.writeReview)
             $0.configureBottomLine()
             $0.configureBackButtonAction(UIAction { [weak self] _ in
                 self?.backButtonTapped()

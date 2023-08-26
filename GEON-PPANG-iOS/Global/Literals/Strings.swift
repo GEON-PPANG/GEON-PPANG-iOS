@@ -36,6 +36,7 @@ struct I18N {
     
     /// WriteReviewViewController
     struct WriteReview {
+        static let writeReview = "리뷰 쓰기"
         static let likeOptionTitle = "건빵집은 어떠셨나요?"
         static let likePlaceholder = "추가로 좋았던 점이 있다면 말씀해주세요!"
         static let dislikePlaceholder = "자유롭게 의견을 말씀해주세요!"
