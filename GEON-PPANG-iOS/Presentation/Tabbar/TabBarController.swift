@@ -20,7 +20,6 @@ final class TabBarController: UITabBarController {
         super.viewWillAppear(animated)
         
         tabBar.configureTabBarUI()
-        
     }
     
     override func viewDidLoad() {
@@ -57,7 +56,6 @@ final class TabBarController: UITabBarController {
         
         tabBar.tintColor = .gbbMain3
         tabBar.layer.applyShadow()
-
     }
     
     private func setTabBarHeight() {
