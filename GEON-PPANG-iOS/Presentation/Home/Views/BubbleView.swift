@@ -7,14 +7,75 @@
 
 import UIKit
 
-class BubbleView: UIView {
+import SnapKit
+import Then
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+final class BubbleView: UIView {
+    
+    // MARK: - Property
+    
+    var tappedCancelButton: (() -> Void)?
+    
+    // MARK: - UI Property
+    
+    private let bubbleView = UIImageView()
+    private let titleLabel = UILabel()
+    private let cancelButton = UIButton()
+    
+    // MARK: - Life Cycle
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setLayout()
+        setUI()
     }
-    */
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Setting
+    
+    private func setLayout() {
+        
+        self.addSubview(bubbleView)
+        bubbleView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        self.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(10)
+            $0.centerY.equalToSuperview().offset(3)
+        }
+        
+        self.addSubview(cancelButton)
+        cancelButton.snp.makeConstraints {
+            $0.leading.equalTo(titleLabel.snp.trailing).offset(4)
+            $0.centerY.equalTo(titleLabel.snp.centerY)
+            $0.size.equalTo(16)
+        }
+    }
+    
+    private func setUI() {
+        
+        bubbleView.do {
+            $0.image = .bubbleImage
+        }
+        
+        titleLabel.do {
+            $0.basic(text: "맞춤 빵집을 위한 필터를 설정해 보세요!",
+                     font: .captionM2!,
+                     color: .gbbGray400!)
+        }
+        
+        cancelButton.do {
+            $0.setImage(.deleteKeywordIcon, for: .normal)
+            $0.addAction(UIAction { _ in
+                self.tappedCancelButton?()
+            }, for: .touchUpInside)
+        }
+    }
 
 }
