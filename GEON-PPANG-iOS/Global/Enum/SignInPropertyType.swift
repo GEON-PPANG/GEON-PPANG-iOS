@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 enum SignInPropertyType: String, CaseIterable {
     
     case email = "이메일"
