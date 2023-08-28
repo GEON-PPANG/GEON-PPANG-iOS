@@ -105,4 +105,9 @@ struct I18N {
     struct Detail {
         static let writeReview = "리뷰 작성하기"
     }
+    
+    /// Nickname
+    struct Nickname {
+        static let title = "건빵에 오신걸 환영해요!\n어떻게 불러드릴까요?"
+    }
 }
