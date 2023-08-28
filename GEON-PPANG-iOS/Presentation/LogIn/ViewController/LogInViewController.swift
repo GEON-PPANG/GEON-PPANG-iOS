@@ -11,12 +11,18 @@ import SnapKit
 import Then
 
 final class LogInViewController: BaseViewController {
-
+    
     // MARK: - Property
     
-    private var isValid: Bool = false {
+    private var emailValid: Bool = false {
         didSet {
-            configureButtonUI(isValid)
+            configureButtonUI()
+        }
+    }
+    
+    private var passwordValid: Bool = false {
+        didSet {
+            configureButtonUI()
         }
     }
     
@@ -29,7 +35,7 @@ final class LogInViewController: BaseViewController {
     private let accountLabel = UILabel()
     private let signInButton = UIButton()
     private let loginButton = CommonButton()
-
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -101,7 +107,7 @@ final class LogInViewController: BaseViewController {
         
         titleLabel.do {
             $0.numberOfLines = 0
-            $0.basic(text: "로그인",
+            $0.basic(text: I18N.LogIn.title,
                      font: .title1!,
                      color: .gbbGray700!)
         }
@@ -109,17 +115,17 @@ final class LogInViewController: BaseViewController {
         emailTextField.do {
             $0.cofigureSignInType(.loginEmail)
             $0.validCheck = { [weak self] valid in
-                self?.isValid = valid
+                self?.emailValid = valid
             }
         }
         
         passwordTextField.do {
             $0.cofigureSignInType(.loginPassword)
             $0.validCheck = { [weak self] valid in
-                self?.isValid = valid
+                self?.passwordValid = valid
             }
         }
-
+        
         loginButton.do {
             $0.isUserInteractionEnabled = false
             $0.configureButtonUI(.gbbGray200!)
@@ -127,26 +133,27 @@ final class LogInViewController: BaseViewController {
         }
         
         signInButton.do {
-            $0.setTitle("회원가입하기", for: .normal)
+            $0.setTitle(I18N.LogIn.signIn, for: .normal)
             $0.setTitleColor(.gbbGray500!, for: .normal)
             $0.titleLabel?.font = .bodyB2!
             $0.setUnderline()
         }
         
         accountLabel.do {
-            $0.basic(text: "계정이 없으신가요?", font: .subHead!, color: .gbbGray500!)
+            $0.basic(text: I18N.LogIn.noAccount,
+                     font: .subHead!,
+                     color: .gray_500!)
         }
         
     }
     
-    func configureButtonUI(_ isValid: Bool) {
+    func configureButtonUI() {
         
-//        if !isValid {
-//            nextButton.do {
-//                $0.isUserInteractionEnabled = isValid
-//                $0.configureButtonUI(.gbbGray200!)
-//            }
-//        }
+        let valid = emailValid && passwordValid
+        loginButton.do {
+            $0.isUserInteractionEnabled = valid
+            $0.configureButtonUI(valid ? .gbbMain2!: .gbbGray200!)
+        }
     }
     
     func dismissKeyboardWhenTappedAround() {
@@ -155,5 +162,4 @@ final class LogInViewController: BaseViewController {
         tap.cancelsTouchesInView = true
         self.view.addGestureRecognizer(tap)
     }
-    
 }

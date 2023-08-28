@@ -158,7 +158,9 @@ extension CommonTextView: UITextFieldDelegate {
         case .checkPassword:
             self.textFieldData?(fetchText())
         case .loginPassword, .loginEmail:
-             return
+            if !self.fetchText().isEmpty {
+                self.validCheck?(true)
+            }
         }
         
         if text.isEmpty {

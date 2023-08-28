@@ -82,7 +82,7 @@ class SignInTextField: UITextField {
     func configureViewType(_ viewType: SignInPropetyType) {
         
         switch viewType {
-        case .checkPassword, .password:
+        case .checkPassword, .password, .loginPassword:
             self.isSecureTextEntry = true
             self.rightView = rightStackView
         default:
