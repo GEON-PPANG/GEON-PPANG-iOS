@@ -64,18 +64,7 @@ final class MyPageCollectionViewFooter: UICollectionReusableView {
             $0.setTitle(I18N.MyPage.appVersionNum, for: .normal)
             $0.setTitleColor(.gbbMain1, for: .normal)
             $0.titleLabel?.font = .captionM1
-            $0.addAction(UIAction { [weak self] _ in
-                self?.appVersionButtonTapped()
-            }, for: .touchUpInside)
         }
-    }
-    
-    // MARK: - Action Helper
-    
-    private func appVersionButtonTapped() {
-        
-        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
-        sceneDelegate?.changeRootViewControllerToOnboardingViewController()
     }
     
 }

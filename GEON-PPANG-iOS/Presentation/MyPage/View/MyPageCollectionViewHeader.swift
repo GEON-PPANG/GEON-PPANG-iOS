@@ -14,7 +14,6 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
     
     // MARK: - Prperty
     
-    private var username =  UserDefaults.standard.string(forKey: "nickname") ?? ""
     private var myPageData = MyPageResponseDTO.dummyData()
     private lazy var myPageTagData = myPageData.breadType.configureTrueOptions()
     var nextButtonTapped: (() -> Void)?
@@ -123,7 +122,6 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
         }
         
         userNameLabel.do {
-            $0.text = username
             $0.font = .title2
             $0.textColor = .gbbGray700
         }
@@ -188,7 +186,7 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
         
         self.myPageData = memberData
         self.purposeFilterChipView.configureChip(toTag: convertFromData(myPageData.mainPurpose))
-        self.userNameLabel.text = username
+        self.userNameLabel.text = memberData.memberNickname
         self.myPageTagData = memberData.breadType.configureTrueOptions()
         
         filterCollectionView.reloadData()
