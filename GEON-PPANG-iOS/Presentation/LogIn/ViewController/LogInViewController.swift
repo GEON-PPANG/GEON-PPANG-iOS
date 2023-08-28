@@ -41,7 +41,7 @@ final class LogInViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dismissKeyboardWhenTappedAround()
+        setKeyboardHideGesture()
     }
     
     override func setLayout() {
@@ -154,12 +154,5 @@ final class LogInViewController: BaseViewController {
             $0.isUserInteractionEnabled = valid
             $0.configureButtonUI(valid ? .gbbMain2!: .gbbGray200!)
         }
-    }
-    
-    func dismissKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
-                                                                 action: #selector(endEditingView))
-        tap.cancelsTouchesInView = true
-        self.view.addGestureRecognizer(tap)
     }
 }
