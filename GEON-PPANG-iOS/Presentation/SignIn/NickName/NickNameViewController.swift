@@ -36,7 +36,7 @@ final class NickNameViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         dismissKeyboardWhenTappedAround()
     }
     
@@ -52,36 +52,39 @@ final class NickNameViewController: BaseViewController {
         
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(naviView.snp.bottom).offset(20)
+            $0.top.equalTo(naviView.snp.bottom).offset(28)
             $0.leading.equalToSuperview().offset(24)
         }
         
         view.addSubview(nicknameTextField)
         nicknameTextField.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(40)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(32)
             $0.directionalHorizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(74)
         }
         
         view.addSubview(checkButton)
         checkButton.snp.makeConstraints {
-            $0.top.equalTo(nicknameTextField.snp.bottom).offset(36)
-            $0.directionalHorizontalEdges.equalToSuperview().inset(24)
-            $0.height.equalTo(56)
+            $0.top.equalTo(nicknameTextField.snp.bottom).offset(29)
         }
         
         view.addSubview(nextButton)
         nextButton.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(CGFloat().heightConsideringBottomSafeArea(54))
-            $0.directionalHorizontalEdges.equalToSuperview().inset(24)
-            $0.height.equalTo(56)
+        }
+        
+        [checkButton, nextButton].forEach {
+            $0.snp.makeConstraints {
+                $0.directionalHorizontalEdges.equalToSuperview().inset(24)
+                $0.height.equalTo(56)
+            }
         }
     }
     
     override func setUI() {
         
         naviView.do {
-            $0.configureRightCount(3, by: 6)
+            $0.configureBottomLine()
             $0.configureBackButtonAction(UIAction { _ in
                 self.navigationController?.popViewController(animated: true)
             })
@@ -89,7 +92,7 @@ final class NickNameViewController: BaseViewController {
         
         titleLabel.do {
             $0.numberOfLines = 0
-            $0.basic(text: "건빵에 오신걸 환영해요!\n어떻게 불러드릴까요?",
+            $0.basic(text: I18N.Nickname.title,
                      font: .title1!,
                      color: .gbbGray700!)
         }
@@ -142,11 +145,10 @@ final class NickNameViewController: BaseViewController {
             $0.configureButtonUI(.clear, isValid ? .gbbMain2! : .gbbGray300!)
         }
         
-        if !isValid {
-            nextButton.do {
-                $0.isUserInteractionEnabled = false
-                $0.configureButtonUI(.gbbGray200!)
-            }
+        self.nextButton.do {
+            $0.isUserInteractionEnabled = isValid
+            $0.configureButtonTitle(isValid ? .start : .next)
+            $0.configureButtonUI(isValid ? .gbbMain2! : .gbbGray200!)
         }
     }
     
