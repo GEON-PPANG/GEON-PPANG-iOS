@@ -13,5 +13,5 @@ struct SearchResponseDTO: Decodable, Hashable {
     
     let resultCount: Int
     let bakeryList: [BakeryCommonListResponseDTO]
-
+    
 }

@@ -50,7 +50,7 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Setting
-
+    
     private func setLayout() {
         
         contentView.addSubview(bakeryImage)
@@ -59,7 +59,7 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
             $0.top.equalToSuperview().offset(24)
             $0.leading.equalToSuperview().inset(24)
         }
- 
+        
         contentView.addSubview(bakeryTitle)
         bakeryTitle.snp.makeConstraints {
             $0.top.equalTo(bakeryImage.snp.top)
@@ -146,7 +146,7 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
         
         markStackView.getMarkStatus(data.mark.isHACCP, data.mark.isVegan, data.mark.isNonGMO)
         
- 
+        
         breadTypeTag = []
         if data.breadType.isGlutenFree {
             breadTypeTag.append(I18N.BakeryList.glutenfree)

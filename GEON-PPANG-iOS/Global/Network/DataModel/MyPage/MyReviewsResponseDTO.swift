@@ -14,14 +14,14 @@ struct MyReviewsResponseDTO: Decodable {
     var id = UUID()
     let bakeryList: BakeryCommonListResponseDTO
     let createdAt: String
-
+    
     func hash(into hasher: inout Hasher) {
         
         hasher.combine(id)
     }
-
+    
     static func == (lhs: MyReviewsResponseDTO, rhs: MyReviewsResponseDTO) -> Bool {
         lhs.id == rhs.id
     }
- 
+    
 }

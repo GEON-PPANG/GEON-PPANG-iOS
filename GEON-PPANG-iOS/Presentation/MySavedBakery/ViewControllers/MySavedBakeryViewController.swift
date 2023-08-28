@@ -196,7 +196,7 @@ extension MySavedBakeryViewController {
         MyPageAPI.shared.getBookmarks { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
-            let savedList = data.map{ $0 }
+            let savedList = data.map { $0 }
             self.savedList = savedList
             self.configureDataSource(data: self.savedList)
             self.configureScollable(data.count)

@@ -22,7 +22,7 @@ enum HomeIconType {
 }
 
 final class IconWithTextStackView: UIStackView {
-
+    
     // MARK: - Property
     
     private var iconType: HomeIconType = .bookmark
@@ -62,7 +62,7 @@ final class IconWithTextStackView: UIStackView {
             $0.spacing = 1
             $0.axis = .horizontal
         }
-
+        
     }
     
     func iconViewType(_ type: HomeIconType, count: Int) {
@@ -72,5 +72,5 @@ final class IconWithTextStackView: UIStackView {
                          font: .captionB1!,
                          color: .gbbGray400!)
     }
-
+    
 }

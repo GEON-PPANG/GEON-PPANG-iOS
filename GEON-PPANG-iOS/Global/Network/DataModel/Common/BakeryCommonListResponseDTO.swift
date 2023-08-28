@@ -29,34 +29,34 @@ struct BakeryCommonListResponseDTO: Decodable, Hashable, BakeryListProtocol {
     }
     
     init(from decoder: Decoder) throws {
-           let container = try decoder.container(keyedBy: CodingKeys.self)
-           bakeryID = try container.decode(Int.self, forKey: .bakeryID)
-           name = try container.decode(String.self, forKey: .name)
-           picture = try container.decode(String.self, forKey: .picture)
-           bookmarkCount = try container.decode(Int.self, forKey: .bookmarkCount)
-           reviewCount = try container.decode(Int.self, forKey: .reviewCount)
-   
-           let first = try container.decode(String.self, forKey: .firstNearStation)
-           let second = try container.decode(String.self, forKey: .secondNearStation)
-   
-           if second == "" {
-               station = "\(first)"
-           } else {
-               station = "\(first) ⦁ \(second)"
-           }
-   
-           breadType = try container.decode(BreadResponseType.self, forKey: .breadType)
-           mark = try CertificationMarkResponseType(from: decoder)
-   
-       }
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        bakeryID = try container.decode(Int.self, forKey: .bakeryID)
+        name = try container.decode(String.self, forKey: .name)
+        picture = try container.decode(String.self, forKey: .picture)
+        bookmarkCount = try container.decode(Int.self, forKey: .bookmarkCount)
+        reviewCount = try container.decode(Int.self, forKey: .reviewCount)
+        
+        let first = try container.decode(String.self, forKey: .firstNearStation)
+        let second = try container.decode(String.self, forKey: .secondNearStation)
+        
+        if second == "" {
+            station = "\(first)"
+        } else {
+            station = "\(first) ⦁ \(second)"
+        }
+        
+        breadType = try container.decode(BreadResponseType.self, forKey: .breadType)
+        mark = try CertificationMarkResponseType(from: decoder)
+        
+    }
     
     func hash(into hasher: inout Hasher) {
         
         hasher.combine(id)
     }
-
+    
     static func == (lhs: BakeryCommonListResponseDTO, rhs: BakeryCommonListResponseDTO) -> Bool {
         lhs.id == rhs.id
     }
-
+    
 }

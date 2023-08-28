@@ -43,14 +43,14 @@ final class BakeryListViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-  
+        
         setDataSource()
         setReloadData()
         
     }
     
     // MARK: - Setting
- 
+    
     override func setLayout() {
         
         view.addSubview(bakeryTopView)
@@ -96,9 +96,9 @@ final class BakeryListViewController: BaseViewController {
                     self.filterStatus[index] = value
                 }
                 self.getBakeryList(sort: self.sortBakeryName,
-                                       isHard: self.filterStatus[0],
-                                       isDessert: self.filterStatus[1],
-                                       isBrunch: self.filterStatus[2])
+                                   isHard: self.filterStatus[0],
+                                   isDessert: self.filterStatus[1],
+                                   isBrunch: self.filterStatus[2])
             }
         }
         
@@ -157,9 +157,9 @@ final class BakeryListViewController: BaseViewController {
             self.sortBakeryName = sortBy.sortValue
             
             self.getBakeryList(sort: self.sortBakeryName,
-                                   isHard: self.filterStatus[0],
-                                   isDessert: self.filterStatus[1],
-                                   isBrunch: self.filterStatus[2])
+                               isHard: self.filterStatus[0],
+                               isDessert: self.filterStatus[1],
+                               isBrunch: self.filterStatus[2])
         }
         self.present(sortBottomSheet, animated: false)
     }
