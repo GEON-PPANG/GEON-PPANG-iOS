@@ -7,10 +7,12 @@
 
 import UIKit
 
-final class FilterDiffableDataSource {
+final class FilterDiffableDataSource: DiffableDataSourceProtocol {
     
-    typealias CollectionViewHeader = FilterCollectionViewHeader
-    typealias CollectionViewCell = FilterCollectionViewCell
+    typealias Header = FilterCollectionViewHeader
+    typealias Cell = FilterCollectionViewCell
+    typealias SuppleRegistration = UICollectionView.SupplementaryRegistration
+    typealias CellRegistration = UICollectionView.CellRegistration
     typealias DiffableDataSource = UICollectionViewDiffableDataSource<FilterType, FilterCellModel.ID>
     typealias Snapshot = NSDiffableDataSourceSnapshot<FilterType, FilterCellModel.ID>
     
@@ -42,15 +44,15 @@ final class FilterDiffableDataSource {
     
     // MARK: - Setting
     
-    private func setCollectionView() {
+    func setCollectionView() {
         
-        collectionView.register(header: CollectionViewHeader.self)
-        collectionView.register(cell: CollectionViewCell.self)
+        collectionView.register(header: Header.self)
+        collectionView.register(cell: Cell.self)
     }
     
-    private func setDataSource() {
+    func setDataSource() {
         
-        let cellRegistration = UICollectionView.CellRegistration<FilterCollectionViewCell, FilterCellModel> { cell, _, filterModel in
+        let cellRegistration = CellRegistration<FilterCollectionViewCell, FilterCellModel> { cell, _, filterModel in
             cell.filterType = self.filterType
             cell.typeLabelText = filterModel.title
             if let subtitle = filterModel.subtitle {
@@ -59,7 +61,7 @@ final class FilterDiffableDataSource {
             cell.isSelected = filterModel.selected
         }
         
-        let headerRegistration = UICollectionView.SupplementaryRegistration<FilterCollectionViewHeader>(elementKind: headerKind) { header, _, _ in
+        let headerRegistration = SuppleRegistration<FilterCollectionViewHeader>(elementKind: headerKind) { header, _, _ in
             header.configureTitles(to: self.filterType)
         }
         
@@ -77,7 +79,9 @@ final class FilterDiffableDataSource {
         }
     }
     
-    // MARK: - Custom Method
+}
+
+extension FilterDiffableDataSource {
     
     func configureData() {
         
