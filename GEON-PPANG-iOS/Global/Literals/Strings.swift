@@ -105,4 +105,11 @@ struct I18N {
     struct Detail {
         static let writeReview = "리뷰 작성하기"
     }
+    
+    /// LogIn
+    struct LogIn {
+        static let title = "로그인"
+        static let noAccount = "계정이 없으신가요?"
+        static let signIn = "회원가입하기"
+    }
 }
