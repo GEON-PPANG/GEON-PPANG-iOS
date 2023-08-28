@@ -22,10 +22,8 @@ final class CommonTextView: UIView {
     
     var isValid: Bool = false
     var validCheck: ((Bool) -> Void)?
-    var invalidCheck: ((Bool) -> Void)?
     var duplicatedCheck: ((String) -> Void)?
     var textFieldData: ((String) -> Void)?
-    var changeLayout: (() -> Void)?
     
     // MARK: - UI Property
     
@@ -54,6 +52,7 @@ final class CommonTextView: UIView {
         
         self.addSubview(commonTextField)
         commonTextField.snp.makeConstraints {
+            
             $0.top.directionalHorizontalEdges.equalToSuperview()
             $0.height.equalTo(74)
         }
@@ -83,19 +82,37 @@ final class CommonTextView: UIView {
         }
     }
     
+    func setDelegate() {
+        
+        commonTextField.delegate = self
+    }
+    
     func cofigureSignInType(_ type: SignInPropertyType) {
         
         self.signInType = type
         commonTextField.configureViewType(type)
     }
     
-    func setDelegate() {
-        
-        commonTextField.delegate = self
-    }
-    
     func fetchText() -> String {
         return commonTextField.text ?? ""
+    }
+    
+    func setErrorMessage(_ message: String) {
+        
+        self.validCheck?(false)
+        titleLabel.textColor = .gbbError
+        checkLabel.basic(text: message,
+                         font: .captionM1!,
+                         color: .gbbError!)
+        commonTextField.layer.borderColor = UIColor.gbbError?.cgColor
+    }
+    
+    func clearErrorMessage(_ isValid: Bool) {
+        
+        self.validCheck?(isValid)
+        titleLabel.textColor = .gbbGray400
+        checkLabel.text = ""
+        commonTextField.layer.borderColor = UIColor.clear.cgColor
     }
 }
 
@@ -118,19 +135,19 @@ extension CommonTextView: UITextFieldDelegate {
         switch signInType {
         case .email:
             if !text.isValidEmail() {
-                setErrorMessage("올바른 이메일을 입력해주세요.")
+                setErrorMessage(I18N.Rule.email)
             } else {
                 clearErrorMessage(true)
             }
         case .password:
             if !text.isContainNumberAndAlphabet() && text.count < 8 {
-                setErrorMessage("영문, 숫자 포함 8자리 이상")
+                setErrorMessage(I18N.Rule.password)
             } else {
                 clearErrorMessage(true)
             }
         case .nickname:
             if !text.isNotContainSpecialCharacters() {
-                setErrorMessage("10자 이내, 특수문자 금지")
+                setErrorMessage(I18N.Rule.nickname)
             } else {
                 clearErrorMessage(true)
             }
@@ -157,34 +174,13 @@ extension CommonTextView: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        duplicatedCheck?(fetchText())
         textField.resignFirstResponder()
         return true
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        
         duplicatedCheck?(fetchText())
-        self.changeLayout?()
         textField.resignFirstResponder()
         return true
-    }
-    
-    func setErrorMessage(_ message: String) {
-        
-        self.validCheck?(false)
-        titleLabel.textColor = .gbbError
-        checkLabel.basic(text: message,
-                         font: .captionM1!,
-                         color: .gbbError!)
-        commonTextField.layer.borderColor = UIColor.gbbError?.cgColor
-    }
-    
-    func clearErrorMessage(_ isValid: Bool) {
-        
-        self.validCheck?(isValid)
-        titleLabel.textColor = .gbbGray400
-        checkLabel.text = ""
-        commonTextField.layer.borderColor = UIColor.clear.cgColor
     }
 }
