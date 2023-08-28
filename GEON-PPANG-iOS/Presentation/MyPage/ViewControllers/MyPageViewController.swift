@@ -19,13 +19,13 @@ final class MyPageViewController: BaseViewController {
             myPageCollectionView.reloadData()
         }
     }
-    private var nickname =  UserDefaults.standard.string(forKey: "nickname") ?? ""
+    private var nickname = ""
     
     // MARK: - UI Property
     
     private let navigationBar = CustomNavigationBar()
-    private let flowLayout = UICollectionViewFlowLayout()
-    private lazy var myPageCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+    private lazy var myPageCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    private lazy var myPageDataSource = MyPageDataSource(myPageCollectionView, memberData)
     
     // MARK: - Life Cycle
     
@@ -61,20 +61,16 @@ final class MyPageViewController: BaseViewController {
     override func setUI() {
         
         navigationBar.do {
-            $0.configureLeftTitle(to: I18N.MyPage.title)
+            $0.configureCenterTitle(to: I18N.MyPage.title)
             $0.configureBottomLine()
-        }
-        
-        flowLayout.do {
-            $0.scrollDirection = .vertical
-            $0.sectionInset = .init(top: 8, left: 0, bottom: 0, right: 0)
-            $0.minimumLineSpacing = 1
+            $0.hideBackButton(true)
         }
         
         myPageCollectionView.do {
             $0.register(header: MyPageCollectionViewHeader.self)
             $0.register(cell: MyPageCollectionViewCell.self)
             $0.register(footer: MyPageCollectionViewFooter.self)
+            $0.dataSource = myPageDataSource.dataSource
             $0.backgroundColor = .gbbGray100
             $0.bounces = false
         }
