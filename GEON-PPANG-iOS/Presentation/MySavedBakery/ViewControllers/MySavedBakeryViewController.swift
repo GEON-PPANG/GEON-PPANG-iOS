@@ -21,9 +21,7 @@ final class MySavedBakeryViewController: BaseViewController {
     private var dataSource: DataSource?
     private var savedList: [BakeryList] = []
     private var currentSection: [Section] = [.empty]
-    
-    private lazy var safeArea = self.view.safeAreaLayoutGuide
-    
+        
     // MARK: - UI Property
     
     private let naviView = CustomNavigationBar()
@@ -72,7 +70,7 @@ final class MySavedBakeryViewController: BaseViewController {
                 self.navigationController?.popViewController(animated: true)
             })
             $0.configureBottomLine()
-            $0.configureLeftTitle(to: I18N.MySavedBakery.naviTitle)
+            $0.configureCenterTitle(to: I18N.MySavedBakery.naviTitle)
         }
         
         collectionView.do {
