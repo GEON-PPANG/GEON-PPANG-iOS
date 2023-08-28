@@ -11,6 +11,7 @@ import Moya
 
 enum FilterService {
     case changeFilter(_ requestData: FilterRequestDTO)
+    case getFilterType
 }
 
 extension FilterService: TargetType {
@@ -20,7 +21,7 @@ extension FilterService: TargetType {
     
     var path: String {
         switch self {
-        case .changeFilter:
+        case .changeFilter, .getFilterType:
             return URLConstant.changeFilter
         }
     }
@@ -29,6 +30,8 @@ extension FilterService: TargetType {
         switch self {
         case .changeFilter:
             return .post
+        case .getFilterType:
+            return .get
         }
     }
     
@@ -36,6 +39,8 @@ extension FilterService: TargetType {
         switch self {
         case .changeFilter(requestData: let data):
             return .requestJSONEncodable(data)
+        case .getFilterType:
+            return .requestPlain
         }
     }
     
