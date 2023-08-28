@@ -20,7 +20,7 @@ final class SignInTextField: UITextField {
     // MARK: - UI Property
     
     private lazy var securityButton = UIButton()
-    private lazy var duplicatedButton = UIButton()
+    private lazy var checkButton = UIButton()
     
     // MARK: - Life Cycle
 
@@ -39,7 +39,7 @@ final class SignInTextField: UITextField {
     
     private func setLayout() {
 
-        duplicatedButton.snp.makeConstraints {
+        checkButton.snp.makeConstraints {
             $0.size.equalTo(CGSize(width: 70, height: 25))
         }
         
@@ -95,17 +95,17 @@ final class SignInTextField: UITextField {
                                             trailing: 10)
         
         self.do {
-            $0.rightView = duplicatedButton
+            $0.rightView = checkButton
         }
 
-        duplicatedButton.do {
+        checkButton.do {
             $0.configuration = configuration
         }
     }
 
     func addActionToDuplicatedButton(_ action: UIAction) {
         
-        duplicatedButton.addAction(action, for: .touchUpInside)
+        checkButton.addAction(action, for: .touchUpInside)
     }
 
     func configureViewType(_ viewType: SignInPropertyType) {
