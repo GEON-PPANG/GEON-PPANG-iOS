@@ -44,7 +44,7 @@ final class SignInViewController: BaseViewController {
         super.viewDidLoad()
         
         setNotificationCenter()
-        dismissKeyboardWhenTappedAround()
+        setKeyboardHideGesture()
     }
     
     // MARK: - Setting
@@ -216,13 +216,5 @@ final class SignInViewController: BaseViewController {
         
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
-    }
-    
-    func dismissKeyboardWhenTappedAround() {
-        
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
-                                                                 action: #selector(endEditingView))
-        tap.cancelsTouchesInView = true
-        self.view.addGestureRecognizer(tap)
     }
 }
