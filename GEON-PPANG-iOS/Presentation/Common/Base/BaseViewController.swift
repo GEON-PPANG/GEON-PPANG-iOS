@@ -9,6 +9,10 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
+    // MARK: - Property
+    
+    lazy var safeArea = self.view.safeAreaLayoutGuide
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {

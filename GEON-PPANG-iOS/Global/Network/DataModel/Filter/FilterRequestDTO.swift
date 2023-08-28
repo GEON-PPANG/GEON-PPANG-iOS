@@ -12,24 +12,38 @@ struct FilterRequestDTO: Codable {
     var breadType: BreadRequestType
     var nutrientType: NutrientRequestType
     
-    static var sharedData = FilterRequestDTO()
+    init(mainPurpose: String = "",
+         breadType: BreadRequestType = .init(),
+         nutrientType: NutrientRequestType = .init()) {
+        self.mainPurpose = mainPurpose
+        self.breadType = breadType
+        self.nutrientType = nutrientType
+    }
+}
+
+extension FilterRequestDTO {
     
-    private init() {
-        
-        self.mainPurpose = ""
-        self.breadType = .init(isGlutenFree: false,
-                               isVegan: false,
-                               isNutFree: false,
-                               isSugarFree: false)
-        self.nutrientType = .init(isNutrientOpen: false,
-                                  isIngredientOpen: false,
-                                  isNotOpen: false)
+    mutating func setPurpose(from values: [Bool]) {
+        guard let index = values.firstIndex(of: true)
+        else { return }
+        switch index {
+        case 0: mainPurpose = "HEALTH"
+        case 1: mainPurpose = "DIET"
+        case 2: mainPurpose = "VEGAN"
+        default: return
+        }
     }
     
-    mutating func clearData() {
-        
-        mainPurpose = ""
-        breadType.clearData()
-        nutrientType.clearData()
+    mutating func setBreadType(from values: [Bool]) {
+        breadType.isGlutenFree = values[0]
+        breadType.isVegan = values[1]
+        breadType.isNutFree = values[2]
+        breadType.isSugarFree = values[3]
+    }
+    
+    mutating func setNutrientType(from values: [Bool]) {
+        nutrientType.isNutrientOpen = values[0]
+        nutrientType.isIngredientOpen = values[1]
+        nutrientType.isNotOpen = values[2]
     }
 }

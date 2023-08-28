@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AuthenticationServices
 
 import SnapKit
 import Then
@@ -15,14 +16,13 @@ final class OnboardingViewController: BaseViewController {
     // MARK: - UI Property
     
     private let logoImage = UIImageView()
-    private lazy var signinButton = CommonButton()
-    private lazy var signupButton = CommonButton()
-    private let latelySigninView = DrawDashLineView()
-    private let latelySigninLabel = UILabel()
-    private lazy var kakaoButton = UIButton()
-    private lazy var appleButton = UIButton()
-    private lazy var naverButton = UIButton()
-    private lazy var googleButton = UIButton()
+    private let kakaoLoginButton = UIButton()
+    private let appleLoginButton = UIButton()
+    private let socialLoginButtonStackView = UIStackView()
+    private let emailSignInButton = UIButton()
+    private let emailSignUpButton = UIButton()
+    private let seperatorView = UIView()
+    private let emailButtonStackView = UIStackView()
     
     // MARK: - Setting
     
@@ -35,58 +35,37 @@ final class OnboardingViewController: BaseViewController {
             $0.height.equalTo(convertByHeightRatio(179))
         }
         
-        view.addSubview(signinButton)
-        signinButton.snp.makeConstraints {
-            $0.top.equalTo(logoImage.snp.bottom).offset(convertByHeightRatio(71))
-            $0.directionalHorizontalEdges.equalToSuperview().inset(convertByWidthRatio(24))
-            $0.height.equalTo(convertByHeightRatio(56))
+        kakaoLoginButton.snp.makeConstraints {
+            $0.height.equalTo(56)
         }
         
-        view.addSubview(signupButton)
-        signupButton.snp.makeConstraints {
-            $0.top.equalTo(signinButton.snp.bottom).offset(convertByHeightRatio(20))
-            $0.directionalHorizontalEdges.equalToSuperview().inset(convertByWidthRatio(24))
-            $0.height.equalTo(convertByHeightRatio(56))
+        appleLoginButton.snp.makeConstraints {
+            $0.height.equalTo(56)
         }
         
-        view.addSubview(latelySigninView)
-        latelySigninView.snp.makeConstraints {
-            $0.top.equalTo(signupButton.snp.bottom).offset(convertByHeightRatio(65))
-            $0.directionalHorizontalEdges.equalToSuperview().inset(convertByWidthRatio(77))
-            $0.height.equalTo(convertByHeightRatio(30))
+        view.addSubview(socialLoginButtonStackView)
+        socialLoginButtonStackView.snp.makeConstraints {
+            $0.top.equalTo(logoImage.snp.bottom).offset(56)
+            $0.horizontalEdges.equalToSuperview().inset(24)
         }
         
-        latelySigninView.addSubview(latelySigninLabel)
-        latelySigninLabel.snp.makeConstraints {
-            $0.center.equalToSuperview()
+        emailSignInButton.snp.makeConstraints {
+            $0.height.equalTo(17)
         }
         
-        view.addSubview(kakaoButton)
-        kakaoButton.snp.makeConstraints {
-            $0.top.equalTo(latelySigninView.snp.bottom).offset(convertByHeightRatio(23))
-            $0.leading.equalToSuperview().inset(convertByWidthRatio(45.5))
-            $0.size.equalTo(convertByWidthRatio(56))
+        emailSignUpButton.snp.makeConstraints {
+            $0.height.equalTo(17)
         }
         
-        view.addSubview(appleButton)
-        appleButton.snp.makeConstraints {
-            $0.top.equalTo(kakaoButton)
-            $0.leading.equalTo(kakaoButton.snp.trailing).offset(convertByWidthRatio(20))
-            $0.size.equalTo(convertByWidthRatio(56))
+        seperatorView.snp.makeConstraints {
+            $0.height.equalTo(12)
+            $0.width.equalTo(1)
         }
         
-        view.addSubview(naverButton)
-        naverButton.snp.makeConstraints {
-            $0.top.equalTo(appleButton)
-            $0.leading.equalTo(appleButton.snp.trailing).offset(convertByWidthRatio(20))
-            $0.size.equalTo(convertByWidthRatio(56))
-        }
-        
-        view.addSubview(googleButton)
-        googleButton.snp.makeConstraints {
-            $0.top.equalTo(naverButton)
-            $0.leading.equalTo(naverButton.snp.trailing).offset(convertByWidthRatio(20))
-            $0.size.equalTo(convertByWidthRatio(56))
+        view.addSubview(emailButtonStackView)
+        emailButtonStackView.snp.makeConstraints {
+            $0.top.equalTo(socialLoginButtonStackView.snp.bottom).offset(24)
+            $0.centerX.equalToSuperview()
         }
     }
     
@@ -97,58 +76,44 @@ final class OnboardingViewController: BaseViewController {
             $0.contentMode = .scaleAspectFit
         }
         
-        signinButton.do {
-            $0.configureButtonTitle(.login)
-            $0.configureButtonUI(.gbbMain2!)
-        }
-        
-        signupButton.do {
-            $0.configureButtonTitle(.signIn)
-            $0.configureButtonUI(.gbbWhite!)
-            $0.configureBorder(1, .gbbGray300)
-            $0.addActionToCommonButton {
-                Utils.push(self.navigationController, EmailViewController())
-            }
-        }
-        
-        latelySigninView.do {
-            $0.isHidden = true
-        }
-        
-        latelySigninLabel.do {
-            $0.text = I18N.Onboarding.latelySigninText
-            $0.font = .captionB1
-            $0.textColor = .gbbGray500
-            $0.textAlignment = .center
-            $0.partColorChange(targetString: I18N.Onboarding.latelySigninSNS, textColor: .gbbMain1!) // 특정 문자열의 textColor를 변경
-        }
-        
-        kakaoButton.do {
+        kakaoLoginButton.do {
             $0.setImage(.kakaoLoginButton, for: .normal)
-            $0.contentMode = .scaleAspectFit
-            $0.contentVerticalAlignment = .fill
-            $0.contentHorizontalAlignment = .fill
         }
         
-        appleButton.do {
+        appleLoginButton.do {
             $0.setImage(.appleLoginButton, for: .normal)
-            $0.contentMode = .scaleAspectFit
-            $0.contentVerticalAlignment = .fill
-            $0.contentHorizontalAlignment = .fill
         }
         
-        naverButton.do {
-            $0.setImage(.naverLoginButton, for: .normal)
-            $0.contentMode = .scaleAspectFit
-            $0.contentVerticalAlignment = .fill
-            $0.contentHorizontalAlignment = .fill
+        socialLoginButtonStackView.do {
+            $0.axis = .vertical
+            $0.spacing = 10
+            $0.addArrangedSubviews(kakaoLoginButton, appleLoginButton)
         }
         
-        googleButton.do {
-            $0.setImage(.googleLoginButton, for: .normal)
-            $0.contentMode = .scaleAspectFit
-            $0.contentVerticalAlignment = .fill
-            $0.contentHorizontalAlignment = .fill
+        emailSignInButton.do {
+            $0.setTitle(I18N.Onboarding.emailSignIn, for: .normal)
+            $0.setTitleColor(.gbbGray400, for: .normal)
+            $0.titleLabel?.font = .captionB1
+        }
+        
+        emailSignUpButton.do {
+            $0.setTitle(I18N.Onboarding.emailSignUp, for: .normal)
+            $0.setTitleColor(.gbbGray400, for: .normal)
+            $0.titleLabel?.font = .captionB1
+        }
+        
+        seperatorView.do {
+            $0.backgroundColor = .gbbGray400
+        }
+        
+        emailButtonStackView.do {
+            $0.axis = .horizontal
+            $0.spacing = 12
+            $0.addArrangedSubviews(emailSignInButton, seperatorView, emailSignUpButton)
         }
     }
+    
+    // TODO: 로그인 / 회원가입 API 추가
+    // TODO: 완료 시 rootVC 변경
+    // TODO: 이메일로 로그인 / 회원가입 완료 시 연결하기
 }

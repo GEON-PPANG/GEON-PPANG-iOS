@@ -73,7 +73,7 @@ final class CommonBottomSheet: UIView {
         self.addSubview(confirmButton)
         confirmButton.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(CGFloat().heightConsideringBottomSafeArea(54))
-            $0.directionalHorizontalEdges.equalToSuperview().inset(25)
+            $0.directionalHorizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(56)
         }
         
@@ -98,12 +98,12 @@ final class CommonBottomSheet: UIView {
         }
     }
     
-    func getEmojiType(_ type: EmojiType) {
+    func configureEmojiType(_ type: EmojiType) {
         
         emojiIcon.image = type.icon
     }
     
-    func getBottonSheetTitle(_ title: String) {
+    func configureBottonSheetTitle(_ title: String) {
         
         bottonSheetTitle.text = title
     }

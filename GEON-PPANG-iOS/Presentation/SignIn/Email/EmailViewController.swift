@@ -117,8 +117,8 @@ final class EmailViewController: BaseViewController {
         }
         
         bottomSheet.do {
-            $0.getEmojiType(.smile)
-            $0.getBottonSheetTitle(I18N.Bottomsheet.email)
+            $0.configureEmojiType(.smile)
+            $0.configureBottonSheetTitle(I18N.Bottomsheet.email)
             $0.dismissBottomSheet = {
                 self.backGroundView.dissmissFromSuperview()
                 self.nextButton.do {
