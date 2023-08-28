@@ -11,72 +11,29 @@ import Foundation
 
 struct HomeBestReviewResponseDTO: Codable, Hashable {
     
-    let bakeryID: Int
-    let bakeryName: String
-    let bakeryPicture: String
-    let isHACCP: Bool
-    let isVegan: Bool
-    let isNonGMO: Bool
-    let firstNearStation: String
-    let secondNearStation: String?
-    let isBookmarked: Bool
-    let bookmarkCount: Int
-    let reviewCount: Int
-    let reviewText: String
-    let firstMaxRecommendKeyword: String
-    let secondMaxRecommendKeyword: String?
-    
-    enum CodingKeys: String, CodingKey {
-        case bakeryID = "breadId"
-        case bakeryName, bakeryPicture
-        case isHACCP, isVegan, isNonGMO
-        case firstNearStation, secondNearStation
-        case isBookmarked = "isBookMarked"
-        case bookmarkCount = "bookMarkCount"
-        case reviewCount, reviewText
-        case firstMaxRecommendKeyword, secondMaxRecommendKeyword
-    }
-    
-    func convertToBakeryReviews() -> BestReviews {
-        return BestReviews(bakeryID: bakeryID,
-                           bakeryName: bakeryName,
-                           isHACCP: isHACCP,
-                           isVegan: isVegan,
-                           isNonGMO: isNonGMO,
-                           firstNearStation: firstNearStation,
-                           secondNearStation: secondNearStation,
-                           isBookmarked: isBookmarked,
-                           bookmarkCount: bookmarkCount,
-                           bakeryPicture: bakeryPicture,
-                           reviewCount: reviewCount,
-                           reviewText: reviewText,
-                           firstMaxRecommendKeyword: firstMaxRecommendKeyword,
-                           secondMaxRecommendKeyword: secondMaxRecommendKeyword)
-    }
-}
-
-struct BestReviews: Codable, Hashable {
     var id = UUID()
+    
+    let reviews: HomeCommonResponseDTO
+    let keywords: RecommendKeywordResponseDTO
+    let text: String
+    
+    private enum CodingKeys: String, CodingKey {
+        
+        case text = "reviewText"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        reviews = try HomeCommonResponseDTO(from: decoder)
+        text = try container.decode(String.self, forKey: .text)
+        keywords = try RecommendKeywordResponseDTO(from: decoder)
+    }
+    
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
     
-    static func == (lhs: BestReviews, rhs: BestReviews) -> Bool {
+    static func == (lhs: HomeBestReviewResponseDTO, rhs: HomeBestReviewResponseDTO) -> Bool {
         lhs.id == rhs.id
     }
-    
-    let bakeryID: Int
-    let bakeryName: String
-    let isHACCP: Bool
-    let isVegan: Bool
-    let isNonGMO: Bool
-    let firstNearStation: String
-    let secondNearStation: String?
-    let isBookmarked: Bool
-    let bookmarkCount: Int
-    let bakeryPicture: String
-    let reviewCount: Int
-    let reviewText: String
-    let firstMaxRecommendKeyword: String
-    let secondMaxRecommendKeyword: String?
 }

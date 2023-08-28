@@ -127,7 +127,7 @@ extension MyPageViewController: UICollectionViewDataSource {
             let header: MyPageCollectionViewHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
             header.configureMemberData(to: memberData)
             header.nextButtonTapped = {
-                Utils.push(self.navigationController, FilterPurposeViewController(maxSteps: 3, username: self.nickname))
+                Utils.push(self.navigationController, FilterViewController(isInitial: false))
             }
             header.myReviewsTapped = {
                 Utils.push(self.navigationController, MyReviewsViewController())

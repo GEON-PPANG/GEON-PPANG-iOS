@@ -13,6 +13,19 @@ struct BreadRequestType: Codable {
     var isNutFree: Bool
     var isSugarFree: Bool
     
+    init(isGlutenFree: Bool = false,
+         isVegan: Bool = false,
+         isNutFree: Bool = false,
+         isSugarFree: Bool = false) {
+        self.isGlutenFree = isGlutenFree
+        self.isVegan = isVegan
+        self.isNutFree = isNutFree
+        self.isSugarFree = isSugarFree
+    }
+}
+
+extension BreadRequestType {
+    
     func isNoneSelected() -> Bool {
         
         if isGlutenFree == false && isVegan == false && isNutFree == false && isSugarFree == false {

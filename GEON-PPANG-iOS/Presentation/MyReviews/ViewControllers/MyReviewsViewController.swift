@@ -14,7 +14,6 @@ final class MyReviewsViewController: BaseViewController {
     
     // MARK: - Property
     
-    private lazy var safeArea = self.view.safeAreaLayoutGuide
     private var myReviewslist: [MyReviewsResponseDTO] = []
     
     // MARK: - UI Property
@@ -59,7 +58,7 @@ final class MyReviewsViewController: BaseViewController {
             $0.configureBackButtonAction(UIAction { _ in
                 self.navigationController?.popViewController(animated: true)
             })
-            $0.configureLeftTitle(to: I18N.MyReviews.naviTitle)
+            $0.configureCenterTitle(to: I18N.MyReviews.naviTitle)
         }
         
         collectionView.do {
