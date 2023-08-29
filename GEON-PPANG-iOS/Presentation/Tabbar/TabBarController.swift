@@ -19,8 +19,7 @@ final class TabBarController: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        tabBar.initailizeTabBarUI()
-        
+        tabBar.configureTabBarUI()
     }
     
     override func viewDidLoad() {
@@ -57,8 +56,6 @@ final class TabBarController: UITabBarController {
         
         tabBar.tintColor = .gbbMain3
         tabBar.layer.applyShadow()
-        tabBar.layer.cornerRadius = convertByHeightRatio(12)
-        tabBar.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner)
     }
     
     private func setTabBarHeight() {

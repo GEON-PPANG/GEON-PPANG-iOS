@@ -8,12 +8,18 @@
 import UIKit
 
 extension UITabBar {
-    func initailizeTabBarUI() {
+    
+    func configureTabBarUI() {
+        
         UITabBar.appearance().shadowImage = UIImage()
         UITabBar.appearance().backgroundImage = UIImage()
         UITabBar.appearance().backgroundColor = UIColor.white
         UITabBarItem.appearance().titlePositionAdjustment.vertical = -5
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.pretendardBold(13), NSAttributedString.Key.foregroundColor: UIColor.gbbGray400!], for: .normal)
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.pretendardBold(13), NSAttributedString.Key.foregroundColor: UIColor.gbbMain3!], for: .selected)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.captionB1!,
+                                                          NSAttributedString.Key.foregroundColor: UIColor.gbbGray400!],
+                                                         for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.captionB1!,
+                                                          NSAttributedString.Key.foregroundColor: UIColor.gbbMain3!],
+                                                         for: .selected)
     }
 }

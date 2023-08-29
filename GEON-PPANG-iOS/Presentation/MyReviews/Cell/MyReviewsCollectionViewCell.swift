@@ -53,7 +53,7 @@ final class MyReviewsCollectionViewCell: UICollectionViewCell {
         }
         
         markStackView.do {
-            $0.confiureIconImage(.smallHACCPMark, .smallVeganMark, .smallGMOMark)
+            $0.configureIconImage(.smallHACCPMark, .smallVeganMark, .smallGMOMark)
         }
         
         bakeryTitle.do {
@@ -109,32 +109,30 @@ final class MyReviewsCollectionViewCell: UICollectionViewCell {
     
     func configureCellUI(_ data: MyReviewsResponseDTO) {
         
-        bakeryTitle.setLineHeight(by: 1.05, with: data.bakeryName)
-        guard let url = URL(string: data.bakeryPicture) else { return }
-        bakeryImage.kf.setImage(with: url)
-        markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)
-        
-        if data.secondNearStation == "" {
-            regionStackView.removeSecondRegion()
-        }
-        regionStackView.configureRegionName(data.firstNearStation, data.secondNearStation ?? "")
-        
-        breadTypeTag = []
-        if data.breadType.isGlutenFree {
-            breadTypeTag.append(I18N.BakeryList.glutenfree)
-        }
-        
-        if data.breadType.isNutFree {
-            breadTypeTag.append(I18N.BakeryList.nutfree)
-        }
-        
-        if data.breadType.isVegan {
-            breadTypeTag.append(I18N.BakeryList.vegan)
-        }
-        
-        if data.breadType.isSugarFree {
-            breadTypeTag.append(I18N.BakeryList.noSugar)
-        }
+//   
+//        markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)
+//        
+//        if data.secondNearStation == "" {
+//            regionStackView.removeSecondRegion()
+//        }
+//        regionStackView.configureRegionName(data.firstNearStation, data.secondNearStation ?? "")
+//        
+//        breadTypeTag = []
+//        if data.breadType.isGlutenFree {
+//            breadTypeTag.append(I18N.BakeryList.glutenfree)
+//        }
+//        
+//        if data.breadType.isNutFree {
+//            breadTypeTag.append(I18N.BakeryList.nutfree)
+//        }
+//        
+//        if data.breadType.isVegan {
+//            breadTypeTag.append(I18N.BakeryList.vegan)
+//        }
+//        
+//        if data.breadType.isSugarFree {
+//            breadTypeTag.append(I18N.BakeryList.noSugar)
+//        }
 
         regionStackView.do {
             $0.configureBackgroundColor(.gbbGray700!)

@@ -59,8 +59,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/GoogleUtilities.git",
       "state" : {
-        "revision" : "4446686bc3714d49ce043d0f68318f42ed718cb6",
-        "version" : "7.11.4"
+        "revision" : "58d03d22beae762eaddbd30cb5a61af90d4b309f",
+        "version" : "7.11.3"
       }
     },
     {
@@ -79,6 +79,15 @@
       "state" : {
         "revision" : "5ccda3981422a84186387dbb763ba739178b529c",
         "version" : "2.3.0"
+      }
+    },
+    {
+      "identity" : "kakao-ios-sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kakao/kakao-ios-sdk",
+      "state" : {
+        "revision" : "7047a84f416338badb0c0afc7209d01294adaf47",
+        "version" : "2.16.0"
       }
     },
     {

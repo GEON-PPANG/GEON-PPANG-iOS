@@ -16,7 +16,7 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
     // MARK: - Property
     
     private var breadTypeTag: [String] = []
-    private var ingredientList: [BakeryListResponseDTO] = []
+    private var ingredientList: [BakeryCommonListResponseDTO] = []
     
     // MARK: - UI Property
     
@@ -51,7 +51,7 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Setting
-
+    
     private func setLayout() {
         
         contentView.addSubview(bakeryImage)
@@ -62,7 +62,7 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
             $0.bottom.equalToSuperview().inset(24)
 
         }
- 
+        
         contentView.addSubview(bakeryTitle)
         bakeryTitle.snp.makeConstraints {
             $0.top.equalTo(bakeryImage.snp.top)
@@ -111,7 +111,7 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
         }
         
         markStackView.do {
-            $0.confiureIconImage(.smallHACCPMark, .smallVeganMark, .smallGMOMark)
+            $0.configureIconImage(.smallHACCPMark, .smallVeganMark, .smallGMOMark)
         }
         
         bakeryTitle.do {
@@ -148,14 +148,15 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
     
     func configureCellUI<T: BakeryListProtocol>(data: T) {
         
-        bakeryTitle.setLineHeight(by: 1.05, with: data.bakeryName)
+        bakeryTitle.setLineHeight(by: 1.05, with: data.name)
         bookmarkCount.setLineHeight(by: 1.1, with: "(\(data.bookmarkCount))")
-        guard let url = URL(string: data.bakeryPicture) else { return }
+        guard let url = URL(string: data.picture) else { return }
         bakeryImage.kf.setImage(with: url)
-        markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)
-
         // TODO: - merge 후 추가
 //        regionStackView.configureListUI(text: data.station)
+        
+        markStackView.getMarkStatus(data.mark.isHACCP, data.mark.isVegan, data.mark.isNonGMO)
+        
         
         breadTypeTag = []
         if data.breadType.isGlutenFree {
