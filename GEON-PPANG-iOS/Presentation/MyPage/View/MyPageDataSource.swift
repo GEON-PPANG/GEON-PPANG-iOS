@@ -12,14 +12,15 @@ final class MyPageDataSource: DiffableDataSourceProtocol {
     typealias Header = MyPageCollectionViewHeader
     typealias Footer = MyPageCollectionViewFooter
     typealias Cell = MyPageCollectionViewCell
+    typealias Model = MyPageModel
     typealias SuppleRegistration = UICollectionView.SupplementaryRegistration
     typealias CellRegistration = UICollectionView.CellRegistration
-    typealias DiffableDataSource = UICollectionViewDiffableDataSource<Section, UUID>
-    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, UUID>
+    typealias DiffableDataSource = UICollectionViewDiffableDataSource<Section, Model.ID>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Model.ID>
     
     enum Section: Int, CaseIterable {
-        case general
-        case version
+        case general = 0
+        case version = 1
         
         var contentCount: Int {
             switch self {
@@ -31,7 +32,10 @@ final class MyPageDataSource: DiffableDataSourceProtocol {
     
     // MARK: - Property
     
-    private let memberData: MyPageResponseDTO
+    var memberData: MyPageResponseDTO
+    var nextButtonTapped: (() -> Void)?
+    var savedBakeryTapped: (() -> Void)?
+    var myReviewsTapped: (() -> Void)?
     
     // MARK: - UI Property
     
@@ -46,6 +50,7 @@ final class MyPageDataSource: DiffableDataSourceProtocol {
         
         setCollectionView()
         setDataSource()
+        loadData()
     }
     
     // MARK: - Setting
@@ -66,6 +71,9 @@ final class MyPageDataSource: DiffableDataSourceProtocol {
         }
         let headerRegistration = SuppleRegistration<Header>(elementKind: headerType) { header, _, _ in
             header.configureMemberData(to: self.memberData)
+            header.nextButtonTapped = self.nextButtonTapped
+            header.savedBakeryTapped = self.savedBakeryTapped
+            header.myReviewsTapped = self.myReviewsTapped
         }
         let footerRegistration = SuppleRegistration<Footer>(elementKind: footerType, handler: { _, _, _ in return })
         
@@ -85,6 +93,17 @@ final class MyPageDataSource: DiffableDataSourceProtocol {
         }
     }
     
+    func loadData() {
+        
+        let data = [MyPageModel.general, MyPageModel.version]
+        var snapshot = Snapshot()
+        Section.allCases.forEach {
+            snapshot.appendSections([$0])
+            snapshot.appendItems(data[$0.rawValue].map { $0.id })
+        }
+        dataSource.applySnapshotUsingReloadData(snapshot)
+    }
+    
 }
 
 extension MyPageDataSource {
@@ -99,7 +118,7 @@ extension MyPageDataSource {
             let header = self.supplementaryItem(of: self.headerType)
             let footer = self.supplementaryItem(of: self.footerType)
             let group = self.group(withSize: contentCount)
-
+            
             let section = NSCollectionLayoutSection(group: group)
             switch sectionType {
             case .general:
@@ -119,7 +138,7 @@ extension MyPageDataSource {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                               heightDimension: .absolute(56))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
+        
         let groupHeight = NSCollectionLayoutDimension.absolute(CGFloat(56 * count))
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                                heightDimension: groupHeight)
@@ -131,10 +150,16 @@ extension MyPageDataSource {
         
         var size: NSCollectionLayoutSize
         var alignment: NSRectAlignment
+        
+        var headerFilterCount = 0
+        let trueOptions = memberData.breadType.configureTrueOptions()
+        trueOptions.forEach { headerFilterCount += $0.0.count }
+        
         switch type {
         case headerType:
+            let height: CGFloat = headerFilterCount <= 15 ? 288 : 319
             size = .init(widthDimension: .fractionalWidth(1),
-                         heightDimension: .absolute(319))
+                         heightDimension: .absolute(height))
             alignment = .top
         case footerType:
             size = .init(widthDimension: .fractionalWidth(1),
