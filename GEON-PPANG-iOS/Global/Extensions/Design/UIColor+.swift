@@ -26,6 +26,7 @@ extension UIColor {
     static let gbbBackground2 = UIColor(named: "Background_2")
     
     static let gbbWhite = UIColor(named: "white")
+    static let gbbAlertBackground = UIColor(named: "alert-gray")
     static let gbbGray100 = UIColor(named: "gray-100")
     static let gbbGray200 = UIColor(named: "gray-200")
     static let gbbGray300 = UIColor(named: "gray-300")
