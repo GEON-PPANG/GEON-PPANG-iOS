@@ -17,9 +17,9 @@ final class BakeryListViewController: BaseViewController {
     enum Section {
         case main
     }
-    typealias DataSource = UICollectionViewDiffableDataSource<Section, BakeryList>
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, BakeryCommonListResponseDTO>
     private var dataSource: DataSource?
-    private var bakeryList: [BakeryList] = []
+    private var bakeryList: [BakeryCommonListResponseDTO] = []
     private var sortBakeryBy: SortBakery = .byDefault
     private var sortBakeryName: String = SortBakery.byDefault.sortValue
     private var filterStatus: [Bool] = [false, false, false ]
@@ -43,14 +43,14 @@ final class BakeryListViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-  
+        
         setDataSource()
         setReloadData()
         
     }
     
     // MARK: - Setting
- 
+    
     override func setLayout() {
         
         view.addSubview(bakeryTopView)
@@ -96,9 +96,9 @@ final class BakeryListViewController: BaseViewController {
                     self.filterStatus[index] = value
                 }
                 self.getBakeryList(sort: self.sortBakeryName,
-                                       isHard: self.filterStatus[0],
-                                       isDessert: self.filterStatus[1],
-                                       isBrunch: self.filterStatus[2])
+                                   isHard: self.filterStatus[0],
+                                   isDessert: self.filterStatus[1],
+                                   isBrunch: self.filterStatus[2])
             }
         }
         
@@ -119,8 +119,7 @@ final class BakeryListViewController: BaseViewController {
     
     private func setDataSource() {
         
-        let cellRegistration = UICollectionView.CellRegistration<BakeryCollectionViewListCell, BakeryList> { (cell, _, item) in
-            cell.separatorLayoutGuide.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        let cellRegistration = UICollectionView.CellRegistration<BakeryCommonCollectionViewCell, BakeryCommonListResponseDTO> { (cell, _, item) in
             cell.configureCellUI(data: item)
         }
         
@@ -131,7 +130,7 @@ final class BakeryListViewController: BaseViewController {
     
     private func setReloadData() {
         
-        var snapshot = NSDiffableDataSourceSnapshot<Section, BakeryList>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, BakeryCommonListResponseDTO>()
         defer { dataSource?.apply(snapshot, animatingDifferences: false)}
         
         snapshot.appendSections([.main])
@@ -158,9 +157,9 @@ final class BakeryListViewController: BaseViewController {
             self.sortBakeryName = sortBy.sortValue
             
             self.getBakeryList(sort: self.sortBakeryName,
-                                   isHard: self.filterStatus[0],
-                                   isDessert: self.filterStatus[1],
-                                   isBrunch: self.filterStatus[2])
+                               isHard: self.filterStatus[0],
+                               isDessert: self.filterStatus[1],
+                               isBrunch: self.filterStatus[2])
         }
         self.present(sortBottomSheet, animated: false)
     }
@@ -186,13 +185,9 @@ extension BakeryListViewController {
                                        isBrunch: isBrunch) { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
-            self.bakeryList = []
-            
-            for item in data {
-                self.bakeryList.append(item.convertToBakeryList())
-            }
+            let bakeryList = data.map { $0 }
+            self.bakeryList = bakeryList
             self.setReloadData()
-            self.bakeryListCollectionView.reloadData()
         }
     }
 }

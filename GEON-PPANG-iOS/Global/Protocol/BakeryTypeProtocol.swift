@@ -8,6 +8,7 @@
 import Foundation
 
 protocol BakeryTypeProtocol {
+    
     var breadTypeID: Int { get }
     var name: String { get }
     var isGlutenFree: Bool { get }
@@ -17,15 +18,12 @@ protocol BakeryTypeProtocol {
 }
 
 protocol BakeryListProtocol {
+    
     var bakeryID: Int { get }
-    var bakeryName: String { get }
-    var bakeryPicture: String { get }
-    var isHACCP: Bool { get }
-    var isVegan: Bool { get }
-    var isNonGMO: Bool { get }
-    var firstNearStation: String { get }
-    var secondNearStation: String? { get }
-    var isBookmarked: Bool { get }
+    var name: String { get }
+    var picture: String { get }
+    var mark: CertificationMarkResponseType { get }
+    var station: String { get }
     var bookmarkCount: Int { get }
     var reviewCount: Int { get }
     var breadType: BreadResponseType { get }

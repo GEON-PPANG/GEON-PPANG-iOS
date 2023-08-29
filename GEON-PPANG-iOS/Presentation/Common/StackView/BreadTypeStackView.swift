@@ -43,7 +43,7 @@ final class BreadTypeStackView: UIStackView {
     private func setLayout() {
         
         self.addArrangedSubviews(glutenFreeChip, veganBreadChip, nutFreeChip, noSugarChip)
-
+        
         [glutenFreeChip, veganBreadChip, nutFreeChip, noSugarChip].forEach {
             $0.snp.makeConstraints {
                 $0.height.equalTo(25)

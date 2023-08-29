@@ -21,7 +21,7 @@ final class BakeryAPI {
     
     var bakeryProvider = MoyaProvider<BakeryService>(plugins: [MoyaLoggingPlugin()])
     
-    public private(set) var bakeryList: GeneralArrayResponse<BakeryListResponseDTO>?
+    public private(set) var bakeryList: GeneralArrayResponse<BakeryCommonListResponseDTO>?
     public private(set) var writeReview: WriteReviewResponse?
     public private(set) var bakeryDetail: GeneralResponse<BakeryDetailResponseDTO>?
     public private(set) var writtenReviews: GeneralResponse<WrittenReviewsResponseDTO>?
@@ -29,12 +29,12 @@ final class BakeryAPI {
     
     // MARK: - GET
     
-    func getBakeryList(sort: String, isHard: Bool, isDessert: Bool, isBrunch: Bool, completion: @escaping (GeneralArrayResponse<BakeryListResponseDTO>?) -> Void) {
+    func getBakeryList(sort: String, isHard: Bool, isDessert: Bool, isBrunch: Bool, completion: @escaping (GeneralArrayResponse<BakeryCommonListResponseDTO>?) -> Void) {
         bakeryProvider.request(.bakeryList(sort: sort, isHard: isHard, isDessert: isDessert, isBrunch: isBrunch)) { result in
             switch result {
             case let .success(response):
                 do {
-                    self.bakeryList = try response.map(GeneralArrayResponse<BakeryListResponseDTO>.self)
+                    self.bakeryList = try response.map(GeneralArrayResponse<BakeryCommonListResponseDTO>.self)
                     guard let bakeryList = self.bakeryList else { return }
                     completion(bakeryList)
                 } catch let err {

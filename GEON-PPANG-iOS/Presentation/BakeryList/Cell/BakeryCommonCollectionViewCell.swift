@@ -11,12 +11,12 @@ import Kingfisher
 import SnapKit
 import Then
 
-final class BakeryCollectionViewListCell: UICollectionViewListCell {
+final class BakeryCommonCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Property
     
     private var breadTypeTag: [String] = []
-    private var ingredientList: [BakeryListResponseDTO] = []
+    private var ingredientList: [BakeryCommonListResponseDTO] = []
     
     // MARK: - UI Property
     
@@ -50,7 +50,7 @@ final class BakeryCollectionViewListCell: UICollectionViewListCell {
     }
     
     // MARK: - Setting
-
+    
     private func setLayout() {
         
         contentView.addSubview(bakeryImage)
@@ -59,7 +59,7 @@ final class BakeryCollectionViewListCell: UICollectionViewListCell {
             $0.top.equalToSuperview().offset(24)
             $0.leading.equalToSuperview().inset(24)
         }
- 
+        
         contentView.addSubview(bakeryTitle)
         bakeryTitle.snp.makeConstraints {
             $0.top.equalTo(bakeryImage.snp.top)
@@ -139,15 +139,13 @@ final class BakeryCollectionViewListCell: UICollectionViewListCell {
     
     func configureCellUI<T: BakeryListProtocol>(data: T) {
         
-        bakeryTitle.setLineHeight(by: 1.05, with: data.bakeryName)
+        bakeryTitle.setLineHeight(by: 1.05, with: data.name)
         bookmarkCount.setLineHeight(by: 1.1, with: "(\(data.bookmarkCount))")
-        guard let url = URL(string: data.bakeryPicture) else { return }
+        guard let url = URL(string: data.picture) else { return }
         bakeryImage.kf.setImage(with: url)
-        markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)
-        if data.secondNearStation == "" {
-            regionStackView.removeSecondRegion()
-        }
-        regionStackView.configureRegionName(data.firstNearStation, data.secondNearStation ?? "")
+        
+        markStackView.getMarkStatus(data.mark.isHACCP, data.mark.isVegan, data.mark.isNonGMO)
+        
         
         breadTypeTag = []
         if data.breadType.isGlutenFree {
@@ -179,7 +177,7 @@ final class BakeryCollectionViewListCell: UICollectionViewListCell {
 
 // MARK: - CollectionView Register
 
-extension BakeryCollectionViewListCell {
+extension BakeryCommonCollectionViewCell {
     private func setRegistration() {
         
         collectionView.register(cell: DescriptionCollectionViewCell.self)
@@ -188,7 +186,7 @@ extension BakeryCollectionViewListCell {
 
 // MARK: - UICollectionViewDataSource
 
-extension BakeryCollectionViewListCell: UICollectionViewDataSource {
+extension BakeryCommonCollectionViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return breadTypeTag.count
     }
@@ -202,7 +200,7 @@ extension BakeryCollectionViewListCell: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegateFlowLayout
 
-extension BakeryCollectionViewListCell: UICollectionViewDelegateFlowLayout {
+extension BakeryCommonCollectionViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let tagTitle = self.breadTypeTag[indexPath.item]
         let itemSize = tagTitle.size(withAttributes: [NSAttributedString.Key.font: UIFont.captionM1])
