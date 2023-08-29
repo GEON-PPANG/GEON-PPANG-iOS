@@ -83,7 +83,7 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
         filterCollectionView.snp.makeConstraints {
             $0.leading.equalTo(purposeFilterChipView)
             $0.top.equalTo(userNameLabel.snp.bottom).offset(10)
-            $0.height.equalTo(60)
+            $0.height.equalTo(56)
             $0.width.equalTo(198)
         }
         
@@ -131,7 +131,7 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
         }
         
         flowLayout.do {
-            $0.minimumLineSpacing = 10
+            $0.minimumLineSpacing = 6
             $0.minimumInteritemSpacing = 4
         }
         

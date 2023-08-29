@@ -16,7 +16,7 @@ final class MyPageViewController: BaseViewController {
     
     private var memberData: MyPageResponseDTO = .emptyData() {
         didSet {
-            myPageCollectionView.reloadData()
+            myPageDataSource.memberData = memberData
         }
     }
     private var nickname = ""
@@ -33,6 +33,7 @@ final class MyPageViewController: BaseViewController {
         super.viewDidLoad()
         
         setNavigationBarHidden()
+        setCollectionViewActions()
         requestMemberData()
     }
     
@@ -77,9 +78,21 @@ final class MyPageViewController: BaseViewController {
     }
     
     override func setDelegate() {
-        
+
         myPageCollectionView.delegate = self
-        myPageCollectionView.dataSource = self
+    }
+    
+    private func setCollectionViewActions() {
+        
+        myPageDataSource.nextButtonTapped = {
+            Utils.push(self.navigationController, FilterViewController(isInitial: false))
+        }
+        myPageDataSource.myReviewsTapped = {
+            Utils.push(self.navigationController, MyReviewsViewController())
+        }
+        myPageDataSource.savedBakeryTapped = {
+            Utils.push(self.navigationController, MySavedBakeryViewController())
+        }
     }
     
 }
@@ -195,7 +208,7 @@ extension MyPageViewController {
             guard let response = response else { return }
             guard let data = response.data else { return }
             self.memberData = data
-            self.myPageCollectionView.reloadData()
+            self.myPageDataSource.loadData()
         }
     }
 }
