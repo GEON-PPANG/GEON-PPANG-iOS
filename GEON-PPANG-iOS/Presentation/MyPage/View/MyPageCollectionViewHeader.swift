@@ -53,7 +53,7 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        Utils.updateCollectionViewConstraint(of: filterCollectionView, byOffset: 2)
+        updateHeight()
     }
     
     // MARK: - Setting
@@ -99,7 +99,7 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
         buttonsContainer.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(87)
-            $0.bottom.equalToSuperview().inset(36)
+            $0.top.equalTo(filterCollectionView.snp.bottom).offset(36)
         }
         
         buttonsContainer.addSubview(buttonsStackView)
@@ -202,6 +202,17 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
         }
     }
     
+    private func updateHeight() {
+        
+        filterCollectionView.snp.updateConstraints {
+            $0.height.equalTo(chipCount() < 4 ? 25 : 50)
+        }
+    }
+    
+    private func chipCount() -> Int {
+        
+        return myPageData.breadType.configureTrueOptions().count
+    }
 }
 
 // MARK: - UICollectionViewDelegate extension

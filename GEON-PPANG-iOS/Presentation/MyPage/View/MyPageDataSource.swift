@@ -78,7 +78,14 @@ final class MyPageDataSource: DiffableDataSourceProtocol {
         let footerRegistration = SuppleRegistration<Footer>(elementKind: footerType, handler: { _, _, _ in return })
         
         dataSource = DiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, _ in
-            let content: [MyPageModel] = MyPageModel.general + MyPageModel.version
+            let content: [MyPageModel]
+            
+            switch indexPath.section {
+            case 0: content = MyPageModel.general
+            case 1: content = MyPageModel.version
+            default: content = []
+            }
+            
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: content[indexPath.item])
         })
         
@@ -163,7 +170,7 @@ extension MyPageDataSource {
             alignment = .top
         case footerType:
             size = .init(widthDimension: .fractionalWidth(1),
-                         heightDimension: .absolute(104))
+                         heightDimension: .absolute(130))
             alignment = .bottom
         default:
             size = .init(widthDimension: .absolute(0),
