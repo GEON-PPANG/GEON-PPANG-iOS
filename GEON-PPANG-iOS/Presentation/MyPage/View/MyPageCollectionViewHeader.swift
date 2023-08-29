@@ -240,7 +240,7 @@ extension MyPageCollectionViewHeader: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegateFlowLayout extension
 
 extension MyPageCollectionViewHeader: UICollectionViewDelegateFlowLayout {
-
+    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -253,5 +253,5 @@ extension MyPageCollectionViewHeader: UICollectionViewDelegateFlowLayout {
         let size = dummyLabel.intrinsicContentSize
         return .init(width: size.width + 12, height: size.height + 8)
     }
-
+    
 }
