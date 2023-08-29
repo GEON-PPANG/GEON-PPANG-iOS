@@ -39,7 +39,7 @@ final class FilterDiffableDataSource: DiffableDataSourceProtocol {
         
         setCollectionView()
         setDataSource()
-        configureData()
+        loadData()
     }
     
     // MARK: - Setting
@@ -83,7 +83,7 @@ final class FilterDiffableDataSource: DiffableDataSourceProtocol {
 
 extension FilterDiffableDataSource {
     
-    func configureData() {
+    func loadData() {
         
         var data: [FilterCellModel] = []
         switch filterType {
@@ -112,7 +112,7 @@ extension FilterDiffableDataSource {
     
     private func configureCollectionView() {
         
-        configureData()
+        loadData()
         configureLayout()
         
         collectionView.allowsMultipleSelection = filterType == .purpose ? false : true
