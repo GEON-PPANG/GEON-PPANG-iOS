@@ -27,6 +27,8 @@ final class MyPageViewController: BaseViewController {
     private lazy var myPageCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private lazy var myPageDataSource = MyPageDataSource(myPageCollectionView, memberData)
     
+    
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -100,103 +102,6 @@ final class MyPageViewController: BaseViewController {
 // MARK: - UICollectionViewDelegate extension
 
 extension MyPageViewController: UICollectionViewDelegate {}
-
-// MARK: - UICollectionViewDataSource extension
-
-extension MyPageViewController: UICollectionViewDataSource {
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return MyPageSectionEnum.allCases.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch section {
-        case 0: return MyPageSectionEnum.basic.items.count
-        case 1: return MyPageSectionEnum.version.items.count
-        default: return 0
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: MyPageCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-        let section = indexPath.section
-        switch section {
-        case 0:
-            cell.configureTitle(to: MyPageSectionEnum.basic.items[indexPath.item])
-        case 1:
-            cell.configureTitle(to: MyPageSectionEnum.version.items[indexPath.item])
-        default: return UICollectionViewCell()
-        }
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch indexPath.section {
-        case 0:
-            let header: MyPageCollectionViewHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
-            header.configureMemberData(to: memberData)
-            header.nextButtonTapped = {
-                Utils.push(self.navigationController, FilterViewController(isInitial: false))
-            }
-            header.myReviewsTapped = {
-                Utils.push(self.navigationController, MyReviewsViewController())
-            }
-            header.savedBakeryTapped = {
-                Utils.push(self.navigationController, MySavedBakeryViewController())
-            }
-            return header
-        case 1:
-            let footer: MyPageCollectionViewFooter = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, indexPath: indexPath)
-            return footer
-        default:
-            return UICollectionReusableView()
-        }
-    }
-    
-}
-
-// MARK: - UICollectionViewDelegateFlowLayout extension
-
-extension MyPageViewController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        switch indexPath.section {
-        case 0:
-            return .init(width: SizeLiteral.Screen.width, height: 68 + 8)
-        case 1:
-            if indexPath.item == 0 {
-                return .init(width: SizeLiteral.Screen.width, height: 64)
-            } else {
-                return .init(width: SizeLiteral.Screen.width, height: 64)
-            }
-        default:
-            return .zero
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        
-        switch section {
-        case 0:
-            let trueOptions = memberData.breadType.configureTrueOptions()
-            var letterCount = 0
-            trueOptions.forEach { letterCount += $0.0.count }
-            return .init(width: collectionView.frame.width,
-                         height: letterCount <= 15 ? 288 : 323)
-        default:
-            return .zero
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        switch section {
-        case 0: return .zero
-        case 1: return .init(width: SizeLiteral.Screen.width, height: 60)
-        default: return .zero
-        }
-    }
-    
-}
 
 // MARK: - API
 
