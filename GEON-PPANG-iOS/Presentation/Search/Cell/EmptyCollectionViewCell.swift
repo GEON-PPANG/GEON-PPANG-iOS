@@ -90,7 +90,6 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
         emptyIcon.snp.remakeConstraints {
             $0.size.equalTo(CGSize(width: 154, height: 132))
             $0.centerX.equalToSuperview()
-
         }
         
         emptyLabel.snp.remakeConstraints {

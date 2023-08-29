@@ -38,7 +38,6 @@ final class SearchResultHeaderView: UICollectionReusableView {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().offset(24)
         }
-
     }
     
     private func setUI() {
