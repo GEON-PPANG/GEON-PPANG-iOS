@@ -7,19 +7,20 @@
 
 import Foundation
 
-struct MyPageModel {
+struct MyPageModel: Identifiable {
     
+    let id: Int
     let title: String
 }
 
 extension MyPageModel {
     
     static let general: [MyPageModel] = [
-        .init(title: "이용약관"),
-        .init(title: "문의하기")
+        .init(id: 1, title: "이용약관"),
+        .init(id: 2, title: "문의하기")
     ]
     
     static let version: [MyPageModel] = [
-        .init(title: "버전 정보")
+        .init(id: 3, title: "버전 정보")
     ]
 }
