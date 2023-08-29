@@ -7,12 +7,13 @@
 
 import UIKit
 
-protocol DiffableDataSourceProtocol {
+protocol DiffableDataSourceProtocol: Any {
     var headerType: String { get }
     var footerType: String { get }
     
     func setCollectionView()
     func setDataSource()
+    func loadData()
 }
 
 extension DiffableDataSourceProtocol {
