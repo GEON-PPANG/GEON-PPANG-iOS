@@ -16,14 +16,14 @@ final class AlertViewController: BaseViewController {
     
     private var alertView: UIView
     
-    private let backgroundView = UIView()
-    
     // MARK: - Life Cycle
     
     init(alertView: UIView) {
         self.alertView = alertView
         
         super.init(nibName: nil, bundle: nil)
+        
+        self.modalPresentationStyle = .overFullScreen
     }
     
     @available(*, unavailable)
@@ -41,20 +41,16 @@ final class AlertViewController: BaseViewController {
     
     override func setLayout() {
         
-        view.addSubview(backgroundView)
-        backgroundView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        
-        backgroundView.addSubview(alertView)
+        view.addSubview(alertView)
         alertView.snp.makeConstraints {
             $0.center.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(30)
         }
     }
     
     override func setUI() {
         
-        backgroundView.do {
+        view.do {
             $0.backgroundColor = .gbbAlertBackground
         }
     }
