@@ -9,30 +9,19 @@ import Foundation
 
 // MARK: - MyReviewsResponseDTO
 
-struct MyReviewsResponseDTO: Codable {
-    let bakeryID: Int
-    let bakeryName: String
-    let bakeryPicture: String
-    let isHACCP: Bool
-    let isVegan: Bool
-    let isNonGMO: Bool
-    let firstNearStation: String
-    let secondNearStation: String?
-    let isBookmarked: Bool?
-    let bookmarkCount: Int?
-    let reviewID: Int
-    let breadType: BreadResponseType
+struct MyReviewsResponseDTO: Decodable {
+    
+    var id = UUID()
+    let bakeryList: BakeryCommonListResponseDTO
     let createdAt: String
     
-    enum CodingKeys: String, CodingKey {
-        case bakeryID = "bakeryId"
-        case bakeryName, bakeryPicture
-        case isHACCP, isVegan, isNonGMO
-        case firstNearStation, secondNearStation
-        case isBookmarked = "isBookMarked"
-        case bookmarkCount = "bookMarkCount"
-        case reviewID = "reviewId"
-        case breadType
-        case createdAt
+    func hash(into hasher: inout Hasher) {
+        
+        hasher.combine(id)
     }
+    
+    static func == (lhs: MyReviewsResponseDTO, rhs: MyReviewsResponseDTO) -> Bool {
+        lhs.id == rhs.id
+    }
+    
 }

@@ -14,16 +14,17 @@ import Then
 final class HomeReviewCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Property
-
+    
     private var keywords: [String] = []
-    private var reviewList: [BestReviews] = []
+    private var reviewList: [HomeBestReviewResponseDTO] = []
     
     // MARK: - UI Property
     
     private lazy var bakeryImage = GradientImageView(colors: [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.5).cgColor])
     private let reviewTitle = UILabel()
     private let bakeryTitle = UILabel()
-    private let bakeryReview = UILabel()
+    private let reviewCount = IconWithTextStackView()
+    private let bookmarkCount = IconWithTextStackView()
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: OptionsCollectionViewFlowLayout())
     
     // MARK: - Life Cycle
@@ -42,7 +43,50 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Setting
     
+    private func setLayout() {
+        
+        contentView.addSubview(bakeryImage)
+        bakeryImage.snp.makeConstraints {
+            $0.top.directionalHorizontalEdges.equalToSuperview()
+            $0.height.equalTo(130)
+        }
+        
+        contentView.addSubview(collectionView)
+        collectionView.snp.makeConstraints {
+            $0.top.equalTo(bakeryImage.snp.bottom).offset(16)
+            $0.directionalHorizontalEdges.equalToSuperview().inset(16)
+            $0.height.equalTo(25)
+        }
+        
+        contentView.addSubview(bakeryTitle)
+        bakeryTitle.snp.makeConstraints {
+            $0.top.equalTo(collectionView.snp.bottom).offset(6)
+            $0.leading.equalToSuperview().offset(16)
+        }
+        
+        contentView.addSubview(bookmarkCount)
+        bookmarkCount.snp.makeConstraints {
+            $0.top.equalTo(bakeryTitle.snp.bottom).offset(9)
+            $0.bottom.equalToSuperview().inset(15)
+            $0.leading.equalToSuperview().offset(16)
+        }
+        
+        contentView.addSubview(reviewCount)
+        reviewCount.snp.makeConstraints {
+            $0.top.equalTo(bakeryTitle.snp.bottom).offset(9)
+            $0.bottom.equalToSuperview().inset(15)
+            $0.leading.equalTo(bookmarkCount.snp.trailing).offset(6)
+        }
+        
+        bakeryImage.addSubview(reviewTitle)
+        reviewTitle.snp.makeConstraints {
+            $0.bottom.equalTo(bakeryImage.snp.bottom).inset(13)
+            $0.directionalHorizontalEdges.equalToSuperview().inset(15)
+        }
+    }
+    
     private func setUI() {
+        
         self.do {
             $0.layer.applyShadow(alpha: 0.1, x: 0, y: 0, blur: 10)
             $0.contentView.backgroundColor = .white
@@ -69,70 +113,27 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         }
         
         bakeryTitle.do {
+            $0.numberOfLines = 1
             $0.basic(font: .bodyB1!, color: .gbbGray700!)
             $0.textAlignment = .left
             
         }
         
-        bakeryReview.do {
-            $0.basic(font: .captionB1!, color: .gbbGray400!)
-        }
-        
-        [bakeryTitle, bakeryReview].forEach {
-            $0.do {
-                $0.numberOfLines = 1
-            }
-        }
     }
     
-    private func setLayout() {
-   
-        contentView.addSubview(bakeryImage)
-        bakeryImage.snp.makeConstraints {
-            $0.top.directionalHorizontalEdges.equalToSuperview()
-            $0.height.equalTo(130)
-        }
-             
-        contentView.addSubview(collectionView)
-        collectionView.snp.makeConstraints {
-            $0.top.equalTo(bakeryImage.snp.bottom).offset(16)
-            $0.directionalHorizontalEdges.equalToSuperview().inset(16)
-            $0.height.equalTo(25)
-        }
+    func configureCellUI(data: HomeBestReviewResponseDTO) {
         
-        contentView.addSubview(bakeryTitle)
-        bakeryTitle.snp.makeConstraints {
-            $0.top.equalTo(collectionView.snp.bottom).offset(6)
-            $0.leading.equalToSuperview().offset(16)
-        }
-        
-        contentView.addSubview(bakeryReview)
-        bakeryReview.snp.makeConstraints {
-            $0.top.equalTo(bakeryTitle.snp.bottom).offset(7)
-            $0.bottom.equalToSuperview().inset(15)
-            $0.leading.equalToSuperview().offset(16)
-        }
-        
-        bakeryImage.addSubview(reviewTitle)
-        reviewTitle.snp.makeConstraints {
-            $0.bottom.equalTo(bakeryImage.snp.bottom).inset(13)
-            $0.directionalHorizontalEdges.equalToSuperview().inset(15)
-        }
-    }
-    
-    func configureCellUI(data: BestReviews) {
-        
-        let url = URL(string: data.bakeryPicture)
+        let url = URL(string: data.reviews.picture)
         bakeryImage.kf.setImage(with: url)
-        reviewTitle.setLineHeight(by: 1.14, with: "\"\(data.reviewText)\"")
-        bakeryTitle.setLineHeight(by: 1.08, with: data.bakeryName)
-        bakeryReview.setLineHeight(by: 1.1,
-                                   with: "리뷰(\(data.reviewCount)) ⦁ 저장(\(data.bookmarkCount))")
-        self.keywords = []
-        self.keywords.append(data.firstMaxRecommendKeyword)
-        guard let secondKeyword = data.secondMaxRecommendKeyword else { return }
-        self.keywords.append(secondKeyword)
-        self.collectionView.reloadData()
+        
+        reviewTitle.setLineHeight(by: 1.14, with: "\"\(data.text)\"")
+        bakeryTitle.setLineHeight(by: 1.08, with: data.reviews.name)
+        
+        reviewCount.iconViewType(.reviews, count: data.reviews.reviewCount)
+        bookmarkCount.iconViewType(.bookmark, count: data.reviews.bookmarkCount)
+        
+        keywords = data.keywords.keywords
+        collectionView.reloadData()
     }
 }
 

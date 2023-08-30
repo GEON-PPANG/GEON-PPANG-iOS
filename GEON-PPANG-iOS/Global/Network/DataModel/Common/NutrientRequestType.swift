@@ -12,6 +12,17 @@ struct NutrientRequestType: Codable {
     var isIngredientOpen: Bool
     var isNotOpen: Bool
     
+    init(isNutrientOpen: Bool = false,
+         isIngredientOpen: Bool = false,
+         isNotOpen: Bool = false) {
+        self.isNutrientOpen = isNutrientOpen
+        self.isIngredientOpen = isIngredientOpen
+        self.isNotOpen = isNotOpen
+    }
+}
+
+extension NutrientRequestType {
+    
     func isNoneSelected() -> Bool {
         
         if isNutrientOpen == false && isIngredientOpen == false && isNotOpen == false {

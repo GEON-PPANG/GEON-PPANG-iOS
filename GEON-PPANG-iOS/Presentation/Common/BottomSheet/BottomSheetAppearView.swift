@@ -92,6 +92,7 @@ extension BottomSheetAppearView {
                     self.dimmedView.alpha = 0
                 },
                 completion: { _ in
+                    self.addedSubView.removeFromSuperview()
                     self.dimmedView.removeFromSuperview()
                     self.halfView.removeFromSuperview()
                 }
@@ -131,4 +132,6 @@ extension BottomSheetAppearView {
                 completion: nil)
         }
     }
+    
+    
 }

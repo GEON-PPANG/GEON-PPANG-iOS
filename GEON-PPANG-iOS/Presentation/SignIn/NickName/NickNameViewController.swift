@@ -120,15 +120,15 @@ final class NickNameViewController: BaseViewController {
         }
         
         bottomSheet.do {
-            $0.getEmojiType(.smile)
-            $0.getBottonSheetTitle(I18N.Bottomsheet.diableNickname)
+            $0.configureEmojiType(.smile)
+            $0.configureBottonSheetTitle(I18N.Bottomsheet.diableNickname)
             $0.dismissBottomSheet = {
                 self.backGroundView.dissmissFromSuperview()
                 self.nextButton.do {
                     $0.isUserInteractionEnabled = true
                     $0.configureButtonUI(.gbbMain2!)
                     $0.tappedCommonButton = {
-                        Utils.push(self.navigationController, FilterPurposeViewController(maxSteps: 6, username: UserDefaults.standard.string(forKey: "nickname") ?? ""))
+                        Utils.push(self.navigationController, FilterViewController(isInitial: true))
                     }
                 }
             }
