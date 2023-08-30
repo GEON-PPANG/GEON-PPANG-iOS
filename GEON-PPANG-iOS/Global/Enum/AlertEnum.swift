@@ -41,7 +41,9 @@ enum AlertType {
     
     var image: UIImage {
         switch self {
+        // FIXME: icon 다른걸로 변경
         case .logout: return .sadIcon
+        case .leave: return .smileIcon
         }
     }
 }
