@@ -14,7 +14,7 @@ final class AlertView: UIView {
     
     // MARK: - Property
     
-    private var alertType: AlertType
+    var alertType: AlertType
     
     var cancelAction: (() -> Void)?
     var acceptAction: (() -> Void)?
@@ -101,11 +101,11 @@ final class AlertView: UIView {
         }
         
         subtitleLabel.do {
+            $0.setLineHeight(by: 1.08, with: alertType.subtitle)
             $0.font = .bodyM1
             $0.textColor = .gbbGray400
             $0.textAlignment = .center
             $0.numberOfLines = 2
-            $0.setLineHeight(by: 1.08, with: alertType.subtitle)
         }
         
         cancelButton.do {
@@ -114,6 +114,9 @@ final class AlertView: UIView {
             $0.setTitleColor(.gbbGray400, for: .normal)
             $0.titleLabel?.font = .bodyB1
             $0.makeCornerRound(radius: 8)
+            $0.addAction(UIAction { [weak self] _ in
+                self?.cancelAction?()
+            }, for: .touchUpInside)
         }
         
         acceptButton.do {
@@ -122,6 +125,9 @@ final class AlertView: UIView {
             $0.setTitleColor(.gbbWhite, for: .normal)
             $0.titleLabel?.font = .bodyB1
             $0.makeCornerRound(radius: 8)
+            $0.addAction(UIAction { [weak self] _ in
+                self?.acceptAction?()
+            }, for: .touchUpInside)
         }
         
         buttonStackView.do {
@@ -129,22 +135,6 @@ final class AlertView: UIView {
             $0.spacing = 12
             $0.distribution = .fillEqually
         }
-    }
-    
-    // MARK: - Custom Method
-    
-    func applyButtonActions() {
-        guard let cancel = cancelAction,
-              let accept = acceptAction
-        else { return }
-        
-        cancelButton.addAction(UIAction { _ in
-            cancel()
-        }, for: .touchUpInside)
-        
-        acceptButton.addAction(UIAction { _ in
-            accept()
-        }, for: .touchUpInside)
     }
     
 }

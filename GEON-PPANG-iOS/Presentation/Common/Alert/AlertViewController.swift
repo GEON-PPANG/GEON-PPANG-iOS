@@ -31,6 +31,12 @@ final class AlertViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setAlertAction()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -51,7 +57,36 @@ final class AlertViewController: BaseViewController {
     override func setUI() {
         
         view.do {
+            $0.layer.opacity = 0
             $0.backgroundColor = .gbbAlertBackground
+        }
+    }
+    
+    private func setAlertAction() {
+        
+        guard let alert = alertView as? AlertView
+        else { return }
+        
+        alert.cancelAction = { [weak self] in
+            UIView.animate(withDuration: 0.1, animations: {
+                self?.view.layer.opacity = 0
+                self?.alertView.layer.opacity = 0
+            }) { _ in
+                self?.dismiss(animated: false)
+            }
+            
+            print("cancel tapped")
+        }
+        
+        alert.acceptAction = { [weak self] in
+            // TODO: API 연결
+            switch alert.alertType {
+            case .logout: print("logout API")
+            case .leave: print("leave API")
+            }
+            let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+            sceneDelegate?.changeRootViewControllerToOnboardingViewController()
+            print("accept tapped")
         }
     }
     
@@ -63,14 +98,16 @@ final class AlertViewController: BaseViewController {
         alertView.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
+        
         alertView.do {
-            $0.isHidden = true
+            $0.layer.opacity = 0
         }
         
         modalPresentationStyle = .overFullScreen
 
         UIView.animate(withDuration: 0.1, delay: 0.0, options: .curveEaseOut) { [weak self] in
-            self?.alertView.isHidden = false
+            self?.view.layer.opacity = 1
+            self?.alertView.layer.opacity = 1
         }
     }
     
