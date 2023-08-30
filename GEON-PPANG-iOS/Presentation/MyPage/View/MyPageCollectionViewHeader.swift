@@ -16,7 +16,7 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
     
     private var myPageData = MyPageResponseDTO.dummyData()
     private lazy var myPageTagData = myPageData.breadType.configureTrueOptions()
-    var nextButtonTapped: (() -> Void)?
+    var filterButtonTapped: (() -> Void)?
     var savedBakeryTapped: (() -> Void)?
     var myReviewsTapped: (() -> Void)?
     
@@ -27,7 +27,7 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
     private let userNameLabel = UILabel()
     private let flowLayout = OptionsCollectionViewFlowLayout()
     lazy var filterCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-    private let rightChevronButton = UIButton()
+    private let filterButton = UIButton()
     
     private let buttonsContainer = UIView()
     private let bookmarkButton = ImageWithSubtitleButton(buttonType: .bookmark)
@@ -87,8 +87,8 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
             $0.width.equalTo(198)
         }
         
-        self.addSubview(rightChevronButton)
-        rightChevronButton.snp.makeConstraints {
+        self.addSubview(filterButton)
+        filterButton.snp.makeConstraints {
             $0.top.equalTo(purposeFilterChipView)
             $0.trailing.equalToSuperview().inset(5)
             $0.bottom.equalTo(filterCollectionView)
@@ -139,10 +139,10 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
             $0.register(cell: DescriptionCollectionViewCell.self)
         }
         
-        rightChevronButton.do {
+        filterButton.do {
             $0.setImage(.rightArrowIcon, for: .normal)
             $0.addAction(UIAction { _ in
-                self.nextButtonTapped?()
+                self.filterButtonTapped?()
             }, for: .touchUpInside)
         }
         

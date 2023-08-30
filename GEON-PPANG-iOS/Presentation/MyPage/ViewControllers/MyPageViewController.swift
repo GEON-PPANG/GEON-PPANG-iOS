@@ -27,8 +27,6 @@ final class MyPageViewController: BaseViewController {
     private lazy var myPageCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private lazy var myPageDataSource = MyPageDataSource(myPageCollectionView, memberData)
     
-    
-    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -86,7 +84,7 @@ final class MyPageViewController: BaseViewController {
     
     private func setCollectionViewActions() {
         
-        myPageDataSource.nextButtonTapped = {
+        myPageDataSource.filterButtonTapped = {
             Utils.push(self.navigationController, FilterViewController(isInitial: false))
         }
         myPageDataSource.myReviewsTapped = {
@@ -95,6 +93,22 @@ final class MyPageViewController: BaseViewController {
         myPageDataSource.savedBakeryTapped = {
             Utils.push(self.navigationController, MySavedBakeryViewController())
         }
+        
+        myPageDataSource.logoutTapped = {
+            self.showPopUp(of: .logout)
+        }
+        myPageDataSource.leaveTapped = {
+            self.showPopUp(of: .leave)
+        }
+    }
+    
+    // MARK: - Custom Method
+    
+    private func showPopUp(of type: AlertType) {
+        
+        let alertView = AlertView(type: type)
+        let alertViewController = AlertViewController(alertView: alertView)
+        self.present(alertViewController, animated: false)
     }
     
 }

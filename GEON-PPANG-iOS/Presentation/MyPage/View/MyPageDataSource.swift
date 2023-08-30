@@ -17,6 +17,7 @@ final class MyPageDataSource: DiffableDataSourceProtocol {
     typealias CellRegistration = UICollectionView.CellRegistration
     typealias DiffableDataSource = UICollectionViewDiffableDataSource<Section, Model.ID>
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Model.ID>
+    typealias Action = (() -> Void)
     
     enum Section: Int, CaseIterable {
         case general = 0
@@ -33,9 +34,13 @@ final class MyPageDataSource: DiffableDataSourceProtocol {
     // MARK: - Property
     
     var memberData: MyPageResponseDTO
-    var nextButtonTapped: (() -> Void)?
-    var savedBakeryTapped: (() -> Void)?
-    var myReviewsTapped: (() -> Void)?
+    
+    var filterButtonTapped: Action?
+    var savedBakeryTapped: Action?
+    var myReviewsTapped: Action?
+    
+    var logoutTapped: Action?
+    var leaveTapped: Action?
     
     // MARK: - UI Property
     
@@ -71,11 +76,14 @@ final class MyPageDataSource: DiffableDataSourceProtocol {
         }
         let headerRegistration = SuppleRegistration<Header>(elementKind: headerType) { header, _, _ in
             header.configureMemberData(to: self.memberData)
-            header.nextButtonTapped = self.nextButtonTapped
+            header.filterButtonTapped = self.filterButtonTapped
             header.savedBakeryTapped = self.savedBakeryTapped
             header.myReviewsTapped = self.myReviewsTapped
         }
-        let footerRegistration = SuppleRegistration<Footer>(elementKind: footerType, handler: { _, _, _ in return })
+        let footerRegistration = SuppleRegistration<Footer>(elementKind: footerType) { footer, _, _ in
+            footer.leaveTapepd = self.leaveTapped
+            footer.logoutTapped = self.logoutTapped
+        }
         
         dataSource = DiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, _ in
             let content: [MyPageModel]

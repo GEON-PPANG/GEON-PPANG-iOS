@@ -12,6 +12,13 @@ import Then
 
 final class MyPageCollectionViewFooter: UICollectionReusableView {
     
+    typealias Action = () -> Void
+    
+    // MARK: - Property
+    
+    var logoutTapped: Action?
+    var leaveTapepd: Action?
+    
     // MARK: - UI Property
     
     private let logoutButton = UIButton()
@@ -61,6 +68,9 @@ final class MyPageCollectionViewFooter: UICollectionReusableView {
             $0.setTitleColor(.gbbGray700, for: .normal)
             $0.titleLabel?.font = .bodyM1
             $0.contentHorizontalAlignment = .leading
+            $0.addAction(UIAction { [weak self] _ in
+                self?.logoutTapped?()
+            }, for: .touchUpInside)
         }
         
         leaveButton.do {
@@ -68,6 +78,9 @@ final class MyPageCollectionViewFooter: UICollectionReusableView {
             $0.setTitleColor(.gbbGray400, for: .normal)
             $0.titleLabel?.font = .bodyM2
             $0.contentHorizontalAlignment = .leading
+            $0.addAction(UIAction { [weak self] _ in
+                self?.leaveTapepd?()
+            }, for: .touchUpInside)
         }
         
     }
