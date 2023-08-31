@@ -19,6 +19,7 @@ enum ButtonTitle: String, CaseIterable {
     case duplicate = "중복확인"
     case write = "작성하기"
     case start = "시작하기"
+    case apply = "적용하기"
     
 }
 
@@ -55,21 +56,37 @@ final class CommonButton: UIButton {
     
     func configureButtonTitle(_ title: ButtonTitle) {
         
-        setTitle(title.rawValue, for: .normal)
+        self.setTitle(title.rawValue, for: .normal)
     }
     
-    func configureButtonUI(_ color: UIColor, _ border: UIColor? = .clear) {
+    func configureButtonTitle(to text: String) {
+        
+        self.setTitle(text, for: .normal)
+    }
+    
+    func configureButtonTitle(color: UIColor) {
+        
+        self.setTitleColor(color, for: .normal)
+    }
+    
+    func configureButtonUI(_ color: UIColor) {
         
         self.backgroundColor = color
         switch color {
         case .gbbMain2!, .gbbGray700!: setTitleColor(.gbbGray100, for: .normal)
+        case .clear:
+            self.titleLabel?.font = .bodyB1!
+            setTitleColor(.gbbGray400, for: .normal)
         default:
             setTitleColor(.gbbGray400, for: .normal)
         }
+    }
+    
+    func configureBorder(_ width: CGFloat?, _ color: UIColor?) {
+        self.makeBorder(width: width ?? 0, color: color ?? .clear)
         
-        if border != .clear {
-            makeBorder(width: 1, color: border!)
-            setTitleColor(border!, for: .normal)
+        if color == .gbbMain2 {
+            setTitleColor(.gbbMain2, for: .normal)
         }
     }
     
@@ -94,5 +111,10 @@ final class CommonButton: UIButton {
             completion()
         }
         addAction(action, for: .touchUpInside)
+    }
+    
+    func configureInteraction(to value: Bool) {
+        self.isUserInteractionEnabled = value
+        self.configureButtonUI(value ? .gbbGray700! : .gbbGray200!)
     }
 }

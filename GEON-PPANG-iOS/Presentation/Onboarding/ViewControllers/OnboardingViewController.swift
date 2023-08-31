@@ -103,13 +103,13 @@ final class OnboardingViewController: BaseViewController {
         }
         
         emailSignInButton.do {
-            $0.setTitle("이메일로 로그인", for: .normal)
+            $0.setTitle(I18N.Onboarding.emailSignIn, for: .normal)
             $0.setTitleColor(.gbbGray400, for: .normal)
             $0.titleLabel?.font = .captionB1
         }
         
         emailSignUpButton.do {
-            $0.setTitle("이메일로 회원가입", for: .normal)
+            $0.setTitle(I18N.Onboarding.emailSignUp, for: .normal)
             $0.setTitleColor(.gbbGray400, for: .normal)
             $0.titleLabel?.font = .captionB1
         }

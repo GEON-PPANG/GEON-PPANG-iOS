@@ -19,7 +19,6 @@ final class PasswordViewController: BaseViewController {
             configureButtonUI(isValid)
         }
     }
-    private lazy var safeArea = self.view.safeAreaLayoutGuide
     private var password: String = ""
     private var keyboardHeight: CGFloat = 0
     

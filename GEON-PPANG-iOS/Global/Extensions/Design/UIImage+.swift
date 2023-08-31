@@ -20,9 +20,9 @@ extension UIImage {
     static let enabledSandwichIcon = UIImage(named: "ic_sandwich_enable_20px")!.withRenderingMode(.alwaysOriginal)
     
     // Emoji
-    static let memoEmoji = UIImage(named: "memo_32px")!.withRenderingMode(.alwaysOriginal)
-    static let sadEmoji = UIImage(named: "sad_32px")!.withRenderingMode(.alwaysOriginal)
-    static let smileEmoji = UIImage(named: "smile_32px")!.withRenderingMode(.alwaysOriginal)
+
+    static let sadIcon = UIImage(named: "icon_sad")!.withRenderingMode(.alwaysOriginal)
+    static let cryingIcon = UIImage(named: "icon_crying")!.withRenderingMode(.alwaysOriginal)
     
     // Environmental Marks
     static let smallGMOMark = UIImage(named: "gmo_mark_22px")!.withRenderingMode(.alwaysOriginal)
@@ -51,12 +51,16 @@ extension UIImage {
     static let listIcon = UIImage(named: "ic_list")!.withRenderingMode(.alwaysOriginal) // 건빵집 리스트 옆에 얘 써야 됨, 탭바의 storelist 아님!
     static let logoIcon16px = UIImage(named: "ic_logo_16px")!.withRenderingMode(.alwaysOriginal)
     static let logoIcon20px = UIImage(named: "ic_logo_20px")!.withRenderingMode(.alwaysOriginal)
+    static let mapIcon = UIImage(named: "ic_map")!.withRenderingMode(.alwaysOriginal)
     static let noticeIcon18px = UIImage(named: "ic_notice_18px")!.withRenderingMode(.alwaysOriginal)
     static let profileIcon = UIImage(named: "ic_profile")!.withRenderingMode(.alwaysOriginal)
     static let reviewIcon16px = UIImage(named: "ic_review_16px")!.withRenderingMode(.alwaysOriginal)
     static let reviewIcon = UIImage(named: "ic_review")!.withRenderingMode(.alwaysOriginal)
+    static let reviewIcon16px400 = UIImage(named: "ic_review_16px_400")!.withRenderingMode(.alwaysOriginal)
+    static let reviewBreadIcon = UIImage(named: "ic_review_bread")!.withRenderingMode(.alwaysOriginal)
     static let searchIcon400 = UIImage(named: "ic_search_400")!.withRenderingMode(.alwaysOriginal) /// gray400
     static let searchIcon600 = UIImage(named: "ic_search_600")!.withRenderingMode(.alwaysOriginal) /// gray600
+    static let smileIcon = UIImage(named: "ic_smile")!.withRenderingMode(.alwaysOriginal)
     static let showIcon = UIImage(named: "ic_show")!.withRenderingMode(.alwaysOriginal)
     static let storeIcon = UIImage(named: "ic_store")!.withRenderingMode(.alwaysOriginal)
     static let swapIcon = UIImage(named: "ic_swap")!.withRenderingMode(.alwaysOriginal)

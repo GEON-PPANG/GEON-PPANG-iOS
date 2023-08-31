@@ -95,7 +95,8 @@ final class EmailViewController: BaseViewController {
         }
         
         checkButton.do {
-            $0.configureButtonUI(.clear, .gbbGray300)
+            $0.configureButtonUI(.clear)
+            $0.configureBorder(1, .gbbGray300)
             $0.configureButtonTitle(.duplicate)
             $0.addActionToCommonButton {
                 self.backGroundView.appearBottomSheetView(subView: self.bottomSheet, CGFloat().heightConsideringBottomSafeArea(281))
@@ -116,8 +117,8 @@ final class EmailViewController: BaseViewController {
         }
         
         bottomSheet.do {
-            $0.getEmojiType(.smile)
-            $0.getBottonSheetTitle(I18N.Bottomsheet.email)
+            $0.configureEmojiType(.smile)
+            $0.configureBottonSheetTitle(I18N.Bottomsheet.email)
             $0.dismissBottomSheet = {
                 self.backGroundView.dissmissFromSuperview()
                 self.nextButton.do {
@@ -135,7 +136,8 @@ final class EmailViewController: BaseViewController {
         
         self.checkButton.do {
             $0.isEnabled = isValid
-            $0.configureButtonUI(.clear, isValid ? .gbbMain2! : .gbbGray300!)
+            $0.configureButtonUI(.clear)
+            $0.configureBorder(isValid ? 2:1, isValid ? .gbbMain2! : .gbbGray300!)
         }
         
         if !isValid {

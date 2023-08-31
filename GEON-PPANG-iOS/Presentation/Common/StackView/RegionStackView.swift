@@ -44,10 +44,10 @@ final class RegionStackView: UIStackView {
         }
         
         [regionFirstTag, regionSecondTag].forEach {
-            $0.makeCornerRound(radius: 14.5)
+            $0.makeCornerRound(radius: 6)
             $0.font = .captionM1
-            $0.backgroundColor = .gbbMain3
-            $0.textColor = .gbbGray100
+            $0.backgroundColor = .gbbBackground1
+            $0.textColor = .gbbGray400
             $0.adjustsFontSizeToFitWidth = true
         }
     }
@@ -57,6 +57,13 @@ final class RegionStackView: UIStackView {
         regionFirstTag.text = first
         regionSecondTag.text = second
         setUI(!second.isEmpty)
+    }
+    
+    func configureRegion(_ data: NearStationResponseDTO) {
+        
+        regionFirstTag.text = data.stations[0]
+        regionSecondTag.text = data.stations[1]
+        setUI(!data.stations[1].isEmpty)
     }
     
     func configureBackgroundColor(_ color: UIColor) {

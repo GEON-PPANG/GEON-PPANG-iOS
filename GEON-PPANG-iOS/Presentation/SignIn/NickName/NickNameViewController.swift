@@ -95,10 +95,11 @@ final class NickNameViewController: BaseViewController {
         }
         
         checkButton.do {
-            $0.configureButtonUI(.clear, .gbbGray300)
+            $0.configureButtonUI(.clear)
+            $0.configureBorder(1, .gbbGray300)
             $0.configureButtonTitle(.duplicate)
             $0.addActionToCommonButton {
-                self.backGroundView.appearBottomSheetView(subView: self.bottomSheet, 281)
+                self.backGroundView.appearBottomSheetView(subView: self.bottomSheet, 292)
             }
         }
         
@@ -120,15 +121,15 @@ final class NickNameViewController: BaseViewController {
         }
         
         bottomSheet.do {
-            $0.getEmojiType(.smile)
-            $0.getBottonSheetTitle(I18N.Bottomsheet.diableNickname)
+            $0.configureEmojiType(.smile)
+            $0.configureBottonSheetTitle(I18N.Bottomsheet.diableNickname)
             $0.dismissBottomSheet = {
                 self.backGroundView.dissmissFromSuperview()
                 self.nextButton.do {
                     $0.isUserInteractionEnabled = true
                     $0.configureButtonUI(.gbbMain2!)
                     $0.tappedCommonButton = {
-                        Utils.push(self.navigationController, FilterPurposeViewController(maxSteps: 6, username: UserDefaults.standard.string(forKey: "nickname") ?? ""))
+                        Utils.push(self.navigationController, FilterViewController(isInitial: true))
                     }
                 }
             }
@@ -139,7 +140,8 @@ final class NickNameViewController: BaseViewController {
         
         self.checkButton.do {
             $0.isEnabled = isValid
-            $0.configureButtonUI(.clear, isValid ? .gbbMain2! : .gbbGray300!)
+            $0.configureButtonUI(.clear)
+            $0.configureBorder(isValid ? 2 : 1,  isValid ? .gbbMain2! : .gbbGray300!)
         }
         
         if !isValid {

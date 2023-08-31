@@ -7,10 +7,46 @@
 
 import Foundation
 
-enum FilterType {
+enum FilterType: Int, CaseIterable {
     case purpose
     case breadType
     case ingredient
+    
+    // FilterCollectionViewHeader
+    
+    var title: String {
+        switch self {
+        case .purpose: return I18N.Filter.purposeTitle
+        case .breadType: return I18N.Filter.breadTypeTitle
+        case .ingredient: return I18N.Filter.ingredientTitle
+        }
+    }
+    
+    var subtitle: String {
+        return I18N.Filter.subtitle
+    }
+    
+    var hideSubtitle: Bool {
+        switch self {
+        case .purpose: return true
+        case .breadType, .ingredient: return false
+        }
+    }
+    
+    // FilterCollectionViewCell
+    
+    var cells: [FilterCellModel] {
+        switch self {
+        case .purpose: return FilterCellModel.purpose
+        case .breadType: return FilterCellModel.breadType
+        case .ingredient: return FilterCellModel.ingredient
+        }
+    }
+    
+    var headerSize: CGSize {
+        return CGSize(width: CGFloat().convertByWidthRatio(327),
+                      height: 64)
+    }
     
     var cellSize: CGSize {
         switch self {
@@ -30,6 +66,25 @@ enum FilterType {
         case .ingredient: return 0
         }
     }
+    
+    var lineSpacing: CGFloat {
+        return 20
+    }
+    
+    var hideDescription: Bool {
+        switch self {
+        case .purpose, .breadType: return false
+        case .ingredient: return true
+        }
+    }
+    
+    var isMultipleSelectionEnabled: Bool {
+        switch self {
+        case .purpose: return false
+        case .breadType, .ingredient: return true
+        }
+    }
+    
 }
 
 enum FilterPurposeType: String, CaseIterable {

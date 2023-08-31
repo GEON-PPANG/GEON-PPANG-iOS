@@ -48,7 +48,6 @@ final class ReviewDetailTextView: UIView {
     
     let detailTextView = UITextView()
     private let textLimitLabel = UILabel()
-    private let textMinimumLimitLabel = UILabel()
     
     // MARK: - Life Cycle
     
@@ -74,17 +73,10 @@ final class ReviewDetailTextView: UIView {
             $0.height.equalTo(196)
         }
         
-        self.addSubview(textMinimumLimitLabel)
-        textMinimumLimitLabel.snp.makeConstraints {
-            $0.bottom.equalTo(detailTextView.snp.bottom).offset(-10)
-            $0.trailing.equalTo(detailTextView).offset(-12)
-            $0.height.equalTo(17)
-        }
-        
         self.addSubview(textLimitLabel)
         textLimitLabel.snp.makeConstraints {
-            $0.bottom.equalTo(detailTextView.snp.bottom).offset(-10)
-            $0.trailing.equalTo(textMinimumLimitLabel.snp.leading).offset(-4)
+            $0.bottom.equalTo(detailTextView.snp.bottom).offset(-20)
+            $0.trailing.equalTo(detailTextView).offset(-28)
             $0.height.equalTo(17)
         }
     }
@@ -97,18 +89,12 @@ final class ReviewDetailTextView: UIView {
             $0.textColor = .gbbGray300
             $0.makeCornerRound(radius: 12)
             $0.makeBorder(width: 1, color: .gbbGray300!)
-            $0.textContainerInset = .init(top: 20, left: 18, bottom: 39, right: 18)
+            $0.textContainerInset = .init(top: 20, left: 28, bottom: 45, right: 28)
             $0.clipsToBounds = true
         }
         
         textLimitLabel.do {
-            $0.text = "0/70"
-            $0.font = .captionM1
-            $0.textColor = .gbbGray300
-        }
-        
-        textMinimumLimitLabel.do {
-            $0.text = "(최소 10자)"
+            $0.text = "0/120자"
             $0.font = .captionM1
             $0.textColor = .gbbGray300
         }
@@ -128,10 +114,6 @@ final class ReviewDetailTextView: UIView {
         textLimitLabel.do {
             $0.textColor = textColor
         }
-        
-        textMinimumLimitLabel.do {
-            $0.textColor = textColor
-        }
     }
     
     func configurePlaceholder(with isLike: Bool) {
@@ -144,15 +126,7 @@ final class ReviewDetailTextView: UIView {
     func updateTextLimitLabel(to num: Int) {
         
         textLimitLabel.do {
-            $0.text = "\(num)/70"
+            $0.text = "\(num)/120자"
         }
     }
-    
-    func checkTextCount() {
-        
-        if detailTextView.text.count < 10 {
-            configureTextView(to: .error)
-        }
-    }
-    
 }
