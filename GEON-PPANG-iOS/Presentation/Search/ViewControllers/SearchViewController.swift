@@ -180,7 +180,7 @@ final class SearchViewController: BaseViewController {
             let section = self.dataSource?.snapshot().sectionIdentifiers[sectionIndex]
             switch section {
             case .main:
-                var config = UICollectionLayoutListConfiguration(appearance: .grouped)
+                var config = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
                 config.backgroundColor = .gbbBackground1
                 config.headerMode = .supplementary
                 config.headerTopPadding = 0

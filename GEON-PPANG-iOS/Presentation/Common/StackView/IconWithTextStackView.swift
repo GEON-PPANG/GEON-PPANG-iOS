@@ -11,12 +11,13 @@ import SnapKit
 import Then
 
 enum HomeIconType {
-    case reviews, bookmark
+    case reviews, bookmark, list
     
     var icon: UIImage {
         switch self {
         case .reviews: return .reviewIcon16px400
         case .bookmark: return .bookmarkIcon16px400
+        case .list: return .mapIcon
         }
     }
 }
@@ -52,7 +53,7 @@ final class IconWithTextStackView: UIStackView {
         self.addArrangedSubviews(icon, countLabel)
         
         icon.snp.makeConstraints {
-            $0.size.equalTo(16)
+            $0.size.equalTo(15)
         }
     }
     
@@ -62,7 +63,20 @@ final class IconWithTextStackView: UIStackView {
             $0.spacing = 1
             $0.axis = .horizontal
         }
+    }
+    
+    func configureListUI(text: String) {
+        iconType = .list
         
+        self.do {
+            $0.spacing = 6
+            $0.axis = .horizontal
+        }
+        
+        icon.image = iconType.icon
+        countLabel.basic(text: text,
+                         font: .captionB1!,
+                         color: .gbbGray400!)
     }
     
     func iconViewType(_ type: HomeIconType, count: Int) {

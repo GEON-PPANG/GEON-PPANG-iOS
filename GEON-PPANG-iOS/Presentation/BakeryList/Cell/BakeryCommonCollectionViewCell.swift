@@ -23,8 +23,7 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
     private let markStackView = MarkStackView()
     private let bakeryImage = UIImageView()
     private let bakeryTitle = UILabel()
-    // TODO: - merge 후 추가
-//    private let regionStackView = IconWithTextStackView()
+    private let regionStackView = IconWithTextStackView()
     private let bookmarkStackView = UIStackView()
     private let bookmarkIcon = UIImageView()
     private let bookmarkCount = UILabel()
@@ -77,13 +76,12 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
             $0.trailing.equalToSuperview().inset(24)
         }
         
-        // TODO: - merge 후 추가
-//        contentView.addSubview(regionStackView)
-//        regionStackView.snp.makeConstraints {
-//            $0.top.equalTo(collectionView.snp.bottom).offset(12)
-//            $0.height.equalTo(18)
-//            $0.leading.equalTo(bakeryImage.snp.trailing).offset(8)
-//        }
+        contentView.addSubview(regionStackView)
+        regionStackView.snp.makeConstraints {
+            $0.top.equalTo(collectionView.snp.bottom).offset(12)
+            $0.height.equalTo(15)
+            $0.leading.equalTo(bakeryImage.snp.trailing).offset(11)
+        }
         
         contentView.addSubview(bookmarkStackView)
         bookmarkStackView.snp.makeConstraints {
@@ -152,12 +150,10 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
         bookmarkCount.setLineHeight(by: 1.1, with: "(\(data.bookmarkCount))")
         guard let url = URL(string: data.picture) else { return }
         bakeryImage.kf.setImage(with: url)
-        // TODO: - merge 후 추가
-//        regionStackView.configureListUI(text: data.station)
+        regionStackView.configureListUI(text: data.station)
         
         markStackView.getMarkStatus(data.mark.isHACCP, data.mark.isVegan, data.mark.isNonGMO)
-        
-        
+                
         breadTypeTag = []
         if data.breadType.isGlutenFree {
             breadTypeTag.append(I18N.BakeryList.glutenfree)
@@ -197,6 +193,7 @@ extension BakeryCommonCollectionViewCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: DescriptionCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+        cell.cellColor = .sub
         cell.configureTagTitle(self.breadTypeTag[indexPath.item])
         return cell
     }
