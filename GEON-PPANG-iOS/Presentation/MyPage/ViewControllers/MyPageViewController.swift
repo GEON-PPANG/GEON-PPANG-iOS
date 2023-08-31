@@ -115,7 +115,17 @@ final class MyPageViewController: BaseViewController {
 
 // MARK: - UICollectionViewDelegate extension
 
-extension MyPageViewController: UICollectionViewDelegate {}
+extension MyPageViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        guard indexPath.section == 0 else { return }
+        
+        var urlString: String
+        urlString = indexPath.item == 0 ? UrlLiteral.termsOfUse : UrlLiteral.question
+        Utils.push(self.navigationController, WebViewController(url: urlString))
+    }
+}
 
 // MARK: - API
 
