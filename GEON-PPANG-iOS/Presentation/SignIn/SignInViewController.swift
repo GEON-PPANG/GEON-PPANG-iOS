@@ -43,7 +43,7 @@ final class SignInViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setNotificationCenter()
+        setNotificationCenter(show: #selector(keyboardWillShow), hide: #selector(keyboardWillHide))
         setKeyboardHideGesture()
     }
     
@@ -131,32 +131,38 @@ final class SignInViewController: BaseViewController {
         
         emailTextField.do {
             $0.cofigureSignInType(.email)
-            $0.validCheck = { [weak self] valid in
-                self?.emailValiable = valid
-            }
+            $0.delegte = self
+//            $0.validCheck = { [weak self] valid in
+//                self?.emailValiable = valid
+//            }
+//            $0.tappedCheckButton = {
+//                print("tapped")
+//            }
         }
         
         passwordTextField.do {
             $0.cofigureSignInType(.password)
-            $0.duplicatedCheck = { data in
-                self.password = data
-            }
+            $0.delegte = self
+//            $0.duplicatedCheck = { data in
+//                self.password = data
+//            }
         }
         
         checkPasswordTextField.do {
             $0.cofigureSignInType(.checkPassword)
-            
-            $0.textFieldData = { [weak self] data in
-                if self?.password == data && data.count > 7 {
-                    self?.checkPasswordTextField.clearErrorMessage(true)
-                    self?.passwordValiable = true
-                } else {
-                    self?.checkPasswordTextField.setErrorMessage(I18N.SignIn.checkPassword)
-                    self?.passwordValiable = false
-                }
-            }
+            $0.delegte = self
+//
+//            $0.textFieldData = { [weak self] data in
+//                if self?.password == data && data.count > 7 {
+//                    self?.checkPasswordTextField.clearErrorMessage(true)
+//                    self?.passwordValiable = true
+//                } else {
+//                    self?.checkPasswordTextField.setErrorMessage(I18N.SignIn.checkPassword)
+//                    self?.passwordValiable = false
+//                }
+//            }
         }
-        
+
         nextButton.do {
             $0.isUserInteractionEnabled = false
             $0.configureButtonUI(.gbbGray200!)
@@ -172,20 +178,6 @@ final class SignInViewController: BaseViewController {
             $0.isUserInteractionEnabled = isValid
             $0.configureButtonUI(isValid ? .gbbMain2!: .gbbGray200!)
         }
-    }
-    
-    private func setNotificationCenter() {
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillHide),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
-        
     }
     
     @objc
@@ -217,4 +209,10 @@ final class SignInViewController: BaseViewController {
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
     }
+}
+
+// MARK: - UITextFieldDelegate
+
+extension SignInViewController: UITextFieldDelegate {
+    
 }
