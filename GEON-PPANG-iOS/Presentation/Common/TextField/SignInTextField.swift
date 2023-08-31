@@ -16,13 +16,13 @@ class SignInTextField: UITextField {
     
     private let topPadding: CGFloat = 15
     private let signIntype: SignInPropetyType = .email
-
+    
     // MARK: - UI Property
     
     private lazy var securityButton = UIButton()
     private let emptyView = UIView()
     private let rightStackView = UIStackView()
-
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
@@ -62,7 +62,7 @@ class SignInTextField: UITextField {
             $0.setLeftPadding(amount: 18)
             $0.setPlaceholder(color: .gbbGray300!, font: .headLine!)
             $0.rightViewMode = .always
-
+            
         }
         
         rightStackView.do {
@@ -89,7 +89,7 @@ class SignInTextField: UITextField {
             self.rightView = .none
         }
     }
-        
+    
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         
         let rect = super.textRect(forBounds: bounds)
