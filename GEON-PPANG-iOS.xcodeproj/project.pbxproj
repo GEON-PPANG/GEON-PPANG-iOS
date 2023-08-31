@@ -124,7 +124,7 @@
 		3E232AC52A938F6400125B76 /* BookmarkCountLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E232AC42A938F6400125B76 /* BookmarkCountLabel.swift */; };
 		3E23CCF52A8BD9950091957D /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556282A51DBC000752067 /* UIView+.swift */; };
 		3E23CCF62A8BD9A40091957D /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556302A51DDD800752067 /* UITableView+.swift */; };
-		3E23CCF72A8BD9C30091957D /* BakeryCollectionViewListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682EA2A5D12BD0008F4FB /* BakeryCollectionViewListCell.swift */; };
+		3E23CCF72A8BD9C30091957D /* BakeryCommonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682EA2A5D12BD0008F4FB /* BakeryCommonCollectionViewCell.swift */; };
 		3E2EEF752A5C93010093BCA9 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2EEF742A5C93010093BCA9 /* BottomView.swift */; };
 		3E36D7CD2A8DE65D00B2C1CC /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 3E36D7CC2A8DE65D00B2C1CC /* KakaoSDKAuth */; };
 		3E36D7CF2A8DE65D00B2C1CC /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 3E36D7CE2A8DE65D00B2C1CC /* KakaoSDKCommon */; };
@@ -150,6 +150,7 @@
 		3E8B30022A67A630001BD057 /* NutrientRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8B30012A67A630001BD057 /* NutrientRequestType.swift */; };
 		3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */; };
 		3EA2E1EB2A542151003516A3 /* SizeLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1EA2A542151003516A3 /* SizeLiteral.swift */; };
+		3EAC950D2A9FAF4500D2AADC /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC950C2A9FAF4500D2AADC /* WebViewController.swift */; };
 		3EBFB5702A63B2B60058F968 /* WriteReviewBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFB56F2A63B2B60058F968 /* WriteReviewBottomSheetView.swift */; };
 		3ED40DF92A5FCF3800C7D5DA /* FilterEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED40DF82A5FCF3800C7D5DA /* FilterEnum.swift */; };
 		3ED40DFB2A5FD26200C7D5DA /* FilterRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED40DFA2A5FD26200C7D5DA /* FilterRequestDTO.swift */; };
@@ -160,6 +161,7 @@
 		3EDC05C42A5DEE3600EAD950 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05C32A5DEE3600EAD950 /* FilterCollectionViewCell.swift */; };
 		3EDC05D02A5E4FF900EAD950 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC05CF2A5E4FF900EAD950 /* String+.swift */; };
 		3EDDA8AC2A69149400E04ECB /* DetailBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDA8AB2A69149400E04ECB /* DetailBottomView.swift */; };
+		3EE1A9132AA0873500021F9D /* UrlLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE1A9122AA0873500021F9D /* UrlLiteral.swift */; };
 		3EE343142A6440EB0010C187 /* UICollectionViewCell+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE343132A6440EB0010C187 /* UICollectionViewCell+.swift */; };
 		3EE466A42A69CAC6007C3C77 /* SimpleBakeryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE466A32A69CAC6007C3C77 /* SimpleBakeryModel.swift */; };
 		3EFA97862A5EBCA9002E70FA /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFA97852A5EBCA9002E70FA /* LineView.swift */; };
@@ -328,6 +330,7 @@
 		3E8B30012A67A630001BD057 /* NutrientRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientRequestType.swift; sourceTree = "<group>"; };
 		3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		3EA2E1EA2A542151003516A3 /* SizeLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeLiteral.swift; sourceTree = "<group>"; };
+		3EAC950C2A9FAF4500D2AADC /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		3EBFB56F2A63B2B60058F968 /* WriteReviewBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewBottomSheetView.swift; sourceTree = "<group>"; };
 		3ED40DF82A5FCF3800C7D5DA /* FilterEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterEnum.swift; sourceTree = "<group>"; };
 		3ED40DFA2A5FD26200C7D5DA /* FilterRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterRequestDTO.swift; sourceTree = "<group>"; };
@@ -338,6 +341,7 @@
 		3EDC05C32A5DEE3600EAD950 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		3EDC05CF2A5E4FF900EAD950 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		3EDDA8AB2A69149400E04ECB /* DetailBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBottomView.swift; sourceTree = "<group>"; };
+		3EE1A9122AA0873500021F9D /* UrlLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlLiteral.swift; sourceTree = "<group>"; };
 		3EE343132A6440EB0010C187 /* UICollectionViewCell+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+.swift"; sourceTree = "<group>"; };
 		3EE466A32A69CAC6007C3C77 /* SimpleBakeryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleBakeryModel.swift; sourceTree = "<group>"; };
 		3EFA97852A5EBCA9002E70FA /* LineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
@@ -774,6 +778,7 @@
 			children = (
 				0961C3632A501EBF0031A822 /* Strings.swift */,
 				3EA2E1EA2A542151003516A3 /* SizeLiteral.swift */,
+				3EE1A9122AA0873500021F9D /* UrlLiteral.swift */,
 			);
 			path = Literals;
 			sourceTree = "<group>";
@@ -1214,6 +1219,7 @@
 		3EA2E1E02A53E864003516A3 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				3EAC950B2A9FAF3500D2AADC /* WebView */,
 				3E06F8D72A9E1565001302F4 /* Alert */,
 				09FD47E02A5E698D002020BD /* BottomSheet */,
 				3E2EEF722A5C928F0093BCA9 /* View */,
@@ -1235,6 +1241,14 @@
 				3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		3EAC950B2A9FAF3500D2AADC /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				3EAC950C2A9FAF4500D2AADC /* WebViewController.swift */,
+			);
+			path = WebView;
 			sourceTree = "<group>";
 		};
 		3ED40DFC2A608B2B00C7D5DA /* View */ = {
@@ -1495,7 +1509,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E23CCF72A8BD9C30091957D /* BakeryCollectionViewListCell.swift in Sources */,
+				3E23CCF72A8BD9C30091957D /* BakeryCommonCollectionViewCell.swift in Sources */,
 				3E23CCF62A8BD9A40091957D /* UITableView+.swift in Sources */,
 				3E23CCF52A8BD9950091957D /* UIView+.swift in Sources */,
 				0959F18E2A658D1700E77CAF /* SearchService.swift in Sources */,
@@ -1602,6 +1616,7 @@
 				098716B62A60F52200538D05 /* BakeryTypeProtocol.swift in Sources */,
 				09B13F582A59433500C0C723 /* TabBarItem.swift in Sources */,
 				0959F1822A658CEE00E77CAF /* BakeryAPI.swift in Sources */,
+				3EE1A9132AA0873500021F9D /* UrlLiteral.swift in Sources */,
 				09B13F502A593CB800C0C723 /* BakeryListViewController.swift in Sources */,
 				09FD47D92A5E5148002020BD /* MySavedBakeryViewController.swift in Sources */,
 				3E36D7D82A8E6BC500B2C1CC /* FilterDiffableDataSource.swift in Sources */,
@@ -1636,6 +1651,7 @@
 				0930D2632A93292F00A75C7E /* IconWithTextStackView.swift in Sources */,
 				0959F18A2A658D0C00E77CAF /* FilterService.swift in Sources */,
 				3E79B1B52A571E7100D36A26 /* OptionsCollectionViewCell.swift in Sources */,
+				3EAC950D2A9FAF4500D2AADC /* WebViewController.swift in Sources */,
 				3ED40E002A608B4700C7D5DA /* MyPageCollectionViewCell.swift in Sources */,
 				3E06F8D92A9E1588001302F4 /* AlertViewController.swift in Sources */,
 				097682E52A5C99340008F4FB /* BakeryFilterItems.swift in Sources */,
