@@ -22,7 +22,7 @@ extension UIImage {
     // Emoji
 
     static let sadIcon = UIImage(named: "icon_sad")!.withRenderingMode(.alwaysOriginal)
-    static let cryingEmoji = UIImage(named: "icon_crying")!.withRenderingMode(.alwaysOriginal)
+    static let cryingIcon = UIImage(named: "icon_crying")!.withRenderingMode(.alwaysOriginal)
     
     // Environmental Marks
     static let smallGMOMark = UIImage(named: "gmo_mark_22px")!.withRenderingMode(.alwaysOriginal)

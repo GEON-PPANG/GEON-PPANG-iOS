@@ -19,7 +19,7 @@ enum EmojiType {
         switch self {
         case .smile: return .smileIcon
         case .sad: return .sadIcon
-        case .crying: return .cryingEmoji
+        case .crying: return .cryingIcon
             
         }
     }
