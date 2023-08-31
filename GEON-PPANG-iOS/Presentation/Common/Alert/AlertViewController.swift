@@ -24,6 +24,7 @@ final class AlertViewController: BaseViewController {
         super.init(nibName: nil, bundle: nil)
         
         self.modalPresentationStyle = .overFullScreen
+        self.modalTransitionStyle = .crossDissolve
     }
     
     @available(*, unavailable)
@@ -57,7 +58,6 @@ final class AlertViewController: BaseViewController {
     override func setUI() {
         
         view.do {
-            $0.layer.opacity = 0
             $0.backgroundColor = .gbbAlertBackground
         }
     }
@@ -68,13 +68,7 @@ final class AlertViewController: BaseViewController {
         else { return }
         
         alert.cancelAction = { [weak self] in
-            UIView.animate(withDuration: 0.1, animations: {
-                self?.view.layer.opacity = 0
-                self?.alertView.layer.opacity = 0
-            }) { _ in
-                self?.dismiss(animated: false)
-            }
-            
+            self?.dismiss(animated: true)
             print("cancel tapped")
         }
         
@@ -97,17 +91,6 @@ final class AlertViewController: BaseViewController {
         view.addSubview(alertView)
         alertView.snp.makeConstraints {
             $0.center.equalToSuperview()
-        }
-        
-        alertView.do {
-            $0.layer.opacity = 0
-        }
-        
-        modalPresentationStyle = .overFullScreen
-
-        UIView.animate(withDuration: 0.1, delay: 0.0, options: .curveEaseOut) { [weak self] in
-            self?.view.layer.opacity = 1
-            self?.alertView.layer.opacity = 1
         }
     }
     
