@@ -84,14 +84,14 @@ enum FilterType: Int, CaseIterable {
         case .breadType, .ingredient: return true
         }
     }
-
+    
 }
 
 enum FilterPurposeType: String, CaseIterable {
     case health = "건강 · 체질"
     case diet = "맛 · 다이어트"
     case vegan = "비건 · 채식지향"
-
+    
     var description: String {
         switch self {
         case .health: return "아토피 , 알레르기 , 암 , 당뇨 , 소화문제"
@@ -99,7 +99,7 @@ enum FilterPurposeType: String, CaseIterable {
         case .vegan: return "종교 , 환경 , 동물 , 노동권을 위한 비거니즘"
         }
     }
-
+    
     var data: String {
         switch self {
         case .health: return "HEALTH"
@@ -114,7 +114,7 @@ enum FilterBreadType: String, CaseIterable {
     case isVegan = "비건빵"
     case isNutFree = "넛프리"
     case isSugarless = "저당, 무설탕"
-
+    
     var description: String {
         switch self {
         case .isGlutenFree: return "NO 글루텐 포함\n밀 , 곡물류"
