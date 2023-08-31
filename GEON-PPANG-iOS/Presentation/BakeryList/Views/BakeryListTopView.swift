@@ -42,7 +42,7 @@ final class BakeryListTopView: UIView {
             $0.leading.equalToSuperview().offset(24)
             $0.bottom.equalToSuperview().inset(15)
         }
-    
+        
         self.addSubview(searchButton)
         searchButton.snp.makeConstraints {
             $0.size.equalTo(24)
