@@ -195,7 +195,7 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         }
         
         bakeryClosedDaysLabel.text = data.closedDay
-        bakeryOpeningHoursLabel.text = data.openingTime
+        bakeryOpeningHoursLabel.text = data.openingHours
         bakeryPhoneNumberLabel.text = data.phoneNumber
     }
 }

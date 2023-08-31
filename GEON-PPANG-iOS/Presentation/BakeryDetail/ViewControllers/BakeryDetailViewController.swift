@@ -22,8 +22,6 @@ final class BakeryDetailViewController: BaseViewController {
                                                                                 isNonGMO: false,
                                                                                 firstNearStation: "",
                                                                                 secondNearStation: "",
-                                                                                isBookMarked: false,
-                                                                                bookMarkCount: 0,
                                                                                 reviewCount: 0,
                                                                                 breadType: BreadResponseType(breadTypeID: 0,
                                                                                                              name: "",
@@ -31,14 +29,18 @@ final class BakeryDetailViewController: BaseViewController {
                                                                                                              isVegan: false,
                                                                                                              isNutFree: false,
                                                                                                              isSugarFree: false),
-                                                                                homepage: "",
+                                                                                mapURL: "",
+                                                                                homepageURL: "",
+                                                                                instagramURL: "",
                                                                                 address: "",
-                                                                                openingTime: "",
+                                                                                openingHours: "",
                                                                                 closedDay: "",
                                                                                 phoneNumber: "",
                                                                                 menuList: [MenuList(menuID: 0,
                                                                                                     menuName: "",
-                                                                                                    menuPrice: 0)]) {
+                                                                                                    menuPrice: 0)],
+                                                                                isBookMarked: false,
+                                                                                bookMarkCount: 0) {
         didSet {
             self.collectionView.reloadData()
         }
