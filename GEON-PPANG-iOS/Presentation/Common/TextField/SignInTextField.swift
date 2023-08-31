@@ -120,7 +120,7 @@ final class SignInTextField: UITextField {
             self.rightView = .none
         }
     }
-        
+    
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         
         let rect = super.textRect(forBounds: bounds)

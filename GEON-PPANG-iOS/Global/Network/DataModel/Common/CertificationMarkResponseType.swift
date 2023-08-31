@@ -12,5 +12,5 @@ struct CertificationMarkResponseType: Hashable, Codable {
     let isHACCP: Bool
     let isVegan: Bool
     let isNonGMO: Bool
-
+    
 }

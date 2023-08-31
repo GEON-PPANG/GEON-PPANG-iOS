@@ -18,8 +18,8 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     private let bakeryImage = UIImageView()
     private let markStackView = MarkStackView()
     private let bakeryTitle = UILabel()
-    private let reviewCount = IconWithTextStackView()
-    private let bookmarkCount = IconWithTextStackView()
+    private let reviewCount = IconWithTextStackView(.reviews)
+    private let bookmarkCount = IconWithTextStackView(.bookmark)
     private let regionStackView = RegionStackView()
     
     // MARK: - Life Cycle
@@ -120,8 +120,8 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
         let url = URL(string: data.bakeries.picture)
         bakeryImage.kf.setImage(with: url)
         bakeryTitle.setLineHeight(by: 1.08, with: data.bakeries.name)
-        bookmarkCount.iconViewType(.bookmark, count: data.bakeries.bookmarkCount)
-        reviewCount.iconViewType(.reviews, count: data.bakeries.reviewCount)
+        bookmarkCount.configureHomeCell(count: data.bakeries.bookmarkCount)
+        reviewCount.configureHomeCell(count: data.bakeries.reviewCount)
         markStackView.getMarkStatus(data.bakeries.mark.isHACCP,
                                     data.bakeries.mark.isVegan,
                                     data.bakeries.mark.isNonGMO)
