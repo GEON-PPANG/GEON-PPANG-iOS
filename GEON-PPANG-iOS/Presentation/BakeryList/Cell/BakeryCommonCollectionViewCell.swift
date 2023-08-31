@@ -23,7 +23,7 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
     private let markStackView = MarkStackView()
     private let bakeryImage = UIImageView()
     private let bakeryTitle = UILabel()
-    private let regionStackView = IconWithTextStackView()
+    private let regionStackView = IconWithTextStackView(.list)
     private let bookmarkStackView = UIStackView()
     private let bookmarkIcon = UIImageView()
     private let bookmarkCount = UILabel()
@@ -59,7 +59,7 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
             $0.top.equalToSuperview().offset(24)
             $0.leading.equalToSuperview().inset(24)
             $0.bottom.equalToSuperview().inset(24)
-
+            
         }
         
         contentView.addSubview(bakeryTitle)
@@ -153,7 +153,7 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
         regionStackView.configureListUI(text: data.station)
         
         markStackView.getMarkStatus(data.mark.isHACCP, data.mark.isVegan, data.mark.isNonGMO)
-                
+        
         breadTypeTag = []
         if data.breadType.isGlutenFree {
             breadTypeTag.append(I18N.BakeryList.glutenfree)
