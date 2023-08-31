@@ -16,6 +16,7 @@ final class SignInTextField: UITextField {
     
     private let topPadding: CGFloat = 15
     private let signIntype: SignInPropertyType = .email
+    var tappedCheckButton: (() -> Void)?
 
     // MARK: - UI Property
     
@@ -67,6 +68,8 @@ final class SignInTextField: UITextField {
         self.do {
             $0.isSecureTextEntry = true
             $0.rightView = securityButton
+            $0.textContentType = .oneTimeCode
+
         }
         
         securityButton.do {
@@ -77,7 +80,6 @@ final class SignInTextField: UITextField {
                 self?.securityButton.isSelected.toggle()
             }, for: .touchUpInside)
         }
-        
     }
     
     private func configureDuplicatedButton() {
@@ -96,15 +98,14 @@ final class SignInTextField: UITextField {
         self.do {
             $0.rightView = checkButton
         }
-
+        
         checkButton.do {
             $0.configuration = configuration
+            $0.addAction(UIAction { [weak self] _ in
+                guard let self else { return }
+                self.tappedCheckButton?()
+            }, for: .touchUpInside)
         }
-    }
-
-    func addActionToDuplicatedButton(_ action: UIAction) {
-        
-        checkButton.addAction(action, for: .touchUpInside)
     }
 
     func configureViewType(_ viewType: SignInPropertyType) {
