@@ -33,8 +33,8 @@ struct BakeryCommonListResponseDTO: Decodable, Hashable, BakeryListProtocol {
         bakeryID = try container.decode(Int.self, forKey: .bakeryID)
         name = try container.decode(String.self, forKey: .name)
         picture = try container.decode(String.self, forKey: .picture)
-        bookmarkCount = try container.decode(Int.self, forKey: .bookmarkCount)
-        reviewCount = try container.decode(Int.self, forKey: .reviewCount)
+        bookmarkCount = (try? container.decode(Int.self, forKey: .bookmarkCount)) ?? 0
+        reviewCount = (try? container.decode(Int.self, forKey: .reviewCount)) ?? 0
         
         let first = try container.decode(String.self, forKey: .firstNearStation)
         let second = try container.decode(String.self, forKey: .secondNearStation)
