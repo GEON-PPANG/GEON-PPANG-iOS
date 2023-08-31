@@ -64,7 +64,7 @@ final class MyPageCollectionViewFooter: UICollectionReusableView {
         }
         
         logoutButton.do {
-            $0.setTitle("로그아웃", for: .normal)
+            $0.setTitle(I18N.MyPage.logout, for: .normal)
             $0.setTitleColor(.gbbGray700, for: .normal)
             $0.titleLabel?.font = .bodyM1
             $0.contentHorizontalAlignment = .leading
@@ -74,7 +74,7 @@ final class MyPageCollectionViewFooter: UICollectionReusableView {
         }
         
         leaveButton.do {
-            $0.setTitle("회원탈퇴", for: .normal)
+            $0.setTitle(I18N.MyPage.leave, for: .normal)
             $0.setTitleColor(.gbbGray400, for: .normal)
             $0.titleLabel?.font = .bodyM2
             $0.contentHorizontalAlignment = .leading

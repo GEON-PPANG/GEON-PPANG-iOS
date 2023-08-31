@@ -13,6 +13,7 @@ final class WebViewController: BaseViewController {
     // MARK: - Property
     
     var url: String
+    var navigationTitle: String
     
     // MARK: - UI Property
     
@@ -21,8 +22,9 @@ final class WebViewController: BaseViewController {
     
     // MARK: - Life Cycle
     
-    init(url: String) {
+    init(url: String, title: String) {
         self.url = url
+        self.navigationTitle = title
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -52,7 +54,7 @@ final class WebViewController: BaseViewController {
         
         navigationBar.do {
             $0.configureBottomLine()
-            $0.configureCenterTitle(to: "이용약관")
+            $0.configureCenterTitle(to: navigationTitle)
             $0.configureBackButtonAction(popViewControllerAction())
         }
         

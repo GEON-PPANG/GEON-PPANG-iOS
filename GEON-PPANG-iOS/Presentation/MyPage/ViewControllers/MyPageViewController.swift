@@ -121,9 +121,9 @@ extension MyPageViewController: UICollectionViewDelegate {
         
         guard indexPath.section == 0 else { return }
         
-        var urlString: String
-        urlString = indexPath.item == 0 ? UrlLiteral.termsOfUse : UrlLiteral.question
-        Utils.push(self.navigationController, WebViewController(url: urlString))
+        var urlString: String = indexPath.item == 0 ? UrlLiteral.termsOfUse : UrlLiteral.question
+        var title: String = indexPath.item == 0 ? I18N.MyPage.terms : I18N.MyPage.askQuestions
+        Utils.push(self.navigationController, WebViewController(url: urlString, title: title))
     }
 }
 
