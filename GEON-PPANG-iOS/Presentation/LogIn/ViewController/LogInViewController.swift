@@ -14,15 +14,11 @@ final class LogInViewController: BaseViewController {
     
     // MARK: - Property
     
-    private var emailValid: Bool = false {
+    private var emailValiable: Bool = false
+    private var passwordValiable: Bool = false
+    private var isValid: Bool = false {
         didSet {
-            configureButtonUI()
-        }
-    }
-    
-    private var passwordValid: Bool = false {
-        didSet {
-            configureButtonUI()
+            configureButtonUI(self.isValid)
         }
     }
     
@@ -30,8 +26,8 @@ final class LogInViewController: BaseViewController {
     
     private let naviView = CustomNavigationBar()
     private let titleLabel = UILabel()
-    private let emailTextField = CommonTextView()
-    private let passwordTextField = CommonTextView()
+    private let emailTextField = CommonTextView(.loginEmail)
+    private let passwordTextField = CommonTextView(.loginPassword)
     private let accountLabel = UILabel()
     private let signInButton = UIButton()
     private let loginButton = CommonButton()
@@ -98,7 +94,6 @@ final class LogInViewController: BaseViewController {
     override func setUI() {
         
         naviView.do {
-            $0.configureRightCount(1, by: 6)
             $0.configureBottomLine()
             $0.configureBackButtonAction(UIAction { [weak self] _ in
                 self?.navigationController?.popViewController(animated: true)
@@ -110,20 +105,6 @@ final class LogInViewController: BaseViewController {
             $0.basic(text: I18N.LogIn.title,
                      font: .title1!,
                      color: .gbbGray700!)
-        }
-        
-        emailTextField.do {
-            $0.cofigureSignInType(.loginEmail)
-            $0.validCheck = { [weak self] valid in
-                self?.emailValid = valid
-            }
-        }
-        
-        passwordTextField.do {
-            $0.cofigureSignInType(.loginPassword)
-            $0.validCheck = { [weak self] valid in
-                self?.passwordValid = valid
-            }
         }
         
         loginButton.do {
@@ -144,15 +125,47 @@ final class LogInViewController: BaseViewController {
                      font: .subHead!,
                      color: .gray_500!)
         }
-        
     }
     
-    func configureButtonUI() {
+    override func setDelegate() {
         
-        let valid = emailValid && passwordValid
-        loginButton.do {
-            $0.isUserInteractionEnabled = valid
-            $0.configureButtonUI(valid ? .gbbMain2!: .gbbGray200!)
+        [emailTextField, passwordTextField].forEach {
+            $0.delegate = self
         }
+    }
+    
+    func configureButtonUI(_ isValid: Bool) {
+        
+        loginButton.do {
+            $0.isUserInteractionEnabled = isValid
+            $0.configureButtonUI(isValid ? .gbbMain2!: .gbbGray200!)
+        }
+    }
+}
+
+// MARK: - UITextFieldDelegate
+
+extension LogInViewController: UITextFieldDelegate {
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        
+        guard let text = textField.text else { return }
+        switch textField {
+        case emailTextField.configureTextField():
+            self.emailValiable = (text.isValidEmail() && !emailTextField.fetchText().isEmpty) ? true : false
+        case passwordTextField.configureTextField():
+            self.passwordValiable = !passwordTextField.fetchText().isEmpty ? true : false
+        default:
+            break
+        }
+        
+        self.isValid = emailValiable && passwordValiable
+        configureButtonUI(self.isValid)
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
     }
 }
