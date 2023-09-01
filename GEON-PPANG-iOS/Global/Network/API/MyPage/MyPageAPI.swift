@@ -11,7 +11,7 @@ import Moya
 
 final class MyPageAPI {
     
-    typealias Bookmarks = GeneralArrayResponse<BakeryListResponseDTO>
+    typealias Bookmarks = GeneralArrayResponse<BakeryCommonListResponseDTO>
     typealias Myreviews = GeneralArrayResponse<MyReviewsResponseDTO>
     
     typealias MemberDataResponse = GeneralResponse<MyPageResponseDTO>

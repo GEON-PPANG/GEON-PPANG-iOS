@@ -54,6 +54,21 @@ extension UIViewController {
     @objc func endEditingView() {
         view.endEditing(true)
     }
+    
+    func setNotificationCenter(show: Selector, hide: Selector) {
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: show,
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: hide,
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+        
+    }
+    
 }
 
 extension UIViewController: UIGestureRecognizerDelegate {

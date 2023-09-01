@@ -1,5 +1,5 @@
 //
-//  EmailViewController.swift
+//  NickNameViewController.swift
 //  GEON-PPANG-iOS
 //
 //  Created by JEONGEUN KIM on 2023/07/15.
@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class EmailViewController: BaseViewController {
+final class NickNameViewController: BaseViewController {
     
     // MARK: - Property
     
@@ -20,15 +20,17 @@ final class EmailViewController: BaseViewController {
         }
     }
     
+    private var nickname =  UserDefaults.standard.string(forKey: "nickname") ?? ""
+    
     // MARK: - UI Property
     
     private let naviView = CustomNavigationBar()
     private let titleLabel = UILabel()
-    private let emailTextField = CommonTextView()
+    private let nicknameTextField = CommonTextView(.nickname)
     private lazy var checkButton = CommonButton()
     private lazy var nextButton = CommonButton()
-    private lazy var backGroundView = BottomSheetAppearView()
-    private lazy var bottomSheet = CommonBottomSheet()
+    private var backGroundView = BottomSheetAppearView()
+    private var bottomSheet = CommonBottomSheet()
     
     // MARK: - Life Cycle
     
@@ -41,7 +43,7 @@ final class EmailViewController: BaseViewController {
     // MARK: - Setting
     
     override func setLayout() {
-
+        
         view.addSubview(naviView)
         naviView.snp.makeConstraints {
             $0.top.equalToSuperview()
@@ -50,64 +52,69 @@ final class EmailViewController: BaseViewController {
         
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(naviView.snp.bottom).offset(20)
+            $0.top.equalTo(naviView.snp.bottom).offset(28)
             $0.leading.equalToSuperview().offset(24)
         }
         
-        view.addSubview(emailTextField)
-        emailTextField.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(40)
+        view.addSubview(nicknameTextField)
+        nicknameTextField.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(32)
             $0.directionalHorizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(74)
         }
         
         view.addSubview(checkButton)
         checkButton.snp.makeConstraints {
-            $0.top.equalTo(emailTextField.snp.bottom).offset(36)
-            $0.directionalHorizontalEdges.equalToSuperview().inset(24)
-            $0.height.equalTo(56)
+            $0.top.equalTo(nicknameTextField.snp.bottom).offset(29)
         }
         
         view.addSubview(nextButton)
         nextButton.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(CGFloat().heightConsideringBottomSafeArea(54))
-            $0.directionalHorizontalEdges.equalToSuperview().inset(24)
-            $0.height.equalTo(56)
         }
         
-        view.addSubview(backGroundView)
+        [checkButton, nextButton].forEach {
+            $0.snp.makeConstraints {
+                $0.directionalHorizontalEdges.equalToSuperview().inset(24)
+                $0.height.equalTo(56)
+            }
+        }
     }
     
     override func setUI() {
         
         naviView.do {
-            $0.configureRightCount(1, by: 6)
-            $0.configureBackButtonAction(UIAction { [weak self] _ in
-                self?.navigationController?.popViewController(animated: true)
+            $0.configureBottomLine()
+            $0.configureBackButtonAction(UIAction { _ in
+                self.navigationController?.popViewController(animated: true)
             })
         }
         
         titleLabel.do {
             $0.numberOfLines = 0
-            $0.basic(text: "회원가입을 위한 \n이메일을 입력해주세요!",
+            $0.basic(text: I18N.Nickname.title,
                      font: .title1!,
                      color: .gbbGray700!)
         }
         
         checkButton.do {
-            $0.configureButtonUI(.clear, .gbbGray300)
+            $0.configureButtonUI(.clear)
+            $0.configureBorder(1, .gbbGray300)
             $0.configureButtonTitle(.duplicate)
             $0.addActionToCommonButton {
-                self.backGroundView.appearBottomSheetView(subView: self.bottomSheet, CGFloat().heightConsideringBottomSafeArea(281))
+                self.backGroundView.appearBottomSheetView(subView: self.bottomSheet, 292)
             }
         }
         
-        emailTextField.do {
-            $0.cofigureSignInType(.email)
-            $0.validCheck = { [weak self] valid in
-                self?.isValid = valid
-            }
-        }
+        //        nicknameTextField.do {
+        //            $0.validCheck = { [weak self] valid in
+        //                self?.isValid = valid
+        //            }
+        //            $0.duplicatedCheck = { [weak self] nickname in
+        //                guard let self else { return }
+        //                UserDefaults.standard.setValue(nickname, forKey: "nickname")
+        //            }
+        //        }
         
         nextButton.do {
             $0.isUserInteractionEnabled = false
@@ -117,14 +124,14 @@ final class EmailViewController: BaseViewController {
         
         bottomSheet.do {
             $0.configureEmojiType(.smile)
-            $0.configureBottonSheetTitle(I18N.Bottomsheet.email)
+            $0.configureBottonSheetTitle(I18N.Bottomsheet.diableNickname)
             $0.dismissBottomSheet = {
                 self.backGroundView.dissmissFromSuperview()
                 self.nextButton.do {
                     $0.isUserInteractionEnabled = true
                     $0.configureButtonUI(.gbbMain2!)
                     $0.tappedCommonButton = {
-                        Utils.push(self.navigationController, PasswordViewController())
+                        Utils.push(self.navigationController, FilterViewController(isInitial: true))
                     }
                 }
             }
@@ -135,18 +142,19 @@ final class EmailViewController: BaseViewController {
         
         self.checkButton.do {
             $0.isEnabled = isValid
-            $0.configureButtonUI(.clear, isValid ? .gbbMain2! : .gbbGray300!)
+            $0.configureButtonUI(.clear)
+            $0.configureBorder(isValid ? 2 : 1,  isValid ? .gbbMain2! : .gbbGray300!)
         }
         
-        if !isValid {
-            nextButton.do {
-                $0.isUserInteractionEnabled = false
-                $0.configureButtonUI(.gbbGray200!)
-            }
+        self.nextButton.do {
+            $0.isUserInteractionEnabled = isValid
+            $0.configureButtonTitle(isValid ? .start : .next)
+            $0.configureButtonUI(isValid ? .gbbMain2! : .gbbGray200!)
         }
     }
     
     func dismissKeyboardWhenTappedAround() {
+        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
                                                                  action: #selector(endEditingView))
         tap.cancelsTouchesInView = true

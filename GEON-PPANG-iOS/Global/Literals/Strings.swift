@@ -26,10 +26,16 @@ struct I18N {
         static let emailSignUp = "이메일로 회원가입"
     }
     
+    /// Welcome
+    struct Welcome {
+        static let welcomeText = "님:)\n건빵에 오신 걸 환영해요!"
+    }
+    
     /// Bottomsheet
     struct Bottomsheet {
         static let email = "사용 가능한 이메일입니다."
-        static let diableNickname = "사용 가능한 닉네임입니다."
+        static let diableNickname = "사용 가능한 닉네임입니다!"
+        static let duplicatedNickname = "이미 존재하는 닉네임이에요"
         static let checkIdPassword = "아이디 및 비밀번호를\n확인해주세요"
         
     }
@@ -109,5 +115,18 @@ struct I18N {
     /// Nickname
     struct Nickname {
         static let title = "건빵에 오신걸 환영해요!\n어떻게 불러드릴까요?"
+    }
+    
+    /// SignIn
+    struct SignIn {
+        static let title = "회원가입을 위한 \n정보를 입력해주세요!"
+        static let checkPassword = "비밀번호를 확인해주세요"
+    }
+    
+    /// Rule
+    struct Rule {
+        static let email = "올바른 이메일을 입력해주세요."
+        static let password = "영문, 숫자 포함 8자리 이상"
+        static let nickname = "10자 이내, 특수문자 금지"
     }
 }
