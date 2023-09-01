@@ -111,4 +111,17 @@ struct I18N {
     struct Detail {
         static let writeReview = "리뷰 작성하기"
     }
+    
+    /// SignIn
+    struct SignIn {
+        static let title = "회원가입을 위한 \n정보를 입력해주세요!"
+        static let checkPassword = "비밀번호를 확인해주세요"
+    }
+    
+    /// Rule
+    struct Rule {
+        static let email = "올바른 이메일을 입력해주세요."
+        static let password = "영문, 숫자 포함 8자리 이상"
+        static let nickname = "10자 이내, 특수문자 금지"
+    }
 }
