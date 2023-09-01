@@ -14,16 +14,12 @@ final class CommonTextView: UIView {
     
     // MARK: - Property
     
-    private var signInType: SignInPropertyType = .email {
+    var tappedCheckButton: (() -> Void)?
+    var delegate: UITextFieldDelegate? {
         didSet {
-            setUI()
+            setDelegate()
         }
     }
-    
-    var isValid: Bool = false
-    var validCheck: ((Bool) -> Void)?
-    var duplicatedCheck: ((String) -> Void)?
-    var textFieldData: ((String) -> Void)?
     
     // MARK: - UI Property
     
@@ -34,11 +30,11 @@ final class CommonTextView: UIView {
     
     // MARK: - Life Cycle
     
-    override init(frame: CGRect) {
+    init(_ type: SignInPropertyType) {
         super.init(frame: .zero)
         
         setLayout()
-        setUI()
+        setUI(type: type)
         setDelegate()
     }
     
@@ -70,36 +66,40 @@ final class CommonTextView: UIView {
         }
     }
     
-    private func setUI() {
+    private func setUI(type: SignInPropertyType) {
         
         titleLabel.do {
             $0.basic(font: .bodyB2!, color: .gbbGray400!)
-            $0.text = signInType.rawValue
+            $0.text = type.rawValue
         }
         
         checkLabel.do {
             $0.font = .captionM1
         }
+        
+        commonTextField.do {
+            $0.configureViewType(type)
+            $0.tappedCheckButton = {
+                self.tappedCheckButton?()
+            }
+        }
     }
     
     func setDelegate() {
         
-        commonTextField.delegate = self
-    }
-    
-    func cofigureSignInType(_ type: SignInPropertyType) {
-        
-        self.signInType = type
-        commonTextField.configureViewType(type)
+        commonTextField.delegate = self.delegate
     }
     
     func fetchText() -> String {
         return commonTextField.text ?? ""
     }
     
+    func configureTextField() -> SignInTextField {
+        return commonTextField
+    }
+    
     func setErrorMessage(_ message: String) {
         
-        self.validCheck?(false)
         titleLabel.textColor = .gbbError
         checkLabel.basic(text: message,
                          font: .captionM1!,
@@ -109,78 +109,8 @@ final class CommonTextView: UIView {
     
     func clearErrorMessage(_ isValid: Bool) {
         
-        self.validCheck?(isValid)
         titleLabel.textColor = .gbbGray400
         checkLabel.text = ""
         commonTextField.layer.borderColor = UIColor.clear.cgColor
-    }
-}
-
-// MARK: - UITextFieldDelegate
-
-extension CommonTextView: UITextFieldDelegate {
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        
-        guard let text = textField.text else { return }
-        if text.isEmpty {
-            self.validCheck?(false)
-            textField.layer.borderColor = UIColor.clear.cgColor
-        }
-    }
-    
-    func textFieldDidChangeSelection(_ textField: UITextField) {
-        
-        guard let text = textField.text else { return }
-        switch signInType {
-        case .email:
-            if !text.isValidEmail() {
-                setErrorMessage(I18N.Rule.email)
-            } else {
-                clearErrorMessage(true)
-            }
-        case .password:
-            if !text.isContainNumberAndAlphabet() && text.count < 8 {
-                setErrorMessage(I18N.Rule.password)
-            } else {
-                clearErrorMessage(true)
-            }
-        case .nickname:
-            if !text.isNotContainSpecialCharacters() {
-                setErrorMessage(I18N.Rule.nickname)
-            } else {
-                clearErrorMessage(true)
-            }
-        case .checkPassword:
-            self.textFieldData?(fetchText())
-        }
-        
-        if text.isEmpty {
-            clearErrorMessage(false)
-        }
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        guard let currentText = textField.text else { return false }
-        let changedText = (currentText as NSString).replacingCharacters(in: range, with: string)
-        
-        if signInType == .nickname {
-            return changedText.count < 11
-        }
-        
-        return true
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        duplicatedCheck?(fetchText())
-        textField.resignFirstResponder()
-        return true
     }
 }
