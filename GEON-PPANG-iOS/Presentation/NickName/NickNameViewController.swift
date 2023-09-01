@@ -26,7 +26,7 @@ final class NickNameViewController: BaseViewController {
     
     private let naviView = CustomNavigationBar()
     private let titleLabel = UILabel()
-    private let nicknameTextField = CommonTextView()
+    private let nicknameTextField = CommonTextView(.nickname)
     private lazy var checkButton = CommonButton()
     private lazy var nextButton = CommonButton()
     private var backGroundView = BottomSheetAppearView()
@@ -36,7 +36,7 @@ final class NickNameViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         dismissKeyboardWhenTappedAround()
     }
     
@@ -103,16 +103,15 @@ final class NickNameViewController: BaseViewController {
             }
         }
         
-        nicknameTextField.do {
-            $0.cofigureSignInType(.nickname)
-            $0.validCheck = { [weak self] valid in
-                self?.isValid = valid
-            }
-            $0.duplicatedCheck = { [weak self] nickname in
-                guard let self else { return }
-                UserDefaults.standard.setValue(nickname, forKey: "nickname")
-            }
-        }
+        //        nicknameTextField.do {
+        //            $0.validCheck = { [weak self] valid in
+        //                self?.isValid = valid
+        //            }
+        //            $0.duplicatedCheck = { [weak self] nickname in
+        //                guard let self else { return }
+        //                UserDefaults.standard.setValue(nickname, forKey: "nickname")
+        //            }
+        //        }
         
         nextButton.do {
             $0.isUserInteractionEnabled = false

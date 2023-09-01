@@ -15,15 +15,13 @@ final class SignInViewController: BaseViewController {
     // MARK: - Property
     
     private var password: String = ""
-    private var emailValiable: Bool = false {
+    private var checkPassword: String = ""
+    private var emailValiable: Bool = false
+    private var passwordValiable: Bool = false
+    private var chechPasswordValiable: Bool = false
+    private var isValid: Bool = false {
         didSet {
-            configureButtonUI()
-        }
-    }
-    
-    private var passwordValiable: Bool = false {
-        didSet {
-            configureButtonUI()
+            configureButtonUI(isValid)
         }
     }
     
@@ -33,9 +31,9 @@ final class SignInViewController: BaseViewController {
     private let scrollView = UIScrollView()
     private let titleLabel = UILabel()
     private let contentView = UIView()
-    private let emailTextField = CommonTextView()
-    private let passwordTextField = CommonTextView()
-    private let checkPasswordTextField = CommonTextView()
+    private let emailTextField = CommonTextView(.email)
+    private let passwordTextField = CommonTextView(.password)
+    private let checkPasswordTextField = CommonTextView(.checkPassword)
     private lazy var nextButton = CommonButton()
     
     // MARK: - Life Cycle
@@ -130,39 +128,11 @@ final class SignInViewController: BaseViewController {
         }
         
         emailTextField.do {
-            $0.cofigureSignInType(.email)
-            $0.delegte = self
-//            $0.validCheck = { [weak self] valid in
-//                self?.emailValiable = valid
-//            }
-//            $0.tappedCheckButton = {
-//                print("tapped")
-//            }
+            $0.tappedCheckButton = {
+                self.configureTextField(isValid: { false }, error: "error", view: self.emailTextField)
+            }
         }
         
-        passwordTextField.do {
-            $0.cofigureSignInType(.password)
-            $0.delegte = self
-//            $0.duplicatedCheck = { data in
-//                self.password = data
-//            }
-        }
-        
-        checkPasswordTextField.do {
-            $0.cofigureSignInType(.checkPassword)
-            $0.delegte = self
-//
-//            $0.textFieldData = { [weak self] data in
-//                if self?.password == data && data.count > 7 {
-//                    self?.checkPasswordTextField.clearErrorMessage(true)
-//                    self?.passwordValiable = true
-//                } else {
-//                    self?.checkPasswordTextField.setErrorMessage(I18N.SignIn.checkPassword)
-//                    self?.passwordValiable = false
-//                }
-//            }
-        }
-
         nextButton.do {
             $0.isUserInteractionEnabled = false
             $0.configureButtonUI(.gbbGray200!)
@@ -170,15 +140,108 @@ final class SignInViewController: BaseViewController {
         }
     }
     
-    func configureButtonUI() {
+    override func setDelegate() {
         
-        let isValid = passwordValiable && emailValiable
+        [emailTextField, passwordTextField, checkPasswordTextField].forEach {
+            $0.delegate = self
+        }
+    }
+    
+    func configureButtonUI(_ isValid: Bool) {
         
         nextButton.do {
             $0.isUserInteractionEnabled = isValid
             $0.configureButtonUI(isValid ? .gbbMain2!: .gbbGray200!)
         }
     }
+}
+
+// MARK: - UITextFieldDelegate
+
+extension SignInViewController: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        guard let text = textField.text else { return }
+        if text.isEmpty {
+            textField.layer.borderColor = UIColor.clear.cgColor
+        }
+    }
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        guard let text = textField.text else { return }
+        
+        let signViews: [UITextField: (() -> Bool, String, CommonTextView)] =
+        [
+            emailTextField.configureTextField(): ({ text.isValidEmail()},
+                                                  I18N.Rule.email,
+                                                  emailTextField),
+            passwordTextField.configureTextField(): ({ text.isContainNumberAndAlphabet() && text.count >= 8 },
+                                                     I18N.Rule.password,
+                                                     passwordTextField),
+            checkPasswordTextField.configureTextField(): ({ text.isEqual(self.password) },
+                                                          I18N.SignIn.checkPassword,
+                                                          checkPasswordTextField)
+        ]
+        
+        if let (isValid, error, view) = signViews[textField] {
+            configureTextField(isValid: isValid, error: error, view: view)
+        }
+        
+        if text.isEmpty {
+            [emailTextField, passwordTextField, checkPasswordTextField].forEach {
+                $0.clearErrorMessage(false)
+            }
+        }
+        
+    }
+    
+    func configureTextField(isValid: () -> Bool,
+                            error: String,
+                            view: CommonTextView) {
+        
+        if view == emailTextField {
+            self.emailValiable = isValid()
+        }
+        if view == checkPasswordTextField {
+            self.chechPasswordValiable = isValid()
+        }
+        if view == passwordTextField {
+            self.passwordValiable = isValid()
+        }
+        if !isValid() {
+            view.setErrorMessage(error)
+        } else {
+            view.clearErrorMessage(true)
+        }
+        
+        self.isValid = emailValiable && passwordValiable && chechPasswordValiable
+        configureButtonUI(self.isValid)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        
+        if passwordTextField.configureTextField() == textField {
+            self.password = textField.text ?? ""
+        }
+        
+        if checkPasswordTextField.configureTextField() == textField {
+            self.checkPassword = textField.text ?? ""
+        }
+        textField.resignFirstResponder()
+        return true
+    }
+}
+
+// MARK: - Keyboard Action
+
+extension SignInViewController {
     
     @objc
     func keyboardWillShow(_ notification: NSNotification) {
@@ -209,10 +272,4 @@ final class SignInViewController: BaseViewController {
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
     }
-}
-
-// MARK: - UITextFieldDelegate
-
-extension SignInViewController: UITextFieldDelegate {
-    
 }
