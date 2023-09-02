@@ -14,23 +14,20 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
     
     // MARK: - Prperty
     
-    private var username =  UserDefaults.standard.string(forKey: "nickname") ?? ""
     private var myPageData = MyPageResponseDTO.dummyData()
     private lazy var myPageTagData = myPageData.breadType.configureTrueOptions()
-    var nextButtonTapped: (() -> Void)?
+    var filterButtonTapped: (() -> Void)?
     var savedBakeryTapped: (() -> Void)?
     var myReviewsTapped: (() -> Void)?
     
     // MARK: - UI Property
     
-    private let mainTitleLabel = UILabel()
-    private let profileImageViewContainer = UIView()
-    private let profileImageView = UIImageView(image: .profileIcon)
+    private let profileImageView = UIImageView(image: .smileIcon86px)
     private let purposeFilterChipView = MyPagePurposeChipView()
     private let userNameLabel = UILabel()
     private let flowLayout = OptionsCollectionViewFlowLayout()
     lazy var filterCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-    private let rightChevronButton = UIButton()
+    private let filterButton = UIButton()
     
     private let buttonsContainer = UIView()
     private let bookmarkButton = ImageWithSubtitleButton(buttonType: .bookmark)
@@ -56,44 +53,29 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        Utils.updateCollectionViewConstraint(of: filterCollectionView, byOffset: 2)
+        updateHeight()
     }
     
     // MARK: - Setting
     
     private func setLayout() {
         
-        self.addSubview(mainTitleLabel)
-        mainTitleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(44)
-            $0.leading.equalToSuperview().inset(24)
-        }
-        
-        self.addSubview(profileImageViewContainer)
-        profileImageViewContainer.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(24)
-            $0.top.equalTo(mainTitleLabel.snp.bottom).offset(34)
-            $0.size.equalTo(73)
-        }
-        
-        profileImageViewContainer.addSubview(profileImageView)
+        self.addSubview(profileImageView)
         profileImageView.snp.makeConstraints {
-            $0.center.equalToSuperview()
-            $0.height.equalTo(36.5)
-            $0.width.equalTo(35.5)
+            $0.top.equalToSuperview().inset(36)
+            $0.leading.equalToSuperview().inset(24)
         }
         
         self.addSubview(purposeFilterChipView)
         purposeFilterChipView.snp.makeConstraints {
-            $0.leading.equalTo(profileImageViewContainer.snp.trailing).offset(14)
-            $0.top.equalTo(profileImageViewContainer)
-            $0.height.equalTo(25)
+            $0.leading.equalTo(profileImageView.snp.trailing).offset(14)
+            $0.top.equalTo(profileImageView)
         }
         
         self.addSubview(userNameLabel)
         userNameLabel.snp.makeConstraints {
             $0.leading.equalTo(purposeFilterChipView)
-            $0.top.equalTo(purposeFilterChipView.snp.bottom).offset(14)
+            $0.top.equalTo(purposeFilterChipView.snp.bottom).offset(8)
             $0.height.equalTo(25)
         }
         
@@ -101,12 +83,12 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
         filterCollectionView.snp.makeConstraints {
             $0.leading.equalTo(purposeFilterChipView)
             $0.top.equalTo(userNameLabel.snp.bottom).offset(10)
-            $0.height.equalTo(60)
+            $0.height.equalTo(56)
             $0.width.equalTo(198)
         }
         
-        self.addSubview(rightChevronButton)
-        rightChevronButton.snp.makeConstraints {
+        self.addSubview(filterButton)
+        filterButton.snp.makeConstraints {
             $0.top.equalTo(purposeFilterChipView)
             $0.trailing.equalToSuperview().inset(5)
             $0.bottom.equalTo(filterCollectionView)
@@ -117,17 +99,17 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
         buttonsContainer.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(87)
-            $0.bottom.equalToSuperview().inset(20)
+            $0.top.equalTo(filterCollectionView.snp.bottom).offset(36)
         }
         
-        self.addSubview(buttonsStackView)
+        buttonsContainer.addSubview(buttonsStackView)
         buttonsStackView.snp.makeConstraints {
-            $0.center.equalTo(buttonsContainer)
+            $0.center.equalToSuperview()
         }
         
-        self.addSubview(seperatorView)
+        buttonsContainer.addSubview(seperatorView)
         seperatorView.snp.makeConstraints {
-            $0.center.equalTo(buttonsContainer)
+            $0.center.equalToSuperview()
             $0.width.equalTo(1)
             $0.height.equalTo(42)
         }
@@ -139,19 +121,7 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
             $0.backgroundColor = .gbbWhite
         }
         
-        mainTitleLabel.do {
-            $0.text = I18N.MyPage.title
-            $0.font = .title1
-            $0.textColor = .gbbGray700
-        }
-        
-        profileImageViewContainer.do {
-            $0.backgroundColor = .gbbBackground2
-            $0.makeCornerRound(radius: 36.5)
-        }
-        
         userNameLabel.do {
-            $0.text = username
             $0.font = .title2
             $0.textColor = .gbbGray700
         }
@@ -161,7 +131,7 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
         }
         
         flowLayout.do {
-            $0.minimumLineSpacing = 10
+            $0.minimumLineSpacing = 6
             $0.minimumInteritemSpacing = 4
         }
         
@@ -169,10 +139,10 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
             $0.register(cell: DescriptionCollectionViewCell.self)
         }
         
-        rightChevronButton.do {
+        filterButton.do {
             $0.setImage(.rightArrowIcon, for: .normal)
             $0.addAction(UIAction { _ in
-                self.nextButtonTapped?()
+                self.filterButtonTapped?()
             }, for: .touchUpInside)
         }
         
@@ -216,7 +186,7 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
         
         self.myPageData = memberData
         self.purposeFilterChipView.configureChip(toTag: convertFromData(myPageData.mainPurpose))
-        self.userNameLabel.text = username
+        self.userNameLabel.text = memberData.memberNickname
         self.myPageTagData = memberData.breadType.configureTrueOptions()
         
         filterCollectionView.reloadData()
@@ -232,6 +202,17 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
         }
     }
     
+    private func updateHeight() {
+        
+        filterCollectionView.snp.updateConstraints {
+            $0.height.equalTo(chipCount() < 4 ? 25 : 50)
+        }
+    }
+    
+    private func chipCount() -> Int {
+        
+        return myPageData.breadType.configureTrueOptions().count
+    }
 }
 
 // MARK: - UICollectionViewDelegate extension

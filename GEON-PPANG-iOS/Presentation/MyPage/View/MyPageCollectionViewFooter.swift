@@ -12,10 +12,17 @@ import Then
 
 final class MyPageCollectionViewFooter: UICollectionReusableView {
     
+    typealias Action = () -> Void
+    
+    // MARK: - Property
+    
+    var logoutTapped: Action?
+    var leaveTapepd: Action?
+    
     // MARK: - UI Property
     
-    private let appVersionLabel = UILabel()
-    private let appVersionNumButton = UIButton()
+    private let logoutButton = UIButton()
+    private let leaveButton = UIButton()
     
     // MARK: - Life Cycle
     
@@ -35,16 +42,18 @@ final class MyPageCollectionViewFooter: UICollectionReusableView {
     
     private func setLayout() {
         
-        self.addSubview(appVersionLabel)
-        appVersionLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(24)
-            $0.top.equalToSuperview().inset(12)
+        self.addSubview(logoutButton)
+        logoutButton.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.top.equalToSuperview().inset(3)
+            $0.height.equalTo(48)
         }
         
-        self.addSubview(appVersionNumButton)
-        appVersionNumButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(24)
-            $0.centerY.equalTo(appVersionLabel)
+        self.addSubview(leaveButton)
+        leaveButton.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.top.equalTo(logoutButton.snp.bottom).offset(8)
+            $0.height.equalTo(48)
         }
     }
     
@@ -54,28 +63,26 @@ final class MyPageCollectionViewFooter: UICollectionReusableView {
             $0.backgroundColor = .gbbWhite
         }
         
-        appVersionLabel.do {
-            $0.text = I18N.MyPage.appVersion
-            $0.font = .captionM1
-            $0.textColor = .gbbMain1
-        }
-        
-        appVersionNumButton.do {
-            $0.setTitle(I18N.MyPage.appVersionNum, for: .normal)
-            $0.setTitleColor(.gbbMain1, for: .normal)
-            $0.titleLabel?.font = .captionM1
+        logoutButton.do {
+            $0.setTitle(I18N.MyPage.logout, for: .normal)
+            $0.setTitleColor(.gbbGray700, for: .normal)
+            $0.titleLabel?.font = .bodyM1
+            $0.contentHorizontalAlignment = .leading
             $0.addAction(UIAction { [weak self] _ in
-                self?.appVersionButtonTapped()
+                self?.logoutTapped?()
             }, for: .touchUpInside)
         }
-    }
-    
-    // MARK: - Action Helper
-    
-    private func appVersionButtonTapped() {
         
-        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
-        sceneDelegate?.changeRootViewControllerToOnboardingViewController()
+        leaveButton.do {
+            $0.setTitle(I18N.MyPage.leave, for: .normal)
+            $0.setTitleColor(.gbbGray400, for: .normal)
+            $0.titleLabel?.font = .bodyM2
+            $0.contentHorizontalAlignment = .leading
+            $0.addAction(UIAction { [weak self] _ in
+                self?.leaveTapepd?()
+            }, for: .touchUpInside)
+        }
+        
     }
     
 }
