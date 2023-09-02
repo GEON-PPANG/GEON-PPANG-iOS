@@ -9,19 +9,22 @@ import Foundation
 
 // MARK: - MyReviewsResponseDTO
 
-struct MyReviewsResponseDTO: Decodable {
+struct MyReviewsResponseDTO: Decodable, Hashable {
     
-    var id = UUID()
     let bakeryList: BakeryCommonListResponseDTO
     let createdAt: String
+    let reviewID: Int
     
-    func hash(into hasher: inout Hasher) {
-        
-        hasher.combine(id)
+    enum CodingKeys: String, CodingKey {
+        case createdAt
+        case reviewID = "reviewId"
     }
     
-    static func == (lhs: MyReviewsResponseDTO, rhs: MyReviewsResponseDTO) -> Bool {
-        lhs.id == rhs.id
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.createdAt = try container.decode(String.self, forKey: .createdAt)
+        self.reviewID = try container.decode(Int.self, forKey: .reviewID)
+        self.bakeryList = try BakeryCommonListResponseDTO(from: decoder)
+
     }
-    
 }

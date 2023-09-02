@@ -13,11 +13,14 @@ import Then
 enum EmojiType {
     case smile
     case sad
+    case crying
     
     var icon: UIImage? {
         switch self {
         case .smile: return .smileIcon
         case .sad: return .sadIcon
+        case .crying: return .cryingIcon
+            
         }
     }
 }
@@ -54,6 +57,7 @@ final class CommonBottomSheet: UIView {
         
         self.addSubview(emojiIcon)
         emojiIcon.snp.makeConstraints {
+            $0.size.equalTo(64)
             $0.top.equalToSuperview().offset(28)
             $0.centerX.equalToSuperview()
         }

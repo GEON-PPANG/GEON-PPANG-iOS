@@ -69,18 +69,24 @@ final class CommonButton: UIButton {
         self.setTitleColor(color, for: .normal)
     }
     
-    func configureButtonUI(_ color: UIColor, _ border: UIColor? = .clear) {
+    func configureButtonUI(_ color: UIColor) {
         
         self.backgroundColor = color
         switch color {
         case .gbbMain2!, .gbbGray700!: setTitleColor(.gbbGray100, for: .normal)
+        case .clear:
+            self.titleLabel?.font = .bodyB1!
+            setTitleColor(.gbbGray400, for: .normal)
         default:
             setTitleColor(.gbbGray400, for: .normal)
         }
+    }
+    
+    func configureBorder(_ width: CGFloat?, _ color: UIColor?) {
+        self.makeBorder(width: width ?? 0, color: color ?? .clear)
         
-        if border != .clear {
-            makeBorder(width: 1, color: border!)
-            setTitleColor(border!, for: .normal)
+        if color == .gbbMain2 {
+            setTitleColor(.gbbMain2, for: .normal)
         }
     }
     
