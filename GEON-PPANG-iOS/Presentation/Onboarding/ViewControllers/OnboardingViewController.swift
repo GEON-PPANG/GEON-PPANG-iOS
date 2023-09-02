@@ -173,13 +173,15 @@ extension OnboardingViewController {
     private func appleLoginButtonTapped() {
         
         let appleIDProvider = ASAuthorizationAppleIDProvider()
-            let request = appleIDProvider.createRequest()
-            request.requestedScopes = [.fullName, .email]
-            
-            let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-            authorizationController.delegate = self
-            authorizationController.presentationContextProvider = self
-            authorizationController.performRequests()
+        let applePWProvider = ASAuthorizationPasswordProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
+        
     }
     
     private func emailSignInButtonTapped() {
@@ -199,14 +201,16 @@ extension OnboardingViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         
         // TODO: 받아온 credential 처리 로직 고민해보기
-        switch authorization.credential {
-        case let idCredential as ASAuthorizationAppleIDCredential:
-            print("id: \(idCredential)")
-        case let pwCredential as ASPasswordCredential:
-            print("pw: \(pwCredential)")
-        default:
-            break
-        }
+        guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential,
+              let idToken = credential.identityToken,
+              let authorizationCode = credential.authorizationCode
+        else { return }
+        
+        let tokenString = String(data: idToken, encoding: .utf8)
+        let codeString = String(data: authorizationCode, encoding: .utf8)
+        print("🆔: \(String(describing: tokenString))")
+        print("💻: \(String(describing: codeString))")
+        
     }
     
 }
