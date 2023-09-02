@@ -43,7 +43,7 @@ extension Config {
     
     static let kakaoNativeAppKey: String = {
         guard let key = Config.infoDictionary[Keys.Plist.kakaoNativeAppKey] as? String else {
-            fatalError("✅accessToken is not set in plist for this configuration.✅")
+            fatalError("✅kakaoNativeAppKey is not set in plist for this configuration.✅")
         }
         return key
     }()
