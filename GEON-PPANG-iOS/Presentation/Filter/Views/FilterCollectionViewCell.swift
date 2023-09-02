@@ -69,7 +69,7 @@ final class FilterCollectionViewCell: UICollectionViewCell {
         }
         
         descriptionLabel.do {
-            $0.font = .bodyM1
+            $0.font = filterType.descriptionFont
             $0.textColor = .gbbGray300
             $0.setLineHeight(by: 1.12)
             $0.textAlignment = .center
