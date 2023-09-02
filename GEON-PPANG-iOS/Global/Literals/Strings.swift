@@ -112,6 +112,11 @@ struct I18N {
         static let writeReview = "리뷰 작성하기"
     }
     
+    /// Nickname
+    struct Nickname {
+        static let title = "건빵에 오신걸 환영해요!\n어떻게 불러드릴까요?"
+    }
+    
     /// SignIn
     struct SignIn {
         static let title = "회원가입을 위한 \n정보를 입력해주세요!"
@@ -123,5 +128,12 @@ struct I18N {
         static let email = "올바른 이메일을 입력해주세요."
         static let password = "영문, 숫자 포함 8자리 이상"
         static let nickname = "10자 이내, 특수문자 금지"
+    }
+    
+    /// LogIn
+    struct LogIn {
+        static let title = "로그인"
+        static let noAccount = "계정이 없으신가요?"
+        static let signIn = "회원가입하기"
     }
 }
