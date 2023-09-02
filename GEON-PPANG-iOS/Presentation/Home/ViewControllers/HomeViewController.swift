@@ -162,7 +162,7 @@ final class HomeViewController: BaseViewController {
     private func setSnapshot() {
         
         var snapshot = Snapshot()
-        defer { dataSource?.apply(snapshot, animatingDifferences: false)}
+        defer { self.dataSource?.applySnapshotUsingReloadData(snapshot)}
         
         snapshot.appendSections(Sections.allCases)
         
@@ -175,8 +175,6 @@ final class HomeViewController: BaseViewController {
         for (section, items) in itemsDictionary {
             snapshot.appendItems(items, toSection: section)
         }
-        
-        self.dataSource?.applySnapshotUsingReloadData(snapshot)
     }
     
     private func setSupplementaryView() {
@@ -300,7 +298,6 @@ extension HomeViewController {
             if !data.mainPurpose.contains("NONE") {
                 self.nickname = "\(data.nickname)님 맞춤"
                 self.configureBubbleView(true)
-                self.setSnapshot()
             } else {
                 self.nickname = ""
                 if !self.isFirstAppearance {
