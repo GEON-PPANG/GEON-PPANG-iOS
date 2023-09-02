@@ -58,7 +58,7 @@ final class HomeViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         getHomeBestData()
-        getUsername()
+        getUserName()
     }
     
     override func viewDidLoad() {
@@ -289,7 +289,7 @@ extension HomeViewController {
         }
     }
     
-    private func getUsername() {
+    private func getUserName() {
         
         FilterAPI.shared.getFilterType { response in
             guard let response = response else { return }
