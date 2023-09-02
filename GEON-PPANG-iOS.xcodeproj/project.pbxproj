@@ -99,6 +99,7 @@
 		09CA3F082A569EBA0063897A /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CA3F072A569EBA0063897A /* Service.swift */; };
 		09CD07902A620D7D00A078DE /* NickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CD078F2A620D7D00A078DE /* NickNameViewController.swift */; };
 		09CD07922A624B7D00A078DE /* SignInTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CD07912A624B7D00A078DE /* SignInTextField.swift */; };
+		09F015F12A9C881A0093D4F0 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F015F02A9C881A0093D4F0 /* LogInViewController.swift */; };
 		09D55FC72A99F69000997FB4 /* BakeryCommonListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D55FC62A99F69000997FB4 /* BakeryCommonListResponseDTO.swift */; };
 		09FD47C82A5DC991002020BD /* SearchNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47C72A5DC991002020BD /* SearchNavigationView.swift */; };
 		09FD47CA2A5DD38D002020BD /* SearchResultHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47C92A5DD38D002020BD /* SearchResultHeaderView.swift */; };
@@ -278,6 +279,7 @@
 		09CD078F2A620D7D00A078DE /* NickNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameViewController.swift; sourceTree = "<group>"; };
 		09CD07912A624B7D00A078DE /* SignInTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInTextField.swift; sourceTree = "<group>"; };
 		09D55FC62A99F69000997FB4 /* BakeryCommonListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryCommonListResponseDTO.swift; sourceTree = "<group>"; };
+		09F015F02A9C881A0093D4F0 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		09FD47C72A5DC991002020BD /* SearchNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNavigationView.swift; sourceTree = "<group>"; };
 		09FD47C92A5DD38D002020BD /* SearchResultHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultHeaderView.swift; sourceTree = "<group>"; };
 		09FD47D12A5DF892002020BD /* EmptyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -818,6 +820,7 @@
 				DFB585F52A5F314D0077D272 /* BakeryDetail */,
 				3EDC05BA2A5DEB7500EAD950 /* Filter */,
 				093EFA572A61F611003228CD /* NickName */,
+				09F015EE2A9C87D40093D4F0 /* LogIn */,
 				093EFA542A61F5E4003228CD /* SignIn */,
 				DFB587B72A5D580B00704B6C /* Onboarding */,
 				3E79B1A42A566F0700D36A26 /* WriteReview */,
@@ -1003,6 +1006,22 @@
 				098716B52A60F52200538D05 /* BakeryTypeProtocol.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		09F015EE2A9C87D40093D4F0 /* LogIn */ = {
+			isa = PBXGroup;
+			children = (
+				09F015EF2A9C87E90093D4F0 /* ViewController */,
+			);
+			path = LogIn;
+			sourceTree = "<group>";
+		};
+		09F015EF2A9C87E90093D4F0 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				09F015F02A9C881A0093D4F0 /* LogInViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		09FD47C62A5DC97E002020BD /* Views */ = {
@@ -1570,6 +1589,7 @@
 				09B13F502A593CB800C0C723 /* BakeryListViewController.swift in Sources */,
 				09FD47D92A5E5148002020BD /* MySavedBakeryViewController.swift in Sources */,
 				3E36D7D82A8E6BC500B2C1CC /* FilterDiffableDataSource.swift in Sources */,
+				09F015F12A9C881A0093D4F0 /* LogInViewController.swift in Sources */,
 				093214022A5AE27800875EF6 /* Utils.swift in Sources */,
 				097682EB2A5D12BD0008F4FB /* BakeryCommonCollectionViewCell.swift in Sources */,
 				3E8B30002A67A614001BD057 /* BreadRequestType.swift in Sources */,
