@@ -9,13 +9,13 @@ import Foundation
 
 enum MyPageSectionEnum: String, CaseIterable {
     
-    case terms
-    case questions
+    case basic
+    case version
     
     var items: [String] {
         switch self {
-        case .terms: return ["이용약관"]
-        case .questions: return ["자주 묻는 질문", "문의하기"]
+        case .basic: return ["이용약관", "문의하기"]
+        case .version: return ["버전 정보"]
         }
     }
     

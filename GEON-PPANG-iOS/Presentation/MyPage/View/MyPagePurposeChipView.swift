@@ -54,7 +54,7 @@ final class MyPagePurposeChipView: UIView {
         }
         
         purposeLabel.do {
-            $0.text = purposeType.rawValue
+            $0.setLineHeight(by: 1.1, with: purposeType.rawValue)
             $0.font = .captionM1
             $0.textColor = .gbbPoint1
         }
