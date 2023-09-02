@@ -20,8 +20,9 @@ extension UIImage {
     static let enabledSandwichIcon = UIImage(named: "ic_sandwich_enable_20px")!.withRenderingMode(.alwaysOriginal)
     
     // Emoji
-    static let memoEmoji = UIImage(named: "memo_32px")!.withRenderingMode(.alwaysOriginal)
-    static let sadIcon = UIImage(named: "sad_32px")!.withRenderingMode(.alwaysOriginal)
+
+    static let sadIcon = UIImage(named: "icon_sad")!.withRenderingMode(.alwaysOriginal)
+    static let cryingIcon = UIImage(named: "icon_crying")!.withRenderingMode(.alwaysOriginal)
     
     // Environmental Marks
     static let smallGMOMark = UIImage(named: "gmo_mark_22px")!.withRenderingMode(.alwaysOriginal)

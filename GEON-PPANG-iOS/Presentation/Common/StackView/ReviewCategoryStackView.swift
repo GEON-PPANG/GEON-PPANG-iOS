@@ -11,7 +11,7 @@ import SnapKit
 import Then
 
 final class ReviewCategoryStackView: UIStackView {
-
+    
     // MARK: - Property
     
     private var padding = UIEdgeInsets(top: 4, left: 5, bottom: 4, right: 5)

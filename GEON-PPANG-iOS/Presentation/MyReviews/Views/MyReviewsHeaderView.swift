@@ -35,7 +35,8 @@ final class MyReviewsHeaderView: UICollectionReusableView {
         self.addSubview(dateLabel)
         dateLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(24)
-            $0.centerY.equalToSuperview()
+            // TODO:- 수정
+            $0.bottom.equalToSuperview().offset(21)
         }
         
         self.addSubview(dotButton)
@@ -47,6 +48,10 @@ final class MyReviewsHeaderView: UICollectionReusableView {
     }
     
     private func setUI() {
+        
+        self.do {
+            $0.backgroundColor = .gbbWhite
+        }
         
         dateLabel.do {
             $0.basic(font: .captionM1!,
