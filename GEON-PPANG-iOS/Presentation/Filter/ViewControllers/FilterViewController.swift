@@ -58,7 +58,7 @@ final class FilterViewController: BaseViewController {
         filterCollectionView.snp.makeConstraints {
             $0.top.equalTo(navigationBar.snp.bottom).offset(28)
             $0.horizontalEdges.equalToSuperview().inset(24)
-            $0.bottom.equalTo(nextButton.snp.top).offset(-100)
+            $0.bottom.equalTo(nextButton.snp.top).offset(-50)
         }
         
         view.addSubview(skipButton)
@@ -120,8 +120,10 @@ final class FilterViewController: BaseViewController {
         
         var newFilterType: FilterType = currentFilterType
         switch currentFilterType {
-        case .purpose:newFilterType = .breadType
-        case .breadType:newFilterType = .ingredient
+        case .purpose:
+            newFilterType = .breadType
+        case .breadType:
+            newFilterType = .ingredient
         case .ingredient:
             sendRequest()
             return
@@ -185,11 +187,31 @@ final class FilterViewController: BaseViewController {
         }
     }
     
+    private func configureSkipButton() {
+        
+        switch self.currentFilterType {
+        case .purpose:
+            UIView.animate(withDuration: 0.2) {
+                self.skipButton.layer.opacity = 1
+            } completion: { _ in
+                self.skipButton.isHidden = false
+            }
+        case .breadType, .ingredient:
+            UIView.animate(withDuration: 0.2) {
+                self.skipButton.layer.opacity = 0
+            } completion: { _ in
+                self.skipButton.isHidden = true
+            }
+        }
+        
+    }
+    
     private func configureOnFilterChange() {
         
         configureNextButton()
         configureBackButton()
         configureStepCount()
+        configureSkipButton()
     }
     
     private func sendRequest() {
