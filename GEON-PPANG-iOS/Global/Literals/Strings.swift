@@ -129,4 +129,11 @@ struct I18N {
         static let password = "영문, 숫자 포함 8자리 이상"
         static let nickname = "10자 이내, 특수문자 금지"
     }
+    
+    /// LogIn
+    struct LogIn {
+        static let title = "로그인"
+        static let noAccount = "계정이 없으신가요?"
+        static let signIn = "회원가입하기"
+    }
 }
