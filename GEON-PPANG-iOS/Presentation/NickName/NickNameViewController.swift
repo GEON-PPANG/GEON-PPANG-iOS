@@ -16,11 +16,9 @@ final class NickNameViewController: BaseViewController {
     
     private var isValid: Bool = false {
         didSet {
-            configureButtonUI(isValid)
+            configureCheckButtonUI(isValid)
         }
     }
-    
-    private var nickname =  UserDefaults.standard.string(forKey: "nickname") ?? ""
     
     // MARK: - UI Property
     
@@ -29,15 +27,15 @@ final class NickNameViewController: BaseViewController {
     private let nicknameTextField = CommonTextView(.nickname)
     private lazy var checkButton = CommonButton()
     private lazy var nextButton = CommonButton()
-    private var backGroundView = BottomSheetAppearView()
-    private var bottomSheet = CommonBottomSheet()
+    private lazy var backGroundView = BottomSheetAppearView()
+    private lazy var bottomSheet = CommonBottomSheet()
     
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dismissKeyboardWhenTappedAround()
+        setKeyboardHideGesture()
     }
     
     // MARK: - Setting
@@ -106,15 +104,9 @@ final class NickNameViewController: BaseViewController {
             }
         }
         
-        //        nicknameTextField.do {
-        //            $0.validCheck = { [weak self] valid in
-        //                self?.isValid = valid
-        //            }
-        //            $0.duplicatedCheck = { [weak self] nickname in
-        //                guard let self else { return }
-        //                UserDefaults.standard.setValue(nickname, forKey: "nickname")
-        //            }
-        //        }
+        nicknameTextField.do {
+            $0.delegate = self
+        }
         
         nextButton.do {
             $0.isUserInteractionEnabled = false
@@ -138,13 +130,16 @@ final class NickNameViewController: BaseViewController {
         }
     }
     
-    func configureButtonUI(_ isValid: Bool) {
+    func configureCheckButtonUI(_ isValid: Bool) {
         
         self.checkButton.do {
             $0.isEnabled = isValid
             $0.configureButtonUI(.clear)
-            $0.configureBorder(isValid ? 2 : 1,  isValid ? .gbbMain2! : .gbbGray300!)
+            $0.configureBorder(isValid ? 2 : 1, isValid ? .gbbMain2! : .gbbGray300!)
         }
+    }
+    
+    func configureNextButtonUI(_ isValid: Bool) {
         
         self.nextButton.do {
             $0.isUserInteractionEnabled = isValid
@@ -152,12 +147,44 @@ final class NickNameViewController: BaseViewController {
             $0.configureButtonUI(isValid ? .gbbMain2! : .gbbGray200!)
         }
     }
+}
+
+// MARK: - UITextFieldDelegate
+
+extension NickNameViewController: UITextFieldDelegate {
     
-    func dismissKeyboardWhenTappedAround() {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        guard let text = textField.text else { return }
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
-                                                                 action: #selector(endEditingView))
-        tap.cancelsTouchesInView = true
-        self.view.addGestureRecognizer(tap)
+        if !text.isNotContainSpecialCharacters() || text.isEmpty {
+            updateTextFieldStatus(false, text.isEmpty)
+        } else {
+            updateTextFieldStatus(true, true)
+        }
+    }
+    
+    private func updateTextFieldStatus(_ isValid: Bool, _ isError: Bool) {
+        if isError {
+            nicknameTextField.clearErrorMessage(true)
+        } else {
+            nicknameTextField.setErrorMessage(I18N.Rule.nickname)
+        }
+        
+        self.isValid = isValid
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        guard let currentText = textField.text else { return false }
+        let changedText = (currentText as NSString).replacingCharacters(in: range, with: string)
+        
+        return changedText.count < 11
+        
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
     }
 }
