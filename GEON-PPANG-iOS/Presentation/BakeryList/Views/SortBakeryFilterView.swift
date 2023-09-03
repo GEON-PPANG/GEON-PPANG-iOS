@@ -23,11 +23,6 @@ final class SortBakeryFilterView: UIView {
     private lazy var filterButton = UIButton(configuration: .plain())
     private let checkBoxTitle = UILabel()
     private var checkBox = UIButton(configuration: .plain())
-    var flag = false {
-        didSet {
-            self.checkBox.setNeedsUpdateConfiguration()
-        }
-    }
     
     // MARK: - Life Cycle
     
@@ -87,7 +82,7 @@ final class SortBakeryFilterView: UIView {
         }
         
         checkBoxTitle.do {
-            $0.basic(text: "내 필터 적용",
+            $0.basic(text: I18N.BakeryListFilter.title,
                      font: .captionB1!,
                      color: .gbbGray600!)
         }

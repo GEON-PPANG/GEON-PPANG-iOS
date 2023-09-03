@@ -138,4 +138,9 @@ struct I18N {
         static let noAccount = "계정이 없으신가요?"
         static let signIn = "회원가입하기"
     }
+    
+    /// BakeryListFilter
+    struct BakeryListFilter {
+        static let title = "내 필터 적용"
+    }
 }
