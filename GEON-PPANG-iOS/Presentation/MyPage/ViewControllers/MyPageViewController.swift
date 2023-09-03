@@ -68,8 +68,8 @@ final class MyPageViewController: BaseViewController {
         }
         
         myPageCollectionView.do {
-            $0.register(header: MyPageCollectionViewHeader.self)
-            $0.register(cell: MyPageCollectionViewCell.self)
+            $0.register(cell: MyPageProfileCell.self)
+            $0.register(cell: MyPageBasicCell.self)
             $0.register(footer: MyPageCollectionViewFooter.self)
             $0.dataSource = myPageDataSource.dataSource
             $0.backgroundColor = .gbbGray100
@@ -94,9 +94,6 @@ final class MyPageViewController: BaseViewController {
             Utils.push(self.navigationController, MySavedBakeryViewController())
         }
         
-        myPageDataSource.logoutTapped = {
-            self.showPopUp(of: .logout)
-        }
         myPageDataSource.leaveTapped = {
             self.showPopUp(of: .leave)
         }
@@ -119,12 +116,19 @@ extension MyPageViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        guard indexPath.section == 0 else { return }
+        switch indexPath.section {
+        case 1:
+            Utils.push(self.navigationController, WebViewController(
+                url: indexPath.item == 0 ? UrlLiteral.termsOfUse : UrlLiteral.question,
+                title: indexPath.item == 0 ? I18N.MyPage.terms : I18N.MyPage.askQuestions
+            ))
+        case 3:
+            self.showPopUp(of: .logout)
+        default:
+            break
+        }
         
-        Utils.push(self.navigationController, WebViewController(
-            url: indexPath.item == 0 ? UrlLiteral.termsOfUse : UrlLiteral.question,
-            title: indexPath.item == 0 ? I18N.MyPage.terms : I18N.MyPage.askQuestions
-        ))
+        
     }
 }
 
