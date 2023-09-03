@@ -214,6 +214,13 @@ final class FilterViewController: BaseViewController {
         configureSkipButton()
     }
     
+    private func resetFilterSelections() {
+        
+        FilterCellModel.deselectContents(of: .purpose)
+        FilterCellModel.deselectContents(of: .breadType)
+        FilterCellModel.deselectContents(of: .ingredient)
+    }
+    
     private func sendRequest() {
         
         var request = FilterRequestDTO()
@@ -228,6 +235,8 @@ final class FilterViewController: BaseViewController {
                 self.navigationController?.popToRootViewController(animated: true)
             }
         }
+        
+        resetFilterSelections()
     }
     
 }

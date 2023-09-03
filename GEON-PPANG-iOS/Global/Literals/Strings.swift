@@ -88,6 +88,8 @@ struct I18N {
         static let askQuestions = "문의하기"
         static let appVersion = "앱버전"
         static let appVersionNum = "v 0.0.1"
+        static let logout = "로그아웃"
+        static let leave = "회원탈퇴"
     }
     
     /// MySavedBakery
