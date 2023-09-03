@@ -172,7 +172,7 @@ final class SignInViewController: BaseViewController {
     }
     
     func updateButtonStatus() {
-        self.isValid = signInIsValid.allSatisfy {  $0 == true}
+        self.isValid = signInIsValid.allSatisfy { $0 == true }
         configureButtonUI(self.isValid)
     }
 }
