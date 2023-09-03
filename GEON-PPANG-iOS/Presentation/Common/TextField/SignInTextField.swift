@@ -52,6 +52,7 @@ final class SignInTextField: UITextField {
     private func setUI() {
         
         self.do {
+            $0.autocorrectionType = .no
             $0.backgroundColor = .gbbBackground2
             $0.contentVerticalAlignment = .center
             $0.rightViewMode = .always
