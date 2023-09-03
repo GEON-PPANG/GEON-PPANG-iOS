@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 enum BakeryService {
-    case bakeryList(sort: String, isHard: Bool, isDessert: Bool, isBrunch: Bool)
+    case bakeryList(request: BakeryRequestDTO)
     case writeReview(bakeryID: Int, content: WriteReviewRequestDTO)
     case fetchBakeryDetail(bakeryID: Int)
     case fetchWrittenReviews(bakeryID: Int)
@@ -54,13 +54,8 @@ extension BakeryService: TargetType {
     
     var task: Moya.Task {
         switch self {
-        case .bakeryList(sort: let sort, isHard: let isHard, isDessert: let isDessert, isBrunch: let isBrunch):
-            return .requestParameters(parameters: ["sort": sort,
-                                                   "isHard": isHard,
-                                                   "isDessert": isDessert,
-                                                   "isBrunch": isBrunch
-                                                  ],
-                                      encoding: URLEncoding.queryString)
+        case .bakeryList(request: let request):
+            return .requestParameters(parameters: try! request.asParameter(), encoding: URLEncoding.default)
         case .writeReview(_, content: let content):
             return .requestJSONEncodable(content)
         case .fetchBakeryDetail:
