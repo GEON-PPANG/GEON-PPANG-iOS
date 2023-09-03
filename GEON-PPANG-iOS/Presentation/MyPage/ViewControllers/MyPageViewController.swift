@@ -121,9 +121,10 @@ extension MyPageViewController: UICollectionViewDelegate {
         
         guard indexPath.section == 0 else { return }
         
-        var urlString: String = indexPath.item == 0 ? UrlLiteral.termsOfUse : UrlLiteral.question
-        var title: String = indexPath.item == 0 ? I18N.MyPage.terms : I18N.MyPage.askQuestions
-        Utils.push(self.navigationController, WebViewController(url: urlString, title: title))
+        Utils.push(self.navigationController, WebViewController(
+            url: indexPath.item == 0 ? UrlLiteral.termsOfUse : UrlLiteral.question,
+            title: indexPath.item == 0 ? I18N.MyPage.terms : I18N.MyPage.askQuestions
+        ))
     }
 }
 
@@ -134,8 +135,10 @@ extension MyPageViewController {
     func requestMemberData() {
         
         MyPageAPI.shared.getMemberData { response in
-            guard let response = response else { return }
-            guard let data = response.data else { return }
+            guard let response = response,
+                  let data = response.data
+            else { return }
+            
             self.memberData = data
             self.myPageDataSource.loadData()
         }

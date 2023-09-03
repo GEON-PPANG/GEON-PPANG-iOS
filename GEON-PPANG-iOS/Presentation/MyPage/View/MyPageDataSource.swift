@@ -114,9 +114,10 @@ final class MyPageDataSource: DiffableDataSourceProtocol {
         
         let data = [MyPageModel.general, MyPageModel.version]
         var snapshot = Snapshot()
+        
+        snapshot.appendSections(Section.allCases)
         Section.allCases.forEach {
-            snapshot.appendSections([$0])
-            snapshot.appendItems(data[$0.rawValue].map { $0.id })
+            snapshot.appendItems(data[$0.rawValue].map { $0.id }, toSection: $0)
         }
         dataSource.apply(snapshot)
     }
