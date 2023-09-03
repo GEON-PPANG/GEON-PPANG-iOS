@@ -14,6 +14,8 @@ final class LogInViewController: BaseViewController {
     
     // MARK: - Property
     
+    private var loginEmail: String = ""
+    private var loginPassword: String = ""
     private var IsEmailValid: Bool = false
     private var IsPasswordValid: Bool = false
     private var isValid: Bool = false {
@@ -139,6 +141,11 @@ final class LogInViewController: BaseViewController {
         loginButton.do {
             $0.isUserInteractionEnabled = isValid
             $0.configureButtonUI(isValid ? .gbbMain2!: .gbbGray200!)
+            $0.tappedCommonButton = {
+                if isValid {
+                    self.postLogin()
+                }
+            }
         }
     }
 }
@@ -152,8 +159,10 @@ extension LogInViewController: UITextFieldDelegate {
         guard let text = textField.text else { return }
         switch textField {
         case emailTextField.configureTextField():
+            self.loginEmail = text
             self.IsEmailValid = (text.isValidEmail() && !emailTextField.fetchText().isEmpty) ? true : false
         case passwordTextField.configureTextField():
+            self.loginPassword = text
             self.IsPasswordValid = !passwordTextField.fetchText().isEmpty ? true : false
         default:
             break
@@ -167,5 +176,21 @@ extension LogInViewController: UITextFieldDelegate {
         
         textField.resignFirstResponder()
         return true
+    }
+}
+
+extension LogInViewController {
+    private func postLogin() {
+        let loginData = LoginRequestDTO(email: self.loginEmail, password: self.loginPassword)
+        AuthAPI.shared.postLogin(to: loginData) { result in
+            guard let status = result else { return }
+            switch status {
+            case 200...204:
+                let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+                sceneDelegate?.changeRootViewControllerToTabBarController()
+            default:
+                break
+            }
+        }
     }
 }
