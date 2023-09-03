@@ -15,7 +15,6 @@ final class MyReviewsHeaderView: UICollectionReusableView {
     // MARK: - UI Property
     
     private let dateLabel = UILabel()
-    private lazy var dotButton = UIButton()
     
     // MARK: - Life Cycle
     
@@ -35,15 +34,7 @@ final class MyReviewsHeaderView: UICollectionReusableView {
         self.addSubview(dateLabel)
         dateLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(24)
-            // TODO:- 수정
             $0.bottom.equalToSuperview().offset(21)
-        }
-        
-        self.addSubview(dotButton)
-        dotButton.snp.makeConstraints {
-            $0.size.equalTo(24)
-            $0.directionalVerticalEdges.equalToSuperview()
-            $0.trailing.equalToSuperview().inset(24)
         }
     }
     
@@ -57,13 +48,7 @@ final class MyReviewsHeaderView: UICollectionReusableView {
             $0.basic(font: .captionM1!,
                      color: .gbbGray400!)
         }
-        
-        dotButton.do {
-            $0.setImage(.dotdotdotIcon, for: .normal)
-            $0.addAction(UIAction { _ in
-                print("myreviews Tapped")
-            }, for: .touchUpInside)
-        }
+
     }
     
     func configuteDateText(_ date: String) {
