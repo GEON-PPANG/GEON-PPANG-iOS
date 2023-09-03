@@ -14,9 +14,7 @@ final class BakeryListTopView: UIView {
     
     // MARK: - UI Property
     
-    private let hStackView = UIStackView()
     private let bakeryTitle = UILabel()
-    private let bakeryIcon = UIImageView()
     private let searchButton = UIButton()
     
     // MARK: - Life Cycle
@@ -36,47 +34,29 @@ final class BakeryListTopView: UIView {
     
     private func setLayout() {
         
-        self.addSubview(hStackView)
-        hStackView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(44)
-            $0.leading.equalToSuperview().offset(24)
-            $0.bottom.equalToSuperview().inset(15)
+        self.addSubview(bakeryTitle)
+        bakeryTitle.snp.makeConstraints {
+            $0.center.equalToSuperview()
         }
         
         self.addSubview(searchButton)
         searchButton.snp.makeConstraints {
             $0.size.equalTo(24)
-            $0.centerY.equalTo(hStackView.snp.centerY)
+            $0.centerY.equalTo(bakeryTitle.snp.centerY)
             $0.trailing.equalToSuperview().inset(23)
-        }
-        
-        hStackView.addArrangedSubviews(bakeryTitle, bakeryIcon)
-        bakeryIcon.snp.makeConstraints {
-            $0.size.equalTo(24)
         }
     }
     
     private func setUI() {
-        
-        hStackView.do {
-            $0.axis = .horizontal
-            $0.spacing = 8
-            $0.sizeToFit()
-        }
         
         bakeryTitle.do {
             $0.basic(text: I18N.BakeryList.bakeryTitle,
                      font: .title1!,
                      color: .gbbGray700!)
         }
-        
-        bakeryIcon.do {
-            $0.image = .listIcon
-            $0.contentMode = .scaleAspectFit
-        }
-        
+
         searchButton.do {
-            $0.setImage(.searchIcon600, for: .normal)
+            $0.setImage(.searchIcon400, for: .normal)
         }
     }
     
