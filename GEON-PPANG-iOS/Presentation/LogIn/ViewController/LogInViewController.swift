@@ -120,6 +120,10 @@ final class LogInViewController: BaseViewController {
             $0.setTitleColor(.gbbGray500!, for: .normal)
             $0.titleLabel?.font = .bodyB2!
             $0.setUnderline()
+            $0.addAction(UIAction { [weak self] _ in
+                guard let self else { return }
+                Utils.push(self.navigationController, SignInViewController())
+            }, for: .touchUpInside)
         }
         
         accountLabel.do {
