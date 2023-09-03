@@ -54,7 +54,7 @@ final class BakeryListTopView: UIView {
                      font: .title1!,
                      color: .gbbGray700!)
         }
-
+        
         searchButton.do {
             $0.setImage(.searchIcon400, for: .normal)
         }

@@ -20,7 +20,7 @@ extension UIImage {
     static let enabledSandwichIcon = UIImage(named: "ic_sandwich_enable_20px")!.withRenderingMode(.alwaysOriginal)
     
     // Emoji
-
+    
     static let sadIcon = UIImage(named: "icon_sad")!.withRenderingMode(.alwaysOriginal)
     static let cryingIcon = UIImage(named: "icon_crying")!.withRenderingMode(.alwaysOriginal)
     

@@ -17,7 +17,7 @@ final class SortBakeryFilterView: UIView {
     // MARK: - Property
     
     var tappedCheckBox: ((Bool) -> Void)?
-
+    
     // MARK: - UI Property
     
     private lazy var filterButton = UIButton(configuration: .plain())
