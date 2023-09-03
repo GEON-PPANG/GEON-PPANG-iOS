@@ -15,10 +15,24 @@ final class AuthAPI {
     
     private init() {}
     
-    var authProvider = MoyaProvider<AuthService>(plugins: [MoyaLoggingPlugin()])
+    var authProvider = MoyaProvider<AuthService>(plugins: [AuthPlugin()])
+    
+    // MARK: - Post
     
     func postCheckEmail(to emailData: EmailRequestDTO, completion: @escaping (Int?) -> Void) {
         authProvider.request(.checkEmail(requestEmail: emailData)) { result in
+            switch result {
+            case let .success(response):
+                completion(response.statusCode)
+            case .failure(let err):
+                print(err.localizedDescription)
+                completion(nil)
+            }
+        }
+    }
+    
+    func postLogin(to loginData: LoginRequestDTO, completion: @escaping (Int?) -> Void) {
+        authProvider.request(.login(request: loginData)) { result in
             switch result {
             case let .success(response):
                 completion(response.statusCode)
