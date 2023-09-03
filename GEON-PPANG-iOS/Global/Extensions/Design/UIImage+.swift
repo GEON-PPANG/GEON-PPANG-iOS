@@ -62,6 +62,7 @@ extension UIImage {
     static let searchIcon600 = UIImage(named: "ic_search_600")!.withRenderingMode(.alwaysOriginal) /// gray600
     static let smileIcon = UIImage(named: "ic_smile")!.withRenderingMode(.alwaysOriginal)
     static let showIcon = UIImage(named: "ic_show")!.withRenderingMode(.alwaysOriginal)
+    static let smileIcon86px = UIImage(named: "ic_smile_86px")!.withRenderingMode(.alwaysOriginal)
     static let storeIcon = UIImage(named: "ic_store")!.withRenderingMode(.alwaysOriginal)
     static let swapIcon = UIImage(named: "ic_swap")!.withRenderingMode(.alwaysOriginal)
     static let timeIcon = UIImage(named: "ic_time")!.withRenderingMode(.alwaysOriginal)

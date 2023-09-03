@@ -88,6 +88,8 @@ struct I18N {
         static let askQuestions = "문의하기"
         static let appVersion = "앱버전"
         static let appVersionNum = "v 0.0.1"
+        static let logout = "로그아웃"
+        static let leave = "회원탈퇴"
     }
     
     /// MySavedBakery
@@ -112,6 +114,11 @@ struct I18N {
         static let writeReview = "리뷰 작성하기"
     }
     
+    /// Nickname
+    struct Nickname {
+        static let title = "건빵에 오신걸 환영해요!\n어떻게 불러드릴까요?"
+    }
+    
     /// SignIn
     struct SignIn {
         static let title = "회원가입을 위한 \n정보를 입력해주세요!"
@@ -126,5 +133,12 @@ struct I18N {
         static let checkPassword = "비밀번호를 확인해주세요"
         static let duplicatedEmail = "이미 존재하는 이메일입니다"
 
+    }
+    
+    /// LogIn
+    struct LogIn {
+        static let title = "로그인"
+        static let noAccount = "계정이 없으신가요?"
+        static let signIn = "회원가입하기"
     }
 }
