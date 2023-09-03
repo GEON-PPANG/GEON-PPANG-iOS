@@ -11,6 +11,7 @@ import Moya
 
 enum AuthService {
     case checkEmail(requestEmail: EmailRequestDTO)
+    case login(request: LoginRequestDTO)
 }
 
 extension AuthService: TargetType {
@@ -22,12 +23,14 @@ extension AuthService: TargetType {
         switch self {
         case .checkEmail:
             return URLConstant.checkEmail
+        case .login:
+            return URLConstant.login
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .checkEmail:
+        case .checkEmail, .login:
             return .post
         }
     }
@@ -35,6 +38,8 @@ extension AuthService: TargetType {
     var task: Moya.Task {
         switch self {
         case .checkEmail(requestEmail: let data):
+            return .requestJSONEncodable(data)
+        case .login(request: let data):
             return .requestJSONEncodable(data)
         }
     }
@@ -44,6 +49,5 @@ extension AuthService: TargetType {
         default:
             return NetworkConstant.noTokenHeader
         }
-    }
-    
+    }    
 }
