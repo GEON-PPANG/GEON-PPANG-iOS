@@ -99,8 +99,8 @@
 		09CA3F082A569EBA0063897A /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CA3F072A569EBA0063897A /* Service.swift */; };
 		09CD07902A620D7D00A078DE /* NickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CD078F2A620D7D00A078DE /* NickNameViewController.swift */; };
 		09CD07922A624B7D00A078DE /* SignInTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CD07912A624B7D00A078DE /* SignInTextField.swift */; };
-		09F015F12A9C881A0093D4F0 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F015F02A9C881A0093D4F0 /* LogInViewController.swift */; };
 		09D55FC72A99F69000997FB4 /* BakeryCommonListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D55FC62A99F69000997FB4 /* BakeryCommonListResponseDTO.swift */; };
+		09F015F12A9C881A0093D4F0 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F015F02A9C881A0093D4F0 /* LogInViewController.swift */; };
 		09FD47C82A5DC991002020BD /* SearchNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47C72A5DC991002020BD /* SearchNavigationView.swift */; };
 		09FD47CA2A5DD38D002020BD /* SearchResultHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47C92A5DD38D002020BD /* SearchResultHeaderView.swift */; };
 		09FD47D22A5DF892002020BD /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47D12A5DF892002020BD /* EmptyCollectionViewCell.swift */; };
@@ -119,10 +119,10 @@
 		3E16E4F52A57CF3800B813D0 /* WriteReviewRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16E4F42A57CF3800B813D0 /* WriteReviewRequestDTO.swift */; };
 		3E16E4FE2A57F06D00B813D0 /* OptionsCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16E4FD2A57F06D00B813D0 /* OptionsCollectionViewFlowLayout.swift */; };
 		3E16E5022A58176800B813D0 /* ReviewDetailTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16E5012A58176800B813D0 /* ReviewDetailTextView.swift */; };
-		3E232ACB2A95A02200125B76 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E232ACA2A95A02200125B76 /* WelcomeViewController.swift */; };
 		3E232ABC2A8FDB8F00125B76 /* FilterCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E232ABB2A8FDB8F00125B76 /* FilterCollectionViewHeader.swift */; };
 		3E232AC32A93554C00125B76 /* RegionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E232AC22A93554C00125B76 /* RegionLabel.swift */; };
 		3E232AC52A938F6400125B76 /* BookmarkCountLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E232AC42A938F6400125B76 /* BookmarkCountLabel.swift */; };
+		3E232ACB2A95A02200125B76 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E232ACA2A95A02200125B76 /* WelcomeViewController.swift */; };
 		3E23CCF52A8BD9950091957D /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556282A51DBC000752067 /* UIView+.swift */; };
 		3E23CCF62A8BD9A40091957D /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556302A51DDD800752067 /* UITableView+.swift */; };
 		3E23CCF72A8BD9C30091957D /* BakeryCommonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682EA2A5D12BD0008F4FB /* BakeryCommonCollectionViewCell.swift */; };
@@ -480,13 +480,6 @@
 			isa = PBXGroup;
 			children = (
 				09FD47D12A5DF892002020BD /* EmptyCollectionViewCell.swift */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		092F11B42A69A6FA00852CA5 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1071,7 +1064,6 @@
 		09FD47DA2A5E57CC002020BD /* MyReviews */ = {
 			isa = PBXGroup;
 			children = (
-				092F11B42A69A6FA00852CA5 /* Cell */,
 				098716B92A613B6A00538D05 /* Views */,
 				09FD47DB2A5E57E3002020BD /* ViewControllers */,
 			);
@@ -1697,7 +1689,7 @@
 				0930D25D2A928BF200A75C7E /* NearStationResponseDTO.swift in Sources */,
 				09FD47CA2A5DD38D002020BD /* SearchResultHeaderView.swift in Sources */,
 				3E232ACB2A95A02200125B76 /* WelcomeViewController.swift in Sources */,
-				09FD47CA2A5DD38D002020BD /* SearchResultView.swift in Sources */,
+				09FD47CA2A5DD38D002020BD /* SearchResultHeaderView.swift in Sources */,
 				0949750E2A67EC9B00A63420 /* MyReviewsResponseDTO.swift in Sources */,
 				3E06F8D62A9CB83C001302F4 /* DiffableDataSourceProtocol.swift in Sources */,
 				3E06F8D12A9C6DBB001302F4 /* MyPageDataSource.swift in Sources */,
