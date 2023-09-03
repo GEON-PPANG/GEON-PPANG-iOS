@@ -14,11 +14,11 @@ final class SignInViewController: BaseViewController {
     
     // MARK: - Property
     
+    private var checkEmail: String = ""
     private var password: String = ""
     private var checkPassword: String = ""
-    private var emailValiable: Bool = false
-    private var passwordValiable: Bool = false
-    private var chechPasswordValiable: Bool = false
+    private var checkEmailIsValid: Bool = false
+    private var signInIsValid: [Bool] = [false, false, false]
     private var isValid: Bool = false {
         didSet {
             configureButtonUI(isValid)
@@ -129,7 +129,9 @@ final class SignInViewController: BaseViewController {
         
         emailTextField.do {
             $0.tappedCheckButton = {
-                self.configureTextField(isValid: { false }, error: "error", view: self.emailTextField)
+                if self.checkEmailIsValid {
+                    self.postCheckEmail()
+                }
             }
         }
         
@@ -154,6 +156,11 @@ final class SignInViewController: BaseViewController {
             $0.configureButtonUI(isValid ? .gbbMain2!: .gbbGray200!)
         }
     }
+    
+    func updateButtonStatus() {
+        self.isValid = signInIsValid.allSatisfy { $0 == true }
+        configureButtonUI(self.isValid)
+    }
 }
 
 // MARK: - UITextFieldDelegate
@@ -168,19 +175,39 @@ extension SignInViewController: UITextFieldDelegate {
         }
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if textField == emailTextField.configureTextField() {
+            let currentText = textField.text ?? ""
+            let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
+            
+            if newText == currentText {
+                self.signInIsValid[0] = true
+            } else {
+                self.signInIsValid[0] = false
+            }
+            updateButtonStatus()
+        }
+        
+        return true
+    }
+    
     func textFieldDidChangeSelection(_ textField: UITextField) {
         guard let text = textField.text else { return }
+        if textField == checkPasswordTextField.configureTextField() && text != passwordTextField.configureTextField().text {
+            configureTextField(isValid: {false}, error: I18N.Rule.checkPassword, view: checkPasswordTextField)
+        }
         
         let signViews: [UITextField: (() -> Bool, String, CommonTextView)] =
         [
             emailTextField.configureTextField(): ({ text.isValidEmail()},
-                                                  I18N.Rule.email,
+                                                  I18N.Rule.disableEmail,
                                                   emailTextField),
             passwordTextField.configureTextField(): ({ text.isContainNumberAndAlphabet() && text.count >= 8 },
                                                      I18N.Rule.password,
                                                      passwordTextField),
             checkPasswordTextField.configureTextField(): ({ text.isEqual(self.password) },
-                                                          I18N.SignIn.checkPassword,
+                                                          I18N.Rule.checkPassword,
                                                           checkPasswordTextField)
         ]
         
@@ -190,8 +217,12 @@ extension SignInViewController: UITextFieldDelegate {
         
         if text.isEmpty {
             [emailTextField, passwordTextField, checkPasswordTextField].forEach {
-                $0.clearErrorMessage(false)
+                $0.clearErrorMessage()
+                self.isValid = false
             }
+        }
+        if emailTextField.configureTextField() == textField {
+            self.checkEmail = textField.text ?? ""
         }
         
     }
@@ -201,26 +232,24 @@ extension SignInViewController: UITextFieldDelegate {
                             view: CommonTextView) {
         
         if view == emailTextField {
-            self.emailValiable = isValid()
-        }
-        if view == checkPasswordTextField {
-            self.chechPasswordValiable = isValid()
+            self.checkEmailIsValid = isValid()
         }
         if view == passwordTextField {
-            self.passwordValiable = isValid()
+            self.signInIsValid[1] = isValid()
+        }
+        if view == checkPasswordTextField {
+            self.signInIsValid[2] = isValid()
         }
         if !isValid() {
-            view.setErrorMessage(error)
+            view.setErrorMessage(error, true)
         } else {
-            view.clearErrorMessage(true)
+            view.clearErrorMessage()
         }
         
-        self.isValid = emailValiable && passwordValiable && chechPasswordValiable
-        configureButtonUI(self.isValid)
+        updateButtonStatus()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         textField.resignFirstResponder()
         return true
     }
@@ -233,6 +262,10 @@ extension SignInViewController: UITextFieldDelegate {
         
         if checkPasswordTextField.configureTextField() == textField {
             self.checkPassword = textField.text ?? ""
+        }
+        
+        if emailTextField.configureTextField() == textField {
+            self.checkEmail = textField.text ?? ""
         }
         textField.resignFirstResponder()
         return true
@@ -271,5 +304,25 @@ extension SignInViewController {
         
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
+    }
+}
+
+extension SignInViewController {
+    
+    private func postCheckEmail() {
+        let checkEmail = EmailRequestDTO(email: self.checkEmail)
+        AuthAPI.shared.postCheckEmail(to: checkEmail) { result in
+            guard let status = result else { return }
+            switch status {
+            case 200...204:
+                self.emailTextField.setErrorMessage(I18N.Rule.email, false)
+                self.signInIsValid[0] = true
+                
+            default:
+                self.emailTextField.setErrorMessage(I18N.Rule.duplicatedEmail, true)
+                self.signInIsValid[0] = false
+            }
+            self.updateButtonStatus()
+        }
     }
 }
