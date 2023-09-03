@@ -143,7 +143,7 @@ final class NickNameViewController: BaseViewController {
         }
     }
     
-    func configureBottomSheet(_ type: EmojiType,_ title: String ) {
+    func configureBottomSheet(_ type: EmojiType, _ title: String ) {
         
         backGroundView.appearBottomSheetView(subView: self.bottomSheet, 292)
         bottomSheet.do {

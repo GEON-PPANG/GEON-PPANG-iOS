@@ -17,14 +17,14 @@ final class SignInTextField: UITextField {
     private let topPadding: CGFloat = 15
     private let signIntype: SignInPropertyType = .email
     var tappedCheckButton: (() -> Void)?
-
+    
     // MARK: - UI Property
     
     private lazy var securityButton = UIButton()
     private lazy var checkButton = UIButton()
     
     // MARK: - Life Cycle
-
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
@@ -39,7 +39,7 @@ final class SignInTextField: UITextField {
     // MARK: - Setting
     
     private func setLayout() {
-
+        
         checkButton.snp.makeConstraints {
             $0.size.equalTo(CGSize(width: 70, height: 25))
         }
@@ -56,7 +56,7 @@ final class SignInTextField: UITextField {
             $0.backgroundColor = .gbbBackground2
             $0.contentVerticalAlignment = .center
             $0.rightViewMode = .always
-
+            
             $0.makeCornerRound(radius: 10)
             $0.makeBorder(width: 1, color: .clear)
             $0.setLeftPadding(amount: 18)
@@ -70,7 +70,7 @@ final class SignInTextField: UITextField {
             $0.isSecureTextEntry = true
             $0.rightView = securityButton
             $0.textContentType = .oneTimeCode
-
+            
         }
         
         securityButton.do {
@@ -108,7 +108,7 @@ final class SignInTextField: UITextField {
             }, for: .touchUpInside)
         }
     }
-
+    
     func configureViewType(_ viewType: SignInPropertyType) {
         
         self.placeholder = viewType.placeHolder
