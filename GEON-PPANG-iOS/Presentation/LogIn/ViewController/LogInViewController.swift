@@ -33,6 +33,8 @@ final class LogInViewController: BaseViewController {
     private let accountLabel = UILabel()
     private let signInButton = UIButton()
     private let loginButton = CommonButton()
+    private lazy var backGroundView = BottomSheetAppearView()
+    private lazy var bottomSheet = CommonBottomSheet()
     
     // MARK: - Life Cycle
     
@@ -131,6 +133,11 @@ final class LogInViewController: BaseViewController {
                      font: .subHead!,
                      color: .gray_500!)
         }
+        
+        bottomSheet.do {
+            $0.configureEmojiType(.sad)
+            $0.configureBottonSheetTitle(I18N.Bottomsheet.checkIdPassword)
+        }
     }
     
     override func setDelegate() {
@@ -149,6 +156,16 @@ final class LogInViewController: BaseViewController {
                 if isValid {
                     self.postLogin()
                 }
+            }
+        }
+    }
+    
+    func configureBottomSheet() {
+        
+        backGroundView.appearBottomSheetView(subView: self.bottomSheet, 316)
+        bottomSheet.do {
+            $0.dismissBottomSheet = {
+                self.backGroundView.dissmissFromSuperview()
             }
         }
     }
@@ -193,7 +210,8 @@ extension LogInViewController {
                 let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
                 sceneDelegate?.changeRootViewControllerToTabBarController()
             default:
-                break
+                self.configureBottomSheet()
+                self.configureButtonUI(false)
             }
         }
     }
