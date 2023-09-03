@@ -71,8 +71,11 @@ final class MyPageDataSource: DiffableDataSourceProtocol {
     
     func setDataSource() {
         
-        let cellRegistration = CellRegistration<Cell, MyPageModel> { cell, _, model in
+        let cellRegistration = CellRegistration<Cell, MyPageModel> { cell, indexPath, model in
             cell.configureTitle(to: model.title)
+            if indexPath.section == 1 {
+                cell.configureAppVersion()
+            }
         }
         let headerRegistration = SuppleRegistration<Header>(elementKind: headerType) { header, _, _ in
             header.configureMemberData(to: self.memberData)
@@ -87,7 +90,6 @@ final class MyPageDataSource: DiffableDataSourceProtocol {
         
         dataSource = DiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, _ in
             let content: [MyPageModel]
-            
             switch indexPath.section {
             case 0: content = MyPageModel.general
             case 1: content = MyPageModel.version
@@ -116,7 +118,7 @@ final class MyPageDataSource: DiffableDataSourceProtocol {
             snapshot.appendSections([$0])
             snapshot.appendItems(data[$0.rawValue].map { $0.id })
         }
-        dataSource.applySnapshotUsingReloadData(snapshot)
+        dataSource.apply(snapshot)
     }
     
 }

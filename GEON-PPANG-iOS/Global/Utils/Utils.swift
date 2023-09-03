@@ -43,4 +43,11 @@ final class Utils {
         width -= 4
         return width < (UIScreen.main.bounds.width - 152) ? 25 : 56
     }
+    
+    static var version: String? {
+        guard let dictionary = Bundle.main.infoDictionary,
+              let version = dictionary["CFBundleShortVersionString"] as? String
+        else { return nil }
+        return version
+    }
 }
