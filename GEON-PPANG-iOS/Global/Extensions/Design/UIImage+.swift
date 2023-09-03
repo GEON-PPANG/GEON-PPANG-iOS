@@ -66,6 +66,8 @@ extension UIImage {
     static let storeIcon = UIImage(named: "ic_store")!.withRenderingMode(.alwaysOriginal)
     static let swapIcon = UIImage(named: "ic_swap")!.withRenderingMode(.alwaysOriginal)
     static let timeIcon = UIImage(named: "ic_time")!.withRenderingMode(.alwaysOriginal)
+    static let filterCheckIcon = UIImage(named: "ic_filter_check")!.withRenderingMode(.alwaysOriginal)
+    static let filterUncheckIcon = UIImage(named: "ic_filter_unchecked")!.withRenderingMode(.alwaysOriginal)
     
     // Images
     static let noBookmarkImage = UIImage(named: "img_no_bookmark")!.withRenderingMode(.alwaysOriginal)
@@ -87,6 +89,7 @@ extension UIImage {
     static let copyButton = UIImage(named: "copy_button")!.withRenderingMode(.alwaysOriginal)
     static let homeFilterButton = UIImage(named: "home_filter_button")!.withRenderingMode(.alwaysOriginal)
     static let mapButton = UIImage(named: "map_button")!.withRenderingMode(.alwaysOriginal)
+    static let bakeryFilterButton = UIImage(named: "bakery_filter_button")!.withRenderingMode(.alwaysOriginal)
     
     // Social Login
     static let kakaoLoginButton = UIImage(named: "KakaoSocialLogin")!.withRenderingMode(.alwaysOriginal)
