@@ -34,7 +34,7 @@ struct I18N {
     /// Bottomsheet
     struct Bottomsheet {
         static let email = "사용 가능한 이메일입니다."
-        static let diableNickname = "사용 가능한 닉네임입니다!"
+        static let nickname = "사용 가능한 닉네임입니다!"
         static let duplicatedNickname = "이미 존재하는 닉네임이에요"
         static let checkIdPassword = "아이디 및 비밀번호를\n확인해주세요"
         
