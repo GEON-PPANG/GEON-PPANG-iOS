@@ -35,17 +35,13 @@ final class HomeBottomCollectionViewCell: UICollectionViewCell {
         
         contentView.addSubview(footerLabel)
         footerLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(20)
+            $0.top.equalToSuperview().inset(14)
             $0.bottom.equalToSuperview().inset(40)
             $0.directionalHorizontalEdges.equalToSuperview().inset(24)
         }
     }
     
     private func setUI() {
-        
-        contentView.do {
-            $0.backgroundColor = .gbbBackground2
-        }
 
         footerLabel.do {
             $0.textAlignment = .left
