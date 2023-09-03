@@ -20,9 +20,11 @@ final class BakeryListViewController: BaseViewController {
     
     typealias DataSource = UICollectionViewDiffableDataSource<Section, BakeryCommonListResponseDTO>
     typealias SnapShot = NSDiffableDataSourceSnapshot<Section, BakeryCommonListResponseDTO>
+    
     private var dataSource: DataSource?
     private var bakeryList: [BakeryCommonListResponseDTO] = []
     private var sortBakeryBy: SortBakery = .byDefault
+    
     private var sortBakeryName: String = SortBakery.byDefault.sortValue
     private var filterStatus: [Bool] = [false, false, false ]
     private var myFilterStatus: Bool = false
