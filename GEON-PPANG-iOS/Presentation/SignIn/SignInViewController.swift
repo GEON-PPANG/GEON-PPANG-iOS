@@ -130,22 +130,8 @@ final class SignInViewController: BaseViewController {
         emailTextField.do {
             $0.tappedCheckButton = {
                 if self.checkEmailIsValid {
-                    let checkEmail = EmailRequestDTO(email: self.checkEmail)
-                    AuthAPI.shared.postCheckEmail(to: checkEmail) { result in
-                        guard let status = result else { return }
-                        switch status {
-                        case 200...204:
-                            self.emailTextField.setErrorMessage(I18N.Rule.email, false)
-                            self.signInIsValid[0] = true
-                            
-                        default:
-                            self.emailTextField.setErrorMessage(I18N.Rule.duplicatedEmail, true)
-                            self.signInIsValid[0] = false
-                        }
-                        self.updateButtonStatus()
-                    }
+                    self.postCheckEmail()
                 }
-                
             }
         }
         
@@ -318,5 +304,25 @@ extension SignInViewController {
         
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
+    }
+}
+
+extension SignInViewController {
+    
+    private func postCheckEmail() {
+        let checkEmail = EmailRequestDTO(email: self.checkEmail)
+        AuthAPI.shared.postCheckEmail(to: checkEmail) { result in
+            guard let status = result else { return }
+            switch status {
+            case 200...204:
+                self.emailTextField.setErrorMessage(I18N.Rule.email, false)
+                self.signInIsValid[0] = true
+                
+            default:
+                self.emailTextField.setErrorMessage(I18N.Rule.duplicatedEmail, true)
+                self.signInIsValid[0] = false
+            }
+            self.updateButtonStatus()
+        }
     }
 }
