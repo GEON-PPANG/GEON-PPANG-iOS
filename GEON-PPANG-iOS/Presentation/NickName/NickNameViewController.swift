@@ -184,9 +184,7 @@ extension NickNameViewController: UITextFieldDelegate {
         guard let currentText = textField.text else { return false }
         let changedText = (currentText as NSString).replacingCharacters(in: range, with: string)
         
-        if currentText != changedText {
-            self.configureNextButtonUI(false)
-        }
+        self.configureNextButtonUI( currentText == changedText)
         
         return changedText.count < 11
         
