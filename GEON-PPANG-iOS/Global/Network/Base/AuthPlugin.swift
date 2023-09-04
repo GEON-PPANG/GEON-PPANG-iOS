@@ -19,6 +19,7 @@ final class AuthPlugin: PluginType {
         }
         let url = httpRequest.description
         let method = httpRequest.httpMethod ?? "unknown method"
+        #if DEBUG
         var log = "----------------------------------------------------\n\n[\(method)] \(url)\n\n----------------------------------------------------\n"
         log.append("API: \(target)\n")
         if let headers = httpRequest.allHTTPHeaderFields, !headers.isEmpty {
@@ -29,6 +30,7 @@ final class AuthPlugin: PluginType {
         }
         log.append("------------------- END \(method) --------------------------")
         print(log)
+        #endif
     }
     
     // Response가 왔을 때
