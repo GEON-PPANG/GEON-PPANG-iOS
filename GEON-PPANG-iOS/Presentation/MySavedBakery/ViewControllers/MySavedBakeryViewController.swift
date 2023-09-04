@@ -145,7 +145,7 @@ final class MySavedBakeryViewController: BaseViewController {
                 let layoutSection = NSCollectionLayoutSection.list(using: config, layoutEnvironment: layoutEnvirnment)
                 return layoutSection
             case .empty, .none:
-                return LayoutUtils.section(false)
+                return LayoutUtils.emptySection(hasHeader: false)
             }
         }
         

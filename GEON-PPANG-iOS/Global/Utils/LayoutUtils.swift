@@ -10,6 +10,7 @@ import UIKit
 final class LayoutUtils {
     
     class func emptyGroup() -> NSCollectionLayoutGroup {
+        
         let item = NSCollectionLayoutItem(layoutSize: .init(
             widthDimension: .fractionalWidth(1),
             heightDimension: .fractionalHeight(1)
@@ -24,23 +25,23 @@ final class LayoutUtils {
         return group
     }
     
-    class func section(_ exists: Bool, _ size: CGFloat? = 0) -> NSCollectionLayoutSection {
+    class func emptySection(withHeight height: CGFloat = 0, hasHeader: Bool) -> NSCollectionLayoutSection {
         
         let group = LayoutUtils.emptyGroup()
         let section = NSCollectionLayoutSection(group: group)
         
-        if exists {
-            section.boundarySupplementaryItems = [LayoutUtils.header(size ?? 0)]
+        if hasHeader {
+            section.boundarySupplementaryItems = [LayoutUtils.header(ofHeight: height)]
         }
         
         return section
     }
     
-    class func header(_ headerSize: CGFloat) -> NSCollectionLayoutBoundarySupplementaryItem {
+    class func header(ofHeight height: CGFloat) -> NSCollectionLayoutBoundarySupplementaryItem {
         
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .absolute(headerSize))
+            heightDimension: .absolute(height))
         let header = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: headerSize,
             elementKind: UICollectionView.elementKindSectionHeader,

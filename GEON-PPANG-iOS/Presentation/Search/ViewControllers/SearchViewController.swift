@@ -194,14 +194,14 @@ final class SearchViewController: BaseViewController {
                 }
                 
                 let section = NSCollectionLayoutSection.list(using: config, layoutEnvironment: layoutEnvirnment)
-                section.boundarySupplementaryItems = [LayoutUtils.header(55)]
+                section.boundarySupplementaryItems = [LayoutUtils.header(ofHeight: 55)]
                 
                 return section
                 
             case .empty:
-                return LayoutUtils.section(true, 55)
+                return LayoutUtils.emptySection(withHeight: 55, hasHeader: true)
             case .initial, .none:
-                return LayoutUtils.section(false)
+                return LayoutUtils.emptySection(hasHeader: false)
             }
         }
         return layout

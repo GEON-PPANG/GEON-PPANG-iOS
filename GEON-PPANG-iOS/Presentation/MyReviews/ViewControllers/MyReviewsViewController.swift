@@ -85,7 +85,7 @@ final class MyReviewsViewController: BaseViewController {
         
         let layout = UICollectionViewCompositionalLayout {_, layoutEnvirnment  in
             if self.myReviewsList.isEmpty {
-                return LayoutUtils.section(false)
+                return LayoutUtils.emptySection(hasHeader: false)
             } else {
                 var config = UICollectionLayoutListConfiguration(appearance: .grouped)
                 config.backgroundColor = .clear
