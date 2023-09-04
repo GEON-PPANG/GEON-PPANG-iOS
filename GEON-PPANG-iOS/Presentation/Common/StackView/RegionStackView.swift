@@ -39,7 +39,7 @@ final class RegionStackView: UIStackView {
                 $0.addArrangedSubview(regionFirstTag)
             }
             $0.axis = .horizontal
-            $0.spacing = 5
+            $0.spacing = 4
             $0.distribution = .fillProportionally
         }
         
@@ -77,5 +77,19 @@ final class RegionStackView: UIStackView {
         
         self.removeArrangedSubview(regionSecondTag)
         regionSecondTag.removeFromSuperview()
+    }
+    
+    func remakeChipCornerRadius(_ radius: CGFloat) {
+        
+        [regionFirstTag, regionSecondTag].forEach {
+            $0.makeCornerRound(radius: radius)
+        }
+    }
+    
+    func remakeChipBackgroundColor(_ backgroundColor: UIColor) {
+        
+        [regionFirstTag, regionSecondTag].forEach {
+            $0.backgroundColor = backgroundColor
+        }
     }
 }

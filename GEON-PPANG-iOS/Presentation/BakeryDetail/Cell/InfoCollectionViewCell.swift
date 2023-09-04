@@ -138,6 +138,11 @@ final class InfoCollectionViewCell: UICollectionViewCell {
             $0.adjustsFontSizeToFitWidth = true
         }
         
+        regionStackView.do {
+            $0.remakeChipCornerRadius(8)
+            $0.remakeChipBackgroundColor(.gbbBackground2!)
+        }
+        
         bakeryOpeningHoursImage.do {
             $0.image = .timeIcon
         }
