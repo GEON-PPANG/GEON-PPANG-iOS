@@ -139,8 +139,8 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         }
         
         regionStackView.do {
-            $0.remakeChipCornerRadius(8)
-            $0.remakeChipBackgroundColor(.gbbBackground2!)
+            $0.configureChipCornerRadius(8)
+            $0.configureChipBackgroundColor(.gbbBackground2!)
         }
         
         bakeryOpeningHoursImage.do {

@@ -66,7 +66,14 @@ final class RegionStackView: UIStackView {
         setUI(!data.stations[1].isEmpty)
     }
     
-    func configureBackgroundColor(_ color: UIColor) {
+    func configureChipCornerRadius(_ radius: CGFloat) {
+        
+        [regionFirstTag, regionSecondTag].forEach {
+            $0.makeCornerRound(radius: radius)
+        }
+    }
+    
+    func configureChipBackgroundColor(_ color: UIColor) {
         
         [regionFirstTag, regionSecondTag] .forEach {
             $0.backgroundColor = color
@@ -77,19 +84,5 @@ final class RegionStackView: UIStackView {
         
         self.removeArrangedSubview(regionSecondTag)
         regionSecondTag.removeFromSuperview()
-    }
-    
-    func remakeChipCornerRadius(_ radius: CGFloat) {
-        
-        [regionFirstTag, regionSecondTag].forEach {
-            $0.makeCornerRound(radius: radius)
-        }
-    }
-    
-    func remakeChipBackgroundColor(_ backgroundColor: UIColor) {
-        
-        [regionFirstTag, regionSecondTag].forEach {
-            $0.backgroundColor = backgroundColor
-        }
     }
 }
