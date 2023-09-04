@@ -91,6 +91,7 @@
 		09B13F5A2A5946B700C0C723 /* TabBar+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B13F592A5946B700C0C723 /* TabBar+.swift */; };
 		09B71C002A59D50900076AC2 /* HomeTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B71BFF2A59D50900076AC2 /* HomeTopView.swift */; };
 		09B71C022A59D99200076AC2 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B71C012A59D99200076AC2 /* SearchTextField.swift */; };
+		09C1C7832A9CE92A00343283 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C1C7822A9CE92A00343283 /* BubbleView.swift */; };
 		09C6264E2A5B29F8002C8110 /* SearchEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C6264D2A5B29F8002C8110 /* SearchEnum.swift */; };
 		09C626562A5B3572002C8110 /* HomeBestReviewResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C626552A5B3572002C8110 /* HomeBestReviewResponseDTO.swift */; };
 		09C626582A5B4269002C8110 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C626572A5B4269002C8110 /* HomeHeaderView.swift */; };
@@ -104,6 +105,8 @@
 		09E445372AA3AFB1008E3D33 /* Encodable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E445362AA3AFB1008E3D33 /* Encodable+.swift */; };
 		09E445392AA3BA07008E3D33 /* SortBakeryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E445382AA3BA07008E3D33 /* SortBakeryFilterView.swift */; };
 		09F015F12A9C881A0093D4F0 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F015F02A9C881A0093D4F0 /* LogInViewController.swift */; };
+		09D55FC72A99F69000997FB4 /* BakeryCommonListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D55FC62A99F69000997FB4 /* BakeryCommonListResponseDTO.swift */; };
+		09E445332AA34F90008E3D33 /* AuthRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E445322AA34F90008E3D33 /* AuthRequestDTO.swift */; };
 		09FD47C82A5DC991002020BD /* SearchNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47C72A5DC991002020BD /* SearchNavigationView.swift */; };
 		09FD47CA2A5DD38D002020BD /* SearchResultHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47C92A5DD38D002020BD /* SearchResultHeaderView.swift */; };
 		09FD47D22A5DF892002020BD /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47D12A5DF892002020BD /* EmptyCollectionViewCell.swift */; };
@@ -281,6 +284,7 @@
 		09B13F592A5946B700C0C723 /* TabBar+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabBar+.swift"; sourceTree = "<group>"; };
 		09B71BFF2A59D50900076AC2 /* HomeTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopView.swift; sourceTree = "<group>"; };
 		09B71C012A59D99200076AC2 /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
+		09C1C7822A9CE92A00343283 /* BubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
 		09C6264D2A5B29F8002C8110 /* SearchEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEnum.swift; sourceTree = "<group>"; };
 		09C626552A5B3572002C8110 /* HomeBestReviewResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBestReviewResponseDTO.swift; sourceTree = "<group>"; };
 		09C626572A5B4269002C8110 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
@@ -294,6 +298,7 @@
 		09E445362AA3AFB1008E3D33 /* Encodable+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+.swift"; sourceTree = "<group>"; };
 		09E445382AA3BA07008E3D33 /* SortBakeryFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortBakeryFilterView.swift; sourceTree = "<group>"; };
 		09F015F02A9C881A0093D4F0 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		09E445322AA34F90008E3D33 /* AuthRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequestDTO.swift; sourceTree = "<group>"; };
 		09FD47C72A5DC991002020BD /* SearchNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNavigationView.swift; sourceTree = "<group>"; };
 		09FD47C92A5DD38D002020BD /* SearchResultHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultHeaderView.swift; sourceTree = "<group>"; };
 		09FD47D12A5DF892002020BD /* EmptyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -503,6 +508,7 @@
 			children = (
 				09B71BFF2A59D50900076AC2 /* HomeTopView.swift */,
 				09C626572A5B4269002C8110 /* HomeHeaderView.swift */,
+				09C1C7822A9CE92A00343283 /* BubbleView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -739,6 +745,7 @@
 			isa = PBXGroup;
 			children = (
 				0959F16B2A658C9500E77CAF /* AuthResponseDTO.swift */,
+				09E445322AA34F90008E3D33 /* AuthRequestDTO.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -1591,6 +1598,7 @@
 				3E2EEF752A5C93010093BCA9 /* BottomView.swift in Sources */,
 				0961C3642A501EBF0031A822 /* Strings.swift in Sources */,
 				093214082A5AE40900875EF6 /* SearchViewController.swift in Sources */,
+				09C1C7832A9CE92A00343283 /* BubbleView.swift in Sources */,
 				09B13F542A593CD300C0C723 /* MyPageViewController.swift in Sources */,
 				097682E32A5C95750008F4FB /* BakeryFilterCollectionViewCell.swift in Sources */,
 				3EDC05C42A5DEE3600EAD950 /* FilterCollectionViewCell.swift in Sources */,
@@ -1666,6 +1674,7 @@
 				3E16E5022A58176800B813D0 /* ReviewDetailTextView.swift in Sources */,
 				3E232ABC2A8FDB8F00125B76 /* FilterCollectionViewHeader.swift in Sources */,
 				DFB587B92A5D584800704B6C /* OnboardingViewController.swift in Sources */,
+				09E445332AA34F90008E3D33 /* AuthRequestDTO.swift in Sources */,
 				DF959A6E2A568C9400E75774 /* UIColor+.swift in Sources */,
 				3E452B672A60E68000EA456D /* MyPageResponseDTO.swift in Sources */,
 				09C626562A5B3572002C8110 /* HomeBestReviewResponseDTO.swift in Sources */,

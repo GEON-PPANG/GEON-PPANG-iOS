@@ -9,6 +9,8 @@ import Foundation
 struct URLConstant {
     // MARK: - Auth
     
+    static let checkEmail = "/validation/email"
+    
     // MARK: - Filter
     
     static let changeFilter = "/member/types"

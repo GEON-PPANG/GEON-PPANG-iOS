@@ -16,8 +16,8 @@ enum Sections: Int, CaseIterable {
     
     var title: String {
         switch self {
-        case .bakery: return "님 맞춤 BEST 건빵집"
-        case .review: return "님 맞춤 BEST 리뷰"
+        case .bakery: return " BEST 건빵집"
+        case .review: return " BEST 리뷰"
         case .bottom: return ""
         }
     }
@@ -43,11 +43,13 @@ final class HomeViewController: BaseViewController {
     private var bakeryList: [HomeBestBakeryResponseDTO] = []
     private var reviewList: [HomeBestReviewResponseDTO] = []
     
-    private var nickname =  UserDefaults.standard.string(forKey: "nickname") ?? ""
+    private var nickname: String? 
+    private var isFirstAppearance = false
     
     // MARK: - UI Property
     
     private let topView = HomeTopView()
+    private lazy var bubbleView = BubbleView()
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
     
     // MARK: - Life Cycle
@@ -56,6 +58,7 @@ final class HomeViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         getHomeBestData()
+        getUserName()
     }
     
     override func viewDidLoad() {
@@ -63,6 +66,7 @@ final class HomeViewController: BaseViewController {
         
         setRegistration()
         setDataSource()
+        setSnapshot()
         setSupplementaryView()
     }
     
@@ -86,13 +90,11 @@ final class HomeViewController: BaseViewController {
     }
     
     override func setUI() {
-        
         self.do {
             $0.view.backgroundColor = .white
         }
         
         topView.do {
-            $0.configureTitleText(nickname)
             $0.pushToSearchView = {
                 Utils.push(self.navigationController, SearchViewController())
             }
@@ -105,6 +107,27 @@ final class HomeViewController: BaseViewController {
             $0.showsVerticalScrollIndicator = false
             $0.backgroundColor = .gbbBackground1
             $0.delegate = self
+        }
+    }
+    
+    private func configureBubbleView(_ isAppeared: Bool) {
+        
+        if !isAppeared {
+            view.addSubview(bubbleView)
+            
+            bubbleView.snp.makeConstraints {
+                $0.size.equalTo(CGSize(width: 209, height: 36))
+                $0.trailing.equalTo(safeArea).inset(24)
+                $0.top.equalTo(topView.snp.bottom).offset(-19)
+            }
+            
+            bubbleView.do {
+                $0.tappedCancelButton = {
+                    self.bubbleView.removeFromSuperview()
+                }
+            }
+        } else {
+            bubbleView.removeFromSuperview()
         }
     }
     
@@ -139,7 +162,7 @@ final class HomeViewController: BaseViewController {
     private func setSnapshot() {
         
         var snapshot = Snapshot()
-        defer { dataSource?.apply(snapshot, animatingDifferences: false)}
+        defer { self.dataSource?.applySnapshotUsingReloadData(snapshot)}
         
         snapshot.appendSections(Sections.allCases)
         
@@ -152,25 +175,18 @@ final class HomeViewController: BaseViewController {
         for (section, items) in itemsDictionary {
             snapshot.appendItems(items, toSection: section)
         }
-        
     }
     
     private func setSupplementaryView() {
         
         dataSource?.supplementaryViewProvider = { (collectionView, _, indexPath) in
+            guard let section = Sections(rawValue: indexPath.section) else { fatalError() }
+            
             let header: HomeHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
             
-            switch indexPath.section {
-            case 0:
-                header.configureSectionHeaderTitle(self.nickname + Sections.bakery.title)
-            case 1:
-                header.configureSectionHeaderTitle(self.nickname + Sections.review.title)
-            default:
-                header.configureSectionHeaderTitle(self.nickname + Sections.bottom.title)
-            }
+            header.configureSectionHeaderTitle(self.nickname, section.title)
             return header
         }
-        
     }
     
     private func layout() -> UICollectionViewCompositionalLayout {
@@ -247,7 +263,6 @@ extension HomeViewController: UICollectionViewDelegate {
         default:
             break
         }
-        
     }
 }
 
@@ -271,7 +286,25 @@ extension HomeViewController {
             let reviewsList = data.map { $0 }
             self.reviewList = reviewsList
             self.setSnapshot()
-            
+        }
+    }
+    
+    private func getUserName() {
+        
+        FilterAPI.shared.getFilterType { response in
+            guard let response = response else { return }
+            guard let data = response.data else { return }
+            self.topView.configureTitleText(data.nickname)
+            if !data.mainPurpose.contains("NONE") {
+                self.nickname = data.nickname
+                self.configureBubbleView(true)
+            } else {
+                if !self.isFirstAppearance {
+                    self.configureBubbleView(false)
+                    self.isFirstAppearance = true
+                }
+            }
+            self.setSnapshot()
         }
     }
 }
