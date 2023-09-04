@@ -10,12 +10,14 @@ import Foundation
 struct FilterResponseDTO: Codable {
     let memberID: Int
     let mainPurpose: String
+    let nickname: String
     let breadType: BreadResponseType
     let nutrientType: NutrientResponseType
     
     enum CodingKeys: String, CodingKey {
         case memberID = "memberId"
         case mainPurpose
+        case nickname
         case breadType
         case nutrientType
     }
