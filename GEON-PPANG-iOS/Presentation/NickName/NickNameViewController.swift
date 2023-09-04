@@ -149,7 +149,6 @@ final class NickNameViewController: BaseViewController {
         bottomSheet.do {
             $0.configureEmojiType(type)
             $0.configureBottonSheetTitle(title)
-            
         }
     }
 }
