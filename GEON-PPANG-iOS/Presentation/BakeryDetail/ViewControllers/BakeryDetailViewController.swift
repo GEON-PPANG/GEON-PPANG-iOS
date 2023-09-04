@@ -323,7 +323,7 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
         
         switch section {
         case 2:
-            return CGSize(width: collectionView.frame.width, height: 121)
+            return CGSize(width: collectionView.frame.width, height: 112)
         default:
             return CGSize()
         }

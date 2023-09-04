@@ -38,7 +38,9 @@ final class BakeryDetailCollectionViewFooter: UICollectionReusableView {
         
         self.addSubview(labelContainer)
         labelContainer.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(24)
+            $0.top.equalToSuperview().inset(12)
+            $0.directionalHorizontalEdges.equalToSuperview().inset(24)
+            $0.bottom.equalToSuperview().inset(28.5)
         }
         
         labelContainer.addSubview((label))
@@ -51,7 +53,7 @@ final class BakeryDetailCollectionViewFooter: UICollectionReusableView {
         
         self.addSubview(underLineView)
         underLineView.snp.makeConstraints {
-            $0.top.equalTo(labelContainer.snp.bottom).offset(24)
+            $0.top.equalTo(labelContainer.snp.bottom).offset(27.5)
             $0.directionalHorizontalEdges.equalToSuperview()
             $0.height.equalTo(1)
         }
@@ -69,7 +71,7 @@ final class BakeryDetailCollectionViewFooter: UICollectionReusableView {
         }
         
         label.do {
-            $0.basic(text: "가게 상세정보 및 메뉴는 업체에서 제공된 정보를 기반으로 합니다.\n건빵집 방문 시 한번 더 확인하시기를 추천드립니다.", font: .captionM2!, color: .gbbGray400!)
+            $0.basic(text: "가게 상세정보 및 메뉴는 업체에서 제공한 정보를 바탕으로 합니다.\n건빵집 방문 시 한 번 더 확인하시기를 권장합니다.", font: .captionM2!, color: .gbbGray400!)
             $0.adjustsFontSizeToFitWidth = true
             $0.numberOfLines = 2
         }
