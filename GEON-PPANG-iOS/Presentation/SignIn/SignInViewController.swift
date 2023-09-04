@@ -15,17 +15,15 @@ final class SignInViewController: BaseViewController {
     // MARK: - Property
     
     private var checkEmail: String = ""
+    private var checkPassword: String = ""
     private var password: String = "" {
         didSet {
-            configureTextField(isValid: { checkPassword.isEqual(self.password) }, error: I18N.Rule.checkPassword, view: checkPasswordTextField)
+            configureTextView(isValid: { checkPassword.isEqual(self.password) ||  checkPassword.isEmpty},
+                              error: I18N.Rule.checkPassword,
+                              view: checkPasswordTextField)
         }
     }
-    private var checkPassword: String = "" {
-        didSet {
-            configureTextField(isValid: { checkPassword.isEqual(self.password) }, error: I18N.Rule.checkPassword, view: checkPasswordTextField)
-
-        }
-    }
+    
     private var checkEmailIsValid: Bool = false
     private var signInIsValid: [Bool] = [false, false, false]
     private var isValid: Bool = false {
@@ -145,9 +143,9 @@ final class SignInViewController: BaseViewController {
         }
         
         nextButton.do {
-            $0.isUserInteractionEnabled = false
-            $0.configureButtonUI(.gbbGray200!)
             $0.configureButtonTitle(.next)
+            $0.configureButtonUI(.gbbGray200!)
+            $0.isUserInteractionEnabled = false
         }
     }
     
@@ -167,6 +165,7 @@ final class SignInViewController: BaseViewController {
     }
     
     func updateButtonStatus() {
+        
         self.isValid = signInIsValid.allSatisfy { $0 == true }
         configureButtonUI(self.isValid)
     }
@@ -176,25 +175,13 @@ final class SignInViewController: BaseViewController {
 
 extension SignInViewController: UITextFieldDelegate {
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        
-        guard let text = textField.text else { return }
-        if text.isEmpty {
-            textField.layer.borderColor = UIColor.clear.cgColor
-        }
-    }
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         if textField == emailTextField.configureTextField() {
             let currentText = textField.text ?? ""
             let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
             
-            if newText == currentText {
-                self.signInIsValid[0] = true
-            } else {
-                self.signInIsValid[0] = false
-            }
+            signInIsValid[0] = newText == currentText
             updateButtonStatus()
         }
         
@@ -202,8 +189,9 @@ extension SignInViewController: UITextFieldDelegate {
     }
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
+        
         guard let text = textField.text else { return }
-
+        
         let signViews: [UITextField: (() -> Bool, String, CommonTextView)] =
         [
             emailTextField.configureTextField(): ({ text.isValidEmail()},
@@ -218,7 +206,7 @@ extension SignInViewController: UITextFieldDelegate {
         ]
         
         if let (isValid, error, view) = signViews[textField] {
-            configureTextField(isValid: isValid, error: error, view: view)
+            configureTextView(isValid: isValid, error: error, view: view)
         }
         
         if text.isEmpty {
@@ -227,33 +215,25 @@ extension SignInViewController: UITextFieldDelegate {
                 self.isValid = false
             }
         }
-        if emailTextField.configureTextField() == textField {
-            self.checkEmail = text
-        }
-
-        if passwordTextField.configureTextField() == textField {
-            self.password = text
-        }
-
-        if checkPasswordTextField.configureTextField() == textField {
-            self.checkPassword = text
-        }
         
+        configureTextFieldText(textField)
     }
     
-    func configureTextField(isValid: () -> Bool,
-                            error: String,
-                            view: CommonTextView) {
+    func configureTextView(isValid: () -> Bool,
+                           error: String,
+                           view: CommonTextView) {
         
-        if view == emailTextField {
+        switch view {
+        case emailTextField:
             self.checkEmailIsValid = isValid()
-        }
-        if view == passwordTextField {
+        case passwordTextField:
             self.signInIsValid[1] = isValid()
+        case checkPasswordTextField:
+            self.signInIsValid[2] = self.checkPassword.isEmpty ? false : isValid()
+        default:
+            break
         }
-        if view == checkPasswordTextField {
-            self.signInIsValid[2] = isValid()
-        }
+        
         if !isValid() {
             view.setErrorMessage(error, true)
         } else {
@@ -263,32 +243,27 @@ extension SignInViewController: UITextFieldDelegate {
         updateButtonStatus()
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+    func configureTextFieldText(_ textField: UITextField) {
         
-        if passwordTextField.configureTextField() == textField {
-            self.password = textField.text ?? ""
-        }
+        let text = textField.text ?? ""
         
-        if checkPasswordTextField.configureTextField() == textField {
-            self.checkPassword = textField.text ?? ""
+        switch textField {
+        case passwordTextField.configureTextField():
+            self.password = text
+        case checkPasswordTextField.configureTextField():
+            self.checkPassword = text
+        case emailTextField.configureTextField():
+            self.checkEmail = text
+        default:
+            break
         }
-        
-        if emailTextField.configureTextField() == textField {
-            self.checkEmail = textField.text ?? ""
-        }
-        textField.resignFirstResponder()
-        return true
     }
 }
 
 extension SignInViewController {
     
     private func postCheckEmail() {
+        
         let checkEmail = EmailRequestDTO(email: self.checkEmail)
         AuthAPI.shared.postCheckEmail(to: checkEmail) { result in
             guard let status = result else { return }
