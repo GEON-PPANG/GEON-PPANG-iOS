@@ -15,8 +15,17 @@ final class SignInViewController: BaseViewController {
     // MARK: - Property
     
     private var checkEmail: String = ""
-    private var password: String = ""
-    private var checkPassword: String = ""
+    private var password: String = "" {
+        didSet {
+            configureTextField(isValid: { checkPassword.isEqual(self.password) }, error: I18N.Rule.checkPassword, view: checkPasswordTextField)
+        }
+    }
+    private var checkPassword: String = "" {
+        didSet {
+            configureTextField(isValid: { checkPassword.isEqual(self.password) }, error: I18N.Rule.checkPassword, view: checkPasswordTextField)
+
+        }
+    }
     private var checkEmailIsValid: Bool = false
     private var signInIsValid: [Bool] = [false, false, false]
     private var isValid: Bool = false {
@@ -194,10 +203,7 @@ extension SignInViewController: UITextFieldDelegate {
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
         guard let text = textField.text else { return }
-        if textField == checkPasswordTextField.configureTextField() && text != passwordTextField.configureTextField().text {
-            configureTextField(isValid: {false}, error: I18N.Rule.checkPassword, view: checkPasswordTextField)
-        }
-        
+
         let signViews: [UITextField: (() -> Bool, String, CommonTextView)] =
         [
             emailTextField.configureTextField(): ({ text.isValidEmail()},
@@ -222,7 +228,15 @@ extension SignInViewController: UITextFieldDelegate {
             }
         }
         if emailTextField.configureTextField() == textField {
-            self.checkEmail = textField.text ?? ""
+            self.checkEmail = text
+        }
+
+        if passwordTextField.configureTextField() == textField {
+            self.password = text
+        }
+
+        if checkPasswordTextField.configureTextField() == textField {
+            self.checkPassword = text
         }
         
     }
@@ -272,6 +286,26 @@ extension SignInViewController: UITextFieldDelegate {
     }
 }
 
+extension SignInViewController {
+    
+    private func postCheckEmail() {
+        let checkEmail = EmailRequestDTO(email: self.checkEmail)
+        AuthAPI.shared.postCheckEmail(to: checkEmail) { result in
+            guard let status = result else { return }
+            switch status {
+            case 200...204:
+                self.emailTextField.setErrorMessage(I18N.Rule.email, false)
+                self.signInIsValid[0] = true
+                
+            default:
+                self.emailTextField.setErrorMessage(I18N.Rule.duplicatedEmail, true)
+                self.signInIsValid[0] = false
+            }
+            self.updateButtonStatus()
+        }
+    }
+}
+
 // MARK: - Keyboard Action
 
 extension SignInViewController {
@@ -304,25 +338,5 @@ extension SignInViewController {
         
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
-    }
-}
-
-extension SignInViewController {
-    
-    private func postCheckEmail() {
-        let checkEmail = EmailRequestDTO(email: self.checkEmail)
-        AuthAPI.shared.postCheckEmail(to: checkEmail) { result in
-            guard let status = result else { return }
-            switch status {
-            case 200...204:
-                self.emailTextField.setErrorMessage(I18N.Rule.email, false)
-                self.signInIsValid[0] = true
-                
-            default:
-                self.emailTextField.setErrorMessage(I18N.Rule.duplicatedEmail, true)
-                self.signInIsValid[0] = false
-            }
-            self.updateButtonStatus()
-        }
     }
 }
