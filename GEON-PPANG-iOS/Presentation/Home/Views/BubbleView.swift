@@ -65,7 +65,7 @@ final class BubbleView: UIView {
         }
         
         titleLabel.do {
-            $0.basic(text: "맞춤 빵집을 위한 필터를 설정해 보세요!",
+            $0.basic(text: I18N.Home.bubbleTitle,
                      font: .captionM2!,
                      color: .gbbGray400!)
         }
@@ -77,5 +77,4 @@ final class BubbleView: UIView {
             }, for: .touchUpInside)
         }
     }
-
 }
