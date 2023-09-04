@@ -113,6 +113,7 @@ final class SortBakeryFilterView: UIView {
     }
     
     func configureCheckBoxHandler() -> UIButton.ConfigurationUpdateHandler {
+        
         let handler: UIButton.ConfigurationUpdateHandler = { button in
             switch button.state {
             case .selected:
@@ -125,6 +126,7 @@ final class SortBakeryFilterView: UIView {
     }
     
     func configureCheckBox() {
+        
         self.checkBox.isSelected.toggle()
         self.checkBox.setNeedsUpdateConfiguration()
     }
