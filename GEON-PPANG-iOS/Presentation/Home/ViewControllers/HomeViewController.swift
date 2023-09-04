@@ -43,7 +43,7 @@ final class HomeViewController: BaseViewController {
     private var bakeryList: [HomeBestBakeryResponseDTO] = []
     private var reviewList: [HomeBestReviewResponseDTO] = []
     
-    private var nickname: String?
+    private var nickname: String? 
     private var isFirstAppearance = false
     
     // MARK: - UI Property
@@ -184,7 +184,7 @@ final class HomeViewController: BaseViewController {
             
             let header: HomeHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
             
-            header.configureSectionHeaderTitle((self.nickname ?? "") + section.title)
+            header.configureSectionHeaderTitle(self.nickname, section.title)
             return header
         }
     }
@@ -296,10 +296,9 @@ extension HomeViewController {
             guard let data = response.data else { return }
             self.topView.configureTitleText(data.nickname)
             if !data.mainPurpose.contains("NONE") {
-                self.nickname = "\(data.nickname)님 맞춤"
+                self.nickname = data.nickname
                 self.configureBubbleView(true)
             } else {
-                self.nickname = ""
                 if !self.isFirstAppearance {
                     self.configureBubbleView(false)
                     self.isFirstAppearance = true
