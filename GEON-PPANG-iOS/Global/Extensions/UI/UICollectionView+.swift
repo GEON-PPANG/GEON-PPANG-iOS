@@ -51,16 +51,3 @@ extension UICollectionView {
         return supplementaryView
     }
 }
-
-extension UICollectionView {
-    
-    public func lastIndexPath() -> IndexPath? {
-        
-        for sectionIndex in (0..<self.numberOfSections).reversed() {
-            if self.numberOfItems(inSection: sectionIndex) > 0 {
-                return IndexPath.init(item: self.numberOfItems(inSection: sectionIndex)-1, section: sectionIndex)
-            }
-        }
-        return nil
-    }
-}
