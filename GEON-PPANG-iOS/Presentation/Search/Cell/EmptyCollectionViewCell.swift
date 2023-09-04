@@ -10,22 +10,6 @@ import UIKit
 import SnapKit
 import Then
 
-enum EmptyType: String {
-    case noReview = "작성된 리뷰가 없어요!"
-    case noBookmark = "저장 목록이 없어요!"
-    case noSearch = "검색결과가 없어요\n다른 키워드로 검색해보세요!"
-    case initialize = "궁금하신 건빵집을\n검색해보세요!"
-    
-    var icon: UIImage {
-        switch self {
-        case .noReview: return .noReviewImage
-        case .noBookmark: return .noBookmarkImage
-        case .noSearch: return .noSearchResultImage
-        case .initialize: return .searchImage
-        }
-    }
-}
-
 final class EmptyCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Property
@@ -59,60 +43,36 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
     
     private func setLayout() {
         
-        contentView.addSubviews(emptyIcon, emptyLabel)
+        contentView.addSubviews(emptyLabel, emptyIcon)
         
         switch emptyType {
-        case .noBookmark:
-            return myPageLayout()
-        case .noReview:
-            return myReviewsLayout()
+        case .noBookmark, .noReview:
+            configureLayout(CGSize(width: 154, height: 132), -20)
+        case .noSearch:
+            configureLayout(CGSize(width: 154, height: 134), -16)
         default:
-            return defaultLayout()
+            configureLayout(CGSize(width: 154, height: 134), -20)
+            emptyLabel.snp.updateConstraints {
+                $0.centerY.equalToSuperview().offset(60)
+            }
         }
     }
     
-    private func defaultLayout() {
-        
-        emptyIcon.snp.makeConstraints {
-            $0.size.equalTo(CGSize(width: 154, height: 134))
-            $0.centerX.equalToSuperview()
-        }
-        
-        emptyLabel.snp.makeConstraints {
-            $0.top.equalTo(emptyIcon.snp.bottom).offset(20)
-            $0.centerX.equalTo(emptyIcon)
-            $0.centerY.equalToSuperview().inset(-33)
-        }
-    }
-    
-    private func myReviewsLayout() {
-        
-        emptyIcon.snp.remakeConstraints {
-            $0.size.equalTo(CGSize(width: 154, height: 132))
-            $0.centerX.equalToSuperview()
-        }
+    private func configureLayout(_ size: CGSize, _ offset: Float) {
         
         emptyLabel.snp.remakeConstraints {
-            $0.top.equalTo(emptyIcon.snp.bottom).offset(20)
-            $0.centerX.equalToSuperview()
+            $0.center.equalToSuperview()
         }
-    }
-    
-    private func myPageLayout() {
         
         emptyIcon.snp.remakeConstraints {
-            $0.size.equalTo(CGSize(width: 154, height: 132))
+            $0.size.equalTo(size)
+            $0.bottom.equalTo(emptyLabel.snp.top).offset(offset)
             $0.centerX.equalToSuperview().offset(10)
-            $0.centerY.equalToSuperview().offset(-35)
-        }
-        
-        emptyLabel.snp.remakeConstraints {
-            $0.top.equalTo(emptyIcon.snp.bottom).offset(20)
-            $0.centerX.equalToSuperview().offset(5)
         }
     }
     
     private func setUI() {
+        
         emptyIcon.do {
             $0.contentMode = .scaleAspectFit
         }
@@ -121,7 +81,6 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
             $0.numberOfLines = 0
             $0.basic(font: .title2!, color: .gbbGray300!)
         }
-        
     }
     
     func configureViewType(_ type: EmptyType) {
@@ -137,7 +96,7 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
                                     font: .title2!,
                                     color: .gbbGray300!)
         case .noSearch:
-            return emptyLabel.partFontChange(targetString: "다른 키워드로 검색해보세요!",
+            return emptyLabel.partFontChange(targetString: type.subTitle,
                                              font: .subHead!)
         }
     }
