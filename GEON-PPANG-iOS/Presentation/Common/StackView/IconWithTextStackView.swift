@@ -11,12 +11,13 @@ import SnapKit
 import Then
 
 enum HomeIconType {
-    case reviews, bookmark
+    case reviews, bookmark, list
     
     var icon: UIImage {
         switch self {
         case .reviews: return .reviewIcon16px400
         case .bookmark: return .bookmarkIcon16px400
+        case .list: return .mapIcon
         }
     }
 }
@@ -34,11 +35,11 @@ final class IconWithTextStackView: UIStackView {
     
     // MARK: - Life Cycle
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init (_ type: HomeIconType) {
+        super.init(frame: .zero)
         
         setLayout()
-        setUI()
+        setUI(type: type)
     }
     
     required init(coder: NSCoder) {
@@ -52,25 +53,33 @@ final class IconWithTextStackView: UIStackView {
         self.addArrangedSubviews(icon, countLabel)
         
         icon.snp.makeConstraints {
-            $0.size.equalTo(16)
+            $0.size.equalTo(15)
         }
     }
     
-    private func setUI() {
+    private func setUI(type: HomeIconType) {
         
         self.do {
-            $0.spacing = 1
+            $0.spacing = iconType == .list ? 6 : 1
             $0.axis = .horizontal
         }
         
+        icon.do {
+            $0.image = type.icon
+        }
     }
     
-    func iconViewType(_ type: HomeIconType, count: Int) {
+    func configureListUI(text: String) {
         
-        icon.image = type.icon
-        countLabel.basic(text: "(\(count))",
+        countLabel.basic(text: text,
                          font: .captionB1!,
                          color: .gbbGray400!)
     }
     
+    func configureHomeCell(count: Int) {
+        
+        countLabel.basic(text: "(\(count))",
+                         font: .captionB1!,
+                         color: .gbbGray400!)
+    }
 }

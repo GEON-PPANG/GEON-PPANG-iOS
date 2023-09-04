@@ -120,8 +120,8 @@ final class FilterViewController: BaseViewController {
         
         var newFilterType: FilterType = currentFilterType
         switch currentFilterType {
-        case .purpose:newFilterType = .breadType
-        case .breadType:newFilterType = .ingredient
+        case .purpose: newFilterType = .breadType
+        case .breadType: newFilterType = .ingredient
         case .ingredient:
             sendRequest()
             return
@@ -192,6 +192,13 @@ final class FilterViewController: BaseViewController {
         configureStepCount()
     }
     
+    private func resetFilterSelections() {
+        
+        FilterCellModel.deselectContents(of: .purpose)
+        FilterCellModel.deselectContents(of: .breadType)
+        FilterCellModel.deselectContents(of: .ingredient)
+    }
+    
     private func sendRequest() {
         
         var request = FilterRequestDTO()
@@ -206,6 +213,8 @@ final class FilterViewController: BaseViewController {
                 self.navigationController?.popToRootViewController(animated: true)
             }
         }
+        
+        resetFilterSelections()
     }
     
 }

@@ -16,6 +16,7 @@ struct I18N {
             """
             건빵은 건강한 빵집의 위치와 성분 정보를 제공하여 소비자의 선택을 돕는 용도의 서비스입니다. 건빵의 모든 정보는 제조사에서 제공한 정보입니다. 이는 소비자의 구매를 돕기 위한 참고 사항이며, 제공 정보의 오류에 대한 책임을 지지 않습니다.
             """
+        static let bubbleTitle = "맞춤 빵집을 위한 필터를 설정해 보세요!"
     }
     
     /// Onboarding
@@ -34,7 +35,8 @@ struct I18N {
     /// Bottomsheet
     struct Bottomsheet {
         static let email = "사용 가능한 이메일입니다."
-        static let diableNickname = "사용 가능한 닉네임입니다."
+        static let diableNickname = "사용 가능한 닉네임입니다!"
+        static let duplicatedNickname = "이미 존재하는 닉네임이에요"
         static let checkIdPassword = "아이디 및 비밀번호를\n확인해주세요"
         
     }
@@ -87,6 +89,8 @@ struct I18N {
         static let askQuestions = "문의하기"
         static let appVersion = "앱버전"
         static let appVersionNum = "v 0.0.1"
+        static let logout = "로그아웃"
+        static let leave = "회원탈퇴"
     }
     
     /// MySavedBakery
@@ -109,5 +113,33 @@ struct I18N {
     /// Detail
     struct Detail {
         static let writeReview = "리뷰 작성하기"
+    }
+    
+    /// Nickname
+    struct Nickname {
+        static let title = "건빵에 오신걸 환영해요!\n어떻게 불러드릴까요?"
+    }
+    
+    /// SignIn
+    struct SignIn {
+        static let title = "회원가입을 위한 \n정보를 입력해주세요!"
+    }
+    
+    /// Rule
+    struct Rule {
+        static let email = "사용 가능한 이메일입니다"
+        static let disableEmail = "올바른 이메일을 입력해주세요."
+        static let password = "영문, 숫자 포함 8자리 이상"
+        static let nickname = "10자 이내, 특수문자 금지"
+        static let checkPassword = "비밀번호를 확인해주세요"
+        static let duplicatedEmail = "이미 존재하는 이메일입니다"
+
+    }
+    
+    /// LogIn
+    struct LogIn {
+        static let title = "로그인"
+        static let noAccount = "계정이 없으신가요?"
+        static let signIn = "회원가입하기"
     }
 }

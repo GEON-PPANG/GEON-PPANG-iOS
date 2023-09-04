@@ -15,8 +15,6 @@ final class MyPageCollectionViewCell: UICollectionViewCell {
     // MARK: - UI Property
     
     private let titleLabel = UILabel()
-    private let rightChevronImageViewContainer = UIView()
-    private let rightChevronImageView = UIImageView(image: .rightArrowIcon)
     
     // MARK: - Life Cycle
     
@@ -41,18 +39,6 @@ final class MyPageCollectionViewCell: UICollectionViewCell {
             $0.leading.equalToSuperview().inset(24)
             $0.centerY.equalToSuperview()
         }
-        
-        contentView.addSubview(rightChevronImageViewContainer)
-        rightChevronImageViewContainer.snp.makeConstraints {
-            $0.verticalEdges.equalToSuperview().inset(10)
-            $0.width.height.equalTo(48)
-            $0.trailing.equalToSuperview().inset(6)
-        }
-        
-        rightChevronImageViewContainer.addSubview(rightChevronImageView)
-        rightChevronImageView.snp.makeConstraints {
-            $0.center.equalToSuperview()
-        }
     }
     
     private func setUI() {
@@ -73,35 +59,6 @@ final class MyPageCollectionViewCell: UICollectionViewCell {
         
         titleLabel.do {
             $0.text = text
-        }
-    }
-    
-    func applyTopThickBorder() {
-        
-        let borderView = UIView()
-        contentView.addSubview(borderView)
-        borderView.snp.makeConstraints {
-            $0.bottom.equalTo(contentView.snp.top)
-            $0.height.equalTo(8)
-            $0.horizontalEdges.equalToSuperview()
-        }
-        
-        borderView.do {
-            $0.backgroundColor = .gbbGray200
-        }
-    }
-    
-    func applyTopThinBorder() {
-        
-        let borderView = UIView()
-        contentView.addSubview(borderView)
-        borderView.snp.makeConstraints {
-            $0.height.equalTo(1)
-            $0.horizontalEdges.equalToSuperview()
-        }
-        
-        borderView.do {
-            $0.backgroundColor = .gbbGray200
         }
     }
     

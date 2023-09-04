@@ -23,7 +23,7 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
     private let markStackView = MarkStackView()
     private let bakeryImage = UIImageView()
     private let bakeryTitle = UILabel()
-    private let regionStackView = RegionStackView()
+    private let regionStackView = IconWithTextStackView(.list)
     private let bookmarkStackView = UIStackView()
     private let bookmarkIcon = UIImageView()
     private let bookmarkCount = UILabel()
@@ -55,36 +55,38 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
         
         contentView.addSubview(bakeryImage)
         bakeryImage.snp.makeConstraints {
-            $0.size.equalTo(90)
+            $0.size.equalTo(86)
             $0.top.equalToSuperview().offset(24)
             $0.leading.equalToSuperview().inset(24)
+            $0.bottom.equalToSuperview().inset(24)
+            
         }
         
         contentView.addSubview(bakeryTitle)
         bakeryTitle.snp.makeConstraints {
             $0.top.equalTo(bakeryImage.snp.top)
-            $0.leading.equalTo(bakeryImage.snp.trailing).offset(14)
+            $0.leading.equalTo(bakeryImage.snp.trailing).offset(8)
         }
         
         contentView.addSubview(collectionView)
         collectionView.snp.makeConstraints {
-            $0.height.equalTo(25)
-            $0.top.equalTo(bakeryTitle.snp.bottom).offset(8)
-            $0.leading.equalTo(bakeryImage.snp.trailing).offset(14)
+            $0.height.equalTo(22)
+            $0.top.equalTo(bakeryTitle.snp.bottom).offset(9)
+            $0.leading.equalTo(bakeryImage.snp.trailing).offset(8)
             $0.trailing.equalToSuperview().inset(24)
         }
         
         contentView.addSubview(regionStackView)
         regionStackView.snp.makeConstraints {
-            $0.top.equalTo(collectionView.snp.bottom).offset(10)
-            $0.height.equalTo(29)
-            $0.leading.equalTo(bakeryImage.snp.trailing).offset(14)
-            $0.bottom.equalToSuperview().inset(24)
+            $0.top.equalTo(collectionView.snp.bottom).offset(12)
+            $0.height.equalTo(15)
+            $0.leading.equalTo(bakeryImage.snp.trailing).offset(11)
         }
         
         contentView.addSubview(bookmarkStackView)
         bookmarkStackView.snp.makeConstraints {
-            $0.top.equalTo(bakeryImage.snp.top)
+            $0.top.equalTo(bakeryImage.snp.top).offset(4)
+            $0.leading.equalTo(bakeryTitle.snp.trailing).offset(24)
             $0.trailing.equalToSuperview().inset(24)
             $0.height.equalTo(16)
         }
@@ -137,15 +139,20 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    func configureReviewsUI() {
+        
+        bookmarkStackView.removeFromSuperview()
+    }
+    
     func configureCellUI<T: BakeryListProtocol>(data: T) {
         
         bakeryTitle.setLineHeight(by: 1.05, with: data.name)
         bookmarkCount.setLineHeight(by: 1.1, with: "(\(data.bookmarkCount))")
         guard let url = URL(string: data.picture) else { return }
         bakeryImage.kf.setImage(with: url)
+        regionStackView.configureListUI(text: data.station)
         
         markStackView.getMarkStatus(data.mark.isHACCP, data.mark.isVegan, data.mark.isNonGMO)
-        
         
         breadTypeTag = []
         if data.breadType.isGlutenFree {
@@ -165,13 +172,6 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
         }
         
         collectionView.reloadData()
-        
-        collectionView.snp.remakeConstraints {
-            $0.height.equalTo(Utils.getHeight(breadTypeTag))
-            $0.top.equalTo(bakeryTitle.snp.bottom).offset(10)
-            $0.leading.equalTo(bakeryImage.snp.trailing).offset(14)
-            $0.trailing.equalToSuperview().inset(24)
-        }
     }
 }
 
@@ -193,6 +193,7 @@ extension BakeryCommonCollectionViewCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: DescriptionCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+        cell.cellColor = .sub
         cell.configureTagTitle(self.breadTypeTag[indexPath.item])
         return cell
     }
@@ -203,7 +204,7 @@ extension BakeryCommonCollectionViewCell: UICollectionViewDataSource {
 extension BakeryCommonCollectionViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let tagTitle = self.breadTypeTag[indexPath.item]
-        let itemSize = tagTitle.size(withAttributes: [NSAttributedString.Key.font: UIFont.captionM1])
-        return CGSize(width: itemSize.width + 12, height: itemSize.height + 8)
+        let itemSize = tagTitle.size(withAttributes: [NSAttributedString.Key.font: UIFont.captionM2])
+        return CGSize(width: itemSize.width + 12, height: itemSize.height)
     }
 }

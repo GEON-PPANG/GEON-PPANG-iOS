@@ -16,28 +16,26 @@ final class NickNameViewController: BaseViewController {
     
     private var isValid: Bool = false {
         didSet {
-            configureButtonUI(isValid)
+            configureCheckButtonUI(isValid)
         }
     }
-    
-    private var nickname =  UserDefaults.standard.string(forKey: "nickname") ?? ""
     
     // MARK: - UI Property
     
     private let naviView = CustomNavigationBar()
     private let titleLabel = UILabel()
-    private let nicknameTextField = CommonTextView()
+    private let nicknameTextField = CommonTextView(.nickname)
     private lazy var checkButton = CommonButton()
     private lazy var nextButton = CommonButton()
-    private var backGroundView = BottomSheetAppearView()
-    private var bottomSheet = CommonBottomSheet()
+    private lazy var backGroundView = BottomSheetAppearView()
+    private lazy var bottomSheet = CommonBottomSheet()
     
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        dismissKeyboardWhenTappedAround()
+        
+        setKeyboardHideGesture()
     }
     
     // MARK: - Setting
@@ -52,36 +50,39 @@ final class NickNameViewController: BaseViewController {
         
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(naviView.snp.bottom).offset(20)
+            $0.top.equalTo(naviView.snp.bottom).offset(28)
             $0.leading.equalToSuperview().offset(24)
         }
         
         view.addSubview(nicknameTextField)
         nicknameTextField.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(40)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(32)
             $0.directionalHorizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(74)
         }
         
         view.addSubview(checkButton)
         checkButton.snp.makeConstraints {
-            $0.top.equalTo(nicknameTextField.snp.bottom).offset(36)
-            $0.directionalHorizontalEdges.equalToSuperview().inset(24)
-            $0.height.equalTo(56)
+            $0.top.equalTo(nicknameTextField.snp.bottom).offset(29)
         }
         
         view.addSubview(nextButton)
         nextButton.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(CGFloat().heightConsideringBottomSafeArea(54))
-            $0.directionalHorizontalEdges.equalToSuperview().inset(24)
-            $0.height.equalTo(56)
+        }
+        
+        [checkButton, nextButton].forEach {
+            $0.snp.makeConstraints {
+                $0.directionalHorizontalEdges.equalToSuperview().inset(24)
+                $0.height.equalTo(56)
+            }
         }
     }
     
     override func setUI() {
         
         naviView.do {
-            $0.configureRightCount(3, by: 6)
+            $0.configureBottomLine()
             $0.configureBackButtonAction(UIAction { _ in
                 self.navigationController?.popViewController(animated: true)
             })
@@ -89,28 +90,22 @@ final class NickNameViewController: BaseViewController {
         
         titleLabel.do {
             $0.numberOfLines = 0
-            $0.basic(text: "건빵에 오신걸 환영해요!\n어떻게 불러드릴까요?",
+            $0.basic(text: I18N.Nickname.title,
                      font: .title1!,
                      color: .gbbGray700!)
         }
         
         checkButton.do {
-            $0.configureButtonUI(.clear, .gbbGray300)
+            $0.configureButtonUI(.clear)
+            $0.configureBorder(1, .gbbGray300)
             $0.configureButtonTitle(.duplicate)
             $0.addActionToCommonButton {
-                self.backGroundView.appearBottomSheetView(subView: self.bottomSheet, 281)
+                self.backGroundView.appearBottomSheetView(subView: self.bottomSheet, 292)
             }
         }
         
         nicknameTextField.do {
-            $0.cofigureSignInType(.nickname)
-            $0.validCheck = { [weak self] valid in
-                self?.isValid = valid
-            }
-            $0.duplicatedCheck = { [weak self] nickname in
-                guard let self else { return }
-                UserDefaults.standard.setValue(nickname, forKey: "nickname")
-            }
+            $0.delegate = self
         }
         
         nextButton.do {
@@ -135,26 +130,61 @@ final class NickNameViewController: BaseViewController {
         }
     }
     
-    func configureButtonUI(_ isValid: Bool) {
+    func configureCheckButtonUI(_ isValid: Bool) {
         
         self.checkButton.do {
             $0.isEnabled = isValid
-            $0.configureButtonUI(.clear, isValid ? .gbbMain2! : .gbbGray300!)
-        }
-        
-        if !isValid {
-            nextButton.do {
-                $0.isUserInteractionEnabled = false
-                $0.configureButtonUI(.gbbGray200!)
-            }
+            $0.configureButtonUI(.clear)
+            $0.configureBorder(isValid ? 2 : 1, isValid ? .gbbMain2! : .gbbGray300!)
         }
     }
     
-    func dismissKeyboardWhenTappedAround() {
+    func configureNextButtonUI(_ isValid: Bool) {
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
-                                                                 action: #selector(endEditingView))
-        tap.cancelsTouchesInView = true
-        self.view.addGestureRecognizer(tap)
+        self.nextButton.do {
+            $0.isUserInteractionEnabled = isValid
+            $0.configureButtonTitle(isValid ? .start : .next)
+            $0.configureButtonUI(isValid ? .gbbMain2! : .gbbGray200!)
+        }
+    }
+}
+
+// MARK: - UITextFieldDelegate
+
+extension NickNameViewController: UITextFieldDelegate {
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        guard let text = textField.text else { return }
+        
+        if !text.isNotContainSpecialCharacters() || text.isEmpty {
+            updateTextFieldStatus(false, text.isEmpty)
+        } else {
+            updateTextFieldStatus(true, true)
+        }
+    }
+    
+    private func updateTextFieldStatus(_ isValid: Bool, _ isError: Bool) {
+        if isError {
+            nicknameTextField.clearErrorMessage()
+        } else {
+            nicknameTextField.setErrorMessage(I18N.Rule.nickname, isValid)
+        }
+        
+        self.isValid = isValid
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        guard let currentText = textField.text else { return false }
+        let changedText = (currentText as NSString).replacingCharacters(in: range, with: string)
+        
+        return changedText.count < 11
+        
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
     }
 }

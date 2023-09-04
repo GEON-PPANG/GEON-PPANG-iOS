@@ -21,7 +21,7 @@ final class MySavedBakeryViewController: BaseViewController {
     private var dataSource: DataSource?
     private var savedList: [BakeryCommonListResponseDTO] = []
     private var currentSection: [Section] = [.empty]
-        
+    
     // MARK: - UI Property
     
     private let naviView = CustomNavigationBar()
@@ -34,7 +34,7 @@ final class MySavedBakeryViewController: BaseViewController {
         
         getSavedBakeryList()
     }
-            
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

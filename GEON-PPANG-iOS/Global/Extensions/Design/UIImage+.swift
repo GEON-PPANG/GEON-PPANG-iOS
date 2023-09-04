@@ -20,8 +20,9 @@ extension UIImage {
     static let enabledSandwichIcon = UIImage(named: "ic_sandwich_enable_20px")!.withRenderingMode(.alwaysOriginal)
     
     // Emoji
-    static let memoEmoji = UIImage(named: "memo_32px")!.withRenderingMode(.alwaysOriginal)
-    static let sadIcon = UIImage(named: "sad_32px")!.withRenderingMode(.alwaysOriginal)
+
+    static let sadIcon = UIImage(named: "icon_sad")!.withRenderingMode(.alwaysOriginal)
+    static let cryingIcon = UIImage(named: "icon_crying")!.withRenderingMode(.alwaysOriginal)
     
     // Environmental Marks
     static let smallGMOMark = UIImage(named: "gmo_mark_22px")!.withRenderingMode(.alwaysOriginal)
@@ -61,6 +62,7 @@ extension UIImage {
     static let searchIcon600 = UIImage(named: "ic_search_600")!.withRenderingMode(.alwaysOriginal) /// gray600
     static let smileIcon = UIImage(named: "ic_smile")!.withRenderingMode(.alwaysOriginal)
     static let showIcon = UIImage(named: "ic_show")!.withRenderingMode(.alwaysOriginal)
+    static let smileIcon86px = UIImage(named: "ic_smile_86px")!.withRenderingMode(.alwaysOriginal)
     static let storeIcon = UIImage(named: "ic_store")!.withRenderingMode(.alwaysOriginal)
     static let swapIcon = UIImage(named: "ic_swap")!.withRenderingMode(.alwaysOriginal)
     static let timeIcon = UIImage(named: "ic_time")!.withRenderingMode(.alwaysOriginal)
@@ -73,6 +75,7 @@ extension UIImage {
     static let searchImage = UIImage(named: "img_search")!.withRenderingMode(.alwaysOriginal)
     static let serverMaintenanceImage = UIImage(named: "img_server_maintenance")!.withRenderingMode(.alwaysOriginal)
     static let welcomeImage = UIImage(named: "img_welcome")!.withRenderingMode(.alwaysOriginal)
+    static let bubbleImage = UIImage(named: "img_bubble")!.withRenderingMode(.alwaysOriginal)
     
     // Include Touch Area
     static let bigLeftArrowIcon = UIImage(named: "ic_arrow_left")!.withRenderingMode(.alwaysOriginal)

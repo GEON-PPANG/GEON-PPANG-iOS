@@ -68,7 +68,7 @@ final class SearchViewController: BaseViewController {
             $0.directionalHorizontalEdges.equalTo(safeArea)
             $0.height.equalTo(convertByHeightRatio(68))
         }
-
+        
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints {
             $0.top.equalTo(naviView.snp.bottom)
@@ -88,7 +88,7 @@ final class SearchViewController: BaseViewController {
                 self.getSearchBakery(bakeryName: text)
             }
         }
-
+        
         collectionView.do {
             $0.isScrollEnabled = false
             $0.backgroundColor = .gbbBackground1
@@ -180,7 +180,7 @@ final class SearchViewController: BaseViewController {
             let section = self.dataSource?.snapshot().sectionIdentifiers[sectionIndex]
             switch section {
             case .main:
-                var config = UICollectionLayoutListConfiguration(appearance: .grouped)
+                var config = UICollectionLayoutListConfiguration(appearance: .plain)
                 config.backgroundColor = .gbbBackground1
                 config.headerMode = .supplementary
                 config.headerTopPadding = 0
@@ -189,7 +189,7 @@ final class SearchViewController: BaseViewController {
                 config.itemSeparatorHandler = { indexPath, config in
                     var config = config
                     guard let itemCount = self.dataSource?.snapshot().itemIdentifiers(inSection: .main).count else { return config }
-
+                    
                     let isLastItem = indexPath.item == itemCount - 1
                     config.bottomSeparatorVisibility = isLastItem ? .hidden : .visible
                     return config
@@ -197,7 +197,7 @@ final class SearchViewController: BaseViewController {
                 
                 let section = NSCollectionLayoutSection.list(using: config, layoutEnvironment: layoutEnvirnment)
                 section.boundarySupplementaryItems = [self.configureHeaderSize(55)]
-                           
+                
                 return section
                 
             case .empty:

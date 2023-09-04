@@ -72,7 +72,7 @@ final class WelcomeViewController: BaseViewController {
     private func moveToFilterView() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             // FIXME: filter view 머지 된 뒤 이동하는 VC 변경하기
-            Utils.push(self.navigationController, FilterPurposeViewController(maxSteps: 3, username: self.nickname))
+//            Utils.push(self.navigationController, FilterPurposeViewController(maxSteps: 3, username: self.nickname))
         }
     }
     
