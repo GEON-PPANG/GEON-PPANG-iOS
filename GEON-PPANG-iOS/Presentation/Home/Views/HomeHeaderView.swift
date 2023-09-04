@@ -39,9 +39,18 @@ final class HomeHeaderView: UICollectionReusableView {
         }
     }
     
-    func configureSectionHeaderTitle(_ section: String) {
+    func configureSectionHeaderTitle(_ nickname: String?, _ title: String) {
+        
+        var headerTitle: String
+        
+        if let nickname = nickname {
+            headerTitle = "\(nickname)님 맞춤" + title
+        } else {
+            headerTitle = title
+        }
+        
         let attributedString = NSMutableAttributedString(
-            string: section,
+            string: headerTitle,
             attributes: [
                 .font: UIFont.title2!,
                 .foregroundColor: UIColor.gbbGray700!
@@ -51,7 +60,7 @@ final class HomeHeaderView: UICollectionReusableView {
         attributedString.addAttributes(
             [.foregroundColor: UIColor.gbbPoint1!],
             range: NSRange(
-                location: section.count - 8,
+                location: headerTitle.count - 8,
                 length: 8
             )
         )
