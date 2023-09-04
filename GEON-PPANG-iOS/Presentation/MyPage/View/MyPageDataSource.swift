@@ -85,19 +85,11 @@ final class MyPageDataSource: DiffableDataSourceProtocol {
         }
         let footerRegistration = FooterRegistration<Footer>(elementKind: footerType) { footer, _, _ in
             footer.leaveTapepd = self.leaveTapped
-            //            footer.logoutTapped = self.logoutTapped
         }
         
         dataSource = DiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, _ in
             guard let sectionType = Section(rawValue: indexPath.section) else { return UICollectionViewCell() }
-//            
-//            let content: [MyPageModel]
-//            switch sectionType {
-//            case .general: content = MyPageModel.general
-//            case .version: content = MyPageModel.version
-//            case .leave: content = MyPageModel.leave
-//            default: content = []
-//            }
+
             switch sectionType {
             case .profile:
                 return collectionView.dequeueConfiguredReusableCell(using: profileCellRegistration, for: indexPath, item: self.memberData)
