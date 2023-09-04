@@ -98,16 +98,16 @@ final class CommonTextView: UIView {
         return commonTextField
     }
     
-    func setErrorMessage(_ message: String) {
+    func setErrorMessage(_ message: String, _ isValid: Bool) {
         
-        titleLabel.textColor = .gbbError
+        titleLabel.textColor = isValid ? .gbbError: .gbbMain3
         checkLabel.basic(text: message,
                          font: .captionM1!,
-                         color: .gbbError!)
-        commonTextField.layer.borderColor = UIColor.gbbError?.cgColor
+                         color: isValid ? .gbbError!: .gbbMain3!)
+        commonTextField.layer.borderColor = isValid ? UIColor.gbbError?.cgColor : UIColor.gbbMain3?.cgColor
     }
     
-    func clearErrorMessage(_ isValid: Bool) {
+    func clearErrorMessage() {
         
         titleLabel.textColor = .gbbGray400
         checkLabel.text = ""

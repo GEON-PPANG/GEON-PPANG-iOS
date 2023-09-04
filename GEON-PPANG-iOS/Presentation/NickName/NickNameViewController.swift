@@ -165,9 +165,9 @@ extension NickNameViewController: UITextFieldDelegate {
     
     private func updateTextFieldStatus(_ isValid: Bool, _ isError: Bool) {
         if isError {
-            nicknameTextField.clearErrorMessage(true)
+            nicknameTextField.clearErrorMessage()
         } else {
-            nicknameTextField.setErrorMessage(I18N.Rule.nickname)
+            nicknameTextField.setErrorMessage(I18N.Rule.nickname, isValid)
         }
         
         self.isValid = isValid
