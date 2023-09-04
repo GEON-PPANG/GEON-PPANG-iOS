@@ -61,7 +61,7 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(bakeryTitle)
         bakeryTitle.snp.makeConstraints {
             $0.top.equalTo(collectionView.snp.bottom).offset(6)
-            $0.leading.equalToSuperview().offset(16)
+            $0.horizontalEdges.equalToSuperview().inset(16)
         }
         
         contentView.addSubview(bookmarkCount)
