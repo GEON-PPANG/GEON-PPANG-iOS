@@ -37,6 +37,7 @@ final class BakeryListViewController: BaseViewController {
         isBrunch: filterStatus[2]
     )
     }
+    
     // MARK: - UI Property
     
     private let bakeryTopView = BakeryListTopView()
@@ -58,7 +59,6 @@ final class BakeryListViewController: BaseViewController {
         
         setDataSource()
         setSnapShot()
-       
     }
     
     // MARK: - Setting
@@ -218,6 +218,7 @@ final class BakeryListViewController: BaseViewController {
 extension BakeryListViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         let nextViewController = BakeryDetailViewController()
         nextViewController.bakeryID = self.bakeryList[indexPath.item].bakeryID
         Utils.push(self.navigationController, nextViewController)
