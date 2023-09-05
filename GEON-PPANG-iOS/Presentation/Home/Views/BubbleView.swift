@@ -10,6 +10,11 @@ import UIKit
 import SnapKit
 import Then
 
+enum BubbleType {
+    case home
+    case list
+}
+
 final class BubbleView: UIView {
     
     // MARK: - Property
@@ -24,11 +29,11 @@ final class BubbleView: UIView {
     
     // MARK: - Life Cycle
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(_ type: BubbleType) {
+        super.init(frame: .zero)
         
         setLayout()
-        setUI()
+        setUI(type: type)
     }
     
     required init?(coder: NSCoder) {
@@ -58,10 +63,10 @@ final class BubbleView: UIView {
         }
     }
     
-    private func setUI() {
+    private func setUI(type: BubbleType) {
         
         bubbleView.do {
-            $0.image = .bubbleImage
+            $0.image = type == .home ? .leftBubbleImage : .rightBubbleImage
         }
         
         titleLabel.do {
