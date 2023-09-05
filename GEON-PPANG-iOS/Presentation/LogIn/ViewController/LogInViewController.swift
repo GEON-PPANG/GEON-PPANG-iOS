@@ -116,7 +116,7 @@ final class LogInViewController: BaseViewController {
             $0.configureButtonUI(.gbbGray200!)
             $0.configureButtonTitle(.login)
         }
-        
+
         signInButton.do {
             $0.setTitle(I18N.LogIn.signIn, for: .normal)
             $0.setTitleColor(.gbbGray500!, for: .normal)
