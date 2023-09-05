@@ -34,8 +34,7 @@ extension AuthService: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .checkEmail, .checkNickname:
-        case .checkEmail, .login:
+        case .checkEmail, .checkNickname, .login:
             return .post
         }
     }

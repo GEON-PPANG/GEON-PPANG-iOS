@@ -13,6 +13,7 @@ final class AuthPlugin: PluginType {
     
     // Request를 보낼 때 호출
     func willSend(_ request: RequestType, target: TargetType) {
+        
         guard let httpRequest = request.request else {
             print("--> 유효하지 않은 요청")
             return
@@ -35,6 +36,7 @@ final class AuthPlugin: PluginType {
     
     // Response가 왔을 때
     func didReceive(_ result: Result<Response, MoyaError>, target: TargetType) {
+        
         switch result {
         case let .success(response):
             onSucceed(response, target: target, isFromError: false)
@@ -44,6 +46,7 @@ final class AuthPlugin: PluginType {
     }
     
     func onSucceed(_ response: Response, target: TargetType, isFromError: Bool) {
+        
         let request = response.request
         let url = request?.url?.absoluteString ?? "nil"
         let statusCode = response.statusCode
@@ -62,6 +65,7 @@ final class AuthPlugin: PluginType {
     }
     
     func onFail(_ error: MoyaError, target: TargetType) {
+        
         if let response = error.response {
             onSucceed(response, target: target, isFromError: true)
             return
