@@ -10,3 +10,7 @@ import Foundation
 struct EmailRequestDTO: Codable {
     let email: String
 }
+
+struct NicknameRequestDTO: Codable {
+    let nickname: String
+}

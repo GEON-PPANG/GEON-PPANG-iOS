@@ -10,7 +10,9 @@ import Foundation
 import Moya
 
 enum AuthService {
-    case checkEmail(requestEmail: EmailRequestDTO)
+    case checkEmail(request: EmailRequestDTO)
+    case checkNickname(request: NicknameRequestDTO)
+    
 }
 
 extension AuthService: TargetType {
@@ -22,19 +24,23 @@ extension AuthService: TargetType {
         switch self {
         case .checkEmail:
             return URLConstant.checkEmail
+        case .checkNickname:
+            return URLConstant.checkNickname
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .checkEmail:
+        case .checkEmail, .checkNickname:
             return .post
         }
     }
     
     var task: Moya.Task {
         switch self {
-        case .checkEmail(requestEmail: let data):
+        case .checkEmail(request: let data):
+            return .requestJSONEncodable(data)
+        case .checkNickname(request: let data):
             return .requestJSONEncodable(data)
         }
     }
