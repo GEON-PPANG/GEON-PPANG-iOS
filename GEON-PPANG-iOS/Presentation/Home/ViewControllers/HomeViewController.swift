@@ -49,7 +49,7 @@ final class HomeViewController: BaseViewController {
     // MARK: - UI Property
     
     private let topView = HomeTopView()
-    private lazy var bubbleView = BubbleView()
+    private lazy var bubbleView = BubbleView(.home)
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
     
     // MARK: - Life Cycle
