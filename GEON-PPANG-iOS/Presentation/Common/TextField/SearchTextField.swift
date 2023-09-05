@@ -14,7 +14,6 @@ final class SearchTextField: UITextField {
     
     // MARK: - Property
     
-    var rightButtonType: RightButtonType = .searchButton
     var viewType: ViewType = .home
     var searchToBakeryList: ((String) -> Void)?
     var pushToSearchView: (() -> Void)?
@@ -70,8 +69,7 @@ final class SearchTextField: UITextField {
             $0.backgroundColor = .gbbGray100
             $0.placeholder = I18N.Home.searchPlaceholder
             $0.setPlaceholder(color: .gbbGray300!, font: .bodyM1!)
-            $0.setLeftPadding(amount: 15)
-            updateRightViewMode()
+            configureButtonSubView()
         }
     }
     
@@ -80,27 +78,25 @@ final class SearchTextField: UITextField {
         self.delegate = self
     }
     
-    private func addRightButton(_ buttonType: RightButtonType) {
+    private func configureButtonSubView() {
         
-        rightButtonType = buttonType
-        updateRightViewMode()
-    }
-    
-    private func updateRightViewMode() {
-        
-        switch rightButtonType {
-        case .searchButton:
-            rightView = searchButton
-            rightViewMode = .unlessEditing
-        case .clearButton:
+        switch viewType {
+        case .search:
+            leftView = searchButton
+            leftViewMode = .always
             rightView = clearButton
             rightViewMode = .whileEditing
+        case .home:
+            setLeftPadding(amount: 0)
+            rightView = searchButton
+            rightViewMode = .always
         }
     }
     
-    func configureViewType(_ viewtype: ViewType) {
+    func configureViewType(viewtype: ViewType) {
         
         self.viewType = viewtype
+        self.configureButtonSubView()
     }
     
     func fetchText() -> String {
@@ -112,15 +108,6 @@ final class SearchTextField: UITextField {
 // MARK: - UITextFieldDelegate
 
 extension SearchTextField: UITextFieldDelegate {
-    
-    func textFieldDidChangeSelection(_ textField: UITextField) {
-        
-        if self.isEmpty {
-            addRightButton(.searchButton)
-        } else {
-            addRightButton(.clearButton)
-        }
-    }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         
@@ -147,4 +134,13 @@ extension SearchTextField: UITextFieldDelegate {
                                            bottom: 0,
                                            right: 15))
     }
+    
+    override public func leftViewRect(forBounds bounds: CGRect) -> CGRect {
+
+            let rect = super.leftViewRect(forBounds: bounds)
+            return rect.inset(by: UIEdgeInsets(top: 0,
+                                               left: 15,
+                                               bottom: 0,
+                                               right: -15))
+        }
 }

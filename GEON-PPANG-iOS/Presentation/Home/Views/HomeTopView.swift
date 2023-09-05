@@ -80,7 +80,7 @@ final class HomeTopView: UIView {
         }
         
         searchTextField.do {
-            $0.configureViewType(.home)
+            $0.configureViewType(viewtype: .home)
             $0.pushToSearchView = {
                 self.pushToSearchView?()
             }

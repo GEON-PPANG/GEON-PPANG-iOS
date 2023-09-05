@@ -7,9 +7,9 @@
 
 import Foundation
 
-enum RightButtonType {
-    case searchButton
-    case clearButton
+enum ButtonSubViewType {
+    case search
+    case clear
 }
 
 enum ViewType {

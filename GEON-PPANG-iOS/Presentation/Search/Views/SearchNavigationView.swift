@@ -58,7 +58,7 @@ final class SearchNavigationView: UIView {
     private func setUI() {
         
         searchTextField.do {
-            $0.configureViewType(.search)
+            $0.configureViewType(viewtype: .search)
             $0.searchToBakeryList = { text in
                 self.fetchBakeryList?(text)
             }
