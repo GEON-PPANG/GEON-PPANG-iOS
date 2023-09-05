@@ -106,6 +106,7 @@
 		09E445392AA3BA07008E3D33 /* SortBakeryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E445382AA3BA07008E3D33 /* SortBakeryFilterView.swift */; };
 		09F015F12A9C881A0093D4F0 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F015F02A9C881A0093D4F0 /* LogInViewController.swift */; };
 		09D55FC72A99F69000997FB4 /* BakeryCommonListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D55FC62A99F69000997FB4 /* BakeryCommonListResponseDTO.swift */; };
+		09F015F12A9C881A0093D4F0 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F015F02A9C881A0093D4F0 /* LogInViewController.swift */; };
 		09E445332AA34F90008E3D33 /* AuthRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E445322AA34F90008E3D33 /* AuthRequestDTO.swift */; };
 		09FD47C82A5DC991002020BD /* SearchNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47C72A5DC991002020BD /* SearchNavigationView.swift */; };
 		09FD47CA2A5DD38D002020BD /* SearchResultHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47C92A5DD38D002020BD /* SearchResultHeaderView.swift */; };
@@ -492,13 +493,6 @@
 			isa = PBXGroup;
 			children = (
 				09FD47D12A5DF892002020BD /* EmptyCollectionViewCell.swift */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		092F11B42A69A6FA00852CA5 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1087,7 +1081,6 @@
 		09FD47DA2A5E57CC002020BD /* MyReviews */ = {
 			isa = PBXGroup;
 			children = (
-				092F11B42A69A6FA00852CA5 /* Cell */,
 				098716B92A613B6A00538D05 /* Views */,
 				09FD47DB2A5E57E3002020BD /* ViewControllers */,
 			);
