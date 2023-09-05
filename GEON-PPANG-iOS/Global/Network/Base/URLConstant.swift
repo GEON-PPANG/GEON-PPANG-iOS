@@ -11,6 +11,7 @@ struct URLConstant {
     
     static let checkEmail = "/validation/email"
     static let checkNickname = "/validation/nickname"
+    static let login = "/auth/login"
     
     // MARK: - Filter
     

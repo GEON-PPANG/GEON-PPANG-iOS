@@ -14,6 +14,8 @@ final class LogInViewController: BaseViewController {
     
     // MARK: - Property
     
+    private var loginEmail: String = ""
+    private var loginPassword: String = ""
     private var IsEmailValid: Bool = false
     private var IsPasswordValid: Bool = false
     private var isValid: Bool = false {
@@ -31,6 +33,8 @@ final class LogInViewController: BaseViewController {
     private let accountLabel = UILabel()
     private let signInButton = UIButton()
     private let loginButton = CommonButton()
+    private lazy var backGroundView = BottomSheetAppearView()
+    private lazy var bottomSheet = CommonBottomSheet()
     
     // MARK: - Life Cycle
     
@@ -118,12 +122,21 @@ final class LogInViewController: BaseViewController {
             $0.setTitleColor(.gbbGray500!, for: .normal)
             $0.titleLabel?.font = .bodyB2!
             $0.setUnderline()
+            $0.addAction(UIAction { [weak self] _ in
+                guard let self else { return }
+                Utils.push(self.navigationController, SignInViewController())
+            }, for: .touchUpInside)
         }
         
         accountLabel.do {
             $0.basic(text: I18N.LogIn.noAccount,
                      font: .subHead!,
                      color: .gray_500!)
+        }
+        
+        bottomSheet.do {
+            $0.configureEmojiType(.sad)
+            $0.configureBottonSheetTitle(I18N.Bottomsheet.checkIdPassword)
         }
     }
     
@@ -139,6 +152,21 @@ final class LogInViewController: BaseViewController {
         loginButton.do {
             $0.isUserInteractionEnabled = isValid
             $0.configureButtonUI(isValid ? .gbbMain2!: .gbbGray200!)
+            $0.tappedCommonButton = {
+                if isValid {
+                    self.postLogin()
+                }
+            }
+        }
+    }
+    
+    func configureBottomSheet() {
+        
+        backGroundView.appearBottomSheetView(subView: self.bottomSheet, 316)
+        bottomSheet.do {
+            $0.dismissBottomSheet = {
+                self.backGroundView.dissmissFromSuperview()
+            }
         }
     }
 }
@@ -152,8 +180,10 @@ extension LogInViewController: UITextFieldDelegate {
         guard let text = textField.text else { return }
         switch textField {
         case emailTextField.configureTextField():
+            self.loginEmail = text
             self.IsEmailValid = (text.isValidEmail() && !emailTextField.fetchText().isEmpty) ? true : false
         case passwordTextField.configureTextField():
+            self.loginPassword = text
             self.IsPasswordValid = !passwordTextField.fetchText().isEmpty ? true : false
         default:
             break
@@ -167,5 +197,22 @@ extension LogInViewController: UITextFieldDelegate {
         
         textField.resignFirstResponder()
         return true
+    }
+}
+
+extension LogInViewController {
+    private func postLogin() {
+        let loginData = LoginRequestDTO(email: self.loginEmail, password: self.loginPassword)
+        AuthAPI.shared.postLogin(to: loginData) { result in
+            guard let status = result else { return }
+            switch status {
+            case 200...204:
+                let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+                sceneDelegate?.changeRootViewControllerToTabBarController()
+            default:
+                self.configureBottomSheet()
+                self.configureButtonUI(false)
+            }
+        }
     }
 }
