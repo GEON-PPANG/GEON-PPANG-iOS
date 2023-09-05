@@ -115,7 +115,7 @@ final class BakeryListViewController: BaseViewController {
         }
         
         bakerySortView.do {
-            $0.backgroundColor = .gbbBackground2
+            $0.backgroundColor = .gbbBackground1
             $0.applyFilterAction {
                 self.bakeryFilterButtonTapped()
             }
