@@ -58,5 +58,4 @@ struct BakeryCommonListResponseDTO: Decodable, Hashable, BakeryListProtocol {
     static func == (lhs: BakeryCommonListResponseDTO, rhs: BakeryCommonListResponseDTO) -> Bool {
         lhs.id == rhs.id
     }
-    
 }
