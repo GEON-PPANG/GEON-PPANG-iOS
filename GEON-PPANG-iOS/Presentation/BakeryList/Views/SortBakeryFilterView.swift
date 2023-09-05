@@ -9,7 +9,6 @@ import UIKit
 
 import SnapKit
 import Then
-
 import Moya
 
 final class SortBakeryFilterView: UIView {
