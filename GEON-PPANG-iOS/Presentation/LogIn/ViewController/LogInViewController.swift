@@ -193,6 +193,12 @@ extension LogInViewController: UITextFieldDelegate {
         configureButtonUI(self.isValid)
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
+    }
+    
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         
         textField.resignFirstResponder()
