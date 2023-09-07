@@ -10,11 +10,20 @@ import UIKit
 import SnapKit
 import Then
 
-final class MyPageCollectionViewCell: UICollectionViewCell {
+final class MyPageBasicCell: UICollectionViewCell {
+    
+    // MARK: - Property
+    
+    var hasVersion: Bool = false {
+        didSet {
+            configureAppVersion()
+        }
+    }
     
     // MARK: - UI Property
     
     private let titleLabel = UILabel()
+    private lazy var versionLabel = UILabel()
     
     // MARK: - Life Cycle
     
@@ -59,6 +68,23 @@ final class MyPageCollectionViewCell: UICollectionViewCell {
         
         titleLabel.do {
             $0.text = text
+        }
+    }
+    
+    func configureAppVersion() {
+        
+        let version = Utils.version ?? "1.0"
+        
+        self.addSubview(versionLabel)
+        versionLabel.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(24)
+            $0.centerY.equalToSuperview()
+        }
+        
+        versionLabel.do {
+            $0.text = "v\(version)"
+            $0.font = .bodyB2
+            $0.textColor = .gbbMain1
         }
     }
     

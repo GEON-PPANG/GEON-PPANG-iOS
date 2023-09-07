@@ -41,8 +41,8 @@ struct I18N {
         
     }
     
-    /// WriteReviewViewController
-    struct WriteReview {
+    /// ReviewViewController
+    struct Review {
         static let writeReview = "리뷰 쓰기"
         static let likeOptionTitle = "건빵집은 어떠셨나요?"
         static let likePlaceholder = "추가로 좋았던 점이 있다면 말씀해주세요!"
@@ -57,6 +57,8 @@ struct I18N {
         static let sheetContinue = "아니요, 계속 쓸게요"
         
         static let confirmSheetTitle = "작성이 완료됐어요!"
+        
+        static let emptyReviewText = "작성한 리뷰가 없어요"
     }
     
     /// BakeryList
