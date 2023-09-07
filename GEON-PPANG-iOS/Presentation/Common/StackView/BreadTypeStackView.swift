@@ -54,6 +54,7 @@ final class BreadTypeStackView: UIStackView {
     private func setUI() {
         
         self.do {
+            $0.backgroundColor = .gbbBackground1
             $0.axis = .horizontal
             $0.spacing = 4
             $0.distribution = .equalSpacing
@@ -61,9 +62,9 @@ final class BreadTypeStackView: UIStackView {
         
         [glutenFreeChip, veganBreadChip, nutFreeChip, noSugarChip].enumerated().forEach { index, chip in
             chip.do {
-                $0.basic(text: labeling[index], font: .captionM1!, color: .gbbGray400!)
+                $0.basic(text: labeling[index], font: .captionM1!, color: .gbbPoint1!)
                 $0.makeCornerRound(radius: 3)
-                $0.makeBorder(width: 0.5, color: .gbbGray300!)
+                $0.makeBorder(width: 0.5, color: .gbbPoint1!)
             }
         }
     }
