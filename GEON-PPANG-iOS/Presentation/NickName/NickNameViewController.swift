@@ -14,6 +14,7 @@ final class NickNameViewController: BaseViewController {
     
     // MARK: - Property
     
+    private var checkNickname: String = ""
     private var isValid: Bool = false {
         didSet {
             configureCheckButtonUI(isValid)
@@ -100,7 +101,7 @@ final class NickNameViewController: BaseViewController {
             $0.configureBorder(1, .gbbGray300)
             $0.configureButtonTitle(.duplicate)
             $0.addActionToCommonButton {
-                self.backGroundView.appearBottomSheetView(subView: self.bottomSheet, 292)
+                self.postNicknameCheck()
             }
         }
         
@@ -115,17 +116,8 @@ final class NickNameViewController: BaseViewController {
         }
         
         bottomSheet.do {
-            $0.configureEmojiType(.smile)
-            $0.configureBottonSheetTitle(I18N.Bottomsheet.diableNickname)
             $0.dismissBottomSheet = {
                 self.backGroundView.dissmissFromSuperview()
-                self.nextButton.do {
-                    $0.isUserInteractionEnabled = true
-                    $0.configureButtonUI(.gbbMain2!)
-                    $0.tappedCommonButton = {
-                        Utils.push(self.navigationController, FilterViewController(isInitial: true))
-                    }
-                }
             }
         }
     }
@@ -145,6 +137,18 @@ final class NickNameViewController: BaseViewController {
             $0.isUserInteractionEnabled = isValid
             $0.configureButtonTitle(isValid ? .start : .next)
             $0.configureButtonUI(isValid ? .gbbMain2! : .gbbGray200!)
+            $0.tappedCommonButton = {
+                Utils.push(self.navigationController, FilterViewController(isInitial: true))
+            }
+        }
+    }
+    
+    func configureBottomSheet(_ type: EmojiType, _ title: String ) {
+        
+        backGroundView.appearBottomSheetView(subView: self.bottomSheet, 292)
+        bottomSheet.do {
+            $0.configureEmojiType(type)
+            $0.configureBottonSheetTitle(title)
         }
     }
 }
@@ -154,7 +158,9 @@ final class NickNameViewController: BaseViewController {
 extension NickNameViewController: UITextFieldDelegate {
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
+        
         guard let text = textField.text else { return }
+        self.checkNickname = text
         
         if !text.isNotContainSpecialCharacters() || text.isEmpty {
             updateTextFieldStatus(false, text.isEmpty)
@@ -167,7 +173,7 @@ extension NickNameViewController: UITextFieldDelegate {
         if isError {
             nicknameTextField.clearErrorMessage()
         } else {
-            nicknameTextField.setErrorMessage(I18N.Rule.nickname, isValid)
+            nicknameTextField.setErrorMessage(I18N.Rule.nickname, true)
         }
         
         self.isValid = isValid
@@ -178,13 +184,36 @@ extension NickNameViewController: UITextFieldDelegate {
         guard let currentText = textField.text else { return false }
         let changedText = (currentText as NSString).replacingCharacters(in: range, with: string)
         
+        self.configureNextButtonUI( currentText == changedText)
+        
         return changedText.count < 11
         
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        
+        self.checkNickname = textField.text ?? ""
         textField.resignFirstResponder()
         return true
+    }
+}
+
+// MARK: - Network
+
+extension NickNameViewController {
+    
+    private func postNicknameCheck() {
+        
+        let checkNickname = NicknameRequestDTO(nickname: self.checkNickname)
+        AuthAPI.shared.postCheckNickname(to: checkNickname) { result in
+            guard let status = result else { return }
+            switch status {
+            case 200...204:
+                self.configureBottomSheet(.smile, I18N.Bottomsheet.nickname)
+                self.configureNextButtonUI(true)
+            default:
+                self.configureBottomSheet(.sad, I18N.Bottomsheet.duplicatedNickname)
+                self.configureNextButtonUI(false)
+            }
+        }
     }
 }

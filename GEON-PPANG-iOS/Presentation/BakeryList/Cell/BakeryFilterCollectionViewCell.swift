@@ -84,7 +84,7 @@ final class BakeryFilterCollectionViewCell: UICollectionViewCell {
         
         filterTitle.textColor = isTapped ? .gbbGray700 : .gbbBackground2
         filterTitle.font = .captionM1
-        contentView.backgroundColor = isTapped ? .gbbGray100 : .gbbMain3
+        contentView.backgroundColor = isTapped ? .gbbWhite : .gbbMain3
         contentView.makeBorder(width: 1, color: isTapped ? .gbbGray200! : .gbbMain2!)
     }
     

@@ -74,13 +74,13 @@ final class MySavedBakeryViewController: BaseViewController {
         }
         
         collectionView.do {
+            $0.backgroundColor = .gbbBackground1
             $0.delegate = self
         }
     }
     
     private func setRegistration() {
         
-        collectionView.register(cell: BakeryCommonCollectionViewCell.self)
         collectionView.register(cell: EmptyCollectionViewCell.self)
     }
     
@@ -140,8 +140,15 @@ final class MySavedBakeryViewController: BaseViewController {
             case .main:
                 var config = UICollectionLayoutListConfiguration(appearance: .plain)
                 config.backgroundColor = .clear
-                config.showsSeparators = true
                 
+                config.itemSeparatorHandler = { indexPath, config in
+                    var config = config
+                    guard let itemCount = self.dataSource?.snapshot().itemIdentifiers(inSection: .main).count else { return config }
+                    
+                    let isLastItem = indexPath.item == itemCount - 1
+                    config.bottomSeparatorVisibility = isLastItem ? .hidden : .visible
+                    return config
+                }
                 let layoutSection = NSCollectionLayoutSection.list(using: config, layoutEnvironment: layoutEnvirnment)
                 return layoutSection
             case .empty, .none:

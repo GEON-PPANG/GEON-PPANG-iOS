@@ -62,6 +62,13 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
             
         }
         
+        contentView.addSubview(bookmarkStackView)
+        bookmarkStackView.snp.makeConstraints {
+            $0.top.equalTo(bakeryImage.snp.top).offset(4)
+            $0.trailing.equalToSuperview().inset(24)
+            $0.height.equalTo(16)
+        }
+        
         contentView.addSubview(bakeryTitle)
         bakeryTitle.snp.makeConstraints {
             $0.top.equalTo(bakeryImage.snp.top)
@@ -81,14 +88,6 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
             $0.top.equalTo(collectionView.snp.bottom).offset(12)
             $0.height.equalTo(15)
             $0.leading.equalTo(bakeryImage.snp.trailing).offset(11)
-        }
-        
-        contentView.addSubview(bookmarkStackView)
-        bookmarkStackView.snp.makeConstraints {
-            $0.top.equalTo(bakeryImage.snp.top).offset(4)
-            $0.leading.equalTo(bakeryTitle.snp.trailing).offset(24)
-            $0.trailing.equalToSuperview().inset(24)
-            $0.height.equalTo(16)
         }
         
         bakeryImage.addSubview(markStackView)
