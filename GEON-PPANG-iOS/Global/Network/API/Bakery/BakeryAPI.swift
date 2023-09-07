@@ -47,29 +47,6 @@ final class BakeryAPI {
         }
     }
     
-    // MARK: - POST
-    
-    func postWriteReview(content: WriteReviewRequest, completion: @escaping (WriteReviewResponse?) -> Void) {
-        // TODO: bakery ID 는 이전 View 에서 전달받아온 값으로 설정
-        bakeryProvider.request(.writeReview(bakeryID: 15, content: content)) { result in
-            switch result {
-            case let .success(response):
-                do {
-                    self.writeReview = try response.map(WriteReviewResponse.self)
-                    guard let writeReview = self.writeReview else { return }
-                    
-                    completion(writeReview)
-                    print("✅\(writeReview)")
-                } catch let err {
-                    print(err.localizedDescription, 500)
-                }
-            case .failure(let err):
-                print(err.localizedDescription)
-                completion(nil)
-            }
-        }
-    }
-    
     func getBakeryDetail(bakeryID: Int, completion: @escaping (GeneralResponse<BakeryDetailResponseDTO>?) -> Void) {
         bakeryProvider.request(.fetchBakeryDetail(bakeryID: bakeryID)) { result in
             switch result {

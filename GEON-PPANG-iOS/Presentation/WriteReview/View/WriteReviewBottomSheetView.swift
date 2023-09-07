@@ -84,7 +84,7 @@ final class WriteReviewBottomSheetView: UIView {
     private func setUI() {
         
         sheetTitleLabel.do {
-            $0.text = I18N.WriteReview.sheetTitle
+            $0.text = I18N.Review.sheetTitle
             $0.font = .title2
             $0.textColor = .gbbGray500
         }
@@ -93,13 +93,13 @@ final class WriteReviewBottomSheetView: UIView {
             $0.font = .bodyM2
             $0.textColor = .gbbGray400
             $0.numberOfLines = 2
-            $0.setLineHeight(by: 1.14, with: I18N.WriteReview.sheetDescription)
+            $0.setLineHeight(by: 1.14, with: I18N.Review.sheetDescription)
             $0.textAlignment = .center
         }
         
         quitButton.do {
             $0.configureButtonUI(.gbbGray100!)
-            $0.configureButtonTitle(to: I18N.WriteReview.sheetQuit)
+            $0.configureButtonTitle(to: I18N.Review.sheetQuit)
             $0.configureButtonTitle(color: .gbbGray300!)
             $0.addActionToCommonButton {
                 self.dismissClosure!()
@@ -108,7 +108,7 @@ final class WriteReviewBottomSheetView: UIView {
         
         continueButton.do {
             $0.configureButtonUI(.gbbBlack!)
-            $0.configureButtonTitle(to: I18N.WriteReview.sheetContinue)
+            $0.configureButtonTitle(to: I18N.Review.sheetContinue)
             $0.configureButtonTitle(color: .gbbGray100!)
             $0.addActionToCommonButton {
                 self.continueClosure!()

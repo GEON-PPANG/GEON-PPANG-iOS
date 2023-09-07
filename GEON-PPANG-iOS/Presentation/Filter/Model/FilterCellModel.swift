@@ -52,8 +52,8 @@ extension FilterCellModel {
                     subtitle: "NO 견과류",
                     selected: false),
         FilterCellModel(id: 7,
-                    title: "저당, 무설탕",
-                    subtitle: "대체당 사용",
+                    title: "대체당",
+                    subtitle: "알룰로스, 스테비아,\n에리스리톨, 말티톨 등",
                     selected: false)
     ]
     

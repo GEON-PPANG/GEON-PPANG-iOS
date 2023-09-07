@@ -5,7 +5,7 @@
 //  Created by 이성민 on 2023/07/13.
 //
 
-import Foundation
+import UIKit
 
 enum FilterType: Int, CaseIterable {
     case purpose
@@ -62,13 +62,21 @@ enum FilterType: Int, CaseIterable {
     var labelSpacing: CGFloat {
         switch self {
         case .purpose: return 9
-        case .breadType: return 24
+        case .breadType: return 20
         case .ingredient: return 0
         }
     }
     
     var lineSpacing: CGFloat {
         return 20
+    }
+    
+    var descriptionFont: UIFont? {
+        switch self {
+        case .purpose: return .bodyM1
+        case .breadType: return .subHead
+        case .ingredient: return nil
+        }
     }
     
     var hideDescription: Bool {
@@ -107,26 +115,4 @@ enum FilterPurposeType: String, CaseIterable {
         case .vegan: return "VEGAN"
         }
     }
-}
-
-enum FilterBreadType: String, CaseIterable {
-    case isGlutenFree = "글루텐프리"
-    case isVegan = "비건빵"
-    case isNutFree = "넛프리"
-    case isSugarless = "저당, 무설탕"
-    
-    var description: String {
-        switch self {
-        case .isGlutenFree: return "NO 글루텐 포함\n밀 , 곡물류"
-        case .isVegan: return "NO 동물성재료\n(유제품, 계란)"
-        case .isNutFree: return "NO 견과류"
-        case .isSugarless: return "대체당 사용"
-        }
-    }
-}
-
-enum FilterIngredientType: String, CaseIterable {
-    case isNutrientOpen = "영양성분 공개"
-    case isIngredientOpen = "원재료 공개"
-    case isNotOpen = "비공개"
 }
