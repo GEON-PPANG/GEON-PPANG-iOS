@@ -19,10 +19,10 @@ final class BakeryDetailViewController: BaseViewController {
             self.collectionView.reloadData()
         }
     }
-    private var reviewData: WrittenReviewsResponseDTO = WrittenReviewsResponseDTO(tastePercent: 0,
+    private var reviewData: WrittenReviewsResponseDTO = WrittenReviewsResponseDTO(deliciousPercent: 0,
                                                                                   specialPercent: 0,
                                                                                   kindPercent: 0,
-                                                                                  zeroPercent: 0,
+                                                                                  zeroWastePercent: 0,
                                                                                   totalReviewCount: 0,
                                                                                   reviewList: [ReviewList(reviewID: 0,
                                                                                                           recommendKeywordList: [RecommendKeywordList(recommendKeywordID: 0, recommendKeywordName: "")],

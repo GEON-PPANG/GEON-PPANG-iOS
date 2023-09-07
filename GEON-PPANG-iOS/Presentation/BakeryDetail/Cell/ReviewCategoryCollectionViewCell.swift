@@ -69,6 +69,6 @@ final class ReviewCategoryCollectionViewCell: UICollectionViewCell {
     
     func configureCellUI(_ data: WrittenReviewsResponseDTO) {
         
-        reviewProgressBarStackView.configureGauge(data.tastePercent, data.specialPercent, data.kindPercent, data.zeroPercent)
+        reviewProgressBarStackView.configureGauge(data.deliciousPercent, data.specialPercent, data.kindPercent, data.zeroWastePercent)
     }
 }

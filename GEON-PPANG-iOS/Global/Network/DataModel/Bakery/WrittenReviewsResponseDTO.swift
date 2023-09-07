@@ -10,7 +10,7 @@ import Foundation
 // MARK: - WrittenReviewsResponseDTO
 
 struct WrittenReviewsResponseDTO: Codable {
-    let tastePercent, specialPercent, kindPercent, zeroPercent: Float
+    let deliciousPercent, specialPercent, kindPercent, zeroWastePercent: Float
     let totalReviewCount: Int
     let reviewList: [ReviewList]
 }
