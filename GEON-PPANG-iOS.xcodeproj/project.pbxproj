@@ -141,6 +141,7 @@
 		3E61EE882AA63BE4004F25DB /* ReviewEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61EE872AA63BE4004F25DB /* ReviewEnum.swift */; };
 		3E61EE8E2AA95158004F25DB /* MyReviewDetailResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61EE8D2AA95158004F25DB /* MyReviewDetailResponseDTO.swift */; };
 		3E61EE922AA953EE004F25DB /* ReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61EE912AA953EE004F25DB /* ReviewService.swift */; };
+		3E61EE952AA95592004F25DB /* ReviewAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61EE942AA95592004F25DB /* ReviewAPI.swift */; };
 		3E79B19D2A54523D00D36A26 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B19C2A54523D00D36A26 /* BackButton.swift */; };
 		3E79B1A02A5546E700D36A26 /* DescriptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B19F2A5546E700D36A26 /* DescriptionCollectionViewCell.swift */; };
 		3E79B1A62A566F6400D36A26 /* WriteReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1A52A566F6400D36A26 /* WriteReviewViewController.swift */; };
@@ -328,6 +329,7 @@
 		3E61EE872AA63BE4004F25DB /* ReviewEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewEnum.swift; sourceTree = "<group>"; };
 		3E61EE8D2AA95158004F25DB /* MyReviewDetailResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewDetailResponseDTO.swift; sourceTree = "<group>"; };
 		3E61EE912AA953EE004F25DB /* ReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewService.swift; sourceTree = "<group>"; };
+		3E61EE942AA95592004F25DB /* ReviewAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAPI.swift; sourceTree = "<group>"; };
 		3E79B19C2A54523D00D36A26 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		3E79B19F2A5546E700D36A26 /* DescriptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionCollectionViewCell.swift; sourceTree = "<group>"; };
 		3E79B1A52A566F6400D36A26 /* WriteReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewViewController.swift; sourceTree = "<group>"; };
@@ -817,6 +819,7 @@
 		0961C3682A501EE90031A822 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				3E61EE932AA95587004F25DB /* Review */,
 				0959F1542A6589D800E77CAF /* Auth */,
 				0959F1552A6589E000E77CAF /* Filter */,
 				0959F1532A6589A200E77CAF /* Home */,
@@ -1212,6 +1215,14 @@
 			path = Review;
 			sourceTree = "<group>";
 		};
+		3E61EE932AA95587004F25DB /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				3E61EE942AA95592004F25DB /* ReviewAPI.swift */,
+			);
+			path = Review;
+			sourceTree = "<group>";
+		};
 		3E79B19B2A54523400D36A26 /* Button */ = {
 			isa = PBXGroup;
 			children = (
@@ -1595,6 +1606,7 @@
 				097682DC2A5C83910008F4FB /* CGFloat+.swift in Sources */,
 				DFDE72DD2A668FFE00389A51 /* ReviewCategoryStackView.swift in Sources */,
 				3ED40DF92A5FCF3800C7D5DA /* FilterEnum.swift in Sources */,
+				3E61EE952AA95592004F25DB /* ReviewAPI.swift in Sources */,
 				0959F1842A658CF300E77CAF /* MyPageAPI.swift in Sources */,
 				0924632F2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift in Sources */,
 				097682E92A5D0B6B0008F4FB /* BakeryListTopView.swift in Sources */,
