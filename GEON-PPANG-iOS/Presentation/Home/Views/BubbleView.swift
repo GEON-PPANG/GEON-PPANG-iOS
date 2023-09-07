@@ -11,11 +11,7 @@ import SnapKit
 import Then
 
 final class BubbleView: UIView {
-    
-    // MARK: - Property
-    
- //   var tappedCancelButton: (() -> Void)?
-    
+
     // MARK: - UI Property
     
     private let bubbleView = UIImageView()
@@ -81,6 +77,7 @@ final class BubbleView: UIView {
     func configureLayout(trailing: ConstraintRelatableTarget,
                          top: ConstraintRelatableTarget,
                          offset: Float) {
+        
         self.snp.makeConstraints {
             $0.size.equalTo(CGSize(width: 209, height: 36))
             $0.trailing.equalTo(trailing).inset(24)
