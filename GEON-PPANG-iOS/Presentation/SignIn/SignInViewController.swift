@@ -117,7 +117,6 @@ final class SignInViewController: BaseViewController {
         
         naviView.do {
             $0.configureBottomLine()
-            $0.configureRightCount(1, by: 6)
             $0.configureBackButtonAction(UIAction { [weak self] _ in
                 self?.navigationController?.popViewController(animated: true)
             })

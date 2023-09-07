@@ -27,7 +27,7 @@ final class BakeryFilterView: UIView {
     // MARK: - UI Property
     
     private lazy var filterCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
-    private lazy var filterButton = UIButton(configuration: .plain())
+    private lazy var filterButton = UIButton()
     
     private let topView = LineView()
     private let lineView = LineView()
@@ -62,21 +62,21 @@ final class BakeryFilterView: UIView {
         
         self.addSubview(filterButton)
         filterButton.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(24)
+            $0.trailing.equalToSuperview().inset(24)
             $0.centerY.equalToSuperview()
         }
         
         self.addSubview(lineView)
         lineView.snp.makeConstraints {
             $0.width.equalTo(1)
-            $0.leading.equalTo(filterButton.snp.trailing).offset(12)
+            $0.trailing.equalTo(filterButton.snp.leading).offset(-18)
             $0.directionalVerticalEdges.equalToSuperview().inset(15)
         }
-        
         self.addSubview(filterCollectionView)
         filterCollectionView.snp.makeConstraints {
-            $0.leading.equalTo(lineView.snp.trailing)
-            $0.centerY.trailing.equalToSuperview()
+            $0.leading.equalToSuperview()
+            $0.trailing.equalTo(lineView.snp.leading).offset(-20)
+            $0.centerY.equalToSuperview()
             $0.height.equalTo(42)
         }
         
@@ -95,15 +95,7 @@ final class BakeryFilterView: UIView {
         }
         
         filterButton.do {
-            $0.configuration?.contentInsets = .init(top: 11, leading: 12, bottom: 11, trailing: 12)
-            $0.configuration?.background.strokeWidth = 1
-            $0.configuration?.background.strokeColor = .gbbGray200
-            $0.configuration?.baseForegroundColor = .gbbGray700
-            $0.configuration?.image = .swapIcon.resize(to: CGSize(width: 16, height: 16))
-            $0.configuration?.attributedTitle = AttributedString(I18N.BakeryList.defaultFilter,
-                                                                 attributes: AttributeContainer([.font: UIFont.captionB1!]))
-            $0.configuration?.cornerStyle = .capsule
-            $0.configuration?.imagePadding = 5
+            $0.setImage(.bakeryFilterButton, for: .normal)
         }
     }
     
@@ -112,7 +104,7 @@ final class BakeryFilterView: UIView {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 10
         layout.scrollDirection = .horizontal
-        layout.sectionInset = .init(top: 0, left: 13, bottom: 0, right: 13)
+        layout.sectionInset = .init(top: 0, left: 24, bottom: 0, right: 0)
         return layout
     }
     
@@ -146,16 +138,6 @@ final class BakeryFilterView: UIView {
             action()
         }
         filterButton.addAction(action, for: .touchUpInside)
-    }
-    
-    func configureFilterButtonText(to text: String) {
-        
-        filterButton.do {
-            $0.configuration?.contentInsets = .init(top: 11, leading: 12, bottom: 11, trailing: 12)
-            $0.configuration?.attributedTitle = AttributedString(text,
-                                                                 attributes: AttributeContainer([.font: UIFont.captionB1!]))
-            
-        }
     }
 }
 
@@ -193,6 +175,7 @@ extension BakeryFilterView: UICollectionViewDelegate {
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension BakeryFilterView: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let cellWidth: CGFloat
