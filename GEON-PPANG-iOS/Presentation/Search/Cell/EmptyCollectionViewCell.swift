@@ -96,12 +96,12 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
                                     font: .title2!,
                                     color: .gbbGray300!)
         case .noSearch:
-            return emptyLabel.partFontChange(targetString: type.subTitle,
-                                             font: .subHead!)
+            return emptyLabel.partFontChange(targetString: type.subTitle, font: .subHead!)
         }
     }
     
     func configureEmptyText(_ text: String) {
+        
         emptyLabel.text = text
     }
 }
