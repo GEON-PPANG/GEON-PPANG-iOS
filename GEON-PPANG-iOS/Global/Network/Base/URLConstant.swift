@@ -27,11 +27,14 @@ struct URLConstant {
     // MARK: - Bakery
     
     static let bakeryList = "/bakeries"
-    static let writeReview = "/reviews"
     
     // MARK: - MyPage
     
     static let member = "/member"
+    
+    // MARK: - Review
+    
+    static let review = "/reviews"
     
     // MARK: - Bookmark
     
