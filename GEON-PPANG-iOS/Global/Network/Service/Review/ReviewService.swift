@@ -24,7 +24,7 @@ extension ReviewService: TargetType {
         case .writeReview(bakeryID: let bakeryID, _):
             return URLConstant.review + "/\(bakeryID)"
         case .fetchMyReviewDetail(reviewID: let reviewID):
-            return URLConstant.review + "\(reviewID)"
+            return URLConstant.review + "/\(reviewID)"
         }
     }
     
