@@ -62,8 +62,8 @@ final class MyReviewsViewController: BaseViewController {
         }
         
         collectionView.do {
+            $0.backgroundColor = .gbbBackground1
             $0.isScrollEnabled = false
-            $0.contentInset = .init(top: 18, left: 0, bottom: 0, right: 0)
         }
     }
     
@@ -91,10 +91,17 @@ final class MyReviewsViewController: BaseViewController {
                 config.backgroundColor = .clear
                 config.showsSeparators = true
                 config.headerMode = .supplementary
-                config.separatorConfiguration.topSeparatorVisibility = .hidden
-                config.separatorConfiguration.bottomSeparatorVisibility = .visible
-                
+                config.itemSeparatorHandler = { (indexPath, separatorConfiguration) in
+                    var configuration = separatorConfiguration
+                    configuration.topSeparatorVisibility = .hidden
+                    configuration.bottomSeparatorInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 0)
+                    if indexPath == self.collectionView.indexPathsForVisibleItems.last {
+                        configuration.bottomSeparatorVisibility = .hidden
+                    }
+                    return configuration
+                }
                 let layoutSection = NSCollectionLayoutSection.list(using: config, layoutEnvironment: layoutEnvirnment)
+                layoutSection.contentInsets = .zero
                 return layoutSection
             }
         }
@@ -136,6 +143,7 @@ extension MyReviewsViewController: UICollectionViewDataSource {
             return cell
         } else {
             let cell: BakeryCommonCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+            cell.configureReviewsUI()
             cell.configureCellUI(data: myReviewsList[indexPath.section].bakeryList)
             return cell
         }

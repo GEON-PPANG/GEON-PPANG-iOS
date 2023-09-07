@@ -14,15 +14,12 @@ final class SortBottomSheetViewController: BaseViewController {
     
     // MARK: - Property
     
-    private let bottomSheetHeight: CGFloat = 215
     var selectedSortBy: SortBakery = .byDefault
     var dataBind: ((SortBakery) -> Void)?
     
     // MARK: - UI Property
     
-    private let dimmedView = UIView()
     private let bottomSheetView = UIView()
-    
     private let sortViewTitle = UILabel()
     private let flowLayout = UICollectionViewFlowLayout()
     private lazy var sortBakeryCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
@@ -30,9 +27,26 @@ final class SortBottomSheetViewController: BaseViewController {
     // MARK: - Life Cycle
     
     init(sort: SortBakery) {
+        
         self.selectedSortBy = sort
         
         super.init(nibName: nil, bundle: nil)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        showBottomSheetViewController()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        let touch = touches.first!
+        let location = touch.location(in: self.bottomSheetView)
+        
+        if !self.view.frame.contains(location) {
+            dismissBottomSheetViewController()
+        }
     }
     
     @available(*, unavailable)
@@ -40,37 +54,14 @@ final class SortBottomSheetViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setDimmedViewTapGesture()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        showBottomSheet()
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-        Utils.updateCollectionViewConstraint(of: sortBakeryCollectionView)
-    }
-    
     // MARK: - Setting
     
     override func setLayout() {
         
-        view.addSubview(dimmedView)
-        dimmedView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        
         view.addSubview(bottomSheetView)
         bottomSheetView.snp.makeConstraints {
             $0.horizontalEdges.bottom.equalToSuperview()
-            $0.height.equalTo(0)
+            $0.height.equalTo(convertByHeightRatio(295))
         }
         
         bottomSheetView.addSubview(sortViewTitle)
@@ -83,7 +74,7 @@ final class SortBottomSheetViewController: BaseViewController {
         sortBakeryCollectionView.snp.makeConstraints {
             $0.top.equalTo(sortViewTitle.snp.bottom).offset(20)
             $0.horizontalEdges.equalToSuperview().inset(24)
-            $0.height.equalTo(50)
+            $0.height.equalTo(68)
         }
     }
     
@@ -122,51 +113,25 @@ final class SortBottomSheetViewController: BaseViewController {
         sortBakeryCollectionView.dataSource = self
     }
     
-    private func setDimmedViewTapGesture() {
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissingComponentTapped(_:)))
-        dimmedView.addGestureRecognizer(tapGesture)
-        dimmedView.isUserInteractionEnabled = true
-    }
-    
-    private func showBottomSheet() {
-        
-        UIView.animate(withDuration: 0.2) {
-            self.dimmedView.do {
-                $0.backgroundColor = .black.withAlphaComponent(0.4)
-            }
-            self.bottomSheetView.snp.updateConstraints {
-                $0.height.equalTo(self.bottomSheetHeight)
-            }
-            self.view.layoutIfNeeded()
-        }
-    }
-    
-    // MARK: - Action Helper
-    
-    @objc
-    private func dismissingComponentTapped(_ tapRecognizer: UITapGestureRecognizer) {
-        
-        dismissBottomSheetViewController()
-    }
-    
     // MARK: - Custom Method
     
     private func dismissBottomSheetViewController() {
         
         UIView.animate(withDuration: 0.2) {
-            self.dimmedView.do {
-                $0.backgroundColor = .black.withAlphaComponent(0.0)
-            }
-            self.bottomSheetView.snp.makeConstraints {
-                $0.height.equalTo(0)
-            }
-            self.view.layoutIfNeeded()
+            self.view.backgroundColor = .clear
         } completion: { _ in
             self.dismiss(animated: false)
         }
     }
     
+    private func showBottomSheetViewController() {
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.01) {
+            UIView.animate(withDuration: 0.2) {
+                self.view.backgroundColor = .black.withAlphaComponent(0.4)
+            }
+        }
+    }
 }
 
 // MARK: - UICollectionViewDelegate extension
@@ -181,9 +146,9 @@ extension SortBottomSheetViewController: UICollectionViewDelegate {
         default: dismissBottomSheetViewController()
         }
         dataBind?(selectedSortBy)
+        sortBakeryCollectionView.reloadData()
         dismissBottomSheetViewController()
     }
-    
 }
 
 // MARK: - UICollectionViewDataSource extension
@@ -207,7 +172,6 @@ extension SortBottomSheetViewController: UICollectionViewDataSource {
         }
         return cell
     }
-    
 }
 
 // MARK: - UICollectionDelegateFlowLayout extension
@@ -220,5 +184,4 @@ extension SortBottomSheetViewController: UICollectionViewDelegateFlowLayout {
         
         return .init(width: collectionView.bounds.width, height: 24)
     }
-    
 }

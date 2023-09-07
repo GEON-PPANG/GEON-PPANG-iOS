@@ -132,6 +132,4 @@ extension BottomSheetAppearView {
                 completion: nil)
         }
     }
-    
-    
 }
