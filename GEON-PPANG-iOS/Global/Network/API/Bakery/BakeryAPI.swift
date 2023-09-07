@@ -29,8 +29,8 @@ final class BakeryAPI {
     
     // MARK: - GET
     
-    func getBakeryList(sort: String, isHard: Bool, isDessert: Bool, isBrunch: Bool, completion: @escaping (GeneralArrayResponse<BakeryCommonListResponseDTO>?) -> Void) {
-        bakeryProvider.request(.bakeryList(sort: sort, isHard: isHard, isDessert: isDessert, isBrunch: isBrunch)) { result in
+    func getBakeryList(to request: BakeryRequestDTO, completion: @escaping (GeneralArrayResponse<BakeryCommonListResponseDTO>?) -> Void) {
+        bakeryProvider.request(.bakeryList(request: request)) { result in
             switch result {
             case let .success(response):
                 do {
