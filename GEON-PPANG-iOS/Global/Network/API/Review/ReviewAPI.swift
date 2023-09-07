@@ -35,7 +35,6 @@ final class ReviewAPI {
                     guard let writeReview = self.writeReview else { return }
                     
                     completion(writeReview)
-                    print("✅\(writeReview)")
                 } catch let err {
                     print(err.localizedDescription, 500)
                 }
