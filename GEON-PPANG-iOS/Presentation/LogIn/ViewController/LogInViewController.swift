@@ -209,6 +209,7 @@ extension LogInViewController: UITextFieldDelegate {
 extension LogInViewController {
     
     private func postLogin() {
+        
         let loginData = LoginRequestDTO(email: self.loginEmail, password: self.loginPassword)
         AuthAPI.shared.postLogin(to: loginData) { result in
             guard let status = result else { return }
