@@ -58,3 +58,39 @@ struct MenuList: Codable {
         case menuName, menuPrice
     }
 }
+
+// MARK: - Extentsion
+
+extension BakeryDetailResponseDTO {
+    
+    static func initialDTO() -> BakeryDetailResponseDTO {
+        
+        return BakeryDetailResponseDTO(bakeryID: 0,
+                                       bakeryName: "",
+                                       bakeryPicture: "",
+                                       isHACCP: false,
+                                       isVegan: false,
+                                       isNonGMO: false,
+                                       firstNearStation: "",
+                                       secondNearStation: "",
+                                       reviewCount: 0,
+                                       breadType: BreadResponseType(breadTypeID: 0,
+                                                                    name: "",
+                                                                    isGlutenFree: false,
+                                                                    isVegan: false,
+                                                                    isNutFree: false,
+                                                                    isSugarFree: false),
+                                       mapURL: "",
+                                       homepageURL: "",
+                                       instagramURL: "",
+                                       address: "",
+                                       openingHours: "",
+                                       closedDay: "",
+                                       phoneNumber: "",
+                                       menuList: [MenuList(menuID: 0,
+                                                           menuName: "",
+                                                           menuPrice: 0)],
+                                       isBookMarked: false,
+                                       bookMarkCount: 0)
+    }
+}
