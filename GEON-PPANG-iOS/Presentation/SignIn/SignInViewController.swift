@@ -18,14 +18,14 @@ final class SignInViewController: BaseViewController {
     private var checkPassword: String = ""
     private var password: String = "" {
         didSet {
-            configureTextView(isValid: { checkPassword.isEqual(self.password) ||  checkPassword.isEmpty},
+            configureCommonView(isValid: { checkPassword.isEqual(self.password) ||  checkPassword.isEmpty},
                               error: I18N.Rule.checkPassword,
                               view: checkPasswordTextField)
         }
     }
     
-    private var checkEmailIsValid: Bool = false
-    private var signInIsValid: [Bool] = [false, false, false]
+    private var isValidCheckEmail: Bool = false
+    private var isValidButton: [Bool] = [false, false, false]
     private var isValid: Bool = false {
         didSet {
             configureButtonUI(isValid)
@@ -135,7 +135,7 @@ final class SignInViewController: BaseViewController {
         
         emailTextField.do {
             $0.tappedCheckButton = {
-                if self.checkEmailIsValid {
+                if self.isValidCheckEmail {
                     self.postCheckEmail()
                 }
             }
@@ -165,7 +165,7 @@ final class SignInViewController: BaseViewController {
     
     func updateButtonStatus() {
         
-        self.isValid = signInIsValid.allSatisfy { $0 == true }
+        self.isValid = isValidButton.allSatisfy { $0 == true }
         configureButtonUI(self.isValid)
     }
 }
@@ -180,7 +180,7 @@ extension SignInViewController: UITextFieldDelegate {
             let currentText = textField.text ?? ""
             let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
             
-            signInIsValid[0] = newText == currentText
+            isValidButton[0] = newText == currentText
             updateButtonStatus()
         }
         
@@ -205,7 +205,7 @@ extension SignInViewController: UITextFieldDelegate {
         ]
         
         if let (isValid, error, view) = signViews[textField] {
-            configureTextView(isValid: isValid, error: error, view: view)
+            configureCommonView(isValid: isValid, error: error, view: view)
         }
         
         if text.isEmpty {
@@ -218,17 +218,17 @@ extension SignInViewController: UITextFieldDelegate {
         configureTextFieldText(textField)
     }
     
-    func configureTextView(isValid: () -> Bool,
+    func configureCommonView(isValid: () -> Bool,
                            error: String,
                            view: CommonTextView) {
         
         switch view {
         case emailTextField:
-            self.checkEmailIsValid = isValid()
+            self.isValidCheckEmail = isValid()
         case passwordTextField:
-            self.signInIsValid[1] = isValid()
+            self.isValidButton[1] = isValid()
         case checkPasswordTextField:
-            self.signInIsValid[2] = self.checkPassword.isEmpty ? false : isValid()
+            self.isValidButton[2] = self.checkPassword.isEmpty ? false : isValid()
         default:
             break
         }
@@ -269,11 +269,11 @@ extension SignInViewController {
             switch status {
             case 200...204:
                 self.emailTextField.setErrorMessage(I18N.Rule.email, false)
-                self.signInIsValid[0] = true
+                self.isValidButton[0] = true
                 
             default:
                 self.emailTextField.setErrorMessage(I18N.Rule.duplicatedEmail, true)
-                self.signInIsValid[0] = false
+                self.isValidButton[0] = false
             }
             self.updateButtonStatus()
         }
