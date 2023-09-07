@@ -92,6 +92,7 @@ final class ReviewDetailTextView: UIView {
     }
     
     private func setWhenWriting() {
+        
         guard type == .write else { return }
         
         self.addSubview(textLimitLabel)
