@@ -40,3 +40,11 @@ struct KeywordDescriptionList: Codable {
         case zeroWaste = "ZERO_WASTE"
     }
 }
+
+extension KeywordDescriptionList {
+    
+    static let keywordList = KeywordDescriptionList.Keyword.allCases.map { $0.rawValue }
+    
+    static let keywordRequestList = KeywordDescriptionList.Request.allCases.map { $0.rawValue }
+    
+}
