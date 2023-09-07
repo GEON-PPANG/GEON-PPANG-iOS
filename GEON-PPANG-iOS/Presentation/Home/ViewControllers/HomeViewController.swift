@@ -43,13 +43,13 @@ final class HomeViewController: BaseViewController {
     private var bakeryList: [HomeBestBakeryResponseDTO] = []
     private var reviewList: [HomeBestReviewResponseDTO] = []
     
-    private var nickname: String? 
+    private var nickname: String?
     private var isFirstAppearance = false
     
     // MARK: - UI Property
     
     private let topView = HomeTopView()
-    private lazy var bubbleView = BubbleView(.home)
+    private lazy var bubbleView = BubbleView()
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
     
     // MARK: - Life Cycle
@@ -112,22 +112,13 @@ final class HomeViewController: BaseViewController {
     
     private func configureBubbleView(_ isAppeared: Bool) {
         
-        if !isAppeared {
-            view.addSubview(bubbleView)
-            
-            bubbleView.snp.makeConstraints {
-                $0.size.equalTo(CGSize(width: 209, height: 36))
-                $0.trailing.equalTo(safeArea).inset(24)
-                $0.top.equalTo(topView.snp.bottom).offset(-19)
-            }
-            
-            bubbleView.do {
-                $0.tappedCancelButton = {
-                    self.bubbleView.removeFromSuperview()
-                }
-            }
-        } else {
+        if isAppeared {
             bubbleView.removeFromSuperview()
+        } else {
+            view.addSubview(bubbleView)
+            bubbleView.configureLayout(trailing: safeArea,
+                                       top: topView.snp.bottom,
+                                       offset: -19)
         }
     }
     

@@ -43,7 +43,7 @@ final class BakeryListViewController: BaseViewController {
     private let bakeryTopView = BakeryListTopView()
     private let bakeryFilterView = BakeryFilterView()
     private let bakerySortView = SortBakeryFilterView()
-    private lazy var bubbleView = BubbleView(.list)
+    private lazy var bubbleView = BubbleView()
     private lazy var bakeryListCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
     
     // MARK: - Life Cycle
@@ -137,22 +137,11 @@ final class BakeryListViewController: BaseViewController {
     
     private func configureBubbleView(_ isAppeared: Bool) {
         
-        if !isAppeared {
-            view.addSubview(bubbleView)
-            
-            bubbleView.snp.makeConstraints {
-                $0.size.equalTo(CGSize(width: 209, height: 36))
-                $0.leading.equalTo(safeArea).inset(29)
-                $0.top.equalTo(bakerySortView.snp.bottom).offset(-14)
-            }
-            
-            bubbleView.do {
-                $0.tappedCancelButton = {
-                    self.bubbleView.removeFromSuperview()
-                }
-            }
-        } else {
+        if isAppeared {
             bubbleView.removeFromSuperview()
+        } else {
+            view.addSubview(bubbleView)
+            bubbleView.configureLayout(trailing: safeArea, top: bakeryFilterView.snp.bottom, offset: -11)
         }
     }
     
