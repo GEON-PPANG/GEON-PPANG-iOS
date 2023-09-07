@@ -89,12 +89,6 @@ final class ReviewViewController: BaseViewController {
     
     override func setLayout() {
         
-        view.addSubview(navigationBar)
-        navigationBar.snp.makeConstraints {
-            $0.horizontalEdges.top.equalToSuperview()
-        }
-        view.bringSubviewToFront(navigationBar)
-        
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints {
             $0.edges.equalToSuperview()
@@ -152,6 +146,12 @@ final class ReviewViewController: BaseViewController {
             $0.horizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(221)
         }
+        
+        view.addSubview(navigationBar)
+        navigationBar.snp.makeConstraints {
+            $0.horizontalEdges.top.equalToSuperview()
+        }
+        view.bringSubviewToFront(navigationBar)
     }
     
     override func setUI() {
@@ -168,7 +168,7 @@ final class ReviewViewController: BaseViewController {
         scrollView.do {
             $0.showsVerticalScrollIndicator = false
             $0.verticalScrollIndicatorInsets = .zero
-            $0.backgroundColor = .gbbGray100
+            $0.backgroundColor = .white
         }
         
         contentView.do {
@@ -182,7 +182,6 @@ final class ReviewViewController: BaseViewController {
         }
         
         likeCollectionView.do {
-//            $0.isUserInteractionEnabled = false
             $0.toggleIsEnabled(to: false)
         }
         
@@ -225,7 +224,11 @@ final class ReviewViewController: BaseViewController {
     
     private func backButtonTapped() {
         
-        backgroundView.appearBottomSheetView(subView: exitBottomSheetView, CGFloat().heightConsideringBottomSafeArea(347))
+        if type == .read {
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            backgroundView.appearBottomSheetView(subView: exitBottomSheetView, CGFloat().heightConsideringBottomSafeArea(347))
+        }
     }
     
     // MARK: - Custom Method
