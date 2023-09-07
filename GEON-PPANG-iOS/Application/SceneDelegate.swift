@@ -20,7 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let window = UIWindow(windowScene: windowScene)
             window.overrideUserInterfaceStyle = UIUserInterfaceStyle.light
             
-            let rootViewController = TabBarController()
+//            let rootViewController = TabBarController()
+            let rootViewController = ReviewViewController(type: .read, bakeryData: .init(bakeryID: 3, bakeryName: "카페라마스콘", bakeryImageURL: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20210709_278%2F1625811227308lrWht_JPEG%2FawlHi4WB2wWGQ72DG6Eq2pai.jpg", bakeryIngredients: ["test"], bakeryRegion: ["test"]), reviewID: 18)
             let navigationController = UINavigationController(rootViewController: rootViewController)
             navigationController.isNavigationBarHidden = true
             window.rootViewController = navigationController

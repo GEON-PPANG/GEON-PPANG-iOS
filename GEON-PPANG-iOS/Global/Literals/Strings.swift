@@ -40,7 +40,7 @@ struct I18N {
         
     }
     
-    /// WriteReviewViewController
+    /// ReviewViewController
     struct Review {
         static let writeReview = "리뷰 쓰기"
         static let likeOptionTitle = "건빵집은 어떠셨나요?"
