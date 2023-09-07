@@ -8,7 +8,7 @@
 import Foundation
 
 struct WriteReviewRequestDTO: Codable {
-    let bakeryID: Int
+    var bakeryID: Int
     var isLike: Bool
     var keywordList: [SingleKeyword]
     var reviewText: String
@@ -18,6 +18,13 @@ struct WriteReviewRequestDTO: Codable {
         case isLike
         case keywordList
         case reviewText
+    }
+}
+
+extension WriteReviewRequestDTO {
+    
+    static func empty() -> Self {
+        return .init(bakeryID: 0, isLike: false, keywordList: [], reviewText: "")
     }
 }
 
@@ -45,6 +52,6 @@ extension KeywordDescriptionList {
     
     static let keywordList = KeywordDescriptionList.Keyword.allCases.map { $0.rawValue }
     
-    static let keywordRequestList = KeywordDescriptionList.Request.allCases.map { $0.rawValue }
+    static let requestList = KeywordDescriptionList.Request.allCases.map { $0.rawValue }
     
 }
