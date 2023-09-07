@@ -86,7 +86,7 @@ final class MyReviewsViewController: BaseViewController {
         
         let layout = UICollectionViewCompositionalLayout {_, layoutEnvirnment  in
             if self.myReviewsList.isEmpty {
-                return self.normalSection()
+                return LayoutUtils.emptySection(hasHeader: false)
             } else {
                 var config = UICollectionLayoutListConfiguration(appearance: .grouped)
                 config.backgroundColor = .clear
@@ -108,27 +108,7 @@ final class MyReviewsViewController: BaseViewController {
         }
         return layout
     }
-    
-    private func normalSection() -> NSCollectionLayoutSection {
-        
-        let item = NSCollectionLayoutItem(layoutSize: .init(
-            widthDimension: .fractionalWidth(1),
-            heightDimension: .fractionalHeight(1))
-        )
-        
-        let group = NSCollectionLayoutGroup.vertical(
-            layoutSize: .init(
-                widthDimension: .fractionalWidth(1),
-                heightDimension: .fractionalHeight(convertByHeightRatio(694) / convertByHeightRatio(812))
-            ),
-            subitem: item,
-            count: 1
-        )
-        let section = NSCollectionLayoutSection(group: group)
-        
-        return section
-    }
-    
+
     func configureScrollable(_ count: Int) {
         if count == 0 {
             self.collectionView.isScrollEnabled = false

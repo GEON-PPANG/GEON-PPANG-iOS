@@ -144,13 +144,11 @@ final class SearchViewController: BaseViewController {
             let section = self?.dataSource?.sectionIdentifier(for: indexPath.section)
             switch section {
             case .empty, .main:
-                
+    
                 (header as? SearchResultHeaderView)?.configureUI(count: self?.bakeryListCount ?? 0)
-                
             default:
                 break
             }
-            
             return header
         }
     }
@@ -196,51 +194,17 @@ final class SearchViewController: BaseViewController {
                 }
                 
                 let section = NSCollectionLayoutSection.list(using: config, layoutEnvironment: layoutEnvirnment)
-                section.boundarySupplementaryItems = [self.configureHeaderSize(55)]
+                section.boundarySupplementaryItems = [LayoutUtils.header(ofHeight: 55)]
                 
                 return section
                 
             case .empty:
-                return self.normalSection(55)
+                return LayoutUtils.emptySection(withHeight: 55, hasHeader: true)
             case .initial, .none:
-                return self.normalSection(0)
+                return LayoutUtils.emptySection(hasHeader: false)
             }
         }
         return layout
-    }
-    
-    private func normalSection(_ headerSize: CGFloat) -> NSCollectionLayoutSection {
-        
-        let item = NSCollectionLayoutItem(layoutSize: .init(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalWidth(1.0))
-        )
-        let group = NSCollectionLayoutGroup.vertical(
-            layoutSize: .init(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .absolute(getDeviceHeight() - 150)
-            ),
-            subitem: item,
-            count: 1
-        )
-        
-        let section = NSCollectionLayoutSection(group: group)
-        section.boundarySupplementaryItems = [self.configureHeaderSize(headerSize)]
-        
-        return section
-    }
-    
-    func configureHeaderSize(_ headerSize: CGFloat) -> NSCollectionLayoutBoundarySupplementaryItem {
-        
-        let headerSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .absolute(headerSize))
-        let header = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: headerSize,
-            elementKind: UICollectionView.elementKindSectionHeader,
-            alignment: .top)
-        
-        return header
     }
     
     func configureisScrollable(_ count: Int) {
