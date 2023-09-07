@@ -38,7 +38,7 @@ final class OptionsCollectionViewCell: UICollectionViewCell {
     
     private var status: CellStatus = .deselected
     
-    private var cellText: String = ""
+    var cellText: String = ""
     
     override var isSelected: Bool {
         willSet {

@@ -16,12 +16,10 @@ final class MyPageCollectionViewFooter: UICollectionReusableView {
     
     // MARK: - Property
     
-    var logoutTapped: Action?
     var leaveTapepd: Action?
     
     // MARK: - UI Property
     
-    private let logoutButton = UIButton()
     private let leaveButton = UIButton()
     
     // MARK: - Life Cycle
@@ -42,17 +40,10 @@ final class MyPageCollectionViewFooter: UICollectionReusableView {
     
     private func setLayout() {
         
-        self.addSubview(logoutButton)
-        logoutButton.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(24)
-            $0.top.equalToSuperview().inset(3)
-            $0.height.equalTo(48)
-        }
-        
         self.addSubview(leaveButton)
         leaveButton.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(24)
-            $0.top.equalTo(logoutButton.snp.bottom).offset(8)
+            $0.leading.equalToSuperview().inset(24)
+            $0.top.equalToSuperview().inset(4)
             $0.height.equalTo(48)
         }
     }
@@ -61,16 +52,6 @@ final class MyPageCollectionViewFooter: UICollectionReusableView {
         
         self.do {
             $0.backgroundColor = .gbbWhite
-        }
-        
-        logoutButton.do {
-            $0.setTitle(I18N.MyPage.logout, for: .normal)
-            $0.setTitleColor(.gbbGray700, for: .normal)
-            $0.titleLabel?.font = .bodyM1
-            $0.contentHorizontalAlignment = .leading
-            $0.addAction(UIAction { [weak self] _ in
-                self?.logoutTapped?()
-            }, for: .touchUpInside)
         }
         
         leaveButton.do {

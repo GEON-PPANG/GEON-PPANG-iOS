@@ -36,6 +36,7 @@ final class ReviewDetailTextView: UIView {
         }
     }
     
+    private var type: ReviewViewType
     private var status: TextViewStatus = .deactivated
     
     var isLike: Bool = true {
@@ -51,11 +52,14 @@ final class ReviewDetailTextView: UIView {
     
     // MARK: - Life Cycle
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(type: ReviewViewType) {
+        self.type = type
+        
+        super.init(frame: .zero)
         
         setLayout()
         setUI()
+        setWhenWriting()
     }
     
     @available(*, unavailable)
@@ -72,25 +76,30 @@ final class ReviewDetailTextView: UIView {
             $0.top.horizontalEdges.equalToSuperview()
             $0.height.equalTo(196)
         }
-        
-        self.addSubview(textLimitLabel)
-        textLimitLabel.snp.makeConstraints {
-            $0.bottom.equalTo(detailTextView.snp.bottom).offset(-20)
-            $0.trailing.equalTo(detailTextView).offset(-28)
-            $0.height.equalTo(17)
-        }
     }
     
     private func setUI() {
         
         detailTextView.do {
-            $0.text = I18N.WriteReview.likePlaceholder
+            $0.text = I18N.Review.likePlaceholder
             $0.font = .subHead
             $0.textColor = .gbbGray300
             $0.makeCornerRound(radius: 12)
             $0.makeBorder(width: 1, color: .gbbGray300!)
             $0.textContainerInset = .init(top: 20, left: 28, bottom: 45, right: 28)
             $0.clipsToBounds = true
+        }
+    }
+    
+    private func setWhenWriting() {
+        
+        guard type == .write else { return }
+        
+        self.addSubview(textLimitLabel)
+        textLimitLabel.snp.makeConstraints {
+            $0.bottom.equalTo(detailTextView.snp.bottom).offset(-20)
+            $0.trailing.equalTo(detailTextView).offset(-28)
+            $0.height.equalTo(17)
         }
         
         textLimitLabel.do {
@@ -111,6 +120,7 @@ final class ReviewDetailTextView: UIView {
             $0.makeBorder(width: 1, color: borderColor)
         }
         
+        guard type == .write else { return }
         textLimitLabel.do {
             $0.textColor = textColor
         }
@@ -119,12 +129,13 @@ final class ReviewDetailTextView: UIView {
     func configurePlaceholder(with isLike: Bool) {
         
         detailTextView.do {
-            $0.text = isLike ? I18N.WriteReview.likePlaceholder : I18N.WriteReview.dislikePlaceholder
+            $0.text = isLike ? I18N.Review.likePlaceholder : I18N.Review.dislikePlaceholder
         }
     }
     
     func updateTextLimitLabel(to num: Int) {
         
+        guard type == .write else { return }
         textLimitLabel.do {
             $0.text = "\(num)/120자"
         }

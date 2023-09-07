@@ -27,8 +27,9 @@ final class MyReviewsViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        getSavedBakeryList()
+        getMyReviews()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -85,7 +86,7 @@ final class MyReviewsViewController: BaseViewController {
         
         let layout = UICollectionViewCompositionalLayout {_, layoutEnvirnment  in
             if self.myReviewsList.isEmpty {
-                return self.normalSection()
+                return LayoutUtils.emptySection(hasHeader: false)
             } else {
                 var config = UICollectionLayoutListConfiguration(appearance: .grouped)
                 config.backgroundColor = .clear
@@ -107,33 +108,33 @@ final class MyReviewsViewController: BaseViewController {
         }
         return layout
     }
-    
-    private func normalSection() -> NSCollectionLayoutSection {
-        
-        let item = NSCollectionLayoutItem(layoutSize: .init(
-            widthDimension: .fractionalWidth(1),
-            heightDimension: .fractionalHeight(1))
-        )
-        
-        let group = NSCollectionLayoutGroup.vertical(
-            layoutSize: .init(
-                widthDimension: .fractionalWidth(1),
-                heightDimension: .fractionalHeight(convertByHeightRatio(694) / convertByHeightRatio(812))
-            ),
-            subitem: item,
-            count: 1
-        )
-        let section = NSCollectionLayoutSection(group: group)
-        
-        return section
-    }
-    
+
     func configureScrollable(_ count: Int) {
         if count == 0 {
             self.collectionView.isScrollEnabled = false
         } else {
             self.collectionView.isScrollEnabled = true
         }
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+
+extension MyReviewsViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        guard myReviewsList != [] else { return }
+        let data = myReviewsList[indexPath.section]
+        let bakery = data.bakeryList
+        let bakeryData = SimpleBakeryModel(
+            bakeryID: bakery.bakeryID,
+            bakeryName: bakery.name,
+            bakeryImageURL: bakery.picture,
+            bakeryIngredients: bakery.breadType.configureTrueOptionStrings(),
+            bakeryRegion: bakery.station.components(separatedBy: ", ")
+        )
+        Utils.push(self.navigationController, ReviewViewController(type: .read, bakeryData: bakeryData, reviewID: data.reviewID))
     }
 }
 
@@ -173,7 +174,9 @@ extension MyReviewsViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension MyReviewsViewController: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
         if myReviewsList.isEmpty {
             return UICollectionReusableView()
         } else {
@@ -187,7 +190,8 @@ extension MyReviewsViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - API
 
 extension MyReviewsViewController {
-    private func getSavedBakeryList() {
+    
+    private func getMyReviews() {
         
         MyPageAPI.shared.getMyReviews { response in
             guard let response = response else { return }

@@ -1,57 +1,61 @@
 //
-//  WriteReviewViewController.swift
+//  ReviewViewController.swift
 //  GEON-PPANG-iOS
 //
-//  Created by 이성민 on 2023/07/06.
+//  Created by 이성민 on 2023/09/05.
 //
 
 import UIKit
 
-import Kingfisher
 import SnapKit
 import Then
 
-final class WriteReviewViewController: BaseViewController {
+final class ReviewViewController: BaseViewController {
     
     // MARK: - Property
     
-    private let keywordList = KeywordDescriptionList.Keyword.allCases.map { $0.rawValue }
-    private let keywordRequestList = KeywordDescriptionList.Request.allCases.map { $0.rawValue }
+    var type: ReviewViewType
+    var bakeryData: SimpleBakeryModel
     
-    private var bakeryData: SimpleBakeryModel
-    private var writeReviewData: WriteReviewRequestDTO = .init(bakeryID: 0, isLike: false, keywordList: [], reviewText: "")
+    var reviewID: Int?
+    var myReviewData: MyReviewDetailResponseDTO?
+    
+    var writeReviewData: WriteReviewRequestDTO = .init(bakeryID: 0, isLike: false, keywordList: [], reviewText: "")
     
     // MARK: - UI Property
     
+    private let navigationBar = CustomNavigationBar()
     private let scrollView = UIScrollView()
     private let contentView = UIView()
-    private let navigationBar = CustomNavigationBar()
-    private let bottomView = BottomView()
-    private let nextButton = CommonButton()
+    private lazy var bottomView = BottomView()
+    private lazy var nextButton = CommonButton()
     
     private lazy var bakeryOverviewView = BakeryOverviewView(of: bakeryData)
-    
     private let lineView = LineView()
-    
     private let likeCollectionViewHeaderLabel = UILabel()
     private let likeCollectionView = OptionsCollectionView(frame: .zero, collectionViewLayout: OptionsCollectionViewFlowLayout())
     private let optionsCollectionViewHeaderLabel = UILabel()
     private let optionsCollectionView = OptionsCollectionView(frame: .zero, collectionViewLayout: OptionsCollectionViewFlowLayout())
+    private lazy var reviewDetailTextView = ReviewDetailTextView(type: type)
+    private lazy var aboutReviewContainerView = UIView()
+    private lazy var aboutReviewLabel = UILabel()
     
-    private let reviewDetailTextView = ReviewDetailTextView()
-    private let aboutReviewContainerView = UIView()
-    private let aboutReviewLabel = UILabel()
+    private lazy var backgroundView = BottomSheetAppearView()
+    private lazy var exitBottomSheetView = WriteReviewBottomSheetView()
+    private lazy var confirmBottomSheetView = CommonBottomSheet()
     
-    private let backgroundView = BottomSheetAppearView()
-    private let exitBottomSheetView = WriteReviewBottomSheetView()
-    private let confirmBottomSheetView = CommonBottomSheet()
+    // MARK: - Life Cycle
     
-    // MARK: - life cycle
-    
-    init(bakeryData: SimpleBakeryModel) {
+    init(type: ReviewViewType, bakeryData: SimpleBakeryModel) {
+        self.type = type
         self.bakeryData = bakeryData
         
         super.init(nibName: nil, bundle: nil)
+    }
+    
+    convenience init(type: ReviewViewType, bakeryData: SimpleBakeryModel, reviewID: Int) {
+        self.init(type: type, bakeryData: bakeryData)
+        self.reviewID = reviewID
     }
     
     @available(*, unavailable)
@@ -62,17 +66,24 @@ final class WriteReviewViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setNavigationBarHidden()
         setKeyboardHideGesture()
         setupNotificationCenterOnScrollView()
+        
+        setWriteType()
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        Utils.updateCollectionViewConstraint(of: likeCollectionView)
-        Utils.updateCollectionViewConstraint(of: optionsCollectionView)
+        getReview()
     }
+    
+//    override func viewWillLayoutSubviews() {
+//        super.viewWillLayoutSubviews()
+//
+//        Utils.updateCollectionViewConstraint(of: likeCollectionView)
+//        Utils.updateCollectionViewConstraint(of: optionsCollectionView)
+//    }
     
     // MARK: - Setting
     
@@ -83,20 +94,9 @@ final class WriteReviewViewController: BaseViewController {
             $0.edges.equalToSuperview()
         }
         
-        view.addSubview(navigationBar)
-        navigationBar.snp.makeConstraints {
-            $0.horizontalEdges.top.equalToSuperview()
-        }
-        
-        view.addSubview(bottomView)
-        bottomView.snp.makeConstraints {
-            $0.horizontalEdges.bottom.equalToSuperview()
-        }
-        
         scrollView.addSubview(contentView)
         contentView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-            $0.width.equalTo(SizeLiteral.Screen.width)
+            $0.edges.width.equalToSuperview()
         }
         
         contentView.addSubview(bakeryOverviewView)
@@ -123,7 +123,7 @@ final class WriteReviewViewController: BaseViewController {
         likeCollectionView.snp.makeConstraints {
             $0.top.equalTo(likeCollectionViewHeaderLabel.snp.bottom).offset(18)
             $0.horizontalEdges.equalToSuperview().inset(24)
-            $0.height.equalTo(73)
+            $0.height.equalTo(37)
         }
         
         contentView.addSubview(optionsCollectionViewHeaderLabel)
@@ -137,7 +137,7 @@ final class WriteReviewViewController: BaseViewController {
         optionsCollectionView.snp.makeConstraints {
             $0.top.equalTo(optionsCollectionViewHeaderLabel.snp.bottom).offset(18)
             $0.horizontalEdges.equalToSuperview().inset(24)
-            $0.height.equalTo(50)
+            $0.height.equalTo(88)
         }
         
         contentView.addSubview(reviewDetailTextView)
@@ -145,6 +145,129 @@ final class WriteReviewViewController: BaseViewController {
             $0.top.equalTo(optionsCollectionView.snp.bottom).offset(28)
             $0.horizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(221)
+        }
+        
+        view.addSubview(navigationBar)
+        navigationBar.snp.makeConstraints {
+            $0.horizontalEdges.top.equalToSuperview()
+        }
+        view.bringSubviewToFront(navigationBar)
+    }
+    
+    override func setUI() {
+        
+        navigationBar.do {
+            $0.backgroundColor = .white
+            $0.configureCenterTitle(to: I18N.Review.writeReview)
+            $0.configureBottomLine()
+            $0.configureBackButtonAction(UIAction { [weak self] _ in
+                self?.backButtonTapped()
+            })
+        }
+        
+        scrollView.do {
+            $0.showsVerticalScrollIndicator = false
+            $0.verticalScrollIndicatorInsets = .zero
+            $0.backgroundColor = .white
+        }
+        
+        contentView.do {
+            $0.backgroundColor = .white
+        }
+        
+        likeCollectionViewHeaderLabel.do {
+            $0.text = I18N.Review.likeOptionTitle
+            $0.font = .bodyB1
+            $0.textColor = .gbbGray300
+        }
+        
+        likeCollectionView.do {
+            $0.toggleIsEnabled(to: false)
+        }
+        
+        optionsCollectionViewHeaderLabel.do {
+            $0.text = I18N.Review.optionTitle
+            $0.font = .bodyB1
+            $0.textColor = .gbbGray300
+        }
+        
+        optionsCollectionView.do {
+            $0.allowsMultipleSelection = true
+            $0.isUserInteractionEnabled = false
+        }
+        
+        reviewDetailTextView.do {
+            $0.isUserInteractionEnabled = false
+        }
+    }
+    
+    override func setDelegate() {
+        
+        likeCollectionView.dataSource = self
+        optionsCollectionView.dataSource = self
+    }
+    
+    // MARK: - Action Helper
+    
+    private func nextButtonTapped() {
+        
+        requestWriteReview(configureWriteReviewData())
+        UIView.animate(withDuration: 0.2, animations: {
+            self.bottomView.transform = .identity
+            self.scrollView.transform = .identity
+        }) { _ in
+            self.backgroundView.dimmedView.isUserInteractionEnabled = false
+            self.backgroundView.appearBottomSheetView(subView: self.confirmBottomSheetView, CGFloat().heightConsideringBottomSafeArea(292))
+        }
+        view.endEditing(true)
+    }
+    
+    private func backButtonTapped() {
+        
+        if type == .read {
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            backgroundView.appearBottomSheetView(subView: exitBottomSheetView, CGFloat().heightConsideringBottomSafeArea(347))
+        }
+    }
+    
+    // MARK: - Custom Method
+    
+    private func configureCollectionViewHeader(to color: UIColor) {
+        
+        optionsCollectionViewHeaderLabel.do {
+            $0.textColor = color
+        }
+    }
+    
+    private func textLimit(_ existingText: String?, to newText: String, with limit: Int) -> Bool {
+        
+        guard let text = existingText
+        else { return false }
+        let isOverLimit = text.count + newText.count <= limit
+        return isOverLimit
+    }
+    
+}
+
+// MARK: - write type func
+
+extension ReviewViewController {
+    
+    private func setWriteType() {
+        
+        guard type == .write else { return }
+        setWriteTypeLayout()
+        setWriteTypeUI()
+        setWriteTypeDelegate()
+        setupNotificationCenterOnScrollView()
+    }
+    
+    private func setWriteTypeLayout() {
+        
+        view.addSubview(bottomView)
+        bottomView.snp.makeConstraints {
+            $0.horizontalEdges.bottom.equalToSuperview()
         }
         
         contentView.addSubview(aboutReviewContainerView)
@@ -162,46 +285,14 @@ final class WriteReviewViewController: BaseViewController {
         }
     }
     
-    override func setUI() {
-        
-        navigationBar.do {
-            $0.backgroundColor = .white
-            $0.configureCenterTitle(to: I18N.WriteReview.writeReview)
-            $0.configureBottomLine()
-            $0.configureBackButtonAction(UIAction { [weak self] _ in
-                self?.backButtonTapped()
-            })
-        }
-        
-        scrollView.do {
-            $0.showsVerticalScrollIndicator = false
-            $0.verticalScrollIndicatorInsets = .zero
-            $0.backgroundColor = .gbbGray100
-        }
-        
-        contentView.do {
-            $0.backgroundColor = .white
-        }
+    private func setWriteTypeUI() {
         
         likeCollectionViewHeaderLabel.do {
-            $0.text = I18N.WriteReview.likeOptionTitle
-            $0.font = .bodyB1
-            $0.textColor = .black
+            $0.textColor = .gbbBlack
         }
         
-        optionsCollectionViewHeaderLabel.do {
-            $0.text = I18N.WriteReview.optionTitle
-            $0.font = .bodyB1
-            $0.textColor = .gbbGray300
-        }
-        
-        optionsCollectionView.do {
-            $0.allowsMultipleSelection = true
-            $0.isUserInteractionEnabled = false
-        }
-        
-        reviewDetailTextView.do {
-            $0.isUserInteractionEnabled = false
+        likeCollectionView.do {
+            $0.isUserInteractionEnabled = true
         }
         
         aboutReviewContainerView.do {
@@ -209,12 +300,12 @@ final class WriteReviewViewController: BaseViewController {
         }
         
         aboutReviewLabel.do {
-            $0.text = I18N.WriteReview.aboutReview
+            $0.text = I18N.Review.aboutReview
             $0.font = .captionM2
             $0.textColor = .gbbGray300
             $0.textAlignment = .left
             $0.numberOfLines = 4
-            $0.setLineHeight(by: 1.37, with: I18N.WriteReview.aboutReview)
+            $0.setLineHeight(by: 1.37, with: I18N.Review.aboutReview)
         }
         
         bottomView.do {
@@ -245,7 +336,7 @@ final class WriteReviewViewController: BaseViewController {
         
         confirmBottomSheetView.do {
             $0.configureEmojiType(.smile)
-            $0.configureBottonSheetTitle(I18N.WriteReview.confirmSheetTitle)
+            $0.configureBottonSheetTitle(I18N.Review.confirmSheetTitle)
             $0.dismissBottomSheet = {
                 self.backgroundView.dissmissFromSuperview()
                 self.navigationController?.popViewController(animated: true)
@@ -253,16 +344,11 @@ final class WriteReviewViewController: BaseViewController {
         }
     }
     
-    override func setDelegate() {
-        
-        scrollView.delegate = self
+    private func setWriteTypeDelegate() {
         
         likeCollectionView.delegate = self
-        likeCollectionView.dataSource = self
-        
         optionsCollectionView.delegate = self
-        optionsCollectionView.dataSource = self
-        
+        scrollView.delegate = self
         reviewDetailTextView.detailTextView.delegate = self
     }
     
@@ -272,44 +358,47 @@ final class WriteReviewViewController: BaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideOnScrollView), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    // MARK: - Action Helper
-    
-    private func nextButtonTapped() {
+    private func configureWriteReviewData() -> WriteReviewRequestDTO {
         
-        requestWriteReview(writeReviewData)
-        UIView.animate(withDuration: 0.2, animations: {
-            self.bottomView.transform = .identity
-            self.scrollView.transform = .identity
-        }) { _ in
-            self.backgroundView.dimmedView.isUserInteractionEnabled = false
-            self.backgroundView.appearBottomSheetView(subView: self.confirmBottomSheetView, CGFloat().heightConsideringBottomSafeArea(292))
+        var requestData: WriteReviewRequestDTO = .empty()
+        
+        requestData.bakeryID = bakeryData.bakeryID
+        
+        guard let isLike = likeCollectionView.cellForItem(at: [0, 0])?.isSelected
+        else { return .empty() }
+        requestData.isLike = isLike
+        
+        guard let keywordIndexPath = optionsCollectionView.indexPathsForSelectedItems
+        else { return .empty() }
+        let keywordList = keywordIndexPath.map {
+            let keyword = KeywordDescriptionList.requestList[$0[1]]
+            return SingleKeyword(keywordName: keyword)
         }
-        view.endEditing(true)
+        requestData.keywordList = keywordList
+        
+        requestData.reviewText = reviewDetailTextView.detailTextView.text
+        
+        return requestData
     }
     
-    private func backButtonTapped() {
+    private func bindReview(_ review: MyReviewDetailResponseDTO) {
+        myReviewData = review
+        likeCollectionView.reloadData()
+        optionsCollectionView.reloadData()
         
-        backgroundView.appearBottomSheetView(subView: exitBottomSheetView, CGFloat().heightConsideringBottomSafeArea(347))
-    }
-    
-    // MARK: - Custom Method
-    
-    private func configureCollectionViewHeader(to color: UIColor) {
-        
-        optionsCollectionViewHeaderLabel.do {
-            $0.textColor = color
+        guard review.reviewText != "" else {
+            reviewDetailTextView.detailTextView.text = I18N.Review.emptyReviewText
+            return
         }
+        reviewDetailTextView.configureTextView(to: .activated)
+        reviewDetailTextView.detailTextView.text = review.reviewText
     }
     
-    private func textLimit(_ existingText: String?, to newText: String, with limit: Int) -> Bool {
-        
-        guard let text = existingText
-        else { return false }
-        let isOverLimit = text.count + newText.count <= limit
-        return isOverLimit
-    }
-    
-    // MARK: - objc
+}
+
+// MARK: - write type objc func
+
+extension ReviewViewController {
     
     @objc
     private func keyboardWillShowOnScrollView(notification: NSNotification) {
@@ -335,7 +424,7 @@ final class WriteReviewViewController: BaseViewController {
 
 // MARK: - UICollectionViewDelegate extension
 
-extension WriteReviewViewController: UICollectionViewDelegate {
+extension ReviewViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -345,17 +434,12 @@ extension WriteReviewViewController: UICollectionViewDelegate {
             else { return }
             
             optionsCollectionView.toggleIsEnabled(to: isLikeSelected)
-            if !isLikeSelected {
-                writeReviewData.keywordList.removeAll()
-            }
             
             configureCollectionViewHeader(to: isLikeSelected ? .black : .gbbGray300!)
             
             reviewDetailTextView.isLike = isLikeSelected
             reviewDetailTextView.isUserInteractionEnabled = !isLikeSelected
             reviewDetailTextView.configureTextView(to: isLikeSelected ? .deactivated : .activated)
-            
-            writeReviewData.isLike = isLikeSelected
             
             if !isLikeSelected {
                 nextButton.configureInteraction(to: false)
@@ -365,7 +449,6 @@ extension WriteReviewViewController: UICollectionViewDelegate {
             let hasSelection = collectionView.indexPathsForSelectedItems != nil
             reviewDetailTextView.isUserInteractionEnabled = hasSelection
             reviewDetailTextView.configureTextView(to: hasSelection ? .activated : .deactivated)
-            writeReviewData.keywordList.append(SingleKeyword(keywordName: keywordRequestList[indexPath.item]))
             nextButton.configureInteraction(to: hasSelection)
             
         default:
@@ -374,10 +457,6 @@ extension WriteReviewViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        
-        if let keywordIndex = writeReviewData.keywordList.firstIndex(of: SingleKeyword(keywordName: keywordRequestList[indexPath.item])) {
-            writeReviewData.keywordList.remove(at: keywordIndex)
-        }
         
         if optionsCollectionView.indexPathsForSelectedItems == [] {
             reviewDetailTextView.isUserInteractionEnabled = false
@@ -389,7 +468,7 @@ extension WriteReviewViewController: UICollectionViewDelegate {
 
 // MARK: - UICollectionViewDataSource extension
 
-extension WriteReviewViewController: UICollectionViewDataSource {
+extension ReviewViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -407,13 +486,40 @@ extension WriteReviewViewController: UICollectionViewDataSource {
         switch collectionView {
         case likeCollectionView:
             cell.configureCell(to: .deselected)
-            cell.configureCellText(to: indexPath.item == 0 ? I18N.WriteReview.like : I18N.WriteReview.dislike)
+            cell.configureCellText(to: indexPath.item == 0 ? I18N.Review.like : I18N.Review.dislike)
         case optionsCollectionView:
             cell.configureCell(to: .disabled)
-            cell.configureCellText(to: keywordList[indexPath.item])
+            cell.configureCellText(to: KeywordDescriptionList.keywordList[indexPath.item])
         default:
             return UICollectionViewCell()
         }
+        
+        if let data = myReviewData {
+            switch collectionView {
+            case likeCollectionView:
+                if indexPath == [0, 0] {
+                    cell.configureCell(to: data.isLike ? .selected : .disabled)
+                } else {
+                    cell.configureCell(to: !data.isLike ? .selected : .disabled)
+                }
+                
+            case optionsCollectionView:
+                let keywordList = data.recommendKeywordList
+                    .map { $0.recommendKeywordName }
+                _ = KeywordDescriptionList.keywordList
+                    .filter {
+                        keywordList.contains($0)
+                    }
+                    .map {
+                        if cell.cellText == $0 {
+                            cell.configureCell(to: .selected)
+                        }
+                    }
+            default:
+                break
+            }
+        }
+        
         return cell
     }
     
@@ -428,7 +534,7 @@ extension WriteReviewViewController: UICollectionViewDataSource {
 
 // MARK: - UITextViewDelegate
 
-extension WriteReviewViewController: UITextViewDelegate {
+extension ReviewViewController: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         
@@ -444,7 +550,7 @@ extension WriteReviewViewController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         
-        if textView.text == I18N.WriteReview.likePlaceholder || textView.text == I18N.WriteReview.dislikePlaceholder {
+        if textView.text == I18N.Review.likePlaceholder || textView.text == I18N.Review.dislikePlaceholder {
             textView.text = nil
             textView.textColor = .black
         }
@@ -453,7 +559,7 @@ extension WriteReviewViewController: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         
         if textView.text.isEmpty {
-            textView.text = reviewDetailTextView.isLike ? I18N.WriteReview.likePlaceholder : I18N.WriteReview.dislikePlaceholder
+            textView.text = reviewDetailTextView.isLike ? I18N.Review.likePlaceholder : I18N.Review.dislikePlaceholder
             textView.textColor = .gbbGray300
             writeReviewData.reviewText = ""
         }
@@ -469,11 +575,22 @@ extension WriteReviewViewController: UITextViewDelegate {
 
 // MARK: API
 
-extension WriteReviewViewController {
+extension ReviewViewController {
+    
+    func getReview() {
+        
+        guard let id = reviewID else { return }
+        ReviewAPI.shared.getMyReviewDetail(of: id) { response in
+            guard let response = response,
+                  let data = response.data
+            else { return }
+            self.bindReview(data)
+        }
+    }
     
     func requestWriteReview(_ content: WriteReviewRequestDTO) {
         
-        BakeryAPI.shared.postWriteReview(content: content) { response in
+        ReviewAPI.shared.postWriteReview(content: content) { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
             dump(data)
