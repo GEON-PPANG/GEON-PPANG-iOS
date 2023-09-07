@@ -34,6 +34,11 @@ struct BreadResponseType: Codable, Hashable, BakeryTypeProtocol {
         return optionsBoolArray
     }
     
+    func configureTrueOptionStrings() -> [String] {
+        return configureTrueOptions()
+            .map { $0.0 }
+    }
+    
     static func emptyBreadType() -> BreadResponseType {
         
         return BreadResponseType(breadTypeID: 0,

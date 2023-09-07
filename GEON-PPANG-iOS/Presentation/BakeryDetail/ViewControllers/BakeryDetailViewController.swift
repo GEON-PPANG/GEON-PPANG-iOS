@@ -109,7 +109,7 @@ final class BakeryDetailViewController: BaseViewController {
                 }
             }
             $0.tappedWriteReviewButton = {
-                Utils.push(self.navigationController, WriteReviewViewController(bakeryData: self.configureSimpleBakeryData()))
+                Utils.push(self.navigationController, ReviewViewController(type: .write, bakeryData: self.configureSimpleBakeryData()))
             }
         }
     }
