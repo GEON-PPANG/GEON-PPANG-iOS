@@ -27,8 +27,9 @@ final class MyReviewsViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        getSavedBakeryList()
+        getMyReviews()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -137,6 +138,26 @@ final class MyReviewsViewController: BaseViewController {
     }
 }
 
+// MARK: - UICollectionViewDelegate
+
+extension MyReviewsViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        guard myReviewsList != [] else { return }
+        let data = myReviewsList[indexPath.section]
+        let bakery = data.bakeryList
+        let bakeryData = SimpleBakeryModel(
+            bakeryID: bakery.bakeryID,
+            bakeryName: bakery.name,
+            bakeryImageURL: bakery.picture,
+            bakeryIngredients: bakery.breadType.configureTrueOptionStrings(),
+            bakeryRegion: bakery.station.components(separatedBy: ", ")
+        )
+        Utils.push(self.navigationController, ReviewViewController(type: .read, bakeryData: bakeryData, reviewID: data.reviewID))
+    }
+}
+
 // MARK: - UICollectionViewDataSource
 
 extension MyReviewsViewController: UICollectionViewDataSource {
@@ -173,7 +194,9 @@ extension MyReviewsViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension MyReviewsViewController: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
         if myReviewsList.isEmpty {
             return UICollectionReusableView()
         } else {
@@ -187,7 +210,8 @@ extension MyReviewsViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - API
 
 extension MyReviewsViewController {
-    private func getSavedBakeryList() {
+    
+    private func getMyReviews() {
         
         MyPageAPI.shared.getMyReviews { response in
             guard let response = response else { return }

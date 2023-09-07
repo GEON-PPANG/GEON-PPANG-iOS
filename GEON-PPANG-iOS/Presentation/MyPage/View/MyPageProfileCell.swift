@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class MyPageCollectionViewHeader: UICollectionReusableView {
+final class MyPageProfileCell: UICollectionViewCell {
     
     // MARK: - Prperty
     
@@ -217,11 +217,11 @@ final class MyPageCollectionViewHeader: UICollectionReusableView {
 
 // MARK: - UICollectionViewDelegate extension
 
-extension MyPageCollectionViewHeader: UICollectionViewDelegate {}
+extension MyPageProfileCell: UICollectionViewDelegate {}
 
 // MARK: - UICollectionViewDataSource extension
 
-extension MyPageCollectionViewHeader: UICollectionViewDataSource {
+extension MyPageProfileCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -239,7 +239,7 @@ extension MyPageCollectionViewHeader: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegateFlowLayout extension
 
-extension MyPageCollectionViewHeader: UICollectionViewDelegateFlowLayout {
+extension MyPageProfileCell: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
