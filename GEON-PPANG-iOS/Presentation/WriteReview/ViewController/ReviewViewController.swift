@@ -139,6 +139,7 @@ final class ReviewViewController: BaseViewController {
             $0.top.equalTo(optionsCollectionView.snp.bottom).offset(28)
             $0.horizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(221)
+            $0.bottom.equalToSuperview().inset(11)
         }
         
         view.addSubview(navigationBar)
