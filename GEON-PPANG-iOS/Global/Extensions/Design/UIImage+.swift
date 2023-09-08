@@ -77,8 +77,9 @@ extension UIImage {
     static let searchImage = UIImage(named: "img_search")!.withRenderingMode(.alwaysOriginal)
     static let serverMaintenanceImage = UIImage(named: "img_server_maintenance")!.withRenderingMode(.alwaysOriginal)
     static let welcomeImage = UIImage(named: "img_welcome")!.withRenderingMode(.alwaysOriginal)
-    static let bubbleImage = UIImage(named: "img_bubble")!.withRenderingMode(.alwaysOriginal)
-    
+    static let leftBubbleImage = UIImage(named: "img_left_bubble")!.withRenderingMode(.alwaysOriginal)
+    static let rightBubbleImage = UIImage(named: "img_right_bubble")!.withRenderingMode(.alwaysOriginal)
+        
     // Include Touch Area
     static let bigLeftArrowIcon = UIImage(named: "ic_arrow_left")!.withRenderingMode(.alwaysOriginal)
     static let bigRightArrowIcon = UIImage(named: "ic_arrow_right")!.withRenderingMode(.alwaysOriginal)

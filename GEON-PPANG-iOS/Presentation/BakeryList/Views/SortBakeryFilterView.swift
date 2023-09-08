@@ -129,4 +129,10 @@ final class SortBakeryFilterView: UIView {
         self.checkBox.isSelected.toggle()
         self.checkBox.setNeedsUpdateConfiguration()
     }
+    
+    func tappedButton(_ isSelected: Bool) {
+        
+        self.checkBox.isSelected = isSelected
+        self.checkBox.isUserInteractionEnabled = isSelected
+    }
 }

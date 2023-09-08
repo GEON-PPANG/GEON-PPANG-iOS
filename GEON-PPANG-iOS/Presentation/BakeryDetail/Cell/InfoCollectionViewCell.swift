@@ -14,11 +14,10 @@ final class InfoCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI Property
     
-    private let homepageLinkImage = UIImageView()
-    private let homepageLinkButton = UIButton()
+    private let bakeryLinkImage = UIImageView()
+    private lazy var linkButtonStackView = LinkButtonStackView()
     private let bakeryAddressImage = UIImageView()
     private lazy var bakeryAddressLabel = UILabel()
-    private lazy var addressCopyButton = UIButton()
     private lazy var regionStackView = RegionStackView()
     private let bakeryOpeningHoursImage = UIImageView()
     private let bakeryClosedDaysLabel = UILabel()
@@ -44,41 +43,32 @@ final class InfoCollectionViewCell: UICollectionViewCell {
     
     private func setLayout() {
         
-        contentView.addSubview(homepageLinkImage)
-        homepageLinkImage.snp.makeConstraints {
+        contentView.addSubview(bakeryLinkImage)
+        bakeryLinkImage.snp.makeConstraints {
             $0.top.leading.equalToSuperview().inset(24)
             $0.size.equalTo(24)
         }
         
-        contentView.addSubview(homepageLinkButton)
-        homepageLinkButton.snp.makeConstraints {
-            $0.centerY.equalTo(homepageLinkImage)
-            $0.leading.equalTo(homepageLinkImage.snp.trailing).offset(10)
-            $0.width.equalTo(95)
-            $0.height.equalTo(20)
+        contentView.addSubview(linkButtonStackView)
+        linkButtonStackView.snp.makeConstraints {
+            $0.centerY.equalTo(bakeryLinkImage)
+            $0.leading.equalTo(bakeryLinkImage.snp.trailing).offset(10)
         }
         
         contentView.addSubview(bakeryAddressImage)
         bakeryAddressImage.snp.makeConstraints {
-            $0.top.equalTo(homepageLinkImage.snp.bottom).offset(18)
-            $0.leading.equalTo(homepageLinkImage)
+            $0.top.equalTo(bakeryLinkImage.snp.bottom).offset(18)
+            $0.leading.equalTo(bakeryLinkImage)
             $0.size.equalTo(24)
         }
         
         contentView.addSubview(bakeryAddressLabel)
         bakeryAddressLabel.snp.makeConstraints {
             $0.centerY.equalTo(bakeryAddressImage)
-            $0.leading.equalTo(homepageLinkButton)
+            $0.leading.equalTo(linkButtonStackView)
             $0.trailing.equalToSuperview().inset(68)
             $0.width.equalTo(249)
             $0.height.equalTo(20)
-        }
-        
-        contentView.addSubview(addressCopyButton)
-        addressCopyButton.snp.makeConstraints {
-            $0.centerY.equalTo(bakeryAddressImage)
-            $0.trailing.equalToSuperview().inset(24)
-            $0.size.equalTo(30)
         }
         
         contentView.addSubview(regionStackView)
@@ -135,17 +125,8 @@ final class InfoCollectionViewCell: UICollectionViewCell {
             $0.backgroundColor = .gbbWhite
         }
         
-        homepageLinkImage.do {
+        bakeryLinkImage.do {
             $0.image = .linkIcon
-        }
-        
-        // TODO: 클릭 시 사파리로 이동 (API 통신 필요)
-        homepageLinkButton.do {
-            $0.setTitle("홈페이지로 이동", for: .normal)
-            $0.setTitleColor(.gbbGray400, for: .normal)
-            $0.setUnderline()
-            $0.titleLabel?.font = .subHead
-            $0.titleLabel?.adjustsFontSizeToFitWidth = true
         }
         
         bakeryAddressImage.do {
@@ -157,8 +138,9 @@ final class InfoCollectionViewCell: UICollectionViewCell {
             $0.adjustsFontSizeToFitWidth = true
         }
         
-        addressCopyButton.do {
-            $0.setImage(.copyButton, for: .normal)
+        regionStackView.do {
+            $0.configureChipCornerRadius(8)
+            $0.configureChipBackgroundColor(.gbbBackground2!)
         }
         
         bakeryOpeningHoursImage.do {
@@ -187,6 +169,7 @@ final class InfoCollectionViewCell: UICollectionViewCell {
     
     func configureCellUI(_ data: BakeryDetailResponseDTO) {
         
+        linkButtonStackView.getLinkStatus(data.homepageURL, data.instagramURL)
         bakeryAddressLabel.text = data.address
         regionStackView.configureRegionName(data.firstNearStation, data.secondNearStation)
         
@@ -195,7 +178,7 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         }
         
         bakeryClosedDaysLabel.text = data.closedDay
-        bakeryOpeningHoursLabel.text = data.openingTime
+        bakeryOpeningHoursLabel.text = data.openingHours
         bakeryPhoneNumberLabel.text = data.phoneNumber
     }
 }

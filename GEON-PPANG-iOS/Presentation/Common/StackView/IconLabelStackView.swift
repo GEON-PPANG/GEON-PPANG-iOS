@@ -54,7 +54,7 @@ final class IconLabelStackView: UIStackView {
         case .bookmark, .review:
             return "(\(count))"
         case .notice:
-            return "홈페이지에 성분정보가 있어요!"
+            return "웹사이트에 성분정보가 있어요!"
         case .basic:
             return "기본순"
         }
