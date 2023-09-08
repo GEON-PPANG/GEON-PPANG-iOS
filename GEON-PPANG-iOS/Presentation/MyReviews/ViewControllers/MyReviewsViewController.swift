@@ -19,8 +19,7 @@ final class MyReviewsViewController: BaseViewController {
     // MARK: - UI Property
     
     private let naviView = CustomNavigationBar()
-    private lazy var collectionView = UICollectionView(frame: .zero,
-                                                       collectionViewLayout: layout())
+    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
     
     // MARK: - Setting
     
@@ -84,31 +83,28 @@ final class MyReviewsViewController: BaseViewController {
     
     private func layout() -> UICollectionViewLayout {
         
-        let layout = UICollectionViewCompositionalLayout {_, layoutEnvirnment  in
+        let layout = UICollectionViewCompositionalLayout {_, env  in
             if self.myReviewsList.isEmpty {
                 return LayoutUtils.emptySection(hasHeader: false)
             } else {
-                var config = UICollectionLayoutListConfiguration(appearance: .grouped)
-                config.backgroundColor = .clear
-                config.showsSeparators = true
-                config.headerMode = .supplementary
-                config.itemSeparatorHandler = { (indexPath, separatorConfiguration) in
-                    var configuration = separatorConfiguration
-                    configuration.topSeparatorVisibility = .hidden
-                    configuration.bottomSeparatorInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 0)
+                var config = LayoutUtils.listConfiguration(appearance: .grouped,
+                                                           headerMode: .supplementary) { indexPath, config in
+                    
+                    var config = config
+                    config.bottomSeparatorInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 0)
                     if indexPath == self.collectionView.indexPathsForVisibleItems.last {
-                        configuration.bottomSeparatorVisibility = .hidden
+                        config.bottomSeparatorVisibility = .hidden
                     }
-                    return configuration
+                    return config
                 }
-                let layoutSection = NSCollectionLayoutSection.list(using: config, layoutEnvironment: layoutEnvirnment)
+                let layoutSection = NSCollectionLayoutSection.list(using: config, layoutEnvironment: env)
                 layoutSection.contentInsets = .zero
                 return layoutSection
             }
         }
         return layout
     }
-
+    
     func configureScrollable(_ count: Int) {
         if count == 0 {
             self.collectionView.isScrollEnabled = false
