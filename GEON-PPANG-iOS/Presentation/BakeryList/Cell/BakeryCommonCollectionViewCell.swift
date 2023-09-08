@@ -32,6 +32,7 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        
         ingredientList = []
     }
     
@@ -112,7 +113,7 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
         bakeryTitle.do {
             $0.basic(font: .title2!, color: .gbbGray700!)
         }
-
+        
         collectionView.do {
             $0.isScrollEnabled = false
             $0.backgroundColor = .clear
@@ -131,8 +132,9 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
         bakeryTitle.setLineHeight(by: 1.05, with: data.name)
         bakeryTitle.lineBreakMode = .byTruncatingTail
         bookmarkCount.configureHomeCell(count: data.bookmarkCount)
-        bookmarkCount.setContentHuggingPriority(.required, for: .horizontal)
-
+        bookmarkCount.setContentHuggingPriority(UILayoutPriority(751), for: .horizontal)
+        bookmarkCount.setContentCompressionResistancePriority(UILayoutPriority(751), for: .horizontal)
+        
         guard let url = URL(string: data.picture) else { return }
         bakeryImage.kf.setImage(with: url)
         
@@ -173,10 +175,12 @@ extension BakeryCommonCollectionViewCell {
 
 extension BakeryCommonCollectionViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return breadTypeTag.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell: DescriptionCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
         cell.cellColor = .sub
         cell.configureTagTitle(self.breadTypeTag[indexPath.item])
@@ -188,6 +192,7 @@ extension BakeryCommonCollectionViewCell: UICollectionViewDataSource {
 
 extension BakeryCommonCollectionViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         let tagTitle = self.breadTypeTag[indexPath.item]
         let itemSize = tagTitle.size(withAttributes: [NSAttributedString.Key.font: UIFont.captionM2])
         return CGSize(width: itemSize.width + 12, height: itemSize.height)
