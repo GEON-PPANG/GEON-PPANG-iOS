@@ -50,15 +50,7 @@ final class MarkStackView: UIStackView {
             $0.axis = .horizontal
         }
         
-        hccpMarkIconView.do {
-            $0.contentMode = .topLeft
-        }
-        
-        veganIconView.do {
-            $0.contentMode = .topLeft
-        }
-        
-        gmoIconView.do {
+        [hccpMarkIconView, veganIconView, gmoIconView].forEach {
             $0.contentMode = .topLeft
         }
     }
@@ -76,21 +68,9 @@ final class MarkStackView: UIStackView {
                        _ isVegan: Bool,
                        _ isNONGMO: Bool) {
         
-        if !isHACCP {
-            hccpMarkIconView.isHidden = true
-        } else {
-            hccpMarkIconView.isHidden = false
-        }
-        if !isVegan {
-            veganIconView.isHidden = true
-        } else {
-            veganIconView.isHidden = false
-        }
-        if !isNONGMO {
-            gmoIconView.isHidden = true
-        } else {
-            gmoIconView.isHidden = false
-        }
+        hccpMarkIconView.isHidden = !isHACCP
+        veganIconView.isHidden = !isVegan
+        gmoIconView.isHidden = !isNONGMO
     }
     
     func configureMarkSize(_ size: Int) {

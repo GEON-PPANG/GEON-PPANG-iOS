@@ -19,8 +19,8 @@ final class SignInViewController: BaseViewController {
     private var password: String = "" {
         didSet {
             configureCommonView(isValid: { checkPassword.isEqual(self.password) ||  checkPassword.isEmpty},
-                              error: I18N.Rule.checkPassword,
-                              view: checkPasswordTextField)
+                                error: I18N.Rule.checkPassword,
+                                view: checkPasswordTextField)
         }
     }
     
@@ -219,8 +219,8 @@ extension SignInViewController: UITextFieldDelegate {
     }
     
     func configureCommonView(isValid: () -> Bool,
-                           error: String,
-                           view: CommonTextView) {
+                             error: String,
+                             view: CommonTextView) {
         
         switch view {
         case emailTextField:

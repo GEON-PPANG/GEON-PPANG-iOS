@@ -23,10 +23,8 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
     private let markStackView = MarkStackView()
     private let bakeryImage = UIImageView()
     private let bakeryTitle = UILabel()
-    private let regionStackView = IconWithTextStackView(.list)
-    private let bookmarkStackView = UIStackView()
-    private let bookmarkIcon = UIImageView()
-    private let bookmarkCount = UILabel()
+    private let regionStackView = IconWithTextView(.region)
+    private let bookmarkCount = IconWithTextView(.bookmark)
     private lazy var arrowButton = UIButton()
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: OptionsCollectionViewFlowLayout())
     
@@ -62,17 +60,17 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
             
         }
         
-        contentView.addSubview(bookmarkStackView)
-        bookmarkStackView.snp.makeConstraints {
+        contentView.addSubview(bookmarkCount)
+        bookmarkCount.snp.makeConstraints {
             $0.top.equalTo(bakeryImage.snp.top).offset(4)
             $0.trailing.equalToSuperview().inset(24)
-            $0.height.equalTo(16)
         }
         
         contentView.addSubview(bakeryTitle)
         bakeryTitle.snp.makeConstraints {
             $0.top.equalTo(bakeryImage.snp.top)
             $0.leading.equalTo(bakeryImage.snp.trailing).offset(8)
+            $0.trailing.equalTo(bookmarkCount.snp.leading).offset(-24)
         }
         
         contentView.addSubview(collectionView)
@@ -114,43 +112,31 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
         bakeryTitle.do {
             $0.basic(font: .title2!, color: .gbbGray700!)
         }
-        
+
         collectionView.do {
             $0.isScrollEnabled = false
             $0.backgroundColor = .clear
             $0.delegate = self
             $0.dataSource = self
         }
-        
-        bookmarkStackView.do {
-            $0.addArrangedSubviews(bookmarkIcon, bookmarkCount)
-            $0.axis = .horizontal
-            $0.spacing = 1
-        }
-        
-        bookmarkIcon.do {
-            $0.image = .bookmarkIcon16px400
-            $0.contentMode = .scaleAspectFit
-        }
-        
-        bookmarkCount.do {
-            $0.basic(font: .captionB1!, color: .gbbGray400!)
-        }
     }
     
     func configureReviewsUI() {
         
-        bookmarkStackView.removeFromSuperview()
+        bookmarkCount.removeFromSuperview()
     }
     
     func configureCellUI<T: BakeryListProtocol>(data: T) {
         
         bakeryTitle.setLineHeight(by: 1.05, with: data.name)
-        bookmarkCount.setLineHeight(by: 1.1, with: "(\(data.bookmarkCount))")
+        bakeryTitle.lineBreakMode = .byTruncatingTail
+        bookmarkCount.configureHomeCell(count: data.bookmarkCount)
+        bookmarkCount.setContentHuggingPriority(.required, for: .horizontal)
+
         guard let url = URL(string: data.picture) else { return }
         bakeryImage.kf.setImage(with: url)
-        regionStackView.configureListUI(text: data.station)
         
+        regionStackView.configureListUI(text: data.station)
         markStackView.getMarkStatus(data.mark.isHACCP, data.mark.isVegan, data.mark.isNonGMO)
         
         breadTypeTag = []
