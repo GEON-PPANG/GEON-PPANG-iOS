@@ -10,5 +10,5 @@ import Foundation
 struct NetworkConstant {
     static let noTokenHeader = ["Content-Type": "application/json"]
     static var hasTokenHeader = ["Content-Type": "application/json",
-                                 "Authorization": "Bearer \(UserDefaults.standard.string(forKey: "Authorization") ?? "")"]
+                                 "Authorization": "Bearer \(KeychainService.readKeychain(of: .access))"]
 }
