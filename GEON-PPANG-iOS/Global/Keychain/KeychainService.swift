@@ -11,14 +11,6 @@ class KeychainService {
     
     static let serviceName = "GEON-PPANG"
     
-    static let shared = KeychainService()
-    
-    private init() {}
-    
-}
-
-extension KeychainService {
-    
     // MARK: - create keychain
     
     static func createKeychain(of key: KeychainKey, with value: String) {
@@ -161,5 +153,4 @@ extension KeychainService {
         }
         #endif
     }
-    
 }
