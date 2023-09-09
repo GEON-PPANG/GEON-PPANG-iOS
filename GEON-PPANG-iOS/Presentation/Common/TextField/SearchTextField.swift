@@ -90,9 +90,9 @@ final class SearchTextField: UITextField {
         }
     }
     
-    func configureViewType(viewtype: ViewType) {
+    func configureViewType(_ type: ViewType) {
         
-        self.viewType = viewtype
+        self.viewType = type
         self.configureButtonSubView()
     }
     
