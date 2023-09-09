@@ -158,8 +158,12 @@ final class SignInViewController: BaseViewController {
     func configureButtonUI(_ isValid: Bool) {
         
         nextButton.do {
-            $0.isUserInteractionEnabled = isValid
             $0.configureButtonUI(isValid ? .gbbMain2!: .gbbGray200!)
+            $0.isUserInteractionEnabled = isValid
+            $0.tappedCommonButton = { [weak self] in
+                guard let self else { return }
+                Utils.push(self.navigationController, NickNameViewController())
+            }
         }
     }
     
