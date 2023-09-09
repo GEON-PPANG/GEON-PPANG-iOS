@@ -87,12 +87,12 @@ final class MyReviewsViewController: BaseViewController {
             if self.myReviewsList.isEmpty {
                 return LayoutUtils.emptySection(hasHeader: false)
             } else {
-                var config = LayoutUtils.listConfiguration(appearance: .grouped,
+                let config = LayoutUtils.listConfiguration(appearance: .grouped,
                                                            headerMode: .supplementary) { indexPath, config in
                     
                     var config = config
                     config.bottomSeparatorInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 0)
-                    if indexPath == self.collectionView.indexPathsForVisibleItems.last {
+                    if indexPath == self.collectionView.lastIndexPath() {
                         config.bottomSeparatorVisibility = .hidden
                     }
                     return config
