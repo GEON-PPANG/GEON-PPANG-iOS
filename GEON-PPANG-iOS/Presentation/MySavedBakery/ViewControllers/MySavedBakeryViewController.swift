@@ -152,33 +152,13 @@ final class MySavedBakeryViewController: BaseViewController {
                 let layoutSection = NSCollectionLayoutSection.list(using: config, layoutEnvironment: layoutEnvirnment)
                 return layoutSection
             case .empty, .none:
-                return self.normalSection()
+                return LayoutUtils.emptySection(hasHeader: false)
             }
         }
         
         return layout
     }
-    
-    private func normalSection() -> NSCollectionLayoutSection {
-        
-        let item = NSCollectionLayoutItem(layoutSize: .init(
-            widthDimension: .fractionalWidth(1),
-            heightDimension: .fractionalHeight(convertByHeightRatio(694) / convertByHeightRatio(812))
-        ))
-        
-        let group = NSCollectionLayoutGroup.vertical(
-            layoutSize: .init(
-                widthDimension: .fractionalWidth(1),
-                heightDimension: .fractionalHeight(convertByHeightRatio(694) / convertByHeightRatio(812))
-            ),
-            subitem: item,
-            count: 1
-        )
-        let section = NSCollectionLayoutSection(group: group)
-        
-        return section
-    }
-    
+
     func configureScollable(_ count: Int) {
         if count == 0 {
             collectionView.isScrollEnabled = false
@@ -191,9 +171,11 @@ final class MySavedBakeryViewController: BaseViewController {
 extension MySavedBakeryViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let nextViewController = BakeryDetailViewController()
-        nextViewController.bakeryID = self.savedList[indexPath.item].bakeryID
-        Utils.push(self.navigationController, nextViewController)
+        if !self.savedList.isEmpty {
+            let nextViewController = BakeryDetailViewController()
+            nextViewController.bakeryID = self.savedList[indexPath.item].bakeryID
+            Utils.push(self.navigationController, nextViewController)
+        }
     }
 }
 

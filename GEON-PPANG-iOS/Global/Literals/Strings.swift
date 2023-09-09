@@ -21,8 +21,6 @@ struct I18N {
     
     /// Onboarding
     struct Onboarding {
-        static let latelySigninText = "최근에 카카오톡으로 로그인 했습니다."
-        static let latelySigninSNS = "카카오톡"
         static let emailSignIn = "이메일로 로그인"
         static let emailSignUp = "이메일로 회원가입"
     }
@@ -41,8 +39,8 @@ struct I18N {
         
     }
     
-    /// WriteReviewViewController
-    struct WriteReview {
+    /// ReviewViewController
+    struct Review {
         static let writeReview = "리뷰 쓰기"
         static let likeOptionTitle = "건빵집은 어떠셨나요?"
         static let likePlaceholder = "추가로 좋았던 점이 있다면 말씀해주세요!"
@@ -57,6 +55,8 @@ struct I18N {
         static let sheetContinue = "아니요, 계속 쓸게요"
         
         static let confirmSheetTitle = "작성이 완료됐어요!"
+        
+        static let emptyReviewText = "작성한 리뷰가 없어요"
     }
     
     /// BakeryList
@@ -112,6 +112,7 @@ struct I18N {
     
     /// Detail
     struct Detail {
+        static let menuNotice = "가게 상세정보 및 메뉴는 업체에서 제공한 정보를 바탕으로 합니다.\n건빵집 방문 시 한 번 더 확인하시기를 권장합니다."
         static let writeReview = "리뷰 작성하기"
     }
     

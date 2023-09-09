@@ -26,6 +26,7 @@ final class BakeryListViewController: BaseViewController {
     private var sortBakeryBy: SortBakery = .byDefault
     
     private var sortBakeryName: String = SortBakery.byDefault.sortValue
+    private var isFirstAppearance = false
     private var filterStatus: [Bool] = [false, false, false ]
     private var myFilterStatus: Bool = false
     private var requestBakeryList: BakeryRequestDTO { return BakeryRequestDTO(
@@ -36,11 +37,13 @@ final class BakeryListViewController: BaseViewController {
         isBrunch: filterStatus[2]
     )
     }
+    
     // MARK: - UI Property
     
     private let bakeryTopView = BakeryListTopView()
     private let bakeryFilterView = BakeryFilterView()
     private let bakerySortView = SortBakeryFilterView()
+    private lazy var bubbleView = BubbleView()
     private lazy var bakeryListCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
     
     // MARK: - Life Cycle
@@ -48,7 +51,7 @@ final class BakeryListViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        getBakeryList(request: self.requestBakeryList)
+        getUserFilterType()
     }
     
     override func viewDidLoad() {
@@ -132,6 +135,16 @@ final class BakeryListViewController: BaseViewController {
         }
     }
     
+    private func configureBubbleView(_ isAppeared: Bool) {
+        
+        if isAppeared {
+            bubbleView.removeFromSuperview()
+        } else {
+            view.addSubview(bubbleView)
+            bubbleView.configureLayout(trailing: safeArea, top: bakeryFilterView.snp.bottom, offset: -11)
+        }
+    }
+    
     private func layout() -> UICollectionViewLayout {
         
         var config = UICollectionLayoutListConfiguration(appearance: .plain)
@@ -158,7 +171,7 @@ final class BakeryListViewController: BaseViewController {
     private func setSnapShot() {
         
         var snapshot = SnapShot()
-        defer { dataSource?.apply(snapshot, animatingDifferences: false)}
+        defer { self.dataSource?.applySnapshotUsingReloadData(snapshot)}
         
         snapshot.appendSections([.main])
         snapshot.appendItems(bakeryList)
@@ -194,6 +207,7 @@ final class BakeryListViewController: BaseViewController {
 extension BakeryListViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         let nextViewController = BakeryDetailViewController()
         nextViewController.bakeryID = self.bakeryList[indexPath.item].bakeryID
         Utils.push(self.navigationController, nextViewController)
@@ -211,6 +225,27 @@ extension BakeryListViewController {
             guard let data = response.data else { return }
             let bakeryList = data.map { $0 }
             self.bakeryList = bakeryList
+            self.setSnapShot()
+        }
+    }
+    
+    private func getUserFilterType() {
+        
+        FilterAPI.shared.getFilterType { response in
+            guard let response = response else { return }
+            guard let data = response.data else { return }
+            if !data.mainPurpose.contains("NONE") {
+                self.bakerySortView.tappedButton(true)
+                self.myFilterStatus = true
+                self.configureBubbleView(true)
+            } else {
+                self.bakerySortView.tappedButton(false)
+                if !self.isFirstAppearance {
+                    self.configureBubbleView(false)
+                    self.isFirstAppearance = true
+                }
+            }
+            self.getBakeryList(request: self.requestBakeryList)
             self.setSnapShot()
         }
     }

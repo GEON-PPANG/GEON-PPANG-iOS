@@ -116,7 +116,7 @@ final class LogInViewController: BaseViewController {
             $0.configureButtonUI(.gbbGray200!)
             $0.configureButtonTitle(.login)
         }
-
+        
         signInButton.do {
             $0.setTitle(I18N.LogIn.signIn, for: .normal)
             $0.setTitleColor(.gbbGray500!, for: .normal)
@@ -193,6 +193,12 @@ extension LogInViewController: UITextFieldDelegate {
         configureButtonUI(self.isValid)
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
+    }
+    
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         
         textField.resignFirstResponder()
@@ -201,7 +207,9 @@ extension LogInViewController: UITextFieldDelegate {
 }
 
 extension LogInViewController {
+    
     private func postLogin() {
+        
         let loginData = LoginRequestDTO(email: self.loginEmail, password: self.loginPassword)
         AuthAPI.shared.postLogin(to: loginData) { result in
             guard let status = result else { return }

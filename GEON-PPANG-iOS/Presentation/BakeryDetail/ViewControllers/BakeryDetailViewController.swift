@@ -14,31 +14,7 @@ final class BakeryDetailViewController: BaseViewController {
     
     // MARK: - Property
     
-    private var overviewData: BakeryDetailResponseDTO = BakeryDetailResponseDTO(bakeryID: 0,
-                                                                                bakeryName: "",
-                                                                                bakeryPicture: "",
-                                                                                isHACCP: false,
-                                                                                isVegan: false,
-                                                                                isNonGMO: false,
-                                                                                firstNearStation: "",
-                                                                                secondNearStation: "",
-                                                                                isBookMarked: false,
-                                                                                bookMarkCount: 0,
-                                                                                reviewCount: 0,
-                                                                                breadType: BreadResponseType(breadTypeID: 0,
-                                                                                                             name: "",
-                                                                                                             isGlutenFree: false,
-                                                                                                             isVegan: false,
-                                                                                                             isNutFree: false,
-                                                                                                             isSugarFree: false),
-                                                                                homepage: "",
-                                                                                address: "",
-                                                                                openingTime: "",
-                                                                                closedDay: "",
-                                                                                phoneNumber: "",
-                                                                                menuList: [MenuList(menuID: 0,
-                                                                                                    menuName: "",
-                                                                                                    menuPrice: 0)]) {
+    private var overviewData: BakeryDetailResponseDTO = .initialDTO() {
         didSet {
             self.collectionView.reloadData()
         }
@@ -133,7 +109,7 @@ final class BakeryDetailViewController: BaseViewController {
                 }
             }
             $0.tappedWriteReviewButton = {
-                Utils.push(self.navigationController, WriteReviewViewController(bakeryData: self.configureSimpleBakeryData()))
+                Utils.push(self.navigationController, ReviewViewController(type: .write, bakeryData: self.configureSimpleBakeryData()))
             }
         }
     }
@@ -321,7 +297,7 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
         
         switch section {
         case 2:
-            return CGSize(width: collectionView.frame.width, height: 121)
+            return CGSize(width: collectionView.frame.width, height: 112)
         default:
             return CGSize()
         }

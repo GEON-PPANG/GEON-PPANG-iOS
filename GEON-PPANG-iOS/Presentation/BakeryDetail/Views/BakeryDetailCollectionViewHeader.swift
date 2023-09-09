@@ -32,7 +32,6 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
     
     private let titleLabel = UILabel()
     private let subTitleStackView = IconLabelStackView(type: .notice)
-    private lazy var reviewSortButton = ReviewSortButton()
     
     // MARK: - Initializer
     
@@ -52,7 +51,6 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
         super.prepareForReuse()
         
         subTitleStackView.isHidden = true
-        reviewSortButton.isHidden = true
         setUI()
     }
     
@@ -96,19 +94,6 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
         }
     }
     
-    func configureReviewSortButton() {
-        
-        reviewSortButton.isHidden = false
-        
-        self.addSubview(reviewSortButton)
-        reviewSortButton.snp.makeConstraints {
-            $0.centerY.equalTo(titleLabel)
-            $0.trailing.equalToSuperview().inset(24)
-            $0.width.equalTo(79)
-            $0.height.equalTo(36)
-        }
-    }
-    
     func getType(_ type: SectionType) {
         switch type {
         case .info:
@@ -121,7 +106,6 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
         case .writtenReviews:
             titleLabel.text = "작성된 리뷰 (\(reviewCount))개"
             titleLabel.partColorChange(targetString: "\(reviewCount)", textColor: .gbbPoint1!) // 특정 문자열의 textColor를 변경
-            configureReviewSortButton()
         }
     }
     

@@ -15,6 +15,7 @@ final class ReviewCategoryStackView: UIStackView {
     // MARK: - Property
     
     private var padding = UIEdgeInsets(top: 4, left: 5, bottom: 4, right: 5)
+    private let labeling = ["맛있어요", "특별한 메뉴", "친절해요", "제로웨이스트"]
     
     // MARK: - UI Property
     
@@ -22,7 +23,6 @@ final class ReviewCategoryStackView: UIStackView {
     private lazy var specialChip = PaddingLabel(padding: padding)
     private lazy var kindChip = PaddingLabel(padding: padding)
     private lazy var zerowasteChip = PaddingLabel(padding: padding)
-    private let labeling = ["맛있어요", "특별한 메뉴", "친절해요", "제로웨이스트"]
     
     // MARK: - Initializer
     

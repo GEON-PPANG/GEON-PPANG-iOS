@@ -11,11 +11,7 @@ import SnapKit
 import Then
 
 final class BubbleView: UIView {
-    
-    // MARK: - Property
-    
-    var tappedCancelButton: (() -> Void)?
-    
+
     // MARK: - UI Property
     
     private let bubbleView = UIImageView()
@@ -25,7 +21,7 @@ final class BubbleView: UIView {
     // MARK: - Life Cycle
     
     override init(frame: CGRect) {
-        super.init(frame: frame)
+        super.init(frame: .zero)
         
         setLayout()
         setUI()
@@ -38,7 +34,7 @@ final class BubbleView: UIView {
     // MARK: - Setting
     
     private func setLayout() {
-        
+
         self.addSubview(bubbleView)
         bubbleView.snp.makeConstraints {
             $0.edges.equalToSuperview()
@@ -61,7 +57,7 @@ final class BubbleView: UIView {
     private func setUI() {
         
         bubbleView.do {
-            $0.image = .bubbleImage
+            $0.image = .leftBubbleImage
         }
         
         titleLabel.do {
@@ -73,8 +69,19 @@ final class BubbleView: UIView {
         cancelButton.do {
             $0.setImage(.deleteKeywordIcon, for: .normal)
             $0.addAction(UIAction { _ in
-                self.tappedCancelButton?()
+                self.removeFromSuperview()
             }, for: .touchUpInside)
+        }
+    }
+    
+    func configureLayout(trailing: ConstraintRelatableTarget,
+                         top: ConstraintRelatableTarget,
+                         offset: Float) {
+        
+        self.snp.makeConstraints {
+            $0.size.equalTo(CGSize(width: 209, height: 36))
+            $0.trailing.equalTo(trailing).inset(24)
+            $0.top.equalTo(top).offset(offset)
         }
     }
 }
