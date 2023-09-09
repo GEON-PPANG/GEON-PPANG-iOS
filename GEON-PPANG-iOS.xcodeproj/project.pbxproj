@@ -135,6 +135,8 @@
 		3E23CCF62A8BD9A40091957D /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556302A51DDD800752067 /* UITableView+.swift */; };
 		3E23CCF72A8BD9C30091957D /* BakeryCommonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682EA2A5D12BD0008F4FB /* BakeryCommonCollectionViewCell.swift */; };
 		3E2EEF752A5C93010093BCA9 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2EEF742A5C93010093BCA9 /* BottomView.swift */; };
+		3E3543302AAC700600BD926A /* SignUpRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E35432F2AAC700600BD926A /* SignUpRequestDTO.swift */; };
+		3E3543322AAC707200BD926A /* PlatformEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3543312AAC707200BD926A /* PlatformEnum.swift */; };
 		3E36D7CD2A8DE65D00B2C1CC /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 3E36D7CC2A8DE65D00B2C1CC /* KakaoSDKAuth */; };
 		3E36D7CF2A8DE65D00B2C1CC /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 3E36D7CE2A8DE65D00B2C1CC /* KakaoSDKCommon */; };
 		3E36D7D12A8DE65D00B2C1CC /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = 3E36D7D02A8DE65D00B2C1CC /* KakaoSDKUser */; };
@@ -334,6 +336,8 @@
 		3E232AC42A938F6400125B76 /* BookmarkCountLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkCountLabel.swift; sourceTree = "<group>"; };
 		3E232ACA2A95A02200125B76 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		3E2EEF742A5C93010093BCA9 /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
+		3E35432F2AAC700600BD926A /* SignUpRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequestDTO.swift; sourceTree = "<group>"; };
+		3E3543312AAC707200BD926A /* PlatformEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformEnum.swift; sourceTree = "<group>"; };
 		3E36D7D22A8E15C200B2C1CC /* GEON-PPANG-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "GEON-PPANG-iOS.entitlements"; sourceTree = "<group>"; };
 		3E36D7D52A8E6AF000B2C1CC /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		3E36D7D72A8E6BC500B2C1CC /* FilterDiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDiffableDataSource.swift; sourceTree = "<group>"; };
@@ -760,6 +764,7 @@
 			children = (
 				0959F16B2A658C9500E77CAF /* AuthResponseDTO.swift */,
 				09E445322AA34F90008E3D33 /* AuthRequestDTO.swift */,
+				3E35432F2AAC700600BD926A /* SignUpRequestDTO.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -1403,6 +1408,7 @@
 				09980CFA2A99A9800098550C /* SignInPropertyType.swift */,
 				3E61EE872AA63BE4004F25DB /* ReviewEnum.swift */,
 				097716E82AA575C6001EE6D5 /* BakeryListEmptyType.swift */,
+				3E3543312AAC707200BD926A /* PlatformEnum.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -1704,6 +1710,7 @@
 				3EA2E1EB2A542151003516A3 /* SizeLiteral.swift in Sources */,
 				DFB585F72A5F31D80077D272 /* BakeryDetailViewController.swift in Sources */,
 				3EFA97862A5EBCA9002E70FA /* LineView.swift in Sources */,
+				3E3543302AAC700600BD926A /* SignUpRequestDTO.swift in Sources */,
 				0987288D2A5BA1F000A29402 /* BookmarkButton.swift in Sources */,
 				0959F18C2A658D1100E77CAF /* HomeService.swift in Sources */,
 				090556202A51DB2C00752067 /* UIImage+.swift in Sources */,
@@ -1753,6 +1760,7 @@
 				0959F17A2A658CD300E77CAF /* AuthAPI.swift in Sources */,
 				0930D2632A93292F00A75C7E /* IconWithTextStackView.swift in Sources */,
 				3E61EE882AA63BE4004F25DB /* ReviewEnum.swift in Sources */,
+				3E3543322AAC707200BD926A /* PlatformEnum.swift in Sources */,
 				0959F18A2A658D0C00E77CAF /* FilterService.swift in Sources */,
 				3E79B1B52A571E7100D36A26 /* OptionsCollectionViewCell.swift in Sources */,
 				3EAC950D2A9FAF4500D2AADC /* WebViewController.swift in Sources */,
