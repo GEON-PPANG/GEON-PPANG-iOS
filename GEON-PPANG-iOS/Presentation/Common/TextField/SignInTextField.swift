@@ -59,7 +59,9 @@ final class SignInTextField: UITextField {
             
             $0.makeCornerRound(radius: 10)
             $0.makeBorder(width: 1, color: .clear)
-            $0.setLeftPadding(amount: 18)
+       //     $0.setRightPadding(amount: -18)
+
+        //$0.setLeftPadding(amount: 18)
             $0.setPlaceholder(color: .gbbGray300!, font: .headLine!)
         }
     }
@@ -127,27 +129,27 @@ final class SignInTextField: UITextField {
         
         let rect = super.textRect(forBounds: bounds)
         return rect.inset(by: UIEdgeInsets(top: topPadding,
-                                           left: 0,
+                                           left: 18,
                                            bottom: 0,
-                                           right: 0))
+                                           right: 18))
     }
     
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
         
         let rect = super.editingRect(forBounds: bounds)
         return rect.inset(by: UIEdgeInsets(top: topPadding,
-                                           left: 0,
+                                           left: 18,
                                            bottom: 0,
-                                           right: 0))
+                                           right: 18))
     }
     
     override public func placeholderRect(forBounds bounds: CGRect) -> CGRect {
         
         let rect = super.textRect(forBounds: bounds)
         return rect.inset(by: UIEdgeInsets(top: topPadding,
-                                           left: 0,
+                                           left: 18,
                                            bottom: 0,
-                                           right: 0))
+                                           right: 18))
     }
     
     override public func rightViewRect(forBounds bounds: CGRect) -> CGRect {
