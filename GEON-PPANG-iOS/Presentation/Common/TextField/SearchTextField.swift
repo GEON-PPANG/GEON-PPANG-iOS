@@ -52,9 +52,6 @@ final class SearchTextField: UITextField {
                 
         searchButton.do {
             $0.setImage(.searchIcon400, for: .normal)
-            $0.addAction(UIAction { _ in
-                print("search Tapped")
-            }, for: .touchUpInside)
         }
         
         clearButton.do {
