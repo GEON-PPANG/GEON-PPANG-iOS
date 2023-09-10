@@ -223,6 +223,7 @@ extension OnboardingViewController {
                 dump(status)
             default:
                 dump(status)
+                Utils.showAlert(title: "에러", description: "실패", at: self)
             }
         }
     }
