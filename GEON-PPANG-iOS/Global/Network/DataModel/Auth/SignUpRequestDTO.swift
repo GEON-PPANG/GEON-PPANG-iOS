@@ -8,7 +8,7 @@
 import Foundation
 
 struct SignUpRequestDTO: Codable {
-    let platformType: String
+    let platformType: PlatformType
     let email: String
     let password: String
     let nickname: String
