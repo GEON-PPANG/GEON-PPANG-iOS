@@ -127,32 +127,4 @@ class KeychainService {
         return false
         #endif
     }
-    
-    // MARK: - existence keychain
-    
-//    static func keychainExists(of key: KeychainKey) -> Bool {
-//        
-//        let query: [String: Any] = [
-//            kSecClass as String: kSecClassGenericPassword,
-//            kSecAttrService as String: serviceName,
-//            kSecAttrLabel as String: key.label
-//        ]
-//        
-//        let status = SecItemCopyMatching(query as CFDictionary, nil)
-//        #if DEBUG
-//        switch status {
-//        case errSecSuccess:
-//            print("🔒 Following keychain already exists 🔒")
-//            print("🔒      Update to new keychain       🔒")
-//            return true
-//        case errSecItemNotFound:
-//            print("🔒 Following keychain doesn't exist 🔒")
-//            print("🔒       Create new keychain        🔒")
-//            return false
-//        default:
-//            print("❌ Unknown error: \(SecCopyErrorMessageString(status, nil).debugDescription) ❌")
-//            return false
-//        }
-//        #endif
-//    }
 }
