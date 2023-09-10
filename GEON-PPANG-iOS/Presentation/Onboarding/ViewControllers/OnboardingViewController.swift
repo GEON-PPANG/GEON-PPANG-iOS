@@ -132,11 +132,6 @@ final class OnboardingViewController: BaseViewController {
                 guard let token = token
                 else { return }
                 
-//                if KeychainService.keychainExists(of: .socialAuth) {
-//                    KeychainService.updateKeychain(of: .socialAuth, to: token)
-//                } else {
-//                    KeychainService.setKeychain(of: .socialAuth, with: token)
-//                }
                 KeychainService.setKeychain(of: .socialAuth, with: token)
                 
                 let request = SignUpRequestDTO(
@@ -240,8 +235,11 @@ extension OnboardingViewController: ASAuthorizationControllerDelegate {
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         
-        guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential
+        guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential,
+              let authCode = credential.authorizationCode,
+              let authCodeString = String(data: authCode, encoding: .utf8)
         else { return }
+        KeychainService.setKeychain(of: .socialAuth, with: authCodeString)
         
         let userIdentifier = credential.user
         let appleProvider = ASAuthorizationAppleIDProvider()
@@ -249,48 +247,43 @@ extension OnboardingViewController: ASAuthorizationControllerDelegate {
             
             guard err == nil
             else {
-                #if DEBUG
                 print("❌ \(String(describing: err)) ❌")
-                #endif
                 return
             }
             
             switch state {
             case .authorized:
-                guard let code = credential.authorizationCode,
-                      let email = credential.email
-                else { return }
+                print("🔴 User authorized 🔴")
+                // TODO: 변경사항 반영해야함
+                let request = SignUpRequestDTO(
+                    platformType: .apple,
+                    email: "",
+                    password: "",
+                    nickname: ""
+                )
+                self.postSignUp(with: request)
+                
+            case .notFound:
+                print("🔴 User not found 🔴")
+                guard let email = credential.email else {
+                    print("❌ User email not found ❌")
+                    return
+                }
+                
                 let request = SignUpRequestDTO(
                     platformType: .apple,
                     email: email,
                     password: "",
                     nickname: ""
                 )
-            case .notFound:
-                print("❌ User not found ❌")
+                self.postSignUp(with: request)
+                
             case .revoked:
                 print("❌ User revoked ❌")
             default:
                 print("❌ Unknown error: \(state) ❌")
             }
-            
         }
-        
-//        guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential,
-//              let email = credential.email,
-//              let authorizationCode = credential.authorizationCode
-//        else { return }
-//
-//        let codeString = String(data: authorizationCode, encoding: .utf8)
-//        print("💻: \(String(describing: codeString))")
-//        guard let codeString = String(data: authorizationCode, encoding: .utf8) else { return }
-//        let request = SignUpRequestDTO(
-//            platformType: .apple,
-//            email: email,
-//            password: "",
-//            nickname: ""
-//        )
-//        postSignUp(with: codeString, and: request)
     }
     
 }
