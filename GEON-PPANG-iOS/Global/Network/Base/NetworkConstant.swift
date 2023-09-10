@@ -9,6 +9,12 @@ import Foundation
 
 struct NetworkConstant {
     static let noTokenHeader = ["Content-Type": "application/json"]
-    static var hasTokenHeader = ["Content-Type": "application/json",
-                                 "Authorization": "Bearer \(KeychainService.readKeychain(of: .access))"]
+    static let hasTokenHeader = [
+        "Content-Type": "application/json",
+        "Authorization": "Bearer \(KeychainService.readKeychain(of: .access))"
+    ]
+    static let platformTokenHeader = [
+        "Content-Type": "application/json",
+        "Platform-token": KeychainService.readKeychain(of: .socialAuth)
+    ]
 }
