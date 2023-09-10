@@ -128,7 +128,25 @@ final class OnboardingViewController: BaseViewController {
     private func setSocialLoginButtonActions() {
         
         let kakaoLoginAction = UIAction { [weak self] _ in
-            self?.kakaoLoginButtonTapped()
+            self?.getKakaoAuthCode { token in
+                guard let token = token
+                else { return }
+                
+//                if KeychainService.keychainExists(of: .socialAuth) {
+//                    KeychainService.updateKeychain(of: .socialAuth, to: token)
+//                } else {
+//                    KeychainService.setKeychain(of: .socialAuth, with: token)
+//                }
+                KeychainService.setKeychain(of: .socialAuth, with: token)
+                
+                let request = SignUpRequestDTO(
+                    platformType: .kakao,
+                    email: "",
+                    password: "",
+                    nickname: ""
+                )
+                self?.postSignUp(with: request)
+            }
         }
         kakaoLoginButton.addAction(kakaoLoginAction, for: .touchUpInside)
         
@@ -145,27 +163,34 @@ final class OnboardingViewController: BaseViewController {
 
 extension OnboardingViewController {
     
-    private func kakaoLoginButtonTapped() {
+    private func getKakaoAuthCode(_ completion: @escaping (String?) -> Void) {
         
         if UserApi.isKakaoTalkLoginAvailable() {
-            UserApi.shared.loginWithKakaoTalk { token, error in
+            UserApi.shared.loginWithKakaoTalk { response, error in
+                
                 guard error == nil
                 else {
                     print("login with kakaoTalk failed with error: \(String(describing: error))")
                     return
                 }
-                print("🪙 token 🪙: \(String(describing: token))")
-                // TODO: api 나오면 연결
+                
+                guard let token = response?.accessToken
+                else { return }
+                
+                completion(token)
             }
         } else {
-            UserApi.shared.loginWithKakaoAccount { token, error in
+            UserApi.shared.loginWithKakaoAccount { response, error in
                 guard error == nil
                 else {
                     print("login with kakaoTalk failed with error: \(String(describing: error))")
                     return
                 }
-                print("🪙 token 🪙: \(String(describing: token))")
-                // TODO: api 나오면 연결
+                
+                guard let token = response?.accessToken
+                else { return }
+                
+                completion(token)
             }
         }
     }
@@ -173,7 +198,6 @@ extension OnboardingViewController {
     private func appleLoginButtonTapped() {
         
         let appleIDProvider = ASAuthorizationAppleIDProvider()
-        let applePWProvider = ASAuthorizationPasswordProvider()
         let request = appleIDProvider.createRequest()
         request.requestedScopes = [.fullName, .email]
         
@@ -181,7 +205,6 @@ extension OnboardingViewController {
         authorizationController.delegate = self
         authorizationController.presentationContextProvider = self
         authorizationController.performRequests()
-        
     }
     
     private func emailSignInButtonTapped() {
@@ -194,23 +217,80 @@ extension OnboardingViewController {
     
 }
 
+extension OnboardingViewController {
+    
+    private func postSignUp(with request: SignUpRequestDTO) {
+        AuthAPI.shared.postSignUp(with: request) { status in
+            guard let code = status?.code else { return }
+            switch code {
+            case 200...299:
+                Utils.push(self.navigationController, NickNameViewController())
+                dump(status)
+            default:
+                dump(status)
+            }
+        }
+    }
+    
+}
+
 // MARK: - Delegate
 
 extension OnboardingViewController: ASAuthorizationControllerDelegate {
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         
-        // TODO: 받아온 credential 처리 로직 고민해보기
-        guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential,
-              let idToken = credential.identityToken,
-              let authorizationCode = credential.authorizationCode
+        guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential
         else { return }
         
-        let tokenString = String(data: idToken, encoding: .utf8)
-        let codeString = String(data: authorizationCode, encoding: .utf8)
-        print("🆔: \(String(describing: tokenString))")
-        print("💻: \(String(describing: codeString))")
+        let userIdentifier = credential.user
+        let appleProvider = ASAuthorizationAppleIDProvider()
+        appleProvider.getCredentialState(forUserID: userIdentifier) { state, err in
+            
+            guard err == nil
+            else {
+                #if DEBUG
+                print("❌ \(String(describing: err)) ❌")
+                #endif
+                return
+            }
+            
+            switch state {
+            case .authorized:
+                guard let code = credential.authorizationCode,
+                      let email = credential.email
+                else { return }
+                let request = SignUpRequestDTO(
+                    platformType: .apple,
+                    email: email,
+                    password: "",
+                    nickname: ""
+                )
+            case .notFound:
+                print("❌ User not found ❌")
+            case .revoked:
+                print("❌ User revoked ❌")
+            default:
+                print("❌ Unknown error: \(state) ❌")
+            }
+            
+        }
         
+//        guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential,
+//              let email = credential.email,
+//              let authorizationCode = credential.authorizationCode
+//        else { return }
+//
+//        let codeString = String(data: authorizationCode, encoding: .utf8)
+//        print("💻: \(String(describing: codeString))")
+//        guard let codeString = String(data: authorizationCode, encoding: .utf8) else { return }
+//        let request = SignUpRequestDTO(
+//            platformType: .apple,
+//            email: email,
+//            password: "",
+//            nickname: ""
+//        )
+//        postSignUp(with: codeString, and: request)
     }
     
 }
