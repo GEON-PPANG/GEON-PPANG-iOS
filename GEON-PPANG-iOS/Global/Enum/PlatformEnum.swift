@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum PlatformType: String {
+enum PlatformType: String, Codable {
     case none = "NONE"
     case kakao = "KAKAO"
     case apple = "APPLE"
