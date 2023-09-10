@@ -137,6 +137,7 @@
 		3E2EEF752A5C93010093BCA9 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2EEF742A5C93010093BCA9 /* BottomView.swift */; };
 		3E3543302AAC700600BD926A /* SignUpRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E35432F2AAC700600BD926A /* SignUpRequestDTO.swift */; };
 		3E3543322AAC707200BD926A /* PlatformEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3543312AAC707200BD926A /* PlatformEnum.swift */; };
+		3E3543342AAD594E00BD926A /* SignUpResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3543332AAD594E00BD926A /* SignUpResponseDTO.swift */; };
 		3E36D7CD2A8DE65D00B2C1CC /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 3E36D7CC2A8DE65D00B2C1CC /* KakaoSDKAuth */; };
 		3E36D7CF2A8DE65D00B2C1CC /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 3E36D7CE2A8DE65D00B2C1CC /* KakaoSDKCommon */; };
 		3E36D7D12A8DE65D00B2C1CC /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = 3E36D7D02A8DE65D00B2C1CC /* KakaoSDKUser */; };
@@ -338,6 +339,7 @@
 		3E2EEF742A5C93010093BCA9 /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
 		3E35432F2AAC700600BD926A /* SignUpRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequestDTO.swift; sourceTree = "<group>"; };
 		3E3543312AAC707200BD926A /* PlatformEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformEnum.swift; sourceTree = "<group>"; };
+		3E3543332AAD594E00BD926A /* SignUpResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponseDTO.swift; sourceTree = "<group>"; };
 		3E36D7D22A8E15C200B2C1CC /* GEON-PPANG-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "GEON-PPANG-iOS.entitlements"; sourceTree = "<group>"; };
 		3E36D7D52A8E6AF000B2C1CC /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		3E36D7D72A8E6BC500B2C1CC /* FilterDiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDiffableDataSource.swift; sourceTree = "<group>"; };
@@ -765,6 +767,7 @@
 				0959F16B2A658C9500E77CAF /* AuthResponseDTO.swift */,
 				09E445322AA34F90008E3D33 /* AuthRequestDTO.swift */,
 				3E35432F2AAC700600BD926A /* SignUpRequestDTO.swift */,
+				3E3543332AAD594E00BD926A /* SignUpResponseDTO.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -1739,6 +1742,7 @@
 				3E16E5022A58176800B813D0 /* ReviewDetailTextView.swift in Sources */,
 				3E232ABC2A8FDB8F00125B76 /* FilterCollectionViewHeader.swift in Sources */,
 				DFB587B92A5D584800704B6C /* OnboardingViewController.swift in Sources */,
+				3E3543342AAD594E00BD926A /* SignUpResponseDTO.swift in Sources */,
 				09E445332AA34F90008E3D33 /* AuthRequestDTO.swift in Sources */,
 				097716E72AA4E787001EE6D5 /* AuthPlugin.swift in Sources */,
 				DF959A6E2A568C9400E75774 /* UIColor+.swift in Sources */,
