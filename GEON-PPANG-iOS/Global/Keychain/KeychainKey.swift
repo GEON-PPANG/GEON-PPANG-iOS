@@ -11,6 +11,7 @@ enum KeychainKey {
     case access
     case refresh
     case accessAndRefresh
+    case socialAuth
 }
 
 extension KeychainKey {
@@ -19,6 +20,7 @@ extension KeychainKey {
         case .access: return "accessToken"
         case .refresh: return "refreshToken"
         case .accessAndRefresh: return "accessAndRefreshToken"
+        case .socialAuth: return "socialAuthorizationCode"
         }
     }
 }
