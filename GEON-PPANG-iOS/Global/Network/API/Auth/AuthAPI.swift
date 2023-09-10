@@ -11,11 +11,15 @@ import Moya
 
 final class AuthAPI {
     
+    typealias SignUpResponse = GeneralResponse<SignUpRequestDTO>
+    
     static let shared: AuthAPI = AuthAPI()
     
     private init() {}
     
     var authProvider = MoyaProvider<AuthService>(plugins: [AuthPlugin()])
+    
+    public private(set) var signUpResponse: SignUpResponse?
     
     // MARK: - Post
     
@@ -48,6 +52,24 @@ final class AuthAPI {
             switch result {
             case let .success(response):
                 completion(response.statusCode)
+            case .failure(let err):
+                print(err.localizedDescription)
+                completion(nil)
+            }
+        }
+    }
+    
+    func postSignUp(with data: SignUpRequestDTO, completion: @escaping (SignUpResponse?) -> Void) {
+        authProvider.request(.signUp(request: data)) { result in
+            switch result {
+            case .success(let response):
+                do {
+                    self.signUpResponse = try response.map(SignUpResponse.self)
+                    guard let signUpResponse = self.signUpResponse else { return }
+                    completion(signUpResponse)
+                } catch let err {
+                    print(err.localizedDescription, 500)
+                }
             case .failure(let err):
                 print(err.localizedDescription)
                 completion(nil)
