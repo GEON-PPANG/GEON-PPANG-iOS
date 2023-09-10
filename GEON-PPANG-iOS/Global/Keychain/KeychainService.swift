@@ -13,7 +13,7 @@ class KeychainService {
     
     // MARK: - create keychain
     
-    static func createKeychain(of key: KeychainKey, with value: String) {
+    static func setKeychain(of key: KeychainKey, with value: String) {
         
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
@@ -26,11 +26,13 @@ class KeychainService {
         #if DEBUG
         switch status {
         case errSecSuccess:
-            print("🔒   Keychain created successfully   🔒")
+            print("🔒 Set: Keychain created successfully 🔒")
         case errSecDuplicateItem:
-            print("❌ Keychain item already exists ❌")
+            print("❌ Set: Keychain item already exists ❌")
+            print("❌ Set: Keychain update ❌")
+            updateKeychain(of: key, to: value)
         default:
-            print("❌ Unknown error: \(SecCopyErrorMessageString(status, nil).debugDescription) ❌")
+            print("❌ Set: Unknown error: \(SecCopyErrorMessageString(status, nil).debugDescription) ❌")
         }
         #endif
     }
@@ -53,12 +55,12 @@ class KeychainService {
         #if DEBUG
         switch status {
         case errSecSuccess:
-            print("🔒    Keychain read successfully     🔒")
+            print("🔒 Read: Keychain read successfully 🔒")
         case errSecItemNotFound:
-            print("❌ Keychain item not found ❌")
+            print("❌ Read: Keychain item not found ❌")
             return ""
         default:
-            print("❌ Unknown error: \(SecCopyErrorMessageString(status, nil).debugDescription) ❌")
+            print("❌ Read: Unknown error: \(SecCopyErrorMessageString(status, nil).debugDescription) ❌")
             return ""
         }
         #endif
@@ -67,7 +69,7 @@ class KeychainService {
               let tokenData = decodedItem[kSecValueData as String] as? Data,
               let token = String(data: tokenData, encoding: .utf8)
         else {
-            print("❌ Keychain decoding failed ❌")
+            print("❌ Read: Keychain decoding failed ❌")
             return ""
         }
         
@@ -91,11 +93,11 @@ class KeychainService {
         #if DEBUG
         switch status {
         case errSecSuccess:
-            print("🔒  Keychain updated successfully  🔒")
+            print("🔒 Update: Keychain updated successfully  🔒")
         case errSecItemNotFound:
-            print("❌ Keychain item not found ❌")
+            print("❌ Update: Keychain item not found ❌")
         default:
-            print("❌ Unknown error: \(SecCopyErrorMessageString(status, nil).debugDescription) ❌")
+            print("❌ Update: Unknown error: \(SecCopyErrorMessageString(status, nil).debugDescription) ❌")
         }
         #endif
     }
@@ -115,12 +117,12 @@ class KeychainService {
         #if DEBUG
         switch status {
         case errSecSuccess:
-            print("🔒  Keychain deleted successfully  🔒")
+            print("🔒 Delete: Keychain deleted successfully 🔒")
             return true
         case errSecItemNotFound:
-            print("❌ Keychain item not found ❌")
+            print("❌ Delete: Keychain item not found ❌")
         default:
-            print("❌ Unknown error: \(SecCopyErrorMessageString(status, nil).debugDescription) ❌")
+            print("❌ Delete: Unknown error: \(SecCopyErrorMessageString(status, nil).debugDescription) ❌")
         }
         return false
         #endif
@@ -128,29 +130,29 @@ class KeychainService {
     
     // MARK: - existence keychain
     
-    static func keychainExists(of key: KeychainKey) -> Bool {
-        
-        let query: [String: Any] = [
-            kSecClass as String: kSecClassGenericPassword,
-            kSecAttrService as String: serviceName,
-            kSecAttrLabel as String: key.label
-        ]
-        
-        let status = SecItemCopyMatching(query as CFDictionary, nil)
-        #if DEBUG
-        switch status {
-        case errSecSuccess:
-            print("🔒 Following keychain already exists 🔒")
-            print("🔒      Update to new keychain       🔒")
-            return true
-        case errSecItemNotFound:
-            print("🔒 Following keychain doesn't exist 🔒")
-            print("🔒       Create new keychain        🔒")
-            return false
-        default:
-            print("❌ Unknown error: \(SecCopyErrorMessageString(status, nil).debugDescription) ❌")
-            return false
-        }
-        #endif
-    }
+//    static func keychainExists(of key: KeychainKey) -> Bool {
+//        
+//        let query: [String: Any] = [
+//            kSecClass as String: kSecClassGenericPassword,
+//            kSecAttrService as String: serviceName,
+//            kSecAttrLabel as String: key.label
+//        ]
+//        
+//        let status = SecItemCopyMatching(query as CFDictionary, nil)
+//        #if DEBUG
+//        switch status {
+//        case errSecSuccess:
+//            print("🔒 Following keychain already exists 🔒")
+//            print("🔒      Update to new keychain       🔒")
+//            return true
+//        case errSecItemNotFound:
+//            print("🔒 Following keychain doesn't exist 🔒")
+//            print("🔒       Create new keychain        🔒")
+//            return false
+//        default:
+//            print("❌ Unknown error: \(SecCopyErrorMessageString(status, nil).debugDescription) ❌")
+//            return false
+//        }
+//        #endif
+//    }
 }
