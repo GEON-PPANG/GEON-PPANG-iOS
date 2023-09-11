@@ -149,6 +149,8 @@
 		3E61EE8E2AA95158004F25DB /* MyReviewDetailResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61EE8D2AA95158004F25DB /* MyReviewDetailResponseDTO.swift */; };
 		3E61EE922AA953EE004F25DB /* ReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61EE912AA953EE004F25DB /* ReviewService.swift */; };
 		3E61EE952AA95592004F25DB /* ReviewAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61EE942AA95592004F25DB /* ReviewAPI.swift */; };
+		3E77EC7A2AAAF12F007995AD /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E77EC792AAAF12F007995AD /* KeychainService.swift */; };
+		3E77EC7C2AAAFAE3007995AD /* KeychainKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E77EC7B2AAAFAE3007995AD /* KeychainKey.swift */; };
 		3E79B19D2A54523D00D36A26 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B19C2A54523D00D36A26 /* BackButton.swift */; };
 		3E79B1A02A5546E700D36A26 /* DescriptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B19F2A5546E700D36A26 /* DescriptionCollectionViewCell.swift */; };
 		3E79B1AE2A56F14A00D36A26 /* BakeryOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79B1AD2A56F14A00D36A26 /* BakeryOverviewView.swift */; };
@@ -344,6 +346,8 @@
 		3E61EE8D2AA95158004F25DB /* MyReviewDetailResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewDetailResponseDTO.swift; sourceTree = "<group>"; };
 		3E61EE912AA953EE004F25DB /* ReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewService.swift; sourceTree = "<group>"; };
 		3E61EE942AA95592004F25DB /* ReviewAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAPI.swift; sourceTree = "<group>"; };
+		3E77EC792AAAF12F007995AD /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		3E77EC7B2AAAFAE3007995AD /* KeychainKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainKey.swift; sourceTree = "<group>"; };
 		3E79B19C2A54523D00D36A26 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		3E79B19F2A5546E700D36A26 /* DescriptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionCollectionViewCell.swift; sourceTree = "<group>"; };
 		3E79B1AD2A56F14A00D36A26 /* BakeryOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryOverviewView.swift; sourceTree = "<group>"; };
@@ -771,6 +775,7 @@
 		0961C3602A501E9F0031A822 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				3E77EC762AAAEE11007995AD /* Keychain */,
 				09CA3EF62A56738A0063897A /* Protocol */,
 				0961C3662A501EDD0031A822 /* Network */,
 				0961C3652A501ED40031A822 /* Extensions */,
@@ -1234,6 +1239,15 @@
 			path = Review;
 			sourceTree = "<group>";
 		};
+		3E77EC762AAAEE11007995AD /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				3E77EC792AAAF12F007995AD /* KeychainService.swift */,
+				3E77EC7B2AAAFAE3007995AD /* KeychainKey.swift */,
+			);
+			path = Keychain;
+			sourceTree = "<group>";
+		};
 		3E79B19B2A54523400D36A26 /* Button */ = {
 			isa = PBXGroup;
 			children = (
@@ -1587,6 +1601,7 @@
 			files = (
 				3E23CCF72A8BD9C30091957D /* BakeryCommonCollectionViewCell.swift in Sources */,
 				3E23CCF62A8BD9A40091957D /* UITableView+.swift in Sources */,
+				3E77EC7C2AAAFAE3007995AD /* KeychainKey.swift in Sources */,
 				3E23CCF52A8BD9950091957D /* UIView+.swift in Sources */,
 				0959F18E2A658D1700E77CAF /* SearchService.swift in Sources */,
 				0959F1802A658CE800E77CAF /* SearchAPI.swift in Sources */,
@@ -1614,6 +1629,7 @@
 				DFDE72D72A65E84700389A51 /* WrittenReviewsCollectionViewCell.swift in Sources */,
 				09FD47C82A5DC991002020BD /* SearchNavigationView.swift in Sources */,
 				09980CFB2A99A9800098550C /* SignInPropertyType.swift in Sources */,
+				3E77EC7A2AAAF12F007995AD /* KeychainService.swift in Sources */,
 				090668FD2A4FF3C600F413FA /* SceneDelegate.swift in Sources */,
 				DF483ACC2A652E0100FCD507 /* BookmarkReviewNumberStackView.swift in Sources */,
 				097682DC2A5C83910008F4FB /* CGFloat+.swift in Sources */,
