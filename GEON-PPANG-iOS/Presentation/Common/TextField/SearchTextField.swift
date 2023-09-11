@@ -49,7 +49,7 @@ final class SearchTextField: UITextField {
     }
     
     private func setUI() {
-                
+        
         searchButton.do {
             $0.setImage(.searchIcon400, for: .normal)
         }
@@ -133,30 +133,30 @@ extension SearchTextField: UITextFieldDelegate {
     }
     
     override public func leftViewRect(forBounds bounds: CGRect) -> CGRect {
-
-            let rect = super.leftViewRect(forBounds: bounds)
-            return rect.inset(by: UIEdgeInsets(top: 0,
-                                               left: 15,
-                                               bottom: 0,
-                                               right: -15))
-        }
+        
+        let rect = super.leftViewRect(forBounds: bounds)
+        return rect.inset(by: UIEdgeInsets(top: 0,
+                                           left: 15,
+                                           bottom: 0,
+                                           right: -15))
+    }
     
-        override func textRect(forBounds bounds: CGRect) -> CGRect {
+    override func textRect(forBounds bounds: CGRect) -> CGRect {
+        
+        let rect = super.textRect(forBounds: bounds)
+        return rect.inset(by: UIEdgeInsets(top: 0,
+                                           left: viewType == .home ? 0 : 12,
+                                           bottom: 0,
+                                           right: viewType == .home ? 0 : 15))
+    }
     
-            let rect = super.textRect(forBounds: bounds)
-            return rect.inset(by: UIEdgeInsets(top: 0,
-                                               left: viewType == .home ? 0 : 12,
-                                               bottom: 0,
-                                               right: viewType == .home ? 0 : 15))
-        }
+    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+        
+        let rect = super.editingRect(forBounds: bounds)
+        return rect.inset(by: UIEdgeInsets(top: 0,
+                                           left: viewType == .home ? 0 : 12,
+                                           bottom: 0,
+                                           right: viewType == .home ? 0 :15))
+    }
     
-        override func editingRect(forBounds bounds: CGRect) -> CGRect {
-    
-            let rect = super.editingRect(forBounds: bounds)
-            return rect.inset(by: UIEdgeInsets(top: 0,
-                                               left: viewType == .home ? 0 : 12,
-                                               bottom: 0,
-                                               right: viewType == .home ? 0 :15))
-        }
-
 }
