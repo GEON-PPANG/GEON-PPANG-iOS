@@ -26,10 +26,10 @@ class KeychainService {
         #if DEBUG
         switch status {
         case errSecSuccess:
-            print("🔒 Set: Keychain created successfully 🔒")
+            print("🔒 Set: Keychain of \(key) created successfully 🔒")
         case errSecDuplicateItem:
-            print("❌ Set: Keychain item already exists ❌")
-            print("❌ Set: Keychain update ❌")
+            print("❌ Set: Keychain of \(key) item already exists ❌")
+            print("❌ Set: Keychain of \(key) update ❌")
             updateKeychain(of: key, to: value)
         default:
             print("❌ Set: Unknown error: \(SecCopyErrorMessageString(status, nil).debugDescription) ❌")
@@ -55,9 +55,9 @@ class KeychainService {
         #if DEBUG
         switch status {
         case errSecSuccess:
-            print("🔒 Read: Keychain read successfully 🔒")
+            print("🔒 Read: Keychain of \(key) read successfully 🔒")
         case errSecItemNotFound:
-            print("❌ Read: Keychain item not found ❌")
+            print("❌ Read: Keychain of \(key) item not found ❌")
             return ""
         default:
             print("❌ Read: Unknown error: \(SecCopyErrorMessageString(status, nil).debugDescription) ❌")
@@ -69,7 +69,7 @@ class KeychainService {
               let tokenData = decodedItem[kSecValueData as String] as? Data,
               let token = String(data: tokenData, encoding: .utf8)
         else {
-            print("❌ Read: Keychain decoding failed ❌")
+            print("❌ Read: Keychain of \(key) decoding failed ❌")
             return ""
         }
         
@@ -81,11 +81,11 @@ class KeychainService {
     static func updateKeychain(of key: KeychainKey, to value: String) {
         
         let query: [String: Any] = [
-            kSecClass as String: kSecClassGenericPassword
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrService as String: serviceName,
+            kSecAttrLabel as String: key.label
         ]
         let attributes: [String: Any] = [
-            kSecAttrService as String: serviceName,
-            kSecAttrLabel as String: key.label,
             kSecValueData as String: value.data(using: .utf8) as Any
         ]
         
@@ -93,9 +93,9 @@ class KeychainService {
         #if DEBUG
         switch status {
         case errSecSuccess:
-            print("🔒 Update: Keychain updated successfully  🔒")
+            print("🔒 Update: Keychain of \(key) updated successfully  🔒")
         case errSecItemNotFound:
-            print("❌ Update: Keychain item not found ❌")
+            print("❌ Update: Keychain of \(key) item not found ❌")
         default:
             print("❌ Update: Unknown error: \(SecCopyErrorMessageString(status, nil).debugDescription) ❌")
         }
@@ -117,12 +117,12 @@ class KeychainService {
         #if DEBUG
         switch status {
         case errSecSuccess:
-            print("🔒 Delete: Keychain deleted successfully 🔒")
+            print("🔒 Delete: Keychain of \(key) deleted successfully 🔒")
             return true
         case errSecItemNotFound:
-            print("❌ Delete: Keychain item not found ❌")
+            print("❌ Delete: Keychain of \(key) item not found ❌")
         default:
-            print("❌ Delete: Unknown error: \(SecCopyErrorMessageString(status, nil).debugDescription) ❌")
+            print("❌ Delete: Unknown of \(key) error: \(SecCopyErrorMessageString(status, nil).debugDescription) ❌")
         }
         return false
         #endif
