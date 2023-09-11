@@ -127,6 +127,7 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         bakeryImage.kf.setImage(with: url)
         
         reviewTitle.setLineHeight(by: 1.14, with: "\"\(data.text)\"")
+        reviewTitle.lineBreakMode = .byTruncatingTail
         bakeryTitle.setLineHeight(by: 1.08, with: data.reviews.name)
         bakeryTitle.lineBreakMode = .byTruncatingTail
         
