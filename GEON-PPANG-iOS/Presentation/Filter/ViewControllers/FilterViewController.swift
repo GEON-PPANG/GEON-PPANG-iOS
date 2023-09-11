@@ -189,6 +189,7 @@ final class FilterViewController: BaseViewController {
     
     private func configureSkipButton() {
         
+        guard isInitial else { return }
         switch self.currentFilterType {
         case .purpose:
             UIView.animate(withDuration: 0.2) {

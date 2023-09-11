@@ -78,13 +78,6 @@ final class ReviewViewController: BaseViewController {
         getReview()
     }
     
-//    override func viewWillLayoutSubviews() {
-//        super.viewWillLayoutSubviews()
-//
-//        Utils.updateCollectionViewConstraint(of: likeCollectionView)
-//        Utils.updateCollectionViewConstraint(of: optionsCollectionView)
-//    }
-    
     // MARK: - Setting
     
     override func setLayout() {
@@ -96,7 +89,8 @@ final class ReviewViewController: BaseViewController {
         
         scrollView.addSubview(contentView)
         contentView.snp.makeConstraints {
-            $0.edges.width.equalToSuperview()
+            $0.edges.equalToSuperview()
+            $0.width.equalTo(SizeLiteral.Screen.width)
         }
         
         contentView.addSubview(bakeryOverviewView)
@@ -145,6 +139,7 @@ final class ReviewViewController: BaseViewController {
             $0.top.equalTo(optionsCollectionView.snp.bottom).offset(28)
             $0.horizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(221)
+            $0.bottom.equalToSuperview().inset(11)
         }
         
         view.addSubview(navigationBar)
@@ -158,7 +153,7 @@ final class ReviewViewController: BaseViewController {
         
         navigationBar.do {
             $0.backgroundColor = .white
-            $0.configureCenterTitle(to: I18N.Review.writeReview)
+            $0.configureCenterTitle(to: I18N.Review.myReview)
             $0.configureBottomLine()
             $0.configureBackButtonAction(UIAction { [weak self] _ in
                 self?.backButtonTapped()
