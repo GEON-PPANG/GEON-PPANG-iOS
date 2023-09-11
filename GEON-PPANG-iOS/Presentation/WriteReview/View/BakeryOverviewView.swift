@@ -24,7 +24,6 @@ final class BakeryOverviewView: UIView {
     private let bakeryNameLabel = UILabel()
     private let flowLayout = OptionsCollectionViewFlowLayout()
     lazy var bakeryIngredientsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-    private var bookmarkCountLabel = BookmarkCountLabel(count: 23)
     private var regionLabel: RegionLabel?
     
     // MARK: - Life Cycle
@@ -79,12 +78,6 @@ final class BakeryOverviewView: UIView {
         bakeryNameLabel.snp.makeConstraints {
             $0.top.equalTo(bakeryImageView)
             $0.leading.equalTo(bakeryImageView.snp.trailing).offset(8)
-        }
-        
-        self.addSubview(bookmarkCountLabel)
-        bookmarkCountLabel.snp.makeConstraints {
-            $0.trailing.equalToSuperview()
-            $0.centerY.equalTo(bakeryNameLabel)
         }
         
         self.addSubview(bakeryIngredientsCollectionView)
