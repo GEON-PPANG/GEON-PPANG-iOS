@@ -54,12 +54,18 @@ final class AuthPlugin: PluginType {
         log.append("\n[\(statusCode)] \(url)\n----------------------------------------------------\n")
         
         if let authorization = response.response?.value(forHTTPHeaderField: "Authorization") {
-            UserDefaults.standard.setValue(authorization, forKey: "Authorization")
-            print("❤️‍🔥authorization:\(authorization)")
+            if KeychainService.keychainExists(of: .access) {
+                KeychainService.updateKeychain(of: .access, to: authorization)
+            } else {
+                KeychainService.createKeychain(of: .access, with: authorization)
+            }
         }
         if let refresh = response.response?.value(forHTTPHeaderField: "Authorization-refresh") {
-            UserDefaults.standard.setValue(refresh, forKey: "refresh")
-            print("❤️‍🔥autorization-refresh:\(refresh)")
+            if KeychainService.keychainExists(of: .refresh) {
+                KeychainService.updateKeychain(of: .refresh, to: refresh)
+            } else {
+                KeychainService.createKeychain(of: .refresh, with: refresh)
+            }
         }
         
     }

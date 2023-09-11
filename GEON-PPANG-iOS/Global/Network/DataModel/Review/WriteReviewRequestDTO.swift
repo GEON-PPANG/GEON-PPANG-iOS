@@ -35,16 +35,16 @@ struct SingleKeyword: Codable, Equatable {
 struct KeywordDescriptionList: Codable {
     enum Keyword: String, CaseIterable {
         case delicious = "맛있어요"
-        case kind = "친절해요"
-        case special = "특별한 메뉴"
         case zeroWaste = "제로 웨이스트"
+        case special = "특별한 메뉴"
+        case kind = "친절해요"
     }
     
     enum Request: String, CaseIterable {
         case delicious = "DELICIOUS"
-        case kind = "KIND"
-        case special = "SPECIAL_MENU"
         case zeroWaste = "ZERO_WASTE"
+        case special = "SPECIAL_MENU"
+        case kind = "KIND"
     }
 }
 
