@@ -18,7 +18,7 @@ class KeychainService {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: serviceName,
-            kSecAttrLabel as String: key.label,
+            kSecAttrAccount as String: key.account,
             kSecValueData as String: value.data(using: .utf8) as Any
         ]
         
@@ -44,7 +44,7 @@ class KeychainService {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: serviceName,
-            kSecAttrLabel as String: key.label,
+            kSecAttrAccount as String: key.account,
             kSecMatchLimit as String: kSecMatchLimitOne,
             kSecReturnData as String: true,
             kSecReturnAttributes as String: true
@@ -83,7 +83,7 @@ class KeychainService {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: serviceName,
-            kSecAttrLabel as String: key.label
+            kSecAttrAccount as String: key.account
         ]
         let attributes: [String: Any] = [
             kSecValueData as String: value.data(using: .utf8) as Any
@@ -110,7 +110,7 @@ class KeychainService {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: serviceName,
-            kSecAttrLabel as String: key.label
+            kSecAttrAccount as String: key.account
         ]
         
         let status = SecItemDelete(query as CFDictionary)
