@@ -129,18 +129,31 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
         
         reviewTextLabel.do {
             $0.basic(font: .subHead!, color: .gbbGray400!)
-            $0.numberOfLines = 3
-            $0.adjustsFontSizeToFitWidth = true
+            $0.numberOfLines = 6
         }
     }
     
     // MARK: - Custom Method
     
-    func configureCellUI(_ data: ReviewList) {
+    func configureCellUI(_ data: ReviewList, _ labelHeight: CGFloat) {
         
         userNicknameLabel.text = data.memberNickname
         reviewDateLabel.text = data.createdAt
         reviewTextLabel.text = data.reviewText
+        
+        reviewContainer.snp.remakeConstraints {
+            $0.top.equalToSuperview()
+            $0.directionalHorizontalEdges.equalToSuperview().inset(convertByWidthRatio(24))
+            $0.width.equalTo(convertByWidthRatio(327))
+            $0.height.equalTo(convertByWidthRatio(labelHeight + 111))
+        }
+        
+        reviewTextLabel.snp.remakeConstraints {
+            $0.top.equalTo(reviewCategoryStackView.snp.bottom).offset(convertByWidthRatio(16))
+            $0.directionalHorizontalEdges.equalToSuperview().inset(25)
+            $0.width.equalTo(convertByWidthRatio(277))
+            $0.height.equalTo(convertByWidthRatio(labelHeight))
+        }
         
         if !data.recommendKeywordList.isEmpty {
             let list = data.recommendKeywordList.map {

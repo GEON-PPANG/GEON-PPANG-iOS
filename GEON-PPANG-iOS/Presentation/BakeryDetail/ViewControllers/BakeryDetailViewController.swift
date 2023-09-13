@@ -34,6 +34,7 @@ final class BakeryDetailViewController: BaseViewController {
         }
     }
     private var isBookmarked: Bool = false
+    private var labelHeight: CGFloat = 120
     var bakeryID: Int?
     
     // MARK: - UI Property
@@ -41,6 +42,7 @@ final class BakeryDetailViewController: BaseViewController {
     private let navigationBar = CustomNavigationBar()
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private lazy var detailBottomView = DetailBottomView()
+    private let tempLabel = UILabel()
     
     // MARK: - Life Cycle
     
@@ -112,6 +114,11 @@ final class BakeryDetailViewController: BaseViewController {
                 Utils.push(self.navigationController, ReviewViewController(type: .write, bakeryData: self.configureSimpleBakeryData()))
             }
         }
+        
+        tempLabel.do {
+            $0.basic(font: .subHead!, color: .gbbGray400!)
+            $0.numberOfLines = 6
+        }
     }
     
     override func setDelegate() {
@@ -178,7 +185,9 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
         case 1:
             let cell: InfoCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             
-            cell.configureCellUI(self.overviewData)
+            DispatchQueue.main.async {
+                cell.configureCellUI(self.overviewData)
+            }
             
             return cell
         case 2:
@@ -203,7 +212,12 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
             let review = reviewData.reviewList[indexPath.item]
             
             DispatchQueue.main.async {
-                cell.configureCellUI(review)
+                self.tempLabel.text = review.reviewText
+                let maxSize = CGSize(width: self.convertByWidthRatio(277), height: CGFloat.greatestFiniteMagnitude)
+                let labelSize = self.tempLabel.sizeThatFits(maxSize)
+                self.labelHeight = labelSize.height
+                
+                cell.configureCellUI(review, self.labelHeight)
             }
             
             return cell
@@ -271,7 +285,12 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
         case 3:
             return CGSize(width: getDeviceWidth(), height: 157)
         case 4:
-            return CGSize(width: getDeviceWidth(), height: 186)
+            tempLabel.text = reviewData.reviewList[indexPath.item].reviewText
+            let maxSize = CGSize(width: convertByWidthRatio(277), height: CGFloat.greatestFiniteMagnitude)
+            let labelSize = tempLabel.sizeThatFits(maxSize)
+            labelHeight = labelSize.height
+            
+            return CGSize(width: getDeviceWidth(), height: labelHeight + 123)
         default:
             return CGSize()
         }
