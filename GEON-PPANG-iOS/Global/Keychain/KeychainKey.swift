@@ -16,7 +16,7 @@ enum KeychainKey {
 }
 
 extension KeychainKey {
-    var label: String {
+    var account: String {
         switch self {
         case .access: return "accessToken"
         case .refresh: return "refreshToken"
