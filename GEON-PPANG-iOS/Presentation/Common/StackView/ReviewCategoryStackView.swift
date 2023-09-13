@@ -93,4 +93,13 @@ final class ReviewCategoryStackView: UIStackView {
             zerowasteChip.isHidden = false
         }
     }
+    
+    func getNoRecommend() {
+        
+        [deliciousChip, zerowasteChip, specialChip, kindChip].forEach {
+            $0.do {
+                $0.isHidden = true
+            }
+        }
+    }
 }

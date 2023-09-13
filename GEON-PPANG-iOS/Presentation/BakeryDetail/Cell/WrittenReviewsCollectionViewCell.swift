@@ -160,6 +160,8 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
                 $0.recommendKeywordID
             }
             reviewCategoryStackView.getChipStatus(list)
+        } else {
+            reviewCategoryStackView.getNoRecommend()
         }
     }
 }
