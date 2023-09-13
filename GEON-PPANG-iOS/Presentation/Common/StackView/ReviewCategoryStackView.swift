@@ -15,14 +15,14 @@ final class ReviewCategoryStackView: UIStackView {
     // MARK: - Property
     
     private var padding = UIEdgeInsets(top: 4, left: 5, bottom: 4, right: 5)
-    private let labeling = ["맛있어요", "특별한 메뉴", "친절해요", "제로웨이스트"]
+    private let labeling = ["맛있어요", "제로웨이스트", "특별한 메뉴", "친절해요"]
     
     // MARK: - UI Property
     
     private lazy var deliciousChip = PaddingLabel(padding: padding)
+    private lazy var zerowasteChip = PaddingLabel(padding: padding)
     private lazy var specialChip = PaddingLabel(padding: padding)
     private lazy var kindChip = PaddingLabel(padding: padding)
-    private lazy var zerowasteChip = PaddingLabel(padding: padding)
     
     // MARK: - Initializer
     
@@ -42,9 +42,9 @@ final class ReviewCategoryStackView: UIStackView {
     
     private func setLayout() {
         
-        self.addArrangedSubviews(deliciousChip, specialChip, kindChip, zerowasteChip)
+        self.addArrangedSubviews(deliciousChip, zerowasteChip, specialChip, kindChip)
         
-        [deliciousChip, specialChip, kindChip, zerowasteChip].forEach {
+        [deliciousChip, zerowasteChip, specialChip, kindChip].forEach {
             $0.snp.makeConstraints {
                 $0.height.equalTo(25)
             }
@@ -59,7 +59,7 @@ final class ReviewCategoryStackView: UIStackView {
             $0.distribution = .equalSpacing
         }
         
-        [deliciousChip, specialChip, kindChip, zerowasteChip].enumerated().forEach { index, chip in
+        [deliciousChip, zerowasteChip, specialChip, kindChip].enumerated().forEach { index, chip in
             chip.do {
                 $0.backgroundColor = .gbbPoint2
                 $0.basic(text: labeling[index], font: .captionM1!, color: .gbbPoint1!)
@@ -78,19 +78,19 @@ final class ReviewCategoryStackView: UIStackView {
             deliciousChip.isHidden = false
         }
         if !recommendKeywordList.contains(2) {
+            zerowasteChip.isHidden = true
+        } else {
+            zerowasteChip.isHidden = false
+        }
+        if !recommendKeywordList.contains(3) {
             specialChip.isHidden = true
         } else {
             specialChip.isHidden = false
         }
-        if !recommendKeywordList.contains(3) {
+        if !recommendKeywordList.contains(4) {
             kindChip.isHidden = true
         } else {
             kindChip.isHidden = false
-        }
-        if !recommendKeywordList.contains(4) {
-            zerowasteChip.isHidden = true
-        } else {
-            zerowasteChip.isHidden = false
         }
     }
 }
