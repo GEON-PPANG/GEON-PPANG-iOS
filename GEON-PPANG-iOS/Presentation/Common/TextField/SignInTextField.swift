@@ -116,7 +116,7 @@ final class SignInTextField: UITextField {
         self.placeholder = viewType.placeHolder
         
         switch viewType {
-        case .checkPassword, .password:
+        case .checkPassword, .password, .loginPassword:
             configureSecurityButton()
         case .email:
             configureDuplicatedButton()
@@ -124,7 +124,7 @@ final class SignInTextField: UITextField {
             self.rightView = .none
         }
     }
-    
+
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         
         let rect = super.textRect(forBounds: bounds)
