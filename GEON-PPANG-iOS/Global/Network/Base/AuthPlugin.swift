@@ -59,6 +59,9 @@ final class AuthPlugin: PluginType {
         if let refresh = response.response?.value(forHTTPHeaderField: "Authorization-refresh") {
             KeychainService.setKeychain(of: .refresh, with: refresh)
         }
+        if let appleRefresh = response.response?.value(forHTTPHeaderField: "Apple-refresh") {
+            KeychainService.setKeychain(of: .appleRefresh, with: appleRefresh)
+        }
         
     }
     
