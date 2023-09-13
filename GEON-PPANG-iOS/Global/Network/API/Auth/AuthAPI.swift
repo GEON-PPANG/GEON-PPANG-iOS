@@ -11,7 +11,7 @@ import Moya
 
 final class AuthAPI {
     
-    typealias SignUpResponse = GeneralResponse<SignUpRequestDTO>
+    typealias SignUpResponse = GeneralResponse<SignUpResponseDTO>
     
     static let shared: AuthAPI = AuthAPI()
     
