@@ -255,10 +255,10 @@ extension OnboardingViewController: ASAuthorizationControllerDelegate {
             switch state {
             case .authorized:
                 print("🔴 User authorized 🔴")
-                // TODO: 변경사항 반영해야함
+                
                 let request = SignUpRequestDTO(
                     platformType: .apple,
-                    email: "",
+                    email: KeychainService.readKeychain(of: .userEmail),
                     password: "",
                     nickname: ""
                 )
@@ -270,10 +270,11 @@ extension OnboardingViewController: ASAuthorizationControllerDelegate {
                     print("❌ User email not found ❌")
                     return
                 }
+                KeychainService.setKeychain(of: .userEmail, with: email)
                 
                 let request = SignUpRequestDTO(
                     platformType: .apple,
-                    email: email,
+                    email: KeychainService.readKeychain(of: .userEmail),
                     password: "",
                     nickname: ""
                 )
@@ -281,6 +282,7 @@ extension OnboardingViewController: ASAuthorizationControllerDelegate {
                 
             case .revoked:
                 print("❌ User revoked ❌")
+                
             default:
                 print("❌ Unknown error: \(state) ❌")
             }
