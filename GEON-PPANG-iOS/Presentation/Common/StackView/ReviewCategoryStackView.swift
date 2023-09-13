@@ -78,9 +78,9 @@ final class ReviewCategoryStackView: UIStackView {
             deliciousChip.isHidden = false
         }
         if !recommendKeywordList.contains(2) {
-            zerowasteChip.isHidden = true
+            kindChip.isHidden = true
         } else {
-            zerowasteChip.isHidden = false
+            kindChip.isHidden = false
         }
         if !recommendKeywordList.contains(3) {
             specialChip.isHidden = true
@@ -88,9 +88,9 @@ final class ReviewCategoryStackView: UIStackView {
             specialChip.isHidden = false
         }
         if !recommendKeywordList.contains(4) {
-            kindChip.isHidden = true
+            zerowasteChip.isHidden = true
         } else {
-            kindChip.isHidden = false
+            zerowasteChip.isHidden = false
         }
     }
 }
