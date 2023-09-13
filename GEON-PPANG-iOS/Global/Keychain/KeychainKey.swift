@@ -10,8 +10,9 @@ import Foundation
 enum KeychainKey {
     case access
     case refresh
-    case accessAndRefresh
+    case appleRefresh
     case socialAuth
+    case userEmail
 }
 
 extension KeychainKey {
@@ -19,8 +20,9 @@ extension KeychainKey {
         switch self {
         case .access: return "accessToken"
         case .refresh: return "refreshToken"
-        case .accessAndRefresh: return "accessAndRefreshToken"
+        case .appleRefresh: return "appleRefreshToken"
         case .socialAuth: return "socialAuthorizationCode"
+        case .userEmail: return "userEmail"
         }
     }
 }
