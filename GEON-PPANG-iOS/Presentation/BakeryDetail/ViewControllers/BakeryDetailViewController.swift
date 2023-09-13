@@ -290,7 +290,11 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
             let labelSize = tempLabel.sizeThatFits(maxSize)
             labelHeight = labelSize.height
             
-            return CGSize(width: getDeviceWidth(), height: labelHeight + 123)
+            if !reviewData.reviewList[indexPath.item].recommendKeywordList.isEmpty {
+                return CGSize(width: getDeviceWidth(), height: labelHeight + 123)
+            } else {
+                return CGSize(width: getDeviceWidth(), height: labelHeight + 82)
+            }
         default:
             return CGSize()
         }
