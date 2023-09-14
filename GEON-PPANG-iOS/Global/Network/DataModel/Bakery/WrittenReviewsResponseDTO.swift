@@ -10,7 +10,7 @@ import Foundation
 // MARK: - WrittenReviewsResponseDTO
 
 struct WrittenReviewsResponseDTO: Codable {
-    let tastePercent, specialPercent, kindPercent, zeroPercent: Float
+    let deliciousPercent, specialPercent, kindPercent, zeroWastePercent: Float
     let totalReviewCount: Int
     let reviewList: [ReviewList]
 }
@@ -37,5 +37,24 @@ struct RecommendKeywordList: Codable {
     enum CodingKeys: String, CodingKey {
         case recommendKeywordID = "recommendKeywordId"
         case recommendKeywordName
+    }
+}
+
+// MARK: - Extentsion
+
+extension WrittenReviewsResponseDTO {
+    
+    static func initialDTO() -> WrittenReviewsResponseDTO {
+        
+        return WrittenReviewsResponseDTO(deliciousPercent: 0,
+                                         specialPercent: 0,
+                                         kindPercent: 0,
+                                         zeroWastePercent: 0,
+                                         totalReviewCount: 0,
+                                         reviewList: [ReviewList(reviewID: 0,
+                                                                 recommendKeywordList: [RecommendKeywordList(recommendKeywordID: 0, recommendKeywordName: "")],
+                                                                 reviewText: "",
+                                                                 memberNickname: "",
+                                                                 createdAt: "")])
     }
 }
