@@ -160,6 +160,7 @@ final class MySavedBakeryViewController: BaseViewController {
     }
     
     func configureScollable(_ count: Int) {
+        
         if count == 0 {
             collectionView.isScrollEnabled = false
         } else {

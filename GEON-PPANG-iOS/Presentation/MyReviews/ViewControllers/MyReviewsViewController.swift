@@ -106,6 +106,7 @@ final class MyReviewsViewController: BaseViewController {
     }
     
     func configureScrollable(_ count: Int) {
+        
         if count == 0 {
             self.collectionView.isScrollEnabled = false
         } else {
