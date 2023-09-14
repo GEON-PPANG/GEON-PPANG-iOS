@@ -39,3 +39,22 @@ struct RecommendKeywordList: Codable {
         case recommendKeywordName
     }
 }
+
+// MARK: - Extentsion
+
+extension WrittenReviewsResponseDTO {
+    
+    static func initialDTO() -> WrittenReviewsResponseDTO {
+        
+        return WrittenReviewsResponseDTO(deliciousPercent: 0,
+                                         specialPercent: 0,
+                                         kindPercent: 0,
+                                         zeroWastePercent: 0,
+                                         totalReviewCount: 0,
+                                         reviewList: [ReviewList(reviewID: 0,
+                                                                 recommendKeywordList: [RecommendKeywordList(recommendKeywordID: 0, recommendKeywordName: "")],
+                                                                 reviewText: "",
+                                                                 memberNickname: "",
+                                                                 createdAt: "")])
+    }
+}
