@@ -30,7 +30,7 @@ struct BreadResponseType: Codable, Hashable, BakeryTypeProtocol {
         if isGlutenFree { optionsBoolArray.append((I18N.BakeryList.glutenfree, true)) }
         if isVegan { optionsBoolArray.append((I18N.BakeryList.vegan, true)) }
         if isNutFree { optionsBoolArray.append((I18N.BakeryList.nutfree, true)) }
-        if isSugarFree { optionsBoolArray.append((I18N.BakeryList.noSugar, true)) }
+        if isSugarFree { optionsBoolArray.append((I18N.BakeryList.subSugar, true)) }
         return optionsBoolArray
     }
     
