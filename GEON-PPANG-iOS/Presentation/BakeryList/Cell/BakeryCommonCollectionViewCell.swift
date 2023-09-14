@@ -167,7 +167,7 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
         }
         
         if data.breadType.isSugarFree {
-            breadTypeTag.append(I18N.BakeryList.noSugar)
+            breadTypeTag.append(I18N.BakeryList.subSugar)
         }
         
         collectionView.reloadData()
