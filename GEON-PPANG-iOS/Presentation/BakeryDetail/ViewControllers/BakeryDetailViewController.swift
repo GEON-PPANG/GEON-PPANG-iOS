@@ -264,11 +264,9 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
         
         switch indexPath.section {
         case 0:
-            if !overviewData.isHACCP && !overviewData.isVegan && !overviewData.isNonGMO {
-                return CGSize(width: getDeviceWidth(), height: 399)
-            } else {
-                return CGSize(width: getDeviceWidth(), height: 443)
-            }
+            let cellHeight: CGFloat = (!overviewData.isHACCP && !overviewData.isVegan && !overviewData.isNonGMO) ? 399 : 443
+            
+            return CGSize(width: getDeviceWidth(), height: cellHeight)
         case 1:
             return CGSize(width: getDeviceWidth(), height: 259)
         case 2:
@@ -279,13 +277,9 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
             tempLabel.text = reviewData.reviewList[indexPath.item].reviewText
             let maxSize = CGSize(width: convertByWidthRatio(277), height: CGFloat.greatestFiniteMagnitude)
             let labelSize = tempLabel.sizeThatFits(maxSize)
-            labelHeight = labelSize.height
+            labelHeight = reviewData.reviewList[indexPath.item].recommendKeywordList.isEmpty ? labelSize.height + 82 : labelSize.height + 123
             
-            if !reviewData.reviewList[indexPath.item].recommendKeywordList.isEmpty {
-                return CGSize(width: getDeviceWidth(), height: labelHeight + 123)
-            } else {
-                return CGSize(width: getDeviceWidth(), height: labelHeight + 82)
-            }
+            return CGSize(width: getDeviceWidth(), height: labelHeight)
         default:
             return CGSize()
         }
