@@ -14,7 +14,6 @@ final class SignInTextField: UITextField {
     
     // MARK: - Property
     
-    private let topPadding: CGFloat = 15
     private let signIntype: SignInPropertyType = .email
     var tappedCheckButton: (() -> Void)?
     
@@ -59,7 +58,6 @@ final class SignInTextField: UITextField {
             
             $0.makeCornerRound(radius: 10)
             $0.makeBorder(width: 1, color: .clear)
-            $0.setLeftPadding(amount: 18)
             $0.setPlaceholder(color: .gbbGray300!, font: .headLine!)
         }
     }
@@ -114,7 +112,7 @@ final class SignInTextField: UITextField {
         self.placeholder = viewType.placeHolder
         
         switch viewType {
-        case .checkPassword, .password:
+        case .checkPassword, .password, .loginPassword:
             configureSecurityButton()
         case .email:
             configureDuplicatedButton()
@@ -126,34 +124,34 @@ final class SignInTextField: UITextField {
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         
         let rect = super.textRect(forBounds: bounds)
-        return rect.inset(by: UIEdgeInsets(top: topPadding,
-                                           left: 0,
+        return rect.inset(by: UIEdgeInsets(top: 15,
+                                           left: 18,
                                            bottom: 0,
-                                           right: 0))
+                                           right: 25))
     }
     
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
         
         let rect = super.editingRect(forBounds: bounds)
-        return rect.inset(by: UIEdgeInsets(top: topPadding,
-                                           left: 0,
+        return rect.inset(by: UIEdgeInsets(top: 15,
+                                           left: 18,
                                            bottom: 0,
-                                           right: 0))
+                                           right: 25))
     }
     
     override public func placeholderRect(forBounds bounds: CGRect) -> CGRect {
         
         let rect = super.textRect(forBounds: bounds)
-        return rect.inset(by: UIEdgeInsets(top: topPadding,
-                                           left: 0,
+        return rect.inset(by: UIEdgeInsets(top: 15,
+                                           left: 18,
                                            bottom: 0,
-                                           right: 0))
+                                           right: 25))
     }
     
     override public func rightViewRect(forBounds bounds: CGRect) -> CGRect {
         
         let rect = super.rightViewRect(forBounds: bounds)
-        return rect.inset(by: UIEdgeInsets(top: topPadding - 5,
+        return rect.inset(by: UIEdgeInsets(top: 10,
                                            left: -18,
                                            bottom: 0,
                                            right: 18))

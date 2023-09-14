@@ -11,34 +11,36 @@ import SnapKit
 import Then
 
 enum HomeIconType {
-    case reviews, bookmark, list
+    
+    case reviews, bookmark, region
     
     var icon: UIImage {
         switch self {
         case .reviews: return .reviewIcon16px400
         case .bookmark: return .bookmarkIcon16px400
-        case .list: return .mapIcon
+        case .region: return .mapIcon
+        }
+    }
+    
+    var spacing: CGFloat {
+        switch self {
+        case .reviews, .bookmark: return 1
+        case .region: return 6
         }
     }
 }
 
-final class IconWithTextStackView: UIStackView {
+final class IconWithTextView: UIButton {
     
     // MARK: - Property
     
     private var iconType: HomeIconType = .bookmark
-    
-    // MARK: - UI Property
-    
-    private let icon = UIImageView()
-    private let countLabel = UILabel()
     
     // MARK: - Life Cycle
     
     init (_ type: HomeIconType) {
         super.init(frame: .zero)
         
-        setLayout()
         setUI(type: type)
     }
     
@@ -48,38 +50,27 @@ final class IconWithTextStackView: UIStackView {
     
     // MARK: - Setting
     
-    private func setLayout() {
-        
-        self.addArrangedSubviews(icon, countLabel)
-        
-        icon.snp.makeConstraints {
-            $0.size.equalTo(15)
-        }
-    }
-    
     private func setUI(type: HomeIconType) {
         
-        self.do {
-            $0.spacing = iconType == .list ? 6 : 1
-            $0.axis = .horizontal
-        }
+        var config = UIButton.Configuration.plain()
+        config.image = type.icon
+        config.imagePadding = type.spacing
+        config.contentInsets = .zero
+        config.baseBackgroundColor = .clear
         
-        icon.do {
-            $0.image = type.icon
+        self.do {
+            $0.configuration = config
         }
     }
     
     func configureListUI(text: String) {
         
-        countLabel.basic(text: text,
-                         font: .captionB1!,
-                         color: .gbbGray400!)
+        self.configuration?.attributedTitle = AttributedString(text, attributes: AttributeContainer([.font: UIFont.captionM1!, .foregroundColor: UIColor.gbbGray400!]))
+        
     }
     
     func configureHomeCell(count: Int) {
         
-        countLabel.basic(text: "(\(count))",
-                         font: .captionB1!,
-                         color: .gbbGray400!)
+        self.configuration?.attributedTitle = AttributedString("(\(count))", attributes: AttributeContainer([.font: UIFont.captionB1!, .foregroundColor: UIColor.gbbGray400!]))
     }
 }

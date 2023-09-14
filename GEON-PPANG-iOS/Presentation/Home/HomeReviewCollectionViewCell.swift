@@ -23,8 +23,8 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
     private lazy var bakeryImage = GradientImageView(colors: [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.5).cgColor])
     private let reviewTitle = UILabel()
     private let bakeryTitle = UILabel()
-    private let reviewCount = IconWithTextStackView(.reviews)
-    private let bookmarkCount = IconWithTextStackView(.bookmark)
+    private let reviewCount = IconWithTextView(.reviews)
+    private let bookmarkCount = IconWithTextView(.bookmark)
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: OptionsCollectionViewFlowLayout())
     
     // MARK: - Life Cycle
@@ -127,7 +127,9 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         bakeryImage.kf.setImage(with: url)
         
         reviewTitle.setLineHeight(by: 1.14, with: "\"\(data.text)\"")
+        reviewTitle.lineBreakMode = .byTruncatingTail
         bakeryTitle.setLineHeight(by: 1.08, with: data.reviews.name)
+        bakeryTitle.lineBreakMode = .byTruncatingTail
         
         reviewCount.configureHomeCell(count: data.reviews.reviewCount)
         bookmarkCount.configureHomeCell(count: data.reviews.bookmarkCount)

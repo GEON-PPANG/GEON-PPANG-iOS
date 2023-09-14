@@ -28,30 +28,26 @@ extension String {
     func isContainEnglish() -> Bool {
         
         let pattern = "[A-Za-z]+"
-        guard let isContain = self.range(of: pattern, options: .regularExpression) else { return false}
-        return true
+        return self.range(of: pattern, options: .regularExpression) != nil
     }
     
     func isContainNumber() -> Bool {
         
         let pattern = ".*[0-9]+.*"
-        guard let isContain = self.range(of: pattern, options: .regularExpression) else { return false}
-        return true
+        return self.range(of: pattern, options: .regularExpression) != nil
     }
     
     /// 비밀번호
     func isContainNumberAndAlphabet() -> Bool {
         
-        let pattern = "^[0-9a-zA-Z]{8,}$"
-        guard let isContain = self.range(of: pattern, options: .regularExpression) else { return false}
-        return true
+        let pattern = "^(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$"
+        return self.range(of: pattern, options: .regularExpression) != nil
     }
     
     /// nickName
     func isNotContainSpecialCharacters() -> Bool {
         
         let pattern = "^[0-9a-zA-Z가-힣ㄱ-ㅎㅏ-ㅣ\\s]{0,10}$"
-        guard let isContain = self.range(of: pattern, options: .regularExpression) else { return false}
-        return true
+        return self.range(of: pattern, options: .regularExpression) != nil
     }
 }

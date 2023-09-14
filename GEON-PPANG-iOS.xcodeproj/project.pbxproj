@@ -36,7 +36,7 @@
 		0930D25D2A928BF200A75C7E /* NearStationResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0930D25C2A928BF200A75C7E /* NearStationResponseDTO.swift */; };
 		0930D25F2A928C2300A75C7E /* RecommendKeywordResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0930D25E2A928C2300A75C7E /* RecommendKeywordResponseDTO.swift */; };
 		0930D2612A92937B00A75C7E /* HomeCommonResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0930D2602A92937B00A75C7E /* HomeCommonResponseDTO.swift */; };
-		0930D2632A93292F00A75C7E /* IconWithTextStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0930D2622A93292F00A75C7E /* IconWithTextStackView.swift */; };
+		0930D2632A93292F00A75C7E /* IconWithTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0930D2622A93292F00A75C7E /* IconWithTextView.swift */; };
 		093214022A5AE27800875EF6 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093214012A5AE27700875EF6 /* Utils.swift */; };
 		093214082A5AE40900875EF6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093214072A5AE40900875EF6 /* SearchViewController.swift */; };
 		093EFA592A61F62D003228CD /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093EFA582A61F62D003228CD /* SignInViewController.swift */; };
@@ -241,7 +241,7 @@
 		0930D25C2A928BF200A75C7E /* NearStationResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearStationResponseDTO.swift; sourceTree = "<group>"; };
 		0930D25E2A928C2300A75C7E /* RecommendKeywordResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendKeywordResponseDTO.swift; sourceTree = "<group>"; };
 		0930D2602A92937B00A75C7E /* HomeCommonResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCommonResponseDTO.swift; sourceTree = "<group>"; };
-		0930D2622A93292F00A75C7E /* IconWithTextStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconWithTextStackView.swift; sourceTree = "<group>"; };
+		0930D2622A93292F00A75C7E /* IconWithTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconWithTextView.swift; sourceTree = "<group>"; };
 		093214012A5AE27700875EF6 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		093214072A5AE40900875EF6 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		093EFA582A61F62D003228CD /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -478,7 +478,6 @@
 			isa = PBXGroup;
 			children = (
 				0915C16D2A5C2EE200ACB8D4 /* MarkStackView.swift */,
-				0930D2622A93292F00A75C7E /* IconWithTextStackView.swift */,
 				0915C16F2A5C3C5600ACB8D4 /* RegionStackView.swift */,
 				DFB585FA2A5F565F0077D272 /* BreadTypeStackView.swift */,
 				DF99C5FD2A6412F800C2C78C /* ReviewProgressBarStackView.swift */,
@@ -1277,6 +1276,7 @@
 		3E79B19B2A54523400D36A26 /* Button */ = {
 			isa = PBXGroup;
 			children = (
+				0930D2622A93292F00A75C7E /* IconWithTextView.swift */,
 				3E79B19C2A54523D00D36A26 /* BackButton.swift */,
 				0987288C2A5BA1F000A29402 /* BookmarkButton.swift */,
 				09CA3EF72A5676AA0063897A /* CommonButton.swift */,
@@ -1782,7 +1782,7 @@
 				3E162D182A692C1400590C6F /* BookmarkRequestDTO.swift in Sources */,
 				0930D25F2A928C2300A75C7E /* RecommendKeywordResponseDTO.swift in Sources */,
 				0959F17A2A658CD300E77CAF /* AuthAPI.swift in Sources */,
-				0930D2632A93292F00A75C7E /* IconWithTextStackView.swift in Sources */,
+				0930D2632A93292F00A75C7E /* IconWithTextView.swift in Sources */,
 				3E61EE882AA63BE4004F25DB /* ReviewEnum.swift in Sources */,
 				0959F18A2A658D0C00E77CAF /* FilterService.swift in Sources */,
 				3E79B1B52A571E7100D36A26 /* OptionsCollectionViewCell.swift in Sources */,
