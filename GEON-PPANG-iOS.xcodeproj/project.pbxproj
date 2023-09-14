@@ -68,6 +68,11 @@
 		0959F1962A658E7400E77CAF /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F1952A658E7400E77CAF /* Config.swift */; };
 		0959F19A2A65D45700E77CAF /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0959F1992A65D45700E77CAF /* Kingfisher */; };
 		095FB8802AB3427D00C69BD1 /* Amplitude in Frameworks */ = {isa = PBXBuildFile; productRef = 095FB87F2AB3427D00C69BD1 /* Amplitude */; };
+		095FB8842AB3435300C69BD1 /* AnalyticManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095FB8832AB3435300C69BD1 /* AnalyticManagerProtocol.swift */; };
+		095FB8862AB3506700C69BD1 /* AnalyticManagerEvent+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095FB8852AB3506700C69BD1 /* AnalyticManagerEvent+.swift */; };
+		095FB8882AB36F9100C69BD1 /* AnalyticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095FB8872AB36F9100C69BD1 /* AnalyticManager.swift */; };
+		095FB88A2AB36FCA00C69BD1 /* AnalyticManagerEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095FB8892AB36FCA00C69BD1 /* AnalyticManagerEvent.swift */; };
+		095FB88E2AB3703500C69BD1 /* AnalyticManagerEventProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095FB88D2AB3703500C69BD1 /* AnalyticManagerEventProtocol.swift */; };
 		0961C3642A501EBF0031A822 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0961C3632A501EBF0031A822 /* Strings.swift */; };
 		097682DA2A5C829D0008F4FB /* GradientImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682D92A5C829D0008F4FB /* GradientImageView.swift */; };
 		097682DC2A5C83910008F4FB /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682DB2A5C83910008F4FB /* CGFloat+.swift */; };
@@ -266,6 +271,11 @@
 		0959F1912A658D2A00E77CAF /* MyPageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageService.swift; sourceTree = "<group>"; };
 		0959F1932A658D3100E77CAF /* BookmarkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkService.swift; sourceTree = "<group>"; };
 		0959F1952A658E7400E77CAF /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		095FB8832AB3435300C69BD1 /* AnalyticManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticManagerProtocol.swift; sourceTree = "<group>"; };
+		095FB8852AB3506700C69BD1 /* AnalyticManagerEvent+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnalyticManagerEvent+.swift"; sourceTree = "<group>"; };
+		095FB8872AB36F9100C69BD1 /* AnalyticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticManager.swift; sourceTree = "<group>"; };
+		095FB8892AB36FCA00C69BD1 /* AnalyticManagerEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticManagerEvent.swift; sourceTree = "<group>"; };
+		095FB88D2AB3703500C69BD1 /* AnalyticManagerEventProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticManagerEventProtocol.swift; sourceTree = "<group>"; };
 		0961C3632A501EBF0031A822 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		097682D92A5C829D0008F4FB /* GradientImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientImageView.swift; sourceTree = "<group>"; };
 		097682DB2A5C83910008F4FB /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
@@ -766,6 +776,18 @@
 			path = Auth;
 			sourceTree = "<group>";
 		};
+		095FB88B2AB36FF800C69BD1 /* AnalyticManager */ = {
+			isa = PBXGroup;
+			children = (
+				095FB8872AB36F9100C69BD1 /* AnalyticManager.swift */,
+				095FB8892AB36FCA00C69BD1 /* AnalyticManagerEvent.swift */,
+				095FB8852AB3506700C69BD1 /* AnalyticManagerEvent+.swift */,
+				095FB8832AB3435300C69BD1 /* AnalyticManagerProtocol.swift */,
+				095FB88D2AB3703500C69BD1 /* AnalyticManagerEventProtocol.swift */,
+			);
+			path = AnalyticManager;
+			sourceTree = "<group>";
+		};
 		0961C35F2A501E110031A822 /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -778,6 +800,7 @@
 		0961C3602A501E9F0031A822 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				095FB88B2AB36FF800C69BD1 /* AnalyticManager */,
 				3E77EC762AAAEE11007995AD /* Keychain */,
 				09CA3EF62A56738A0063897A /* Protocol */,
 				0961C3662A501EDD0031A822 /* Network */,
@@ -1629,6 +1652,7 @@
 				090668FC2A4FF3C600F413FA /* AppDelegate.swift in Sources */,
 				0959F1482A6583C200E77CAF /* NetworkLoggerPlugin.swift in Sources */,
 				DF99C5FE2A6412F800C2C78C /* ReviewProgressBarStackView.swift in Sources */,
+				095FB8862AB3506700C69BD1 /* AnalyticManagerEvent+.swift in Sources */,
 				DFB134372A62110900BAB52E /* MenuCollectionViewCell.swift in Sources */,
 				DFDE72D72A65E84700389A51 /* WrittenReviewsCollectionViewCell.swift in Sources */,
 				09FD47C82A5DC991002020BD /* SearchNavigationView.swift in Sources */,
@@ -1712,6 +1736,7 @@
 				0959F18C2A658D1100E77CAF /* HomeService.swift in Sources */,
 				090556202A51DB2C00752067 /* UIImage+.swift in Sources */,
 				09FD47E22A5E69A2002020BD /* CommonBottomSheet.swift in Sources */,
+				095FB88E2AB3703500C69BD1 /* AnalyticManagerEventProtocol.swift in Sources */,
 				0905562D2A51DBE700752067 /* UILabel+.swift in Sources */,
 				090556252A51DB9600752067 /* UICollectionView+.swift in Sources */,
 				3E06F8DD2A9E590C001302F4 /* AlertEnum.swift in Sources */,
@@ -1741,6 +1766,7 @@
 				DF959A6E2A568C9400E75774 /* UIColor+.swift in Sources */,
 				3E452B672A60E68000EA456D /* MyPageResponseDTO.swift in Sources */,
 				09C626562A5B3572002C8110 /* HomeBestReviewResponseDTO.swift in Sources */,
+				095FB88A2AB36FCA00C69BD1 /* AnalyticManagerEvent.swift in Sources */,
 				090556472A51E7D900752067 /* UITextView+.swift in Sources */,
 				3EDC05D02A5E4FF900EAD950 /* String+.swift in Sources */,
 				09FD47E42A5E82BB002020BD /* BottomSheetAppearView.swift in Sources */,
@@ -1752,6 +1778,7 @@
 				3E79B1B22A571E1F00D36A26 /* OptionsCollectionView.swift in Sources */,
 				3E61EE862AA63BAB004F25DB /* ReviewViewController.swift in Sources */,
 				3EDDA8AC2A69149400E04ECB /* DetailBottomView.swift in Sources */,
+				095FB8842AB3435300C69BD1 /* AnalyticManagerProtocol.swift in Sources */,
 				3E162D182A692C1400590C6F /* BookmarkRequestDTO.swift in Sources */,
 				0930D25F2A928C2300A75C7E /* RecommendKeywordResponseDTO.swift in Sources */,
 				0959F17A2A658CD300E77CAF /* AuthAPI.swift in Sources */,
@@ -1772,6 +1799,7 @@
 				DFEA34EF2AA62E6200524DEC /* LinkButtonStackView.swift in Sources */,
 				3E8B2FFC2A67A58B001BD057 /* BreadResponseType.swift in Sources */,
 				09FD47D22A5DF892002020BD /* EmptyCollectionViewCell.swift in Sources */,
+				095FB8882AB36F9100C69BD1 /* AnalyticManager.swift in Sources */,
 				09D55FC72A99F69000997FB4 /* BakeryCommonListResponseDTO.swift in Sources */,
 				3E8B30022A67A630001BD057 /* NutrientRequestType.swift in Sources */,
 				3ED40E062A60916000C7D5DA /* MyPagePurposeChipView.swift in Sources */,
