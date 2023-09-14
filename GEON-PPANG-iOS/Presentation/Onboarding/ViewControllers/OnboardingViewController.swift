@@ -23,8 +23,8 @@ final class OnboardingViewController: BaseViewController {
     private let kakaoLoginButton = UIButton()
     private let appleLoginButton = UIButton()
     private let socialLoginButtonStackView = UIStackView()
+    private let emailLogInButton = UIButton()
     private let emailSignInButton = UIButton()
-    private let emailSignUpButton = UIButton()
     private let seperatorView = UIView()
     private let emailButtonStackView = UIStackView()
     
@@ -61,11 +61,11 @@ final class OnboardingViewController: BaseViewController {
             $0.horizontalEdges.equalToSuperview().inset(24)
         }
         
-        emailSignInButton.snp.makeConstraints {
+        emailLogInButton.snp.makeConstraints {
             $0.height.equalTo(17)
         }
         
-        emailSignUpButton.snp.makeConstraints {
+        emailSignInButton.snp.makeConstraints {
             $0.height.equalTo(17)
         }
         
@@ -102,16 +102,22 @@ final class OnboardingViewController: BaseViewController {
             $0.addArrangedSubviews(kakaoLoginButton, appleLoginButton)
         }
         
-        emailSignInButton.do {
+        emailLogInButton.do {
             $0.setTitle(I18N.Onboarding.emailSignIn, for: .normal)
             $0.setTitleColor(.gbbGray400, for: .normal)
             $0.titleLabel?.font = .captionB1
+            $0.addAction(UIAction { [weak self] _ in
+                self?.emailLogInButtonTapped()
+            }, for: .touchUpInside)
         }
         
-        emailSignUpButton.do {
+        emailSignInButton.do {
             $0.setTitle(I18N.Onboarding.emailSignUp, for: .normal)
             $0.setTitleColor(.gbbGray400, for: .normal)
             $0.titleLabel?.font = .captionB1
+            $0.addAction(UIAction { [weak self] _ in
+                self?.emailSignInButtonTapped()
+            }, for: .touchUpInside)
         }
         
         seperatorView.do {
@@ -121,7 +127,7 @@ final class OnboardingViewController: BaseViewController {
         emailButtonStackView.do {
             $0.axis = .horizontal
             $0.spacing = 12
-            $0.addArrangedSubviews(emailSignInButton, seperatorView, emailSignUpButton)
+            $0.addArrangedSubviews(emailLogInButton, seperatorView, emailSignInButton)
         }
     }
     
@@ -202,12 +208,12 @@ extension OnboardingViewController {
         authorizationController.performRequests()
     }
     
-    private func emailSignInButtonTapped() {
-        // TODO: 로그인 뷰 나오면 연결
+    private func emailLogInButtonTapped() {
+        Utils.push(self.navigationController, LogInViewController())
     }
     
-    private func emailSignUpButtonTapped() {
-        // TODO: 회원가입 뷰 나오면 연결
+    private func emailSignInButtonTapped() {
+        Utils.push(self.navigationController, SignInViewController())
     }
     
 }
