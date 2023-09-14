@@ -58,9 +58,9 @@ extension AuthService: TargetType {
     var headers: [String: String]? {
         switch self {
         case .checkEmail, .checkNickname, .login:
-            return NetworkConstant.noTokenHeader
+            return NetworkConstant.header(.noToken)
         case .signUp:
-            return NetworkConstant.platformTokenHeader
+            return NetworkConstant.header(.platformToken)
         }
     }    
 }
