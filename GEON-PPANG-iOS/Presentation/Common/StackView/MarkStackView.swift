@@ -76,21 +76,9 @@ final class MarkStackView: UIStackView {
                        _ isVegan: Bool,
                        _ isNONGMO: Bool) {
         
-        if !isHACCP {
-            haccpMarkIconView.isHidden = true
-        } else {
-            haccpMarkIconView.isHidden = false
-        }
-        if !isVegan {
-            veganIconView.isHidden = true
-        } else {
-            veganIconView.isHidden = false
-        }
-        if !isNONGMO {
-            gmoIconView.isHidden = true
-        } else {
-            gmoIconView.isHidden = false
-        }
+        haccpMarkIconView.isHidden = !isHACCP
+        veganIconView.isHidden = !isVegan
+        gmoIconView.isHidden = !isNONGMO
     }
     
     func configureMarkSize(_ size: Int) {
