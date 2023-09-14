@@ -35,9 +35,7 @@ final class HomeBottomCollectionViewCell: UICollectionViewCell {
         
         contentView.addSubview(footerLabel)
         footerLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(14)
-            $0.bottom.equalToSuperview().inset(40)
-            $0.directionalHorizontalEdges.equalToSuperview().inset(24)
+            $0.top.directionalHorizontalEdges.equalToSuperview()
         }
     }
     
@@ -45,11 +43,10 @@ final class HomeBottomCollectionViewCell: UICollectionViewCell {
 
         footerLabel.do {
             $0.textAlignment = .left
-            $0.numberOfLines = 0
+            $0.numberOfLines = 4
             $0.basic(font: .captionM2!,
                      color: .gbbGray300!)
             $0.setLineHeight(by: 1.37, with: I18N.Home.bottomSectionTitle)
-            $0.lineBreakMode = .byCharWrapping
         }
     }
 }

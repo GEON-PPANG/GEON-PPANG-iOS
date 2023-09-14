@@ -70,7 +70,7 @@ final class CommonTextView: UIView {
         
         titleLabel.do {
             $0.basic(font: .bodyB2!, color: .gbbGray400!)
-            $0.text = type.rawValue
+            $0.text = type.title
         }
         
         checkLabel.do {

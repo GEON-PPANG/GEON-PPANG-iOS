@@ -17,8 +17,8 @@ final class SearchViewController: BaseViewController {
     enum Section {
         case initial, main, empty
     }
-    typealias Item = AnyHashable
     
+    typealias Item = AnyHashable
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Item>
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Item>
     
@@ -178,16 +178,10 @@ final class SearchViewController: BaseViewController {
             let section = self.dataSource?.snapshot().sectionIdentifiers[sectionIndex]
             switch section {
             case .main:
-                var config = UICollectionLayoutListConfiguration(appearance: .plain)
-                config.backgroundColor = .gbbBackground1
-                config.headerMode = .supplementary
-                config.headerTopPadding = 0
-                config.separatorConfiguration.topSeparatorVisibility = .hidden
-                
-                config.itemSeparatorHandler = { indexPath, config in
+                var config = LayoutUtils.listConfiguration(appearance: .plain,
+                                                           headerMode: .none) { indexPath, config in
                     var config = config
                     guard let itemCount = self.dataSource?.snapshot().itemIdentifiers(inSection: .main).count else { return config }
-                    
                     let isLastItem = indexPath.item == itemCount - 1
                     config.bottomSeparatorVisibility = isLastItem ? .hidden : .visible
                     return config

@@ -206,6 +206,8 @@ extension LogInViewController: UITextFieldDelegate {
     }
 }
 
+// MARK: - Network
+
 extension LogInViewController {
     
     private func postLogin() {

@@ -147,11 +147,16 @@ final class BakeryListViewController: BaseViewController {
     
     private func layout() -> UICollectionViewLayout {
         
-        var config = UICollectionLayoutListConfiguration(appearance: .plain)
-        config.backgroundColor = .clear
-        config.showsSeparators = true
+        let listConfig = LayoutUtils.listConfiguration(appearance: .plain,
+                                                       headerMode: .none) { indexPath, config in
+            var config = config
+            guard let itemCount = self.dataSource?.snapshot().itemIdentifiers(inSection: .main).count else { return config }
+            let isLastItem = indexPath.item == itemCount - 1
+            config.bottomSeparatorVisibility = isLastItem ? .hidden : .visible
+            return config
+        }
         
-        let layout = UICollectionViewCompositionalLayout.list(using: config)
+        let layout = UICollectionViewCompositionalLayout.list(using: listConfig)
         return layout
     }
     

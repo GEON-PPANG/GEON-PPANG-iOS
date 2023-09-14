@@ -7,12 +7,22 @@
 
 import Foundation
 
-enum SignInPropertyType: String, CaseIterable {
+enum SignInPropertyType: CaseIterable {
     
-    case email, loginEmail = "이메일"
-    case password, loginPassword = "비밀번호"
-    case checkPassword = "비밀번호 재확인"
-    case nickname = "닉네임"
+    case email, loginEmail
+    case password, loginPassword
+    case checkPassword
+    case nickname
+    
+    var title: String {
+        switch self {
+        case .email, .loginEmail: return "이메일"
+        case .password, .loginPassword: return "비밀번호"
+        case .checkPassword: return "비밀번호 재확인"
+        case .nickname: return "닉네임"
+
+        }
+    }
     
     var placeHolder: String {
         switch self {

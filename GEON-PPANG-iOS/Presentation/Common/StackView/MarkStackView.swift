@@ -50,15 +50,7 @@ final class MarkStackView: UIStackView {
             $0.axis = .horizontal
         }
         
-        haccpMarkIconView.do {
-            $0.contentMode = .topLeft
-        }
-        
-        veganIconView.do {
-            $0.contentMode = .topLeft
-        }
-        
-        gmoIconView.do {
+        [haccpMarkIconView, veganIconView, gmoIconView].forEach {
             $0.contentMode = .topLeft
         }
     }

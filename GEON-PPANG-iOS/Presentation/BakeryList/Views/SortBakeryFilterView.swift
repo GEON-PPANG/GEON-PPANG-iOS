@@ -76,6 +76,7 @@ final class SortBakeryFilterView: UIView {
         }
         
         checkBox.do {
+            $0.tintColor = .clear
             $0.configurationUpdateHandler = configureCheckBoxHandler()
             $0.addAction(applyCheckBoxAction(), for: .touchUpInside)
         }
