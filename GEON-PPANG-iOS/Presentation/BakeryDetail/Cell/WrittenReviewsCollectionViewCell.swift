@@ -129,7 +129,7 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
         
         reviewTextLabel.do {
             $0.basic(font: .subHead!, color: .gbbGray400!)
-            $0.numberOfLines = 6
+            $0.numberOfLines = 0
         }
     }
     
