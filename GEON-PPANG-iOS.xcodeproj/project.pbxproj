@@ -170,6 +170,7 @@
 		3EAC950D2A9FAF4500D2AADC /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC950C2A9FAF4500D2AADC /* WebViewController.swift */; };
 		3EB798102AB2F448004EC35D /* HeaderEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB7980F2AB2F448004EC35D /* HeaderEnum.swift */; };
 		3EB798132AB302B1004EC35D /* AuthInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB798122AB302B1004EC35D /* AuthInterceptor.swift */; };
+		3EB798162AB34275004EC35D /* LauchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB798152AB34275004EC35D /* LauchScreenViewController.swift */; };
 		3EBFB5702A63B2B60058F968 /* WriteReviewBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFB56F2A63B2B60058F968 /* WriteReviewBottomSheetView.swift */; };
 		3ED40DF92A5FCF3800C7D5DA /* FilterEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED40DF82A5FCF3800C7D5DA /* FilterEnum.swift */; };
 		3ED40DFB2A5FD26200C7D5DA /* FilterRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED40DFA2A5FD26200C7D5DA /* FilterRequestDTO.swift */; };
@@ -371,6 +372,7 @@
 		3EAC950C2A9FAF4500D2AADC /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		3EB7980F2AB2F448004EC35D /* HeaderEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderEnum.swift; sourceTree = "<group>"; };
 		3EB798122AB302B1004EC35D /* AuthInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInterceptor.swift; sourceTree = "<group>"; };
+		3EB798152AB34275004EC35D /* LauchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LauchScreenViewController.swift; sourceTree = "<group>"; };
 		3EBFB56F2A63B2B60058F968 /* WriteReviewBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewBottomSheetView.swift; sourceTree = "<group>"; };
 		3ED40DF82A5FCF3800C7D5DA /* FilterEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterEnum.swift; sourceTree = "<group>"; };
 		3ED40DFA2A5FD26200C7D5DA /* FilterRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterRequestDTO.swift; sourceTree = "<group>"; };
@@ -876,6 +878,7 @@
 		0961C36A2A501EF60031A822 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				3EB798142AB3425B004EC35D /* LaunchScreen */,
 				3E232AC82A95A00900125B76 /* Welcome */,
 				DFB585F52A5F314D0077D272 /* BakeryDetail */,
 				3EDC05BA2A5DEB7500EAD950 /* Filter */,
@@ -1348,6 +1351,14 @@
 			path = WebView;
 			sourceTree = "<group>";
 		};
+		3EB798142AB3425B004EC35D /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				3EB798152AB34275004EC35D /* LauchScreenViewController.swift */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
 		3ED40DFC2A608B2B00C7D5DA /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1765,6 +1776,7 @@
 				3EDDA8AC2A69149400E04ECB /* DetailBottomView.swift in Sources */,
 				3E162D182A692C1400590C6F /* BookmarkRequestDTO.swift in Sources */,
 				0930D25F2A928C2300A75C7E /* RecommendKeywordResponseDTO.swift in Sources */,
+				3EB798162AB34275004EC35D /* LauchScreenViewController.swift in Sources */,
 				0959F17A2A658CD300E77CAF /* AuthAPI.swift in Sources */,
 				0930D2632A93292F00A75C7E /* IconWithTextStackView.swift in Sources */,
 				3E61EE882AA63BE4004F25DB /* ReviewEnum.swift in Sources */,
