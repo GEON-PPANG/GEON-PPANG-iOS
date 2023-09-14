@@ -14,7 +14,6 @@ final class SignInTextField: UITextField {
     
     // MARK: - Property
     
-    private let topPadding: CGFloat = 15
     private let signIntype: SignInPropertyType = .email
     var tappedCheckButton: (() -> Void)?
     
@@ -121,38 +120,38 @@ final class SignInTextField: UITextField {
             self.rightView = .none
         }
     }
-
+    
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         
         let rect = super.textRect(forBounds: bounds)
-        return rect.inset(by: UIEdgeInsets(top: topPadding,
+        return rect.inset(by: UIEdgeInsets(top: 15,
                                            left: 18,
                                            bottom: 0,
-                                           right: 18))
+                                           right: 25))
     }
     
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
         
         let rect = super.editingRect(forBounds: bounds)
-        return rect.inset(by: UIEdgeInsets(top: topPadding,
+        return rect.inset(by: UIEdgeInsets(top: 15,
                                            left: 18,
                                            bottom: 0,
-                                           right: 18))
+                                           right: 25))
     }
     
     override public func placeholderRect(forBounds bounds: CGRect) -> CGRect {
         
         let rect = super.textRect(forBounds: bounds)
-        return rect.inset(by: UIEdgeInsets(top: topPadding,
+        return rect.inset(by: UIEdgeInsets(top: 15,
                                            left: 18,
                                            bottom: 0,
-                                           right: 18))
+                                           right: 25))
     }
     
     override public func rightViewRect(forBounds bounds: CGRect) -> CGRect {
         
         let rect = super.rightViewRect(forBounds: bounds)
-        return rect.inset(by: UIEdgeInsets(top: topPadding - 5,
+        return rect.inset(by: UIEdgeInsets(top: 10,
                                            left: -18,
                                            bottom: 0,
                                            right: 18))
