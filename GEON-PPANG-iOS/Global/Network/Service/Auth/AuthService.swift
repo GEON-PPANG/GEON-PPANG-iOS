@@ -71,5 +71,5 @@ extension AuthService: TargetType {
         case .refreshToken:
             return NetworkConstant.header(.accessAndRefreshToken)
         }
-    }    
+    }
 }

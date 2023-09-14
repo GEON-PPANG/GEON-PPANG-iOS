@@ -49,8 +49,12 @@ extension FilterService: TargetType {
         case .changeFilter:
             return NetworkConstant.header(.accessToken)
         case .getFilterType:
-            return NetworkConstant.header(.noToken)
+            return NetworkConstant.header(.accessToken)
         }
+    }
+    
+    var validationType: ValidationType {
+        return .successCodes
     }
     
 }

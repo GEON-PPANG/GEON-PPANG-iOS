@@ -12,6 +12,7 @@ import Moya
 final class AuthAPI {
     
     typealias SignUpResponse = GeneralResponse<SignUpResponseDTO>
+    typealias TokenRefreshResponse = GeneralResponse<VoidType>
     
     static let shared: AuthAPI = AuthAPI()
     
@@ -20,6 +21,7 @@ final class AuthAPI {
     var authProvider = MoyaProvider<AuthService>(plugins: [AuthPlugin()])
     
     public private(set) var signUpResponse: SignUpResponse?
+    public private(set) var tokenRefreshResponse: TokenRefreshResponse?
     
     // MARK: - Post
     
@@ -77,11 +79,17 @@ final class AuthAPI {
         }
     }
     
-    func getTokenRefresh(completion: @escaping (Int?) -> Void) {
+    func getTokenRefresh(completion: @escaping (TokenRefreshResponse?) -> Void) {
         authProvider.request(.refreshToken) { result in
             switch result {
             case .success(let response):
-                completion(response.statusCode)
+                do {
+                    self.tokenRefreshResponse = try response.map(TokenRefreshResponse.self)
+                    guard let tokenRefreshResponse = self.tokenRefreshResponse else { return }
+                    completion(tokenRefreshResponse)
+                } catch let err {
+                    print(err.localizedDescription, 500)
+                }
             case .failure(let err):
                 print(err.localizedDescription)
                 completion(nil)

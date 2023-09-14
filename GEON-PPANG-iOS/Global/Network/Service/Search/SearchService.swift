@@ -45,4 +45,8 @@ extension SearchService: TargetType {
             return NetworkConstant.header(.accessToken)
         }
     }
+    
+    var validationType: ValidationType {
+        return .successCodes
+    }
 }
