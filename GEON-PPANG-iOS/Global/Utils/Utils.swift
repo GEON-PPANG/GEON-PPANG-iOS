@@ -56,4 +56,6 @@ final class Utils {
         else { return nil }
         return version
     }
+    
+    static var sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
 }
