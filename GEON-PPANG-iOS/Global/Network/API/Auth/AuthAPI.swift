@@ -76,4 +76,16 @@ final class AuthAPI {
             }
         }
     }
+    
+    func getTokenRefresh(completion: @escaping (Int?) -> Void) {
+        authProvider.request(.refreshToken) { result in
+            switch result {
+            case .success(let response):
+                completion(response.statusCode)
+            case .failure(let err):
+                print(err.localizedDescription)
+                completion(nil)
+            }
+        }
+    }
 }

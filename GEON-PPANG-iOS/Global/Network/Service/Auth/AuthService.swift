@@ -15,6 +15,7 @@ enum AuthService {
     
     case login(request: LoginRequestDTO)
     case signUp(request: SignUpRequestDTO)
+    case refreshToken
 }
 
 extension AuthService: TargetType {
@@ -32,6 +33,8 @@ extension AuthService: TargetType {
             return URLConstant.login
         case .signUp:
             return URLConstant.signup
+        case .refreshToken:
+            return URLConstant.refreshToken
         }
     }
     
@@ -39,6 +42,8 @@ extension AuthService: TargetType {
         switch self {
         case .checkEmail, .checkNickname, .login, .signUp:
             return .post
+        case .refreshToken:
+            return .get
         }
     }
     
@@ -52,6 +57,8 @@ extension AuthService: TargetType {
             return .requestJSONEncodable(data)
         case .signUp(request: let data):
             return .requestJSONEncodable(data)
+        case .refreshToken:
+            return .requestPlain
         }
     }
     
@@ -61,6 +68,8 @@ extension AuthService: TargetType {
             return NetworkConstant.header(.noToken)
         case .signUp:
             return NetworkConstant.header(.platformToken)
+        case .refreshToken:
+            return NetworkConstant.header(.accessAndRefreshToken)
         }
     }    
 }
