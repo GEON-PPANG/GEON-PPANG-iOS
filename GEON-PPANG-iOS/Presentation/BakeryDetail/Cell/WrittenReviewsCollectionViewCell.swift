@@ -141,42 +141,33 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
         reviewDateLabel.text = data.createdAt
         reviewTextLabel.text = data.reviewText
         
-        if !data.recommendKeywordList.isEmpty {
-            
-            let list = data.recommendKeywordList.map {
+        let isKeywordListEmpty = data.recommendKeywordList.isEmpty
+        
+        if !isKeywordListEmpty {
+            let keywordIDs = data.recommendKeywordList.map {
                 $0.recommendKeywordID
             }
-            reviewCategoryStackView.getChipStatus(list)
-            
-            reviewContainer.snp.remakeConstraints {
-                $0.top.equalToSuperview()
-                $0.directionalHorizontalEdges.equalToSuperview().inset(convertByWidthRatio(24))
-                $0.width.equalTo(convertByWidthRatio(327))
-                $0.height.equalTo(convertByWidthRatio(labelHeight + 111))
-            }
-            
-            reviewTextLabel.snp.remakeConstraints {
-                $0.top.equalTo(reviewCategoryStackView.snp.bottom).offset(convertByWidthRatio(16))
-                $0.directionalHorizontalEdges.equalToSuperview().inset(25)
-                $0.width.equalTo(convertByWidthRatio(277))
-                $0.height.equalTo(convertByWidthRatio(labelHeight))
-            }
+            reviewCategoryStackView.getChipStatus(keywordIDs)
         } else {
             reviewCategoryStackView.getNoRecommend()
-            
-            reviewContainer.snp.remakeConstraints {
-                $0.top.equalToSuperview()
-                $0.directionalHorizontalEdges.equalToSuperview().inset(convertByWidthRatio(24))
-                $0.width.equalTo(convertByWidthRatio(327))
-                $0.height.equalTo(convertByWidthRatio(labelHeight + 70))
-            }
-            
-            reviewTextLabel.snp.remakeConstraints {
-                $0.top.equalTo(profileImage.snp.bottom).offset(convertByWidthRatio(10))
-                $0.directionalHorizontalEdges.equalToSuperview().inset(25)
-                $0.width.equalTo(convertByWidthRatio(277))
-                $0.height.equalTo(convertByWidthRatio(labelHeight))
-            }
+        }
+        
+        let containerHeight = convertByWidthRatio(isKeywordListEmpty ? labelHeight + 70 : labelHeight + 111)
+        let textLabelTopConstraint = isKeywordListEmpty ? profileImage.snp.bottom : reviewCategoryStackView.snp.bottom
+        let textLabelOffset = convertByWidthRatio(isKeywordListEmpty ? 10 : 16)
+        
+        reviewContainer.snp.remakeConstraints {
+            $0.top.equalToSuperview()
+            $0.directionalHorizontalEdges.equalToSuperview().inset(convertByWidthRatio(24))
+            $0.width.equalTo(convertByWidthRatio(327))
+            $0.height.equalTo(containerHeight)
+        }
+        
+        reviewTextLabel.snp.remakeConstraints {
+            $0.top.equalTo(textLabelTopConstraint).offset(textLabelOffset)
+            $0.directionalHorizontalEdges.equalToSuperview().inset(25)
+            $0.width.equalTo(convertByWidthRatio(277))
+            $0.height.equalTo(convertByWidthRatio(labelHeight))
         }
     }
 }
