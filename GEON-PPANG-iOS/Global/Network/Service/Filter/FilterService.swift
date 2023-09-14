@@ -46,8 +46,10 @@ extension FilterService: TargetType {
     
     var headers: [String: String]? {
         switch self {
-        default:
-            return NetworkConstant.hasTokenHeader
+        case .changeFilter:
+            return NetworkConstant.header(.accessToken)
+        case .getFilterType:
+            return NetworkConstant.header(.noToken)
         }
     }
     

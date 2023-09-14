@@ -63,7 +63,7 @@ extension BakeryService: TargetType {
     var headers: [String: String]? {
         switch self {
         default:
-            return NetworkConstant.hasTokenHeader
+            return NetworkConstant.header(.accessToken)
         }
     }
 }
