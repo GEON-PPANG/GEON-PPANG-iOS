@@ -8,12 +8,14 @@
 import Foundation
 
 enum LoginType: String, CaseIterable {
+    
     case EMAIL
     case KAKAO
     case APPLE
 }
 
 enum ViewDetail: String, CaseIterable {
+    
     case HOME
     case LIST
 }
