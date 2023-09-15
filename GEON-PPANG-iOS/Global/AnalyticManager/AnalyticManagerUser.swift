@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 enum AnalyticManagerUser: AnalyticManagerEventProtocol {
     
     case authType
