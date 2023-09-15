@@ -50,4 +50,13 @@ final class Utils {
         else { return nil }
         return version
     }
+    
+    class func dateFormatterString(format: String? = nil, date: Date) -> String {
+        
+        let formatter = Foundation.DateFormatter()
+        formatter.dateFormat = format ?? "yyyy-MM-dd"
+        formatter.locale = Locale(identifier: "ko_KR")
+        let convertStr = formatter.string(from: date)
+        return convertStr
+    }
 }
