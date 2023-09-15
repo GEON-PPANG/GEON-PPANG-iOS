@@ -42,6 +42,7 @@
 		093EFA592A61F62D003228CD /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093EFA582A61F62D003228CD /* SignInViewController.swift */; };
 		094392CF2A84E68700984310 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 094392CE2A84E68700984310 /* GoogleService-Info.plist */; };
 		0949750E2A67EC9B00A63420 /* MyReviewsResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0949750D2A67EC9B00A63420 /* MyReviewsResponseDTO.swift */; };
+		094F3AF72AB3DFB300A34154 /* AnalyticManagerUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094F3AF62AB3DFB300A34154 /* AnalyticManagerUser.swift */; };
 		0959F1482A6583C200E77CAF /* NetworkLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F1472A6583C200E77CAF /* NetworkLoggerPlugin.swift */; };
 		0959F14A2A6583DF00E77CAF /* GeneralResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F1492A6583DF00E77CAF /* GeneralResponse.swift */; };
 		0959F14E2A65840300E77CAF /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F14D2A65840300E77CAF /* NetworkResult.swift */; };
@@ -247,6 +248,7 @@
 		093EFA582A61F62D003228CD /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		094392CE2A84E68700984310 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0949750D2A67EC9B00A63420 /* MyReviewsResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewsResponseDTO.swift; sourceTree = "<group>"; };
+		094F3AF62AB3DFB300A34154 /* AnalyticManagerUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticManagerUser.swift; sourceTree = "<group>"; };
 		0959F1472A6583C200E77CAF /* NetworkLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerPlugin.swift; sourceTree = "<group>"; };
 		0959F1492A6583DF00E77CAF /* GeneralResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralResponse.swift; sourceTree = "<group>"; };
 		0959F14D2A65840300E77CAF /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
@@ -780,6 +782,7 @@
 			children = (
 				095FB8872AB36F9100C69BD1 /* AnalyticManager.swift */,
 				095FB8892AB36FCA00C69BD1 /* AnalyticManagerEvent.swift */,
+				094F3AF62AB3DFB300A34154 /* AnalyticManagerUser.swift */,
 				095FB8852AB3506700C69BD1 /* AnalyticManagerEvent+.swift */,
 				095FB8832AB3435300C69BD1 /* AnalyticManagerProtocol.swift */,
 				095FB88D2AB3703500C69BD1 /* AnalyticManagerEventProtocol.swift */,
@@ -1757,6 +1760,7 @@
 				0959F16C2A658C9500E77CAF /* AuthResponseDTO.swift in Sources */,
 				3E7B21C02A61CB8C00C8F8B4 /* SortBottomSheetViewController.swift in Sources */,
 				DF483AD02A65D03A00FCD507 /* UIButton+.swift in Sources */,
+				094F3AF72AB3DFB300A34154 /* AnalyticManagerUser.swift in Sources */,
 				092EFCA42A6195D900E7C262 /* CommonTextView.swift in Sources */,
 				3E16E5022A58176800B813D0 /* ReviewDetailTextView.swift in Sources */,
 				3E232ABC2A8FDB8F00125B76 /* FilterCollectionViewHeader.swift in Sources */,
