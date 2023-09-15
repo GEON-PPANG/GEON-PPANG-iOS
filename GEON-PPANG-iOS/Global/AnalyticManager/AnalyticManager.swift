@@ -14,6 +14,31 @@ enum AnalyticManager: AnalyticManagerProtocol {
         Amplitude.instance().initializeApiKey(Config.amplitudeAPIKey)
     }
     
+    /// user property
+
+    static func log(user: AnalyticManagerUser, value: Any) {
+        
+        guard let identify = AMPIdentify().set(user.name, value: value as? NSObject) else { return }
+            Amplitude.instance().identify(identify)
+        
+#if DEBUG
+            print("🍥🍥🍥🍥🍥 \(user.name): \(value) 🍥🍥🍥🍥🍥")
+#endif
+    }
+    
+    /// user property only once
+    
+    static func logOnce(user: AnalyticManagerUser, value: Any) {
+        
+        guard let identify  = AMPIdentify().setOnce(user.name, value: value as? NSObject) else { return }
+        Amplitude.instance().identify(identify)
+        
+#if DEBUG
+            print("🍥🍥🍥🍥🍥 \(user.name): \(value) 🍥🍥🍥🍥🍥")
+#endif
+        
+    }
+
     static func log(event: AnalyticManagerEvent) {
         
         let name = event.name
@@ -24,7 +49,7 @@ enum AnalyticManager: AnalyticManagerProtocol {
 #if DEBUG
         if let parameters {
             let params = parameters.compactMap { $0 }
-            print("🍥🍥🍥🍥🍥 \(name) 🍥 \(params) 🍥🍥🍥🍥🍥")
+            print("🍥🍥🍥🍥🍥 \(name) \(params) 🍥🍥🍥🍥🍥")
             return
         }
         print("🍥🍥🍥🍥🍥🍥 \(name) 🍥🍥🍥🍥🍥")
@@ -32,3 +57,12 @@ enum AnalyticManager: AnalyticManagerProtocol {
         
     }
 }
+
+//
+//AMPIdentify().setOnce("sign_up_date", value: "2015-08-24")
+//Amplitude.instance().identify(identify1)
+//
+//let identify = AMPIdentify()
+//    .add("karma", value: NSNumber(value: 0.123))
+//    .add("friends",value: NSNumber(value: 1))
+//Amplitude.instance().identify(identify)
