@@ -57,12 +57,3 @@ enum AnalyticManager: AnalyticManagerProtocol {
         
     }
 }
-
-//
-//AMPIdentify().setOnce("sign_up_date", value: "2015-08-24")
-//Amplitude.instance().identify(identify1)
-//
-//let identify = AMPIdentify()
-//    .add("karma", value: NSNumber(value: 0.123))
-//    .add("friends",value: NSNumber(value: 1))
-//Amplitude.instance().identify(identify)
