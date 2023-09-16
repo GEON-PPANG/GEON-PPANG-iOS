@@ -59,4 +59,8 @@ final class Utils {
         let convertStr = formatter.string(from: date)
         return convertStr
     }
+    
+    class func setDetailSourceType(_ source: AnalyticEventType) {
+        AnalyticManager.log(event: .detail(.viewDetailpageAt(source: source.rawValue)))
+    }
 }
