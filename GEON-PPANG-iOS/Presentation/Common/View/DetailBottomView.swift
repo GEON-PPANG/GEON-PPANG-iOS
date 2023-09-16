@@ -21,7 +21,6 @@ final class DetailBottomView: UIView {
     
     private lazy var bookmarkButton = UIButton()
     
-    private let writeReviewButtonImage = UIImageView(image: .logoIcon16px)
     private let writeReviewButtonTitle = UILabel()
     private lazy var writeReviewButton = UIButton()
     
@@ -63,17 +62,9 @@ final class DetailBottomView: UIView {
             $0.height.equalTo(48)
         }
         
-        writeReviewButton.addSubview(writeReviewButtonImage)
-        writeReviewButtonImage.snp.makeConstraints {
-            $0.size.equalTo(16)
-            $0.leading.equalToSuperview().inset(74.5)
-            $0.centerY.equalToSuperview()
-        }
-        
         writeReviewButton.addSubview(writeReviewButtonTitle)
         writeReviewButtonTitle.snp.makeConstraints {
-            $0.leading.equalTo(writeReviewButtonImage.snp.trailing).offset(6)
-            $0.centerY.equalToSuperview()
+            $0.center.equalToSuperview()
         }
     }
     
@@ -87,8 +78,8 @@ final class DetailBottomView: UIView {
         }
         
         writeReviewButton.do {
-            $0.backgroundColor = .gbbPoint1
-            $0.makeCornerRound(radius: 24)
+            $0.backgroundColor = .gbbMain2
+            $0.makeCornerRound(radius: 10)
             $0.addAction(UIAction { _ in
                 self.tappedWriteReviewButton?()
             }, for: .touchUpInside)
@@ -118,5 +109,4 @@ final class DetailBottomView: UIView {
             $0.setImage((isSelected ? UIImage.enabledBookmarkButton : UIImage.disabledBookmarkButton), for: .normal)
         }
     }
-    
 }
