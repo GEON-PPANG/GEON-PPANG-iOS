@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum AnalyticEventType: String {
+enum AnalyticEventType: String, CaseIterable {
     
     /// Auth
     

@@ -26,6 +26,7 @@ final class BakeryDetailViewController: BaseViewController {
     }
     private var isBookmarked: Bool = false
     private var labelHeight: CGFloat = 120
+    var source: AnalyticEventType = .HOME
     var bakeryID: Int?
     
     // MARK: - UI Property
@@ -38,11 +39,12 @@ final class BakeryDetailViewController: BaseViewController {
     // MARK: - Life Cycle
     
     override func viewWillAppear(_ animated: Bool) {
-        
         super.viewWillAppear(animated)
+        
         guard let bakeryID = self.bakeryID else { return }
         getBakeryDetail(bakeryID: bakeryID)
         getWrittenReviews(bakeryID: bakeryID)
+        Utils.setDetailSourceType(self.source)
     }
     
     // MARK: - Setting
