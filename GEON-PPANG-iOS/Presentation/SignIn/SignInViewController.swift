@@ -190,7 +190,7 @@ extension SignInViewController: UITextFieldDelegate {
         if textField == emailTextField.configureTextField() {
             let currentText = textField.text ?? ""
             let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
-     
+            
             isValidButton[0] = newText == currentText
             print("emailvalid:\(isValidButton[0])")
         }
@@ -249,8 +249,14 @@ extension SignInViewController: UITextFieldDelegate {
         } else {
             view.clearErrorMessage()
         }
-
+        
         updateButtonStatus()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        configureTextFieldText(textField)
+        textField.resignFirstResponder()
+        return true
     }
     
     func configureTextFieldText(_ textField: UITextField) {
