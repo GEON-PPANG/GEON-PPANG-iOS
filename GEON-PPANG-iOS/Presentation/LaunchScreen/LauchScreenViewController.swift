@@ -17,8 +17,8 @@ final class LauchScreenViewController: BaseViewController {
     
     // MARK: - Life Cycle
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         checkUserLoggedIn()
     }
