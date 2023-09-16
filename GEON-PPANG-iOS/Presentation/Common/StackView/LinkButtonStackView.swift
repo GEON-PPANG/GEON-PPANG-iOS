@@ -72,7 +72,6 @@ final class LinkButtonStackView: UIStackView {
                 $0.setTitleColor(.gbbGray400, for: .normal)
                 $0.setUnderline()
                 $0.titleLabel?.font = .subHead
-                $0.titleLabel?.adjustsFontSizeToFitWidth = true
                 $0.isHidden = true
             }
         }

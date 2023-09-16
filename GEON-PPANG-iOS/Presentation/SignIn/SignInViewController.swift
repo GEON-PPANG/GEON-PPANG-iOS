@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 import Then
 
+import Amplitude
+
 final class SignInViewController: BaseViewController {
     
     // MARK: - Property
@@ -19,8 +21,8 @@ final class SignInViewController: BaseViewController {
     private var password: String = "" {
         didSet {
             configureCommonView(isValid: { checkPassword.isEqual(self.password) ||  checkPassword.isEmpty},
-                              error: I18N.Rule.checkPassword,
-                              view: checkPasswordTextField)
+                                error: I18N.Rule.checkPassword,
+                                view: checkPasswordTextField)
         }
     }
     
@@ -158,8 +160,12 @@ final class SignInViewController: BaseViewController {
     func configureButtonUI(_ isValid: Bool) {
         
         nextButton.do {
-            $0.isUserInteractionEnabled = isValid
             $0.configureButtonUI(isValid ? .gbbMain2!: .gbbGray200!)
+            $0.isUserInteractionEnabled = isValid
+            $0.tappedCommonButton = { [weak self] in
+                guard let self else { return }
+                Utils.push(self.navigationController, NickNameViewController())
+            }
         }
     }
     
@@ -219,8 +225,8 @@ extension SignInViewController: UITextFieldDelegate {
     }
     
     func configureCommonView(isValid: () -> Bool,
-                           error: String,
-                           view: CommonTextView) {
+                             error: String,
+                             view: CommonTextView) {
         
         switch view {
         case emailTextField:

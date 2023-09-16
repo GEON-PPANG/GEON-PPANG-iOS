@@ -45,7 +45,8 @@ final class BakeryDetailCollectionViewFooter: UICollectionReusableView {
         
         labelContainer.addSubview((label))
         label.snp.makeConstraints {
-            $0.directionalVerticalEdges.equalToSuperview().inset(18)
+            $0.top.equalToSuperview().inset(16)
+            $0.bottom.equalToSuperview().inset(20)
             $0.directionalHorizontalEdges.equalToSuperview().inset(21)
             $0.width.equalTo(285)
             $0.height.equalTo(36)
@@ -71,6 +72,7 @@ final class BakeryDetailCollectionViewFooter: UICollectionReusableView {
         }
         
         label.do {
+            $0.setLineHeight(by: 1.35)
             $0.basic(text: I18N.Detail.menuNotice, font: .captionM2!, color: .gbbGray400!)
             $0.adjustsFontSizeToFitWidth = true
             $0.numberOfLines = 2

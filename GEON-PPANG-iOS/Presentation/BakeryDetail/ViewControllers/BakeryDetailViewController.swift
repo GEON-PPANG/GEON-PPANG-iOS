@@ -19,21 +19,13 @@ final class BakeryDetailViewController: BaseViewController {
             self.collectionView.reloadData()
         }
     }
-    private var reviewData: WrittenReviewsResponseDTO = WrittenReviewsResponseDTO(tastePercent: 0,
-                                                                                  specialPercent: 0,
-                                                                                  kindPercent: 0,
-                                                                                  zeroPercent: 0,
-                                                                                  totalReviewCount: 0,
-                                                                                  reviewList: [ReviewList(reviewID: 0,
-                                                                                                          recommendKeywordList: [RecommendKeywordList(recommendKeywordID: 0, recommendKeywordName: "")],
-                                                                                                          reviewText: "",
-                                                                                                          memberNickname: "",
-                                                                                                          createdAt: "")]) {
+    private var reviewData: WrittenReviewsResponseDTO = .initialDTO() {
         didSet {
             self.collectionView.reloadData()
         }
     }
     private var isBookmarked: Bool = false
+    private var labelHeight: CGFloat = 120
     var bakeryID: Int?
     
     // MARK: - UI Property
@@ -41,6 +33,7 @@ final class BakeryDetailViewController: BaseViewController {
     private let navigationBar = CustomNavigationBar()
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private lazy var detailBottomView = DetailBottomView()
+    private let tempLabel = UILabel()
     
     // MARK: - Life Cycle
     
@@ -112,6 +105,11 @@ final class BakeryDetailViewController: BaseViewController {
                 Utils.push(self.navigationController, ReviewViewController(type: .write, bakeryData: self.configureSimpleBakeryData()))
             }
         }
+        
+        tempLabel.do {
+            $0.basic(font: .subHead!, color: .gbbGray400!)
+            $0.numberOfLines = 0
+        }
     }
     
     override func setDelegate() {
@@ -178,7 +176,9 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
         case 1:
             let cell: InfoCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             
-            cell.configureCellUI(self.overviewData)
+            DispatchQueue.main.async {
+                cell.configureCellUI(self.overviewData)
+            }
             
             return cell
         case 2:
@@ -203,7 +203,12 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
             let review = reviewData.reviewList[indexPath.item]
             
             DispatchQueue.main.async {
-                cell.configureCellUI(review)
+                self.tempLabel.text = review.reviewText
+                let maxSize = CGSize(width: self.convertByWidthRatio(277), height: CGFloat.greatestFiniteMagnitude)
+                let labelSize = self.tempLabel.sizeThatFits(maxSize)
+                self.labelHeight = labelSize.height
+                
+                cell.configureCellUI(review, self.labelHeight)
             }
             
             return cell
@@ -259,11 +264,9 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
         
         switch indexPath.section {
         case 0:
-            if !overviewData.isHACCP && !overviewData.isVegan && !overviewData.isNonGMO {
-                return CGSize(width: getDeviceWidth(), height: 399)
-            } else {
-                return CGSize(width: getDeviceWidth(), height: 443)
-            }
+            let cellHeight: CGFloat = (!overviewData.isHACCP && !overviewData.isVegan && !overviewData.isNonGMO) ? 399 : 443
+            
+            return CGSize(width: getDeviceWidth(), height: cellHeight)
         case 1:
             return CGSize(width: getDeviceWidth(), height: 259)
         case 2:
@@ -271,7 +274,12 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
         case 3:
             return CGSize(width: getDeviceWidth(), height: 157)
         case 4:
-            return CGSize(width: getDeviceWidth(), height: 186)
+            tempLabel.text = reviewData.reviewList[indexPath.item].reviewText
+            let maxSize = CGSize(width: convertByWidthRatio(277), height: CGFloat.greatestFiniteMagnitude)
+            let labelSize = tempLabel.sizeThatFits(maxSize)
+            labelHeight = reviewData.reviewList[indexPath.item].recommendKeywordList.isEmpty ? labelSize.height + 82 : labelSize.height + 123
+            
+            return CGSize(width: getDeviceWidth(), height: labelHeight)
         default:
             return CGSize()
         }

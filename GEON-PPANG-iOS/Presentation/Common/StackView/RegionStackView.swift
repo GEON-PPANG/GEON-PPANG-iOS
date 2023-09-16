@@ -48,7 +48,6 @@ final class RegionStackView: UIStackView {
             $0.font = .captionM1
             $0.backgroundColor = .gbbBackground1
             $0.textColor = .gbbGray400
-            $0.adjustsFontSizeToFitWidth = true
         }
     }
     

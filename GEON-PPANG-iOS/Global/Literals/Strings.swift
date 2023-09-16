@@ -66,7 +66,7 @@ struct I18N {
         static let glutenfree = "글루텐프리"
         static let nutfree = "넛프리"
         static let vegan = "비건빵"
-        static let noSugar = "저당, 무설탕"
+        static let subSugar = "대체당"
         static let defaultFilter = "기본순"
     }
     
