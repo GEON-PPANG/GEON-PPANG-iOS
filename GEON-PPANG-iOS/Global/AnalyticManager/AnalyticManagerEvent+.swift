@@ -82,8 +82,8 @@ extension AnalyticManagerEvent {
     
     enum Home: AnalyticManagerEventProtocol {
         
-        case clickRecommendStore
-        case clickRecommendReview
+        case clickRecommendStore(bakery: String)
+        case clickRecommendReview(bakery: String)
         case clickSearchHome
         case completeSearchHome(keyword: String)
         case startFilterHome
@@ -104,6 +104,9 @@ extension AnalyticManagerEvent {
         
         var parameters: [String: Any]? {
             switch self {
+            case .clickRecommendStore(bakery: let bakery): return ["bakery": bakery]
+            case .clickRecommendReview(bakery: let bakery): return ["bakery": bakery]
+            
             case .completeSearchHome(keyword: let keyword): return ["keyword": keyword]
             default: return nil
             }
