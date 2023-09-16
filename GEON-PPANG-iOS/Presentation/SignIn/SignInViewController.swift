@@ -47,6 +47,12 @@ final class SignInViewController: BaseViewController {
     
     // MARK: - Life Cycle
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        AnalyticManager.log(event: .onboarding(.startSignup(signUpType: AnalyticEventType.EMAIL.rawValue)))
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
