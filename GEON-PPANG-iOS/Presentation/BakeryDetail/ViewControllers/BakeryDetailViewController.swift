@@ -9,6 +9,7 @@ import UIKit
 
 import SnapKit
 import Then
+import SafariServices
 
 final class BakeryDetailViewController: BaseViewController {
     
@@ -75,6 +76,13 @@ final class BakeryDetailViewController: BaseViewController {
             $0.configureBackButtonAction(UIAction { [weak self] _ in
                 self?.navigationController?.popViewController(animated: true)
             })
+            $0.tappedMapButton = {
+                guard let url = URL(string: self.overviewData.mapURL) else { return }
+                let safariVC = SFSafariViewController(url: url)
+                self.present(safariVC, animated: true, completion: nil)
+                
+//                Utils.push(self.navigationController, WebViewController(url: self.overviewData.mapURL, title: I18N.Detail.map))
+            }
             $0.backgroundColor = .gbbWhite
             $0.configureBottomLine()
             $0.configureRightMapButton()
