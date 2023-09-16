@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 import Then
 
+import Amplitude
+
 final class SignInViewController: BaseViewController {
     
     // MARK: - Property
