@@ -10,7 +10,15 @@ import UIKit
 import SnapKit
 import Then
 
+protocol InfoCollectionViewCellDelegate: BakeryDetailViewController {
+    
+    func tappedHomepageLinkButton()
+    func tappedInstagramLinkButton()
+}
+
 final class InfoCollectionViewCell: UICollectionViewCell {
+    
+    weak var delegate: InfoCollectionViewCellDelegate?
     
     // MARK: - UI Property
     
@@ -129,6 +137,20 @@ final class InfoCollectionViewCell: UICollectionViewCell {
             $0.image = .linkIcon
         }
         
+        linkButtonStackView.do {
+            $0.homepageLinkButton.do {
+                $0.addAction(UIAction { _ in
+                    self.tappedHomepageLinkButton(self.linkButtonStackView.homepageLinkButton)
+                }, for: .touchUpInside)
+            }
+            
+            $0.instagramLinkButton.do {
+                $0.addAction(UIAction { _ in
+                    self.tappedInstagramLinkButton(self.linkButtonStackView.instagramLinkButton)
+                }, for: .touchUpInside)
+            }
+        }
+        
         bakeryAddressImage.do {
             $0.image = .storeIcon
         }
@@ -180,5 +202,29 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         bakeryClosedDaysLabel.text = data.closedDay
         bakeryOpeningHoursLabel.text = data.openingHours
         bakeryPhoneNumberLabel.text = data.phoneNumber
+    }
+    
+    @IBAction func tappedHomepageLinkButton(_ sender: UIButton) {
+        
+        delegate?.tappedHomepageLinkButton()
+    }
+    @IBAction func tappedInstagramLinkButton(_ sender: UIButton) {
+        
+        delegate?.tappedInstagramLinkButton()
+    }
+}
+
+// MARK: - Custom Protocol
+
+extension BakeryDetailViewController: InfoCollectionViewCellDelegate {
+    
+    func tappedHomepageLinkButton() {
+        
+        Utils.push(self.navigationController, WebViewController(url: homepageURL, title: I18N.Detail.homepage))
+    }
+    
+    func tappedInstagramLinkButton() {
+        
+        Utils.push(self.navigationController, WebViewController(url: instagramURL, title: I18N.Detail.instagram))
     }
 }

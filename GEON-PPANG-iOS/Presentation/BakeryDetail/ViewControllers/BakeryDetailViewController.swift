@@ -27,6 +27,8 @@ final class BakeryDetailViewController: BaseViewController {
     private var isBookmarked: Bool = false
     private var labelHeight: CGFloat = 120
     var bakeryID: Int?
+    var homepageURL: String = ""
+    var instagramURL: String = ""
     
     // MARK: - UI Property
     
@@ -179,6 +181,8 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
             DispatchQueue.main.async {
                 cell.configureCellUI(self.overviewData)
             }
+            
+            cell.delegate = self
             
             return cell
         case 2:
@@ -344,6 +348,8 @@ extension BakeryDetailViewController {
             self.overviewData = data
             self.isBookmarked = data.isBookMarked
             self.detailBottomView.configureBookmarkButton(to: data.isBookMarked)
+            self.homepageURL = data.homepageURL
+            self.instagramURL = data.instagramURL
         }
     }
     

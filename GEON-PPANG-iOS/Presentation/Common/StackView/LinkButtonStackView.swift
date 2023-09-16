@@ -16,10 +16,13 @@ final class LinkButtonStackView: UIStackView {
     
     private let labeling = ["웹사이트", "인스타그램"]
     
+    var tappedHomepageLinkButton: (() -> Void)?
+    var tappedInstagramLinkButton: (() -> Void)?
+    
     // MARK: - UI Property
     
-    private lazy var homepageLinkButton = UIButton()
-    private lazy var instagramLinkButton = UIButton()
+    lazy var homepageLinkButton = UIButton()
+    lazy var instagramLinkButton = UIButton()
     
     // MARK: - Initializer
     
@@ -41,17 +44,13 @@ final class LinkButtonStackView: UIStackView {
         
         self.addArrangedSubviews(homepageLinkButton, instagramLinkButton)
         
-        [homepageLinkButton, instagramLinkButton].forEach {
-            $0.snp.makeConstraints {
-                $0.height.equalTo(20)
-            }
-        }
-        
         homepageLinkButton.snp.makeConstraints {
+            $0.height.equalTo(20)
             $0.width.equalTo(52)
         }
         
         instagramLinkButton.snp.makeConstraints {
+            $0.height.equalTo(20)
             $0.width.equalTo(65)
         }
     }
@@ -64,19 +63,21 @@ final class LinkButtonStackView: UIStackView {
             $0.distribution = .equalSpacing
         }
         
-        // TODO: 클릭 시 사파리로 이동 (API 통신 필요)
-        // 이 부분 귀찮아서 이렇게 해버렸는데 더 좋은 방법이 있다면 인사이트 공유 부탁합니다 ..
         [homepageLinkButton, instagramLinkButton].enumerated().forEach { index, button in
+            let tappedLinkButton = index == 0 ? self.tappedHomepageLinkButton : self.tappedInstagramLinkButton
+            
             button.do {
                 $0.setTitle(labeling[index], for: .normal)
                 $0.setTitleColor(.gbbGray400, for: .normal)
                 $0.setUnderline()
                 $0.titleLabel?.font = .subHead
+                $0.addAction(UIAction { _ in
+                    tappedLinkButton?()
+                }, for: .touchUpInside)
                 $0.isHidden = true
             }
         }
     }
-    
     
     // MARK: - Custom Method
     
