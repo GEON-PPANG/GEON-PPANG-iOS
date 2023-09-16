@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class LauchScreenViewController: BaseViewController {
+final class LaunchScreenViewController: BaseViewController {
     
     // MARK: - UI Property
     
@@ -45,16 +45,18 @@ final class LauchScreenViewController: BaseViewController {
     
 }
 
-extension LauchScreenViewController {
+extension LaunchScreenViewController {
     
     private func refreshAccessToken() {
         
         AuthAPI.shared.getTokenRefresh { response in
-            guard let response = response else { return }
-            switch response.code {
-            case 200:
+            guard let response = response,
+                  let message = response.message
+            else { return }
+            
+            if response.code == 200 || message == "만료되지 않은 엑세스 토큰입니다" {
                 Utils.sceneDelegate?.changeRootViewControllerToTabBarController()
-            default:
+            } else {
                 Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
             }
         }

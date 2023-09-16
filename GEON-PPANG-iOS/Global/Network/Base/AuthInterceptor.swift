@@ -13,21 +13,43 @@ import Moya
 
 final class AuthInterceptor: RequestInterceptor {
     
-    func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
-        
-        guard request.response?.statusCode == 401
+    static let shared = AuthInterceptor()
+    
+    private init() {}
+    
+    // MARK: - Conforming methods
+    func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
+        guard urlRequest.url?.absoluteString.hasPrefix(Config.baseURL) == true
         else {
-            completion(.doNotRetryWithError(error))
+            completion(.success(urlRequest))
             return
         }
         
-        AuthAPI.shared.getTokenRefresh { status in
-            switch status {
-            case 200:
-                print("갱신 성공")
-            default:
-                let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
-                sceneDelegate?.changeRootViewControllerToOnboardingViewController()
+        let authorization = KeychainService.readKeychain(of: .access)
+        var urlRequest = urlRequest
+        urlRequest.setValue("Bearer " + authorization, forHTTPHeaderField: "Authorization")
+        
+        completion(.success(urlRequest))
+    }
+    
+    func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
+        
+        guard let response = request.task?.response as? HTTPURLResponse, response.statusCode == 401
+        else {
+            completion(.doNotRetry)
+            return
+        }
+        
+        AuthAPI.shared.getTokenRefresh { response in
+            guard let response = response,
+                  let message = response.message
+            else { return }
+            
+            if response.code == 200 || message == "만료되지 않은 엑세스 토큰입니다" || message == "토큰 재발급 실패" {
+                completion(.retry)
+            } else {
+                Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
+                completion(.doNotRetry)
             }
         }
     }
