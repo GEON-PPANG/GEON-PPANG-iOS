@@ -66,8 +66,8 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         bakeryAddressLabel.snp.makeConstraints {
             $0.centerY.equalTo(bakeryAddressImage)
             $0.leading.equalTo(linkButtonStackView)
-            $0.trailing.equalToSuperview().inset(68)
-            $0.width.equalTo(249)
+            $0.trailing.equalToSuperview().inset(24)
+            $0.width.equalTo(293)
             $0.height.equalTo(20)
         }
         

@@ -51,3 +51,13 @@ extension UICollectionView {
         return supplementaryView
     }
 }
+
+extension UICollectionView {
+    
+    func lastIndexPath() -> IndexPath {
+        let section = max(numberOfSections - 1, 0)
+        let row = max(numberOfItems(inSection: section) - 1, 0)
+        
+        return IndexPath(row: row, section: section)
+    }
+}

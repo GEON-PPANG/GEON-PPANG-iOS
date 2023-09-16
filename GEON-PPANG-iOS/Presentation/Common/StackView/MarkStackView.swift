@@ -14,7 +14,7 @@ final class MarkStackView: UIStackView {
     
     // MARK: - UI Property
     
-    private lazy var hccpMarkIconView = UIImageView()
+    private lazy var haccpMarkIconView = UIImageView()
     private lazy var veganIconView = UIImageView()
     private lazy var gmoIconView = UIImageView()
     
@@ -35,7 +35,7 @@ final class MarkStackView: UIStackView {
     
     private func setLayout() {
         
-        [hccpMarkIconView, veganIconView, gmoIconView].forEach {
+        [haccpMarkIconView, veganIconView, gmoIconView].forEach {
             $0.snp.makeConstraints {
                 $0.size.equalTo(24)
             }
@@ -45,20 +45,12 @@ final class MarkStackView: UIStackView {
     private func setUI() {
         
         self.do {
-            $0.addArrangedSubviews(hccpMarkIconView, veganIconView, gmoIconView)
+            $0.addArrangedSubviews(haccpMarkIconView, veganIconView, gmoIconView)
             $0.spacing = -8
             $0.axis = .horizontal
         }
         
-        hccpMarkIconView.do {
-            $0.contentMode = .topLeft
-        }
-        
-        veganIconView.do {
-            $0.contentMode = .topLeft
-        }
-        
-        gmoIconView.do {
+        [haccpMarkIconView, veganIconView, gmoIconView].forEach {
             $0.contentMode = .topLeft
         }
     }
@@ -67,7 +59,7 @@ final class MarkStackView: UIStackView {
                             _ vegan: UIImage,
                             _ gmo: UIImage) {
         
-        hccpMarkIconView.image = haccp
+        haccpMarkIconView.image = haccp
         veganIconView.image = vegan
         gmoIconView.image = gmo
     }
@@ -76,26 +68,14 @@ final class MarkStackView: UIStackView {
                        _ isVegan: Bool,
                        _ isNONGMO: Bool) {
         
-        if !isHACCP {
-            hccpMarkIconView.isHidden = true
-        } else {
-            hccpMarkIconView.isHidden = false
-        }
-        if !isVegan {
-            veganIconView.isHidden = true
-        } else {
-            veganIconView.isHidden = false
-        }
-        if !isNONGMO {
-            gmoIconView.isHidden = true
-        } else {
-            gmoIconView.isHidden = false
-        }
+        haccpMarkIconView.isHidden = !isHACCP
+        veganIconView.isHidden = !isVegan
+        gmoIconView.isHidden = !isNONGMO
     }
     
     func configureMarkSize(_ size: Int) {
         
-        [hccpMarkIconView, veganIconView, gmoIconView].forEach {
+        [haccpMarkIconView, veganIconView, gmoIconView].forEach {
             $0.snp.remakeConstraints {
                 $0.size.equalTo(size)
             }

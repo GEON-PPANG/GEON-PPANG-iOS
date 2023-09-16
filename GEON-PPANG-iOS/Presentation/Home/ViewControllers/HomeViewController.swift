@@ -221,13 +221,17 @@ final class HomeViewController: BaseViewController {
     private func bottomSection() -> NSCollectionLayoutSection {
         
         let itemGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                   heightDimension: .absolute(convertByHeightRatio(115)))
+                                                   heightDimension: .absolute(72))
         let item = NSCollectionLayoutItem(layoutSize: itemGroupSize)
         
         let group = NSCollectionLayoutGroup.vertical(layoutSize: itemGroupSize,
                                                      subitem: item,
                                                      count: 1)
         let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 14,
+                                                        leading: 24,
+                                                        bottom: 30,
+                                                        trailing: 24)
         
         return section
     }

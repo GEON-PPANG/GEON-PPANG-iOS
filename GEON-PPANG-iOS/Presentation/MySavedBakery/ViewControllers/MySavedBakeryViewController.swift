@@ -17,7 +17,10 @@ final class MySavedBakeryViewController: BaseViewController {
     enum Section {
         case main, empty
     }
+    
     typealias DataSource = UICollectionViewDiffableDataSource<Section, AnyHashable>
+    typealias SanpShot = NSDiffableDataSourceSnapshot<Section, AnyHashable>
+    
     private var dataSource: DataSource?
     private var savedList: [BakeryCommonListResponseDTO] = []
     private var currentSection: [Section] = [.empty]
@@ -87,9 +90,7 @@ final class MySavedBakeryViewController: BaseViewController {
     private func setDataSource() {
         
         let cellRegistration = UICollectionView.CellRegistration<BakeryCommonCollectionViewCell, BakeryCommonListResponseDTO> { (cell, _, item) in
-            if let bakeryListItem = item as? BakeryCommonListResponseDTO {
-                cell.configureCellUI(data: bakeryListItem)
-            }
+            cell.configureCellUI(data: item)
         }
         
         dataSource = DataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, item in
@@ -107,8 +108,9 @@ final class MySavedBakeryViewController: BaseViewController {
     
     private func setReloadData() {
         
-        var snapshot = NSDiffableDataSourceSnapshot<Section, AnyHashable>()
+        var snapshot = SanpShot()
         defer { dataSource?.apply(snapshot, animatingDifferences: false)}
+        
         snapshot.appendSections([.empty])
         snapshot.appendItems([0])
     }
@@ -138,10 +140,8 @@ final class MySavedBakeryViewController: BaseViewController {
             let section = self.dataSource?.snapshot().sectionIdentifiers[sectionIndex]
             switch section {
             case .main:
-                var config = UICollectionLayoutListConfiguration(appearance: .plain)
-                config.backgroundColor = .clear
-                
-                config.itemSeparatorHandler = { indexPath, config in
+                var config = LayoutUtils.listConfiguration(appearance: .plain,
+                                                           headerMode: .none) { indexPath, config in
                     var config = config
                     guard let itemCount = self.dataSource?.snapshot().itemIdentifiers(inSection: .main).count else { return config }
                     
@@ -158,8 +158,9 @@ final class MySavedBakeryViewController: BaseViewController {
         
         return layout
     }
-
+    
     func configureScollable(_ count: Int) {
+        
         if count == 0 {
             collectionView.isScrollEnabled = false
         } else {

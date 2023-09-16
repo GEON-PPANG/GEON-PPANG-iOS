@@ -49,4 +49,19 @@ final class LayoutUtils {
         
         return header
     }
+    
+    class func listConfiguration(
+        appearance: UICollectionLayoutListConfiguration.Appearance,
+        headerMode: UICollectionLayoutListConfiguration.HeaderMode,
+        handler: UICollectionLayoutListConfiguration.ItemSeparatorHandler?
+    ) -> UICollectionLayoutListConfiguration {
+        
+        var config = UICollectionLayoutListConfiguration(appearance: appearance)
+        config.backgroundColor = .clear
+        config.separatorConfiguration.color = .gbbGray200!
+        config.headerMode = headerMode
+        config.separatorConfiguration.topSeparatorVisibility = .hidden
+        config.itemSeparatorHandler = handler
+        return config
+    }
 }

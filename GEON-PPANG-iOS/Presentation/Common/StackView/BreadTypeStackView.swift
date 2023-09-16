@@ -21,8 +21,8 @@ final class BreadTypeStackView: UIStackView {
     private lazy var glutenFreeChip = PaddingLabel(padding: padding)
     private lazy var veganBreadChip = PaddingLabel(padding: padding)
     private lazy var nutFreeChip = PaddingLabel(padding: padding)
-    private lazy var noSugarChip = PaddingLabel(padding: padding)
-    private let labeling = ["글루텐프리", "비건빵", "넛프리", "저당,무설탕"]
+    private lazy var subSugarChip = PaddingLabel(padding: padding)
+    private let labeling = ["글루텐프리", "비건빵", "넛프리", "대체당"]
     
     // MARK: - Initializer
     
@@ -42,9 +42,9 @@ final class BreadTypeStackView: UIStackView {
     
     private func setLayout() {
         
-        self.addArrangedSubviews(glutenFreeChip, veganBreadChip, nutFreeChip, noSugarChip)
+        self.addArrangedSubviews(glutenFreeChip, veganBreadChip, nutFreeChip, subSugarChip)
         
-        [glutenFreeChip, veganBreadChip, nutFreeChip, noSugarChip].forEach {
+        [glutenFreeChip, veganBreadChip, nutFreeChip, subSugarChip].forEach {
             $0.snp.makeConstraints {
                 $0.height.equalTo(25)
             }
@@ -60,7 +60,7 @@ final class BreadTypeStackView: UIStackView {
             $0.distribution = .equalSpacing
         }
         
-        [glutenFreeChip, veganBreadChip, nutFreeChip, noSugarChip].enumerated().forEach { index, chip in
+        [glutenFreeChip, veganBreadChip, nutFreeChip, subSugarChip].enumerated().forEach { index, chip in
             chip.do {
                 $0.basic(text: labeling[index], font: .captionM1!, color: .gbbPoint1!)
                 $0.makeCornerRound(radius: 3)
@@ -71,26 +71,11 @@ final class BreadTypeStackView: UIStackView {
     
     // MARK: - Custom Method
     
-    func getChipStatus(_ isGlutenFree: Bool, _ isveganBread: Bool, _ isnutFree: Bool, _ isnoSugarChip: Bool) {
-        if !isGlutenFree {
-            glutenFreeChip.isHidden = true
-        } else {
-            glutenFreeChip.isHidden = false
-        }
-        if !isveganBread {
-            veganBreadChip.isHidden = true
-        } else {
-            veganBreadChip.isHidden = false
-        }
-        if !isnutFree {
-            nutFreeChip.isHidden = true
-        } else {
-            nutFreeChip.isHidden = false
-        }
-        if !isnoSugarChip {
-            noSugarChip.isHidden = true
-        } else {
-            noSugarChip.isHidden = false
-        }
+    func getChipStatus(_ isGlutenFree: Bool, _ isveganBread: Bool, _ isnutFree: Bool, _ issubSugarChip: Bool) {
+        
+        glutenFreeChip.isHidden = !isGlutenFree
+        veganBreadChip.isHidden = !isveganBread
+        nutFreeChip.isHidden = !isnutFree
+        subSugarChip.isHidden = !issubSugarChip
     }
 }
