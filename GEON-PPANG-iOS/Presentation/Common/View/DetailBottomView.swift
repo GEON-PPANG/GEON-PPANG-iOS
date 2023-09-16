@@ -52,7 +52,7 @@ final class DetailBottomView: UIView {
         bookmarkButton.snp.makeConstraints {
             $0.top.equalToSuperview().inset(18)
             $0.leading.equalToSuperview().inset(24)
-            $0.size.equalTo(48)
+            $0.size.equalTo(44)
         }
         
         self.addSubview(writeReviewButton)
@@ -80,7 +80,7 @@ final class DetailBottomView: UIView {
     private func setUI() {
         
         bookmarkButton.do {
-            $0.setImage(.disabledBookmarkButton.resize(to: .init(width: 48, height: 48)), for: .normal)
+            $0.setImage(.disabledBookmarkButton, for: .normal)
             $0.addAction(UIAction { _ in
                 self.tappedBookmarkButton?()
             }, for: .touchUpInside)
@@ -115,7 +115,7 @@ final class DetailBottomView: UIView {
     func configureBookmarkButton(to isSelected: Bool) {
         
         bookmarkButton.do {
-            $0.setImage((isSelected ? UIImage.enabledBookmarkButton : UIImage.disabledBookmarkButton).resize(to: .init(width: 48, height: 48)), for: .normal)
+            $0.setImage((isSelected ? UIImage.enabledBookmarkButton : UIImage.disabledBookmarkButton), for: .normal)
         }
     }
     
