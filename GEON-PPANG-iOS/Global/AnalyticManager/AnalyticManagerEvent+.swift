@@ -7,31 +7,17 @@
 
 import Foundation
 
-enum LoginType: String, CaseIterable {
-    
-    case EMAIL
-    case KAKAO
-    case APPLE
-}
-
-enum ViewDetail: String, CaseIterable {
-    
-    case HOME
-    case LIST
-}
-
 extension AnalyticManagerEvent {
-    
+        
     /// General
     
     enum General: AnalyticManagerEventProtocol {
-        
-        
+                
         case openApp
         case closeApp
         case loginApp(loginType: String)
         case logoutApp
-        // linkout
+        case withdraqApp
         
         var name: String {
             switch self {
@@ -39,6 +25,7 @@ extension AnalyticManagerEvent {
             case .closeApp: return "close_app"
             case .loginApp: return "login_app"
             case .logoutApp: return "logout_app"
+            case .withdraqApp: return "withdraw_app"
             }
         }
         
@@ -48,6 +35,7 @@ extension AnalyticManagerEvent {
             default: return nil
             }
         }
+
     }
     
     /// Onboarding
@@ -192,18 +180,34 @@ extension AnalyticManagerEvent {
     enum WriteReview: AnalyticManagerEventProtocol {
         
         case startReviewWriting
-        case completeReviewWriting(keyword: [String])
+        case clickReviewWritingOption(option: String)
+        case clickReviewWritingText(keyword: [String])
+        case clickReviewWritingBack
+        case clickReviewWrtingStop
+        case clickReviewWritingContinue
+        case completeReviewWriting(option: String,
+                                   keyword: [String],
+                                   text: String)
         
         var name: String {
             switch self {
             case .startReviewWriting: return "start_reviewwriting"
+            case .clickReviewWritingOption: return "click_reviewwriting_option"
+            case .clickReviewWritingText: return "click_reviewwriting_text"
+            case .clickReviewWritingBack: return "click_reviewwriting_back"
+            case .clickReviewWrtingStop: return "click_reviewwrting_stop"
+            case .clickReviewWritingContinue: return "click_reviewwriting_continue"
             case .completeReviewWriting: return "complete_reviewwriting"
             }
         }
         
         var parameters: [String: Any]? {
             switch self {
-            case .completeReviewWriting(keyword: let keyword): return ["keyword": keyword]
+            case .clickReviewWritingOption(option: let option): return ["option": option]
+            case .clickReviewWritingText(keyword: let keyword): return ["keyword": keyword]
+            case .completeReviewWriting(option: let option, keyword: let keyword, text: let text): return ["option": option,
+                                                                                                           "keyword": keyword,
+                                                                                                           "text": text]
             default: return nil
             }
         }
@@ -218,5 +222,31 @@ extension AnalyticManagerEvent {
         case start_filter_mypage
         case click_filter_back_mypage
         case complete_filte_mypage
+    }
+    
+    /// ReportReview
+    
+    enum ReportReview: AnalyticManagerEventProtocol {
+        case startReviewReport
+        case clickReviewReportOption(option: String)
+        case clickReviewReportBack
+        case completeReviewReport(option: String, text: String)
+        
+        var name: String {
+            switch self {
+            case .startReviewReport: return "start_reviewreport"
+            case .clickReviewReportOption: return "click_reviewreport_option"
+            case .clickReviewReportBack: return "click_reviewreport_back"
+            case .completeReviewReport: return "complete_reviewreport"
+            }
+        }
+        
+        var parameters: [String: Any]? {
+            switch self {
+            case .clickReviewReportOption(option: let option): return ["option": option]
+            case .completeReviewReport(option: let option, text: let text): return ["option": option, "text": text]
+            default: return nil
+            }
+        }
     }
 }
