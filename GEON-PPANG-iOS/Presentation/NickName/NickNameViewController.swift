@@ -14,6 +14,8 @@ final class NickNameViewController: BaseViewController {
     
     // MARK: - Property
     
+    var email: String = ""
+    var password: String = ""
     private var checkNickname: String = ""
     private var isValid: Bool = false {
         didSet {
@@ -35,7 +37,7 @@ final class NickNameViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setKeyboardHideGesture()
     }
     
@@ -216,4 +218,5 @@ extension NickNameViewController {
             }
         }
     }
+    
 }

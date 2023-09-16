@@ -25,7 +25,11 @@ final class SignInViewController: BaseViewController {
     }
     
     private var isValidCheckEmail: Bool = false
-    private var isValidButton: [Bool] = [false, false, false]
+    private var isValidButton: [Bool] = [false, false, false] {
+        didSet {
+            updateButtonStatus()
+        }
+    }
     private var isValid: Bool = false {
         didSet {
             configureButtonUI(isValid)
@@ -162,7 +166,10 @@ final class SignInViewController: BaseViewController {
             $0.isUserInteractionEnabled = isValid
             $0.tappedCommonButton = { [weak self] in
                 guard let self else { return }
-                Utils.push(self.navigationController, NickNameViewController())
+                let nicknameViewController = NickNameViewController()
+                nicknameViewController.email = self.checkEmail
+                nicknameViewController.password = self.checkPassword
+                Utils.push(self.navigationController, nicknameViewController)
             }
         }
     }
@@ -183,9 +190,9 @@ extension SignInViewController: UITextFieldDelegate {
         if textField == emailTextField.configureTextField() {
             let currentText = textField.text ?? ""
             let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
-            
+     
             isValidButton[0] = newText == currentText
-            updateButtonStatus()
+            print("emailvalid:\(isValidButton[0])")
         }
         
         return true
@@ -242,7 +249,7 @@ extension SignInViewController: UITextFieldDelegate {
         } else {
             view.clearErrorMessage()
         }
-        
+
         updateButtonStatus()
     }
     
