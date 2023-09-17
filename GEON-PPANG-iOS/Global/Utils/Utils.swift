@@ -44,10 +44,18 @@ final class Utils {
         return width < (UIScreen.main.bounds.width - 152) ? 25 : 56
     }
     
+    class func showAlert(title: String, description: String, at viewController: UIViewController) {
+        let alert = UIAlertController(title: title, message: description, preferredStyle: .alert)
+        alert.addAction(.init(title: "닫기", style: .default))
+        viewController.present(alert, animated: true)
+    }
+    
     static var version: String? {
         guard let dictionary = Bundle.main.infoDictionary,
               let version = dictionary["CFBundleShortVersionString"] as? String
         else { return nil }
         return version
     }
+    
+    static var sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
 }

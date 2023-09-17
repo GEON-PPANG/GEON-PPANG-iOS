@@ -18,7 +18,7 @@ final class HomeAPI {
     
     private init() {}
     
-    var homeProvider = MoyaProvider<HomeService>(plugins: [MoyaLoggingPlugin()])
+    var homeProvider = MoyaProvider<HomeService>(session: Session(interceptor: AuthInterceptor.shared), plugins: [MoyaLoggingPlugin()])
     
     public private(set) var bestBakery: HomeBestBakeryResponse?
     public private(set) var bestReviews: HomeBestReviewResponse?

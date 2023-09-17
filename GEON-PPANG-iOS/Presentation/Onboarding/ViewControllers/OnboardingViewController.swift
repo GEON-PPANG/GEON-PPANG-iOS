@@ -23,8 +23,8 @@ final class OnboardingViewController: BaseViewController {
     private let kakaoLoginButton = UIButton()
     private let appleLoginButton = UIButton()
     private let socialLoginButtonStackView = UIStackView()
+    private let emailLogInButton = UIButton()
     private let emailSignInButton = UIButton()
-    private let emailSignUpButton = UIButton()
     private let seperatorView = UIView()
     private let emailButtonStackView = UIStackView()
     
@@ -61,11 +61,11 @@ final class OnboardingViewController: BaseViewController {
             $0.horizontalEdges.equalToSuperview().inset(24)
         }
         
-        emailSignInButton.snp.makeConstraints {
+        emailLogInButton.snp.makeConstraints {
             $0.height.equalTo(17)
         }
         
-        emailSignUpButton.snp.makeConstraints {
+        emailSignInButton.snp.makeConstraints {
             $0.height.equalTo(17)
         }
         
@@ -102,16 +102,22 @@ final class OnboardingViewController: BaseViewController {
             $0.addArrangedSubviews(kakaoLoginButton, appleLoginButton)
         }
         
-        emailSignInButton.do {
+        emailLogInButton.do {
             $0.setTitle(I18N.Onboarding.emailSignIn, for: .normal)
             $0.setTitleColor(.gbbGray400, for: .normal)
             $0.titleLabel?.font = .captionB1
+            $0.addAction(UIAction { [weak self] _ in
+                self?.emailLogInButtonTapped()
+            }, for: .touchUpInside)
         }
         
-        emailSignUpButton.do {
+        emailSignInButton.do {
             $0.setTitle(I18N.Onboarding.emailSignUp, for: .normal)
             $0.setTitleColor(.gbbGray400, for: .normal)
             $0.titleLabel?.font = .captionB1
+            $0.addAction(UIAction { [weak self] _ in
+                self?.emailSignInButtonTapped()
+            }, for: .touchUpInside)
         }
         
         seperatorView.do {
@@ -121,14 +127,27 @@ final class OnboardingViewController: BaseViewController {
         emailButtonStackView.do {
             $0.axis = .horizontal
             $0.spacing = 12
-            $0.addArrangedSubviews(emailSignInButton, seperatorView, emailSignUpButton)
+            $0.addArrangedSubviews(emailLogInButton, seperatorView, emailSignInButton)
         }
     }
     
     private func setSocialLoginButtonActions() {
         
         let kakaoLoginAction = UIAction { [weak self] _ in
-            self?.kakaoLoginButtonTapped()
+            self?.getKakaoAuthCode { token in
+                guard let token = token
+                else { return }
+                
+                KeychainService.setKeychain(of: .socialAuth, with: token)
+                
+                let request = SignUpRequestDTO(
+                    platformType: .kakao,
+                    email: "",
+                    password: "",
+                    nickname: ""
+                )
+                self?.postSignUp(with: request)
+            }
         }
         kakaoLoginButton.addAction(kakaoLoginAction, for: .touchUpInside)
         
@@ -145,27 +164,34 @@ final class OnboardingViewController: BaseViewController {
 
 extension OnboardingViewController {
     
-    private func kakaoLoginButtonTapped() {
+    private func getKakaoAuthCode(_ completion: @escaping (String?) -> Void) {
         
         if UserApi.isKakaoTalkLoginAvailable() {
-            UserApi.shared.loginWithKakaoTalk { token, error in
+            UserApi.shared.loginWithKakaoTalk { response, error in
+                
                 guard error == nil
                 else {
                     print("login with kakaoTalk failed with error: \(String(describing: error))")
                     return
                 }
-                print("🪙 token 🪙: \(String(describing: token))")
-                // TODO: api 나오면 연결
+                
+                guard let token = response?.accessToken
+                else { return }
+                
+                completion(token)
             }
         } else {
-            UserApi.shared.loginWithKakaoAccount { token, error in
+            UserApi.shared.loginWithKakaoAccount { response, error in
                 guard error == nil
                 else {
                     print("login with kakaoTalk failed with error: \(String(describing: error))")
                     return
                 }
-                print("🪙 token 🪙: \(String(describing: token))")
-                // TODO: api 나오면 연결
+                
+                guard let token = response?.accessToken
+                else { return }
+                
+                completion(token)
             }
         }
     }
@@ -173,7 +199,6 @@ extension OnboardingViewController {
     private func appleLoginButtonTapped() {
         
         let appleIDProvider = ASAuthorizationAppleIDProvider()
-        let applePWProvider = ASAuthorizationPasswordProvider()
         let request = appleIDProvider.createRequest()
         request.requestedScopes = [.fullName, .email]
         
@@ -181,15 +206,32 @@ extension OnboardingViewController {
         authorizationController.delegate = self
         authorizationController.presentationContextProvider = self
         authorizationController.performRequests()
-        
+    }
+    
+    private func emailLogInButtonTapped() {
+        Utils.push(self.navigationController, LogInViewController())
     }
     
     private func emailSignInButtonTapped() {
-        // TODO: 로그인 뷰 나오면 연결
+        Utils.push(self.navigationController, SignInViewController())
     }
     
-    private func emailSignUpButtonTapped() {
-        // TODO: 회원가입 뷰 나오면 연결
+}
+
+extension OnboardingViewController {
+    
+    private func postSignUp(with request: SignUpRequestDTO) {
+        AuthAPI.shared.postSignUp(with: request) { status in
+            guard let code = status?.code else { return }
+            switch code {
+            case 200...299:
+                Utils.push(self.navigationController, NickNameViewController())
+                dump(status)
+            default:
+                dump(status)
+                Utils.showAlert(title: "에러", description: "실패", at: self)
+            }
+        }
     }
     
 }
@@ -200,17 +242,57 @@ extension OnboardingViewController: ASAuthorizationControllerDelegate {
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         
-        // TODO: 받아온 credential 처리 로직 고민해보기
         guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential,
-              let idToken = credential.identityToken,
-              let authorizationCode = credential.authorizationCode
+              let authCode = credential.authorizationCode,
+              let authCodeString = String(data: authCode, encoding: .utf8)
         else { return }
+        KeychainService.setKeychain(of: .socialAuth, with: authCodeString)
         
-        let tokenString = String(data: idToken, encoding: .utf8)
-        let codeString = String(data: authorizationCode, encoding: .utf8)
-        print("🆔: \(String(describing: tokenString))")
-        print("💻: \(String(describing: codeString))")
-        
+        let userIdentifier = credential.user
+        let appleProvider = ASAuthorizationAppleIDProvider()
+        appleProvider.getCredentialState(forUserID: userIdentifier) { state, err in
+            
+            guard err == nil
+            else {
+                print("❌ \(String(describing: err)) ❌")
+                return
+            }
+            
+            switch state {
+            case .authorized:
+                print("🔴 User authorized 🔴")
+                
+                let request = SignUpRequestDTO(
+                    platformType: .apple,
+                    email: KeychainService.readKeychain(of: .userEmail),
+                    password: "",
+                    nickname: ""
+                )
+                self.postSignUp(with: request)
+                
+            case .notFound:
+                print("🔴 User not found 🔴")
+                guard let email = credential.email else {
+                    print("❌ User email not found ❌")
+                    return
+                }
+                KeychainService.setKeychain(of: .userEmail, with: email)
+                
+                let request = SignUpRequestDTO(
+                    platformType: .apple,
+                    email: KeychainService.readKeychain(of: .userEmail),
+                    password: "",
+                    nickname: ""
+                )
+                self.postSignUp(with: request)
+                
+            case .revoked:
+                print("❌ User revoked ❌")
+                
+            default:
+                print("❌ Unknown error: \(state) ❌")
+            }
+        }
     }
     
 }

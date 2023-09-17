@@ -19,7 +19,7 @@ final class ReviewAPI {
     
     private init() {}
     
-    var reviewProvider = MoyaProvider<ReviewService>(plugins: [MoyaLoggingPlugin()])
+    var reviewProvider = MoyaProvider<ReviewService>(session: Session(interceptor: AuthInterceptor.shared), plugins: [MoyaLoggingPlugin()])
     
     public private(set) var writeReview: WriteReviewResponse?
     public private(set) var myReviewDetail: MyReviewDetailResponse?

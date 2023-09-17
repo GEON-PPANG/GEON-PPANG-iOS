@@ -13,12 +13,12 @@ class KeychainService {
     
     // MARK: - create keychain
     
-    static func createKeychain(of key: KeychainKey, with value: String) {
+    static func setKeychain(of key: KeychainKey, with value: String) {
         
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: serviceName,
-            kSecAttrLabel as String: key.label,
+            kSecAttrAccount as String: key.account,
             kSecValueData as String: value.data(using: .utf8) as Any
         ]
         
@@ -26,11 +26,13 @@ class KeychainService {
         #if DEBUG
         switch status {
         case errSecSuccess:
-            print("🔒   Keychain created successfully   🔒")
+            print("🔒 Set: Keychain of \(key) created successfully 🔒")
         case errSecDuplicateItem:
-            print("❌ Keychain item already exists ❌")
+            print("❌ Set: Keychain of \(key) item already exists ❌")
+            print("❌ Set: Keychain of \(key) update ❌")
+            updateKeychain(of: key, to: value)
         default:
-            print("❌ Unknown error: \(SecCopyErrorMessageString(status, nil).debugDescription) ❌")
+            print("❌ Set: Unknown error: \(SecCopyErrorMessageString(status, nil).debugDescription) ❌")
         }
         #endif
     }
@@ -42,7 +44,7 @@ class KeychainService {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: serviceName,
-            kSecAttrLabel as String: key.label,
+            kSecAttrAccount as String: key.account,
             kSecMatchLimit as String: kSecMatchLimitOne,
             kSecReturnData as String: true,
             kSecReturnAttributes as String: true
@@ -53,12 +55,12 @@ class KeychainService {
         #if DEBUG
         switch status {
         case errSecSuccess:
-            print("🔒    Keychain read successfully     🔒")
+            print("🔒 Read: Keychain of \(key) read successfully 🔒")
         case errSecItemNotFound:
-            print("❌ Keychain item not found ❌")
+            print("❌ Read: Keychain of \(key) item not found ❌")
             return ""
         default:
-            print("❌ Unknown error: \(SecCopyErrorMessageString(status, nil).debugDescription) ❌")
+            print("❌ Read: Unknown error: \(SecCopyErrorMessageString(status, nil).debugDescription) ❌")
             return ""
         }
         #endif
@@ -67,7 +69,7 @@ class KeychainService {
               let tokenData = decodedItem[kSecValueData as String] as? Data,
               let token = String(data: tokenData, encoding: .utf8)
         else {
-            print("❌ Keychain decoding failed ❌")
+            print("❌ Read: Keychain of \(key) decoding failed ❌")
             return ""
         }
         
@@ -79,11 +81,11 @@ class KeychainService {
     static func updateKeychain(of key: KeychainKey, to value: String) {
         
         let query: [String: Any] = [
-            kSecClass as String: kSecClassGenericPassword
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrService as String: serviceName,
+            kSecAttrAccount as String: key.account
         ]
         let attributes: [String: Any] = [
-            kSecAttrService as String: serviceName,
-            kSecAttrLabel as String: key.label,
             kSecValueData as String: value.data(using: .utf8) as Any
         ]
         
@@ -91,11 +93,11 @@ class KeychainService {
         #if DEBUG
         switch status {
         case errSecSuccess:
-            print("🔒  Keychain updated successfully  🔒")
+            print("🔒 Update: Keychain of \(key) updated successfully  🔒")
         case errSecItemNotFound:
-            print("❌ Keychain item not found ❌")
+            print("❌ Update: Keychain of \(key) item not found ❌")
         default:
-            print("❌ Unknown error: \(SecCopyErrorMessageString(status, nil).debugDescription) ❌")
+            print("❌ Update: Unknown error: \(SecCopyErrorMessageString(status, nil).debugDescription) ❌")
         }
         #endif
     }
@@ -108,49 +110,21 @@ class KeychainService {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: serviceName,
-            kSecAttrLabel as String: key.label
+            kSecAttrAccount as String: key.account
         ]
         
         let status = SecItemDelete(query as CFDictionary)
         #if DEBUG
         switch status {
         case errSecSuccess:
-            print("🔒  Keychain deleted successfully  🔒")
+            print("🔒 Delete: Keychain of \(key) deleted successfully 🔒")
             return true
         case errSecItemNotFound:
-            print("❌ Keychain item not found ❌")
+            print("❌ Delete: Keychain of \(key) item not found ❌")
         default:
-            print("❌ Unknown error: \(SecCopyErrorMessageString(status, nil).debugDescription) ❌")
+            print("❌ Delete: Unknown of \(key) error: \(SecCopyErrorMessageString(status, nil).debugDescription) ❌")
         }
         return false
-        #endif
-    }
-    
-    // MARK: - existence keychain
-    
-    static func keychainExists(of key: KeychainKey) -> Bool {
-        
-        let query: [String: Any] = [
-            kSecClass as String: kSecClassGenericPassword,
-            kSecAttrService as String: serviceName,
-            kSecAttrLabel as String: key.label
-        ]
-        
-        let status = SecItemCopyMatching(query as CFDictionary, nil)
-        #if DEBUG
-        switch status {
-        case errSecSuccess:
-            print("🔒 Following keychain already exists 🔒")
-            print("🔒      Update to new keychain       🔒")
-            return true
-        case errSecItemNotFound:
-            print("🔒 Following keychain doesn't exist 🔒")
-            print("🔒       Create new keychain        🔒")
-            return false
-        default:
-            print("❌ Unknown error: \(SecCopyErrorMessageString(status, nil).debugDescription) ❌")
-            return false
-        }
         #endif
     }
 }

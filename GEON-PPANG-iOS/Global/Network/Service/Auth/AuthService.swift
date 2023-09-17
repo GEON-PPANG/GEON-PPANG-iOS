@@ -14,6 +14,8 @@ enum AuthService {
     case checkNickname(request: NicknameRequestDTO)
     
     case login(request: LoginRequestDTO)
+    case signUp(request: SignUpRequestDTO)
+    case refreshToken
 }
 
 extension AuthService: TargetType {
@@ -29,13 +31,19 @@ extension AuthService: TargetType {
             return URLConstant.checkNickname
         case .login:
             return URLConstant.login
+        case .signUp:
+            return URLConstant.signup
+        case .refreshToken:
+            return URLConstant.refreshToken
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .checkEmail, .checkNickname, .login:
+        case .checkEmail, .checkNickname, .login, .signUp:
             return .post
+        case .refreshToken:
+            return .get
         }
     }
     
@@ -47,13 +55,21 @@ extension AuthService: TargetType {
             return .requestJSONEncodable(data)
         case .login(request: let data):
             return .requestJSONEncodable(data)
+        case .signUp(request: let data):
+            return .requestJSONEncodable(data)
+        case .refreshToken:
+            return .requestPlain
         }
     }
     
     var headers: [String: String]? {
         switch self {
-        default:
-            return NetworkConstant.noTokenHeader
+        case .checkEmail, .checkNickname, .login:
+            return NetworkConstant.header(.noToken)
+        case .signUp:
+            return NetworkConstant.header(.platformToken)
+        case .refreshToken:
+            return NetworkConstant.header(.accessAndRefreshToken)
         }
-    }    
+    }
 }
