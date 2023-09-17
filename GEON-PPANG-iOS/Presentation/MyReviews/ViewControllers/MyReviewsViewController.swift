@@ -132,7 +132,7 @@ extension MyReviewsViewController: UICollectionViewDelegate {
             region: bakery.station.components(separatedBy: ", "),
             certificates: bakery.mark
         )
-        Utils.push(self.navigationController, ReviewViewController(type: .read, bakeryData: bakeryData, reviewID: data.reviewID))
+        Utils.push(self.navigationController, ReviewViewController(type: .read, bakeryData: bakeryData, reviewID: data.reviewID, reviewDate: data.createdAt))
     }
 }
 

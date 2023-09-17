@@ -15,10 +15,12 @@ final class ReviewViewController: BaseViewController {
     // MARK: - Property
     
     var type: ReviewViewType
+    
     var bakeryData: SimpleBakeryModel
     
     var reviewID: Int?
     var myReviewData: MyReviewDetailResponseDTO?
+    var reviewDate: String?
     
     var writeReviewData: WriteReviewRequestDTO = .init(bakeryID: 0, isLike: false, keywordList: [], reviewText: "")
     
@@ -30,6 +32,7 @@ final class ReviewViewController: BaseViewController {
     private lazy var bottomView = BottomView()
     private lazy var nextButton = CommonButton()
     
+    private lazy var reviewDateLabel = UILabel()
     private lazy var bakeryOverviewView = BakeryOverviewView(of: bakeryData)
     private let lineView = LineView()
     private let likeCollectionViewHeaderLabel = UILabel()
@@ -59,10 +62,12 @@ final class ReviewViewController: BaseViewController {
     convenience init(
         type: ReviewViewType,
         bakeryData: SimpleBakeryModel,
-        reviewID: Int
+        reviewID: Int,
+        reviewDate: String
     ) {
         self.init(type: type, bakeryData: bakeryData)
         self.reviewID = reviewID
+        self.reviewDate = reviewDate
     }
     
     @available(*, unavailable)
@@ -81,6 +86,7 @@ final class ReviewViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        guard type == .read else { return }
         getReview()
     }
     
@@ -101,7 +107,7 @@ final class ReviewViewController: BaseViewController {
         
         contentView.addSubview(bakeryOverviewView)
         bakeryOverviewView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(UIScreen.main.hasNotch ? 92 : 96)
+            $0.top.equalToSuperview().inset(CGFloat().heightConsideringNotch(92))
             $0.horizontalEdges.equalToSuperview().inset(24)
         }
         
