@@ -94,9 +94,16 @@ final class ReviewViewController: BaseViewController {
     
     override func setLayout() {
         
+        view.addSubview(navigationBar)
+        navigationBar.snp.makeConstraints {
+            $0.horizontalEdges.top.equalToSuperview()
+        }
+        
+        view.bringSubviewToFront(navigationBar)
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.equalTo(navigationBar.snp.bottom)
+            $0.bottom.horizontalEdges.equalToSuperview()
         }
         
         scrollView.addSubview(contentView)
@@ -107,14 +114,14 @@ final class ReviewViewController: BaseViewController {
         
         contentView.addSubview(bakeryOverviewView)
         bakeryOverviewView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(CGFloat().heightConsideringNotch(92))
+            $0.top.equalTo(navigationBar.snp.bottom).offset(type == .read ? 42 : 18)
             $0.horizontalEdges.equalToSuperview().inset(24)
         }
         
         contentView.addSubview(lineView)
         lineView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.top.equalTo(bakeryOverviewView.snp.bottom).offset(24)
+            $0.top.equalTo(bakeryOverviewView.snp.bottom).offset(20)
             $0.height.equalTo(1)
         }
         
@@ -154,11 +161,13 @@ final class ReviewViewController: BaseViewController {
             $0.bottom.equalToSuperview().inset(11)
         }
         
-        view.addSubview(navigationBar)
-        navigationBar.snp.makeConstraints {
-            $0.horizontalEdges.top.equalToSuperview()
+        if type == .read {
+            contentView.addSubview(reviewDateLabel)
+            reviewDateLabel.snp.makeConstraints {
+                $0.bottom.equalTo(bakeryOverviewView.snp.top).offset(-3.5)
+                $0.leading.equalTo(bakeryOverviewView)
+            }
         }
-        view.bringSubviewToFront(navigationBar)
     }
     
     override func setUI() {
@@ -205,6 +214,14 @@ final class ReviewViewController: BaseViewController {
         
         reviewDetailTextView.do {
             $0.isUserInteractionEnabled = false
+        }
+        
+        if type == .read {
+            reviewDateLabel.do {
+                $0.text = reviewDate
+                $0.font = .captionM1
+                $0.textColor = .gbbGray400
+            }
         }
     }
     

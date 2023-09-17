@@ -91,7 +91,7 @@ final class MyReviewsViewController: BaseViewController {
                                                            headerMode: .supplementary) { indexPath, config in
                     
                     var config = config
-                    config.bottomSeparatorInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 0)
+                    config.bottomSeparatorInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
                     if indexPath == self.collectionView.lastIndexPath() {
                         config.bottomSeparatorVisibility = .hidden
                     }
