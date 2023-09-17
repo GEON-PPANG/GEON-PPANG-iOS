@@ -16,6 +16,7 @@ final class BakeryOverviewView: UIView {
     // MARK: - Property
     
     private let data: SimpleBakeryModel
+    private let tagData: CertificationMarkResponseType
     
     // MARK: - UI Property
     
@@ -28,8 +29,9 @@ final class BakeryOverviewView: UIView {
     
     // MARK: - Life Cycle
     
-    init(of bakery: SimpleBakeryModel) {
+    init(of bakery: SimpleBakeryModel, tagData: CertificationMarkResponseType) {
         self.data = bakery
+        self.tagData = tagData
         
         super.init(frame: .zero)
         
@@ -106,7 +108,7 @@ final class BakeryOverviewView: UIView {
         }
         
         markStackView.do {
-            $0.configureIconImage(.smallHACCPMark, .smallVeganMark, .smallGMOMark)
+            $0.configureIconImage(with: tagData)
         }
         
         bakeryNameLabel.do {

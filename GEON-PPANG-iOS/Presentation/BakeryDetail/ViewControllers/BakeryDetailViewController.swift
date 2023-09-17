@@ -102,7 +102,10 @@ final class BakeryDetailViewController: BaseViewController {
                 }
             }
             $0.tappedWriteReviewButton = {
-                Utils.push(self.navigationController, ReviewViewController(type: .write, bakeryData: self.configureSimpleBakeryData()))
+                Utils.push(self.navigationController, ReviewViewController(
+                    type: .write,
+                    bakeryData: self.configureSimpleBakeryData(),
+                    tag: CertificationMarkResponseType(isHACCP: self.overviewData.isHACCP, isVegan: self.overviewData.isVegan, isNonGMO: self.overviewData.isNonGMO)))
             }
         }
         

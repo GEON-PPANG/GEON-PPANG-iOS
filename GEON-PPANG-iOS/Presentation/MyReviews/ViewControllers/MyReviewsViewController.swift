@@ -131,7 +131,7 @@ extension MyReviewsViewController: UICollectionViewDelegate {
             bakeryIngredients: bakery.breadType.configureTrueOptionStrings(),
             bakeryRegion: bakery.station.components(separatedBy: ", ")
         )
-        Utils.push(self.navigationController, ReviewViewController(type: .read, bakeryData: bakeryData, reviewID: data.reviewID))
+        Utils.push(self.navigationController, ReviewViewController(type: .read, bakeryData: bakeryData, reviewID: data.reviewID, tag: bakery.mark))
     }
 }
 

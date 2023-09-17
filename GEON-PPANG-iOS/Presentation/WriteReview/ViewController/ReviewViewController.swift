@@ -16,6 +16,7 @@ final class ReviewViewController: BaseViewController {
     
     var type: ReviewViewType
     var bakeryData: SimpleBakeryModel
+    var tagData: CertificationMarkResponseType
     
     var reviewID: Int?
     var myReviewData: MyReviewDetailResponseDTO?
@@ -30,7 +31,7 @@ final class ReviewViewController: BaseViewController {
     private lazy var bottomView = BottomView()
     private lazy var nextButton = CommonButton()
     
-    private lazy var bakeryOverviewView = BakeryOverviewView(of: bakeryData)
+    private lazy var bakeryOverviewView = BakeryOverviewView(of: bakeryData, tagData: tagData)
     private let lineView = LineView()
     private let likeCollectionViewHeaderLabel = UILabel()
     private let likeCollectionView = OptionsCollectionView(frame: .zero, collectionViewLayout: OptionsCollectionViewFlowLayout())
@@ -46,15 +47,25 @@ final class ReviewViewController: BaseViewController {
     
     // MARK: - Life Cycle
     
-    init(type: ReviewViewType, bakeryData: SimpleBakeryModel) {
+    init(
+        type: ReviewViewType,
+        bakeryData: SimpleBakeryModel,
+        tag: CertificationMarkResponseType
+    ) {
         self.type = type
         self.bakeryData = bakeryData
+        self.tagData = tag
         
         super.init(nibName: nil, bundle: nil)
     }
     
-    convenience init(type: ReviewViewType, bakeryData: SimpleBakeryModel, reviewID: Int) {
-        self.init(type: type, bakeryData: bakeryData)
+    convenience init(
+        type: ReviewViewType,
+        bakeryData: SimpleBakeryModel,
+        reviewID: Int,
+        tag: CertificationMarkResponseType
+    ) {
+        self.init(type: type, bakeryData: bakeryData, tag: tag)
         self.reviewID = reviewID
     }
     
