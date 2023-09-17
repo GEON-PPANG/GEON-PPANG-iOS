@@ -35,6 +35,8 @@ final class MyPageProfileCell: UICollectionViewCell {
     private lazy var buttonsStackView = UIStackView(arrangedSubviews: [bookmarkButton, myReviewButton])
     private let seperatorView = UIView()
     
+    private let bubbleView = BubbleView(type: .right)
+    
     // MARK: - Life Cycle
     
     override init(frame: CGRect) {
@@ -188,6 +190,20 @@ final class MyPageProfileCell: UICollectionViewCell {
         filterCollectionView.reloadData()
     }
     
+    private func configureBubbleView(_ isAppeared: Bool) {
+        
+        if isAppeared {
+            bubbleView.removeFromSuperview()
+        } else {
+            self.addSubview(bubbleView)
+            bubbleView.snp.makeConstraints {
+                $0.leading.equalTo(userNameLabel)
+                $0.top.equalTo(userNameLabel.snp.bottom).offset(6)
+                $0.size.equalTo(CGSize(width: 209, height: 36))
+            }
+        }
+    }
+    
     func convertFromData(_ data: String) -> FilterPurposeType? {
         
         switch data {
@@ -220,8 +236,9 @@ extension MyPageProfileCell: UICollectionViewDelegate {}
 extension MyPageProfileCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return myPageTagData.filter { $0.1 == true }.count
+        let tagCount = myPageTagData.filter { $0.1 == true }.count
+        configureBubbleView(tagCount == 0 ? false : true)
+        return tagCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
