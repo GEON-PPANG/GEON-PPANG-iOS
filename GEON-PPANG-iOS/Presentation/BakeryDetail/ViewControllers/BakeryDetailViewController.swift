@@ -104,8 +104,7 @@ final class BakeryDetailViewController: BaseViewController {
             $0.tappedWriteReviewButton = {
                 Utils.push(self.navigationController, ReviewViewController(
                     type: .write,
-                    bakeryData: self.configureSimpleBakeryData(),
-                    tag: CertificationMarkResponseType(isHACCP: self.overviewData.isHACCP, isVegan: self.overviewData.isVegan, isNonGMO: self.overviewData.isNonGMO)))
+                    bakeryData: self.configureSimpleBakeryData()))
             }
         }
         
@@ -126,11 +125,16 @@ final class BakeryDetailViewController: BaseViewController {
     private func configureSimpleBakeryData() -> SimpleBakeryModel {
         
         var bakeryData = SimpleBakeryModel.emptyModel()
-        bakeryData.bakeryID = overviewData.bakeryID
-        bakeryData.bakeryName = overviewData.bakeryName
-        bakeryData.bakeryImageURL = overviewData.bakeryPicture
-        bakeryData.bakeryIngredients = overviewData.breadType.configureTrueOptions().filter { $0.1 == true }.map { $0.0 }
-        bakeryData.bakeryRegion = [overviewData.firstNearStation, overviewData.secondNearStation]
+        bakeryData.id = overviewData.bakeryID
+        bakeryData.name = overviewData.bakeryName
+        bakeryData.imageURL = overviewData.bakeryPicture
+        bakeryData.ingredients = overviewData.breadType.configureTrueOptions().filter { $0.1 == true }.map { $0.0 }
+        bakeryData.region = [overviewData.firstNearStation, overviewData.secondNearStation]
+        bakeryData.certificates = .init(
+            isHACCP: overviewData.isHACCP,
+            isVegan: overviewData.isVegan,
+            isNonGMO: overviewData.isNonGMO
+        )
         
         return bakeryData
     }

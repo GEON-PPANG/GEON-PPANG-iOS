@@ -125,13 +125,14 @@ extension MyReviewsViewController: UICollectionViewDelegate {
         let data = myReviewsList[indexPath.section]
         let bakery = data.bakeryList
         let bakeryData = SimpleBakeryModel(
-            bakeryID: bakery.bakeryID,
-            bakeryName: bakery.name,
-            bakeryImageURL: bakery.picture,
-            bakeryIngredients: bakery.breadType.configureTrueOptionStrings(),
-            bakeryRegion: bakery.station.components(separatedBy: ", ")
+            id: bakery.bakeryID,
+            name: bakery.name,
+            imageURL: bakery.picture,
+            ingredients: bakery.breadType.configureTrueOptionStrings(),
+            region: bakery.station.components(separatedBy: ", "),
+            certificates: bakery.mark
         )
-        Utils.push(self.navigationController, ReviewViewController(type: .read, bakeryData: bakeryData, reviewID: data.reviewID, tag: bakery.mark))
+        Utils.push(self.navigationController, ReviewViewController(type: .read, bakeryData: bakeryData, reviewID: data.reviewID))
     }
 }
 

@@ -16,7 +16,6 @@ final class ReviewViewController: BaseViewController {
     
     var type: ReviewViewType
     var bakeryData: SimpleBakeryModel
-    var tagData: CertificationMarkResponseType
     
     var reviewID: Int?
     var myReviewData: MyReviewDetailResponseDTO?
@@ -31,7 +30,7 @@ final class ReviewViewController: BaseViewController {
     private lazy var bottomView = BottomView()
     private lazy var nextButton = CommonButton()
     
-    private lazy var bakeryOverviewView = BakeryOverviewView(of: bakeryData, tagData: tagData)
+    private lazy var bakeryOverviewView = BakeryOverviewView(of: bakeryData)
     private let lineView = LineView()
     private let likeCollectionViewHeaderLabel = UILabel()
     private let likeCollectionView = OptionsCollectionView(frame: .zero, collectionViewLayout: OptionsCollectionViewFlowLayout())
@@ -49,12 +48,10 @@ final class ReviewViewController: BaseViewController {
     
     init(
         type: ReviewViewType,
-        bakeryData: SimpleBakeryModel,
-        tag: CertificationMarkResponseType
+        bakeryData: SimpleBakeryModel
     ) {
         self.type = type
         self.bakeryData = bakeryData
-        self.tagData = tag
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -62,10 +59,9 @@ final class ReviewViewController: BaseViewController {
     convenience init(
         type: ReviewViewType,
         bakeryData: SimpleBakeryModel,
-        reviewID: Int,
-        tag: CertificationMarkResponseType
+        reviewID: Int
     ) {
-        self.init(type: type, bakeryData: bakeryData, tag: tag)
+        self.init(type: type, bakeryData: bakeryData)
         self.reviewID = reviewID
     }
     
@@ -79,7 +75,6 @@ final class ReviewViewController: BaseViewController {
         
         setKeyboardHideGesture()
         setupNotificationCenterOnScrollView()
-        
         setWriteType()
     }
     
@@ -368,7 +363,7 @@ extension ReviewViewController {
         
         var requestData: WriteReviewRequestDTO = .empty()
         
-        requestData.bakeryID = bakeryData.bakeryID
+        requestData.bakeryID = bakeryData.id
         
         guard let isLike = likeCollectionView.cellForItem(at: [0, 0])?.isSelected
         else { return .empty() }
