@@ -62,7 +62,7 @@ final class MyPageViewController: BaseViewController {
     override func setUI() {
         
         navigationBar.do {
-            $0.configureCenterTitle(to: I18N.MyPage.title)
+            $0.configureCenterTitle(to: I18N.MyPage.title, with: .title1!)
             $0.configureBottomLine()
             $0.hideBackButton(true)
         }

@@ -153,7 +153,7 @@ final class ReviewViewController: BaseViewController {
         
         navigationBar.do {
             $0.backgroundColor = .white
-            $0.configureCenterTitle(to: I18N.Review.myReview)
+            $0.configureCenterTitle(to: I18N.Review.myReview, with: .title2!)
             $0.configureBottomLine()
             $0.configureBackButtonAction(UIAction { [weak self] _ in
                 self?.backButtonTapped()
