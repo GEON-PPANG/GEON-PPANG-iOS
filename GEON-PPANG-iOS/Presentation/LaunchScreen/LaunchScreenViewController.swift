@@ -19,7 +19,7 @@ final class LaunchScreenViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        KeychainService.deleteKeychain(of: .access)
         checkUserLoggedIn()
     }
     
