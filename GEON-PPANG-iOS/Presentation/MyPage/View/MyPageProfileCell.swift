@@ -84,7 +84,7 @@ final class MyPageProfileCell: UICollectionViewCell {
             $0.leading.equalTo(purposeFilterChipView)
             $0.top.equalTo(userNameLabel.snp.bottom).offset(10)
             $0.height.equalTo(56)
-            $0.width.equalTo(198)
+            $0.width.equalTo(180)
         }
         
         self.addSubview(filterButton)
@@ -124,10 +124,6 @@ final class MyPageProfileCell: UICollectionViewCell {
         userNameLabel.do {
             $0.font = .title2
             $0.textColor = .gbbGray700
-        }
-        
-        purposeFilterChipView.do {
-            $0.configureChip(toTag: .vegan)
         }
         
         flowLayout.do {
@@ -192,13 +188,13 @@ final class MyPageProfileCell: UICollectionViewCell {
         filterCollectionView.reloadData()
     }
     
-    func convertFromData(_ data: String) -> FilterPurposeType {
+    func convertFromData(_ data: String) -> FilterPurposeType? {
         
         switch data {
         case "HEALTH": return .health
         case "DIET": return .diet
         case "VEGAN": return .vegan
-        default: return .health
+        default: return nil
         }
     }
     
