@@ -140,13 +140,13 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         linkButtonStackView.do {
             $0.homepageLinkButton.do {
                 $0.addAction(UIAction { _ in
-                    self.tappedHomepageLinkButton(self.linkButtonStackView.homepageLinkButton)
+                    self.tappedHomepageLinkButton()
                 }, for: .touchUpInside)
             }
             
             $0.instagramLinkButton.do {
                 $0.addAction(UIAction { _ in
-                    self.tappedInstagramLinkButton(self.linkButtonStackView.instagramLinkButton)
+                    self.tappedInstagramLinkButton()
                 }, for: .touchUpInside)
             }
         }
@@ -204,11 +204,11 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         bakeryPhoneNumberLabel.text = data.phoneNumber
     }
     
-    @IBAction func tappedHomepageLinkButton(_ sender: UIButton) {
+    func tappedHomepageLinkButton() {
         
         delegate?.tappedHomepageLinkButton()
     }
-    @IBAction func tappedInstagramLinkButton(_ sender: UIButton) {
+    func tappedInstagramLinkButton() {
         
         delegate?.tappedInstagramLinkButton()
     }
