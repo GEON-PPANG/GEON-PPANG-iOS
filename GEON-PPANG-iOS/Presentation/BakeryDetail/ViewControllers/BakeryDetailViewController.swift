@@ -369,6 +369,7 @@ extension BakeryDetailViewController {
             
             self.detailBottomView.configureBookmarkButton(to: value)
             self.isBookmarked = value
+            self.getBakeryDetail(bakeryID: bakeryID)
             self.collectionView.reloadData()
         }
     }
