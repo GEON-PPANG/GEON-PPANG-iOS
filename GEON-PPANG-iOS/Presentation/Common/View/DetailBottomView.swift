@@ -21,7 +21,6 @@ final class DetailBottomView: UIView {
     
     private lazy var bookmarkButton = UIButton()
     
-    private let writeReviewButtonImage = UIImageView(image: .logoIcon16px)
     private let writeReviewButtonTitle = UILabel()
     private lazy var writeReviewButton = UIButton()
     
@@ -52,7 +51,7 @@ final class DetailBottomView: UIView {
         bookmarkButton.snp.makeConstraints {
             $0.top.equalToSuperview().inset(18)
             $0.leading.equalToSuperview().inset(24)
-            $0.size.equalTo(48)
+            $0.size.equalTo(44)
         }
         
         self.addSubview(writeReviewButton)
@@ -63,32 +62,24 @@ final class DetailBottomView: UIView {
             $0.height.equalTo(48)
         }
         
-        writeReviewButton.addSubview(writeReviewButtonImage)
-        writeReviewButtonImage.snp.makeConstraints {
-            $0.size.equalTo(16)
-            $0.leading.equalToSuperview().inset(74.5)
-            $0.centerY.equalToSuperview()
-        }
-        
         writeReviewButton.addSubview(writeReviewButtonTitle)
         writeReviewButtonTitle.snp.makeConstraints {
-            $0.leading.equalTo(writeReviewButtonImage.snp.trailing).offset(6)
-            $0.centerY.equalToSuperview()
+            $0.center.equalToSuperview()
         }
     }
     
     private func setUI() {
         
         bookmarkButton.do {
-            $0.setImage(.disabledBookmarkButton.resize(to: .init(width: 48, height: 48)), for: .normal)
+            $0.setImage(.disabledBookmarkButton, for: .normal)
             $0.addAction(UIAction { _ in
                 self.tappedBookmarkButton?()
             }, for: .touchUpInside)
         }
         
         writeReviewButton.do {
-            $0.backgroundColor = .gbbPoint1
-            $0.makeCornerRound(radius: 24)
+            $0.backgroundColor = .gbbMain2
+            $0.makeCornerRound(radius: 10)
             $0.addAction(UIAction { _ in
                 self.tappedWriteReviewButton?()
             }, for: .touchUpInside)
@@ -115,8 +106,7 @@ final class DetailBottomView: UIView {
     func configureBookmarkButton(to isSelected: Bool) {
         
         bookmarkButton.do {
-            $0.setImage((isSelected ? UIImage.enabledBookmarkButton : UIImage.disabledBookmarkButton).resize(to: .init(width: 48, height: 48)), for: .normal)
+            $0.setImage((isSelected ? UIImage.enabledBookmarkButton : UIImage.disabledBookmarkButton), for: .normal)
         }
     }
-    
 }

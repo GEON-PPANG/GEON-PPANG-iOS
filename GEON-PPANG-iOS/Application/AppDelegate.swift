@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        AnalyticManager.initialize()
         KakaoSDK.initSDK(appKey: Config.kakaoNativeAppKey)
         sleep(UInt32(1.5))
         
