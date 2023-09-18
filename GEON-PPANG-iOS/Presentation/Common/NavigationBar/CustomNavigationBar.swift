@@ -18,6 +18,8 @@ final class CustomNavigationBar: UIView {
         static let buttonSize = 48
     }
     
+    var tappedMapButton: (() -> Void)?
+    
     // MARK: - UI Property
     
     private let backButton = BackButton()
@@ -61,11 +63,6 @@ final class CustomNavigationBar: UIView {
     func configureBackButtonAction(_ action: UIAction) {
         
         backButton.addAction(action, for: .touchUpInside)
-    }
-    
-    func configureMapButtonAction(_ action: UIAction) {
-        
-        rightMapButton.addAction(action, for: .touchUpInside)
     }
     
     func configureCenterTitle(to title: String) {
@@ -113,6 +110,12 @@ final class CustomNavigationBar: UIView {
         mapImageView.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.width.height.equalTo(Size.buttonSize)
+        }
+        
+        rightMapButton.do {
+            $0.addAction(UIAction { _ in
+                self.tappedMapButton?()
+            }, for: .touchUpInside)
         }
         
         mapImageView.do {
