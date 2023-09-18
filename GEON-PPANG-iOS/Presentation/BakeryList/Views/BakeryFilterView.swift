@@ -21,6 +21,8 @@ final class BakeryFilterView: UIView {
     typealias DataSource = UICollectionViewDiffableDataSource<Section, BakeryFilterItems>
     private var dataSource: DataSource?
     private var filterlist: [BakeryFilterItems] = BakeryFilterItems.item
+    private var filterCategoryList: [String] = ["HARD", "DESSERT", "BRUNCH"]
+    private var filterSelectedList: [String] = []
     private var filterStatus: [Bool] = [false, false, false]
     var filterData: (([Bool]) -> Void)?
     
@@ -147,10 +149,15 @@ extension BakeryFilterView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if self.filterlist[indexPath.item].status == .off {
-            self.filterlist[indexPath.item].status = .on
-        } else {
+        switch self.filterlist[indexPath.item].status {
+        case .on:
             self.filterlist[indexPath.item].status = .off
+            if let index = filterSelectedList.firstIndex(of: filterCategoryList[indexPath.item]) {
+                filterSelectedList.remove(at: index)
+            }
+        case .off:
+            self.filterlist[indexPath.item].status = .on
+            filterSelectedList.append(filterCategoryList[indexPath.item])
         }
         
         self.filterlist[indexPath.item] = self.filterlist[indexPath.item].isSelected()
@@ -163,12 +170,15 @@ extension BakeryFilterView: UICollectionViewDelegate {
         case .BRUNCH:
             filterStatus[2] = (self.filterlist[indexPath.item].status == .on)
         }
+
         self.filterData?(self.filterStatus)
-        
+        AnalyticManager.log(event: .list(.clickCategory(category: filterSelectedList)))
+
         var snapshot = NSDiffableDataSourceSnapshot<Section, BakeryFilterItems>()
         snapshot.appendSections([.main])
         snapshot.appendItems(filterlist)
         dataSource?.apply(snapshot, animatingDifferences: true)
+
     }
 }
 

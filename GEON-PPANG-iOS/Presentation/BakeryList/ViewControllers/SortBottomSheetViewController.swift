@@ -141,8 +141,12 @@ extension SortBottomSheetViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         switch indexPath.item {
-        case 0: selectedSortBy = .byDefault
-        case 1: selectedSortBy = .byReviews
+        case 0:
+            selectedSortBy = .byDefault
+        case 1:
+            selectedSortBy = .byReviews
+            
+            AnalyticManager.log(event: .list(.clickReviewArray))
         default: dismissBottomSheetViewController()
         }
         dataBind?(selectedSortBy)

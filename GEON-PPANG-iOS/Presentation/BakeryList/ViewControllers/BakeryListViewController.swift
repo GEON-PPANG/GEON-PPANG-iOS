@@ -99,19 +99,26 @@ final class BakeryListViewController: BaseViewController {
         
         bakeryTopView.do {
             $0.addActionToSearchButton {
-                Utils.push(self.navigationController, SearchViewController())
+                let searchViewController = SearchViewController()
+                searchViewController.viewType = .LIST
+                
+                Utils.push(self.navigationController, searchViewController)
+                AnalyticManager.log(event: .list(.clickSearchList))
             }
         }
         
         bakeryFilterView.do {
             $0.applyAction {
                 Utils.push(self.navigationController, FilterViewController(isInitial: false))
+                
+                AnalyticManager.log(event: .list(.startFilterList))
             }
             $0.filterData = { [weak self] data in
                 guard let self else { return }
                 
                 for (index, value) in data.enumerated() {
                     self.filterStatus[index] = value
+                                    
                 }
                 self.getBakeryList(request: self.requestBakeryList)
             }
@@ -127,6 +134,10 @@ final class BakeryListViewController: BaseViewController {
                 self.myFilterStatus = !tapped
                 self.getBakeryList(request: self.requestBakeryList)
                 self.bakerySortView.configureCheckBox()
+                
+                if !self.myFilterStatus {
+                    AnalyticManager.log(event: .list(.clickFilterOff))
+                }
             }
         }
         
@@ -214,6 +225,7 @@ extension BakeryListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let nextViewController = BakeryDetailViewController()
+        nextViewController.source = .LIST
         nextViewController.bakeryID = self.bakeryList[indexPath.item].bakeryID
         Utils.push(self.navigationController, nextViewController)
     }
