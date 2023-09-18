@@ -11,10 +11,6 @@ struct EmailRequestDTO: Codable {
     let email: String
 }
 
-struct NicknameRequestDTO: Codable {
-    let nickname: String
-}
-
 struct LoginRequestDTO: Codable {
     let email: String
     let password: String

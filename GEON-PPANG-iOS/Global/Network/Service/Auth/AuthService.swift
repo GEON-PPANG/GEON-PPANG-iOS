@@ -12,7 +12,7 @@ import Moya
 enum AuthService {
     case checkEmail(request: EmailRequestDTO)
     case checkNickname(request: NicknameRequestDTO)
-    
+    case setNickname(request: NicknameRequestDTO)
     case login(request: LoginRequestDTO)
     case signUp(request: SignUpRequestDTO)
     case refreshToken
@@ -32,6 +32,8 @@ extension AuthService: TargetType {
             return URLConstant.checkEmail
         case .checkNickname:
             return URLConstant.checkNickname
+        case .setNickname:
+            return URLConstant.setNickname
         case .login:
             return URLConstant.login
         case .signUp:
@@ -47,7 +49,7 @@ extension AuthService: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .checkEmail, .checkNickname, .login, .signUp, .logout:
+        case .checkEmail, .checkNickname, .setNickname, .login, .signUp, .logout:
             return .post
         case .refreshToken:
             return .get
@@ -61,6 +63,8 @@ extension AuthService: TargetType {
         case .checkEmail(request: let data):
             return .requestJSONEncodable(data)
         case .checkNickname(request: let data):
+            return .requestJSONEncodable(data)
+        case .setNickname(request: let data):
             return .requestJSONEncodable(data)
         case .login(request: let data):
             return .requestJSONEncodable(data)
@@ -79,6 +83,8 @@ extension AuthService: TargetType {
         switch self {
         case .checkEmail, .checkNickname, .login:
             return NetworkConstant.header(.noToken)
+        case .setNickname:
+            return NetworkConstant.header(.accessToken)
         case .signUp:
             return NetworkConstant.header(.platformToken)
         case .refreshToken:
