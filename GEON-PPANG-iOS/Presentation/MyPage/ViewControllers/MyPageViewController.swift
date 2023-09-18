@@ -130,8 +130,6 @@ extension MyPageViewController: UICollectionViewDelegate {
         default:
             break
         }
-        
-        
     }
 }
 
