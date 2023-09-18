@@ -266,7 +266,7 @@ extension OnboardingViewController: ASAuthorizationControllerDelegate {
                 
                 let request = SignUpRequestDTO(
                     platformType: .apple,
-                    email: KeychainService.readKeychain(of: .userEmail),
+                    email: "wpssds9srh@privaterelay.appleid.com",
                     password: "",
                     nickname: ""
                 )

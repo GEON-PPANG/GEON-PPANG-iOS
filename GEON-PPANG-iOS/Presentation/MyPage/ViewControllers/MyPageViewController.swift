@@ -157,6 +157,9 @@ extension MyPageViewController {
                 KeychainService.deleteAllAuthKeychains()
                 Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
             default:
+                if let child = self.children.first {
+                    child.dismiss(animated: true)
+                }
                 Utils.showAlert(title: "회원탈퇴 실패", description: "실패", at: self) { _ in
                     Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
                 }
