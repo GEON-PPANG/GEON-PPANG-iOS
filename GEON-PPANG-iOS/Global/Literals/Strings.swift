@@ -113,6 +113,9 @@ struct I18N {
     
     /// Detail
     struct Detail {
+        static let map = "지도"
+        static let homepage = "웹사이트"
+        static let instagram = "인스타그램"
         static let menuNotice = "가게 상세정보 및 메뉴는 업체에서 제공한 정보를 바탕으로 합니다.\n건빵집 방문 시 한 번 더 확인하시기를 권장합니다."
         static let writeReview = "리뷰 작성하기"
     }

@@ -125,6 +125,7 @@ final class LogInViewController: BaseViewController {
             $0.addAction(UIAction { [weak self] _ in
                 guard let self else { return }
                 Utils.push(self.navigationController, SignInViewController())
+                                
             }, for: .touchUpInside)
         }
         
@@ -217,6 +218,7 @@ extension LogInViewController {
             guard let status = result else { return }
             switch status {
             case 200...204:
+                AnalyticManager.log(event: .general(.loginApp(loginType: AnalyticEventType.EMAIL.rawValue)))
                 let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
                 sceneDelegate?.changeRootViewControllerToTabBarController()
             default:
