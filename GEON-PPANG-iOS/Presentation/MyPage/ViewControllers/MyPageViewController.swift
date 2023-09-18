@@ -85,12 +85,15 @@ final class MyPageViewController: BaseViewController {
     private func setCollectionViewActions() {
         
         myPageDataSource.filterButtonTapped = {
+            AnalyticManager.log(event: .myPage(.start_filter_mypage))
             Utils.push(self.navigationController, FilterViewController(isInitial: false))
         }
         myPageDataSource.myReviewsTapped = {
+            AnalyticManager.log(event: .myPage(.click_myreview))
             Utils.push(self.navigationController, MyReviewsViewController())
         }
         myPageDataSource.savedBakeryTapped = {
+            AnalyticManager.log(event: .myPage(.click_mystore))
             Utils.push(self.navigationController, MySavedBakeryViewController())
         }
         
