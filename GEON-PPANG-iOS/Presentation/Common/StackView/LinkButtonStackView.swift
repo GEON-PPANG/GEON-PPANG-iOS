@@ -14,8 +14,6 @@ final class LinkButtonStackView: UIStackView {
     
     // MARK: - Property
     
-    private let labeling = ["웹사이트", "인스타그램"]
-    
     var tappedHomepageLinkButton: (() -> Void)?
     var tappedInstagramLinkButton: (() -> Void)?
     
@@ -64,17 +62,19 @@ final class LinkButtonStackView: UIStackView {
         }
         
         [homepageLinkButton, instagramLinkButton].enumerated().forEach { index, button in
+            let title = index == 0 ? I18N.Detail.homepage : I18N.Detail.instagram
             let tappedLinkButton = index == 0 ? self.tappedHomepageLinkButton : self.tappedInstagramLinkButton
             
             button.do {
-                $0.setTitle(labeling[index], for: .normal)
+                $0.setTitle(title, for: .normal)
                 $0.setTitleColor(.gbbGray400, for: .normal)
                 $0.setUnderline()
                 $0.titleLabel?.font = .subHead
+                $0.isHidden = true
+                
                 $0.addAction(UIAction { _ in
                     tappedLinkButton?()
                 }, for: .touchUpInside)
-                $0.isHidden = true
             }
         }
     }
