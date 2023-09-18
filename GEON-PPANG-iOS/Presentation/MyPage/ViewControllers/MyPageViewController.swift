@@ -155,6 +155,9 @@ extension MyPageViewController {
             switch response?.code {
             case 200:
                 KeychainService.deleteAllAuthKeychains()
+                if KeychainService.readKeychain(of: .socialType) == "KAKAO" {
+                    KakaoService.unlink()
+                }
                 Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
             default:
                 if let child = self.children.first {
