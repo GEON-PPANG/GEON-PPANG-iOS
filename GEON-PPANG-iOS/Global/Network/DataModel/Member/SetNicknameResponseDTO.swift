@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NicknameResponseDTO: Codable {
+struct SetNicknameResponseDTO: Codable {
     let nickname: String
     let role: String
     let memberId: Int

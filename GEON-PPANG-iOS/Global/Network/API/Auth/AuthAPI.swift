@@ -11,7 +11,6 @@ import Moya
 
 final class AuthAPI {
     
-    typealias SetNicknameResponse = GeneralResponse<NicknameResponseDTO>
     typealias SignUpResponse = GeneralResponse<SignUpResponseDTO>
     typealias TokenRefreshResponse = GeneralResponse<VoidType>
     typealias DeleteUserResponse = GeneralResponse<DeleteUserResponseDTO>
@@ -22,7 +21,6 @@ final class AuthAPI {
     
     var authProvider = MoyaProvider<AuthService>(plugins: [AuthPlugin()])
     
-    public private(set) var setNicknameResponse: SetNicknameResponse?
     public private(set) var signUpResponse: SignUpResponse?
     public private(set) var tokenRefreshResponse: TokenRefreshResponse?
     public private(set) var deleteUserResponse: DeleteUserResponse?
@@ -53,23 +51,6 @@ final class AuthAPI {
         }
     }
     
-    func postSetNickname(to data: NicknameRequestDTO, completion: @escaping (SetNicknameResponse?) -> Void) {
-        authProvider.request(.setNickname(request: data)) { result in
-            switch result {
-            case .success(let response):
-                do {
-                    self.setNicknameResponse = try response.map(SetNicknameResponse.self)
-                    guard let response = self.setNicknameResponse else { return }
-                    completion(response)
-                } catch let err {
-                    print(err.localizedDescription, 500)
-                }
-            case .failure(let err):
-                print(err.localizedDescription)
-                completion(nil)
-            }
-        }
-    }
     
     func postLogin(to loginData: LoginRequestDTO, completion: @escaping (Int?) -> Void) {
         authProvider.request(.login(request: loginData)) { result in

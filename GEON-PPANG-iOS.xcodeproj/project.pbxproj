@@ -182,7 +182,10 @@
 		3EB798182AB7D42B004EC35D /* DeleteUserResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB798172AB7D42B004EC35D /* DeleteUserResponseDTO.swift */; };
 		3EB7981B2AB7F23D004EC35D /* KakaoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB7981A2AB7F23D004EC35D /* KakaoService.swift */; };
 		3EB7981F2AB87150004EC35D /* NicknameRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB7981E2AB87150004EC35D /* NicknameRequestDTO.swift */; };
-		3EB798212AB87188004EC35D /* NicknameResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB798202AB87188004EC35D /* NicknameResponseDTO.swift */; };
+		3EB798212AB87188004EC35D /* SetNicknameResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB798202AB87188004EC35D /* SetNicknameResponseDTO.swift */; };
+		3EB798232AB87F48004EC35D /* FetchNicknameResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB798222AB87F48004EC35D /* FetchNicknameResponseDTO.swift */; };
+		3EB798262AB88B0B004EC35D /* MemberAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB798252AB88B0B004EC35D /* MemberAPI.swift */; };
+		3EB798292AB88B4B004EC35D /* MemberService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB798282AB88B4B004EC35D /* MemberService.swift */; };
 		3EBFB5702A63B2B60058F968 /* WriteReviewBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFB56F2A63B2B60058F968 /* WriteReviewBottomSheetView.swift */; };
 		3ED40DF92A5FCF3800C7D5DA /* FilterEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED40DF82A5FCF3800C7D5DA /* FilterEnum.swift */; };
 		3ED40DFB2A5FD26200C7D5DA /* FilterRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED40DFA2A5FD26200C7D5DA /* FilterRequestDTO.swift */; };
@@ -395,7 +398,10 @@
 		3EB798172AB7D42B004EC35D /* DeleteUserResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserResponseDTO.swift; sourceTree = "<group>"; };
 		3EB7981A2AB7F23D004EC35D /* KakaoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoService.swift; sourceTree = "<group>"; };
 		3EB7981E2AB87150004EC35D /* NicknameRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameRequestDTO.swift; sourceTree = "<group>"; };
-		3EB798202AB87188004EC35D /* NicknameResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameResponseDTO.swift; sourceTree = "<group>"; };
+		3EB798202AB87188004EC35D /* SetNicknameResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNicknameResponseDTO.swift; sourceTree = "<group>"; };
+		3EB798222AB87F48004EC35D /* FetchNicknameResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchNicknameResponseDTO.swift; sourceTree = "<group>"; };
+		3EB798252AB88B0B004EC35D /* MemberAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberAPI.swift; sourceTree = "<group>"; };
+		3EB798282AB88B4B004EC35D /* MemberService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberService.swift; sourceTree = "<group>"; };
 		3EBFB56F2A63B2B60058F968 /* WriteReviewBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewBottomSheetView.swift; sourceTree = "<group>"; };
 		3ED40DF82A5FCF3800C7D5DA /* FilterEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterEnum.swift; sourceTree = "<group>"; };
 		3ED40DFA2A5FD26200C7D5DA /* FilterRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterRequestDTO.swift; sourceTree = "<group>"; };
@@ -727,6 +733,7 @@
 		0959F1612A658C3000E77CAF /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				3EB7982A2AB88C84004EC35D /* Member */,
 				3E61EE8F2AA9530D004F25DB /* Review */,
 				3E8B2FFA2A67A56E001BD057 /* Common */,
 				0959F1682A658C5F00E77CAF /* Auth */,
@@ -797,7 +804,6 @@
 				3E3543332AAD594E00BD926A /* SignUpResponseDTO.swift */,
 				3EB798172AB7D42B004EC35D /* DeleteUserResponseDTO.swift */,
 				3EB7981E2AB87150004EC35D /* NicknameRequestDTO.swift */,
-				3EB798202AB87188004EC35D /* NicknameResponseDTO.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -872,6 +878,7 @@
 		0961C3672A501EE40031A822 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				3EB798272AB88B41004EC35D /* Member */,
 				3EB798192AB7F22B004EC35D /* Social */,
 				3E61EE902AA953E7004F25DB /* Review */,
 				0959F1602A658C1600E77CAF /* Auth */,
@@ -888,6 +895,7 @@
 		0961C3682A501EE90031A822 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				3EB798242AB88AFE004EC35D /* Member */,
 				3E61EE932AA95587004F25DB /* Review */,
 				0959F1542A6589D800E77CAF /* Auth */,
 				0959F1552A6589E000E77CAF /* Filter */,
@@ -1409,6 +1417,31 @@
 			path = Social;
 			sourceTree = "<group>";
 		};
+		3EB798242AB88AFE004EC35D /* Member */ = {
+			isa = PBXGroup;
+			children = (
+				3EB798252AB88B0B004EC35D /* MemberAPI.swift */,
+			);
+			path = Member;
+			sourceTree = "<group>";
+		};
+		3EB798272AB88B41004EC35D /* Member */ = {
+			isa = PBXGroup;
+			children = (
+				3EB798282AB88B4B004EC35D /* MemberService.swift */,
+			);
+			path = Member;
+			sourceTree = "<group>";
+		};
+		3EB7982A2AB88C84004EC35D /* Member */ = {
+			isa = PBXGroup;
+			children = (
+				3EB798222AB87F48004EC35D /* FetchNicknameResponseDTO.swift */,
+				3EB798202AB87188004EC35D /* SetNicknameResponseDTO.swift */,
+			);
+			path = Member;
+			sourceTree = "<group>";
+		};
 		3ED40DFC2A608B2B00C7D5DA /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1676,6 +1709,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E23CCF72A8BD9C30091957D /* BakeryCommonCollectionViewCell.swift in Sources */,
+				3EB798292AB88B4B004EC35D /* MemberService.swift in Sources */,
 				3E23CCF62A8BD9A40091957D /* UITableView+.swift in Sources */,
 				3E77EC7C2AAAFAE3007995AD /* KeychainKey.swift in Sources */,
 				3E23CCF52A8BD9950091957D /* UIView+.swift in Sources */,
@@ -1715,6 +1749,7 @@
 				3ED40DF92A5FCF3800C7D5DA /* FilterEnum.swift in Sources */,
 				3E61EE952AA95592004F25DB /* ReviewAPI.swift in Sources */,
 				0959F1842A658CF300E77CAF /* MyPageAPI.swift in Sources */,
+				3EB798262AB88B0B004EC35D /* MemberAPI.swift in Sources */,
 				0924632F2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift in Sources */,
 				097682E92A5D0B6B0008F4FB /* BakeryListTopView.swift in Sources */,
 				3E162D1A2A692C4900590C6F /* BookmarkResponseDTO.swift in Sources */,
@@ -1821,7 +1856,7 @@
 				3E452B672A60E68000EA456D /* MyPageResponseDTO.swift in Sources */,
 				09C626562A5B3572002C8110 /* HomeBestReviewResponseDTO.swift in Sources */,
 				095FB88A2AB36FCA00C69BD1 /* AnalyticManagerEvent.swift in Sources */,
-				3EB798212AB87188004EC35D /* NicknameResponseDTO.swift in Sources */,
+				3EB798212AB87188004EC35D /* SetNicknameResponseDTO.swift in Sources */,
 				090556472A51E7D900752067 /* UITextView+.swift in Sources */,
 				3EDC05D02A5E4FF900EAD950 /* String+.swift in Sources */,
 				09FD47E42A5E82BB002020BD /* BottomSheetAppearView.swift in Sources */,
@@ -1872,6 +1907,7 @@
 				0930D25D2A928BF200A75C7E /* NearStationResponseDTO.swift in Sources */,
 				09FD47CA2A5DD38D002020BD /* SearchResultHeaderView.swift in Sources */,
 				3E232ACB2A95A02200125B76 /* WelcomeViewController.swift in Sources */,
+				3EB798232AB87F48004EC35D /* FetchNicknameResponseDTO.swift in Sources */,
 				3EB7981F2AB87150004EC35D /* NicknameRequestDTO.swift in Sources */,
 				09FD47CA2A5DD38D002020BD /* SearchResultHeaderView.swift in Sources */,
 				0949750E2A67EC9B00A63420 /* MyReviewsResponseDTO.swift in Sources */,
