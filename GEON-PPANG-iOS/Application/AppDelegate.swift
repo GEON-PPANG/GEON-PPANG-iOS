@@ -13,8 +13,8 @@ import KakaoSDKCommon
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
+    
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         AnalyticManager.initialize()
@@ -23,18 +23,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-
+    
     // MARK: UISceneSession Lifecycle
-
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+    
+    // 앱이 최초 실행될 때 호출되는 메소드
+    
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
+        AnalyticManager.log(event: .general(.openApp))
+        return true
     }
-
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-        // Called when the user discards a scene session.
-        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+    
+    // 앱이 종료되기 직전에 호출되는 메소드
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        AnalyticManager.log(event: .general(.closeApp))
     }
 }

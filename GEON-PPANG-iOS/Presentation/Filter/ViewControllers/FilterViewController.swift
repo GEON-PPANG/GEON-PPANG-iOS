@@ -155,8 +155,7 @@ final class FilterViewController: BaseViewController {
     }
     
     private func skipButtonTapped() {
-        // TODO: FilterComplete view 완성되면 추가
-        // Utils.push(self?.navigationController, FilterCompleteViewController())
+        Utils.sceneDelegate?.changeRootViewControllerToTabBarController()
     }
     
     // MARK: - Custom Method
@@ -230,8 +229,7 @@ final class FilterViewController: BaseViewController {
         request.setNutrientType(from: FilterCellModel.ingredient.map { $0.selected })
         FilterAPI.shared.changeFilter(to: request) { response in
             if self.isInitial {
-                // TODO: FilterComplete view 완성되면 추가
-                // Utils.push(self?.navigationController, FilterCompleteViewController())
+                Utils.sceneDelegate?.changeRootViewControllerToTabBarController()
             } else {
                 self.navigationController?.popToRootViewController(animated: true)
             }

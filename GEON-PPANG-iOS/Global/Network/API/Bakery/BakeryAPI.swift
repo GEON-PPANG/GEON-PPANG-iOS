@@ -19,7 +19,7 @@ final class BakeryAPI {
     
     private init() {}
     
-    var bakeryProvider = MoyaProvider<BakeryService>(plugins: [MoyaLoggingPlugin()])
+    var bakeryProvider = MoyaProvider<BakeryService>(session: Session(interceptor: AuthInterceptor.shared), plugins: [MoyaLoggingPlugin()])
     
     public private(set) var bakeryList: GeneralArrayResponse<BakeryCommonListResponseDTO>?
     public private(set) var writeReview: WriteReviewResponse?

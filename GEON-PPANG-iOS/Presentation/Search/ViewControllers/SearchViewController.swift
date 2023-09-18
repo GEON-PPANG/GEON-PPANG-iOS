@@ -28,6 +28,7 @@ final class SearchViewController: BaseViewController {
     
     private var bakeryName: String?
     private var bakeryListCount: Int?
+    var viewType: AnalyticEventType = .HOME
     
     // MARK: - UI Property
     
@@ -208,6 +209,17 @@ final class SearchViewController: BaseViewController {
             self.collectionView.isScrollEnabled = true
         }
     }
+    
+    func configureViewType(type: AnalyticEventType, bakeryName: String) {
+        switch type {
+        case .HOME:
+            AnalyticManager.log(event: .home(.completeSearchHome(keyword: bakeryName)))
+        case .LIST:
+            AnalyticManager.log(event: .list(.completeSearchList(keyword: bakeryName)))
+        default:
+            break
+        }
+    }
 }
 
 // MARK: - UICollectionViewDelegate
@@ -220,6 +232,7 @@ extension SearchViewController: UICollectionViewDelegate {
         switch section {
         case .empty, .initial, .none: break
         case .main:
+            nextViewController.source = .SEARCH
             nextViewController.bakeryID = self.searchBakeryList[indexPath.item].bakeryID
             Utils.push(self.navigationController, nextViewController)
         }
@@ -239,6 +252,7 @@ extension SearchViewController {
             self.searchBakeryList = searchList
             self.configureDataSource(data: searchList)
             self.configureisScrollable(data.resultCount)
+            self.configureViewType(type: self.viewType, bakeryName: bakeryName)
         }
     }
 }

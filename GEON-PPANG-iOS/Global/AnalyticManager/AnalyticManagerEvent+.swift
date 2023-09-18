@@ -82,8 +82,8 @@ extension AnalyticManagerEvent {
     
     enum Home: AnalyticManagerEventProtocol {
         
-        case clickRecommendStore
-        case clickRecommendReview
+        case clickRecommendStore(bakery: String)
+        case clickRecommendReview(bakery: String)
         case clickSearchHome
         case completeSearchHome(keyword: String)
         case startFilterHome
@@ -104,6 +104,9 @@ extension AnalyticManagerEvent {
         
         var parameters: [String: Any]? {
             switch self {
+            case .clickRecommendStore(bakery: let bakery): return ["bakery": bakery]
+            case .clickRecommendReview(bakery: let bakery): return ["bakery": bakery]
+            
             case .completeSearchHome(keyword: let keyword): return ["keyword": keyword]
             default: return nil
             }
@@ -185,6 +188,7 @@ extension AnalyticManagerEvent {
         case clickReviewWritingBack
         case clickReviewWrtingStop
         case clickReviewWritingContinue
+        case clickReviewWritingComplete
         case completeReviewWriting(option: String,
                                    keyword: [String],
                                    text: String)
@@ -197,6 +201,7 @@ extension AnalyticManagerEvent {
             case .clickReviewWritingBack: return "click_reviewwriting_back"
             case .clickReviewWrtingStop: return "click_reviewwrting_stop"
             case .clickReviewWritingContinue: return "click_reviewwriting_continue"
+            case .clickReviewWritingComplete: return "click_reviewwriting_complete"
             case .completeReviewWriting: return "complete_reviewwriting"
             }
         }
@@ -230,6 +235,7 @@ extension AnalyticManagerEvent {
         case startReviewReport
         case clickReviewReportOption(option: String)
         case clickReviewReportBack
+        case clickReviewReportComplete
         case completeReviewReport(option: String, text: String)
         
         var name: String {
@@ -237,6 +243,7 @@ extension AnalyticManagerEvent {
             case .startReviewReport: return "start_reviewreport"
             case .clickReviewReportOption: return "click_reviewreport_option"
             case .clickReviewReportBack: return "click_reviewreport_back"
+            case .clickReviewReportComplete: return "click_reviewreport_complete"
             case .completeReviewReport: return "complete_reviewreport"
             }
         }
