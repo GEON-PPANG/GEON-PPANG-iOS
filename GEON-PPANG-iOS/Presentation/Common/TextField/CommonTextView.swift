@@ -113,4 +113,9 @@ final class CommonTextView: UIView {
         checkLabel.text = ""
         commonTextField.layer.borderColor = UIColor.clear.cgColor
     }
+    
+    func addAction(_ action: UIAction, for controlEvents: UIControl.Event) {
+        
+        commonTextField.addAction(action, for: controlEvents)
+    }
 }

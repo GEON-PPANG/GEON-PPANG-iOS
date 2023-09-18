@@ -151,6 +151,10 @@ final class SignInViewController: BaseViewController {
                     self.postCheckEmail()
                 }
             }
+            $0.addAction(UIAction { [weak self] _ in
+                guard let self else { return }
+                self.isValidButton[0] = false
+            }, for: .editingChanged)
         }
         
         nextButton.do {
@@ -177,6 +181,7 @@ final class SignInViewController: BaseViewController {
                 let nicknameViewController = NickNameViewController()
                 nicknameViewController.email = self.checkEmail
                 nicknameViewController.password = self.checkPassword
+                nicknameViewController.platformType = .none
                 Utils.push(self.navigationController, nicknameViewController)
             }
         }
@@ -192,19 +197,6 @@ final class SignInViewController: BaseViewController {
 // MARK: - UITextFieldDelegate
 
 extension SignInViewController: UITextFieldDelegate {
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        if textField == emailTextField.configureTextField() {
-            let currentText = textField.text ?? ""
-            let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
-            
-            isValidButton[0] = newText == currentText
-            print("emailvalid:\(isValidButton[0])")
-        }
-        
-        return true
-    }
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
         
