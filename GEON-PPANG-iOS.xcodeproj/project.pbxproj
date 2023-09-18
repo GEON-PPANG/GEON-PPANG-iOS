@@ -179,6 +179,7 @@
 		3EB798132AB302B1004EC35D /* AuthInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB798122AB302B1004EC35D /* AuthInterceptor.swift */; };
 		3EB798162AB34275004EC35D /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB798152AB34275004EC35D /* LaunchScreenViewController.swift */; };
 		3EB798182AB7D42B004EC35D /* DeleteUserResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB798172AB7D42B004EC35D /* DeleteUserResponseDTO.swift */; };
+		3EB7981B2AB7F23D004EC35D /* KakaoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB7981A2AB7F23D004EC35D /* KakaoService.swift */; };
 		3EBFB5702A63B2B60058F968 /* WriteReviewBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFB56F2A63B2B60058F968 /* WriteReviewBottomSheetView.swift */; };
 		3ED40DF92A5FCF3800C7D5DA /* FilterEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED40DF82A5FCF3800C7D5DA /* FilterEnum.swift */; };
 		3ED40DFB2A5FD26200C7D5DA /* FilterRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED40DFA2A5FD26200C7D5DA /* FilterRequestDTO.swift */; };
@@ -388,6 +389,7 @@
 		3EB798122AB302B1004EC35D /* AuthInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInterceptor.swift; sourceTree = "<group>"; };
 		3EB798152AB34275004EC35D /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		3EB798172AB7D42B004EC35D /* DeleteUserResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserResponseDTO.swift; sourceTree = "<group>"; };
+		3EB7981A2AB7F23D004EC35D /* KakaoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoService.swift; sourceTree = "<group>"; };
 		3EBFB56F2A63B2B60058F968 /* WriteReviewBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewBottomSheetView.swift; sourceTree = "<group>"; };
 		3ED40DF82A5FCF3800C7D5DA /* FilterEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterEnum.swift; sourceTree = "<group>"; };
 		3ED40DFA2A5FD26200C7D5DA /* FilterRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterRequestDTO.swift; sourceTree = "<group>"; };
@@ -862,6 +864,7 @@
 		0961C3672A501EE40031A822 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				3EB798192AB7F22B004EC35D /* Social */,
 				3E61EE902AA953E7004F25DB /* Review */,
 				0959F1602A658C1600E77CAF /* Auth */,
 				0959F15F2A658C1200E77CAF /* Filter */,
@@ -1390,6 +1393,14 @@
 			path = LaunchScreen;
 			sourceTree = "<group>";
 		};
+		3EB798192AB7F22B004EC35D /* Social */ = {
+			isa = PBXGroup;
+			children = (
+				3EB7981A2AB7F23D004EC35D /* KakaoService.swift */,
+			);
+			path = Social;
+			sourceTree = "<group>";
+		};
 		3ED40DFC2A608B2B00C7D5DA /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1660,6 +1671,7 @@
 				3E77EC7C2AAAFAE3007995AD /* KeychainKey.swift in Sources */,
 				3E23CCF52A8BD9950091957D /* UIView+.swift in Sources */,
 				0959F18E2A658D1700E77CAF /* SearchService.swift in Sources */,
+				3EB7981B2AB7F23D004EC35D /* KakaoService.swift in Sources */,
 				0959F1802A658CE800E77CAF /* SearchAPI.swift in Sources */,
 				3E06F8DB2A9E5759001302F4 /* AlertView.swift in Sources */,
 				3E36D7D62A8E6AF000B2C1CC /* FilterViewController.swift in Sources */,

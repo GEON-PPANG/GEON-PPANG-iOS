@@ -11,9 +11,6 @@ import SnapKit
 import Then
 
 import AuthenticationServices
-import KakaoSDKAuth
-import KakaoSDKUser
-import KakaoSDKCommon
 
 final class OnboardingViewController: BaseViewController {
     
@@ -134,7 +131,7 @@ final class OnboardingViewController: BaseViewController {
     private func setSocialLoginButtonActions() {
         
         let kakaoLoginAction = UIAction { [weak self] _ in
-            self?.getKakaoAuthCode { token in
+            KakaoService.getKakaoAuthCode { token in
                 guard let token = token
                 else { return }
                 
@@ -164,38 +161,6 @@ final class OnboardingViewController: BaseViewController {
 }
 
 extension OnboardingViewController {
-    
-    private func getKakaoAuthCode(_ completion: @escaping (String?) -> Void) {
-        
-        if UserApi.isKakaoTalkLoginAvailable() {
-            UserApi.shared.loginWithKakaoTalk { response, error in
-                
-                guard error == nil
-                else {
-                    print("login with kakaoTalk failed with error: \(String(describing: error))")
-                    return
-                }
-                
-                guard let token = response?.accessToken
-                else { return }
-                
-                completion(token)
-            }
-        } else {
-            UserApi.shared.loginWithKakaoAccount { response, error in
-                guard error == nil
-                else {
-                    print("login with kakaoTalk failed with error: \(String(describing: error))")
-                    return
-                }
-                
-                guard let token = response?.accessToken
-                else { return }
-                
-                completion(token)
-            }
-        }
-    }
     
     private func appleLoginButtonTapped() {
         
