@@ -106,7 +106,12 @@ final class MyPageViewController: BaseViewController {
         let alertView = AlertView(type: type)
         let alertViewController = AlertViewController(alertView: alertView)
         alertViewController.configureAlertAction { [weak self] in
-            self?.deleteMember()
+            switch type {
+            case .logout:
+                self?.logout()
+            case .leave:
+                self?.deleteUser()
+            }
         }
         self.present(alertViewController, animated: false)
     }
@@ -149,7 +154,23 @@ extension MyPageViewController {
         }
     }
     
-    func deleteMember() {
+    func logout() {
+        
+        AuthAPI.shared.logout { code in
+            switch code {
+            case 200:
+                print("🔴logout")
+                if KeychainService.readKeychain(of: .socialType) == "KAKAO" {
+                    KakaoService.logout()
+                }
+                Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
+            default:
+                print("🔴failed")
+            }
+        }
+    }
+    
+    func deleteUser() {
         
         AuthAPI.shared.deleteUser { response in
             switch response?.code {

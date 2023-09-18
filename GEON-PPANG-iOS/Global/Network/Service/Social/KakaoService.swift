@@ -17,7 +17,6 @@ final class KakaoService {
         
         if UserApi.isKakaoTalkLoginAvailable() {
             UserApi.shared.loginWithKakaoTalk { response, error in
-                
                 guard error == nil
                 else {
                     print("login with kakaoTalk failed with error: \(String(describing: error))")

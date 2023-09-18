@@ -18,6 +18,7 @@ enum AuthService {
     case refreshToken
     case withdraw
     case appleWithdraw
+    case logout
 }
 
 extension AuthService: TargetType {
@@ -37,6 +38,8 @@ extension AuthService: TargetType {
             return URLConstant.signup
         case .refreshToken:
             return URLConstant.refreshToken
+        case .logout:
+            return URLConstant.logout
         case .withdraw, .appleWithdraw:
             return URLConstant.withdraw
         }
@@ -44,7 +47,7 @@ extension AuthService: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .checkEmail, .checkNickname, .login, .signUp:
+        case .checkEmail, .checkNickname, .login, .signUp, .logout:
             return .post
         case .refreshToken:
             return .get
@@ -65,6 +68,8 @@ extension AuthService: TargetType {
             return .requestJSONEncodable(data)
         case .refreshToken:
             return .requestPlain
+        case .logout:
+            return .requestPlain
         case .withdraw, .appleWithdraw:
             return .requestPlain
         }
@@ -78,6 +83,8 @@ extension AuthService: TargetType {
             return NetworkConstant.header(.platformToken)
         case .refreshToken:
             return NetworkConstant.header(.accessAndRefreshToken)
+        case .logout:
+            return NetworkConstant.header(.accessToken)
         case .withdraw:
             return NetworkConstant.header(.accessToken)
         case .appleWithdraw:

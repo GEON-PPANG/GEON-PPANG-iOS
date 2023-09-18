@@ -14,6 +14,7 @@ struct URLConstant {
     static let login = "/auth/login"
     static let signup = "/auth/signup"
     static let refreshToken = "/auth/refresh"
+    static let logout = "auth/logout"
     static let withdraw = "auth/withdraw"
     
     // MARK: - Filter
