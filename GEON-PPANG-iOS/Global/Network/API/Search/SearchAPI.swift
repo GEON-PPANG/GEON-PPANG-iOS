@@ -15,7 +15,7 @@ final class SearchAPI {
     
     private init() { }
     
-    var searchProvider = MoyaProvider<SearchService>(plugins: [MoyaLoggingPlugin()])
+    var searchProvider = MoyaProvider<SearchService>(session: Session(interceptor: AuthInterceptor.shared), plugins: [MoyaLoggingPlugin()])
     
     public private(set) var searchBakery: GeneralResponse<SearchResponseDTO>?
     

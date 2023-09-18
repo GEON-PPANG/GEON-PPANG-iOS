@@ -11,11 +11,17 @@ import Moya
 
 final class AuthAPI {
     
+    typealias SignUpResponse = GeneralResponse<SignUpResponseDTO>
+    typealias TokenRefreshResponse = GeneralResponse<VoidType>
+    
     static let shared: AuthAPI = AuthAPI()
     
     private init() {}
     
     var authProvider = MoyaProvider<AuthService>(plugins: [AuthPlugin()])
+    
+    public private(set) var signUpResponse: SignUpResponse?
+    public private(set) var tokenRefreshResponse: TokenRefreshResponse?
     
     // MARK: - Post
     
@@ -48,6 +54,42 @@ final class AuthAPI {
             switch result {
             case let .success(response):
                 completion(response.statusCode)
+            case .failure(let err):
+                print(err.localizedDescription)
+                completion(nil)
+            }
+        }
+    }
+    
+    func postSignUp(with data: SignUpRequestDTO, completion: @escaping (SignUpResponse?) -> Void) {
+        authProvider.request(.signUp(request: data)) { result in
+            switch result {
+            case .success(let response):
+                do {
+                    self.signUpResponse = try response.map(SignUpResponse.self)
+                    guard let signUpResponse = self.signUpResponse else { return }
+                    completion(signUpResponse)
+                } catch let err {
+                    print(err.localizedDescription, 500)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+                completion(nil)
+            }
+        }
+    }
+    
+    func getTokenRefresh(completion: @escaping (TokenRefreshResponse?) -> Void) {
+        authProvider.request(.refreshToken) { result in
+            switch result {
+            case .success(let response):
+                do {
+                    self.tokenRefreshResponse = try response.map(TokenRefreshResponse.self)
+                    guard let tokenRefreshResponse = self.tokenRefreshResponse else { return }
+                    completion(tokenRefreshResponse)
+                } catch let err {
+                    print(err.localizedDescription, 500)
+                }
             case .failure(let err):
                 print(err.localizedDescription)
                 completion(nil)

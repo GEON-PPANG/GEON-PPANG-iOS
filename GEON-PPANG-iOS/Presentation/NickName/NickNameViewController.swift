@@ -138,7 +138,7 @@ final class NickNameViewController: BaseViewController {
             $0.configureButtonTitle(isValid ? .start : .next)
             $0.configureButtonUI(isValid ? .gbbMain2! : .gbbGray200!)
             $0.tappedCommonButton = {
-                Utils.push(self.navigationController, FilterViewController(isInitial: true))
+                Utils.push(self.navigationController, WelcomeViewController(nickname: self.nicknameTextField.fetchText()))
             }
         }
     }
