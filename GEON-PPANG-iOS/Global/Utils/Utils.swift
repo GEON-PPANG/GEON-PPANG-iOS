@@ -57,5 +57,18 @@ final class Utils {
         return version
     }
     
+    class func dateFormatterString(format: String? = nil, date: Date) -> String {
+        
+        let formatter = Foundation.DateFormatter()
+        formatter.dateFormat = format ?? "yyyy-MM-dd"
+        formatter.locale = Locale(identifier: "ko_KR")
+        let convertStr = formatter.string(from: date)
+        return convertStr
+    }
+    
+    class func setDetailSourceType(_ source: AnalyticEventType) {
+        AnalyticManager.log(event: .detail(.viewDetailpageAt(source: source.rawValue)))
+    }
+    
     static var sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
 }
