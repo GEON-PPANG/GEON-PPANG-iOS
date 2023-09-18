@@ -9,6 +9,7 @@ import UIKit
 
 import SnapKit
 import Then
+import SafariServices
 
 final class BakeryDetailViewController: BaseViewController {
     
@@ -27,6 +28,8 @@ final class BakeryDetailViewController: BaseViewController {
     private var isBookmarked: Bool = false
     private var labelHeight: CGFloat = 120
     var bakeryID: Int?
+    var homepageURL: String = ""
+    var instagramURL: String = ""
     
     // MARK: - UI Property
     
@@ -73,6 +76,11 @@ final class BakeryDetailViewController: BaseViewController {
             $0.configureBackButtonAction(UIAction { [weak self] _ in
                 self?.navigationController?.popViewController(animated: true)
             })
+            $0.tappedMapButton = {
+                guard let url = URL(string: self.overviewData.mapURL) else { return }
+                let safariVC = SFSafariViewController(url: url)
+                self.present(safariVC, animated: true, completion: nil)
+            }
             $0.backgroundColor = .gbbWhite
             $0.configureBottomLine()
             $0.configureRightMapButton()
@@ -179,6 +187,8 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
             DispatchQueue.main.async {
                 cell.configureCellUI(self.overviewData)
             }
+            
+            cell.delegate = self
             
             return cell
         case 2:
@@ -344,6 +354,8 @@ extension BakeryDetailViewController {
             self.overviewData = data
             self.isBookmarked = data.isBookMarked
             self.detailBottomView.configureBookmarkButton(to: data.isBookMarked)
+            self.homepageURL = data.homepageURL
+            self.instagramURL = data.instagramURL
         }
     }
     
@@ -369,6 +381,7 @@ extension BakeryDetailViewController {
             
             self.detailBottomView.configureBookmarkButton(to: value)
             self.isBookmarked = value
+            self.getBakeryDetail(bakeryID: bakeryID)
             self.collectionView.reloadData()
         }
     }
