@@ -208,6 +208,8 @@
 		DFB585FD2A5FEA0E0077D272 /* InfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB585FC2A5FEA0E0077D272 /* InfoCollectionViewCell.swift */; };
 		DFB587B92A5D584800704B6C /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB587B82A5D584800704B6C /* OnboardingViewController.swift */; };
 		DFB587BB2A5D588500704B6C /* DrawDashLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB587BA2A5D588500704B6C /* DrawDashLineView.swift */; };
+		DFBCFA3D2AB6E42900D3E649 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBCFA3C2AB6E42900D3E649 /* ReportViewController.swift */; };
+		DFBCFA3F2AB6E66700D3E649 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBCFA3E2AB6E66700D3E649 /* RadioButton.swift */; };
 		DFDE72D72A65E84700389A51 /* WrittenReviewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDE72D62A65E84700389A51 /* WrittenReviewsCollectionViewCell.swift */; };
 		DFDE72DB2A66893900389A51 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DFDE72DA2A66893900389A51 /* Config.xcconfig */; };
 		DFDE72DD2A668FFE00389A51 /* ReviewCategoryStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDE72DC2A668FFE00389A51 /* ReviewCategoryStackView.swift */; };
@@ -411,6 +413,8 @@
 		DFB585FC2A5FEA0E0077D272 /* InfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		DFB587B82A5D584800704B6C /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		DFB587BA2A5D588500704B6C /* DrawDashLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawDashLineView.swift; sourceTree = "<group>"; };
+		DFBCFA3C2AB6E42900D3E649 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		DFBCFA3E2AB6E66700D3E649 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		DFDE72D62A65E84700389A51 /* WrittenReviewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrittenReviewsCollectionViewCell.swift; sourceTree = "<group>"; };
 		DFDE72DA2A66893900389A51 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		DFDE72DC2A668FFE00389A51 /* ReviewCategoryStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCategoryStackView.swift; sourceTree = "<group>"; };
@@ -895,6 +899,7 @@
 			children = (
 				3E232AC82A95A00900125B76 /* Welcome */,
 				DFB585F52A5F314D0077D272 /* BakeryDetail */,
+				DFBCFA3B2AB6E17700D3E649 /* Report */,
 				3EDC05BA2A5DEB7500EAD950 /* Filter */,
 				093EFA572A61F611003228CD /* NickName */,
 				09F015EE2A9C87D40093D4F0 /* LogIn */,
@@ -1284,6 +1289,7 @@
 				0987288C2A5BA1F000A29402 /* BookmarkButton.swift */,
 				09CA3EF72A5676AA0063897A /* CommonButton.swift */,
 				DF697C062A68557A008CE4CF /* ReviewSortButton.swift */,
+				DFBCFA3E2AB6E66700D3E649 /* RadioButton.swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -1487,6 +1493,14 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
+		DFBCFA3B2AB6E17700D3E649 /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				DFBCFA3C2AB6E42900D3E649 /* ReportViewController.swift */,
+			);
+			path = Report;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1652,6 +1666,7 @@
 				097682E72A5CF0080008F4FB /* BakeryFilterView.swift in Sources */,
 				3ED40DFB2A5FD26200C7D5DA /* FilterRequestDTO.swift in Sources */,
 				0959F1962A658E7400E77CAF /* Config.swift in Sources */,
+				DFBCFA3D2AB6E42900D3E649 /* ReportViewController.swift in Sources */,
 				090668FC2A4FF3C600F413FA /* AppDelegate.swift in Sources */,
 				0959F1482A6583C200E77CAF /* NetworkLoggerPlugin.swift in Sources */,
 				DF99C5FE2A6412F800C2C78C /* ReviewProgressBarStackView.swift in Sources */,
@@ -1793,6 +1808,7 @@
 				3EAC950D2A9FAF4500D2AADC /* WebViewController.swift in Sources */,
 				3ED40E002A608B4700C7D5DA /* MyPageBasicCell.swift in Sources */,
 				09E445392AA3BA07008E3D33 /* SortBakeryFilterView.swift in Sources */,
+				DFBCFA3F2AB6E66700D3E649 /* RadioButton.swift in Sources */,
 				3E06F8D92A9E1588001302F4 /* AlertViewController.swift in Sources */,
 				097682E52A5C99340008F4FB /* BakeryFilterItems.swift in Sources */,
 				0930D25B2A928B8000A75C7E /* CertificationMarkResponseType.swift in Sources */,
