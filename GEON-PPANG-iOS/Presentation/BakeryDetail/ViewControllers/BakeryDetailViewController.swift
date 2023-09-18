@@ -80,8 +80,6 @@ final class BakeryDetailViewController: BaseViewController {
                 guard let url = URL(string: self.overviewData.mapURL) else { return }
                 let safariVC = SFSafariViewController(url: url)
                 self.present(safariVC, animated: true, completion: nil)
-                
-//                Utils.push(self.navigationController, WebViewController(url: self.overviewData.mapURL, title: I18N.Detail.map))
             }
             $0.backgroundColor = .gbbWhite
             $0.configureBottomLine()
