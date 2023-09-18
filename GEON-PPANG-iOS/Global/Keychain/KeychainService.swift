@@ -127,6 +127,30 @@ class KeychainService {
         return false
         #endif
     }
+    
+    // MARK: - keychain exists
+    
+    static func hasKeychain(of key: KeychainKey) -> Bool {
+        
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrService as String: serviceName,
+            kSecAttrAccount as String: key.account
+        ]
+        
+        let status = SecItemCopyMatching(query as CFDictionary, nil)
+        switch status {
+        case errSecSuccess, errSecDuplicateItem:
+            print("🔒 Has: Keychain of \(key) 🔒")
+            return true
+        case errSecItemNotFound:
+            print("❌ Has: Keychain of \(key) not found ❌")
+            return false
+        default:
+            print("❌ Has: Unknown of \(key) error: \(SecCopyErrorMessageString(status, nil).debugDescription) ❌")
+            return false
+        }
+    }
 }
 
 extension KeychainService {

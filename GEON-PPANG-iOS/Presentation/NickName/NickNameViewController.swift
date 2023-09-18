@@ -23,7 +23,7 @@ final class NickNameViewController: BaseViewController {
     
     // MARK: - UI Property
     
-    private let naviView = CustomNavigationBar()
+    let naviView = CustomNavigationBar()
     private let titleLabel = UILabel()
     private let nicknameTextField = CommonTextView(.nickname)
     private lazy var checkButton = CommonButton()
@@ -138,7 +138,7 @@ final class NickNameViewController: BaseViewController {
             $0.configureButtonTitle(isValid ? .start : .next)
             $0.configureButtonUI(isValid ? .gbbMain2! : .gbbGray200!)
             $0.tappedCommonButton = {
-                Utils.push(self.navigationController, WelcomeViewController(nickname: self.nicknameTextField.fetchText()))
+                self.postSetNickname()
             }
         }
     }
@@ -213,6 +213,20 @@ extension NickNameViewController {
             default:
                 self.configureBottomSheet(.sad, I18N.Bottomsheet.duplicatedNickname)
                 self.configureNextButtonUI(false)
+            }
+        }
+    }
+    
+    private func postSetNickname() {
+        
+        let request = NicknameRequestDTO(nickname: self.checkNickname)
+        AuthAPI.shared.postSetNickname(to: request) { result in
+            guard let code = result?.code else { return }
+            switch code {
+            case 200:
+                Utils.push(self.navigationController, WelcomeViewController(nickname: self.checkNickname))
+            default:
+                Utils.showAlert(title: "에러", description: "닉네임 설정 에러", at: self)
             }
         }
     }
