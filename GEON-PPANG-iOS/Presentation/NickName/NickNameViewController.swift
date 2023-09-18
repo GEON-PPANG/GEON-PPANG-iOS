@@ -220,12 +220,13 @@ extension NickNameViewController {
     private func postSetNickname() {
         
         let request = NicknameRequestDTO(nickname: self.checkNickname)
-        AuthAPI.shared.postSetNickname(to: request) { result in
+        MemberAPI.shared.postSetNickname(to: request) { result in
             guard let code = result?.code else { return }
             switch code {
             case 200:
                 Utils.push(self.navigationController, WelcomeViewController(nickname: self.checkNickname))
             default:
+                // TODO: UX Writing 고려
                 Utils.showAlert(title: "에러", description: "닉네임 설정 에러", at: self)
             }
         }

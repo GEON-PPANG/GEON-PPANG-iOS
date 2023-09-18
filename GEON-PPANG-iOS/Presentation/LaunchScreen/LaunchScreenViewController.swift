@@ -35,11 +35,19 @@ final class LaunchScreenViewController: BaseViewController {
     
     private func checkUserLoggedIn() {
         
-        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
-        if KeychainService.readKeychain(of: .access) != "" {
-            refreshAccessToken()
-        } else {
-            sceneDelegate?.changeRootViewControllerToOnboardingViewController()
+        getNickname { nickname in
+            guard let nickname = nickname else {
+                Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
+                return
+            }
+            
+            if nickname.prefix(5) == "GUEST" {
+                let viewcontroller = NickNameViewController()
+                viewcontroller.naviView.hideBackButton(true)
+                Utils.push(self.navigationController, viewcontroller)
+            } else {
+                Utils.sceneDelegate?.changeRootViewControllerToTabBarController()
+            }
         }
     }
     
@@ -47,17 +55,17 @@ final class LaunchScreenViewController: BaseViewController {
 
 extension LaunchScreenViewController {
     
-    private func refreshAccessToken() {
+    private func getNickname(_ completion: @escaping (String?) -> Void) {
         
-        AuthAPI.shared.getTokenRefresh { response in
-            guard let response = response,
-                  let message = response.message
+        MemberAPI.shared.getNickname { result in
+            guard let result = result,
+                  let response = result.data
             else { return }
-            
-            if response.code == 200 || message == "만료되지 않은 엑세스 토큰입니다" {
-                Utils.sceneDelegate?.changeRootViewControllerToTabBarController()
-            } else {
-                Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
+            switch result.code {
+            case 200:
+                completion(response.nickname)
+            default:
+                completion(nil)
             }
         }
     }

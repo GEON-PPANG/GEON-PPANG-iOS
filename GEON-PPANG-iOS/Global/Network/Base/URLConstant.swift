@@ -11,7 +11,6 @@ struct URLConstant {
     
     static let checkEmail = "/validation/email"
     static let checkNickname = "/validation/nickname"
-    static let setNickname = "/member/nickname"
     static let login = "/auth/login"
     static let signup = "/auth/signup"
     static let refreshToken = "/auth/refresh"
@@ -48,5 +47,9 @@ struct URLConstant {
     static let bookmarks = "member/bookMarks"
     static let myReviews = "member/reviews"
     static let bookmark = "/bookMarks"
+    
+    // MARK: - Member
+    
+    static let nickname = "/member/nickname"
     
 }
