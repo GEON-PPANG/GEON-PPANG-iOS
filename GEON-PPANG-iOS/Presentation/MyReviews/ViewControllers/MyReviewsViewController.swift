@@ -178,7 +178,7 @@ extension MyReviewsViewController: UICollectionViewDelegateFlowLayout {
             return UICollectionReusableView()
         } else {
             let header: MyReviewsHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
-            header.configuteDateText(self.myReviewsList[indexPath.row].createdAt)
+            header.configuteDateText(self.myReviewsList[indexPath.section].createdAt)
             return header
         }
     }
@@ -194,8 +194,8 @@ extension MyReviewsViewController {
             guard let response = response else { return }
             guard let data = response.data else { return }
             self.myReviewsList = data.map {$0}
-            self.collectionView.reloadData()
             self.configureScrollable(self.myReviewsList.count)
+            self.collectionView.reloadData()
         }
     }
 }
