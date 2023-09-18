@@ -44,9 +44,9 @@ final class Utils {
         return width < (UIScreen.main.bounds.width - 152) ? 25 : 56
     }
     
-    class func showAlert(title: String, description: String, at viewController: UIViewController) {
+    class func showAlert(title: String, description: String, at viewController: UIViewController, action: ((UIAlertAction) -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: description, preferredStyle: .alert)
-        alert.addAction(.init(title: "닫기", style: .default))
+        alert.addAction(.init(title: "닫기", style: .default, handler: action))
         viewController.present(alert, animated: true)
     }
     

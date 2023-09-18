@@ -32,11 +32,11 @@ final class AlertViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setAlertAction()
-    }
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//        setAlertAction()
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -62,7 +62,7 @@ final class AlertViewController: BaseViewController {
         }
     }
     
-    private func setAlertAction() {
+    func configureAlertAction(_ acceptAction: (() -> Void)?) {
         
         guard let alert = alertView as? AlertView
         else { return }
@@ -71,17 +71,17 @@ final class AlertViewController: BaseViewController {
             self?.dismiss(animated: true)
             print("cancel tapped")
         }
-        
-        alert.acceptAction = { [weak self] in
-            // TODO: API 연결
-            switch alert.alertType {
-            case .logout: print("logout API")
-            case .leave: print("leave API")
-            }
-            let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
-            sceneDelegate?.changeRootViewControllerToOnboardingViewController()
-            print("accept tapped")
-        }
+        alert.acceptAction = acceptAction
+//        { [weak self] in
+//            // TODO: API 연결
+//            switch alert.alertType {
+//            case .logout: print("logout API")
+//            case .leave: print("leave API")
+//            }
+//            let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+//            sceneDelegate?.changeRootViewControllerToOnboardingViewController()
+//            print("accept tapped")
+//        }
     }
     
     // MARK: - Custom Method

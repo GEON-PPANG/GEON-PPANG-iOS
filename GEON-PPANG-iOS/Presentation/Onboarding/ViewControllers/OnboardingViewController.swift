@@ -139,6 +139,7 @@ final class OnboardingViewController: BaseViewController {
                 else { return }
                 
                 KeychainService.setKeychain(of: .socialAuth, with: token)
+                KeychainService.setKeychain(of: .socialType, with: "KAKAO")
                 
                 let request = SignUpRequestDTO(
                     platformType: .kakao,
@@ -247,6 +248,7 @@ extension OnboardingViewController: ASAuthorizationControllerDelegate {
               let authCodeString = String(data: authCode, encoding: .utf8)
         else { return }
         KeychainService.setKeychain(of: .socialAuth, with: authCodeString)
+        KeychainService.setKeychain(of: .socialType, with: "APPLE")
         
         let userIdentifier = credential.user
         let appleProvider = ASAuthorizationAppleIDProvider()

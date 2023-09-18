@@ -105,6 +105,9 @@ final class MyPageViewController: BaseViewController {
         
         let alertView = AlertView(type: type)
         let alertViewController = AlertViewController(alertView: alertView)
+        alertViewController.configureAlertAction { [weak self] in
+            self?.deleteMember()
+        }
         self.present(alertViewController, animated: false)
     }
     
@@ -127,8 +130,6 @@ extension MyPageViewController: UICollectionViewDelegate {
         default:
             break
         }
-        
-        
     }
 }
 
@@ -145,6 +146,21 @@ extension MyPageViewController {
             
             self.memberData = data
             self.myPageDataSource.loadData()
+        }
+    }
+    
+    func deleteMember() {
+        
+        AuthAPI.shared.deleteUser { response in
+            switch response?.code {
+            case 200:
+                KeychainService.deleteAllAuthKeychains()
+                Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
+            default:
+                Utils.showAlert(title: "회원탈퇴 실패", description: "실패", at: self) { _ in
+                    Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
+                }
+            }
         }
     }
 }

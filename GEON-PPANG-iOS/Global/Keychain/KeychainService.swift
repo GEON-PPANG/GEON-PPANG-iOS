@@ -128,3 +128,16 @@ class KeychainService {
         #endif
     }
 }
+
+extension KeychainService {
+    
+    static func deleteAllAuthKeychains() {
+        
+        deleteKeychain(of: .access)
+        deleteKeychain(of: .refresh)
+        deleteKeychain(of: .appleRefresh)
+        deleteKeychain(of: .socialAuth)
+        deleteKeychain(of: .socialType)
+        deleteKeychain(of: .userEmail)
+    }
+}

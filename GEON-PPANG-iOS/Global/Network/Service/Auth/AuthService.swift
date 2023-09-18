@@ -16,6 +16,8 @@ enum AuthService {
     case login(request: LoginRequestDTO)
     case signUp(request: SignUpRequestDTO)
     case refreshToken
+    case withdraw
+    case appleWithdraw
 }
 
 extension AuthService: TargetType {
@@ -35,6 +37,8 @@ extension AuthService: TargetType {
             return URLConstant.signup
         case .refreshToken:
             return URLConstant.refreshToken
+        case .withdraw, .appleWithdraw:
+            return URLConstant.withdraw
         }
     }
     
@@ -44,6 +48,8 @@ extension AuthService: TargetType {
             return .post
         case .refreshToken:
             return .get
+        case .withdraw, .appleWithdraw:
+            return .delete
         }
     }
     
@@ -59,6 +65,8 @@ extension AuthService: TargetType {
             return .requestJSONEncodable(data)
         case .refreshToken:
             return .requestPlain
+        case .withdraw, .appleWithdraw:
+            return .requestPlain
         }
     }
     
@@ -70,6 +78,10 @@ extension AuthService: TargetType {
             return NetworkConstant.header(.platformToken)
         case .refreshToken:
             return NetworkConstant.header(.accessAndRefreshToken)
+        case .withdraw:
+            return NetworkConstant.header(.accessToken)
+        case .appleWithdraw:
+            return NetworkConstant.header(.appleRefresh)
         }
     }
 }
