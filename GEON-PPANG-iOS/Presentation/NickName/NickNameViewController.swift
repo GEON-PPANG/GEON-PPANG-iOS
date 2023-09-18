@@ -233,11 +233,10 @@ extension NickNameViewController {
                                         password: password,
                                         nickname: nickname)
         AuthAPI.shared.postSignUp(with: userInfo) { result in
-            guard let result = result else { return }
+            guard result != nil else { return }
             AnalyticManager.log(event: .onboarding(.completeNickname(nickname: nickname)))
             AnalyticManager.log(event: .onboarding(.completeSignup))
             Utils.push(self.navigationController, WelcomeViewController(nickname: nickname))
         }
     }
 }
-
