@@ -108,6 +108,14 @@ final class MyPageViewController: BaseViewController {
         
         let alertView = AlertView(type: type)
         let alertViewController = AlertViewController(alertView: alertView)
+        alertViewController.configureAlertAction { [weak self] in
+            switch type {
+            case .logout:
+                self?.logout()
+            case .leave:
+                self?.deleteUser()
+            }
+        }
         self.present(alertViewController, animated: false)
     }
     
@@ -146,6 +154,44 @@ extension MyPageViewController {
             
             self.memberData = data
             self.myPageDataSource.loadData()
+        }
+    }
+    
+    func logout() {
+        
+        AuthAPI.shared.logout { code in
+            switch code {
+            case 200:
+                print("🔴logout")
+                KeychainService.deleteKeychain(of: .access)
+                if KeychainService.readKeychain(of: .socialType) == "KAKAO" {
+                    KakaoService.logout()
+                }
+                Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
+            default:
+                print("🔴failed")
+            }
+        }
+    }
+    
+    func deleteUser() {
+        
+        AuthAPI.shared.deleteUser { response in
+            switch response?.code {
+            case 200:
+                KeychainService.deleteAllAuthKeychains()
+                if KeychainService.readKeychain(of: .socialType) == "KAKAO" {
+                    KakaoService.unlink()
+                }
+                Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
+            default:
+                if let child = self.children.first {
+                    child.dismiss(animated: true)
+                }
+                Utils.showAlert(title: "회원탈퇴 실패", description: "실패", at: self) { _ in
+                    Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
+                }
+            }
         }
     }
 }
