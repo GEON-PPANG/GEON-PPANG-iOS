@@ -572,28 +572,16 @@ extension ReviewViewController: UITextViewDelegate {
         reviewDetailTextView.configureTextView(to: .activated)
         reviewDetailTextView.updateTextLimitLabel(to: textCount)
         
+        reviewDetailTextView.placeholderLabel.isHidden = !textView.text.isEmpty
+        
         let textViewText = textView.text.replacingOccurrences(of: " ", with: "")
         if textViewText.isEmpty && !reviewDetailTextView.isLike {
             nextButton.configureInteraction(to: false)
         }
     }
     
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        
-        if textView.text == I18N.Review.likePlaceholder || textView.text == I18N.Review.dislikePlaceholder {
-            textView.text = nil
-            textView.textColor = .black
-        }
-        
-    }
-    
     func textViewDidEndEditing(_ textView: UITextView) {
-        
-        if textView.text.isEmpty {
-            textView.text = reviewDetailTextView.isLike ? I18N.Review.likePlaceholder : I18N.Review.dislikePlaceholder
-            textView.textColor = .gbbGray300
-            writeReviewData.reviewText = ""
-        }
+        reviewDetailTextView.placeholderLabel.isHidden = !textView.text.isEmpty
     }
     
     func textView(_ textView: UITextView,

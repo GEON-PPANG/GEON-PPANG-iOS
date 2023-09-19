@@ -48,6 +48,7 @@ final class ReviewDetailTextView: UIView {
     // MARK: - UI Property
     
     let detailTextView = UITextView()
+    lazy var placeholderLabel = UILabel()
     private let textLimitLabel = UILabel()
     
     // MARK: - Life Cycle
@@ -81,7 +82,6 @@ final class ReviewDetailTextView: UIView {
     private func setUI() {
         
         detailTextView.do {
-            $0.text = I18N.Review.likePlaceholder
             $0.font = .subHead
             $0.textColor = .gbbGray300
             $0.makeCornerRound(radius: 12)
@@ -95,11 +95,23 @@ final class ReviewDetailTextView: UIView {
         
         guard type == .write else { return }
         
+        self.addSubview(placeholderLabel)
+        placeholderLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(20)
+            $0.horizontalEdges.equalToSuperview().inset(34)
+        }
+        
         self.addSubview(textLimitLabel)
         textLimitLabel.snp.makeConstraints {
             $0.bottom.equalTo(detailTextView.snp.bottom).offset(-20)
             $0.trailing.equalTo(detailTextView).offset(-28)
             $0.height.equalTo(17)
+        }
+        
+        placeholderLabel.do {
+            $0.text = I18N.Review.likePlaceholder
+            $0.font = .subHead
+            $0.textColor = .gbbGray300
         }
         
         textLimitLabel.do {
@@ -121,6 +133,9 @@ final class ReviewDetailTextView: UIView {
         }
         
         guard type == .write else { return }
+        placeholderLabel.do {
+            $0.textColor = textColor
+        }
         textLimitLabel.do {
             $0.textColor = textColor
         }
@@ -128,7 +143,7 @@ final class ReviewDetailTextView: UIView {
     
     func configurePlaceholder(with isLike: Bool) {
         
-        detailTextView.do {
+        placeholderLabel.do {
             $0.text = isLike ? I18N.Review.likePlaceholder : I18N.Review.dislikePlaceholder
         }
     }
