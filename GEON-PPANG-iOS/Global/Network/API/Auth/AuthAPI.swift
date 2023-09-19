@@ -52,8 +52,7 @@ final class AuthAPI {
             }
         }
     }
-    
-    
+        
     func postLogin(to loginData: LoginRequestDTO, completion: @escaping (Int?) -> Void) {
         
         authProvider.request(.login(request: loginData)) { result in

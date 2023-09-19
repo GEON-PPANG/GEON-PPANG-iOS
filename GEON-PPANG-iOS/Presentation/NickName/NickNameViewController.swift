@@ -258,6 +258,8 @@ extension NickNameViewController {
                                         nickname: nickname)
         AuthAPI.shared.postSignUp(with: userInfo) { result in
             guard result != nil else { return }
+            guard let userId = result?.data?.memberID else { return }
+            AnalyticManager.set(userId: userId)
             AnalyticManager.log(event: .onboarding(.completeNickname(nickname: nickname)))
             AnalyticManager.log(event: .onboarding(.completeSignup))
             Utils.push(self.navigationController, WelcomeViewController(nickname: nickname))
