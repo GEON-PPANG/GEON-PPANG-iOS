@@ -74,9 +74,7 @@ final class CustomNavigationBar: UIView {
         }
         
         centerTitleLabel.do {
-            $0.text = title
-            $0.font = .title2
-            $0.textColor = .black
+            $0.basic(text: title, font: .title2!, color: .gbbGray700!)
         }
     }
     
@@ -113,8 +111,8 @@ final class CustomNavigationBar: UIView {
         }
         
         rightMapButton.do {
-            $0.addAction(UIAction { _ in
-                self.tappedMapButton?()
+            $0.addAction(UIAction { [weak self] _ in
+                self?.tappedMapButton?()
             }, for: .touchUpInside)
         }
         

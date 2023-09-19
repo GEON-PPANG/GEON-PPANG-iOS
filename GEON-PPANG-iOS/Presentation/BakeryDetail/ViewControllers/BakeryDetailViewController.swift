@@ -73,17 +73,14 @@ final class BakeryDetailViewController: BaseViewController {
     override func setUI() {
         
         navigationBar.do {
-            $0.configureBackButtonAction(UIAction { [weak self] _ in
-                self?.navigationController?.popViewController(animated: true)
-            })
+            $0.configureBackButtonAction(popViewControllerAction())
+            $0.configureBottomLine()
+            $0.configureRightMapButton()
             $0.tappedMapButton = {
                 guard let url = URL(string: self.overviewData.mapURL) else { return }
                 let safariVC = SFSafariViewController(url: url)
                 self.present(safariVC, animated: true, completion: nil)
             }
-            $0.backgroundColor = .gbbWhite
-            $0.configureBottomLine()
-            $0.configureRightMapButton()
         }
         
         collectionView.do {
