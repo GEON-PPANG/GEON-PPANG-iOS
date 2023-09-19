@@ -10,7 +10,14 @@ import UIKit
 import SnapKit
 import Then
 
+protocol WrittenReviewsCollectionViewCellDelegate: BakeryDetailViewController {
+    
+    func tappedReportButton()
+}
+
 final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
+    
+    weak var delegate: WrittenReviewsCollectionViewCellDelegate?
     
     // MARK: - UI Property
     
@@ -18,7 +25,7 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
     private let profileImage = UIImageView()
     private let userNicknameLabel = UILabel()
     private let reviewDateLabel = UILabel()
-    private let reportLabel = UILabel()
+    private let reportButton = UIButton()
     private lazy var reviewCategoryStackView = ReviewCategoryStackView()
     private let reviewTextLabel = UILabel()
     
@@ -73,8 +80,8 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
             $0.height.equalTo(17)
         }
         
-        reviewContainer.addSubview(reportLabel)
-        reportLabel.snp.makeConstraints {
+        reviewContainer.addSubview(reportButton)
+        reportButton.snp.makeConstraints {
             $0.centerY.equalTo(userNicknameLabel)
             $0.leading.equalToSuperview().inset(convertByWidthRatio(279))
             $0.trailing.equalToSuperview().inset(convertByWidthRatio(25))
@@ -123,8 +130,13 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
             $0.textAlignment = .right
         }
         
-        reportLabel.do {
-            $0.basic(text: "신고", font: .captionM1!, color: .gbbGray300!)
+        reportButton.do {
+            $0.setTitle(I18N.Detail.report, for: .normal)
+            $0.setTitleColor(.gbbGray300, for: .normal)
+            $0.titleLabel?.font = .captionM1
+            $0.addAction(UIAction { [weak self] _ in
+                self?.tappedReportButton()
+            }, for: .touchUpInside)
         }
         
         reviewTextLabel.do {
@@ -169,5 +181,20 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
             $0.width.equalTo(convertByWidthRatio(277))
             $0.height.equalTo(convertByWidthRatio(labelHeight))
         }
+    }
+    
+    func tappedReportButton() {
+        
+        delegate?.tappedReportButton()
+    }
+}
+
+// MARK: - Custom Protocol
+
+extension BakeryDetailViewController: WrittenReviewsCollectionViewCellDelegate {
+    
+    func tappedReportButton() {
+        
+        Utils.push(self.navigationController, ReportViewController(title: I18N.Detail.reviewReport))
     }
 }

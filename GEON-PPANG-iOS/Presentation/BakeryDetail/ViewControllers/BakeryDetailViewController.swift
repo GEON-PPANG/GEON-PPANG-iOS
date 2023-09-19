@@ -218,6 +218,8 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
                 cell.configureCellUI(review, self.labelHeight)
             }
             
+            cell.delegate = self
+            
             return cell
         default:
             return UICollectionViewCell()
