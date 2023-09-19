@@ -393,20 +393,18 @@ extension ReviewViewController {
         
         var requestData: WriteReviewRequestDTO = .empty()
         
-        requestData.bakeryID = bakeryData.id
-        
-        guard let isLike = likeCollectionView.cellForItem(at: [0, 0])?.isSelected
+        guard let isLike = likeCollectionView.cellForItem(at: [0, 0])?.isSelected,
+              let keywordIndexPath = optionsCollectionView.indexPathsForSelectedItems
         else { return .empty() }
-        requestData.isLike = isLike
         
-        guard let keywordIndexPath = optionsCollectionView.indexPathsForSelectedItems
-        else { return .empty() }
         let keywordList = keywordIndexPath.map {
             let keyword = KeywordDescriptionList.requestList[$0[1]]
             return SingleKeyword(keywordName: keyword)
         }
-        requestData.keywordList = keywordList
         
+        requestData.bakeryID = bakeryData.id
+        requestData.isLike = isLike
+        requestData.keywordList = keywordList
         requestData.reviewText = reviewDetailTextView.detailTextView.text
         
         return requestData
@@ -437,7 +435,7 @@ extension ReviewViewController {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             UIView.animate(withDuration: 0.2, animations: {
                 self.bottomView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + 30)
-                self.scrollView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height)
+                self.scrollView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + 30)
             })
         }
     }
@@ -574,7 +572,8 @@ extension ReviewViewController: UITextViewDelegate {
         reviewDetailTextView.configureTextView(to: .activated)
         reviewDetailTextView.updateTextLimitLabel(to: textCount)
         
-        if textView.text.isEmpty && !reviewDetailTextView.isLike {
+        let textViewText = textView.text.replacingOccurrences(of: " ", with: "")
+        if textViewText.isEmpty && !reviewDetailTextView.isLike {
             nextButton.configureInteraction(to: false)
         }
     }
@@ -585,6 +584,7 @@ extension ReviewViewController: UITextViewDelegate {
             textView.text = nil
             textView.textColor = .black
         }
+        
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
