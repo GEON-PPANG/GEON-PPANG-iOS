@@ -24,6 +24,7 @@ final class MemberAPI {
     var memberProvider = MoyaProvider<MemberService>(session: Session(interceptor: AuthInterceptor.shared), plugins: [MoyaLoggingPlugin()])
     
     func postSetNickname(to data: NicknameRequestDTO, completion: @escaping (SetNicknameResponse?) -> Void) {
+        
         memberProvider.request(.setNickname(request: data)) { result in
             switch result {
             case .success(let response):
@@ -42,6 +43,7 @@ final class MemberAPI {
     }
     
     func getNickname(completion: @escaping (FetchNicknameResponse?) -> Void) {
+        
         memberProvider.request(.fetchNickname) { result in
             switch result {
             case .success(let response):
