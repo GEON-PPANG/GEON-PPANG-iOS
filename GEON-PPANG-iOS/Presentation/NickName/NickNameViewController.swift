@@ -14,6 +14,9 @@ final class NickNameViewController: BaseViewController {
     
     // MARK: - Property
     
+    var email: String = ""
+    var password: String = ""
+    var isSocial: Bool = true
     private var checkNickname: String = ""
     private var isValid: Bool = false {
         didSet {
@@ -138,7 +141,7 @@ final class NickNameViewController: BaseViewController {
             $0.configureButtonTitle(isValid ? .start : .next)
             $0.configureButtonUI(isValid ? .gbbMain2! : .gbbGray200!)
             $0.tappedCommonButton = {
-                self.postSetNickname()
+                self.signUp()
             }
         }
     }
@@ -149,6 +152,18 @@ final class NickNameViewController: BaseViewController {
         bottomSheet.do {
             $0.configureEmojiType(type)
             $0.configureBottonSheetTitle(title)
+        }
+    }
+    
+    func signUp() {
+        
+        if !isSocial {
+            self.postSignUP(platformType: .none,
+                            email: self.email,
+                            password: self.password,
+                            nickname: self.checkNickname)
+        } else {
+            self.postSetNickname()
         }
     }
 }
@@ -229,6 +244,23 @@ extension NickNameViewController {
                 // TODO: UX Writing 고려
                 Utils.showAlert(title: "에러", description: "닉네임 설정 에러", at: self)
             }
+        }
+    }
+            
+    private func postSignUP(platformType: PlatformType,
+                            email: String,
+                            password: String,
+                            nickname: String ) {
+        
+        let userInfo = SignUpRequestDTO(platformType: platformType,
+                                        email: email,
+                                        password: password,
+                                        nickname: nickname)
+        AuthAPI.shared.postSignUp(with: userInfo) { result in
+            guard result != nil else { return }
+            AnalyticManager.log(event: .onboarding(.completeNickname(nickname: nickname)))
+            AnalyticManager.log(event: .onboarding(.completeSignup))
+            Utils.push(self.navigationController, WelcomeViewController(nickname: nickname))
         }
     }
 }

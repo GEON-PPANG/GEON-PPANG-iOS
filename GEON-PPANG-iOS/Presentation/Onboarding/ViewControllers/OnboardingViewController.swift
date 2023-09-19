@@ -185,7 +185,8 @@ extension OnboardingViewController {
     
     private func checkNickname(_ nickname: String?) {
         guard let nickname = nickname else {
-            Utils.push(self.navigationController, NickNameViewController())
+            let viewController = NickNameViewController()
+            Utils.push(self.navigationController, viewController)
             return
         }
         

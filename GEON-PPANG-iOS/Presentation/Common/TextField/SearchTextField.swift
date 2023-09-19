@@ -62,7 +62,7 @@ final class SearchTextField: UITextField {
         }
         
         self.do {
-            $0.makeCornerRound(radius: 22)
+            $0.makeCornerRound(radius: CGFloat().convertByHeightRatio(22))
             $0.backgroundColor = .gbbGray100
             $0.placeholder = I18N.Home.searchPlaceholder
             $0.setPlaceholder(color: .gbbGray300!, font: .bodyM1!)

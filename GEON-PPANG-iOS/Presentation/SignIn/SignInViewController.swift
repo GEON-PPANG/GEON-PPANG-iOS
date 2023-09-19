@@ -27,7 +27,11 @@ final class SignInViewController: BaseViewController {
     }
     
     private var isValidCheckEmail: Bool = false
-    private var isValidButton: [Bool] = [false, false, false]
+    private var isValidButton: [Bool] = [false, false, false] {
+        didSet {
+            updateButtonStatus()
+        }
+    }
     private var isValid: Bool = false {
         didSet {
             configureButtonUI(isValid)
@@ -147,6 +151,10 @@ final class SignInViewController: BaseViewController {
                     self.postCheckEmail()
                 }
             }
+            $0.addAction(UIAction { [weak self] _ in
+                guard let self else { return }
+                self.isValidButton[0] = false
+            }, for: .editingChanged)
         }
         
         nextButton.do {
@@ -170,7 +178,11 @@ final class SignInViewController: BaseViewController {
             $0.isUserInteractionEnabled = isValid
             $0.tappedCommonButton = { [weak self] in
                 guard let self else { return }
-                Utils.push(self.navigationController, NickNameViewController())
+                let nicknameViewController = NickNameViewController()
+                nicknameViewController.email = self.checkEmail
+                nicknameViewController.password = self.checkPassword
+                nicknameViewController.isSocial = .none
+                Utils.push(self.navigationController, nicknameViewController)
             }
         }
     }
@@ -185,19 +197,6 @@ final class SignInViewController: BaseViewController {
 // MARK: - UITextFieldDelegate
 
 extension SignInViewController: UITextFieldDelegate {
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        if textField == emailTextField.configureTextField() {
-            let currentText = textField.text ?? ""
-            let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
-            
-            isValidButton[0] = newText == currentText
-            updateButtonStatus()
-        }
-        
-        return true
-    }
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
         
@@ -252,6 +251,13 @@ extension SignInViewController: UITextFieldDelegate {
         }
         
         updateButtonStatus()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        configureTextFieldText(textField)
+        textField.resignFirstResponder()
+        return true
     }
     
     func configureTextFieldText(_ textField: UITextField) {

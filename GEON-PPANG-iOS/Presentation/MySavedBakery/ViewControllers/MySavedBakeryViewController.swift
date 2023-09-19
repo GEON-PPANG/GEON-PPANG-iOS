@@ -140,7 +140,7 @@ final class MySavedBakeryViewController: BaseViewController {
             let section = self.dataSource?.snapshot().sectionIdentifiers[sectionIndex]
             switch section {
             case .main:
-                var config = LayoutUtils.listConfiguration(appearance: .plain,
+                let config = LayoutUtils.listConfiguration(appearance: .plain,
                                                            headerMode: .none) { indexPath, config in
                     var config = config
                     guard let itemCount = self.dataSource?.snapshot().itemIdentifiers(inSection: .main).count else { return config }
