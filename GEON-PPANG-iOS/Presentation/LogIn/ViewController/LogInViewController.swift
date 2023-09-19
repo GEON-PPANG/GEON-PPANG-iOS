@@ -219,8 +219,10 @@ extension LogInViewController {
             switch status {
             case 200...204:
                 AnalyticManager.log(event: .general(.loginApp(loginType: AnalyticEventType.EMAIL.rawValue)))
-                let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
-                sceneDelegate?.changeRootViewControllerToTabBarController()
+                DispatchQueue.main.async {
+                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+                    sceneDelegate?.changeRootViewControllerToTabBarController()
+                }
             default:
                 self.configureBottomSheet()
                 self.configureButtonUI(false)
