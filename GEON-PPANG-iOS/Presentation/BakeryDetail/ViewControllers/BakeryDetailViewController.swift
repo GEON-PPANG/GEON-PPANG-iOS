@@ -106,7 +106,7 @@ final class BakeryDetailViewController: BaseViewController {
             $0.tappedBookmarkButton = {
                 self.requestBakeryBookmark(!self.isBookmarked)
                 if !self.isBookmarked {
-                    self.showToast(message: "저장되었습니다!")
+                    self.showToast(message: I18N.Detail.tappedBookmarkButton)
                 }
             }
             $0.tappedWriteReviewButton = {
