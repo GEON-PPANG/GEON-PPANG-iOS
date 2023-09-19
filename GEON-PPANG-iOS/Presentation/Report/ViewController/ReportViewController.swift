@@ -74,16 +74,16 @@ final class ReportViewController: BaseViewController {
             $0.top.directionalHorizontalEdges.equalToSuperview()
         }
         
-        view.addSubview(bottomView)
-        bottomView.snp.makeConstraints {
-            $0.horizontalEdges.bottom.equalToSuperview()
-        }
-        
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints {
             $0.top.equalTo(navigationBar.snp.bottom)
             $0.directionalHorizontalEdges.equalToSuperview()
-            $0.bottom.equalTo(bottomView.snp.top)
+        }
+        
+        view.addSubview(bottomView)
+        bottomView.snp.makeConstraints {
+            $0.top.equalTo(scrollView.snp.bottom)
+            $0.horizontalEdges.bottom.equalToSuperview()
         }
         
         scrollView.addSubview(contentView)
@@ -215,6 +215,8 @@ final class ReportViewController: BaseViewController {
         }
         
         bottomView.do {
+            $0.backgroundColor = .gbbWhite
+            $0.layer.masksToBounds = false
             $0.applyAdditionalSubview(writeButton, withTopOffset: 16)
         }
         
