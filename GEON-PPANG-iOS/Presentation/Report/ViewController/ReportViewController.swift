@@ -41,7 +41,10 @@ final class ReportViewController: BaseViewController {
     private let pleaseReportLabel = UILabel()
     
     private lazy var bottomView = BottomView()
-    private lazy var nextButton = CommonButton()
+    private lazy var writeButton = CommonButton()
+    
+    private lazy var backgroundView = BottomSheetAppearView()
+    private lazy var confirmBottomSheetView = CommonBottomSheet()
     
     // MARK: - Life Cycle
     
@@ -212,7 +215,24 @@ final class ReportViewController: BaseViewController {
         }
         
         bottomView.do {
-            $0.backgroundColor = .brown
+            $0.applyAdditionalSubview(writeButton, withTopOffset: 16)
+        }
+        
+        writeButton.do {
+            $0.configureButtonTitle(.write)
+            $0.configureInteraction(to: false)
+            $0.addAction(UIAction { [weak self] _ in
+                self?.nextButtonTapped()
+            }, for: .touchUpInside)
+        }
+        
+        confirmBottomSheetView.do {
+            $0.configureEmojiType(.smile)
+            $0.configureBottonSheetTitle(I18N.Report.reportComplete)
+            $0.dismissBottomSheet = {
+                self.backgroundView.dissmissFromSuperview()
+                self.navigationController?.popViewController(animated: true)
+            }
         }
     }
     
@@ -220,6 +240,21 @@ final class ReportViewController: BaseViewController {
         
         //        scrollView.delegate = self
         detailReasonTextView.detailTextView.delegate = self
+    }
+    
+    // MARK: - Action Helper
+    
+    private func nextButtonTapped() {
+        
+//        requestWriteReview(configureWriteReviewData())
+        UIView.animate(withDuration: 0.2, animations: {
+            self.bottomView.transform = .identity
+            self.scrollView.transform = .identity
+        }) { _ in
+            self.backgroundView.dimmedView.isUserInteractionEnabled = false
+            self.backgroundView.appearBottomSheetView(subView: self.confirmBottomSheetView, CGFloat().heightConsideringBottomSafeArea(292))
+        }
+        view.endEditing(true)
     }
     
     // MARK: - Custom Method
@@ -242,6 +277,7 @@ final class ReportViewController: BaseViewController {
         sender.isSelected = true // 새로운 버튼 선택
         sender.configuration?.image = .filterCheckIcon
         sender.configuration?.baseBackgroundColor = .gbbWhite
+        writeButton.configureInteraction(to: true)
         
         selectedButton = sender // 현재 선택된 버튼 업데이트
     }
@@ -284,8 +320,6 @@ extension ReportViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         
         let textCount = textView.text.count
-        //        nextButton.configureInteraction(to: true)
-        //        reviewDetailTextView.configureTextView(to: .activated)
         detailReasonTextView.updateTextLimitLabel(to: textCount)
     }
     
