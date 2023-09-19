@@ -14,6 +14,8 @@ struct URLConstant {
     static let login = "/auth/login"
     static let signup = "/auth/signup"
     static let refreshToken = "/auth/refresh"
+    static let logout = "auth/logout"
+    static let withdraw = "auth/withdraw"
     
     // MARK: - Filter
     
@@ -45,5 +47,9 @@ struct URLConstant {
     static let bookmarks = "member/bookMarks"
     static let myReviews = "member/reviews"
     static let bookmark = "/bookMarks"
+    
+    // MARK: - Member
+    
+    static let nickname = "/member/nickname"
     
 }

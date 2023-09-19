@@ -181,7 +181,7 @@ final class SignInViewController: BaseViewController {
                 let nicknameViewController = NickNameViewController()
                 nicknameViewController.email = self.checkEmail
                 nicknameViewController.password = self.checkPassword
-                nicknameViewController.platformType = .none
+                nicknameViewController.isSocial = false
                 Utils.push(self.navigationController, nicknameViewController)
             }
         }

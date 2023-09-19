@@ -11,9 +11,6 @@ import SnapKit
 import Then
 
 import AuthenticationServices
-import KakaoSDKAuth
-import KakaoSDKUser
-import KakaoSDKCommon
 
 final class OnboardingViewController: BaseViewController {
     
@@ -134,11 +131,12 @@ final class OnboardingViewController: BaseViewController {
     private func setSocialLoginButtonActions() {
         
         let kakaoLoginAction = UIAction { [weak self] _ in
-            self?.getKakaoAuthCode { token in
+            KakaoService.getKakaoAuthCode { token in
                 guard let token = token
                 else { return }
                 
                 KeychainService.setKeychain(of: .socialAuth, with: token)
+                KeychainService.setKeychain(of: .socialType, with: "KAKAO")
                 
                 let request = SignUpRequestDTO(
                     platformType: .kakao,
@@ -146,7 +144,12 @@ final class OnboardingViewController: BaseViewController {
                     password: "",
                     nickname: ""
                 )
-                self?.postSignUp(with: request)
+                
+                self?.postSignUp(with: request) {
+                    self?.getNickname { nickname in
+                        self?.checkNickname(nickname)
+                    }
+                }
             }
         }
         kakaoLoginButton.addAction(kakaoLoginAction, for: .touchUpInside)
@@ -156,45 +159,9 @@ final class OnboardingViewController: BaseViewController {
         }
         appleLoginButton.addAction(appleLoginAction, for: .touchUpInside)
     }
-    
-    // TODO: 로그인 / 회원가입 API 추가
-    // TODO: 완료 시 rootVC 변경
-    // TODO: 이메일로 로그인 / 회원가입 완료 시 연결하기
 }
 
 extension OnboardingViewController {
-    
-    private func getKakaoAuthCode(_ completion: @escaping (String?) -> Void) {
-        
-        if UserApi.isKakaoTalkLoginAvailable() {
-            UserApi.shared.loginWithKakaoTalk { response, error in
-                
-                guard error == nil
-                else {
-                    print("login with kakaoTalk failed with error: \(String(describing: error))")
-                    return
-                }
-                
-                guard let token = response?.accessToken
-                else { return }
-                
-                completion(token)
-            }
-        } else {
-            UserApi.shared.loginWithKakaoAccount { response, error in
-                guard error == nil
-                else {
-                    print("login with kakaoTalk failed with error: \(String(describing: error))")
-                    return
-                }
-                
-                guard let token = response?.accessToken
-                else { return }
-                
-                completion(token)
-            }
-        }
-    }
     
     private func appleLoginButtonTapped() {
         
@@ -216,24 +183,53 @@ extension OnboardingViewController {
         Utils.push(self.navigationController, SignInViewController())
     }
     
+    private func checkNickname(_ nickname: String?) {
+        guard let nickname = nickname else {
+            let viewController = NickNameViewController()
+            Utils.push(self.navigationController, viewController)
+            return
+        }
+        
+        if nickname.prefix(5) == "GUEST" {
+            let viewcontroller = NickNameViewController()
+            viewcontroller.naviView.hideBackButton(true)
+            Utils.push(self.navigationController, viewcontroller)
+        } else {
+            Utils.sceneDelegate?.changeRootViewControllerToTabBarController()
+        }
+    }
+    
 }
 
 extension OnboardingViewController {
     
-    private func postSignUp(with request: SignUpRequestDTO) {
+    private func postSignUp(with request: SignUpRequestDTO, completion: (() -> Void)?) {
         AuthAPI.shared.postSignUp(with: request) { status in
             guard let code = status?.code else { return }
             switch code {
             case 200...299:
-                Utils.push(self.navigationController, NickNameViewController())
-                dump(status)
+                completion?()
             default:
-                dump(status)
+                // FIXME: UX Writing 고려
                 Utils.showAlert(title: "에러", description: "실패", at: self)
             }
         }
     }
     
+    private func getNickname(_ completion: @escaping (String?) -> Void) {
+        
+        MemberAPI.shared.getNickname { result in
+            guard let result = result,
+                  let response = result.data
+            else { return }
+            switch result.code {
+            case 200:
+                completion(response.nickname)
+            default:
+                completion(nil)
+            }
+        }
+    }
 }
 
 // MARK: - Delegate
@@ -247,6 +243,7 @@ extension OnboardingViewController: ASAuthorizationControllerDelegate {
               let authCodeString = String(data: authCode, encoding: .utf8)
         else { return }
         KeychainService.setKeychain(of: .socialAuth, with: authCodeString)
+        KeychainService.setKeychain(of: .socialType, with: "APPLE")
         
         let userIdentifier = credential.user
         let appleProvider = ASAuthorizationAppleIDProvider()
@@ -264,11 +261,16 @@ extension OnboardingViewController: ASAuthorizationControllerDelegate {
                 
                 let request = SignUpRequestDTO(
                     platformType: .apple,
-                    email: KeychainService.readKeychain(of: .userEmail),
+                    email: "wpssds9srh@privaterelay.appleid.com",
                     password: "",
                     nickname: ""
                 )
-                self.postSignUp(with: request)
+                
+                self.postSignUp(with: request) {
+                    self.getNickname { nickname in
+                        self.checkNickname(nickname)
+                    }
+                }
                 
             case .notFound:
                 print("🔴 User not found 🔴")
@@ -284,7 +286,12 @@ extension OnboardingViewController: ASAuthorizationControllerDelegate {
                     password: "",
                     nickname: ""
                 )
-                self.postSignUp(with: request)
+                
+                self.postSignUp(with: request) {
+                    self.getNickname { nickname in
+                        self.checkNickname(nickname)
+                    }
+                }
                 
             case .revoked:
                 print("❌ User revoked ❌")

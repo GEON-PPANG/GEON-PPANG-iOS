@@ -16,7 +16,7 @@ final class NickNameViewController: BaseViewController {
     
     var email: String = ""
     var password: String = ""
-    var platformType: PlatformType = .none
+    var isSocial: Bool = true
     private var checkNickname: String = ""
     private var isValid: Bool = false {
         didSet {
@@ -26,7 +26,7 @@ final class NickNameViewController: BaseViewController {
     
     // MARK: - UI Property
     
-    private let naviView = CustomNavigationBar()
+    let naviView = CustomNavigationBar()
     private let titleLabel = UILabel()
     private let nicknameTextField = CommonTextView(.nickname)
     private lazy var checkButton = CommonButton()
@@ -141,10 +141,7 @@ final class NickNameViewController: BaseViewController {
             $0.configureButtonTitle(isValid ? .start : .next)
             $0.configureButtonUI(isValid ? .gbbMain2! : .gbbGray200!)
             $0.tappedCommonButton = {
-                self.postSignUP(platformType: self.platformType,
-                                email: self.email,
-                                password: self.password,
-                                nickname: self.checkNickname)
+                self.signUp()
             }
         }
     }
@@ -155,6 +152,18 @@ final class NickNameViewController: BaseViewController {
         bottomSheet.do {
             $0.configureEmojiType(type)
             $0.configureBottonSheetTitle(title)
+        }
+    }
+    
+    func signUp() {
+        
+        if !isSocial {
+            self.postSignUP(platformType: .none,
+                            email: self.email,
+                            password: self.password,
+                            nickname: self.checkNickname)
+        } else {
+            self.postSetNickname()
         }
     }
 }
@@ -223,6 +232,21 @@ extension NickNameViewController {
         }
     }
     
+    private func postSetNickname() {
+        
+        let request = NicknameRequestDTO(nickname: self.checkNickname)
+        MemberAPI.shared.postSetNickname(to: request) { result in
+            guard let code = result?.code else { return }
+            switch code {
+            case 200:
+                Utils.push(self.navigationController, WelcomeViewController(nickname: self.checkNickname))
+            default:
+                // TODO: UX Writing 고려
+                Utils.showAlert(title: "에러", description: "닉네임 설정 에러", at: self)
+            }
+        }
+    }
+            
     private func postSignUP(platformType: PlatformType,
                             email: String,
                             password: String,

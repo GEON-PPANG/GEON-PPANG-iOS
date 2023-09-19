@@ -35,7 +35,7 @@ struct NetworkConstant {
         case .appleRefresh:
             return ["Content-Type": "application/json",
                     "Authorization": "Bearer \(KeychainService.readKeychain(of: .access))",
-                    "Authorization-refresh": "\(KeychainService.readKeychain(of: .appleRefresh))"]
+                    "Apple-refresh": KeychainService.readKeychain(of: .appleRefresh)]
         }
     }
 }

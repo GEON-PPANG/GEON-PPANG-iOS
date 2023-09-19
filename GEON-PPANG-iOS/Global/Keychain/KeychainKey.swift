@@ -13,6 +13,7 @@ enum KeychainKey {
     case appleRefresh
     case socialAuth
     case userEmail
+    case socialType
 }
 
 extension KeychainKey {
@@ -22,6 +23,7 @@ extension KeychainKey {
         case .refresh: return "refreshToken"
         case .appleRefresh: return "appleRefreshToken"
         case .socialAuth: return "socialAuthorizationCode"
+        case .socialType: return "socialType"
         case .userEmail: return "userEmail"
         }
     }
