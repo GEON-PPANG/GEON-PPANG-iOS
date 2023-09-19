@@ -108,7 +108,6 @@ final class SortBakeryFilterView: UIView {
         filterButton.do {
             $0.configuration?.attributedTitle = AttributedString(text,
                                                                  attributes: AttributeContainer([.font: UIFont.captionB1!]))
-            
         }
     }
     
