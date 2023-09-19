@@ -136,7 +136,7 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
         bookmarkCount.setContentCompressionResistancePriority(UILayoutPriority(751), for: .horizontal)
         
         guard let url = URL(string: data.picture) else { return }
-        bakeryImage.kf.setImage(with: url)
+        bakeryImage.kf.setImage(with: url, placeholder: UIImage.loading_small)
         
         regionStackView.configureListUI(text: data.station)
         markStackView.getMarkStatus(data.mark.isHACCP, data.mark.isVegan, data.mark.isNonGMO)

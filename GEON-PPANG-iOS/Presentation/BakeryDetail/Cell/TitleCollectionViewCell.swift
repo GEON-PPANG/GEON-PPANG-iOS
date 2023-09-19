@@ -103,7 +103,7 @@ final class TitleCollectionViewCell: UICollectionViewCell {
     func configureCellUI(_ data: BakeryDetailResponseDTO) {
         
         guard let url = URL(string: data.bakeryPicture) else { return }
-        bakeryImage.kf.setImage(with: url)
+        bakeryImage.kf.setImage(with: url, placeholder: UIImage.loading_medium)
         bakeryNameLabel.text = data.bakeryName
         markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)
         markStackView.configureIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)

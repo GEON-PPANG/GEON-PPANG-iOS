@@ -124,7 +124,7 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
     func configureCellUI(data: HomeBestReviewResponseDTO) {
         
         let url = URL(string: data.reviews.picture)
-        bakeryImage.kf.setImage(with: url)
+        bakeryImage.kf.setImage(with: url, placeholder: UIImage.loading_large)
         
         reviewTitle.setLineHeight(by: 1.14, with: "\"\(data.text)\"")
         reviewTitle.lineBreakMode = .byTruncatingTail

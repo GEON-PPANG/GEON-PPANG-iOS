@@ -118,7 +118,7 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     func configureCellUI(data: HomeBestBakeryResponseDTO) {
         
         let url = URL(string: data.bakeries.picture)
-        bakeryImage.kf.setImage(with: url)
+        bakeryImage.kf.setImage(with: url, placeholder: UIImage.loading_large)
         bakeryTitle.setLineHeight(by: 1.08, with: data.bakeries.name)
         bakeryTitle.lineBreakMode = .byTruncatingTail
 
