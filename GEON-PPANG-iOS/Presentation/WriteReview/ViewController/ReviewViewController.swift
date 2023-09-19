@@ -101,7 +101,6 @@ final class ReviewViewController: BaseViewController {
             $0.horizontalEdges.top.equalToSuperview()
         }
         
-        view.bringSubviewToFront(navigationBar)
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints {
             $0.top.equalTo(navigationBar.snp.bottom)
@@ -116,14 +115,15 @@ final class ReviewViewController: BaseViewController {
         
         contentView.addSubview(bakeryOverviewView)
         bakeryOverviewView.snp.makeConstraints {
-            $0.top.equalTo(navigationBar.snp.bottom).offset(type == .read ? 42 : 18)
+            $0.top.equalToSuperview().inset(type == .read ? 42 : 24)
             $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.height.equalTo(86)
         }
         
         contentView.addSubview(lineView)
         lineView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.top.equalTo(bakeryOverviewView.snp.bottom).offset(20)
+            $0.top.equalTo(bakeryOverviewView.snp.bottom).offset(24)
             $0.height.equalTo(1)
         }
         
@@ -162,14 +162,6 @@ final class ReviewViewController: BaseViewController {
             $0.height.equalTo(221)
             $0.bottom.equalToSuperview().inset(11)
         }
-        
-        if type == .read {
-            contentView.addSubview(reviewDateLabel)
-            reviewDateLabel.snp.makeConstraints {
-                $0.bottom.equalTo(bakeryOverviewView.snp.top).offset(-3.5)
-                $0.leading.equalTo(bakeryOverviewView)
-            }
-        }
     }
     
     override func setUI() {
@@ -187,6 +179,7 @@ final class ReviewViewController: BaseViewController {
             $0.showsVerticalScrollIndicator = false
             $0.verticalScrollIndicatorInsets = .zero
             $0.backgroundColor = .white
+            $0.bounces = false
         }
         
         contentView.do {
@@ -291,6 +284,18 @@ extension ReviewViewController {
     
     private func setWriteTypeLayout() {
         
+        contentView.addSubview(reviewDateLabel)
+        reviewDateLabel.snp.makeConstraints {
+            $0.bottom.equalTo(bakeryOverviewView.snp.top).offset(-3.5)
+            $0.leading.equalTo(bakeryOverviewView)
+        }
+        
+        reviewDetailTextView.snp.remakeConstraints {
+            $0.top.equalTo(optionsCollectionView.snp.bottom).offset(28)
+            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.height.equalTo(196)
+        }
+        
         view.addSubview(bottomView)
         bottomView.snp.makeConstraints {
             $0.horizontalEdges.bottom.equalToSuperview()
@@ -298,16 +303,16 @@ extension ReviewViewController {
         
         contentView.addSubview(aboutReviewContainerView)
         aboutReviewContainerView.snp.makeConstraints {
-            $0.top.equalTo(reviewDetailTextView.snp.bottom).offset(10)
+            $0.top.equalTo(reviewDetailTextView.snp.bottom).offset(32)
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalToSuperview()
-            $0.height.equalTo(207)
         }
         
         aboutReviewContainerView.addSubview(aboutReviewLabel)
         aboutReviewLabel.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(24)
-            $0.top.equalToSuperview().offset(16)
+            $0.top.equalToSuperview().inset(20)
+            $0.bottom.equalToSuperview().inset(CGFloat().heightConsideringBottomSafeArea(116))
         }
     }
     
