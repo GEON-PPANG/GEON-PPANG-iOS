@@ -305,7 +305,7 @@ extension ReviewViewController {
         aboutReviewContainerView.snp.makeConstraints {
             $0.top.equalTo(reviewDetailTextView.snp.bottom).offset(32)
             $0.horizontalEdges.equalToSuperview()
-            $0.bottom.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(UIScreen.main.hasNotch ? 0 : 32)
         }
         
         aboutReviewContainerView.addSubview(aboutReviewLabel)
@@ -342,7 +342,7 @@ extension ReviewViewController {
         bottomView.do {
             $0.backgroundColor = .white
             $0.layer.masksToBounds = false
-            $0.applyAdditionalSubview(nextButton, withTopOffset: 20)
+            $0.applyAdditionalSubview(nextButton, withTopOffset: 16)
         }
         
         nextButton.do {

@@ -241,7 +241,6 @@ extension MyPageProfileCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let tagCount = myPageTagData.filter { $0.1 == true }.count
-//        configureBubbleView(tagCount == 0 ? false : true)
         return tagCount
     }
     
