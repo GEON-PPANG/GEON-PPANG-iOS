@@ -48,7 +48,6 @@ final class MyReviewsHeaderView: UICollectionReusableView {
             $0.basic(font: .captionM1!,
                      color: .gbbGray400!)
         }
-
     }
     
     func configuteDateText(_ date: String) {

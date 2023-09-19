@@ -48,7 +48,8 @@ final class CommonButton: UIButton {
         self.do {
             $0.makeCornerRound(radius: 12)
             $0.titleLabel?.font = .headLine
-            $0.addAction(UIAction { _ in
+            $0.addAction(UIAction { [weak self] _ in
+                guard let self else { return }
                 self.tappedCommonButton?()
             }, for: .touchUpInside)
         }
