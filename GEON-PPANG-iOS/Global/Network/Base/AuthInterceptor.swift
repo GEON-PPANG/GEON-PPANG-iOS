@@ -42,7 +42,9 @@ final class AuthInterceptor: RequestInterceptor {
         
         guard request.retryCount < 2
         else {
-            Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
+            DispatchQueue.main.async {
+                Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
+            }
             return
         }
         
