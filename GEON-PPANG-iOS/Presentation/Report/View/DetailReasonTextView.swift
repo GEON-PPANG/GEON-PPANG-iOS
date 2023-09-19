@@ -12,29 +12,6 @@ import Then
 
 final class DetailReasonTextView: UIView {
     
-    // MARK: - Property
-    
-    enum TextViewStatus {
-        case deactivated
-        case activated
-    }
-    
-    private var borderColor: UIColor {
-        switch status {
-        case .deactivated: return .gbbGray300!
-        case .activated: return .gbbGray500!
-        }
-    }
-    
-    private var textColor: UIColor {
-        switch status {
-        case .deactivated: return .gbbGray300!
-        case .activated: return .gbbGray700!
-        }
-    }
-    
-    private var status: TextViewStatus = .deactivated
-    
     // MARK: - UI Property
     
     let detailTextView = UITextView()
@@ -94,20 +71,6 @@ final class DetailReasonTextView: UIView {
     }
     
     // MARK: - Custom Method
-    
-    func configureTextView(to status: TextViewStatus) {
-        
-        self.status = status
-        
-        detailTextView.do {
-            $0.textColor = textColor
-            $0.makeBorder(width: 1, color: borderColor)
-        }
-        
-        textLimitLabel.do {
-            $0.textColor = textColor
-        }
-    }
     
     func updateTextLimitLabel(to textCount: Int) {
         
