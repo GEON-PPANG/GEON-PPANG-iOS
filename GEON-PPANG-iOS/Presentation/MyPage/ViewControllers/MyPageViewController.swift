@@ -164,6 +164,7 @@ extension MyPageViewController {
             case 200:
                 print("🔴logout")
                 KeychainService.deleteKeychain(of: .access)
+                KeychainService.deleteKeychain(of: .refresh)
                 if KeychainService.readKeychain(of: .socialType) == "KAKAO" {
                     KakaoService.logout()
                 }
