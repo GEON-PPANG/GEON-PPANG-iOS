@@ -123,6 +123,7 @@ struct I18N {
         static let writeReview = "리뷰 작성하기"
     }
     
+    /// Report
     struct Report {
         static let reportReason = "신고하려는 사유를 선택해 주세요!"
         static let advertisement = "홍보 및 신뢰할 수 없는 게시물"
@@ -132,6 +133,7 @@ struct I18N {
         static let detailReportReason = "자세한 신고 사유는 아래 적어주세요!"
         static let detailPlaceholder = "신고 내용을 입력해 주세요."
         static let pleaseReport = "여러분의 신고를 바탕으로 깨끗한 리뷰를 제공해 드릴 수 있도록 노력하겠습니다."
+        static let reportComplete = "신고가 완료됐어요!"
     }
     
     /// Nickname
