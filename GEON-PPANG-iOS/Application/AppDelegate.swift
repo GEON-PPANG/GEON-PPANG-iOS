@@ -7,8 +7,7 @@
 
 import UIKit
 
-import FirebaseCore
-
+import Sentry
 import KakaoSDKCommon
 
 @main
@@ -16,7 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        FirebaseApp.configure()
+        SentrySDK.start { options in
+            options.dsn = Config.accessToken
+            options.debug = true
+            options.tracesSampleRate = 1.0
+            options.profilesSampleRate = 1.0
+        }
         AnalyticManager.initialize()
         KakaoSDK.initSDK(appKey: Config.kakaoNativeAppKey)
         sleep(UInt32(1.5))
