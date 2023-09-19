@@ -72,16 +72,6 @@ final class AlertViewController: BaseViewController {
             print("cancel tapped")
         }
         alert.acceptAction = acceptAction
-//        { [weak self] in
-//            // TODO: API 연결
-//            switch alert.alertType {
-//            case .logout: print("logout API")
-//            case .leave: print("leave API")
-//            }
-//            let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
-//            sceneDelegate?.changeRootViewControllerToOnboardingViewController()
-//            print("accept tapped")
-//        }
     }
     
     // MARK: - Custom Method
