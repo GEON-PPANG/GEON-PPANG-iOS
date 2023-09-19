@@ -254,6 +254,7 @@ extension SignInViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
         configureTextFieldText(textField)
         textField.resignFirstResponder()
         return true
