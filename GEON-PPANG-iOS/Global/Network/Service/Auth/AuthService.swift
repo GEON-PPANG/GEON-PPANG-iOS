@@ -12,8 +12,12 @@ import Moya
 enum AuthService {
     case checkEmail(request: EmailRequestDTO)
     case checkNickname(request: NicknameRequestDTO)
-    
     case login(request: LoginRequestDTO)
+    case signUp(request: SignUpRequestDTO)
+    case refreshToken
+    case withdraw
+    case appleWithdraw
+    case logout
 }
 
 extension AuthService: TargetType {
@@ -29,13 +33,25 @@ extension AuthService: TargetType {
             return URLConstant.checkNickname
         case .login:
             return URLConstant.login
+        case .signUp:
+            return URLConstant.signup
+        case .refreshToken:
+            return URLConstant.refreshToken
+        case .logout:
+            return URLConstant.logout
+        case .withdraw, .appleWithdraw:
+            return URLConstant.withdraw
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .checkEmail, .checkNickname, .login:
+        case .checkEmail, .checkNickname, .login, .signUp, .logout:
             return .post
+        case .refreshToken:
+            return .get
+        case .withdraw, .appleWithdraw:
+            return .delete
         }
     }
     
@@ -47,13 +63,31 @@ extension AuthService: TargetType {
             return .requestJSONEncodable(data)
         case .login(request: let data):
             return .requestJSONEncodable(data)
+        case .signUp(request: let data):
+            return .requestJSONEncodable(data)
+        case .refreshToken:
+            return .requestPlain
+        case .logout:
+            return .requestPlain
+        case .withdraw, .appleWithdraw:
+            return .requestPlain
         }
     }
     
     var headers: [String: String]? {
         switch self {
-        default:
-            return NetworkConstant.noTokenHeader
+        case .checkEmail, .checkNickname, .login:
+            return NetworkConstant.header(.noToken)
+        case .signUp:
+            return NetworkConstant.header(.platformToken)
+        case .refreshToken:
+            return NetworkConstant.header(.accessAndRefreshToken)
+        case .logout:
+            return NetworkConstant.header(.accessToken)
+        case .withdraw:
+            return NetworkConstant.header(.accessToken)
+        case .appleWithdraw:
+            return NetworkConstant.header(.appleRefresh)
         }
-    }    
+    }
 }

@@ -18,7 +18,7 @@ final class FilterAPI {
     
     private init() {}
     
-    var filterProvider = MoyaProvider<FilterService>(plugins: [MoyaLoggingPlugin()])
+    var filterProvider = MoyaProvider<FilterService>(session: Session(interceptor: AuthInterceptor.shared), plugins: [MoyaLoggingPlugin()])
     
     public private(set) var response: FilterResponse?
     public private(set) var filterTypeResponse: FilterTypeResponse?
@@ -64,6 +64,4 @@ final class FilterAPI {
             }
         }
     }
-    
 }
-

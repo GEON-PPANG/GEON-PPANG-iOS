@@ -52,5 +52,8 @@ extension ReviewService: TargetType {
             return NetworkConstant.hasTokenHeader
         }
     }
+    
+    var validationType: ValidationType {
+        return .successCodes
+    }
 }
-

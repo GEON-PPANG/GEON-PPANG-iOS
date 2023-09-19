@@ -96,10 +96,17 @@ final class HomeViewController: BaseViewController {
         
         topView.do {
             $0.pushToSearchView = {
+                let searchViewController = SearchViewController()
+                searchViewController.viewType = .HOME
                 Utils.push(self.navigationController, SearchViewController())
+                
+                AnalyticManager.log(event: .home(.clickSearchHome))
             }
             $0.addActionToFilterButton {
                 Utils.push(self.navigationController, FilterViewController(isInitial: false))
+                
+                AnalyticManager.log(event: .home(.startFilterHome))
+
             }
         }
         
@@ -251,10 +258,17 @@ extension HomeViewController: UICollectionViewDelegate {
             nextViewController.bakeryID = self.bakeryList[indexPath.item].bakeries.bakeryID
             Utils.push(self.navigationController, nextViewController)
             
+            let bakery = self.bakeryList[indexPath.item].bakeries.name
+            
+            AnalyticManager.log(event: .home(.clickRecommendStore(bakery: bakery)))
+            
         case .review:
             nextViewController.bakeryID = self.reviewList[indexPath.item].reviews.bakeryID
             Utils.push(self.navigationController, nextViewController)
-            
+            let bakery = self.reviewList[indexPath.item].reviews.name
+
+            AnalyticManager.log(event: .home(.clickRecommendReview(bakery: bakery )))
+
         default:
             break
         }

@@ -48,7 +48,7 @@ final class SearchNavigationView: UIView {
         
         self.addSubview(searchTextField)
         searchTextField.snp.makeConstraints {
-            $0.height.equalTo(44)
+            $0.height.equalTo(CGFloat().convertByHeightRatio(44))
             $0.centerY.equalTo(backButton.snp.centerY)
             $0.leading.equalTo(backButton.snp.trailing)
             $0.trailing.equalToSuperview().inset(24)

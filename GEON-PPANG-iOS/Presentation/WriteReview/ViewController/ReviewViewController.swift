@@ -21,6 +21,7 @@ final class ReviewViewController: BaseViewController {
     var myReviewData: MyReviewDetailResponseDTO?
     
     var writeReviewData: WriteReviewRequestDTO = .init(bakeryID: 0, isLike: false, keywordList: [], reviewText: "")
+    var source: AnalyticEventType = .HOME
     
     // MARK: - UI Property
     
@@ -62,7 +63,7 @@ final class ReviewViewController: BaseViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -76,6 +77,7 @@ final class ReviewViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         getReview()
+        Utils.setDetailSourceType(self.source)
     }
     
     // MARK: - Setting

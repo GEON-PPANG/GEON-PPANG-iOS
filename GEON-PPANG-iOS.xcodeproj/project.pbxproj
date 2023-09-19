@@ -41,6 +41,7 @@
 		093214082A5AE40900875EF6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093214072A5AE40900875EF6 /* SearchViewController.swift */; };
 		093EFA592A61F62D003228CD /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093EFA582A61F62D003228CD /* SignInViewController.swift */; };
 		094392CF2A84E68700984310 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 094392CE2A84E68700984310 /* GoogleService-Info.plist */; };
+		0943B9302AB610A8006EC1DE /* AnalyticEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0943B92F2AB610A8006EC1DE /* AnalyticEventType.swift */; };
 		0949750E2A67EC9B00A63420 /* MyReviewsResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0949750D2A67EC9B00A63420 /* MyReviewsResponseDTO.swift */; };
 		094F3AF72AB3DFB300A34154 /* AnalyticManagerUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094F3AF62AB3DFB300A34154 /* AnalyticManagerUser.swift */; };
 		0959F1482A6583C200E77CAF /* NetworkLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F1472A6583C200E77CAF /* NetworkLoggerPlugin.swift */; };
@@ -107,7 +108,6 @@
 		09C626582A5B4269002C8110 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C626572A5B4269002C8110 /* HomeHeaderView.swift */; };
 		09CA3EF82A5676AA0063897A /* CommonButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CA3EF72A5676AA0063897A /* CommonButton.swift */; };
 		09CA3EFC2A569E4A0063897A /* URLConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CA3EFB2A569E4A0063897A /* URLConstant.swift */; };
-		09CA3F082A569EBA0063897A /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CA3F072A569EBA0063897A /* Service.swift */; };
 		09CD07902A620D7D00A078DE /* NickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CD078F2A620D7D00A078DE /* NickNameViewController.swift */; };
 		09CD07922A624B7D00A078DE /* SignInTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CD07912A624B7D00A078DE /* SignInTextField.swift */; };
 		09D55FC72A99F69000997FB4 /* BakeryCommonListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D55FC62A99F69000997FB4 /* BakeryCommonListResponseDTO.swift */; };
@@ -142,6 +142,9 @@
 		3E23CCF62A8BD9A40091957D /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556302A51DDD800752067 /* UITableView+.swift */; };
 		3E23CCF72A8BD9C30091957D /* BakeryCommonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682EA2A5D12BD0008F4FB /* BakeryCommonCollectionViewCell.swift */; };
 		3E2EEF752A5C93010093BCA9 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2EEF742A5C93010093BCA9 /* BottomView.swift */; };
+		3E3543302AAC700600BD926A /* SignUpRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E35432F2AAC700600BD926A /* SignUpRequestDTO.swift */; };
+		3E3543322AAC707200BD926A /* PlatformEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3543312AAC707200BD926A /* PlatformEnum.swift */; };
+		3E3543342AAD594E00BD926A /* SignUpResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3543332AAD594E00BD926A /* SignUpResponseDTO.swift */; };
 		3E36D7CD2A8DE65D00B2C1CC /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 3E36D7CC2A8DE65D00B2C1CC /* KakaoSDKAuth */; };
 		3E36D7CF2A8DE65D00B2C1CC /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 3E36D7CE2A8DE65D00B2C1CC /* KakaoSDKCommon */; };
 		3E36D7D12A8DE65D00B2C1CC /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = 3E36D7D02A8DE65D00B2C1CC /* KakaoSDKUser */; };
@@ -173,6 +176,16 @@
 		3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */; };
 		3EA2E1EB2A542151003516A3 /* SizeLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1EA2A542151003516A3 /* SizeLiteral.swift */; };
 		3EAC950D2A9FAF4500D2AADC /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC950C2A9FAF4500D2AADC /* WebViewController.swift */; };
+		3EB798102AB2F448004EC35D /* HeaderEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB7980F2AB2F448004EC35D /* HeaderEnum.swift */; };
+		3EB798132AB302B1004EC35D /* AuthInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB798122AB302B1004EC35D /* AuthInterceptor.swift */; };
+		3EB798162AB34275004EC35D /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB798152AB34275004EC35D /* LaunchScreenViewController.swift */; };
+		3EB798182AB7D42B004EC35D /* DeleteUserResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB798172AB7D42B004EC35D /* DeleteUserResponseDTO.swift */; };
+		3EB7981B2AB7F23D004EC35D /* KakaoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB7981A2AB7F23D004EC35D /* KakaoService.swift */; };
+		3EB7981F2AB87150004EC35D /* NicknameRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB7981E2AB87150004EC35D /* NicknameRequestDTO.swift */; };
+		3EB798212AB87188004EC35D /* SetNicknameResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB798202AB87188004EC35D /* SetNicknameResponseDTO.swift */; };
+		3EB798232AB87F48004EC35D /* FetchNicknameResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB798222AB87F48004EC35D /* FetchNicknameResponseDTO.swift */; };
+		3EB798262AB88B0B004EC35D /* MemberAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB798252AB88B0B004EC35D /* MemberAPI.swift */; };
+		3EB798292AB88B4B004EC35D /* MemberService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB798282AB88B4B004EC35D /* MemberService.swift */; };
 		3EBFB5702A63B2B60058F968 /* WriteReviewBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFB56F2A63B2B60058F968 /* WriteReviewBottomSheetView.swift */; };
 		3ED40DF92A5FCF3800C7D5DA /* FilterEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED40DF82A5FCF3800C7D5DA /* FilterEnum.swift */; };
 		3ED40DFB2A5FD26200C7D5DA /* FilterRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED40DFA2A5FD26200C7D5DA /* FilterRequestDTO.swift */; };
@@ -249,6 +262,7 @@
 		093214072A5AE40900875EF6 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		093EFA582A61F62D003228CD /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		094392CE2A84E68700984310 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0943B92F2AB610A8006EC1DE /* AnalyticEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticEventType.swift; sourceTree = "<group>"; };
 		0949750D2A67EC9B00A63420 /* MyReviewsResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewsResponseDTO.swift; sourceTree = "<group>"; };
 		094F3AF62AB3DFB300A34154 /* AnalyticManagerUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticManagerUser.swift; sourceTree = "<group>"; };
 		0959F1472A6583C200E77CAF /* NetworkLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerPlugin.swift; sourceTree = "<group>"; };
@@ -317,7 +331,6 @@
 		09C626572A5B4269002C8110 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		09CA3EF72A5676AA0063897A /* CommonButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonButton.swift; sourceTree = "<group>"; };
 		09CA3EFB2A569E4A0063897A /* URLConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConstant.swift; sourceTree = "<group>"; };
-		09CA3F072A569EBA0063897A /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		09CD078F2A620D7D00A078DE /* NickNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameViewController.swift; sourceTree = "<group>"; };
 		09CD07912A624B7D00A078DE /* SignInTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInTextField.swift; sourceTree = "<group>"; };
 		09D55FC62A99F69000997FB4 /* BakeryCommonListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryCommonListResponseDTO.swift; sourceTree = "<group>"; };
@@ -349,6 +362,9 @@
 		3E232AC42A938F6400125B76 /* BookmarkCountLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkCountLabel.swift; sourceTree = "<group>"; };
 		3E232ACA2A95A02200125B76 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		3E2EEF742A5C93010093BCA9 /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
+		3E35432F2AAC700600BD926A /* SignUpRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequestDTO.swift; sourceTree = "<group>"; };
+		3E3543312AAC707200BD926A /* PlatformEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformEnum.swift; sourceTree = "<group>"; };
+		3E3543332AAD594E00BD926A /* SignUpResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponseDTO.swift; sourceTree = "<group>"; };
 		3E36D7D22A8E15C200B2C1CC /* GEON-PPANG-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "GEON-PPANG-iOS.entitlements"; sourceTree = "<group>"; };
 		3E36D7D52A8E6AF000B2C1CC /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		3E36D7D72A8E6BC500B2C1CC /* FilterDiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDiffableDataSource.swift; sourceTree = "<group>"; };
@@ -378,6 +394,16 @@
 		3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		3EA2E1EA2A542151003516A3 /* SizeLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeLiteral.swift; sourceTree = "<group>"; };
 		3EAC950C2A9FAF4500D2AADC /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		3EB7980F2AB2F448004EC35D /* HeaderEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderEnum.swift; sourceTree = "<group>"; };
+		3EB798122AB302B1004EC35D /* AuthInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInterceptor.swift; sourceTree = "<group>"; };
+		3EB798152AB34275004EC35D /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
+		3EB798172AB7D42B004EC35D /* DeleteUserResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserResponseDTO.swift; sourceTree = "<group>"; };
+		3EB7981A2AB7F23D004EC35D /* KakaoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoService.swift; sourceTree = "<group>"; };
+		3EB7981E2AB87150004EC35D /* NicknameRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameRequestDTO.swift; sourceTree = "<group>"; };
+		3EB798202AB87188004EC35D /* SetNicknameResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNicknameResponseDTO.swift; sourceTree = "<group>"; };
+		3EB798222AB87F48004EC35D /* FetchNicknameResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchNicknameResponseDTO.swift; sourceTree = "<group>"; };
+		3EB798252AB88B0B004EC35D /* MemberAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberAPI.swift; sourceTree = "<group>"; };
+		3EB798282AB88B4B004EC35D /* MemberService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberService.swift; sourceTree = "<group>"; };
 		3EBFB56F2A63B2B60058F968 /* WriteReviewBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewBottomSheetView.swift; sourceTree = "<group>"; };
 		3ED40DF82A5FCF3800C7D5DA /* FilterEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterEnum.swift; sourceTree = "<group>"; };
 		3ED40DFA2A5FD26200C7D5DA /* FilterRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterRequestDTO.swift; sourceTree = "<group>"; };
@@ -711,6 +737,7 @@
 		0959F1612A658C3000E77CAF /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				3EB7982A2AB88C84004EC35D /* Member */,
 				3E61EE8F2AA9530D004F25DB /* Review */,
 				3E8B2FFA2A67A56E001BD057 /* Common */,
 				0959F1682A658C5F00E77CAF /* Auth */,
@@ -777,6 +804,10 @@
 			children = (
 				0959F16B2A658C9500E77CAF /* AuthResponseDTO.swift */,
 				09E445322AA34F90008E3D33 /* AuthRequestDTO.swift */,
+				3E35432F2AAC700600BD926A /* SignUpRequestDTO.swift */,
+				3E3543332AAD594E00BD926A /* SignUpResponseDTO.swift */,
+				3EB798172AB7D42B004EC35D /* DeleteUserResponseDTO.swift */,
+				3EB7981E2AB87150004EC35D /* NicknameRequestDTO.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -851,6 +882,8 @@
 		0961C3672A501EE40031A822 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				3EB798272AB88B41004EC35D /* Member */,
+				3EB798192AB7F22B004EC35D /* Social */,
 				3E61EE902AA953E7004F25DB /* Review */,
 				0959F1602A658C1600E77CAF /* Auth */,
 				0959F15F2A658C1200E77CAF /* Filter */,
@@ -859,7 +892,6 @@
 				0959F15C2A658C0300E77CAF /* Bakery */,
 				0959F15A2A658B4800E77CAF /* MyPage */,
 				0959F1592A658B4100E77CAF /* Bookmark */,
-				09CA3F072A569EBA0063897A /* Service.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -867,6 +899,7 @@
 		0961C3682A501EE90031A822 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				3EB798242AB88AFE004EC35D /* Member */,
 				3E61EE932AA95587004F25DB /* Review */,
 				0959F1542A6589D800E77CAF /* Auth */,
 				0959F1552A6589E000E77CAF /* Filter */,
@@ -890,6 +923,7 @@
 				0959F1512A65844A00E77CAF /* NetworkConstant.swift */,
 				0959F14D2A65840300E77CAF /* NetworkResult.swift */,
 				0959F14F2A65840F00E77CAF /* NetworkBase.swift */,
+				3EB798122AB302B1004EC35D /* AuthInterceptor.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -897,6 +931,7 @@
 		0961C36A2A501EF60031A822 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				3EB798142AB3425B004EC35D /* LaunchScreen */,
 				3E232AC82A95A00900125B76 /* Welcome */,
 				DFB585F52A5F314D0077D272 /* BakeryDetail */,
 				DFBCFA3B2AB6E17700D3E649 /* Report */,
@@ -1371,6 +1406,47 @@
 			path = WebView;
 			sourceTree = "<group>";
 		};
+		3EB798142AB3425B004EC35D /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				3EB798152AB34275004EC35D /* LaunchScreenViewController.swift */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		3EB798192AB7F22B004EC35D /* Social */ = {
+			isa = PBXGroup;
+			children = (
+				3EB7981A2AB7F23D004EC35D /* KakaoService.swift */,
+			);
+			path = Social;
+			sourceTree = "<group>";
+		};
+		3EB798242AB88AFE004EC35D /* Member */ = {
+			isa = PBXGroup;
+			children = (
+				3EB798252AB88B0B004EC35D /* MemberAPI.swift */,
+			);
+			path = Member;
+			sourceTree = "<group>";
+		};
+		3EB798272AB88B41004EC35D /* Member */ = {
+			isa = PBXGroup;
+			children = (
+				3EB798282AB88B4B004EC35D /* MemberService.swift */,
+			);
+			path = Member;
+			sourceTree = "<group>";
+		};
+		3EB7982A2AB88C84004EC35D /* Member */ = {
+			isa = PBXGroup;
+			children = (
+				3EB798222AB87F48004EC35D /* FetchNicknameResponseDTO.swift */,
+				3EB798202AB87188004EC35D /* SetNicknameResponseDTO.swift */,
+			);
+			path = Member;
+			sourceTree = "<group>";
+		};
 		3ED40DFC2A608B2B00C7D5DA /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1436,6 +1512,9 @@
 				09980CFA2A99A9800098550C /* SignInPropertyType.swift */,
 				3E61EE872AA63BE4004F25DB /* ReviewEnum.swift */,
 				097716E82AA575C6001EE6D5 /* BakeryListEmptyType.swift */,
+				3E3543312AAC707200BD926A /* PlatformEnum.swift */,
+				3EB7980F2AB2F448004EC35D /* HeaderEnum.swift */,
+				0943B92F2AB610A8006EC1DE /* AnalyticEventType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -1660,10 +1739,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E23CCF72A8BD9C30091957D /* BakeryCommonCollectionViewCell.swift in Sources */,
+				3EB798292AB88B4B004EC35D /* MemberService.swift in Sources */,
 				3E23CCF62A8BD9A40091957D /* UITableView+.swift in Sources */,
 				3E77EC7C2AAAFAE3007995AD /* KeychainKey.swift in Sources */,
 				3E23CCF52A8BD9950091957D /* UIView+.swift in Sources */,
 				0959F18E2A658D1700E77CAF /* SearchService.swift in Sources */,
+				3EB7981B2AB7F23D004EC35D /* KakaoService.swift in Sources */,
 				0959F1802A658CE800E77CAF /* SearchAPI.swift in Sources */,
 				3E06F8DB2A9E5759001302F4 /* AlertView.swift in Sources */,
 				3E36D7D62A8E6AF000B2C1CC /* FilterViewController.swift in Sources */,
@@ -1699,6 +1780,7 @@
 				3ED40DF92A5FCF3800C7D5DA /* FilterEnum.swift in Sources */,
 				3E61EE952AA95592004F25DB /* ReviewAPI.swift in Sources */,
 				0959F1842A658CF300E77CAF /* MyPageAPI.swift in Sources */,
+				3EB798262AB88B0B004EC35D /* MemberAPI.swift in Sources */,
 				0924632F2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift in Sources */,
 				097682E92A5D0B6B0008F4FB /* BakeryListTopView.swift in Sources */,
 				3E162D1A2A692C4900590C6F /* BookmarkResponseDTO.swift in Sources */,
@@ -1739,8 +1821,8 @@
 				09C6264E2A5B29F8002C8110 /* SearchEnum.swift in Sources */,
 				DFF196342A697EF8005D8233 /* Int+.swift in Sources */,
 				0959F17C2A658CDA00E77CAF /* FilterAPI.swift in Sources */,
+				3EB798132AB302B1004EC35D /* AuthInterceptor.swift in Sources */,
 				0915C16A2A5BFC5900ACB8D4 /* HomeBottomCollectionViewCell.swift in Sources */,
-				09CA3F082A569EBA0063897A /* Service.swift in Sources */,
 				DF483ACE2A65893600FCD507 /* IconLabelStackView.swift in Sources */,
 				DFECBB0A2A691B9B007F054B /* WrittenReviewsResponseDTO.swift in Sources */,
 				3EE466A42A69CAC6007C3C77 /* SimpleBakeryModel.swift in Sources */,
@@ -1767,6 +1849,7 @@
 				3EA2E1EB2A542151003516A3 /* SizeLiteral.swift in Sources */,
 				DFB585F72A5F31D80077D272 /* BakeryDetailViewController.swift in Sources */,
 				3EFA97862A5EBCA9002E70FA /* LineView.swift in Sources */,
+				3E3543302AAC700600BD926A /* SignUpRequestDTO.swift in Sources */,
 				0987288D2A5BA1F000A29402 /* BookmarkButton.swift in Sources */,
 				0959F18C2A658D1100E77CAF /* HomeService.swift in Sources */,
 				090556202A51DB2C00752067 /* UIImage+.swift in Sources */,
@@ -1792,20 +1875,25 @@
 				0959F16C2A658C9500E77CAF /* AuthResponseDTO.swift in Sources */,
 				3E7B21C02A61CB8C00C8F8B4 /* SortBottomSheetViewController.swift in Sources */,
 				DF483AD02A65D03A00FCD507 /* UIButton+.swift in Sources */,
+				0943B9302AB610A8006EC1DE /* AnalyticEventType.swift in Sources */,
 				094F3AF72AB3DFB300A34154 /* AnalyticManagerUser.swift in Sources */,
 				092EFCA42A6195D900E7C262 /* CommonTextView.swift in Sources */,
 				3E16E5022A58176800B813D0 /* ReviewDetailTextView.swift in Sources */,
 				3E232ABC2A8FDB8F00125B76 /* FilterCollectionViewHeader.swift in Sources */,
 				DFB587B92A5D584800704B6C /* OnboardingViewController.swift in Sources */,
+				3E3543342AAD594E00BD926A /* SignUpResponseDTO.swift in Sources */,
 				09E445332AA34F90008E3D33 /* AuthRequestDTO.swift in Sources */,
 				097716E72AA4E787001EE6D5 /* AuthPlugin.swift in Sources */,
 				DF959A6E2A568C9400E75774 /* UIColor+.swift in Sources */,
 				3E452B672A60E68000EA456D /* MyPageResponseDTO.swift in Sources */,
 				09C626562A5B3572002C8110 /* HomeBestReviewResponseDTO.swift in Sources */,
 				095FB88A2AB36FCA00C69BD1 /* AnalyticManagerEvent.swift in Sources */,
+				3EB798212AB87188004EC35D /* SetNicknameResponseDTO.swift in Sources */,
 				090556472A51E7D900752067 /* UITextView+.swift in Sources */,
 				3EDC05D02A5E4FF900EAD950 /* String+.swift in Sources */,
 				09FD47E42A5E82BB002020BD /* BottomSheetAppearView.swift in Sources */,
+				3EB798102AB2F448004EC35D /* HeaderEnum.swift in Sources */,
+				3EB798182AB7D42B004EC35D /* DeleteUserResponseDTO.swift in Sources */,
 				0905562B2A51DBCE00752067 /* UIStackView+.swift in Sources */,
 				09B13F562A59410C00C0C723 /* CALayer+.swift in Sources */,
 				09CD07902A620D7D00A078DE /* NickNameViewController.swift in Sources */,
@@ -1817,9 +1905,11 @@
 				095FB8842AB3435300C69BD1 /* AnalyticManagerProtocol.swift in Sources */,
 				3E162D182A692C1400590C6F /* BookmarkRequestDTO.swift in Sources */,
 				0930D25F2A928C2300A75C7E /* RecommendKeywordResponseDTO.swift in Sources */,
+				3EB798162AB34275004EC35D /* LaunchScreenViewController.swift in Sources */,
 				0959F17A2A658CD300E77CAF /* AuthAPI.swift in Sources */,
 				0930D2632A93292F00A75C7E /* IconWithTextView.swift in Sources */,
 				3E61EE882AA63BE4004F25DB /* ReviewEnum.swift in Sources */,
+				3E3543322AAC707200BD926A /* PlatformEnum.swift in Sources */,
 				0959F18A2A658D0C00E77CAF /* FilterService.swift in Sources */,
 				3E79B1B52A571E7100D36A26 /* OptionsCollectionViewCell.swift in Sources */,
 				3EAC950D2A9FAF4500D2AADC /* WebViewController.swift in Sources */,
@@ -1849,6 +1939,8 @@
 				0930D25D2A928BF200A75C7E /* NearStationResponseDTO.swift in Sources */,
 				09FD47CA2A5DD38D002020BD /* SearchResultHeaderView.swift in Sources */,
 				3E232ACB2A95A02200125B76 /* WelcomeViewController.swift in Sources */,
+				3EB798232AB87F48004EC35D /* FetchNicknameResponseDTO.swift in Sources */,
+				3EB7981F2AB87150004EC35D /* NicknameRequestDTO.swift in Sources */,
 				09FD47CA2A5DD38D002020BD /* SearchResultHeaderView.swift in Sources */,
 				0949750E2A67EC9B00A63420 /* MyReviewsResponseDTO.swift in Sources */,
 				3E06F8D62A9CB83C001302F4 /* DiffableDataSourceProtocol.swift in Sources */,
