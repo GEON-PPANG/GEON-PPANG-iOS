@@ -14,6 +14,9 @@ final class NickNameViewController: BaseViewController {
     
     // MARK: - Property
     
+    var email: String = ""
+    var password: String = ""
+    var platformType: PlatformType = .none
     private var checkNickname: String = ""
     private var isValid: Bool = false {
         didSet {
@@ -138,7 +141,10 @@ final class NickNameViewController: BaseViewController {
             $0.configureButtonTitle(isValid ? .start : .next)
             $0.configureButtonUI(isValid ? .gbbMain2! : .gbbGray200!)
             $0.tappedCommonButton = {
-                Utils.push(self.navigationController, WelcomeViewController(nickname: self.nicknameTextField.fetchText()))
+                self.postSignUP(platformType: self.platformType,
+                                email: self.email,
+                                password: self.password,
+                                nickname: self.checkNickname)
             }
         }
     }
@@ -214,6 +220,23 @@ extension NickNameViewController {
                 self.configureBottomSheet(.sad, I18N.Bottomsheet.duplicatedNickname)
                 self.configureNextButtonUI(false)
             }
+        }
+    }
+    
+    private func postSignUP(platformType: PlatformType,
+                            email: String,
+                            password: String,
+                            nickname: String ) {
+        
+        let userInfo = SignUpRequestDTO(platformType: platformType,
+                                        email: email,
+                                        password: password,
+                                        nickname: nickname)
+        AuthAPI.shared.postSignUp(with: userInfo) { result in
+            guard result != nil else { return }
+            AnalyticManager.log(event: .onboarding(.completeNickname(nickname: nickname)))
+            AnalyticManager.log(event: .onboarding(.completeSignup))
+            Utils.push(self.navigationController, WelcomeViewController(nickname: nickname))
         }
     }
 }
