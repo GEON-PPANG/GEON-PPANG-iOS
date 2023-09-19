@@ -162,7 +162,7 @@ extension MyPageViewController {
         AuthAPI.shared.logout { code in
             switch code {
             case 200:
-                print("🔴logout")
+                
                 KeychainService.deleteKeychain(of: .access)
                 KeychainService.deleteKeychain(of: .refresh)
                 if KeychainService.readKeychain(of: .socialType) == "KAKAO" {

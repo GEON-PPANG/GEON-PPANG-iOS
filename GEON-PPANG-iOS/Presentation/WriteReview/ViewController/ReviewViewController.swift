@@ -168,7 +168,7 @@ final class ReviewViewController: BaseViewController {
         
         navigationBar.do {
             $0.backgroundColor = .white
-            $0.configureCenterTitle(to: I18N.Review.myReview, with: .title2!)
+            $0.configureCenterTitle(to: type == .read ? I18N.Review.myReview : I18N.Review.writeReview, with: .title2!)
             $0.configureBottomLine()
             $0.configureBackButtonAction(UIAction { [weak self] _ in
                 self?.backButtonTapped()
@@ -434,8 +434,8 @@ extension ReviewViewController {
         
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             UIView.animate(withDuration: 0.2, animations: {
-                self.bottomView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + 30)
-                self.scrollView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + 30)
+                self.bottomView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + (UIScreen.main.hasNotch ? 30 : 0))
+                self.contentView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + 30)
             })
         }
     }
@@ -445,7 +445,7 @@ extension ReviewViewController {
         
         UIView.animate(withDuration: 0.2, animations: {
             self.bottomView.transform = .identity
-            self.scrollView.transform = .identity
+            self.contentView.transform = .identity
         })
     }
 

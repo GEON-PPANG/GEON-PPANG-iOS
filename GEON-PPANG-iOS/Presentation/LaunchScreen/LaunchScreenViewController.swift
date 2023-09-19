@@ -33,6 +33,13 @@ final class LaunchScreenViewController: BaseViewController {
         }
     }
     
+    override func setUI() {
+        
+        view.do {
+            $0.backgroundColor = .gbbBackground2
+        }
+    }
+    
     private func checkUserLoggedIn() {
         
         getNickname { nickname in
