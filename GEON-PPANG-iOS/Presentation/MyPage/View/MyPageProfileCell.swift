@@ -201,7 +201,6 @@ final class MyPageProfileCell: UICollectionViewCell {
                 $0.top.equalTo(userNameLabel.snp.bottom).offset(6)
                 $0.size.equalTo(CGSize(width: 209, height: 36))
             }
-            firstAppearance = false
         } else {
             bubbleView.removeFromSuperview()
         }
