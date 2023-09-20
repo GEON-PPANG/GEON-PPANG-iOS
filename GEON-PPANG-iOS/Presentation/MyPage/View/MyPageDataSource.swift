@@ -41,8 +41,6 @@ final class MyPageDataSource: DiffableDataSourceProtocol {
     var filterButtonTapped: Action?
     var savedBakeryTapped: Action?
     var myReviewsTapped: Action?
-    
-    //    var logoutTapped: Action?
     var leaveTapped: Action?
     
     // MARK: - UI Property
@@ -64,10 +62,6 @@ final class MyPageDataSource: DiffableDataSourceProtocol {
     // MARK: - Setting
     
     func setCollectionView() {
-        
-        collectionView.register(header: ProfileCell.self)
-        collectionView.register(cell: BasicCell.self)
-        collectionView.register(footer: Footer.self)
         
         collectionView.collectionViewLayout = createLayout()
     }

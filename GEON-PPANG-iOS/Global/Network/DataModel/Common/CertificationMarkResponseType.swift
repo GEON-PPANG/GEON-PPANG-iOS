@@ -14,3 +14,10 @@ struct CertificationMarkResponseType: Hashable, Codable {
     let isNonGMO: Bool
     
 }
+
+extension CertificationMarkResponseType {
+    
+    func toBooleanArray() -> [Bool] {
+        return [isHACCP, isVegan, isNonGMO]
+    }
+}

@@ -58,7 +58,7 @@ final class MyReviewsViewController: BaseViewController {
             $0.configureBackButtonAction(UIAction { _ in
                 self.navigationController?.popViewController(animated: true)
             })
-            $0.configureCenterTitle(to: I18N.MyReviews.naviTitle)
+            $0.configureCenterTitle(to: I18N.MyReviews.naviTitle, with: .title2!)
         }
         
         collectionView.do {
@@ -91,7 +91,7 @@ final class MyReviewsViewController: BaseViewController {
                                                            headerMode: .supplementary) { indexPath, config in
                     
                     var config = config
-                    config.bottomSeparatorInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 0)
+                    config.bottomSeparatorInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
                     if indexPath == self.collectionView.lastIndexPath() {
                         config.bottomSeparatorVisibility = .hidden
                     }
@@ -125,13 +125,14 @@ extension MyReviewsViewController: UICollectionViewDelegate {
         let data = myReviewsList[indexPath.section]
         let bakery = data.bakeryList
         let bakeryData = SimpleBakeryModel(
-            bakeryID: bakery.bakeryID,
-            bakeryName: bakery.name,
-            bakeryImageURL: bakery.picture,
-            bakeryIngredients: bakery.breadType.configureTrueOptionStrings(),
-            bakeryRegion: bakery.station.components(separatedBy: ", ")
+            id: bakery.bakeryID,
+            name: bakery.name,
+            imageURL: bakery.picture,
+            ingredients: bakery.breadType.configureTrueOptionStrings(),
+            region: bakery.station.components(separatedBy: ", "),
+            certificates: bakery.mark
         )
-        let reviewViewController = ReviewViewController(type: .read, bakeryData: bakeryData, reviewID: data.reviewID)
+        let reviewViewController = ReviewViewController(type: .read, bakeryData: bakeryData, reviewID: data.reviewID, reviewDate: data.createdAt)
         reviewViewController.source = .MYPAGE_MYREVIEW
         Utils.push(self.navigationController, reviewViewController)
     }

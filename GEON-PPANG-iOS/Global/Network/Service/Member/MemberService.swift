@@ -44,7 +44,7 @@ extension MemberService: TargetType {
         }
     }
     
-    var headers: [String : String]? {
+    var headers: [String: String]? {
         switch self {
         case .setNickname:
             return NetworkConstant.header(.accessToken)

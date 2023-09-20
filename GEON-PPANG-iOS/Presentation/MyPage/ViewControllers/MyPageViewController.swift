@@ -62,7 +62,7 @@ final class MyPageViewController: BaseViewController {
     override func setUI() {
         
         navigationBar.do {
-            $0.configureCenterTitle(to: I18N.MyPage.title)
+            $0.configureCenterTitle(to: I18N.MyPage.title, with: .title1!)
             $0.configureBottomLine()
             $0.hideBackButton(true)
         }
@@ -74,6 +74,7 @@ final class MyPageViewController: BaseViewController {
             $0.dataSource = myPageDataSource.dataSource
             $0.backgroundColor = .gbbGray100
             $0.bounces = false
+            $0.showsVerticalScrollIndicator = false
         }
     }
     
@@ -162,8 +163,8 @@ extension MyPageViewController {
         AuthAPI.shared.logout { code in
             switch code {
             case 200:
-                print("🔴logout")
                 KeychainService.deleteKeychain(of: .access)
+                KeychainService.deleteKeychain(of: .refresh)
                 if KeychainService.readKeychain(of: .socialType) == "KAKAO" {
                     KakaoService.logout()
                 }

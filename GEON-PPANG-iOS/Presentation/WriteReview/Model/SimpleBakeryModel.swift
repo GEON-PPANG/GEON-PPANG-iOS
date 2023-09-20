@@ -8,18 +8,22 @@
 import UIKit
 
 struct SimpleBakeryModel {
-    var bakeryID: Int
-    var bakeryName: String
-    var bakeryImageURL: String
-    var bakeryIngredients: [String]
-    var bakeryRegion: [String]
+    var id: Int
+    var name: String
+    var imageURL: String
+    var ingredients: [String]
+    var region: [String]
+    var certificates: CertificationMarkResponseType
     
     static func emptyModel() -> SimpleBakeryModel {
         
-        return .init(bakeryID: 0,
-                     bakeryName: "",
-                     bakeryImageURL: "",
-                     bakeryIngredients: [],
-                     bakeryRegion: [])
+        return .init(
+            id: 0,
+            name: "",
+            imageURL: "",
+            ingredients: [],
+            region: [],
+            certificates: .init(isHACCP: false, isVegan: false, isNonGMO: false)
+        )
     }
 }
