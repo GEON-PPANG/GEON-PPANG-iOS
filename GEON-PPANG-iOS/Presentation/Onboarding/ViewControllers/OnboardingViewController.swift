@@ -258,12 +258,8 @@ extension OnboardingViewController: ASAuthorizationControllerDelegate {
             switch state {
             case .authorized:
                 print("🔴 User authorized 🔴")
-                guard let email = credential.email else {
-                    print("❌ User email not found ❌")
-                    return
-                }
                 
-                if email != "" {
+                if let email = credential.email, email != "" {
                     KeychainService.setKeychain(of: .userEmail, with: email)
                 }
                 
