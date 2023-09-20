@@ -74,6 +74,7 @@ final class MyPageViewController: BaseViewController {
             $0.dataSource = myPageDataSource.dataSource
             $0.backgroundColor = .gbbGray100
             $0.bounces = false
+            $0.showsVerticalScrollIndicator = false
         }
     }
     

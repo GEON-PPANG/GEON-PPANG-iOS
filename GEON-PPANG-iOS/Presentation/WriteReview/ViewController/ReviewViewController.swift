@@ -208,7 +208,7 @@ final class ReviewViewController: BaseViewController {
         }
         
         reviewDetailTextView.do {
-            $0.isUserInteractionEnabled = false
+            $0.isUserInteractionEnabled = true
         }
         
         if type == .read {

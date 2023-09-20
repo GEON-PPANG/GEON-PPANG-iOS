@@ -88,6 +88,7 @@ final class ReviewDetailTextView: UIView {
             $0.makeBorder(width: 1, color: .gbbGray300!)
             $0.textContainerInset = .init(top: 20, left: 28, bottom: 45, right: 28)
             $0.clipsToBounds = true
+            $0.isEditable = type == .read ? false : true
         }
     }
     
