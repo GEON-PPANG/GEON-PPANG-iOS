@@ -63,7 +63,7 @@ final class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setRegistration()
         setDataSource()
         setSnapshot()
@@ -204,7 +204,7 @@ final class HomeViewController: BaseViewController {
     private func normalSection(headerSize: CGFloat) -> NSCollectionLayoutSection {
         
         let itemGroupSize = NSCollectionLayoutSize(widthDimension: .absolute(convertByWidthRatio(192)),
-                                                   heightDimension: .estimated(convertByHeightRatio(236)))
+                                                   heightDimension: .absolute(convertByHeightRatio(236)))
         let item = NSCollectionLayoutItem(layoutSize: itemGroupSize)
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemGroupSize, subitems: [item])
         
