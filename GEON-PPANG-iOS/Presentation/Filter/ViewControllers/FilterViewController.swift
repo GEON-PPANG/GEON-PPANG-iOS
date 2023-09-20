@@ -74,6 +74,7 @@ final class FilterViewController: BaseViewController {
         
         navigationBar.do {
             $0.configureRightCount(1, by: 3)
+            $0.configureBottomLine()
             $0.configureBackButtonAction(UIAction { [weak self] _ in
                 self?.backButtonTapped()
             })

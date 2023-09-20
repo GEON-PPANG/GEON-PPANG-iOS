@@ -12,6 +12,22 @@ import Then
 
 final class BubbleView: UIView {
 
+    // MARK: - Property
+    
+    enum BubbleType {
+        case left
+        case right
+        
+        var image: UIImage {
+            switch self {
+            case .left: return .leftBubbleImage
+            case .right: return .rightBubbleImage
+            }
+        }
+    }
+    
+    var bubbleType: BubbleType
+    
     // MARK: - UI Property
     
     private let bubbleView = UIImageView()
@@ -20,7 +36,9 @@ final class BubbleView: UIView {
     
     // MARK: - Life Cycle
     
-    override init(frame: CGRect) {
+    init(type: BubbleType) {
+        self.bubbleType = type
+        
         super.init(frame: .zero)
         
         setLayout()
@@ -57,7 +75,7 @@ final class BubbleView: UIView {
     private func setUI() {
         
         bubbleView.do {
-            $0.image = .leftBubbleImage
+            $0.image = bubbleType.image
         }
         
         titleLabel.do {

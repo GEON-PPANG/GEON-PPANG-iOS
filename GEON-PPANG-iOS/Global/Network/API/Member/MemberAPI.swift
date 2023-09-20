@@ -21,7 +21,7 @@ final class MemberAPI {
     public private(set) var setNicknameResponse: SetNicknameResponse?
     public private(set) var fetchNicknameResponse: FetchNicknameResponse?
     
-    var memberProvider = MoyaProvider<MemberService>(session: Session(interceptor: AuthInterceptor.shared), plugins: [MoyaLoggingPlugin()])
+    var memberProvider = MoyaProvider<MemberService>(session: Session(interceptor: AuthInterceptor.shared), plugins: [AuthPlugin()])
     
     func postSetNickname(to data: NicknameRequestDTO, completion: @escaping (SetNicknameResponse?) -> Void) {
         
