@@ -262,7 +262,10 @@ extension OnboardingViewController: ASAuthorizationControllerDelegate {
                     print("❌ User email not found ❌")
                     return
                 }
-                KeychainService.setKeychain(of: .userEmail, with: email)
+                
+                if email != "" {
+                    KeychainService.setKeychain(of: .userEmail, with: email)
+                }
                 
                 let request = SignUpRequestDTO(
                     platformType: .apple,
