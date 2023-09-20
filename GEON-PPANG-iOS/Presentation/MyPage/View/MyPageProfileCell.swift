@@ -19,7 +19,6 @@ final class MyPageProfileCell: UICollectionViewCell {
     var filterButtonTapped: (() -> Void)?
     var savedBakeryTapped: (() -> Void)?
     var myReviewsTapped: (() -> Void)?
-    private var hasSeenBubble = false
     
     // MARK: - UI Property
     
@@ -116,8 +115,6 @@ final class MyPageProfileCell: UICollectionViewCell {
             $0.width.equalTo(1)
             $0.height.equalTo(42)
         }
-        
-        configureBubbleView()
     }
     
     private func setUI() {
@@ -173,6 +170,8 @@ final class MyPageProfileCell: UICollectionViewCell {
                 self.myReviewsTapped?()
             }
         }
+        
+        configureBubbleView(true)
     }
     
     private func setDelegate() {
@@ -193,18 +192,18 @@ final class MyPageProfileCell: UICollectionViewCell {
         filterCollectionView.reloadData()
     }
     
-    private func configureBubbleView() {
+    private func configureBubbleView(_ showBubble: Bool) {
         
-        if hasSeenBubble {
-            bubbleView.removeFromSuperview()
-        } else {
+        if showBubble {
             self.addSubview(bubbleView)
             bubbleView.snp.makeConstraints {
                 $0.leading.equalTo(userNameLabel)
                 $0.top.equalTo(userNameLabel.snp.bottom).offset(6)
                 $0.size.equalTo(CGSize(width: 209, height: 36))
             }
-            hasSeenBubble = true
+            firstAppearance = false
+        } else {
+            bubbleView.removeFromSuperview()
         }
     }
     
@@ -241,6 +240,9 @@ extension MyPageProfileCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let tagCount = myPageTagData.filter { $0.1 == true }.count
+        if tagCount != 0 {
+            configureBubbleView(false)
+        }
         return tagCount
     }
     
