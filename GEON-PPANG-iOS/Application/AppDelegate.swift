@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         SentrySDK.start { options in
-            options.dsn = Config.accessToken
+            options.dsn = Config.sentryAPIKey
             options.debug = true
             options.tracesSampleRate = 1.0
             options.profilesSampleRate = 1.0
