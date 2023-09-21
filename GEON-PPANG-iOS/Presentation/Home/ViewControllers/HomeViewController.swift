@@ -210,7 +210,7 @@ final class HomeViewController: BaseViewController {
         
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 12
-        section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+        section.orthogonalScrollingBehavior = .continuous
         
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                                 heightDimension: .absolute(headerSize))
@@ -221,6 +221,7 @@ final class HomeViewController: BaseViewController {
                                                         leading: 24,
                                                         bottom: 30,
                                                         trailing: 24)
+
         section.boundarySupplementaryItems = [header]
         return section
     }
