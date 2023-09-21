@@ -48,6 +48,8 @@ final class BakeryDetailViewController: BaseViewController {
         getBakeryDetail(bakeryID: bakeryID)
         getWrittenReviews(bakeryID: bakeryID)
         Utils.setDetailSourceType(self.source)
+        
+        navigationController?.interactivePopGestureRecognizer?.delegate = nil // swipe back gesture
     }
     
     // MARK: - Setting
@@ -75,17 +77,14 @@ final class BakeryDetailViewController: BaseViewController {
     override func setUI() {
         
         navigationBar.do {
-            $0.configureBackButtonAction(UIAction { [weak self] _ in
-                self?.navigationController?.popViewController(animated: true)
-            })
+            $0.configureBackButtonAction(popViewControllerAction())
+            $0.configureBottomLine()
+            $0.configureRightMapButton()
             $0.tappedMapButton = {
                 guard let url = URL(string: self.overviewData.mapURL) else { return }
                 let safariVC = SFSafariViewController(url: url)
                 self.present(safariVC, animated: true, completion: nil)
             }
-            $0.backgroundColor = .gbbWhite
-            $0.configureBottomLine()
-            $0.configureRightMapButton()
         }
         
         collectionView.do {
@@ -99,7 +98,6 @@ final class BakeryDetailViewController: BaseViewController {
             
             $0.backgroundColor = .gbbGray200
             $0.bounces = false
-            // TODO: 기기대응
             $0.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 92, right: 0)
         }
         
@@ -108,7 +106,7 @@ final class BakeryDetailViewController: BaseViewController {
             $0.tappedBookmarkButton = {
                 self.requestBakeryBookmark(!self.isBookmarked)
                 if !self.isBookmarked {
-                    self.showToast(message: "저장되었습니다!")
+                    self.showToast(message: I18N.Detail.tappedBookmarkButton)
                 }
             }
             $0.tappedWriteReviewButton = {
@@ -230,6 +228,8 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
                 cell.configureCellUI(review, self.labelHeight)
             }
             
+            cell.delegate = self
+            
             return cell
         default:
             return UICollectionViewCell()
@@ -296,7 +296,7 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
             tempLabel.text = reviewData.reviewList[indexPath.item].reviewText
             let maxSize = CGSize(width: convertByWidthRatio(277), height: CGFloat.greatestFiniteMagnitude)
             let labelSize = tempLabel.sizeThatFits(maxSize)
-            labelHeight = reviewData.reviewList[indexPath.item].recommendKeywordList.isEmpty ? labelSize.height + 82 : labelSize.height + 123
+            labelHeight = reviewData.reviewList[indexPath.item].recommendKeywordList.isEmpty ? labelSize.height + 88 : labelSize.height + 123
             
             return CGSize(width: getDeviceWidth(), height: labelHeight)
         default:

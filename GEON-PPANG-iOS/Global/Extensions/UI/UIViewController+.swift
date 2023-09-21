@@ -52,6 +52,7 @@ extension UIViewController {
     // MARK: - objc functions
     
     @objc func endEditingView() {
+        
         view.endEditing(true)
     }
     
