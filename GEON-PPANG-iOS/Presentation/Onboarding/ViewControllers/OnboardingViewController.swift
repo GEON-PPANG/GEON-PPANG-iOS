@@ -259,26 +259,9 @@ extension OnboardingViewController: ASAuthorizationControllerDelegate {
             case .authorized:
                 print("🔴 User authorized 🔴")
                 
-                let request = SignUpRequestDTO(
-                    platformType: .apple,
-                    email: "wpssds9srh@privaterelay.appleid.com",
-                    password: "",
-                    nickname: ""
-                )
-                
-                self.postSignUp(with: request) {
-                    self.getNickname { nickname in
-                        self.checkNickname(nickname)
-                    }
+                if let email = credential.email, email != "" {
+                    KeychainService.setKeychain(of: .userEmail, with: email)
                 }
-                
-            case .notFound:
-                print("🔴 User not found 🔴")
-                guard let email = credential.email else {
-                    print("❌ User email not found ❌")
-                    return
-                }
-                KeychainService.setKeychain(of: .userEmail, with: email)
                 
                 let request = SignUpRequestDTO(
                     platformType: .apple,

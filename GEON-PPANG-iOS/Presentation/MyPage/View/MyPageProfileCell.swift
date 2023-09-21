@@ -35,6 +35,8 @@ final class MyPageProfileCell: UICollectionViewCell {
     private lazy var buttonsStackView = UIStackView(arrangedSubviews: [bookmarkButton, myReviewButton])
     private let seperatorView = UIView()
     
+    private let bubbleView = BubbleView(type: .right)
+    
     // MARK: - Life Cycle
     
     override init(frame: CGRect) {
@@ -84,7 +86,7 @@ final class MyPageProfileCell: UICollectionViewCell {
             $0.leading.equalTo(purposeFilterChipView)
             $0.top.equalTo(userNameLabel.snp.bottom).offset(10)
             $0.height.equalTo(56)
-            $0.width.equalTo(198)
+            $0.width.equalTo(180)
         }
         
         self.addSubview(filterButton)
@@ -124,10 +126,6 @@ final class MyPageProfileCell: UICollectionViewCell {
         userNameLabel.do {
             $0.font = .title2
             $0.textColor = .gbbGray700
-        }
-        
-        purposeFilterChipView.do {
-            $0.configureChip(toTag: .vegan)
         }
         
         flowLayout.do {
@@ -172,6 +170,8 @@ final class MyPageProfileCell: UICollectionViewCell {
                 self.myReviewsTapped?()
             }
         }
+        
+        configureBubbleView(true)
     }
     
     private func setDelegate() {
@@ -192,13 +192,27 @@ final class MyPageProfileCell: UICollectionViewCell {
         filterCollectionView.reloadData()
     }
     
-    func convertFromData(_ data: String) -> FilterPurposeType {
+    private func configureBubbleView(_ showBubble: Bool) {
+        
+        if showBubble {
+            self.addSubview(bubbleView)
+            bubbleView.snp.makeConstraints {
+                $0.leading.equalTo(userNameLabel)
+                $0.top.equalTo(userNameLabel.snp.bottom).offset(6)
+                $0.size.equalTo(CGSize(width: 209, height: 36))
+            }
+        } else {
+            bubbleView.removeFromSuperview()
+        }
+    }
+    
+    func convertFromData(_ data: String) -> FilterPurposeType? {
         
         switch data {
         case "HEALTH": return .health
         case "DIET": return .diet
         case "VEGAN": return .vegan
-        default: return .health
+        default: return nil
         }
     }
     
@@ -224,8 +238,11 @@ extension MyPageProfileCell: UICollectionViewDelegate {}
 extension MyPageProfileCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return myPageTagData.filter { $0.1 == true }.count
+        let tagCount = myPageTagData.filter { $0.1 == true }.count
+        if tagCount != 0 {
+            configureBubbleView(false)
+        }
+        return tagCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

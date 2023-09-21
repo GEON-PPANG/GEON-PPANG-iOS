@@ -54,7 +54,7 @@ final class WebViewController: BaseViewController {
         
         navigationBar.do {
             $0.configureBottomLine()
-            $0.configureCenterTitle(to: navigationTitle)
+            $0.configureCenterTitle(to: navigationTitle, with: .title2!)
             $0.configureBackButtonAction(popViewControllerAction())
         }
         

@@ -14,7 +14,7 @@ final class MyPagePurposeChipView: UIView {
     
     // MARK: - Property
     
-    private var purposeType: FilterPurposeType = .health
+    var purposeType: FilterPurposeType?
     
     // MARK: - UI Property
     
@@ -54,7 +54,7 @@ final class MyPagePurposeChipView: UIView {
         }
         
         purposeLabel.do {
-            $0.setLineHeight(by: 1.1, with: purposeType.rawValue)
+            $0.setLineHeight(by: 1.1, with: purposeType?.rawValue ?? "")
             $0.font = .captionM1
             $0.textColor = .gbbPoint1
         }
@@ -62,11 +62,13 @@ final class MyPagePurposeChipView: UIView {
     
     // MARK: - Custom Method
     
-    func configureChip(toTag tag: FilterPurposeType) {
+    func configureChip(toTag tag: FilterPurposeType?) {
         
+        self.do {
+            $0.layer.opacity = tag != nil ? 1 : 0
+        }
         purposeLabel.do {
-            $0.text = tag.rawValue
+            $0.text = tag?.rawValue ?? " "
         }
     }
-    
 }

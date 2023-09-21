@@ -86,6 +86,7 @@
 		097716E72AA4E787001EE6D5 /* AuthPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097716E62AA4E787001EE6D5 /* AuthPlugin.swift */; };
 		097716E92AA575C6001EE6D5 /* BakeryListEmptyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097716E82AA575C6001EE6D5 /* BakeryListEmptyType.swift */; };
 		097716EB2AA57713001EE6D5 /* LayoutUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097716EA2AA57713001EE6D5 /* LayoutUtils.swift */; };
+		098227EA2AB8B17700872135 /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 098227E92AB8B17700872135 /* Sentry */; };
 		098716B42A6061F500538D05 /* SearchResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098716B32A6061F500538D05 /* SearchResponseDTO.swift */; };
 		098716B62A60F52200538D05 /* BakeryTypeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098716B52A60F52200538D05 /* BakeryTypeProtocol.swift */; };
 		098716B82A6138BD00538D05 /* MyReviewsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098716B72A6138BD00538D05 /* MyReviewsHeaderView.swift */; };
@@ -456,6 +457,7 @@
 				0959F19A2A65D45700E77CAF /* Kingfisher in Frameworks */,
 				090556382A51E16B00752067 /* Then in Frameworks */,
 				090556402A51E2C700752067 /* FirebaseCrashlytics in Frameworks */,
+				098227EA2AB8B17700872135 /* Sentry in Frameworks */,
 				0905563B2A51E17800752067 /* SnapKit in Frameworks */,
 				090556432A51E6FC00752067 /* Moya in Frameworks */,
 				0905563E2A51E2C700752067 /* FirebaseAnalytics in Frameworks */,
@@ -1577,7 +1579,7 @@
 				098F32D92A4200FD0092D09A /* Sources */,
 				098F32DA2A4200FD0092D09A /* Frameworks */,
 				098F32DB2A4200FD0092D09A /* Resources */,
-				099FC1C92A51F23B00116D00 /* Firebase Crashlytics */,
+				099FC1C92A51F23B00116D00 /* Sentry */,
 			);
 			buildRules = (
 			);
@@ -1595,6 +1597,7 @@
 				3E36D7CE2A8DE65D00B2C1CC /* KakaoSDKCommon */,
 				3E36D7D02A8DE65D00B2C1CC /* KakaoSDKUser */,
 				095FB87F2AB3427D00C69BD1 /* Amplitude */,
+				098227E92AB8B17700872135 /* Sentry */,
 			);
 			productName = "GEON-PPANG-iOS";
 			productReference = 098F32DD2A4200FD0092D09A /* GEON-PPANG-iOS.app */;
@@ -1632,6 +1635,7 @@
 				0959F1982A65D45700E77CAF /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				3E36D7CB2A8DE65D00B2C1CC /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 				095FB87E2AB3427D00C69BD1 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */,
+				098227E82AB8B17700872135 /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
 			);
 			productRefGroup = 098F32DE2A4200FD0092D09A /* Products */;
 			projectDirPath = "";
@@ -1680,7 +1684,7 @@
 			shellPath = /bin/sh;
 			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then\n    swiftlint\nelse \n    echo \"warning: SwiftLint not installed, download form https://github.com/realm/SwiftLint\"\nfi\n";
 		};
-		099FC1C92A51F23B00116D00 /* Firebase Crashlytics */ = {
+		099FC1C92A51F23B00116D00 /* Sentry */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -1689,17 +1693,16 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}\n",
-				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)\n",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
 			);
-			name = "Firebase Crashlytics";
+			name = Sentry;
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n\n";
+			shellScript = "if which sentry-cli >/dev/null; then\nexport SENTRY_ORG=gunbbang-9fd26892c\nexport SENTRY_PROJECT=apple-ios\nexport SENTRY_AUTH_TOKEN=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\nERROR=$(sentry-cli debug-files upload \"$DWARF_DSYM_FOLDER_PATH\" 2>&1 >/dev/null)\nif [ ! $? -eq 0 ]; then\necho \"warning: sentry-cli - $ERROR\"\nfi\nelse\necho \"warning: sentry-cli not installed, download from https://github.com/getsentry/sentry-cli/releases\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2076,7 +2079,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.gunbbang.GUN-BBANG-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2113,7 +2116,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.gunbbang.GUN-BBANG-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2196,6 +2199,14 @@
 				kind = branch;
 			};
 		};
+		098227E82AB8B17700872135 /* XCRemoteSwiftPackageReference "sentry-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/getsentry/sentry-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
 		3E36D7CB2A8DE65D00B2C1CC /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
@@ -2241,6 +2252,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 095FB87E2AB3427D00C69BD1 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */;
 			productName = Amplitude;
+		};
+		098227E92AB8B17700872135 /* Sentry */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 098227E82AB8B17700872135 /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
+			productName = Sentry;
 		};
 		3E36D7CC2A8DE65D00B2C1CC /* KakaoSDKAuth */ = {
 			isa = XCSwiftPackageProductDependency;

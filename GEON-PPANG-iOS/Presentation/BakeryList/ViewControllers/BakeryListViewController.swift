@@ -43,7 +43,7 @@ final class BakeryListViewController: BaseViewController {
     private let bakeryTopView = BakeryListTopView()
     private let bakeryFilterView = BakeryFilterView()
     private let bakerySortView = SortBakeryFilterView()
-    private lazy var bubbleView = BubbleView()
+    private lazy var bubbleView = BubbleView(type: .left)
     private lazy var bakeryListCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
     
     // MARK: - Life Cycle

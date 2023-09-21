@@ -64,6 +64,17 @@ final class MarkStackView: UIStackView {
         gmoIconView.image = gmo
     }
     
+    func configureIconImage(with data: CertificationMarkResponseType) {
+        
+        haccpMarkIconView.image = data.isHACCP ? .smallHACCPMark : nil
+        veganIconView.image = data.isVegan ? .smallVeganMark : nil
+        gmoIconView.image = data.isNonGMO ? .smallGMOMark : nil
+        
+        haccpMarkIconView.isHidden = data.isHACCP ? false : true
+        veganIconView.isHidden = data.isVegan ? false : true
+        gmoIconView.isHidden = data.isNonGMO ? false : true
+    }
+    
     func getMarkStatus(_ isHACCP: Bool,
                        _ isVegan: Bool,
                        _ isNONGMO: Bool) {

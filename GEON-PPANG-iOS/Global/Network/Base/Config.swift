@@ -12,7 +12,7 @@ enum Config {
     enum Keys {
         enum Plist {
             static let baseURL = "BASE_URL"
-            static let accessToken = "ACCESS_TOKEN"
+            static let sentryAPIKey = "SENTRY_API_KEY"
             static let kakaoNativeAppKey = "NATIVE_APP_KEY"
             static let amplitudeAPIKey = "AMPLITUDE_API_KEY"
         }
@@ -35,9 +35,9 @@ extension Config {
         return key
     }()
     
-    static let accessToken: String = {
-        guard let key = Config.infoDictionary[Keys.Plist.accessToken] as? String else {
-            fatalError("✅accessToken is not set in plist for this configuration.✅")
+    static let sentryAPIKey: String = {
+        guard let key = Config.infoDictionary[Keys.Plist.sentryAPIKey] as? String else {
+            fatalError("✅SENTRY_API_KEY is not set in plist for this configuration.✅")
         }
         return key
     }()

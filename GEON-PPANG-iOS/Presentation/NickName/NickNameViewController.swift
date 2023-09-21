@@ -177,7 +177,7 @@ extension NickNameViewController: UITextFieldDelegate {
         guard let text = textField.text else { return }
         self.checkNickname = text
         
-        if !text.isNotContainSpecialCharacters() || text.isEmpty {
+        if !text.isNotContainSpecialCharacters() || text.isEmpty || text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             updateTextFieldStatus(false, text.isEmpty)
         } else {
             updateTextFieldStatus(true, true)

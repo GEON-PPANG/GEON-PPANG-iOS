@@ -65,7 +65,12 @@ final class CustomNavigationBar: UIView {
         backButton.addAction(action, for: .touchUpInside)
     }
     
-    func configureCenterTitle(to title: String) {
+    func configureMapButtonAction(_ action: UIAction) {
+        
+        rightMapButton.addAction(action, for: .touchUpInside)
+    }
+    
+    func configureCenterTitle(to title: String, with font: UIFont) {
         
         self.addSubview(centerTitleLabel)
         centerTitleLabel.snp.makeConstraints {
@@ -75,7 +80,7 @@ final class CustomNavigationBar: UIView {
         
         centerTitleLabel.do {
             $0.text = title
-            $0.font = .title2
+            $0.font = font
             $0.textColor = .black
         }
     }

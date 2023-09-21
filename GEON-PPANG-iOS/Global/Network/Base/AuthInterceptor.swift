@@ -40,6 +40,14 @@ final class AuthInterceptor: RequestInterceptor {
             return
         }
         
+        guard request.retryCount < 2
+        else {
+            DispatchQueue.main.async {
+                Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
+            }
+            return
+        }
+        
         AuthAPI.shared.getTokenRefresh { response in
             guard let response = response,
                   let message = response.message

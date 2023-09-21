@@ -15,10 +15,12 @@ final class ReviewViewController: BaseViewController {
     // MARK: - Property
     
     var type: ReviewViewType
+    
     var bakeryData: SimpleBakeryModel
     
     var reviewID: Int?
     var myReviewData: MyReviewDetailResponseDTO?
+    var reviewDate: String?
     
     var writeReviewData: WriteReviewRequestDTO = .init(bakeryID: 0, isLike: false, keywordList: [], reviewText: "")
     var source: AnalyticEventType = .HOME
@@ -31,6 +33,7 @@ final class ReviewViewController: BaseViewController {
     private lazy var bottomView = BottomView()
     private lazy var nextButton = CommonButton()
     
+    private lazy var reviewDateLabel = UILabel()
     private lazy var bakeryOverviewView = BakeryOverviewView(of: bakeryData)
     private let lineView = LineView()
     private let likeCollectionViewHeaderLabel = UILabel()
@@ -47,16 +50,25 @@ final class ReviewViewController: BaseViewController {
     
     // MARK: - Life Cycle
     
-    init(type: ReviewViewType, bakeryData: SimpleBakeryModel) {
+    init(
+        type: ReviewViewType,
+        bakeryData: SimpleBakeryModel
+    ) {
         self.type = type
         self.bakeryData = bakeryData
         
         super.init(nibName: nil, bundle: nil)
     }
     
-    convenience init(type: ReviewViewType, bakeryData: SimpleBakeryModel, reviewID: Int) {
+    convenience init(
+        type: ReviewViewType,
+        bakeryData: SimpleBakeryModel,
+        reviewID: Int,
+        reviewDate: String
+    ) {
         self.init(type: type, bakeryData: bakeryData)
         self.reviewID = reviewID
+        self.reviewDate = reviewDate
     }
     
     @available(*, unavailable)
@@ -69,13 +81,13 @@ final class ReviewViewController: BaseViewController {
         
         setKeyboardHideGesture()
         setupNotificationCenterOnScrollView()
-        
         setWriteType()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        guard type == .read else { return }
         getReview()
         Utils.setDetailSourceType(self.source)
     }
@@ -84,9 +96,15 @@ final class ReviewViewController: BaseViewController {
     
     override func setLayout() {
         
+        view.addSubview(navigationBar)
+        navigationBar.snp.makeConstraints {
+            $0.horizontalEdges.top.equalToSuperview()
+        }
+        
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.equalTo(navigationBar.snp.bottom)
+            $0.bottom.horizontalEdges.equalToSuperview()
         }
         
         scrollView.addSubview(contentView)
@@ -97,8 +115,9 @@ final class ReviewViewController: BaseViewController {
         
         contentView.addSubview(bakeryOverviewView)
         bakeryOverviewView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(UIScreen.main.hasNotch ? 92 : 96)
+            $0.top.equalToSuperview().inset(type == .read ? 42 : 24)
             $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.height.equalTo(86)
         }
         
         contentView.addSubview(lineView)
@@ -143,19 +162,13 @@ final class ReviewViewController: BaseViewController {
             $0.height.equalTo(221)
             $0.bottom.equalToSuperview().inset(11)
         }
-        
-        view.addSubview(navigationBar)
-        navigationBar.snp.makeConstraints {
-            $0.horizontalEdges.top.equalToSuperview()
-        }
-        view.bringSubviewToFront(navigationBar)
     }
     
     override func setUI() {
         
         navigationBar.do {
             $0.backgroundColor = .white
-            $0.configureCenterTitle(to: I18N.Review.myReview)
+            $0.configureCenterTitle(to: type == .read ? I18N.Review.myReview : I18N.Review.writeReview, with: .title2!)
             $0.configureBottomLine()
             $0.configureBackButtonAction(UIAction { [weak self] _ in
                 self?.backButtonTapped()
@@ -166,6 +179,7 @@ final class ReviewViewController: BaseViewController {
             $0.showsVerticalScrollIndicator = false
             $0.verticalScrollIndicatorInsets = .zero
             $0.backgroundColor = .white
+            $0.bounces = false
         }
         
         contentView.do {
@@ -194,7 +208,15 @@ final class ReviewViewController: BaseViewController {
         }
         
         reviewDetailTextView.do {
-            $0.isUserInteractionEnabled = false
+            $0.isUserInteractionEnabled = true
+        }
+        
+        if type == .read {
+            reviewDateLabel.do {
+                $0.text = reviewDate
+                $0.font = .captionM1
+                $0.textColor = .gbbGray400
+            }
         }
     }
     
@@ -213,7 +235,8 @@ final class ReviewViewController: BaseViewController {
             self.bottomView.transform = .identity
             self.scrollView.transform = .identity
         }) { _ in
-            self.backgroundView.dimmedView.isUserInteractionEnabled = false
+            self.backgroundView.isUserInteractionEnabled = false
+            self.backgroundView.dimmedViewInteraction = false
             self.backgroundView.appearBottomSheetView(subView: self.confirmBottomSheetView, CGFloat().heightConsideringBottomSafeArea(292))
         }
         view.endEditing(true)
@@ -262,6 +285,18 @@ extension ReviewViewController {
     
     private func setWriteTypeLayout() {
         
+        contentView.addSubview(reviewDateLabel)
+        reviewDateLabel.snp.makeConstraints {
+            $0.bottom.equalTo(bakeryOverviewView.snp.top).offset(-3.5)
+            $0.leading.equalTo(bakeryOverviewView)
+        }
+        
+        reviewDetailTextView.snp.remakeConstraints {
+            $0.top.equalTo(optionsCollectionView.snp.bottom).offset(28)
+            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.height.equalTo(196)
+        }
+        
         view.addSubview(bottomView)
         bottomView.snp.makeConstraints {
             $0.horizontalEdges.bottom.equalToSuperview()
@@ -269,16 +304,16 @@ extension ReviewViewController {
         
         contentView.addSubview(aboutReviewContainerView)
         aboutReviewContainerView.snp.makeConstraints {
-            $0.top.equalTo(reviewDetailTextView.snp.bottom).offset(10)
+            $0.top.equalTo(reviewDetailTextView.snp.bottom).offset(32)
             $0.horizontalEdges.equalToSuperview()
-            $0.bottom.equalToSuperview()
-            $0.height.equalTo(207)
+            $0.bottom.equalToSuperview().inset(UIScreen.main.hasNotch ? 0 : 32)
         }
         
         aboutReviewContainerView.addSubview(aboutReviewLabel)
         aboutReviewLabel.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(24)
-            $0.top.equalToSuperview().offset(16)
+            $0.top.equalToSuperview().inset(20)
+            $0.bottom.equalToSuperview().inset(CGFloat().heightConsideringBottomSafeArea(116))
         }
     }
     
@@ -308,7 +343,7 @@ extension ReviewViewController {
         bottomView.do {
             $0.backgroundColor = .white
             $0.layer.masksToBounds = false
-            $0.applyAdditionalSubview(nextButton, withTopOffset: 20)
+            $0.applyAdditionalSubview(nextButton, withTopOffset: 16)
         }
         
         nextButton.do {
@@ -359,20 +394,18 @@ extension ReviewViewController {
         
         var requestData: WriteReviewRequestDTO = .empty()
         
-        requestData.bakeryID = bakeryData.bakeryID
-        
-        guard let isLike = likeCollectionView.cellForItem(at: [0, 0])?.isSelected
+        guard let isLike = likeCollectionView.cellForItem(at: [0, 0])?.isSelected,
+              let keywordIndexPath = optionsCollectionView.indexPathsForSelectedItems
         else { return .empty() }
-        requestData.isLike = isLike
         
-        guard let keywordIndexPath = optionsCollectionView.indexPathsForSelectedItems
-        else { return .empty() }
         let keywordList = keywordIndexPath.map {
             let keyword = KeywordDescriptionList.requestList[$0[1]]
             return SingleKeyword(keywordName: keyword)
         }
-        requestData.keywordList = keywordList
         
+        requestData.bakeryID = bakeryData.id
+        requestData.isLike = isLike
+        requestData.keywordList = keywordList
         requestData.reviewText = reviewDetailTextView.detailTextView.text
         
         return requestData
@@ -402,8 +435,8 @@ extension ReviewViewController {
         
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             UIView.animate(withDuration: 0.2, animations: {
-                self.bottomView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + 30)
-                self.scrollView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height)
+                self.bottomView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + (UIScreen.main.hasNotch ? 30 : 0))
+                self.contentView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + 30)
             })
         }
     }
@@ -413,7 +446,7 @@ extension ReviewViewController {
         
         UIView.animate(withDuration: 0.2, animations: {
             self.bottomView.transform = .identity
-            self.scrollView.transform = .identity
+            self.contentView.transform = .identity
         })
     }
 
@@ -540,26 +573,16 @@ extension ReviewViewController: UITextViewDelegate {
         reviewDetailTextView.configureTextView(to: .activated)
         reviewDetailTextView.updateTextLimitLabel(to: textCount)
         
-        if textView.text.isEmpty && !reviewDetailTextView.isLike {
+        reviewDetailTextView.placeholderLabel.isHidden = !textView.text.isEmpty
+        
+        let textViewText = textView.text.replacingOccurrences(of: " ", with: "")
+        if textViewText.isEmpty && !reviewDetailTextView.isLike {
             nextButton.configureInteraction(to: false)
         }
     }
     
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        
-        if textView.text == I18N.Review.likePlaceholder || textView.text == I18N.Review.dislikePlaceholder {
-            textView.text = nil
-            textView.textColor = .black
-        }
-    }
-    
     func textViewDidEndEditing(_ textView: UITextView) {
-        
-        if textView.text.isEmpty {
-            textView.text = reviewDetailTextView.isLike ? I18N.Review.likePlaceholder : I18N.Review.dislikePlaceholder
-            textView.textColor = .gbbGray300
-            writeReviewData.reviewText = ""
-        }
+        reviewDetailTextView.placeholderLabel.isHidden = !textView.text.isEmpty
     }
     
     func textView(_ textView: UITextView,
