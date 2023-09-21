@@ -240,7 +240,6 @@ final class ReportViewController: BaseViewController {
     
     override func setDelegate() {
         
-        //        scrollView.delegate = self
         detailReasonTextView.detailTextView.delegate = self
     }
     
@@ -248,7 +247,6 @@ final class ReportViewController: BaseViewController {
     
     private func nextButtonTapped() {
         
-//        requestWriteReview(configureWriteReviewData())
         UIView.animate(withDuration: 0.2, animations: {
             self.bottomView.transform = .identity
             self.scrollView.transform = .identity
@@ -330,7 +328,6 @@ extension ReportViewController: UITextViewDelegate {
         
         if textView.text.isEmpty || textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty { // 공백과 줄넘김도 처리
             textView.text = I18N.Report.detailPlaceholder
-            //            writeReviewData.reviewText = ""
         }
         
         if textView.text == I18N.Report.detailPlaceholder {
