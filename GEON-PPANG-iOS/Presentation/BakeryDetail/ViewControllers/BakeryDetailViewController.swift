@@ -298,11 +298,11 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
             
             return CGSize(width: getDeviceWidth(), height: cellHeight)
         case 1:
-            return CGSize(width: getDeviceWidth(), height: 259)
+            return CGSize(width: getDeviceWidth(), height: 263)
         case 2:
             return CGSize(width: getDeviceWidth(), height: 32)
         case 3:
-            return CGSize(width: getDeviceWidth(), height: 157)
+            return CGSize(width: getDeviceWidth(), height: 142)
         case 4:
             if reviewData.reviewList.isEmpty {
                 return CGSize(width: getDeviceWidth(), height: 293)
@@ -323,13 +323,13 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
         
         switch section {
         case 1:
-            return CGSize(width: collectionView.frame.width, height: 72)
+            return CGSize(width: collectionView.frame.width, height: 76)
         case 2:
-            return CGSize(width: collectionView.frame.width, height: 64)
+            return CGSize(width: collectionView.frame.width, height: 68)
         case 3:
-            return CGSize(width: collectionView.frame.width, height: 70)
+            return CGSize(width: collectionView.frame.width, height: 74)
         case 4:
-            return CGSize(width: collectionView.frame.width, height: 77)
+            return CGSize(width: collectionView.frame.width, height: 79)
         default:
             return CGSize()
         }

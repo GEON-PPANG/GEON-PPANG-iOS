@@ -102,9 +102,17 @@ final class IconLabelStackView: UIStackView {
     private func setLayout() {
         
         self.addArrangedSubview(icon)
-        icon.snp.makeConstraints {
-            $0.top.leading.equalToSuperview().inset(0.5)
-            $0.size.equalTo(icSize)
+        if iconType == .notice {
+            icon.snp.makeConstraints {
+                $0.top.leading.equalToSuperview()
+                $0.size.equalTo(icSize)
+            }
+        } else {
+            icon.snp.makeConstraints {
+                $0.top.equalToSuperview().inset(0.5)
+                $0.leading.equalToSuperview()
+                $0.size.equalTo(icSize)
+            }
         }
         
         self.addArrangedSubview(label)
