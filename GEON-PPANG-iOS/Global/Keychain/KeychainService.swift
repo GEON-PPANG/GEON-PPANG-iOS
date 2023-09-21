@@ -23,7 +23,6 @@ class KeychainService {
         ]
         
         let status = SecItemAdd(query as CFDictionary, nil)
-        #if DEBUG
         switch status {
         case errSecSuccess:
             print("🔒 Set: Keychain of \(key) created successfully 🔒")
@@ -34,7 +33,6 @@ class KeychainService {
         default:
             print("❌ Set: Unknown error: \(SecCopyErrorMessageString(status, nil).debugDescription) ❌")
         }
-        #endif
     }
     
     // MARK: - read keychain
@@ -90,7 +88,7 @@ class KeychainService {
         ]
         
         let status = SecItemUpdate(query as CFDictionary, attributes as CFDictionary)
-        #if DEBUG
+        
         switch status {
         case errSecSuccess:
             print("🔒 Update: Keychain of \(key) updated successfully  🔒")
@@ -99,7 +97,7 @@ class KeychainService {
         default:
             print("❌ Update: Unknown error: \(SecCopyErrorMessageString(status, nil).debugDescription) ❌")
         }
-        #endif
+        
     }
     
     // MARK: - delete keychain
@@ -114,7 +112,7 @@ class KeychainService {
         ]
         
         let status = SecItemDelete(query as CFDictionary)
-        #if DEBUG
+        
         switch status {
         case errSecSuccess:
             print("🔒 Delete: Keychain of \(key) deleted successfully 🔒")
@@ -125,7 +123,7 @@ class KeychainService {
             print("❌ Delete: Unknown of \(key) error: \(SecCopyErrorMessageString(status, nil).debugDescription) ❌")
         }
         return false
-        #endif
+    
     }
     
     // MARK: - keychain exists
