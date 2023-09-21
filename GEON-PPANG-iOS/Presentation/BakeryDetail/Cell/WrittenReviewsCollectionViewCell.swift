@@ -164,9 +164,9 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
             reviewCategoryStackView.getNoRecommend()
         }
         
-        let containerHeight = convertByWidthRatio(isKeywordListEmpty ? labelHeight + 70 : labelHeight + 111)
+        let containerHeight = convertByWidthRatio(isKeywordListEmpty ? labelHeight + 76 : labelHeight + 111)
         let textLabelTopConstraint = isKeywordListEmpty ? profileImage.snp.bottom : reviewCategoryStackView.snp.bottom
-        let textLabelOffset = convertByWidthRatio(isKeywordListEmpty ? 10 : 16)
+        let textLabelOffset = convertByWidthRatio(16)
         
         reviewContainer.snp.remakeConstraints {
             $0.top.equalToSuperview()

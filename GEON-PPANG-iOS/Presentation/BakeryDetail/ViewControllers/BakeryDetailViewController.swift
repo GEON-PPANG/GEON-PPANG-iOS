@@ -295,7 +295,7 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
             tempLabel.text = reviewData.reviewList[indexPath.item].reviewText
             let maxSize = CGSize(width: convertByWidthRatio(277), height: CGFloat.greatestFiniteMagnitude)
             let labelSize = tempLabel.sizeThatFits(maxSize)
-            labelHeight = reviewData.reviewList[indexPath.item].recommendKeywordList.isEmpty ? labelSize.height + 82 : labelSize.height + 123
+            labelHeight = reviewData.reviewList[indexPath.item].recommendKeywordList.isEmpty ? convertByWidthRatio(labelSize.height + 88) : convertByWidthRatio(labelSize.height + 123)
             
             return CGSize(width: getDeviceWidth(), height: labelHeight)
         default:
