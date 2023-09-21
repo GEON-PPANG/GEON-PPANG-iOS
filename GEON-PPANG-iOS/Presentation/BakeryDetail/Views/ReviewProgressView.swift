@@ -78,7 +78,7 @@ final class ReviewProgressView: UIView {
         }
         
         reviewLabel.do {
-            $0.basic(text: "맛있어요", font: .captionB1!, color: .gbbMain2!)
+            $0.basic(font: .captionB1!, color: .gbbMain2!)
             $0.textAlignment = .center
             $0.numberOfLines = 1
         }

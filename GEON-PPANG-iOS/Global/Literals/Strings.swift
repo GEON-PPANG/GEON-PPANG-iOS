@@ -117,7 +117,23 @@ struct I18N {
         static let homepage = "웹사이트"
         static let instagram = "인스타그램"
         static let menuNotice = "가게 상세정보 및 메뉴는 업체에서 제공한 정보를 바탕으로 합니다.\n건빵집 방문 시 한 번 더 확인하시기를 권장합니다."
+        static let report = "신고"
+        static let reviewReport = "리뷰 신고"
+        static let tappedBookmarkButton = "저장되었어요!"
         static let writeReview = "리뷰 작성하기"
+    }
+    
+    /// Report
+    struct Report {
+        static let reportReason = "신고하려는 사유를 선택해 주세요!"
+        static let advertisement = "홍보 및 신뢰할 수 없는 게시물"
+        static let profanity = "욕설, 음란어, 혐오 발언 사용"
+        static let defamation = "명예훼손, 저작권 침해"
+        static let others = "그 외 다른 문제"
+        static let detailReportReason = "자세한 신고 사유는 아래 적어주세요!"
+        static let detailPlaceholder = "신고 내용을 입력해 주세요."
+        static let pleaseReport = "여러분의 신고를 바탕으로 깨끗한 리뷰를 제공해 드릴 수 있도록 노력하겠습니다."
+        static let reportComplete = "신고가 완료됐어요!"
     }
     
     /// Nickname

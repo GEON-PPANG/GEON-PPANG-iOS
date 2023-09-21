@@ -139,14 +139,14 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         
         linkButtonStackView.do {
             $0.homepageLinkButton.do {
-                $0.addAction(UIAction { _ in
-                    self.tappedHomepageLinkButton()
+                $0.addAction(UIAction { [weak self] _ in
+                    self?.tappedHomepageLinkButton()
                 }, for: .touchUpInside)
             }
             
             $0.instagramLinkButton.do {
-                $0.addAction(UIAction { _ in
-                    self.tappedInstagramLinkButton()
+                $0.addAction(UIAction { [weak self] _ in
+                    self?.tappedInstagramLinkButton()
                 }, for: .touchUpInside)
             }
         }
