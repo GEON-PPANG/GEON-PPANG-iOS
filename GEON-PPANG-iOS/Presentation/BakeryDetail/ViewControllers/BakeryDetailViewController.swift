@@ -17,12 +17,16 @@ final class BakeryDetailViewController: BaseViewController {
     
     private var overviewData: BakeryDetailResponseDTO = .initialDTO() {
         didSet {
-            self.collectionView.reloadData()
+            UIView.performWithoutAnimation {
+                self.collectionView.reloadSections(IndexSet(integersIn: 0 ... 2))
+            }
         }
     }
     private var reviewData: WrittenReviewsResponseDTO = .initialDTO() {
         didSet {
-            self.collectionView.reloadData()
+            UIView.performWithoutAnimation {
+                self.collectionView.reloadSections(IndexSet(integersIn: 3 ... 4))
+            }
         }
     }
     private var isBookmarked: Bool = false
@@ -402,7 +406,6 @@ extension BakeryDetailViewController {
             self.detailBottomView.configureBookmarkButton(to: value)
             self.isBookmarked = value
             self.getBakeryDetail(bakeryID: bakeryID)
-            self.collectionView.reloadData()
         }
     }
     
