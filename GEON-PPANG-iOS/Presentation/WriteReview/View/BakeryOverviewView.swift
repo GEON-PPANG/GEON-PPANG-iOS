@@ -99,7 +99,7 @@ final class BakeryOverviewView: UIView {
     private func setUI() {
         
         bakeryImageView.do {
-            $0.kf.setImage(with: URL(string: data.bakeryImageURL), placeholder: UIImage.loading_small)
+            $0.kf.setImage(with: URL(string: data.imageURL), placeholder: UIImage.loading_small)
             $0.backgroundColor = .gbbPoint1
             $0.makeCornerRound(radius: 5)
             $0.contentMode = .scaleAspectFill

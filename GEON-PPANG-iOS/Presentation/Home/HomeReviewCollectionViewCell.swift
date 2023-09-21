@@ -48,7 +48,7 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(bakeryImage)
         bakeryImage.snp.makeConstraints {
             $0.top.directionalHorizontalEdges.equalToSuperview()
-            $0.height.equalTo(130)
+            $0.height.equalTo(heightConsideringNotch(130))
         }
         
         contentView.addSubview(collectionView)

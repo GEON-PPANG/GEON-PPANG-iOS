@@ -52,7 +52,7 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(bakeryImage)
         bakeryImage.snp.makeConstraints {
             $0.top.directionalHorizontalEdges.equalToSuperview()
-            $0.height.equalTo(118)
+            $0.height.equalTo(heightConsideringNotch(118))
         }
         
         contentView.addSubview(bakeryTitle)
@@ -83,7 +83,7 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
         bakeryImage.addSubview(markStackView)
         markStackView.snp.makeConstraints {
             $0.top.leading.equalToSuperview().offset(10)
-            $0.size.equalTo(CGSize(width: 68, height: 28))
+            $0.size.equalTo(CGSize(width: heightConsideringNotch(68), height: heightConsideringNotch(28)))
         }
     }
     
