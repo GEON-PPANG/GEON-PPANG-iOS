@@ -19,6 +19,10 @@ struct I18N {
         static let bubbleTitle = "맞춤 빵집을 위한 필터를 설정해 보세요!"
     }
     
+    /// Search
+    struct Search {
+        static let searchPlaceholder = "빵집·지역·역 명을 검색해 보세요!"
+    }
     /// Onboarding
     struct Onboarding {
         static let emailSignIn = "이메일로 로그인"
