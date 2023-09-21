@@ -98,7 +98,7 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
         reviewContainer.addSubview(reviewTextLabel)
         reviewTextLabel.snp.makeConstraints {
             $0.top.equalTo(reviewCategoryStackView.snp.bottom).offset(convertByWidthRatio(16))
-            $0.directionalHorizontalEdges.equalToSuperview().inset(25)
+            $0.directionalHorizontalEdges.equalToSuperview().inset(convertByWidthRatio(25))
             $0.width.equalTo(convertByWidthRatio(277))
             $0.height.equalTo(convertByWidthRatio(120))
         }
@@ -164,7 +164,7 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
             reviewCategoryStackView.getNoRecommend()
         }
         
-        let containerHeight = convertByWidthRatio(isKeywordListEmpty ? labelHeight + 76 : labelHeight + 111)
+        let containerHeight = isKeywordListEmpty ? labelHeight + 76 : labelHeight + 111
         let textLabelTopConstraint = isKeywordListEmpty ? profileImage.snp.bottom : reviewCategoryStackView.snp.bottom
         let textLabelOffset = convertByWidthRatio(16)
         
@@ -177,9 +177,9 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
         
         reviewTextLabel.snp.remakeConstraints {
             $0.top.equalTo(textLabelTopConstraint).offset(textLabelOffset)
-            $0.directionalHorizontalEdges.equalToSuperview().inset(25)
+            $0.directionalHorizontalEdges.equalToSuperview().inset(convertByWidthRatio(25))
             $0.width.equalTo(convertByWidthRatio(277))
-            $0.height.equalTo(convertByWidthRatio(labelHeight))
+            $0.height.equalTo(labelHeight)
         }
     }
     
