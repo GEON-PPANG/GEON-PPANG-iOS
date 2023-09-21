@@ -286,14 +286,20 @@ extension SignInViewController {
             guard let status = result else { return }
             switch status {
             case 200...204:
-                self.emailTextField.setErrorMessage(I18N.Rule.email, false)
-                self.isValidButton[0] = true
+                DispatchQueue.main.async {
+                    self.emailTextField.setErrorMessage(I18N.Rule.email, false)
+                    self.isValidButton[0] = true
+                }
                 
             default:
-                self.emailTextField.setErrorMessage(I18N.Rule.duplicatedEmail, true)
-                self.isValidButton[0] = false
+                DispatchQueue.main.async {
+                    self.emailTextField.setErrorMessage(I18N.Rule.duplicatedEmail, true)
+                    self.isValidButton[0] = false
+                }
             }
-            self.updateButtonStatus()
+            DispatchQueue.main.async {
+                self.updateButtonStatus()
+            }
         }
     }
 }

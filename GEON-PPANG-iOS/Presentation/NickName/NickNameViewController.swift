@@ -223,11 +223,15 @@ extension NickNameViewController {
             guard let status = result else { return }
             switch status {
             case 200...204:
-                self.configureBottomSheet(.smile, I18N.Bottomsheet.nickname)
-                self.configureNextButtonUI(true)
+                DispatchQueue.main.async {
+                    self.configureBottomSheet(.smile, I18N.Bottomsheet.nickname)
+                    self.configureNextButtonUI(true)
+                }
             default:
-                self.configureBottomSheet(.sad, I18N.Bottomsheet.duplicatedNickname)
-                self.configureNextButtonUI(false)
+                DispatchQueue.main.async {
+                    self.configureBottomSheet(.sad, I18N.Bottomsheet.duplicatedNickname)
+                    self.configureNextButtonUI(false)
+                }
             }
         }
     }
@@ -239,10 +243,14 @@ extension NickNameViewController {
             guard let code = result?.code else { return }
             switch code {
             case 200:
-                Utils.push(self.navigationController, WelcomeViewController(nickname: self.checkNickname))
+                DispatchQueue.main.async {
+                    Utils.push(self.navigationController, WelcomeViewController(nickname: self.checkNickname))
+                }
             default:
                 // TODO: UX Writing 고려
-                Utils.showAlert(title: "에러", description: "닉네임 설정 에러", at: self)
+                DispatchQueue.main.async {
+                    Utils.showAlert(title: "에러", description: "닉네임 설정 에러", at: self)
+                }
             }
         }
     }
@@ -258,9 +266,13 @@ extension NickNameViewController {
                                         nickname: nickname)
         AuthAPI.shared.postSignUp(with: userInfo) { result in
             guard result != nil else { return }
+            guard let userId = result?.data?.memberID else { return }
+            AnalyticManager.set(userId: userId)
             AnalyticManager.log(event: .onboarding(.completeNickname(nickname: nickname)))
             AnalyticManager.log(event: .onboarding(.completeSignup))
-            Utils.push(self.navigationController, WelcomeViewController(nickname: nickname))
+            DispatchQueue.main.async {
+                Utils.push(self.navigationController, WelcomeViewController(nickname: nickname))
+            }
         }
     }
 }

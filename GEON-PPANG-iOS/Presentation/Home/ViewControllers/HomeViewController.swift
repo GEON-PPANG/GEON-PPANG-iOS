@@ -204,13 +204,13 @@ final class HomeViewController: BaseViewController {
     private func normalSection(headerSize: CGFloat) -> NSCollectionLayoutSection {
         
         let itemGroupSize = NSCollectionLayoutSize(widthDimension: .absolute(convertByWidthRatio(192)),
-                                                   heightDimension: .absolute(convertByHeightRatio(236)))
+                                                   heightDimension: .absolute(heightConsideringNotch(236)))
         let item = NSCollectionLayoutItem(layoutSize: itemGroupSize)
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemGroupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 12
-        section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+        section.orthogonalScrollingBehavior = .continuous
         
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                                 heightDimension: .absolute(headerSize))
@@ -221,6 +221,7 @@ final class HomeViewController: BaseViewController {
                                                         leading: 24,
                                                         bottom: 30,
                                                         trailing: 24)
+
         section.boundarySupplementaryItems = [header]
         return section
     }
