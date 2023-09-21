@@ -10,14 +10,14 @@ import UIKit
 import SnapKit
 import Then
 
-protocol WrittenReviewsCollectionViewCellDelegate: BakeryDetailViewController {
+protocol ReportButtonDelegate: BakeryDetailViewController {
     
     func tappedReportButton()
 }
 
 final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
     
-    weak var delegate: WrittenReviewsCollectionViewCellDelegate?
+    weak var delegate: ReportButtonDelegate?
     
     // MARK: - UI Property
     
@@ -191,7 +191,7 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
 
 // MARK: - Custom Protocol
 
-extension BakeryDetailViewController: WrittenReviewsCollectionViewCellDelegate {
+extension BakeryDetailViewController: ReportButtonDelegate {
     
     func tappedReportButton() {
         
