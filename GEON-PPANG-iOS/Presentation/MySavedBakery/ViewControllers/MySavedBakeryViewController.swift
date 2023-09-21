@@ -73,7 +73,7 @@ final class MySavedBakeryViewController: BaseViewController {
                 self.navigationController?.popViewController(animated: true)
             })
             $0.configureBottomLine()
-            $0.configureCenterTitle(to: I18N.MySavedBakery.naviTitle)
+            $0.configureCenterTitle(to: I18N.MySavedBakery.naviTitle, with: .title2!)
         }
         
         collectionView.do {

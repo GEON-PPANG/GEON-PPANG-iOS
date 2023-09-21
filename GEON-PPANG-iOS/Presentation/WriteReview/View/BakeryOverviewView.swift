@@ -48,7 +48,7 @@ final class BakeryOverviewView: UIView {
     
     private func setProperties() {
         
-        var regions = data.bakeryRegion
+        var regions = data.region
         if !regions.isEmpty {
             self.regionLabel = RegionLabel(regions.removeFirst(),
                                            regions.popLast())
@@ -99,18 +99,18 @@ final class BakeryOverviewView: UIView {
     private func setUI() {
         
         bakeryImageView.do {
-            $0.kf.setImage(with: URL(string: data.bakeryImageURL))
+            $0.kf.setImage(with: URL(string: data.imageURL))
             $0.backgroundColor = .gbbPoint1
             $0.makeCornerRound(radius: 5)
             $0.contentMode = .scaleAspectFill
         }
         
         markStackView.do {
-            $0.configureIconImage(.smallHACCPMark, .smallVeganMark, .smallGMOMark)
+            $0.configureIconImage(with: data.certificates)
         }
         
         bakeryNameLabel.do {
-            $0.setLineHeight(by: 1.05, with: data.bakeryName)
+            $0.setLineHeight(by: 1.05, with: data.name)
             $0.textColor = .gbbGray700
             $0.font = .title2
         }
@@ -138,14 +138,14 @@ extension BakeryOverviewView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return data.bakeryIngredients.count
+        return data.ingredients.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell: DescriptionCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
         cell.cellColor = .sub
-        cell.configureTagTitle(data.bakeryIngredients[indexPath.item])
+        cell.configureTagTitle(data.ingredients[indexPath.item])
         return cell
     }
     

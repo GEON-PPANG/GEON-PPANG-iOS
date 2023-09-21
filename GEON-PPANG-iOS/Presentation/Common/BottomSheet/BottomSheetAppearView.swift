@@ -16,6 +16,7 @@ final class BottomSheetAppearView: UIView {
     
     static let shared = BottomSheetAppearView()
     private var customAction: (() -> Void)?
+    var dimmedViewInteraction: Bool = true
     
     var addedSubView = UIView()
     lazy var dimmedView = UIView()
@@ -27,7 +28,9 @@ final class BottomSheetAppearView: UIView {
     private func setUI() {
         dimmedView.do {
             $0.backgroundColor = .black.withAlphaComponent(0.6)
-            $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismiss)))
+            if self.dimmedViewInteraction {
+                $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismiss)))
+            }
         }
         
         halfView.do {
