@@ -98,7 +98,6 @@ final class BakeryDetailViewController: BaseViewController {
             
             $0.backgroundColor = .gbbGray200
             $0.bounces = false
-            // TODO: 기기대응
             $0.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 92, right: 0)
         }
         
