@@ -292,9 +292,8 @@ final class ReportViewController: BaseViewController {
     private func textLimit(_ existingText: String?, to newText: String, with limit: Int) -> Bool {
         
         guard let text = existingText else { return false }
-        let isOverLimit = text.count + newText.count <= limit
         
-        return isOverLimit
+        return text.count + newText.count <= limit
     }
 }
 
