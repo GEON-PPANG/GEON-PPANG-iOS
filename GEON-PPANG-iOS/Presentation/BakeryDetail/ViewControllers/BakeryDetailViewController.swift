@@ -92,7 +92,8 @@ final class BakeryDetailViewController: BaseViewController {
                                      InfoCollectionViewCell.self,
                                      MenuCollectionViewCell.self,
                                      ReviewCategoryCollectionViewCell.self,
-                                     WrittenReviewsCollectionViewCell.self])
+                                     WrittenReviewsCollectionViewCell.self,
+                                     EmptyCollectionViewCell.self])
             $0.register(header: BakeryDetailCollectionViewHeader.self)
             $0.register(footer: BakeryDetailCollectionViewFooter.self)
             
@@ -167,10 +168,9 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
         case 2:
             return overviewData.menuList.count
         case 4:
-            // TODO: EmptyView 구현 시 사용
-            //            if reviewData.data.reviewList.isEmpty {
-            //                return 1
-            //            }
+            if reviewData.reviewList.isEmpty {
+                return 1
+            }
             return reviewData.reviewList.count
         default:
             return 1
@@ -216,21 +216,28 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
             
             return cell
         case 4:
-            let cell: WrittenReviewsCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-            let review = reviewData.reviewList[indexPath.item]
-            
-            DispatchQueue.main.async {
-                self.tempLabel.text = review.reviewText
-                let maxSize = CGSize(width: self.convertByWidthRatio(277), height: CGFloat.greatestFiniteMagnitude)
-                let labelSize = self.tempLabel.sizeThatFits(maxSize)
-                self.labelHeight = labelSize.height
+            if reviewData.reviewList.isEmpty {
+                let cell: EmptyCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+                cell.configureViewType(.noReview)
                 
-                cell.configureCellUI(review, self.labelHeight)
+                return cell
+            } else {
+                let cell: WrittenReviewsCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+                let review = reviewData.reviewList[indexPath.item]
+                
+                DispatchQueue.main.async {
+                    self.tempLabel.text = review.reviewText
+                    let maxSize = CGSize(width: self.convertByWidthRatio(277), height: CGFloat.greatestFiniteMagnitude)
+                    let labelSize = self.tempLabel.sizeThatFits(maxSize)
+                    self.labelHeight = labelSize.height
+                    
+                    cell.configureCellUI(review, self.labelHeight)
+                }
+                
+                cell.delegate = self
+                
+                return cell
             }
-            
-            cell.delegate = self
-            
-            return cell
         default:
             return UICollectionViewCell()
         }
@@ -293,12 +300,16 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
         case 3:
             return CGSize(width: getDeviceWidth(), height: 157)
         case 4:
-            tempLabel.text = reviewData.reviewList[indexPath.item].reviewText
-            let maxSize = CGSize(width: convertByWidthRatio(277), height: CGFloat.greatestFiniteMagnitude)
-            let labelSize = tempLabel.sizeThatFits(maxSize)
-            labelHeight = reviewData.reviewList[indexPath.item].recommendKeywordList.isEmpty ? labelSize.height + 88 : labelSize.height + 123
-            
-            return CGSize(width: getDeviceWidth(), height: labelHeight)
+            if reviewData.reviewList.isEmpty {
+                return CGSize(width: getDeviceWidth(), height: 293)
+            } else {
+                tempLabel.text = reviewData.reviewList[indexPath.item].reviewText
+                let maxSize = CGSize(width: convertByWidthRatio(277), height: CGFloat.greatestFiniteMagnitude)
+                let labelSize = tempLabel.sizeThatFits(maxSize)
+                labelHeight = reviewData.reviewList[indexPath.item].recommendKeywordList.isEmpty ? labelSize.height + 88 : labelSize.height + 123
+                
+                return CGSize(width: getDeviceWidth(), height: labelHeight)
+            }
         default:
             return CGSize()
         }
