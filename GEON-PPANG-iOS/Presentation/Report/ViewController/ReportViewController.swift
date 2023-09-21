@@ -194,8 +194,8 @@ final class ReportViewController: BaseViewController {
                 $0.configuration?.imagePadding = 6
                 $0.configuration?.imagePlacement = .leading
                 $0.isSelected = false
-                $0.addAction(UIAction { _ in
-                    self.tappedRadioButton(button)
+                $0.addAction(UIAction { [weak self] _ in
+                    self?.tappedRadioButton(button)
                 }, for: .touchUpInside)
             }
         }
