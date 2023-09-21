@@ -48,6 +48,8 @@ final class BakeryDetailViewController: BaseViewController {
         getBakeryDetail(bakeryID: bakeryID)
         getWrittenReviews(bakeryID: bakeryID)
         Utils.setDetailSourceType(self.source)
+        
+        navigationController?.interactivePopGestureRecognizer?.delegate = nil // swipe back gesture
     }
     
     // MARK: - Setting
