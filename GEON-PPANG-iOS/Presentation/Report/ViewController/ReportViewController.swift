@@ -167,7 +167,7 @@ final class ReportViewController: BaseViewController {
         
         navigationBar.do {
             $0.configureBackButtonAction(popViewControllerAction())
-            $0.configureCenterTitle(to: navigationTitle)
+            $0.configureCenterTitle(to: navigationTitle, with: .title2!)
             $0.configureBottomLine()
         }
         
