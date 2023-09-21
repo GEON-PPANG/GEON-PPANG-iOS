@@ -255,7 +255,7 @@ final class ReportViewController: BaseViewController {
             self.backgroundView.dimmedViewInteraction = false
             self.backgroundView.appearBottomSheetView(subView: self.confirmBottomSheetView, CGFloat().heightConsideringBottomSafeArea(292))
         }
-        view.endEditing(true)
+        endEditingView()
     }
     
     // MARK: - Custom Method
@@ -283,15 +283,9 @@ final class ReportViewController: BaseViewController {
         selectedButton = sender // 현재 선택된 버튼 업데이트
     }
     
-    @objc
-    private func dismissKeyboard() {
-        // 터치 이벤트가 발생했을 때 키보드를 내립니다.
-        view.endEditing(true)
-    }
-    
     private func tappedExceptTextView() {
         // textView 외의 부분을 터치했을 때 키보드를 내립니다.
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(endEditingView))
         contentView.addGestureRecognizer(tapGesture)
     }
     
