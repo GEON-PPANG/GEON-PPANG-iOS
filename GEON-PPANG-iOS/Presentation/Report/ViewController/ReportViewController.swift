@@ -253,7 +253,8 @@ final class ReportViewController: BaseViewController {
             self.bottomView.transform = .identity
             self.scrollView.transform = .identity
         }) { _ in
-            self.backgroundView.dimmedView.isUserInteractionEnabled = false
+            self.backgroundView.isUserInteractionEnabled = false
+            self.backgroundView.dimmedViewInteraction = false
             self.backgroundView.appearBottomSheetView(subView: self.confirmBottomSheetView, CGFloat().heightConsideringBottomSafeArea(292))
         }
         view.endEditing(true)
