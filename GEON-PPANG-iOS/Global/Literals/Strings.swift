@@ -155,7 +155,7 @@ struct I18N {
         static let email = "사용 가능한 이메일입니다"
         static let disableEmail = "올바른 이메일을 입력해주세요."
         static let password = "영문, 숫자 포함 8자리 이상"
-        static let nickname = "10자 이내, 특수문자 금지"
+        static let nickname = "8자 이내, 특수문자 금지"
         static let checkPassword = "비밀번호를 확인해주세요"
         static let duplicatedEmail = "이미 존재하는 이메일입니다"
 

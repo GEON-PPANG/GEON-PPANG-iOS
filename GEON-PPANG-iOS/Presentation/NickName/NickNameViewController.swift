@@ -201,7 +201,7 @@ extension NickNameViewController: UITextFieldDelegate {
         
         self.configureNextButtonUI( currentText == changedText)
         
-        return changedText.count < 11
+        return changedText.count < 9
         
     }
     
