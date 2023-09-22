@@ -65,6 +65,7 @@ final class SearchTextField: UITextField {
             $0.makeCornerRound(radius: CGFloat().convertByHeightRatio(22))
             $0.backgroundColor = .gbbGray100
             $0.setPlaceholder(color: .gbbGray300!, font: .bodyM1!)
+            $0.placeholder = I18N.Search.searchPlaceholder
             configureButtonSubView()
         }
     }
@@ -78,13 +79,11 @@ final class SearchTextField: UITextField {
         
         switch viewType {
         case .search:
-            placeholder = I18N.Search.searchPlaceholder
             leftView = searchButton
             leftViewMode = .always
             rightView = clearButton
             rightViewMode = .whileEditing
         case .home:
-            placeholder = I18N.Home.searchPlaceholder
             setLeftPadding(amount: 0)
             rightView = searchButton
             rightViewMode = .always
