@@ -12,7 +12,7 @@
 			<key>Title</key>
 			<string>오픈소스 라이선스 </string>
 			<key>File</key>
-			<string>License</string>
+			<string>LicensePlist</string>
 		</dict>
 	</array>
 </dict>

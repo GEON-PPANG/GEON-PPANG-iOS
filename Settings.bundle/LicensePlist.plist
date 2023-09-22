@@ -12,7 +12,7 @@
 		</dict>
 		<dict>
 			<key>File</key>
-			<string>com.mono0926.LicensePlist/Alamofire</string>
+			<string>LicensePlist/Alamofire</string>
 			<key>Title</key>
 			<string>Alamofire</string>
 			<key>Type</key>
@@ -20,7 +20,7 @@
 		</dict>
 		<dict>
 			<key>File</key>
-			<string>com.mono0926.LicensePlist/Amplitude-iOS</string>
+			<string>LicensePlist/Amplitude-iOS</string>
 			<key>Title</key>
 			<string>Amplitude-iOS</string>
 			<key>Type</key>
@@ -28,7 +28,7 @@
 		</dict>
 		<dict>
 			<key>File</key>
-			<string>com.mono0926.LicensePlist/analytics-connector-ios</string>
+			<string>LicensePlist/analytics-connector-ios</string>
 			<key>Title</key>
 			<string>analytics-connector-ios</string>
 			<key>Type</key>
@@ -36,7 +36,7 @@
 		</dict>
 		<dict>
 			<key>File</key>
-			<string>com.mono0926.LicensePlist/kakao-ios-sdk</string>
+			<string>LicensePlist/kakao-ios-sdk</string>
 			<key>Title</key>
 			<string>KakaoOpenSDK</string>
 			<key>Type</key>
@@ -44,7 +44,7 @@
 		</dict>
 		<dict>
 			<key>File</key>
-			<string>com.mono0926.LicensePlist/Kingfisher</string>
+			<string>LicensePlist/Kingfisher</string>
 			<key>Title</key>
 			<string>Kingfisher</string>
 			<key>Type</key>
@@ -52,7 +52,7 @@
 		</dict>
 		<dict>
 			<key>File</key>
-			<string>com.mono0926.LicensePlist/Moya</string>
+			<string>LicensePlist/Moya</string>
 			<key>Title</key>
 			<string>Moya</string>
 			<key>Type</key>
@@ -60,7 +60,7 @@
 		</dict>
 		<dict>
 			<key>File</key>
-			<string>com.mono0926.LicensePlist/ReactiveSwift</string>
+			<string>LicensePlist/ReactiveSwift</string>
 			<key>Title</key>
 			<string>ReactiveSwift</string>
 			<key>Type</key>
@@ -68,7 +68,7 @@
 		</dict>
 		<dict>
 			<key>File</key>
-			<string>com.mono0926.LicensePlist/RxSwift</string>
+			<string>LicensePlist/RxSwift</string>
 			<key>Title</key>
 			<string>RxSwift</string>
 			<key>Type</key>
@@ -76,7 +76,7 @@
 		</dict>
 		<dict>
 			<key>File</key>
-			<string>com.mono0926.LicensePlist/sentry-cocoa</string>
+			<string>LicensePlist/sentry-cocoa</string>
 			<key>Title</key>
 			<string>Sentry</string>
 			<key>Type</key>
@@ -84,7 +84,7 @@
 		</dict>
 		<dict>
 			<key>File</key>
-			<string>com.mono0926.LicensePlist/SnapKit</string>
+			<string>LicensePlist/SnapKit</string>
 			<key>Title</key>
 			<string>SnapKit</string>
 			<key>Type</key>
@@ -92,7 +92,7 @@
 		</dict>
 		<dict>
 			<key>File</key>
-			<string>com.mono0926.LicensePlist/Then</string>
+			<string>LicensePlist/Then</string>
 			<key>Title</key>
 			<string>Then</string>
 			<key>Type</key>
