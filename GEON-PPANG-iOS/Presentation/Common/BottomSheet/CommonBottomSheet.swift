@@ -90,7 +90,7 @@ final class CommonBottomSheet: UIView {
         confirmButton.do {
             $0.configureButtonUI(.gbbGray700!)
             $0.configureButtonTitle(.confirm)
-            $0.addActionToCommonButton {
+            $0.tappedCommonButton = {
                 self.dismissBottomSheet?()
             }
         }
