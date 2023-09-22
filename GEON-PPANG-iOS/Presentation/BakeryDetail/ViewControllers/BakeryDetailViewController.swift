@@ -45,8 +45,9 @@ final class BakeryDetailViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         guard let bakeryID = self.bakeryID else { return }
-        getBakeryDetail(bakeryID: bakeryID)
-        getWrittenReviews(bakeryID: bakeryID)
+        
+       getWrittenReviews(bakeryID: bakeryID)
+
         Utils.setDetailSourceType(self.source)
         
         navigationController?.interactivePopGestureRecognizer?.delegate = nil // swipe back gesture
@@ -377,6 +378,7 @@ extension BakeryDetailViewController {
             dump(data)
             
             self.reviewData = data
+            self.getBakeryDetail(bakeryID: bakeryID)
         }
     }
     
