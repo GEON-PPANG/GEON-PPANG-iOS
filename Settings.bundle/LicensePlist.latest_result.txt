@@ -1,0 +1,25 @@
+name: Alamofire, nameSpecified: Alamofire, owner: Alamofire, version: 5.7.1, source: https://github.com/Alamofire/Alamofire
+
+name: Amplitude-iOS, nameSpecified: Amplitude-iOS, owner: amplitude, version: , source: https://github.com/amplitude/Amplitude-iOS
+
+name: analytics-connector-ios, nameSpecified: analytics-connector-ios, owner: amplitude, version: 1.0.2, source: https://github.com/amplitude/analytics-connector-ios
+
+name: kakao-ios-sdk, nameSpecified: KakaoOpenSDK, owner: kakao, version: 2.16.0, source: https://github.com/kakao/kakao-ios-sdk
+
+name: Kingfisher, nameSpecified: Kingfisher, owner: onevcat, version: 7.8.1, source: https://github.com/onevcat/Kingfisher
+
+name: Moya, nameSpecified: Moya, owner: Moya, version: , source: https://github.com/Moya/Moya
+
+name: ReactiveSwift, nameSpecified: ReactiveSwift, owner: ReactiveCocoa, version: 6.7.0, source: https://github.com/ReactiveCocoa/ReactiveSwift
+
+name: RxSwift, nameSpecified: RxSwift, owner: ReactiveX, version: 6.6.0, source: https://github.com/ReactiveX/RxSwift
+
+name: sentry-cocoa, nameSpecified: Sentry, owner: getsentry, version: 8.11.0, source: https://github.com/getsentry/sentry-cocoa
+
+name: SnapKit, nameSpecified: SnapKit, owner: SnapKit, version: 5.6.0, source: https://github.com/SnapKit/SnapKit
+
+name: Then, nameSpecified: Then, owner: devxoul, version: 3.0.0, source: https://github.com/devxoul/Then
+
+add-version-numbers: false
+
+LicensePlist Version: 3.24.11
