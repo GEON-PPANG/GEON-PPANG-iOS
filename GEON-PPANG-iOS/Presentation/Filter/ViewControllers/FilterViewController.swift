@@ -125,6 +125,7 @@ final class FilterViewController: BaseViewController {
             newFilterType = .breadType
         case .breadType:
             newFilterType = .ingredient
+            nextButton.configureButtonTitle(.apply)
         case .ingredient:
             sendRequest()
             return
@@ -143,8 +144,11 @@ final class FilterViewController: BaseViewController {
         case .purpose:
             self.navigationController?.popViewController(animated: true)
             return
-        case .breadType: newFilterType = .purpose
-        case .ingredient: newFilterType = .breadType
+        case .breadType:
+            newFilterType = .purpose
+        case .ingredient:
+            newFilterType = .breadType
+            nextButton.configureButtonTitle(.next)
         }
         
         FilterCellModel.deselectContents(of: currentFilterType)
