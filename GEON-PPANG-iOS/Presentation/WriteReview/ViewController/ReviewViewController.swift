@@ -299,7 +299,8 @@ extension ReviewViewController {
         
         view.addSubview(bottomView)
         bottomView.snp.makeConstraints {
-            $0.horizontalEdges.bottom.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(0)
         }
         
         contentView.addSubview(aboutReviewContainerView)
