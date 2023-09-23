@@ -434,21 +434,29 @@ extension ReviewViewController {
     @objc
     private func keyboardWillShowOnScrollView(notification: NSNotification) {
         
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            UIView.animate(withDuration: 0.2, animations: {
-                self.bottomView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + (UIScreen.main.hasNotch ? 30 : 0))
-                self.contentView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + 30)
-            })
+        guard let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height else {
+            return
         }
+        UIView.animate(withDuration: 0.2, animations: {
+            self.bottomView.snp.updateConstraints {
+                $0.bottom.equalToSuperview().inset(keyboardHeight)
+            }
+        })
+        self.scrollView.contentOffset.y = keyboardHeight
+        self.scrollView.contentInset.bottom = keyboardHeight
+        self.view.layoutIfNeeded()
     }
 
     @objc
     private func keyboardWillHideOnScrollView(notification: NSNotification) {
-        
         UIView.animate(withDuration: 0.2, animations: {
-            self.bottomView.transform = .identity
-            self.contentView.transform = .identity
+            self.bottomView.snp.updateConstraints {
+                $0.bottom.equalToSuperview()
+            }
         })
+        self.scrollView.contentOffset.y = 0
+        self.scrollView.contentInset.bottom = 0
+        self.view.layoutIfNeeded()
     }
 
 }
