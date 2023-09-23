@@ -412,6 +412,15 @@ extension ReviewViewController {
         return requestData
     }
     
+    private func calculateScrollOffset() -> CGFloat {
+        let textViewY = reviewDetailTextView.frame.minY
+        return textViewY - 24
+    }
+}
+
+// MARK: - read type func
+
+extension ReviewViewController {
     private func bindReview(_ review: MyReviewDetailResponseDTO) {
         myReviewData = review
         likeCollectionView.reloadData()
@@ -424,7 +433,6 @@ extension ReviewViewController {
         reviewDetailTextView.configureTextView(to: .activated)
         reviewDetailTextView.detailTextView.text = review.reviewText
     }
-    
 }
 
 // MARK: - write type objc func
@@ -439,22 +447,23 @@ extension ReviewViewController {
         }
         UIView.animate(withDuration: 0.2, animations: {
             self.bottomView.snp.updateConstraints {
-                $0.bottom.equalToSuperview().inset(keyboardHeight)
+                $0.bottom.equalToSuperview().inset(UIScreen.main.hasNotch ? keyboardHeight - 34 : keyboardHeight)
             }
         })
-        self.scrollView.contentOffset.y = keyboardHeight
+        self.scrollView.contentOffset.y = calculateScrollOffset()
         self.scrollView.contentInset.bottom = keyboardHeight
         self.view.layoutIfNeeded()
     }
 
     @objc
     private func keyboardWillHideOnScrollView(notification: NSNotification) {
+        
         UIView.animate(withDuration: 0.2, animations: {
             self.bottomView.snp.updateConstraints {
                 $0.bottom.equalToSuperview()
             }
         })
-        self.scrollView.contentOffset.y = 0
+        
         self.scrollView.contentInset.bottom = 0
         self.view.layoutIfNeeded()
     }
