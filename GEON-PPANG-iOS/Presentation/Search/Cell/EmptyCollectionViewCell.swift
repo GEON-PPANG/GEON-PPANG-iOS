@@ -46,7 +46,9 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
         contentView.addSubviews(emptyLabel, emptyIcon)
         
         switch emptyType {
-        case .noBookmark, .noReview:
+        case .noReview:
+            configureLayout(CGSize(width: 158, height: 132), -20)
+        case .noMyReview, .noBookmark:
             configureLayout(CGSize(width: 154, height: 132), -20)
         case .noSearch:
             configureLayout(CGSize(width: 154, height: 134), -16)
@@ -60,14 +62,29 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
     
     private func configureLayout(_ size: CGSize, _ offset: Float) {
         
-        emptyLabel.snp.remakeConstraints {
-            $0.center.equalToSuperview()
-        }
-        
-        emptyIcon.snp.remakeConstraints {
-            $0.size.equalTo(size)
-            $0.bottom.equalTo(emptyLabel.snp.top).offset(offset)
-            $0.centerX.equalToSuperview().offset(10)
+        if emptyType == .noReview {
+            emptyIcon.snp.remakeConstraints {
+                $0.size.equalTo(size)
+                $0.top.equalToSuperview().inset(62)
+                $0.centerX.equalToSuperview()
+            }
+            
+            emptyLabel.snp.remakeConstraints {
+                $0.top.equalTo(emptyIcon.snp.bottom).inset(offset)
+                $0.centerX.equalToSuperview()
+                $0.width.equalTo(171)
+                $0.height.equalTo(25)
+            }
+        } else {
+            emptyLabel.snp.remakeConstraints {
+                $0.center.equalToSuperview()
+            }
+            
+            emptyIcon.snp.remakeConstraints {
+                $0.size.equalTo(size)
+                $0.bottom.equalTo(emptyLabel.snp.top).offset(offset)
+                $0.centerX.equalToSuperview().offset(10)
+            }
         }
     }
     
@@ -80,6 +97,7 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
         emptyLabel.do {
             $0.numberOfLines = 0
             $0.basic(font: .title2!, color: .gbbGray300!)
+            $0.textAlignment = .center
         }
     }
     
@@ -88,10 +106,15 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
         emptyType = type
         emptyIcon.image = type.icon
         emptyLabel.setLineHeight(by: 1.05, with: type.rawValue)
-        emptyLabel.textAlignment = .center
+        
+        if emptyType == .noReview {
+            self.do {
+                $0.backgroundColor = .gbbWhite
+            }
+        }
         
         switch type {
-        case .initialize, .noBookmark, .noReview:
+        case .initialize, .noReview, .noMyReview, .noBookmark:
             return emptyLabel.basic(text: emptyType.rawValue,
                                     font: .title2!,
                                     color: .gbbGray300!)
