@@ -21,7 +21,6 @@ final class BottomSheetAppearView: UIView {
     var addedSubView = UIView()
     lazy var dimmedView = UIView()
     private lazy var halfView =  UIView()
-    private lazy var handlerView = UIView()
     
     // MARK: - Setting
     
@@ -38,11 +37,6 @@ final class BottomSheetAppearView: UIView {
             $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
             $0.makeCornerRound(radius: 10)
         }
-        
-        handlerView.do {
-            $0.backgroundColor = .gbbGray200
-            $0.makeCornerRound(radius: 4)
-        }
     }
 }
 
@@ -54,7 +48,6 @@ extension BottomSheetAppearView {
             window.endEditing(true)
             dimmedView.frame = window.frame
             window.addSubviews(dimmedView, halfView)
-            halfView.addSubview(handlerView)
             setUI()
             
             halfView.snp.remakeConstraints {
@@ -64,11 +57,6 @@ extension BottomSheetAppearView {
                 } else {
                     $0.height.equalTo(dimmedView.frame.size.height / 2.0)
                 }
-            }
-            handlerView.snp.makeConstraints {
-                $0.centerX.equalToSuperview()
-                $0.top.equalToSuperview().offset(8)
-                $0.size.equalTo(CGSize(width: 60, height: 6))
             }
         }
     }
@@ -113,7 +101,7 @@ extension BottomSheetAppearView {
         halfView.addSubview(addedSubView)
         
         addedSubView.snp.makeConstraints {
-            $0.top.equalTo(handlerView.snp.bottom)
+            $0.top.equalToSuperview().offset(15)
             $0.directionalHorizontalEdges.bottom.equalToSuperview()
         }
         

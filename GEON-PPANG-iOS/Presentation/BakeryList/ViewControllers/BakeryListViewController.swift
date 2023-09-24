@@ -69,7 +69,7 @@ final class BakeryListViewController: BaseViewController {
         bakeryTopView.snp.makeConstraints {
             $0.top.equalTo(safeArea)
             $0.directionalHorizontalEdges.equalTo(safeArea)
-            $0.height.equalTo(91)
+            $0.height.equalTo(68)
         }
         
         view.addSubview(bakeryFilterView)

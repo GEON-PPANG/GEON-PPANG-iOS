@@ -157,6 +157,7 @@ extension HomeReviewCollectionViewCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: DescriptionCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+        cell.cellColor = .basic
         cell.configureTagTitle(self.keywords[indexPath.item])
         return cell
     }

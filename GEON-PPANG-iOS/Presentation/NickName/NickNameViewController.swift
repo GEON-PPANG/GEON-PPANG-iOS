@@ -103,7 +103,7 @@ final class NickNameViewController: BaseViewController {
             $0.configureButtonUI(.clear)
             $0.configureBorder(1, .gbbGray300)
             $0.configureButtonTitle(.duplicate)
-            $0.addActionToCommonButton {
+            $0.tappedCommonButton = {
                 self.postNicknameCheck()
             }
         }
@@ -201,8 +201,7 @@ extension NickNameViewController: UITextFieldDelegate {
         
         self.configureNextButtonUI( currentText == changedText)
         
-        return changedText.count < 11
-        
+        return changedText.count < 9
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {

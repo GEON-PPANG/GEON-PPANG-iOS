@@ -47,7 +47,7 @@ extension String {
     /// nickName
     func isNotContainSpecialCharacters() -> Bool {
         
-        let pattern = "^[0-9a-zA-Z가-힣ㄱ-ㅎㅏ-ㅣ\\s]{0,10}$"
+        let pattern = "^[0-9a-zA-Z가-힣ㄱ-ㅎㅏ-ㅣ\\s]{0,8}$"
         return self.range(of: pattern, options: .regularExpression) != nil
     }
 }
