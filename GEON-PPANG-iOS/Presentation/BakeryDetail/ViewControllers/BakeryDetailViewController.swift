@@ -49,8 +49,8 @@ final class BakeryDetailViewController: BaseViewController {
         
         guard let bakeryID = self.bakeryID else { return }
         
-       getWrittenReviews(bakeryID: bakeryID)
-
+        getBakeryDetail(bakeryID: bakeryID, isUpdated: true)
+        
         Utils.setDetailSourceType(self.source)
         
         navigationController?.interactivePopGestureRecognizer?.delegate = nil // swipe back gesture
@@ -366,7 +366,7 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
 
 extension BakeryDetailViewController {
     
-    func getBakeryDetail(bakeryID: Int) {
+    func getBakeryDetail(bakeryID: Int, isUpdated: Bool) {
         
         BakeryAPI.shared.getBakeryDetail(bakeryID: bakeryID) { response in
             
@@ -379,19 +379,21 @@ extension BakeryDetailViewController {
             self.detailBottomView.configureBookmarkButton(to: data.isBookMarked)
             self.homepageURL = data.homepageURL
             self.instagramURL = data.instagramURL
+            self.getWrittenReviews(bakeryID: bakeryID, isUpdated: isUpdated )
         }
     }
     
-    func getWrittenReviews(bakeryID: Int) {
+    func getWrittenReviews(bakeryID: Int, isUpdated: Bool) {
         
-        BakeryAPI.shared.getWrittenReviews(bakeryID: bakeryID) { response in
-            
-            guard let response = response else { return }
-            guard let data = response.data else { return }
-            dump(data)
-            
-            self.reviewData = data
-            self.getBakeryDetail(bakeryID: bakeryID)
+        if isUpdated {
+            BakeryAPI.shared.getWrittenReviews(bakeryID: bakeryID) { response in
+                
+                guard let response = response else { return }
+                guard let data = response.data else { return }
+                dump(data)
+                
+                self.reviewData = data
+            }
         }
     }
     
@@ -401,11 +403,11 @@ extension BakeryDetailViewController {
         
         guard let bakeryID = self.bakeryID else { return }
         
-        BakeryAPI.shared.postBookmark(bakeryID: bakeryID, with: bookmarkRequest) { response in
+        BakeryAPI.shared.postBookmark(bakeryID: bakeryID, with: bookmarkRequest) { _ in
             
             self.detailBottomView.configureBookmarkButton(to: value)
             self.isBookmarked = value
-            self.getBakeryDetail(bakeryID: bakeryID)
+            self.getBakeryDetail(bakeryID: bakeryID, isUpdated: false)
         }
     }
     
