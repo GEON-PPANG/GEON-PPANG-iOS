@@ -15,8 +15,6 @@
 		0905562D2A51DBE700752067 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905562C2A51DBE700752067 /* UILabel+.swift */; };
 		090556382A51E16B00752067 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 090556372A51E16B00752067 /* Then */; };
 		0905563B2A51E17800752067 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0905563A2A51E17800752067 /* SnapKit */; };
-		0905563E2A51E2C700752067 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 0905563D2A51E2C700752067 /* FirebaseAnalytics */; };
-		090556402A51E2C700752067 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 0905563F2A51E2C700752067 /* FirebaseCrashlytics */; };
 		090556432A51E6FC00752067 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 090556422A51E6FC00752067 /* Moya */; };
 		090556452A51E79B00752067 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556442A51E79B00752067 /* UITextField+.swift */; };
 		090556472A51E7D900752067 /* UITextView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556462A51E7D900752067 /* UITextView+.swift */; };
@@ -30,6 +28,7 @@
 		0915C1702A5C3C5600ACB8D4 /* RegionStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0915C16F2A5C3C5600ACB8D4 /* RegionStackView.swift */; };
 		0915C1722A5C3D3700ACB8D4 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0915C1712A5C3D3700ACB8D4 /* PaddingLabel.swift */; };
 		0915C1752A5C533900ACB8D4 /* HomeReviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0915C1742A5C533900ACB8D4 /* HomeReviewCollectionViewCell.swift */; };
+		091AFD422ABD79380001DD02 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 091AFD412ABD79380001DD02 /* Settings.bundle */; };
 		0924632F2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0924632E2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift */; };
 		092EFCA42A6195D900E7C262 /* CommonTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092EFCA32A6195D900E7C262 /* CommonTextView.swift */; };
 		0930D25B2A928B8000A75C7E /* CertificationMarkResponseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0930D25A2A928B8000A75C7E /* CertificationMarkResponseType.swift */; };
@@ -252,6 +251,7 @@
 		0915C16F2A5C3C5600ACB8D4 /* RegionStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionStackView.swift; sourceTree = "<group>"; };
 		0915C1712A5C3D3700ACB8D4 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		0915C1742A5C533900ACB8D4 /* HomeReviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeReviewCollectionViewCell.swift; sourceTree = "<group>"; };
+		091AFD412ABD79380001DD02 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		0924632E2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBakeryCollectionViewCell.swift; sourceTree = "<group>"; };
 		092EFCA32A6195D900E7C262 /* CommonTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTextView.swift; sourceTree = "<group>"; };
 		0930D25A2A928B8000A75C7E /* CertificationMarkResponseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationMarkResponseType.swift; sourceTree = "<group>"; };
@@ -460,11 +460,9 @@
 				3E36D7CD2A8DE65D00B2C1CC /* KakaoSDKAuth in Frameworks */,
 				0959F19A2A65D45700E77CAF /* Kingfisher in Frameworks */,
 				090556382A51E16B00752067 /* Then in Frameworks */,
-				090556402A51E2C700752067 /* FirebaseCrashlytics in Frameworks */,
 				098227EA2AB8B17700872135 /* Sentry in Frameworks */,
 				0905563B2A51E17800752067 /* SnapKit in Frameworks */,
 				090556432A51E6FC00752067 /* Moya in Frameworks */,
-				0905563E2A51E2C700752067 /* FirebaseAnalytics in Frameworks */,
 				095FB8802AB3427D00C69BD1 /* Amplitude in Frameworks */,
 				3E36D7D12A8DE65D00B2C1CC /* KakaoSDKUser in Frameworks */,
 			);
@@ -1030,6 +1028,7 @@
 		098F32D42A4200FD0092D09A = {
 			isa = PBXGroup;
 			children = (
+				091AFD412ABD79380001DD02 /* Settings.bundle */,
 				090668F72A4FF1D900F413FA /* .swiftlint.yml */,
 				DFDE72DA2A66893900389A51 /* Config.xcconfig */,
 				098F32DF2A4200FD0092D09A /* GEON-PPANG-iOS */,
@@ -1619,8 +1618,6 @@
 			packageProductDependencies = (
 				090556372A51E16B00752067 /* Then */,
 				0905563A2A51E17800752067 /* SnapKit */,
-				0905563D2A51E2C700752067 /* FirebaseAnalytics */,
-				0905563F2A51E2C700752067 /* FirebaseCrashlytics */,
 				090556422A51E6FC00752067 /* Moya */,
 				0959F1992A65D45700E77CAF /* Kingfisher */,
 				3E36D7CC2A8DE65D00B2C1CC /* KakaoSDKAuth */,
@@ -1660,7 +1657,6 @@
 			packageReferences = (
 				090556362A51E16B00752067 /* XCRemoteSwiftPackageReference "Then" */,
 				090556392A51E17800752067 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				0905563C2A51E2C700752067 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				090556412A51E6FC00752067 /* XCRemoteSwiftPackageReference "Moya" */,
 				0959F1982A65D45700E77CAF /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				3E36D7CB2A8DE65D00B2C1CC /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
@@ -1688,6 +1684,7 @@
 				DFDE72DB2A66893900389A51 /* Config.xcconfig in Resources */,
 				098F32EA2A4200FE0092D09A /* Assets.xcassets in Resources */,
 				DF959A622A539FBE00E75774 /* Pretendard-Medium.otf in Resources */,
+				091AFD422ABD79380001DD02 /* Settings.bundle in Resources */,
 				DF959A6C2A568C4600E75774 /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2097,7 +2094,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZLLGCJ8XUL;
@@ -2135,10 +2132,12 @@
 				BASE_URL = "${BASE_URL}";
 				CODE_SIGN_ENTITLEMENTS = "GEON-PPANG-iOS/GEON-PPANG-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = ZLLGCJ8XUL;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZLLGCJ8XUL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "GEON-PPANG-iOS/Resource/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "건빵";
@@ -2156,6 +2155,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.gunbbang.GUN-BBANG-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = gunbbangRelease;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2200,14 +2200,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.0.0;
-			};
-		};
-		0905563C2A51E2C700752067 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
 			};
 		};
 		090556412A51E6FC00752067 /* XCRemoteSwiftPackageReference "Moya" */ = {
@@ -2262,16 +2254,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 090556392A51E17800752067 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
-		};
-		0905563D2A51E2C700752067 /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0905563C2A51E2C700752067 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-		0905563F2A51E2C700752067 /* FirebaseCrashlytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0905563C2A51E2C700752067 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseCrashlytics;
 		};
 		090556422A51E6FC00752067 /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
