@@ -172,10 +172,9 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
         case 2:
             return overviewData.menuList.count
         case 4:
-            if reviewData.reviewList.isEmpty {
-                return 1
-            }
-            return reviewData.reviewList.count
+            let reviewList = reviewData.reviewList
+            
+            return reviewList.isEmpty ? 1 : reviewList.count
         default:
             return 1
         }
