@@ -103,7 +103,7 @@ final class NickNameViewController: BaseViewController {
             $0.configureButtonUI(.clear)
             $0.configureBorder(1, .gbbGray300)
             $0.configureButtonTitle(.duplicate)
-            $0.tappedCommonButton =  {
+            $0.tappedCommonButton = {
                 self.postNicknameCheck()
             }
         }
