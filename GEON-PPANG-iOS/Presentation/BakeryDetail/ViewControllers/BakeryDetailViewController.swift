@@ -30,7 +30,6 @@ final class BakeryDetailViewController: BaseViewController {
         }
     }
     private var isBookmarked: Bool = false
-    private var labelHeight: CGFloat = 120
     var source: AnalyticEventType = .HOME
     var bakeryID: Int?
     var homepageURL: String = ""
@@ -232,9 +231,8 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
                     self.tempLabel.text = review.reviewText
                     let maxSize = CGSize(width: self.convertByWidthRatio(277), height: CGFloat.greatestFiniteMagnitude)
                     let labelSize = self.tempLabel.sizeThatFits(maxSize)
-                    self.labelHeight = labelSize.height
                     
-                    cell.configureCellUI(review, self.labelHeight)
+                    cell.configureCellUI(review, labelSize.height)
                 }
                 
                 cell.delegate = self
@@ -309,9 +307,10 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
                 tempLabel.text = reviewData.reviewList[indexPath.item].reviewText
                 let maxSize = CGSize(width: convertByWidthRatio(277), height: CGFloat.greatestFiniteMagnitude)
                 let labelSize = tempLabel.sizeThatFits(maxSize)
-                labelHeight = reviewData.reviewList[indexPath.item].recommendKeywordList.isEmpty ? labelSize.height + 88 : labelSize.height + 123
                 
-                return CGSize(width: getDeviceWidth(), height: labelHeight)
+                let cellHeight = reviewData.reviewList[indexPath.item].recommendKeywordList.isEmpty ? labelSize.height + 88 : labelSize.height + 123
+                
+                return CGSize(width: getDeviceWidth(), height: cellHeight)
             }
         default:
             return CGSize()
