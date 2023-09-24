@@ -10,7 +10,14 @@ import UIKit
 import SnapKit
 import Then
 
+protocol ReportButtonDelegate: BakeryDetailViewController {
+    
+    func tappedReportButton()
+}
+
 final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
+    
+    weak var delegate: ReportButtonDelegate?
     
     // MARK: - UI Property
     
@@ -18,7 +25,7 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
     private let profileImage = UIImageView()
     private let userNicknameLabel = UILabel()
     private let reviewDateLabel = UILabel()
-    private let reportLabel = UILabel()
+    private let reportButton = UIButton()
     private lazy var reviewCategoryStackView = ReviewCategoryStackView()
     private let reviewTextLabel = UILabel()
     
@@ -73,8 +80,8 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
             $0.height.equalTo(17)
         }
         
-        reviewContainer.addSubview(reportLabel)
-        reportLabel.snp.makeConstraints {
+        reviewContainer.addSubview(reportButton)
+        reportButton.snp.makeConstraints {
             $0.centerY.equalTo(userNicknameLabel)
             $0.leading.equalToSuperview().inset(convertByWidthRatio(279))
             $0.trailing.equalToSuperview().inset(convertByWidthRatio(25))
@@ -91,7 +98,7 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
         reviewContainer.addSubview(reviewTextLabel)
         reviewTextLabel.snp.makeConstraints {
             $0.top.equalTo(reviewCategoryStackView.snp.bottom).offset(convertByWidthRatio(16))
-            $0.directionalHorizontalEdges.equalToSuperview().inset(25)
+            $0.directionalHorizontalEdges.equalToSuperview().inset(convertByWidthRatio(25))
             $0.width.equalTo(convertByWidthRatio(277))
             $0.height.equalTo(convertByWidthRatio(120))
         }
@@ -123,8 +130,13 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
             $0.textAlignment = .right
         }
         
-        reportLabel.do {
-            $0.basic(text: "신고", font: .captionM1!, color: .gbbGray300!)
+        reportButton.do {
+            $0.setTitle(I18N.Detail.report, for: .normal)
+            $0.setTitleColor(.gbbGray300, for: .normal)
+            $0.titleLabel?.font = .captionM1
+            $0.addAction(UIAction { [weak self] _ in
+                self?.tappedReportButton()
+            }, for: .touchUpInside)
         }
         
         reviewTextLabel.do {
@@ -152,9 +164,9 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
             reviewCategoryStackView.getNoRecommend()
         }
         
-        let containerHeight = convertByWidthRatio(isKeywordListEmpty ? labelHeight + 70 : labelHeight + 111)
+        let containerHeight = isKeywordListEmpty ? labelHeight + 76 : labelHeight + 111
         let textLabelTopConstraint = isKeywordListEmpty ? profileImage.snp.bottom : reviewCategoryStackView.snp.bottom
-        let textLabelOffset = convertByWidthRatio(isKeywordListEmpty ? 10 : 16)
+        let textLabelOffset = convertByWidthRatio(16)
         
         reviewContainer.snp.remakeConstraints {
             $0.top.equalToSuperview()
@@ -165,9 +177,24 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
         
         reviewTextLabel.snp.remakeConstraints {
             $0.top.equalTo(textLabelTopConstraint).offset(textLabelOffset)
-            $0.directionalHorizontalEdges.equalToSuperview().inset(25)
+            $0.directionalHorizontalEdges.equalToSuperview().inset(convertByWidthRatio(25))
             $0.width.equalTo(convertByWidthRatio(277))
-            $0.height.equalTo(convertByWidthRatio(labelHeight))
+            $0.height.equalTo(labelHeight)
         }
+    }
+    
+    func tappedReportButton() {
+        
+        delegate?.tappedReportButton()
+    }
+}
+
+// MARK: - Custom Protocol
+
+extension BakeryDetailViewController: ReportButtonDelegate {
+    
+    func tappedReportButton() {
+        
+        Utils.push(self.navigationController, ReportViewController(title: I18N.Detail.reviewReport))
     }
 }

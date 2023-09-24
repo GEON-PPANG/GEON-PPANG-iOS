@@ -79,6 +79,9 @@ extension UIImage {
     static let welcomeImage = UIImage(named: "img_welcome")!.withRenderingMode(.alwaysOriginal)
     static let leftBubbleImage = UIImage(named: "img_left_bubble")!.withRenderingMode(.alwaysOriginal)
     static let rightBubbleImage = UIImage(named: "img_right_bubble")!.withRenderingMode(.alwaysOriginal)
+    static let loading_large = UIImage(named: "img_loading_large")!.withRenderingMode(.alwaysOriginal)
+    static let loading_medium = UIImage(named: "img_loading_medium")!.withRenderingMode(.alwaysOriginal)
+    static let loading_small = UIImage(named: "img_loading_small")!.withRenderingMode(.alwaysOriginal)
         
     // Include Touch Area
     static let bigLeftArrowIcon = UIImage(named: "ic_arrow_left")!.withRenderingMode(.alwaysOriginal)

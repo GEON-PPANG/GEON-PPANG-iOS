@@ -16,27 +16,13 @@ enum AnalyticManager: AnalyticManagerProtocol {
     
     /// user property
 
-    static func log(user: AnalyticManagerUser, value: Any) {
+    static func set(userId: Int) {
         
-        guard let identify = AMPIdentify().set(user.name, value: value as? NSObject) else { return }
-            Amplitude.instance().identify(identify)
-        
-#if DEBUG
-            print("🍥🍥🍥🍥🍥 \(user.name): \(value) 🍥🍥🍥🍥🍥")
-#endif
-    }
-    
-    /// user property only once
-    
-    static func logOnce(user: AnalyticManagerUser, value: Any) {
-        
-        guard let identify  = AMPIdentify().setOnce(user.name, value: value as? NSObject) else { return }
-        Amplitude.instance().identify(identify)
+        Amplitude.instance().setUserId(String(userId))
         
 #if DEBUG
-            print("🍥🍥🍥🍥🍥 \(user.name): \(value) 🍥🍥🍥🍥🍥")
+        print("🍥🍥🍥🍥🍥 userId: \(userId) 🍥🍥🍥🍥🍥")
 #endif
-        
     }
 
     static func log(event: AnalyticManagerEvent) {

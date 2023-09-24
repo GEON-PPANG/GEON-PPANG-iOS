@@ -90,6 +90,7 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
         self.addSubview(subTitleStackView)
         subTitleStackView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(8)
+            // TODO: .
             $0.leading.equalTo(titleLabel) // 여기 이상하게 잡힘 (후순위, 아이콘라벨스택뷰 확인요망, remake~)
         }
     }

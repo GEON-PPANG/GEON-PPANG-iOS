@@ -72,16 +72,16 @@ final class DetailBottomView: UIView {
         
         bookmarkButton.do {
             $0.setImage(.disabledBookmarkButton, for: .normal)
-            $0.addAction(UIAction { _ in
-                self.tappedBookmarkButton?()
+            $0.addAction(UIAction { [weak self] _ in
+                self?.tappedBookmarkButton?()
             }, for: .touchUpInside)
         }
         
         writeReviewButton.do {
             $0.backgroundColor = .gbbMain2
             $0.makeCornerRound(radius: 10)
-            $0.addAction(UIAction { _ in
-                self.tappedWriteReviewButton?()
+            $0.addAction(UIAction { [weak self] _ in
+                self?.tappedWriteReviewButton?()
             }, for: .touchUpInside)
         }
         
