@@ -202,7 +202,6 @@ extension NickNameViewController: UITextFieldDelegate {
         self.configureNextButtonUI( currentText == changedText)
         
         return changedText.count < 9
-        
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
