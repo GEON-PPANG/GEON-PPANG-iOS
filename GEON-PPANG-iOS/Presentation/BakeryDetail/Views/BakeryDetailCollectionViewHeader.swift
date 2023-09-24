@@ -60,7 +60,8 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
         
         self.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
-            $0.top.leading.equalToSuperview().inset(24)
+            $0.top.equalToSuperview().inset(28)
+            $0.leading.equalToSuperview().inset(24)
             $0.height.equalTo(22)
         }
     }
@@ -90,8 +91,7 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
         self.addSubview(subTitleStackView)
         subTitleStackView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(8)
-            // TODO: .
-            $0.leading.equalTo(titleLabel) // 여기 이상하게 잡힘 (후순위, 아이콘라벨스택뷰 확인요망, remake~)
+            $0.leading.equalTo(titleLabel)
         }
     }
     
@@ -105,8 +105,8 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
         case .reviewCategory:
             titleLabel.text = "건빵집 리뷰"
         case .writtenReviews:
-            titleLabel.text = "작성된 리뷰 (\(reviewCount))개"
-            titleLabel.partColorChange(targetString: "\(reviewCount)", textColor: .gbbPoint1!) // 특정 문자열의 textColor를 변경
+            titleLabel.text = "작성된 리뷰 \(reviewCount)개"
+            titleLabel.partColorChange(targetString: "\(reviewCount)개", textColor: .gbbPoint1!) // 특정 문자열의 textColor를 변경
         }
     }
     
