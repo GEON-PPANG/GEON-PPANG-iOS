@@ -30,7 +30,7 @@ final class DescriptionCollectionViewCell: UICollectionViewCell {
     
     private var cellBackgroundColor: UIColor {
         switch cellColor {
-        case .basic: return .clear
+        case .basic: return .gbbBackground1!
         case .sub: return .gbbBackground1!
         case .point: return .gbbPoint2!
         }

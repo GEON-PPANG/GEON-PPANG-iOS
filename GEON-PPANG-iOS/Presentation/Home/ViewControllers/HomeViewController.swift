@@ -57,7 +57,6 @@ final class HomeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        getHomeBestData()
         getUserName()
     }
     
@@ -314,7 +313,7 @@ extension HomeViewController {
                     self.isFirstAppearance = true
                 }
             }
-            self.setSnapshot()
+            self.getHomeBestData()
         }
     }
 }
