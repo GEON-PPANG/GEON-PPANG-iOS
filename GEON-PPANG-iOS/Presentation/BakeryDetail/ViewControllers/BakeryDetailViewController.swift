@@ -47,6 +47,7 @@ final class BakeryDetailViewController: BaseViewController {
     
     private let navigationBar = CustomNavigationBar()
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    private lazy var floatingButton = UIButton()
     private lazy var detailBottomView = DetailBottomView()
     private let tempLabel = UILabel()
     
@@ -77,6 +78,13 @@ final class BakeryDetailViewController: BaseViewController {
             $0.top.equalTo(navigationBar.snp.bottom)
             $0.directionalHorizontalEdges.equalToSuperview()
             $0.bottom.equalToSuperview()
+        }
+        
+        view.addSubview(floatingButton)
+        floatingButton.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(20)
+            $0.bottom.equalToSuperview().inset(heightConsideringNotch(158))
+            $0.size.equalTo(48)
         }
         
         view.addSubview(detailBottomView)
@@ -111,6 +119,17 @@ final class BakeryDetailViewController: BaseViewController {
             $0.backgroundColor = .gbbGray200
             $0.bounces = false
             $0.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 92, right: 0)
+            $0.showsVerticalScrollIndicator = false
+        }
+        
+        floatingButton.do {
+            $0.setImage(.upArrowIcon, for: .normal)
+            $0.backgroundColor = .gbbWhite
+            $0.makeBorder(width: 1, color: .gbbGray200!)
+            $0.makeCornerRound(radius: 24)
+            $0.addAction(UIAction { [weak self] _ in
+                self?.tappedFloatingButton()
+            }, for: .touchUpInside)
         }
         
         detailBottomView.do {
@@ -449,5 +468,10 @@ extension BakeryDetailViewController {
                        options: .curveEaseOut,
                        animations: { toastLabel.alpha = 0.0 },
                        completion: { (isCompleted) in toastLabel.removeFromSuperview() })
+    }
+    
+    private func tappedFloatingButton() {
+        
+        collectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
 }
