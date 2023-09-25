@@ -49,11 +49,9 @@ final class AuthInterceptor: RequestInterceptor {
         }
         
         AuthAPI.shared.getTokenRefresh { response in
-            guard let response = response,
-                  let message = response.message
-            else { return }
+            guard let response = response else { return }
             
-            if response.code == 200 || message == "만료되지 않은 엑세스 토큰입니다" || message == "토큰 재발급 실패" {
+            if response.code == 200 {
                 completion(.retry)
             } else {
                 Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()

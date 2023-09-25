@@ -102,19 +102,19 @@ final class FilterCollectionViewCell: UICollectionViewCell {
         
         UIView.animate(withDuration: 0.2) {
             self.do {
-                $0.makeBorder(width: self.isSelected ? 2 : 1, color: self.isSelected ? .gbbMain1! : .gbbGray300!)
+                $0.makeBorder(width: self.isSelected ? 2 : 1, color: self.isSelected ? .gbbMain3! : .gbbGray300!)
             }
         }
         
         UIView.transition(with: typeLabel, duration: 0.2, options: .transitionCrossDissolve) {
             self.typeLabel.do {
-                $0.textColor = self.isSelected ? .gbbMain1 : .gbbGray300
+                $0.textColor = self.isSelected ? .gbbMain3 : .gbbGray300
             }
         }
         
         UIView.transition(with: descriptionLabel, duration: 0.2, options: .transitionCrossDissolve) {
             self.descriptionLabel.do {
-                $0.textColor = self.isSelected ? .gbbMain1 : .gbbGray300
+                $0.textColor = self.isSelected ? .gbbMain3 : .gbbGray300
             }
         }
     }
