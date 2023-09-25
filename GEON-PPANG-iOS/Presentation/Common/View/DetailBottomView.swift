@@ -16,6 +16,7 @@ final class DetailBottomView: UIView {
     
     var tappedBookmarkButton: (() -> Void)?
     var tappedWriteReviewButton: (() -> Void)?
+    var check: Bool = false
     
     // MARK: - UI Property
     

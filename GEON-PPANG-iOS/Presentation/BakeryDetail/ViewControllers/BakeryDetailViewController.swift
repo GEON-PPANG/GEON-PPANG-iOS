@@ -17,8 +17,15 @@ final class BakeryDetailViewController: BaseViewController {
     
     private var overviewData: BakeryDetailResponseDTO = .initialDTO() {
         didSet {
-            UIView.performWithoutAnimation {
-                self.collectionView.reloadSections(IndexSet(integersIn: 0 ... 2))
+            if self.detailBottomView.check == true {
+                let indexPath = IndexPath(item: 0, section: 0)
+                UIView.performWithoutAnimation {
+                    self.collectionView.reconfigureItems(at: [indexPath])
+                }
+            } else {
+                UIView.performWithoutAnimation {
+                    self.collectionView.reloadSections(IndexSet(integersIn: 0 ... 2))
+                }
             }
         }
     }
@@ -106,6 +113,7 @@ final class BakeryDetailViewController: BaseViewController {
         }
         
         detailBottomView.do {
+            $0.check = false
             $0.backgroundColor = .gbbWhite
             $0.tappedBookmarkButton = {
                 self.requestBakeryBookmark(!self.isBookmarked)
