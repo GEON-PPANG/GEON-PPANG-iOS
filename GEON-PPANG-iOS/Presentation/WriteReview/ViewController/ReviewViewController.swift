@@ -162,6 +162,14 @@ final class ReviewViewController: BaseViewController {
             $0.height.equalTo(221)
             $0.bottom.equalToSuperview().inset(11)
         }
+        
+        if type == .read {
+            contentView.addSubview(reviewDateLabel)
+            reviewDateLabel.snp.makeConstraints {
+                $0.bottom.equalTo(bakeryOverviewView.snp.top).offset(-3.5)
+                $0.leading.equalTo(bakeryOverviewView)
+            }
+        }
     }
     
     override func setUI() {
@@ -284,12 +292,6 @@ extension ReviewViewController {
     }
     
     private func setWriteTypeLayout() {
-        
-        contentView.addSubview(reviewDateLabel)
-        reviewDateLabel.snp.makeConstraints {
-            $0.bottom.equalTo(bakeryOverviewView.snp.top).offset(-3.5)
-            $0.leading.equalTo(bakeryOverviewView)
-        }
         
         reviewDetailTextView.snp.remakeConstraints {
             $0.top.equalTo(optionsCollectionView.snp.bottom).offset(28)
