@@ -19,6 +19,7 @@ final class BakeryDetailViewController: BaseViewController {
         didSet {
             if self.detailBottomView.check == true {
                 let indexPath = IndexPath(item: 0, section: 0)
+                
                 UIView.performWithoutAnimation {
                     self.collectionView.reconfigureItems(at: [indexPath])
                 }
@@ -257,7 +258,11 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
         switch indexPath.section {
         case 1:
             let header: BakeryDetailCollectionViewHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
-            header.getType(.info)
+
+            DispatchQueue.main.async {
+                header.configureHeaderUI(self.overviewData)
+                header.getType(.info)
+            }
             
             return header
         case 2:
@@ -329,7 +334,9 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
         
         switch section {
         case 1:
-            return CGSize(width: collectionView.frame.width, height: 76)
+            let headerHeight: CGFloat = overviewData.homepageURL == "" ? 50 : 76
+            
+            return CGSize(width: collectionView.frame.width, height: headerHeight)
         case 2:
             return CGSize(width: collectionView.frame.width, height: 68)
         case 3:

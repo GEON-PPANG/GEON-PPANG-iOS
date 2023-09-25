@@ -27,6 +27,7 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
         }
     }
     private var reviewCount: Int = 0
+    private var homepageURL: String = ""
     
     // MARK: - UI Property
     
@@ -99,7 +100,10 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
         switch type {
         case .info:
             titleLabel.text = "가게 상세정보"
-            configureSubTitle()
+            
+            if homepageURL != "" {
+                configureSubTitle()
+            }
         case .menu:
             titleLabel.text = "가게 메뉴"
         case .reviewCategory:
@@ -113,5 +117,6 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
     func configureHeaderUI(_ data: BakeryDetailResponseDTO) {
         
         reviewCount = data.reviewCount
+        homepageURL = data.homepageURL
     }
 }
