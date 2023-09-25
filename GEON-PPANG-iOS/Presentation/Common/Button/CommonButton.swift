@@ -106,14 +106,6 @@ final class CommonButton: UIButton {
         addAction(action, for: .touchUpInside)
     }
     
-    func addActionToCommonButton(completion: @escaping () -> Void) {
-        
-        let action = UIAction { _ in
-            completion()
-        }
-        addAction(action, for: .touchUpInside)
-    }
-    
     func configureInteraction(to value: Bool) {
         self.isUserInteractionEnabled = value
         self.configureButtonUI(value ? .gbbGray700! : .gbbGray200!)

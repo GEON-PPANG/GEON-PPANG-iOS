@@ -17,16 +17,19 @@ final class BakeryDetailViewController: BaseViewController {
     
     private var overviewData: BakeryDetailResponseDTO = .initialDTO() {
         didSet {
-            self.collectionView.reloadData()
+            UIView.performWithoutAnimation {
+                self.collectionView.reloadSections(IndexSet(integersIn: 0 ... 2))
+            }
         }
     }
     private var reviewData: WrittenReviewsResponseDTO = .initialDTO() {
         didSet {
-            self.collectionView.reloadData()
+            UIView.performWithoutAnimation {
+                self.collectionView.reloadSections(IndexSet(integersIn: 3 ... 4))
+            }
         }
     }
     private var isBookmarked: Bool = false
-    private var labelHeight: CGFloat = 120
     var source: AnalyticEventType = .HOME
     var bakeryID: Int?
     var homepageURL: String = ""
@@ -45,8 +48,9 @@ final class BakeryDetailViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         guard let bakeryID = self.bakeryID else { return }
-        getBakeryDetail(bakeryID: bakeryID)
-        getWrittenReviews(bakeryID: bakeryID)
+        
+        getBakeryDetail(bakeryID: bakeryID, isUpdated: true)
+        
         Utils.setDetailSourceType(self.source)
         
         navigationController?.interactivePopGestureRecognizer?.delegate = nil // swipe back gesture
@@ -92,7 +96,8 @@ final class BakeryDetailViewController: BaseViewController {
                                      InfoCollectionViewCell.self,
                                      MenuCollectionViewCell.self,
                                      ReviewCategoryCollectionViewCell.self,
-                                     WrittenReviewsCollectionViewCell.self])
+                                     WrittenReviewsCollectionViewCell.self,
+                                     EmptyCollectionViewCell.self])
             $0.register(header: BakeryDetailCollectionViewHeader.self)
             $0.register(footer: BakeryDetailCollectionViewFooter.self)
             
@@ -167,11 +172,9 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
         case 2:
             return overviewData.menuList.count
         case 4:
-            // TODO: EmptyView 구현 시 사용
-            //            if reviewData.data.reviewList.isEmpty {
-            //                return 1
-            //            }
-            return reviewData.reviewList.count
+            let reviewList = reviewData.reviewList
+            
+            return reviewList.isEmpty ? 1 : reviewList.count
         default:
             return 1
         }
@@ -216,21 +219,27 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
             
             return cell
         case 4:
-            let cell: WrittenReviewsCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-            let review = reviewData.reviewList[indexPath.item]
-            
-            DispatchQueue.main.async {
-                self.tempLabel.text = review.reviewText
-                let maxSize = CGSize(width: self.convertByWidthRatio(277), height: CGFloat.greatestFiniteMagnitude)
-                let labelSize = self.tempLabel.sizeThatFits(maxSize)
-                self.labelHeight = labelSize.height
+            if reviewData.reviewList.isEmpty {
+                let cell: EmptyCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+                cell.configureViewType(.noReview)
                 
-                cell.configureCellUI(review, self.labelHeight)
+                return cell
+            } else {
+                let cell: WrittenReviewsCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+                let review = reviewData.reviewList[indexPath.item]
+                
+                DispatchQueue.main.async {
+                    self.tempLabel.text = review.reviewText
+                    let maxSize = CGSize(width: self.convertByWidthRatio(277), height: CGFloat.greatestFiniteMagnitude)
+                    let labelSize = self.tempLabel.sizeThatFits(maxSize)
+                    
+                    cell.configureCellUI(review, labelSize.height)
+                }
+                
+                cell.delegate = self
+                
+                return cell
             }
-            
-            cell.delegate = self
-            
-            return cell
         default:
             return UICollectionViewCell()
         }
@@ -287,18 +296,23 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
             
             return CGSize(width: getDeviceWidth(), height: cellHeight)
         case 1:
-            return CGSize(width: getDeviceWidth(), height: 259)
+            return CGSize(width: getDeviceWidth(), height: 263)
         case 2:
             return CGSize(width: getDeviceWidth(), height: 32)
         case 3:
-            return CGSize(width: getDeviceWidth(), height: 157)
+            return CGSize(width: getDeviceWidth(), height: 142)
         case 4:
-            tempLabel.text = reviewData.reviewList[indexPath.item].reviewText
-            let maxSize = CGSize(width: convertByWidthRatio(277), height: CGFloat.greatestFiniteMagnitude)
-            let labelSize = tempLabel.sizeThatFits(maxSize)
-            labelHeight = reviewData.reviewList[indexPath.item].recommendKeywordList.isEmpty ? labelSize.height + 88 : labelSize.height + 123
-            
-            return CGSize(width: getDeviceWidth(), height: labelHeight)
+            if reviewData.reviewList.isEmpty {
+                return CGSize(width: getDeviceWidth(), height: 293)
+            } else {
+                tempLabel.text = reviewData.reviewList[indexPath.item].reviewText
+                let maxSize = CGSize(width: convertByWidthRatio(277), height: CGFloat.greatestFiniteMagnitude)
+                let labelSize = tempLabel.sizeThatFits(maxSize)
+                
+                let cellHeight = reviewData.reviewList[indexPath.item].recommendKeywordList.isEmpty ? labelSize.height + 88 : labelSize.height + 123
+                
+                return CGSize(width: getDeviceWidth(), height: cellHeight)
+            }
         default:
             return CGSize()
         }
@@ -308,13 +322,13 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
         
         switch section {
         case 1:
-            return CGSize(width: collectionView.frame.width, height: 72)
+            return CGSize(width: collectionView.frame.width, height: 76)
         case 2:
-            return CGSize(width: collectionView.frame.width, height: 64)
+            return CGSize(width: collectionView.frame.width, height: 68)
         case 3:
-            return CGSize(width: collectionView.frame.width, height: 70)
+            return CGSize(width: collectionView.frame.width, height: 74)
         case 4:
-            return CGSize(width: collectionView.frame.width, height: 77)
+            return CGSize(width: collectionView.frame.width, height: 79)
         default:
             return CGSize()
         }
@@ -352,7 +366,7 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
 
 extension BakeryDetailViewController {
     
-    func getBakeryDetail(bakeryID: Int) {
+    func getBakeryDetail(bakeryID: Int, isUpdated: Bool) {
         
         BakeryAPI.shared.getBakeryDetail(bakeryID: bakeryID) { response in
             
@@ -365,18 +379,21 @@ extension BakeryDetailViewController {
             self.detailBottomView.configureBookmarkButton(to: data.isBookMarked)
             self.homepageURL = data.homepageURL
             self.instagramURL = data.instagramURL
+            self.getWrittenReviews(bakeryID: bakeryID, isUpdated: isUpdated )
         }
     }
     
-    func getWrittenReviews(bakeryID: Int) {
+    func getWrittenReviews(bakeryID: Int, isUpdated: Bool) {
         
-        BakeryAPI.shared.getWrittenReviews(bakeryID: bakeryID) { response in
-            
-            guard let response = response else { return }
-            guard let data = response.data else { return }
-            dump(data)
-            
-            self.reviewData = data
+        if isUpdated {
+            BakeryAPI.shared.getWrittenReviews(bakeryID: bakeryID) { response in
+                
+                guard let response = response else { return }
+                guard let data = response.data else { return }
+                dump(data)
+                
+                self.reviewData = data
+            }
         }
     }
     
@@ -386,12 +403,11 @@ extension BakeryDetailViewController {
         
         guard let bakeryID = self.bakeryID else { return }
         
-        BakeryAPI.shared.postBookmark(bakeryID: bakeryID, with: bookmarkRequest) { response in
+        BakeryAPI.shared.postBookmark(bakeryID: bakeryID, with: bookmarkRequest) { _ in
             
             self.detailBottomView.configureBookmarkButton(to: value)
             self.isBookmarked = value
-            self.getBakeryDetail(bakeryID: bakeryID)
-            self.collectionView.reloadData()
+            self.getBakeryDetail(bakeryID: bakeryID, isUpdated: false)
         }
     }
     

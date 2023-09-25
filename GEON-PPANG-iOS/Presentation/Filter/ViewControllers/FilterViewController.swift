@@ -90,7 +90,7 @@ final class FilterViewController: BaseViewController {
         nextButton.do {
             $0.configureButtonTitle(.next)
             $0.configureButtonUI(.gbbGray200!)
-            $0.addActionToCommonButton {
+            $0.tappedCommonButton = {
                 self.nextButtonTapped()
             }
             $0.isUserInteractionEnabled = false
