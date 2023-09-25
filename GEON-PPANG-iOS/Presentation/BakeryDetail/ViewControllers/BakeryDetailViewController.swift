@@ -119,7 +119,9 @@ final class BakeryDetailViewController: BaseViewController {
             $0.tappedBookmarkButton = {
                 self.requestBakeryBookmark(!self.isBookmarked)
                 if !self.isBookmarked {
-                    self.showToast(message: I18N.Detail.tappedBookmarkButton)
+                    self.showToast(message: I18N.Detail.addBookmark)
+                } else {
+                    self.showToast(message: I18N.Detail.delBookmark)
                 }
             }
             $0.tappedWriteReviewButton = {
@@ -425,7 +427,7 @@ extension BakeryDetailViewController {
     private func showToast(message: String) {
         
         let toastLabel = UILabel()
-        let toastWidth = 141.0
+        let toastWidth = isBookmarked ? 181.0 : 141.0
         let toastHeight = 45.0
         
         view.addSubview(toastLabel)
