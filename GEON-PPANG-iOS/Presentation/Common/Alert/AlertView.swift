@@ -26,7 +26,7 @@ final class AlertView: UIView {
     private let subtitleLabel = UILabel()
     private let cancelButton = UIButton()
     private let acceptButton = UIButton()
-    private lazy var buttonStackView = UIStackView(arrangedSubviews: [cancelButton, acceptButton])
+    private lazy var buttonStackView = UIStackView(arrangedSubviews: [acceptButton, cancelButton])
     
     // MARK: - Life Cycle
     
@@ -85,7 +85,7 @@ final class AlertView: UIView {
     private func setUI() {
         
         self.do {
-            $0.backgroundColor = .gbbBackground2
+            $0.backgroundColor = .gbbWhite
             $0.makeCornerRound(radius: 12)
         }
         
@@ -109,9 +109,9 @@ final class AlertView: UIView {
         }
         
         cancelButton.do {
-            $0.backgroundColor = .gbbGray200
+            $0.backgroundColor = .gbbMain2
             $0.setTitle(alertType.cancel, for: .normal)
-            $0.setTitleColor(.gbbGray400, for: .normal)
+            $0.setTitleColor(.gbbWhite, for: .normal)
             $0.titleLabel?.font = .bodyB1
             $0.makeCornerRound(radius: 8)
             $0.addAction(UIAction { [weak self] _ in
@@ -120,9 +120,9 @@ final class AlertView: UIView {
         }
         
         acceptButton.do {
-            $0.backgroundColor = .gbbMain2
+            $0.backgroundColor = .gbbGray200
             $0.setTitle(alertType.accept, for: .normal)
-            $0.setTitleColor(.gbbWhite, for: .normal)
+            $0.setTitleColor(.gbbGray400, for: .normal)
             $0.titleLabel?.font = .bodyB1
             $0.makeCornerRound(radius: 8)
             $0.addAction(UIAction { [weak self] _ in

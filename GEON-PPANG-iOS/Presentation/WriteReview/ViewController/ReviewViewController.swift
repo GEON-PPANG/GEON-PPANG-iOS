@@ -162,6 +162,14 @@ final class ReviewViewController: BaseViewController {
             $0.height.equalTo(221)
             $0.bottom.equalToSuperview().inset(11)
         }
+        
+        if type == .read {
+            contentView.addSubview(reviewDateLabel)
+            reviewDateLabel.snp.makeConstraints {
+                $0.bottom.equalTo(bakeryOverviewView.snp.top).offset(-3.5)
+                $0.leading.equalTo(bakeryOverviewView)
+            }
+        }
     }
     
     override func setUI() {
@@ -285,12 +293,6 @@ extension ReviewViewController {
     
     private func setWriteTypeLayout() {
         
-        contentView.addSubview(reviewDateLabel)
-        reviewDateLabel.snp.makeConstraints {
-            $0.bottom.equalTo(bakeryOverviewView.snp.top).offset(-3.5)
-            $0.leading.equalTo(bakeryOverviewView)
-        }
-        
         reviewDetailTextView.snp.remakeConstraints {
             $0.top.equalTo(optionsCollectionView.snp.bottom).offset(28)
             $0.horizontalEdges.equalToSuperview().inset(24)
@@ -299,7 +301,8 @@ extension ReviewViewController {
         
         view.addSubview(bottomView)
         bottomView.snp.makeConstraints {
-            $0.horizontalEdges.bottom.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
         
         contentView.addSubview(aboutReviewContainerView)
@@ -411,6 +414,15 @@ extension ReviewViewController {
         return requestData
     }
     
+    private func calculateScrollOffset() -> CGFloat {
+        let textViewY = reviewDetailTextView.frame.minY
+        return textViewY - 24
+    }
+}
+
+// MARK: - read type func
+
+extension ReviewViewController {
     private func bindReview(_ review: MyReviewDetailResponseDTO) {
         myReviewData = review
         likeCollectionView.reloadData()
@@ -423,7 +435,6 @@ extension ReviewViewController {
         reviewDetailTextView.configureTextView(to: .activated)
         reviewDetailTextView.detailTextView.text = review.reviewText
     }
-    
 }
 
 // MARK: - write type objc func
@@ -433,21 +444,30 @@ extension ReviewViewController {
     @objc
     private func keyboardWillShowOnScrollView(notification: NSNotification) {
         
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            UIView.animate(withDuration: 0.2, animations: {
-                self.bottomView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + (UIScreen.main.hasNotch ? 30 : 0))
-                self.contentView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + 30)
-            })
+        guard let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height else {
+            return
         }
+        UIView.animate(withDuration: 0.2, animations: {
+            self.bottomView.snp.updateConstraints {
+                $0.bottom.equalToSuperview().inset(UIScreen.main.hasNotch ? keyboardHeight - 34 : keyboardHeight)
+            }
+        })
+        self.scrollView.contentOffset.y = calculateScrollOffset()
+        self.scrollView.contentInset.bottom = keyboardHeight
+        self.view.layoutIfNeeded()
     }
 
     @objc
     private func keyboardWillHideOnScrollView(notification: NSNotification) {
         
         UIView.animate(withDuration: 0.2, animations: {
-            self.bottomView.transform = .identity
-            self.contentView.transform = .identity
+            self.bottomView.snp.updateConstraints {
+                $0.bottom.equalToSuperview()
+            }
         })
+        
+        self.scrollView.contentInset.bottom = 0
+        self.view.layoutIfNeeded()
     }
 
 }

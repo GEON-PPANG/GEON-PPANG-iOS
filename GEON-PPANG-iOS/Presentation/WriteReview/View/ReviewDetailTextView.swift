@@ -74,21 +74,25 @@ final class ReviewDetailTextView: UIView {
         
         self.addSubview(detailTextView)
         detailTextView.snp.makeConstraints {
-            $0.top.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(196)
+            $0.top.equalToSuperview().inset(20)
+            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.bottom.equalToSuperview().inset(45)
         }
     }
     
     private func setUI() {
         
+        self.do {
+            $0.makeCornerRound(radius: 12)
+            $0.makeBorder(width: 1, color: .gbbGray300!)
+        }
+        
         detailTextView.do {
             $0.font = .subHead
             $0.textColor = .gbbGray300
-            $0.makeCornerRound(radius: 12)
-            $0.makeBorder(width: 1, color: .gbbGray300!)
-            $0.textContainerInset = .init(top: 20, left: 28, bottom: 45, right: 28)
             $0.clipsToBounds = true
             $0.isEditable = type == .read ? false : true
+            $0.textContainerInset = .zero
         }
     }
     
@@ -98,15 +102,14 @@ final class ReviewDetailTextView: UIView {
         
         self.addSubview(placeholderLabel)
         placeholderLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(20)
-            $0.horizontalEdges.equalToSuperview().inset(34)
+            $0.top.equalTo(detailTextView.textInputView)
+            $0.horizontalEdges.equalToSuperview().inset(30)
         }
         
         self.addSubview(textLimitLabel)
         textLimitLabel.snp.makeConstraints {
-            $0.bottom.equalTo(detailTextView.snp.bottom).offset(-20)
-            $0.trailing.equalTo(detailTextView).offset(-28)
-            $0.height.equalTo(17)
+            $0.top.equalTo(detailTextView.snp.bottom).offset(8)
+            $0.trailing.equalTo(detailTextView)
         }
         
         placeholderLabel.do {
@@ -128,9 +131,12 @@ final class ReviewDetailTextView: UIView {
         
         self.status = status
         
+        self.do {
+            $0.makeBorder(width: 1, color: borderColor)
+        }
+        
         detailTextView.do {
             $0.textColor = textColor
-            $0.makeBorder(width: 1, color: borderColor)
         }
         
         guard type == .write else { return }
