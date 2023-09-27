@@ -280,11 +280,9 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
         switch indexPath.section {
         case 1:
             let header: BakeryDetailCollectionViewHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
-
-            DispatchQueue.main.async {
-                header.configureHeaderUI(self.overviewData)
-                header.getType(.info)
-            }
+            
+            header.configureHeaderUI(self.overviewData)
+            header.getType(.info)
             
             return header
         case 2:
