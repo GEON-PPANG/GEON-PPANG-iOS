@@ -90,7 +90,12 @@ final class ReportViewController: BaseViewController {
         contentView.snp.makeConstraints {
             $0.edges.equalToSuperview()
             $0.width.equalTo(SizeLiteral.Screen.width)
-            $0.height.equalTo(568)
+            
+            if UIScreen.main.hasNotch {
+                $0.height.equalToSuperview()
+            } else {
+                $0.height.equalTo(568)
+            }
         }
         
         contentView.addSubview(reportingReasonLabel)
@@ -152,7 +157,7 @@ final class ReportViewController: BaseViewController {
         pleaseReportContainer.snp.makeConstraints {
             $0.top.equalTo(detailReasonTextView.snp.bottom).offset(20)
             $0.directionalHorizontalEdges.equalToSuperview()
-            $0.height.equalTo(57)
+            $0.bottom.equalToSuperview()
         }
         
         pleaseReportContainer.addSubview(pleaseReportLabel)
