@@ -159,7 +159,7 @@ extension MyReviewsViewController: UICollectionViewDataSource {
         
         if myReviewsList.isEmpty {
             let cell: EmptyCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-            cell.configureViewType(.noReview)
+            cell.configureViewType(.noMyReview)
             cell.configureEmptyText("내가 쓴 리뷰가 없어요!")
             return cell
         } else {
