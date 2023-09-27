@@ -180,6 +180,7 @@ final class ReportViewController: BaseViewController {
             $0.bounces = false
             $0.isDirectionalLockEnabled = true
             $0.scrollIndicatorInsets = .zero
+            $0.showsVerticalScrollIndicator = false
         }
         
         reportingReasonLabel.do {
