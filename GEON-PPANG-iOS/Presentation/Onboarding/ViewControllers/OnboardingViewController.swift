@@ -131,6 +131,9 @@ final class OnboardingViewController: BaseViewController {
     private func setSocialLoginButtonActions() {
         
         let kakaoLoginAction = UIAction { [weak self] _ in
+            
+            AnalyticManager.log(event: .onboarding(.startSignup(signUpType: "kakao")))
+            
             KakaoService.getKakaoAuthCode { token in
                 guard let token = token
                 else { return }
@@ -164,6 +167,8 @@ final class OnboardingViewController: BaseViewController {
 extension OnboardingViewController {
     
     private func appleLoginButtonTapped() {
+        
+        AnalyticManager.log(event: .onboarding(.startSignup(signUpType: "apple")))
         
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()

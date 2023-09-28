@@ -33,6 +33,12 @@ final class FilterViewController: BaseViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        AnalyticManager.log(event: .onboarding(.startFilterOnboarding))
+    }
+    
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -160,6 +166,9 @@ final class FilterViewController: BaseViewController {
     }
     
     private func skipButtonTapped() {
+        
+        AnalyticManager.log(event: .onboarding(.clickSkip))
+        
         Utils.sceneDelegate?.changeRootViewControllerToTabBarController()
     }
     
