@@ -13,7 +13,6 @@ final class AuthAPI {
     
     typealias SignUpResponse = GeneralResponse<SignUpResponseDTO>
     typealias TokenRefreshResponse = GeneralResponse<VoidType>
-    typealias DeleteUserResponse = GeneralResponse<DeleteUserResponseDTO>
     
     static let shared: AuthAPI = AuthAPI()
     
@@ -23,7 +22,6 @@ final class AuthAPI {
     
     public private(set) var signUpResponse: SignUpResponse?
     public private(set) var tokenRefreshResponse: TokenRefreshResponse?
-    public private(set) var deleteUserResponse: DeleteUserResponse?
     
     // MARK: - Post
     
@@ -104,36 +102,4 @@ final class AuthAPI {
         }
     }
     
-    func logout(completion: @escaping (Int?) -> Void) {
-        
-        authProvider.request(.logout) { result in
-            switch result {
-            case .success(let response):
-                completion(response.statusCode)
-            case .failure(let err):
-                print(err.localizedDescription)
-                completion(nil)
-            }
-        }
-    }
-    
-    func deleteUser(completion: @escaping (DeleteUserResponse?) -> Void) {
-        
-        let type = KeychainService.readKeychain(of: .socialType)
-        authProvider.request(type == "APPLE" ? .appleWithdraw : .withdraw) { result in
-            switch result {
-            case .success(let response):
-                do {
-                    self.deleteUserResponse = try response.map(DeleteUserResponse.self)
-                    guard let deleteUserResponse = self.deleteUserResponse else { return }
-                    completion(deleteUserResponse)
-                } catch let err {
-                    print(err.localizedDescription, 500)
-                }
-            case .failure(let err):
-                print(err.localizedDescription)
-                completion(nil)
-            }
-        }
-    }
 }
