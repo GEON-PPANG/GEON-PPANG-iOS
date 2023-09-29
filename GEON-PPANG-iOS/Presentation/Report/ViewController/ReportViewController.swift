@@ -298,14 +298,12 @@ final class ReportViewController: BaseViewController {
         
         selectedButton = sender // 현재 선택된 버튼 업데이트
         
-        if selectedButton?.configuration?.title == labeling[0] {
-            selectedCategory = ReportCategory.advertising
-        } else if selectedButton?.configuration?.title == labeling[1] {
-            selectedCategory = ReportCategory.hate
-        } else if selectedButton?.configuration?.title == labeling[2] {
-            selectedCategory = ReportCategory.copyright
-        } else if selectedButton?.configuration?.title == labeling[3] {
-            selectedCategory = ReportCategory.etc
+        switch selectedButton?.configuration?.title {
+        case labeling[0]: selectedCategory = ReportCategory.advertising
+        case labeling[1]: selectedCategory = ReportCategory.hate
+        case labeling[2]: selectedCategory = ReportCategory.copyright
+        case labeling[3]: selectedCategory = ReportCategory.etc
+        default: break
         }
     }
     
