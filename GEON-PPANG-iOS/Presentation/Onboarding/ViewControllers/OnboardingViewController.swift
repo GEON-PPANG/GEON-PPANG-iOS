@@ -132,8 +132,6 @@ final class OnboardingViewController: BaseViewController {
         
         let kakaoLoginAction = UIAction { [weak self] _ in
             
-            AnalyticManager.log(event: .onboarding(.startSignup(signUpType: "kakao")))
-            
             KakaoService.getKakaoAuthCode { token in
                 guard let token = token
                 else { return }
@@ -168,8 +166,6 @@ extension OnboardingViewController {
     
     private func appleLoginButtonTapped() {
         
-        AnalyticManager.log(event: .onboarding(.startSignup(signUpType: "apple")))
-        
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
         request.requestedScopes = [.fullName, .email]
@@ -189,9 +185,14 @@ extension OnboardingViewController {
     }
     
     private func checkNickname(_ nickname: String?) {
+        
+        let socialType = KeychainService.readKeychain(of: .socialType)
+        
         guard let nickname = nickname else {
             let viewController = NickNameViewController()
             Utils.push(self.navigationController, viewController)
+            
+            AnalyticManager.log(event: .onboarding(.startSignup(signUpType: socialType)))
             return
         }
         
@@ -199,8 +200,10 @@ extension OnboardingViewController {
             let viewcontroller = NickNameViewController()
             viewcontroller.naviView.hideBackButton(true)
             Utils.push(self.navigationController, viewcontroller)
+            AnalyticManager.log(event: .general(.loginApp(loginType: socialType)))
         } else {
             Utils.sceneDelegate?.changeRootViewControllerToTabBarController()
+            AnalyticManager.log(event: .general(.loginApp(loginType: socialType)))
         }
     }
     
@@ -209,6 +212,7 @@ extension OnboardingViewController {
 extension OnboardingViewController {
     
     private func postSignUp(with request: SignUpRequestDTO, completion: (() -> Void)?) {
+        
         AuthAPI.shared.postSignUp(with: request) { status in
             guard let code = status?.code else { return }
             switch code {
