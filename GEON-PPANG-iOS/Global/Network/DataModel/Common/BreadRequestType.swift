@@ -42,4 +42,13 @@ extension BreadRequestType {
         isNutFree = false
         isSugarFree = false
     }
+    
+    func convertToStringArray() -> [String] {
+        var value = [String]()
+        if self.isGlutenFree { value.append("GLUTENFREE") }
+        if self.isVegan { value.append("VEGAN") }
+        if self.isNutFree { value.append("NUTFREE") }
+        if self.isSugarFree { value.append("SUGARFREE") }
+        return value
+    }
 }

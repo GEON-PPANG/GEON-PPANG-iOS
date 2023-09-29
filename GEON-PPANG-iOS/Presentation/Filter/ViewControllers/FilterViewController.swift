@@ -10,11 +10,18 @@ import UIKit
 import SnapKit
 import Then
 
+enum From {
+    case onboarding
+    case home
+    case list
+    case mypage
+}
+
 final class FilterViewController: BaseViewController {
     
     // MARK: - Property
     
-    var isInitial: Bool
+    var from: From
     var currentFilterType: FilterType = .purpose
     
     // MARK: - UI Property
@@ -27,16 +34,10 @@ final class FilterViewController: BaseViewController {
     
     // MARK: - Life Cycle
     
-    init(isInitial: Bool) {
-        self.isInitial = isInitial
+    init(from: From) {
+        self.from = from
         
         super.init(nibName: nil, bundle: nil)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        AnalyticManager.log(event: .onboarding(.startFilterOnboarding))
     }
     
     @available(*, unavailable)
@@ -84,7 +85,7 @@ final class FilterViewController: BaseViewController {
             $0.configureBackButtonAction(UIAction { [weak self] _ in
                 self?.backButtonTapped()
             })
-            $0.hideBackButton(isInitial ? true : false)
+            $0.hideBackButton(from == .onboarding ? true : false)
         }
         
         filterCollectionView.do {
@@ -109,7 +110,7 @@ final class FilterViewController: BaseViewController {
             $0.setImage(.rightArrowIcon.resize(to: .init(width: 16, height: 16)),
                         for: .normal)
             $0.semanticContentAttribute = .forceRightToLeft
-            $0.isHidden = !isInitial
+            $0.isHidden = !(self.from == .onboarding)
             $0.addAction(UIAction { [weak self] _ in
                 self?.skipButtonTapped()
             }, for: .touchUpInside)
@@ -128,11 +129,14 @@ final class FilterViewController: BaseViewController {
         var newFilterType: FilterType = currentFilterType
         switch currentFilterType {
         case .purpose:
+            sendFilterAmplitudeLog()
             newFilterType = .breadType
         case .breadType:
+            sendFilterAmplitudeLog()
             newFilterType = .ingredient
             nextButton.configureButtonTitle(.apply)
         case .ingredient:
+            sendFilterAmplitudeLog()
             sendRequest()
             return
         }
@@ -167,9 +171,8 @@ final class FilterViewController: BaseViewController {
     
     private func skipButtonTapped() {
         
-        AnalyticManager.log(event: .onboarding(.clickSkip))
-        
         Utils.sceneDelegate?.changeRootViewControllerToTabBarController()
+        AnalyticManager.log(event: .onboarding(.clickSkip))
     }
     
     // MARK: - Custom Method
@@ -186,7 +189,7 @@ final class FilterViewController: BaseViewController {
     private func configureBackButton() {
         
         switch currentFilterType {
-        case .purpose: navigationBar.hideBackButton(isInitial ? true : false)
+        case .purpose: navigationBar.hideBackButton(self.from == .onboarding ? true : false)
         case .breadType, .ingredient: navigationBar.hideBackButton(false)
         }
     }
@@ -202,7 +205,7 @@ final class FilterViewController: BaseViewController {
     
     private func configureSkipButton() {
         
-        guard isInitial else { return }
+        guard self.from == .onboarding else { return }
         switch self.currentFilterType {
         case .purpose:
             UIView.animate(withDuration: 0.2) {
@@ -241,8 +244,10 @@ final class FilterViewController: BaseViewController {
         request.setPurpose(from: FilterCellModel.purpose.map { $0.selected })
         request.setBreadType(from: FilterCellModel.breadType.map { $0.selected })
         request.setNutrientType(from: FilterCellModel.ingredient.map { $0.selected })
-        FilterAPI.shared.changeFilter(to: request) { response in
-            if self.isInitial {
+        
+        FilterAPI.shared.changeFilter(to: request) { _ in
+            self.sendFilterCompleteAmplitudeLog(from: request)
+            if self.from == .onboarding {
                 Utils.sceneDelegate?.changeRootViewControllerToTabBarController()
             } else {
                 self.navigationController?.popToRootViewController(animated: true)
@@ -253,6 +258,50 @@ final class FilterViewController: BaseViewController {
     }
     
 }
+
+// MARK: - amplitude functions
+
+extension FilterViewController {
+    private func sendFilterAmplitudeLog() {
+        guard self.from == .onboarding else { return }
+        switch self.currentFilterType {
+        case .purpose: AnalyticManager.log(event: .onboarding(.clickMainpurpose(mainPurpose: "")))
+        case .breadType: AnalyticManager.log(event: .onboarding(.clickBreadtype(breadType: [""])))
+        case .ingredient: AnalyticManager.log(event: .onboarding(.clickIngredientstype(ingredientsType: [""])))
+        }
+    }
+    
+    private func sendFilterCompleteAmplitudeLog(from request: FilterRequestDTO) {
+        switch self.from {
+        case .onboarding:
+            AnalyticManager.log(event: .onboarding(.completeFilterOnboarding(
+                mainPurpose: request.mainPurpose,
+                breadType: request.breadType.convertToStringArray(),
+                ingredientsType: request.nutrientType.convertToStringArray()
+            )))
+        case .home:
+            AnalyticManager.log(event: .home(.completeFilterHome(
+                mainPurpose: request.mainPurpose,
+                breadType: request.breadType.convertToStringArray(),
+                ingredientsType: request.nutrientType.convertToStringArray()
+            )))
+        case .list:
+            AnalyticManager.log(event: .list(.completeFilterList(
+                mainPurpose: request.mainPurpose,
+                breadType: request.breadType.convertToStringArray(),
+                ingredientsType: request.nutrientType.convertToStringArray()
+            )))
+        case .mypage:
+            AnalyticManager.log(event: .myPage(.complete_filter_mypage(
+                mainPurpose: request.mainPurpose,
+                breadType: request.breadType.convertToStringArray(),
+                ingredientsType: request.nutrientType.convertToStringArray()
+            )))
+        }
+    }
+}
+
+// MARK: - UICollectionViewDelegate
 
 extension FilterViewController: UICollectionViewDelegate {
     

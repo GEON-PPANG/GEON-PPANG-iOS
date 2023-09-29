@@ -50,7 +50,7 @@ extension AnalyticManagerEvent {
         case clickMainpurpose(mainPurpose: String)
         case clickBreadtype(breadType: [String])
         case clickIngredientstype(ingredientsType: [String])
-        case completeFilterOnboarding
+        case completeFilterOnboarding(mainPurpose: String, breadType: [String], ingredientsType: [String])
         
         var name: String {
             switch self {
@@ -73,6 +73,8 @@ extension AnalyticManagerEvent {
             case .clickMainpurpose(mainPurpose: let mainPurpose): return ["main purpose": mainPurpose]
             case .clickBreadtype(breadType: let breadType): return ["breadtype": breadType]
             case .clickIngredientstype(ingredientsType: let ingredientsType): return ["ingredients type": ingredientsType]
+            case .completeFilterOnboarding(mainPurpose: let mainPurpose, breadType: let breadType, ingredientsType: let ingredientsType):
+                return ["main purpose": mainPurpose, "breadtype": breadType, "ingredients type": ingredientsType]
             default: return nil
             }
         }
@@ -88,7 +90,7 @@ extension AnalyticManagerEvent {
         case completeSearchHome(keyword: String)
         case startFilterHome
         case clickFilterBackHome
-        case completeFilterHome
+        case completeFilterHome(mainPurpose: String, breadType: [String], ingredientsType: [String])
         
         var name: String {
             switch self {
@@ -108,6 +110,8 @@ extension AnalyticManagerEvent {
             case .clickRecommendReview(bakery: let bakery): return ["bakery": bakery]
             
             case .completeSearchHome(keyword: let keyword): return ["keyword": keyword]
+            case .completeFilterHome(mainPurpose: let mainPurpose, breadType: let breadType, ingredientsType: let ingredientsType):
+                return ["main purpose": mainPurpose, "breadtype": breadType, "ingredients type": ingredientsType]
             default: return nil
             }
         }
@@ -124,7 +128,7 @@ extension AnalyticManagerEvent {
         case clickSearchList
         case completeSearchList(keyword: String)
         case clickFilterbackList
-        case completeFilterList
+        case completeFilterList(mainPurpose: String, breadType: [String], ingredientsType: [String])
         
         var name: String {
             switch self {
@@ -143,6 +147,8 @@ extension AnalyticManagerEvent {
             switch self {
             case .clickCategory(category: let category): return ["category": category]
             case .completeSearchList(keyword: let keyword): return ["keyword": keyword]
+            case .completeFilterList(mainPurpose: let mainPurpose, breadType: let breadType, ingredientsType: let ingredientsType):
+                return ["main purpose": mainPurpose, "breadtype": breadType, "ingredients type": ingredientsType]
             default: return nil
             }
         }
@@ -220,13 +226,31 @@ extension AnalyticManagerEvent {
     
     /// MyPage
     
-    enum MyPage: String {
+    enum MyPage: AnalyticManagerEventProtocol {
         
         case click_mystore
         case click_myreview
         case start_filter_mypage
         case click_filter_back_mypage
-        case complete_filte_mypage
+        case complete_filter_mypage(mainPurpose: String, breadType: [String], ingredientsType: [String])
+        
+        var name: String {
+            switch self {
+            case .click_mystore: return "click_mystore"
+            case .click_myreview: return "click_myreview"
+            case .start_filter_mypage: return "start_filter_mypage"
+            case .click_filter_back_mypage: return "click_filter_back_mypage"
+            case .complete_filter_mypage: return "complete_filter_mypage"
+            }
+        }
+        
+        var parameters: [String: Any]? {
+            switch self {
+            case .complete_filter_mypage(mainPurpose: let mainPurpose, breadType: let breadType, ingredientsType: let ingredientsType):
+                return ["main purpose": mainPurpose, "breadtype": breadType, "ingredients type": ingredientsType]
+            default: return nil
+            }
+        }
     }
     
     /// ReportReview

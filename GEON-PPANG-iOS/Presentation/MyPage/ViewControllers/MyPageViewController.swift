@@ -87,7 +87,7 @@ final class MyPageViewController: BaseViewController {
         
         myPageDataSource.filterButtonTapped = {
             AnalyticManager.log(event: .myPage(.start_filter_mypage))
-            Utils.push(self.navigationController, FilterViewController(isInitial: false))
+            Utils.push(self.navigationController, FilterViewController(from: .mypage))
         }
         myPageDataSource.myReviewsTapped = {
             AnalyticManager.log(event: .myPage(.click_myreview))
