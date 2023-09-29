@@ -222,6 +222,10 @@
 		DFB587B92A5D584800704B6C /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB587B82A5D584800704B6C /* OnboardingViewController.swift */; };
 		DFB587BB2A5D588500704B6C /* DrawDashLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB587BA2A5D588500704B6C /* DrawDashLineView.swift */; };
 		DFBCFA3D2AB6E42900D3E649 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBCFA3C2AB6E42900D3E649 /* ReportViewController.swift */; };
+		DFD93D132AC6F28B008E9EE1 /* ReportRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD93D122AC6F28B008E9EE1 /* ReportRequestDTO.swift */; };
+		DFD93D152AC6F649008E9EE1 /* ReportResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD93D142AC6F649008E9EE1 /* ReportResponseDTO.swift */; };
+		DFD93D182AC6F8DA008E9EE1 /* ReportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD93D172AC6F8D9008E9EE1 /* ReportService.swift */; };
+		DFD93D1B2AC6FD1B008E9EE1 /* ReportAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD93D1A2AC6FD1B008E9EE1 /* ReportAPI.swift */; };
 		DFDE72D72A65E84700389A51 /* WrittenReviewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDE72D62A65E84700389A51 /* WrittenReviewsCollectionViewCell.swift */; };
 		DFDE72DB2A66893900389A51 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DFDE72DA2A66893900389A51 /* Config.xcconfig */; };
 		DFDE72DD2A668FFE00389A51 /* ReviewCategoryStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDE72DC2A668FFE00389A51 /* ReviewCategoryStackView.swift */; };
@@ -441,6 +445,10 @@
 		DFB587B82A5D584800704B6C /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		DFB587BA2A5D588500704B6C /* DrawDashLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawDashLineView.swift; sourceTree = "<group>"; };
 		DFBCFA3C2AB6E42900D3E649 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		DFD93D122AC6F28B008E9EE1 /* ReportRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportRequestDTO.swift; sourceTree = "<group>"; };
+		DFD93D142AC6F649008E9EE1 /* ReportResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportResponseDTO.swift; sourceTree = "<group>"; };
+		DFD93D172AC6F8D9008E9EE1 /* ReportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportService.swift; sourceTree = "<group>"; };
+		DFD93D1A2AC6FD1B008E9EE1 /* ReportAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportAPI.swift; sourceTree = "<group>"; };
 		DFDE72D62A65E84700389A51 /* WrittenReviewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrittenReviewsCollectionViewCell.swift; sourceTree = "<group>"; };
 		DFDE72DA2A66893900389A51 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		DFDE72DC2A668FFE00389A51 /* ReviewCategoryStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCategoryStackView.swift; sourceTree = "<group>"; };
@@ -737,6 +745,7 @@
 		0959F1612A658C3000E77CAF /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				DFD93D112AC6F263008E9EE1 /* Report */,
 				3EB7982A2AB88C84004EC35D /* Member */,
 				3E61EE8F2AA9530D004F25DB /* Review */,
 				3E8B2FFA2A67A56E001BD057 /* Common */,
@@ -882,6 +891,7 @@
 		0961C3672A501EE40031A822 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				DFD93D162AC6F8CC008E9EE1 /* Report */,
 				3EB798272AB88B41004EC35D /* Member */,
 				3EB798192AB7F22B004EC35D /* Social */,
 				3E61EE902AA953E7004F25DB /* Review */,
@@ -899,6 +909,7 @@
 		0961C3682A501EE90031A822 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				DFD93D192AC6FD0C008E9EE1 /* Report */,
 				3EB798242AB88AFE004EC35D /* Member */,
 				3E61EE932AA95587004F25DB /* Review */,
 				0959F1542A6589D800E77CAF /* Auth */,
@@ -1581,6 +1592,31 @@
 			path = Report;
 			sourceTree = "<group>";
 		};
+		DFD93D112AC6F263008E9EE1 /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				DFD93D122AC6F28B008E9EE1 /* ReportRequestDTO.swift */,
+				DFD93D142AC6F649008E9EE1 /* ReportResponseDTO.swift */,
+			);
+			path = Report;
+			sourceTree = "<group>";
+		};
+		DFD93D162AC6F8CC008E9EE1 /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				DFD93D172AC6F8D9008E9EE1 /* ReportService.swift */,
+			);
+			path = Report;
+			sourceTree = "<group>";
+		};
+		DFD93D192AC6FD0C008E9EE1 /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				DFD93D1A2AC6FD1B008E9EE1 /* ReportAPI.swift */,
+			);
+			path = Report;
+			sourceTree = "<group>";
+		};
 		DFFBE3882AB8DB7300D27548 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1784,6 +1820,7 @@
 				0924632F2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift in Sources */,
 				097682E92A5D0B6B0008F4FB /* BakeryListTopView.swift in Sources */,
 				3E162D1A2A692C4900590C6F /* BookmarkResponseDTO.swift in Sources */,
+				DFD93D152AC6F649008E9EE1 /* ReportResponseDTO.swift in Sources */,
 				0959F1862A658CF900E77CAF /* BookmarkAPI.swift in Sources */,
 				09B13F5A2A5946B700C0C723 /* TabBar+.swift in Sources */,
 				DFB585F92A5F32420077D272 /* TitleCollectionViewCell.swift in Sources */,
@@ -1862,6 +1899,7 @@
 				09B13F582A59433500C0C723 /* TabBarItem.swift in Sources */,
 				0959F1822A658CEE00E77CAF /* BakeryAPI.swift in Sources */,
 				3EE1A9132AA0873500021F9D /* UrlLiteral.swift in Sources */,
+				DFD93D1B2AC6FD1B008E9EE1 /* ReportAPI.swift in Sources */,
 				09B13F502A593CB800C0C723 /* BakeryListViewController.swift in Sources */,
 				09FD47D92A5E5148002020BD /* MySavedBakeryViewController.swift in Sources */,
 				3E36D7D82A8E6BC500B2C1CC /* FilterDiffableDataSource.swift in Sources */,
@@ -1879,6 +1917,7 @@
 				094F3AF72AB3DFB300A34154 /* AnalyticManagerUser.swift in Sources */,
 				092EFCA42A6195D900E7C262 /* CommonTextView.swift in Sources */,
 				3E16E5022A58176800B813D0 /* ReviewDetailTextView.swift in Sources */,
+				DFD93D132AC6F28B008E9EE1 /* ReportRequestDTO.swift in Sources */,
 				3E232ABC2A8FDB8F00125B76 /* FilterCollectionViewHeader.swift in Sources */,
 				DFB587B92A5D584800704B6C /* OnboardingViewController.swift in Sources */,
 				3E3543342AAD594E00BD926A /* SignUpResponseDTO.swift in Sources */,
@@ -1919,6 +1958,7 @@
 				097682E52A5C99340008F4FB /* BakeryFilterItems.swift in Sources */,
 				0930D25B2A928B8000A75C7E /* CertificationMarkResponseType.swift in Sources */,
 				098716B42A6061F500538D05 /* SearchResponseDTO.swift in Sources */,
+				DFD93D182AC6F8DA008E9EE1 /* ReportService.swift in Sources */,
 				DF697C072A68557A008CE4CF /* ReviewSortButton.swift in Sources */,
 				3E8B2FFE2A67A5B9001BD057 /* NutrientResponseType.swift in Sources */,
 				0959F1942A658D3100E77CAF /* BookmarkService.swift in Sources */,
