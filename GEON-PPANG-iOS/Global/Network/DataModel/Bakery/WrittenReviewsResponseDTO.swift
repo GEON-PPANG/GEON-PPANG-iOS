@@ -46,7 +46,7 @@ extension WrittenReviewsResponseDTO {
     
     static func initialDTO() -> WrittenReviewsResponseDTO {
         
-        return WrittenReviewsResponseDTO(deliciousPercent: 0,
+        return .init(deliciousPercent: 0,
                                          specialPercent: 0,
                                          kindPercent: 0,
                                          zeroWastePercent: 0,
