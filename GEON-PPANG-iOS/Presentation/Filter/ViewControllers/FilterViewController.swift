@@ -152,6 +152,7 @@ final class FilterViewController: BaseViewController {
         var newFilterType: FilterType = currentFilterType
         switch currentFilterType {
         case .purpose:
+            self.sendBackAmplitudeLog()
             self.navigationController?.popViewController(animated: true)
             return
         case .breadType:
@@ -292,11 +293,20 @@ extension FilterViewController {
                 ingredientsType: request.nutrientType.convertToStringArray()
             )))
         case .mypage:
-            AnalyticManager.log(event: .myPage(.complete_filter_mypage(
+            AnalyticManager.log(event: .myPage(.completeFilterMypage(
                 mainPurpose: request.mainPurpose,
                 breadType: request.breadType.convertToStringArray(),
                 ingredientsType: request.nutrientType.convertToStringArray()
             )))
+        }
+    }
+    
+    private func sendBackAmplitudeLog() {
+        switch self.from {
+        case .home: AnalyticManager.log(event: .home(.clickFilterBackHome))
+        case .list: AnalyticManager.log(event: .list(.clickFilterbackList))
+        case .mypage: AnalyticManager.log(event: .myPage(.clickFilterBackMypage))
+        default: return
         }
     }
 }

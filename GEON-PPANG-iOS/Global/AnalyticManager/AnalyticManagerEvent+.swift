@@ -228,25 +228,25 @@ extension AnalyticManagerEvent {
     
     enum MyPage: AnalyticManagerEventProtocol {
         
-        case click_mystore
-        case click_myreview
-        case start_filter_mypage
-        case click_filter_back_mypage
-        case complete_filter_mypage(mainPurpose: String, breadType: [String], ingredientsType: [String])
+        case clickMystore
+        case clickMyreview
+        case startFilterMypage
+        case clickFilterBackMypage
+        case completeFilterMypage(mainPurpose: String, breadType: [String], ingredientsType: [String])
         
         var name: String {
             switch self {
-            case .click_mystore: return "click_mystore"
-            case .click_myreview: return "click_myreview"
-            case .start_filter_mypage: return "start_filter_mypage"
-            case .click_filter_back_mypage: return "click_filter_back_mypage"
-            case .complete_filter_mypage: return "complete_filter_mypage"
+            case .clickMystore: return "click_mystore"
+            case .clickMyreview: return "click_myreview"
+            case .startFilterMypage: return "start_filter_mypage"
+            case .clickFilterBackMypage: return "click_filter_back_mypage"
+            case .completeFilterMypage: return "complete_filter_mypage"
             }
         }
         
         var parameters: [String: Any]? {
             switch self {
-            case .complete_filter_mypage(mainPurpose: let mainPurpose, breadType: let breadType, ingredientsType: let ingredientsType):
+            case .completeFilterMypage(mainPurpose: let mainPurpose, breadType: let breadType, ingredientsType: let ingredientsType):
                 return ["main purpose": mainPurpose, "breadtype": breadType, "ingredients type": ingredientsType]
             default: return nil
             }
