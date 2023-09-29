@@ -64,7 +64,6 @@ final class TitleCollectionViewCell: UICollectionViewCell {
             $0.leading.equalTo(bakeryNameLabel)
         }
         
-        // TODO: 통신 전 쓰레기 값 hidden 시키기
         contentView.addSubview(bookmarkReviewStackView)
         bookmarkReviewStackView.snp.makeConstraints {
             $0.top.equalTo(breadTypeStackView.snp.bottom).offset(16)
