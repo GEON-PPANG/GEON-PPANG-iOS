@@ -10,13 +10,10 @@ import Foundation
 struct ReportRequestDTO: Codable {
     var content: String
     var reportCategory: String
-}
-
-extension ReportRequestDTO {
     
-    static func initialDTO() -> ReportRequestDTO {
-        
-        return .init(content: "", reportCategory: "")
+    init(content: String = "", reportCategory: String = "") {
+        self.content = content
+        self.reportCategory = reportCategory
     }
 }
 

@@ -14,7 +14,7 @@ final class ReportViewController: BaseViewController {
     
     // MARK: - Property
     
-    private var writeReportData: ReportRequestDTO = .initialDTO()
+    private var writeReportData: ReportRequestDTO = .init()
     
     private var navigationTitle: String
     private var reviewID: Int
@@ -250,7 +250,7 @@ final class ReportViewController: BaseViewController {
     
     private func configureWriteReportData() -> ReportRequestDTO {
         
-        var requestData: ReportRequestDTO = .initialDTO()
+        var requestData: ReportRequestDTO = .init()
         
         requestData.content = detailReasonTextView.detailTextView.text
         requestData.reportCategory = selectedCategory!.rawValue
