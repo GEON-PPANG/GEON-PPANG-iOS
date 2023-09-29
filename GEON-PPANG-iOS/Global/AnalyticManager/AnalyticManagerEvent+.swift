@@ -193,7 +193,7 @@ extension AnalyticManagerEvent {
         case clickRecommendKeyword(keyword: [String])
         case clickReviewWritingText
         case clickReviewWritingBack
-        case clickReviewWrtingStop
+        case clickReviewWritingStop
         case clickReviewWritingContinue
         case clickReviewWritingComplete
         case completeReviewWriting(option: String,
@@ -204,10 +204,10 @@ extension AnalyticManagerEvent {
             switch self {
             case .startReviewWriting: return "start_reviewwriting"
             case .clickReviewWritingOption: return "click_reviewwriting_option"
-            case .clickRecommendKeyword: return "click_recommedn_keyword"
-            case .clickReviewWritingText: return "click_review_writing_text"
+            case .clickRecommendKeyword: return "click_recommend_keyword"
+            case .clickReviewWritingText: return "click_reviewwriting_text"
             case .clickReviewWritingBack: return "click_reviewwriting_back"
-            case .clickReviewWrtingStop: return "click_reviewwrting_stop"
+            case .clickReviewWritingStop: return "click_reviewwriting_stop"
             case .clickReviewWritingContinue: return "click_reviewwriting_continue"
             case .clickReviewWritingComplete: return "click_reviewwriting_complete"
             case .completeReviewWriting: return "complete_reviewwriting"
