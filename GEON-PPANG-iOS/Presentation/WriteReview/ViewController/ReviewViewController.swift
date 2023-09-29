@@ -480,6 +480,9 @@ extension ReviewViewController: UICollectionViewDelegate {
         
         switch collectionView {
         case likeCollectionView:
+            
+            AnalyticManager.log(event: .writeReview(.clickReviewWritingOption(option: indexPath.item == 0 ? "좋아요" : "아쉬워요")))
+            
             guard let isLikeSelected = collectionView.cellForItem(at: [0, 0])?.isSelected
             else { return }
             
@@ -496,6 +499,9 @@ extension ReviewViewController: UICollectionViewDelegate {
             }
             
         case optionsCollectionView:
+            
+            AnalyticManager.log(event: .writeReview(.))
+            
             let hasSelection = collectionView.indexPathsForSelectedItems != nil
             reviewDetailTextView.isUserInteractionEnabled = hasSelection
             reviewDetailTextView.configureTextView(to: hasSelection ? .activated : .deactivated)

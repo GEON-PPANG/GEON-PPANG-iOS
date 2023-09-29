@@ -145,6 +145,7 @@ final class BakeryDetailViewController: BaseViewController {
                 }
             }
             $0.tappedWriteReviewButton = {
+                AnalyticManager.log(event: .writeReview(.startReviewWriting))
                 Utils.push(self.navigationController, ReviewViewController(
                     type: .write,
                     bakeryData: self.configureSimpleBakeryData()))
