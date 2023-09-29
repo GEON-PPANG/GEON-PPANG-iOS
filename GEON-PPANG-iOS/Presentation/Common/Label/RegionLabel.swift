@@ -72,8 +72,8 @@ final class RegionLabel: UILabel {
         if let region = firstRegion {
             text += region
         }
-        if let secondRegion = secondRegion {
-            text += " ∙ \(secondRegion)"
+        if let secondRegion = self.secondRegion, secondRegion != "" {
+            text += " ⦁ \(secondRegion)"
         }
         
         label.text = text
