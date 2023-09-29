@@ -65,7 +65,7 @@ extension BakeryDetailResponseDTO {
     
     static func initialDTO() -> BakeryDetailResponseDTO {
         
-        return BakeryDetailResponseDTO(bakeryID: 0,
+        return .init(bakeryID: 0,
                                        bakeryName: "",
                                        bakeryPicture: "",
                                        isHACCP: false,
