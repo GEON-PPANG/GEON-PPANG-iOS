@@ -169,6 +169,7 @@ extension MyPageViewController {
                     KakaoService.logout()
                 }
                 Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
+                AnalyticManager.log(event: .general(.logoutApp))
             default:
                 print("🔴failed")
             }
@@ -185,6 +186,7 @@ extension MyPageViewController {
                     KakaoService.unlink()
                 }
                 Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
+                AnalyticManager.log(event: .general(.withdrawApp))
             default:
                 if let child = self.children.first {
                     child.dismiss(animated: true)

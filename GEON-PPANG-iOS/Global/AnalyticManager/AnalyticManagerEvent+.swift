@@ -17,7 +17,7 @@ extension AnalyticManagerEvent {
         case closeApp
         case loginApp(loginType: String)
         case logoutApp
-        case withdraqApp
+        case withdrawApp
         
         var name: String {
             switch self {
@@ -25,7 +25,7 @@ extension AnalyticManagerEvent {
             case .closeApp: return "close_app"
             case .loginApp: return "login_app"
             case .logoutApp: return "logout_app"
-            case .withdraqApp: return "withdraw_app"
+            case .withdrawApp: return "withdraw_app"
             }
         }
         
