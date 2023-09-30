@@ -21,7 +21,3 @@ jobs:
     - name: Build test
       run: |
         xcodebuild build -project ./GEON-PPANG-iOS.xcodeproj -scheme GEON-PPANG-iOS -destination "platform=iOS Simulator,name=iPhone 13,OS=latest"
-    - name: Access BASE_URL
-      run: |
-	echo "BASE_URL=$BASE_URL" >> .env
-      env: BASE_URL: ${{ secrets.BASE_URL }}
