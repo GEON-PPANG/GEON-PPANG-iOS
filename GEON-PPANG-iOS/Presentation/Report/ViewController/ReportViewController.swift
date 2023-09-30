@@ -178,7 +178,10 @@ final class ReportViewController: BaseViewController {
     override func setUI() {
         
         navigationBar.do {
-            $0.configureBackButtonAction(popViewControllerAction())
+            $0.configureBackButtonAction(UIAction { [weak self] _ in
+                AnalyticManager.log(event: .reportReview(.clickReviewReportBack))
+                self?.navigationController?.popViewController(animated: true)
+            })
             $0.configureCenterTitle(to: navigationTitle, with: .title2!)
             $0.configureBottomLine()
         }
@@ -237,6 +240,7 @@ final class ReportViewController: BaseViewController {
             $0.configureButtonTitle(.write)
             $0.configureInteraction(to: false)
             $0.addAction(UIAction { [weak self] _ in
+                AnalyticManager.log(event: .reportReview(.clickReviewReportComplete))
                 self?.nextButtonTapped()
             }, for: .touchUpInside)
         }
@@ -299,6 +303,7 @@ final class ReportViewController: BaseViewController {
         selectedButton?.isSelected = false // 이전 선택 해제
         selectedButton?.configuration?.image = .filterUncheckIcon
         
+        AnalyticManager.log(event: .reportReview(.clickReviewReportOption(option: selectedCategory!.rawValue)))
         sender.isSelected = true // 새로운 버튼 선택
         sender.configuration?.image = .filterCheckIcon
         sender.configuration?.baseBackgroundColor = .gbbWhite
@@ -375,6 +380,7 @@ extension ReportViewController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         
+        AnalyticManager.log(event: .reportReview(.clickReviewReportText))
         nothingSelected()
         
         if textView.text == I18N.Report.detailPlaceholder {
@@ -421,9 +427,14 @@ extension ReportViewController {
     func requestWriteReport(_ content: ReportRequestDTO) {
         
         ReportAPI.shared.postWriteReport(reviewID: reviewID, content: content) { response in
+            
             guard let response = response else { return }
-            guard let data = response.data else { return }
-            dump(data)
+            switch response.code {
+            case 200 ..< 209:
+                AnalyticManager.log(event: .reportReview(.completeReviewReport(option: content.reportCategory, text: content.content)))
+            default:
+                break
+            }
         }
     }
 }

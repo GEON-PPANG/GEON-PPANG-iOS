@@ -157,7 +157,6 @@ extension AnalyticManagerEvent {
         case clickWebsite
         case clickInstagram
         case clickMystore
-        case clickReviewReport
         
         var name: String {
             switch self {
@@ -166,7 +165,6 @@ extension AnalyticManagerEvent {
             case .clickWebsite: return "click_website"
             case .clickInstagram: return "click_instagram"
             case .clickMystore: return "click_mystore"
-            case .clickReviewReport: return "click_reviewreport"
             }
         }
         
@@ -234,6 +232,7 @@ extension AnalyticManagerEvent {
     enum ReportReview: AnalyticManagerEventProtocol {
         case startReviewReport
         case clickReviewReportOption(option: String)
+        case clickReviewReportText
         case clickReviewReportBack
         case clickReviewReportComplete
         case completeReviewReport(option: String, text: String)
@@ -242,6 +241,7 @@ extension AnalyticManagerEvent {
             switch self {
             case .startReviewReport: return "start_reviewreport"
             case .clickReviewReportOption: return "click_reviewreport_option"
+            case .clickReviewReportText: return "click_reviewreport_text"
             case .clickReviewReportBack: return "click_reviewreport_back"
             case .clickReviewReportComplete: return "click_reviewreport_complete"
             case .completeReviewReport: return "complete_reviewreport"
