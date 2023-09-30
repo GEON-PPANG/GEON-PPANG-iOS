@@ -157,7 +157,6 @@ extension AnalyticManagerEvent {
         case clickWebsite
         case clickInstagram
         case clickMystore
-        case clickReviewReport
         
         var name: String {
             switch self {
@@ -166,7 +165,6 @@ extension AnalyticManagerEvent {
             case .clickWebsite: return "click_website"
             case .clickInstagram: return "click_instagram"
             case .clickMystore: return "click_mystore"
-            case .clickReviewReport: return "click_reviewreport"
             }
         }
         
