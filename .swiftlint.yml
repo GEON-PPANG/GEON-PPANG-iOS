@@ -11,7 +11,10 @@ disabled_rules:
 - nesting
 - cyclomatic_complexity
 
-
+file_length:
+    warning: 1000
+    error: 2000
+    
 opt_in_rules:
 - mark
 - todo

@@ -52,7 +52,6 @@ struct URLConstant {
     
     static let nickname = "/member/nickname"
     
-    
     // MARK: - Report
     
     static let report = "/report/review"

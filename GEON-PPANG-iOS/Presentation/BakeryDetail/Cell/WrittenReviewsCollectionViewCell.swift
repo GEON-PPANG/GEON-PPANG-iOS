@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-protocol ReportButtonDelegate: BakeryDetailViewController {
+protocol ReportButtonDelegate: AnyObject {
     
     func tappedReportButton(reviewID: Int)
 }

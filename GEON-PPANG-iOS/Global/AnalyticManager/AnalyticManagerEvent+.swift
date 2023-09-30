@@ -17,7 +17,7 @@ extension AnalyticManagerEvent {
         case closeApp
         case loginApp(loginType: String)
         case logoutApp
-        case withdraqApp
+        case withdrawApp
         
         var name: String {
             switch self {
@@ -25,7 +25,7 @@ extension AnalyticManagerEvent {
             case .closeApp: return "close_app"
             case .loginApp: return "login_app"
             case .logoutApp: return "logout_app"
-            case .withdraqApp: return "withdraw_app"
+            case .withdrawApp: return "withdraw_app"
             }
         }
         
@@ -50,7 +50,7 @@ extension AnalyticManagerEvent {
         case clickMainpurpose(mainPurpose: String)
         case clickBreadtype(breadType: [String])
         case clickIngredientstype(ingredientsType: [String])
-        case completeFilterOnboarding
+        case completeFilterOnboarding(mainPurpose: String, breadType: [String], ingredientsType: [String])
         
         var name: String {
             switch self {
@@ -73,6 +73,8 @@ extension AnalyticManagerEvent {
             case .clickMainpurpose(mainPurpose: let mainPurpose): return ["main purpose": mainPurpose]
             case .clickBreadtype(breadType: let breadType): return ["breadtype": breadType]
             case .clickIngredientstype(ingredientsType: let ingredientsType): return ["ingredients type": ingredientsType]
+            case .completeFilterOnboarding(mainPurpose: let mainPurpose, breadType: let breadType, ingredientsType: let ingredientsType):
+                return ["main purpose": mainPurpose, "breadtype": breadType, "ingredients type": ingredientsType]
             default: return nil
             }
         }
@@ -88,7 +90,7 @@ extension AnalyticManagerEvent {
         case completeSearchHome(keyword: String)
         case startFilterHome
         case clickFilterBackHome
-        case completeFilterHome
+        case completeFilterHome(mainPurpose: String, breadType: [String], ingredientsType: [String])
         
         var name: String {
             switch self {
@@ -108,6 +110,8 @@ extension AnalyticManagerEvent {
             case .clickRecommendReview(bakery: let bakery): return ["bakery": bakery]
             
             case .completeSearchHome(keyword: let keyword): return ["keyword": keyword]
+            case .completeFilterHome(mainPurpose: let mainPurpose, breadType: let breadType, ingredientsType: let ingredientsType):
+                return ["main purpose": mainPurpose, "breadtype": breadType, "ingredients type": ingredientsType]
             default: return nil
             }
         }
@@ -124,7 +128,7 @@ extension AnalyticManagerEvent {
         case clickSearchList
         case completeSearchList(keyword: String)
         case clickFilterbackList
-        case completeFilterList
+        case completeFilterList(mainPurpose: String, breadType: [String], ingredientsType: [String])
         
         var name: String {
             switch self {
@@ -143,6 +147,8 @@ extension AnalyticManagerEvent {
             switch self {
             case .clickCategory(category: let category): return ["category": category]
             case .completeSearchList(keyword: let keyword): return ["keyword": keyword]
+            case .completeFilterList(mainPurpose: let mainPurpose, breadType: let breadType, ingredientsType: let ingredientsType):
+                return ["main purpose": mainPurpose, "breadtype": breadType, "ingredients type": ingredientsType]
             default: return nil
             }
         }
@@ -182,9 +188,10 @@ extension AnalyticManagerEvent {
         
         case startReviewWriting
         case clickReviewWritingOption(option: String)
-        case clickReviewWritingText(keyword: [String])
+        case clickRecommendKeyword(keyword: [String])
+        case clickReviewWritingText
         case clickReviewWritingBack
-        case clickReviewWrtingStop
+        case clickReviewWritingStop
         case clickReviewWritingContinue
         case clickReviewWritingComplete
         case completeReviewWriting(option: String,
@@ -195,9 +202,10 @@ extension AnalyticManagerEvent {
             switch self {
             case .startReviewWriting: return "start_reviewwriting"
             case .clickReviewWritingOption: return "click_reviewwriting_option"
+            case .clickRecommendKeyword: return "click_recommend_keyword"
             case .clickReviewWritingText: return "click_reviewwriting_text"
             case .clickReviewWritingBack: return "click_reviewwriting_back"
-            case .clickReviewWrtingStop: return "click_reviewwrting_stop"
+            case .clickReviewWritingStop: return "click_reviewwriting_stop"
             case .clickReviewWritingContinue: return "click_reviewwriting_continue"
             case .clickReviewWritingComplete: return "click_reviewwriting_complete"
             case .completeReviewWriting: return "complete_reviewwriting"
@@ -207,7 +215,7 @@ extension AnalyticManagerEvent {
         var parameters: [String: Any]? {
             switch self {
             case .clickReviewWritingOption(option: let option): return ["option": option]
-            case .clickReviewWritingText(keyword: let keyword): return ["keyword": keyword]
+            case .clickRecommendKeyword(keyword: let keyword): return ["keyword": keyword]
             case .completeReviewWriting(option: let option, keyword: let keyword, text: let text): return ["option": option,
                                                                                                            "keyword": keyword,
                                                                                                            "text": text]
@@ -218,13 +226,31 @@ extension AnalyticManagerEvent {
     
     /// MyPage
     
-    enum MyPage: String {
+    enum MyPage: AnalyticManagerEventProtocol {
         
-        case click_mystore
-        case click_myreview
-        case start_filter_mypage
-        case click_filter_back_mypage
-        case complete_filte_mypage
+        case clickMystore
+        case clickMyreview
+        case startFilterMypage
+        case clickFilterBackMypage
+        case completeFilterMypage(mainPurpose: String, breadType: [String], ingredientsType: [String])
+        
+        var name: String {
+            switch self {
+            case .clickMystore: return "click_mystore"
+            case .clickMyreview: return "click_myreview"
+            case .startFilterMypage: return "start_filter_mypage"
+            case .clickFilterBackMypage: return "click_filter_back_mypage"
+            case .completeFilterMypage: return "complete_filter_mypage"
+            }
+        }
+        
+        var parameters: [String: Any]? {
+            switch self {
+            case .completeFilterMypage(mainPurpose: let mainPurpose, breadType: let breadType, ingredientsType: let ingredientsType):
+                return ["main purpose": mainPurpose, "breadtype": breadType, "ingredients type": ingredientsType]
+            default: return nil
+            }
+        }
     }
     
     /// ReportReview

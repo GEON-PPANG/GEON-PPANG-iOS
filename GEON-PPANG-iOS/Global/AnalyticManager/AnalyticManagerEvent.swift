@@ -36,7 +36,7 @@ extension AnalyticManagerEvent: AnalyticManagerEventProtocol {
         case .writeReview(let event):
             return event.name
         case .myPage(let event):
-            return event.rawValue
+            return event.name
         case .reportReview(let event):
             return event.name
         }

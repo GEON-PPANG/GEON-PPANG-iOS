@@ -109,7 +109,7 @@ final class BakeryListViewController: BaseViewController {
         
         bakeryFilterView.do {
             $0.applyAction {
-                Utils.push(self.navigationController, FilterViewController(isInitial: false))
+                Utils.push(self.navigationController, FilterViewController(from: .list))
                 
                 AnalyticManager.log(event: .list(.startFilterList))
             }
@@ -225,8 +225,8 @@ extension BakeryListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let nextViewController = BakeryDetailViewController()
-        nextViewController.source = .LIST
         nextViewController.bakeryID = self.bakeryList[indexPath.item].bakeryID
+        Utils.setDetailSourceType(.LIST)
         Utils.push(self.navigationController, nextViewController)
     }
 }

@@ -194,7 +194,7 @@ extension BakeryCommonCollectionViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let tagTitle = self.breadTypeTag[indexPath.item]
-        let itemSize = tagTitle.size(withAttributes: [NSAttributedString.Key.font: UIFont.captionM2])
+        let itemSize = tagTitle.size(withAttributes: [NSAttributedString.Key.font: UIFont.captionM2!])
         return CGSize(width: itemSize.width + 12, height: itemSize.height)
     }
 }

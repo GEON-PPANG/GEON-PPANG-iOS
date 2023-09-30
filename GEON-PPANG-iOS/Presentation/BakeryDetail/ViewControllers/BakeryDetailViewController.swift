@@ -38,7 +38,6 @@ final class BakeryDetailViewController: BaseViewController {
         }
     }
     private var isBookmarked: Bool = false
-    var source: AnalyticEventType = .HOME
     var bakeryID: Int?
     var homepageURL: String = ""
     var instagramURL: String = ""
@@ -59,9 +58,7 @@ final class BakeryDetailViewController: BaseViewController {
         guard let bakeryID = self.bakeryID else { return }
         
         getBakeryDetail(bakeryID: bakeryID, isUpdated: true)
-        
-        Utils.setDetailSourceType(self.source)
-        
+                
         navigationController?.interactivePopGestureRecognizer?.delegate = nil // swipe back gesture
     }
     
@@ -146,8 +143,10 @@ final class BakeryDetailViewController: BaseViewController {
                 }
             }
             $0.tappedWriteReviewButton = {
-                AnalyticManager.log(event: .reportReview(.startReviewReport))
-                Utils.push(self.navigationController, ReviewViewController(type: .write, bakeryData: self.configureSimpleBakeryData()))
+                AnalyticManager.log(event: .writeReview(.startReviewWriting))
+                Utils.push(self.navigationController, ReviewViewController(
+                    type: .write,
+                    bakeryData: self.configureSimpleBakeryData()))
             }
         }
         
@@ -470,7 +469,7 @@ extension BakeryDetailViewController {
                        delay: 0.1,
                        options: .curveEaseOut,
                        animations: { toastLabel.alpha = 0.0 },
-                       completion: { (isCompleted) in toastLabel.removeFromSuperview() })
+                       completion: { (_) in toastLabel.removeFromSuperview() })
     }
     
     private func tappedFloatingButton() {
