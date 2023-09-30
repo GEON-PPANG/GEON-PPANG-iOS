@@ -303,7 +303,6 @@ final class ReportViewController: BaseViewController {
         selectedButton?.isSelected = false // 이전 선택 해제
         selectedButton?.configuration?.image = .filterUncheckIcon
         
-        AnalyticManager.log(event: .reportReview(.clickReviewReportOption(option: selectedCategory!.rawValue)))
         sender.isSelected = true // 새로운 버튼 선택
         sender.configuration?.image = .filterCheckIcon
         sender.configuration?.baseBackgroundColor = .gbbWhite
@@ -318,6 +317,8 @@ final class ReportViewController: BaseViewController {
         case labeling[3]: selectedCategory = ReportCategory.etc
         default: break
         }
+        
+        AnalyticManager.log(event: .reportReview(.clickReviewReportOption(option: selectedCategory!.rawValue)))
     }
     
     private func tappedExceptTextView() {
