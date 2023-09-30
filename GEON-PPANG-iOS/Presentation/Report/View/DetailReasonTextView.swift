@@ -44,7 +44,7 @@ final class DetailReasonTextView: UIView {
         
         self.addSubview(textLimitLabel)
         textLimitLabel.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(20)
+            $0.top.equalToSuperview().inset(162)
             $0.trailing.equalToSuperview().inset(28)
             $0.width.equalTo(60)
             $0.height.equalTo(17)

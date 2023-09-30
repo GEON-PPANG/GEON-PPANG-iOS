@@ -54,55 +54,52 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
             $0.top.equalToSuperview()
             $0.directionalHorizontalEdges.equalToSuperview().inset(convertByWidthRatio(24))
             $0.width.equalTo(convertByWidthRatio(327))
-            $0.height.equalTo(convertByWidthRatio(231))
+            $0.height.equalTo(231)
         }
         
         reviewContainer.addSubview(profileImage)
         profileImage.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(convertByWidthRatio(20))
+            $0.top.equalToSuperview().inset(20)
             $0.leading.equalToSuperview().inset(convertByWidthRatio(25))
-            $0.size.equalTo(convertByWidthRatio(20))
+            $0.size.equalTo(20)
         }
         
         reviewContainer.addSubview(userNicknameLabel)
         userNicknameLabel.snp.makeConstraints {
             $0.centerY.equalTo(profileImage)
             $0.leading.equalTo(profileImage.snp.trailing).offset(convertByWidthRatio(7))
-            $0.trailing.equalToSuperview().inset(convertByWidthRatio(150))
-            $0.width.equalTo(125)
+            $0.width.equalTo(convertByWidthRatio(125))
             $0.height.equalTo(19)
         }
         
         reviewContainer.addSubview(reviewDateLabel)
         reviewDateLabel.snp.makeConstraints {
             $0.centerY.equalTo(userNicknameLabel)
-            $0.leading.equalToSuperview().inset(convertByWidthRatio(201))
             $0.trailing.equalToSuperview().inset(convertByWidthRatio(59))
-            $0.width.equalTo(67)
+            $0.width.equalTo(convertByWidthRatio(67))
             $0.height.equalTo(17)
         }
         
         reviewContainer.addSubview(reportButton)
         reportButton.snp.makeConstraints {
             $0.centerY.equalTo(userNicknameLabel)
-            $0.leading.equalToSuperview().inset(convertByWidthRatio(279))
             $0.trailing.equalToSuperview().inset(convertByWidthRatio(25))
-            $0.width.equalTo(23)
+            $0.width.equalTo(convertByWidthRatio(23))
             $0.height.equalTo(17)
         }
         
         reviewContainer.addSubview(reviewCategoryStackView)
         reviewCategoryStackView.snp.makeConstraints {
-            $0.top.equalTo(profileImage.snp.bottom).offset(convertByWidthRatio(10))
+            $0.top.equalTo(profileImage.snp.bottom).offset(10)
             $0.leading.equalTo(profileImage)
         }
         
         reviewContainer.addSubview(reviewTextLabel)
         reviewTextLabel.snp.makeConstraints {
-            $0.top.equalTo(reviewCategoryStackView.snp.bottom).offset(convertByWidthRatio(16))
+            $0.top.equalTo(reviewCategoryStackView.snp.bottom).offset(16)
             $0.directionalHorizontalEdges.equalToSuperview().inset(convertByWidthRatio(25))
             $0.width.equalTo(convertByWidthRatio(277))
-            $0.height.equalTo(convertByWidthRatio(120))
+            $0.height.equalTo(120)
         }
     }
     
@@ -169,7 +166,6 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
         
         let containerHeight = isKeywordListEmpty ? labelHeight + 76 : labelHeight + 111
         let textLabelTopConstraint = isKeywordListEmpty ? profileImage.snp.bottom : reviewCategoryStackView.snp.bottom
-        let textLabelOffset = convertByWidthRatio(16)
         
         reviewContainer.snp.remakeConstraints {
             $0.top.equalToSuperview()
@@ -179,7 +175,7 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
         }
         
         reviewTextLabel.snp.remakeConstraints {
-            $0.top.equalTo(textLabelTopConstraint).offset(textLabelOffset)
+            $0.top.equalTo(textLabelTopConstraint).offset(16)
             $0.directionalHorizontalEdges.equalToSuperview().inset(convertByWidthRatio(25))
             $0.width.equalTo(convertByWidthRatio(277))
             $0.height.equalTo(labelHeight)
@@ -199,6 +195,7 @@ extension BakeryDetailViewController: ReportButtonDelegate {
     
     func tappedReportButton(reviewID: Int) {
         
+        AnalyticManager.log(event: .reportReview(.startReviewReport))
         Utils.push(self.navigationController, ReportViewController(title: I18N.Detail.reviewReport, reviewID: reviewID))
     }
 }

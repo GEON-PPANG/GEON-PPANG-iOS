@@ -46,7 +46,7 @@ final class BottomView: UIView {
     
     // MARK: - Custom Method
     
-    func applyAdditionalSubview(_ view: UIView, withTopOffset offset: CGFloat = 21) {
+    func applyAdditionalSubview(_ view: UIView, withTopOffset offset: CGFloat) {
         
         addSubview(view)
         view.snp.makeConstraints {

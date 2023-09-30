@@ -17,7 +17,7 @@ final class BakeryDetailViewController: BaseViewController {
     
     private var overviewData: BakeryDetailResponseDTO = .initialDTO() {
         didSet {
-            if self.detailBottomView.check == true {
+            if self.detailBottomView.check {
                 let indexPath = IndexPath(item: 0, section: 0)
                 
                 UIView.performWithoutAnimation {
@@ -135,6 +135,7 @@ final class BakeryDetailViewController: BaseViewController {
             $0.check = false
             $0.backgroundColor = .gbbWhite
             $0.tappedBookmarkButton = {
+                self.detailBottomView.check = true
                 self.requestBakeryBookmark(!self.isBookmarked)
                 if !self.isBookmarked {
                     self.showToast(message: I18N.Detail.addBookmark)
