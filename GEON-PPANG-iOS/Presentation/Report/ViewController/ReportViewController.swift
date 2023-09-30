@@ -67,7 +67,7 @@ final class ReportViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupNotificationCenterOnScrollView()
+        setNotificationCenter(show: #selector(keyboardWillShowOnScrollView), hide: #selector(keyboardWillHideOnScrollView))
         tappedExceptTextView()
     }
     
@@ -332,12 +332,6 @@ final class ReportViewController: BaseViewController {
         guard let text = existingText else { return false }
         
         return text.count + newText.count <= limit
-    }
-    
-    private func setupNotificationCenterOnScrollView() {
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowOnScrollView), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideOnScrollView), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     private func calculateScrollOffset() -> CGFloat {
