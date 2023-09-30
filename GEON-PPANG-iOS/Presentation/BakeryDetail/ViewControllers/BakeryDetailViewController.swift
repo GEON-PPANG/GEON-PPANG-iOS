@@ -99,6 +99,7 @@ final class BakeryDetailViewController: BaseViewController {
             $0.configureRightMapButton()
             $0.tappedMapButton = {
                 guard let url = URL(string: self.overviewData.mapURL) else { return }
+                AnalyticManager.log(event: .detail(.clickNavigation))
                 let safariVC = SFSafariViewController(url: url)
                 self.present(safariVC, animated: true, completion: nil)
             }
@@ -142,9 +143,8 @@ final class BakeryDetailViewController: BaseViewController {
                 }
             }
             $0.tappedWriteReviewButton = {
-                Utils.push(self.navigationController, ReviewViewController(
-                    type: .write,
-                    bakeryData: self.configureSimpleBakeryData()))
+                AnalyticManager.log(event: .reportReview(.startReviewReport))
+                Utils.push(self.navigationController, ReviewViewController(type: .write, bakeryData: self.configureSimpleBakeryData()))
             }
         }
         
@@ -277,9 +277,9 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
         switch indexPath.section {
         case 1:
             let header: BakeryDetailCollectionViewHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
-
-                header.configureHeaderUI(self.overviewData)
-                header.getType(.info)
+            
+            header.configureHeaderUI(self.overviewData)
+            header.getType(.info)
             
             return header
         case 2:
@@ -410,7 +410,7 @@ extension BakeryDetailViewController {
             self.detailBottomView.configureBookmarkButton(to: data.isBookMarked)
             self.homepageURL = data.homepageURL
             self.instagramURL = data.instagramURL
-            self.getWrittenReviews(bakeryID: bakeryID, isUpdated: isUpdated )
+            self.getWrittenReviews(bakeryID: bakeryID, isUpdated: isUpdated)
         }
     }
     
@@ -436,6 +436,7 @@ extension BakeryDetailViewController {
         
         BakeryAPI.shared.postBookmark(bakeryID: bakeryID, with: bookmarkRequest) { _ in
             
+            AnalyticManager.log(event: .detail(.clickMystore))
             self.detailBottomView.configureBookmarkButton(to: value)
             self.isBookmarked = value
             self.getBakeryDetail(bakeryID: bakeryID, isUpdated: false)
