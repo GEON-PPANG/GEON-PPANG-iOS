@@ -220,11 +220,13 @@ extension BakeryDetailViewController: InfoCollectionViewCellDelegate {
     
     func tappedHomepageLinkButton() {
         
+        AnalyticManager.log(event: .detail(.clickWebsite))
         Utils.push(self.navigationController, WebViewController(url: homepageURL, title: I18N.Detail.homepage))
     }
     
     func tappedInstagramLinkButton() {
         
+        AnalyticManager.log(event: .detail(.clickInstagram))
         Utils.push(self.navigationController, WebViewController(url: instagramURL, title: I18N.Detail.instagram))
     }
 }
