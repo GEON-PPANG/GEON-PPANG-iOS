@@ -191,8 +191,6 @@ extension OnboardingViewController {
         guard let nickname = nickname else {
             let viewController = NickNameViewController()
             Utils.push(self.navigationController, viewController)
-            
-            AnalyticManager.log(event: .onboarding(.startSignup(signUpType: socialType)))
             return
         }
         
@@ -200,7 +198,7 @@ extension OnboardingViewController {
             let viewcontroller = NickNameViewController()
             viewcontroller.naviView.hideBackButton(true)
             Utils.push(self.navigationController, viewcontroller)
-            AnalyticManager.log(event: .general(.loginApp(loginType: socialType)))
+            AnalyticManager.log(event: .onboarding(.startSignup(signUpType: socialType)))
         } else {
             Utils.sceneDelegate?.changeRootViewControllerToTabBarController()
             AnalyticManager.log(event: .general(.loginApp(loginType: socialType)))
@@ -215,12 +213,11 @@ extension OnboardingViewController {
         
         AuthAPI.shared.postSignUp(with: request) { status in
             
-            guard let userID = status?.data?.memberID else { return }
-            AnalyticManager.set(userId: userID)
-            
             guard let code = status?.code else { return }
             switch code {
             case 200...299:
+                guard let userID = status?.data?.memberID else { return }
+                AnalyticManager.set(userId: userID)
                 completion?()
             default:
                 // FIXME: UX Writing 고려
