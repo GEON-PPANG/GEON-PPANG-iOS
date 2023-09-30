@@ -214,6 +214,10 @@ extension OnboardingViewController {
     private func postSignUp(with request: SignUpRequestDTO, completion: (() -> Void)?) {
         
         AuthAPI.shared.postSignUp(with: request) { status in
+            
+            guard let userID = status?.data?.memberID else { return }
+            AnalyticManager.set(userId: userID)
+            
             guard let code = status?.code else { return }
             switch code {
             case 200...299:

@@ -239,7 +239,11 @@ final class ReviewViewController: BaseViewController {
     private func nextButtonTapped() {
         
         requestWriteReview(configureWriteReviewData())
-        AnalyticManager.log(event: .writeReview(.clickReviewWritingComplete))
+        AnalyticManager.log(event: .writeReview(.completeReviewWriting(
+            option: self.writeReviewData.isLike ? "좋아요" : "아쉬워요",
+            keyword: self.writeReviewData.keywordList.map { $0.keywordName },
+            text: self.writeReviewData.reviewText
+        )))
         UIView.animate(withDuration: 0.2, animations: {
             self.bottomView.transform = .identity
             self.scrollView.transform = .identity
@@ -377,11 +381,6 @@ extension ReviewViewController {
             $0.configureEmojiType(.smile)
             $0.configureBottonSheetTitle(I18N.Review.confirmSheetTitle)
             $0.dismissBottomSheet = {
-                AnalyticManager.log(event: .writeReview(.completeReviewWriting(
-                    option: self.writeReviewData.isLike ? "좋아요" : "아쉬워요",
-                    keyword: self.writeReviewData.keywordList.map { $0.keywordName },
-                    text: self.writeReviewData.reviewText
-                )))
                 self.backgroundView.dissmissFromSuperview()
                 self.navigationController?.popViewController(animated: true)
             }
