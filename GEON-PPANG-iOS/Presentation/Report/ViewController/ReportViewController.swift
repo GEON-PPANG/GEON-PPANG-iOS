@@ -67,6 +67,7 @@ final class ReportViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupNotificationCenterOnScrollView()
         tappedExceptTextView()
     }
     
@@ -83,19 +84,20 @@ final class ReportViewController: BaseViewController {
         scrollView.snp.makeConstraints {
             $0.top.equalTo(navigationBar.snp.bottom)
             $0.directionalHorizontalEdges.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(UIScreen.main.hasNotch ? 126 : 92)
         }
         
         view.addSubview(bottomView)
         bottomView.snp.makeConstraints {
-            $0.top.equalTo(scrollView.snp.bottom)
             $0.horizontalEdges.bottom.equalToSuperview()
+            $0.height.equalTo(UIScreen.main.hasNotch ? 126 : 92)
         }
         
         scrollView.addSubview(contentView)
         contentView.snp.makeConstraints {
             $0.edges.equalToSuperview()
             $0.width.equalTo(SizeLiteral.Screen.width)
-            
+
             if UIScreen.main.hasNotch {
                 $0.height.equalToSuperview()
             } else {
@@ -162,7 +164,7 @@ final class ReportViewController: BaseViewController {
         pleaseReportContainer.snp.makeConstraints {
             $0.top.equalTo(detailReasonTextView.snp.bottom).offset(20)
             $0.directionalHorizontalEdges.equalToSuperview()
-            $0.bottom.equalToSuperview()
+            $0.height.equalTo(UIScreen.main.hasNotch ? getDeviceHeight() - 755 : 57)
         }
         
         pleaseReportContainer.addSubview(pleaseReportLabel)
@@ -324,6 +326,46 @@ final class ReportViewController: BaseViewController {
         guard let text = existingText else { return false }
         
         return text.count + newText.count <= limit
+    }
+    
+    private func setupNotificationCenterOnScrollView() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowOnScrollView), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideOnScrollView), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    private func calculateScrollOffset() -> CGFloat {
+        let textViewY = detailReasonTextView.frame.minY
+        return textViewY - 62
+    }
+    
+    @objc
+    private func keyboardWillShowOnScrollView(notification: NSNotification) {
+        
+        guard let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height else { return }
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            self.bottomView.snp.updateConstraints {
+                $0.bottom.equalToSuperview().inset(UIScreen.main.hasNotch ? keyboardHeight - 34 : keyboardHeight)
+            }
+        })
+        
+        self.scrollView.contentOffset.y = calculateScrollOffset()
+        self.scrollView.contentInset.bottom = UIScreen.main.hasNotch ? keyboardHeight - 34 : keyboardHeight
+        self.view.layoutIfNeeded()
+    }
+    
+    @objc
+    private func keyboardWillHideOnScrollView(notification: NSNotification) {
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            self.bottomView.snp.updateConstraints {
+                $0.bottom.equalToSuperview()
+            }
+        })
+        
+        self.scrollView.contentInset.bottom = 0
+        self.view.layoutIfNeeded()
     }
 }
 
