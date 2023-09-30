@@ -14,7 +14,10 @@ final class ReportViewController: BaseViewController {
     
     // MARK: - Property
     
+    private var writeReportData: ReportRequestDTO = .init()
+    
     private var navigationTitle: String
+    private var reviewID: Int
     private let labeling = [I18N.Report.advertisement,
                             I18N.Report.profanity,
                             I18N.Report.defamation,
@@ -33,6 +36,7 @@ final class ReportViewController: BaseViewController {
     private lazy var defamationReportButton = UIButton(configuration: .plain())
     private lazy var othersReportButton = UIButton(configuration: .plain())
     private var selectedButton: UIButton? // 직전에 선택됐던 버튼을 기억
+    private var selectedCategory: ReportCategory?
     
     private let detailReasonLabel = UILabel()
     private lazy var detailReasonTextView = DetailReasonTextView()
@@ -48,8 +52,9 @@ final class ReportViewController: BaseViewController {
     
     // MARK: - Life Cycle
     
-    init(title: String) {
+    init(title: String, reviewID: Int) {
         self.navigationTitle = title
+        self.reviewID = reviewID
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -249,10 +254,21 @@ final class ReportViewController: BaseViewController {
         detailReasonTextView.detailTextView.delegate = self
     }
     
+    private func configureWriteReportData() -> ReportRequestDTO {
+        
+        var requestData: ReportRequestDTO = .init()
+        
+        requestData.content = detailReasonTextView.detailTextView.text
+        requestData.reportCategory = selectedCategory!.rawValue
+        
+        return requestData
+    }
+    
     // MARK: - Action Helper
     
     private func nextButtonTapped() {
         
+        requestWriteReport(configureWriteReportData())
         UIView.animate(withDuration: 0.2, animations: {
             self.bottomView.transform = .identity
             self.scrollView.transform = .identity
@@ -287,6 +303,14 @@ final class ReportViewController: BaseViewController {
         writeButton.configureInteraction(to: true)
         
         selectedButton = sender // 현재 선택된 버튼 업데이트
+        
+        switch selectedButton?.configuration?.title {
+        case labeling[0]: selectedCategory = ReportCategory.advertising
+        case labeling[1]: selectedCategory = ReportCategory.hate
+        case labeling[2]: selectedCategory = ReportCategory.copyright
+        case labeling[3]: selectedCategory = ReportCategory.etc
+        default: break
+        }
     }
     
     private func tappedExceptTextView() {
@@ -345,5 +369,19 @@ extension ReportViewController: UITextViewDelegate {
                   replacementText text: String) -> Bool {
         
         return self.textLimit(textView.text, to: text, with: 140)
+    }
+}
+
+// MARK: - API
+
+extension ReportViewController {
+    
+    func requestWriteReport(_ content: ReportRequestDTO) {
+        
+        ReportAPI.shared.postWriteReport(reviewID: reviewID, content: content) { response in
+            guard let response = response else { return }
+            guard let data = response.data else { return }
+            dump(data)
+        }
     }
 }

@@ -160,7 +160,7 @@ extension MyPageViewController {
     
     func logout() {
         
-        AuthAPI.shared.logout { code in
+        MemberAPI.shared.logout { code in
             switch code {
             case 200:
                 KeychainService.deleteKeychain(of: .access)
@@ -177,14 +177,14 @@ extension MyPageViewController {
     
     func deleteUser() {
         
-        AuthAPI.shared.deleteUser { response in
+        MemberAPI.shared.deleteUser { response in
             switch response?.code {
             case 200:
-                KeychainService.deleteAllAuthKeychains()
                 if KeychainService.readKeychain(of: .socialType) == "KAKAO" {
                     KakaoService.unlink()
                 }
                 Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
+                KeychainService.deleteAllAuthKeychains()
             default:
                 if let child = self.children.first {
                     child.dismiss(animated: true)

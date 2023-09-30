@@ -12,12 +12,14 @@ import Then
 
 protocol ReportButtonDelegate: BakeryDetailViewController {
     
-    func tappedReportButton()
+    func tappedReportButton(reviewID: Int)
 }
 
 final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
     
     weak var delegate: ReportButtonDelegate?
+    
+    private var reviewID: Int?
     
     // MARK: - UI Property
     
@@ -146,6 +148,7 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
     
     func configureCellUI(_ data: ReviewList, _ labelHeight: CGFloat) {
         
+        reviewID = data.reviewID
         userNicknameLabel.text = data.memberNickname
         reviewDateLabel.text = data.createdAt
         reviewTextLabel.text = data.reviewText
@@ -181,7 +184,8 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
     
     func tappedReportButton() {
         
-        delegate?.tappedReportButton()
+        guard let reviewID = reviewID else { return }
+        delegate?.tappedReportButton(reviewID: reviewID)
     }
 }
 
@@ -189,8 +193,8 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
 
 extension BakeryDetailViewController: ReportButtonDelegate {
     
-    func tappedReportButton() {
+    func tappedReportButton(reviewID: Int) {
         
-        Utils.push(self.navigationController, ReportViewController(title: I18N.Detail.reviewReport))
+        Utils.push(self.navigationController, ReportViewController(title: I18N.Detail.reviewReport, reviewID: reviewID))
     }
 }

@@ -18,10 +18,10 @@ enum AnalyticManager: AnalyticManagerProtocol {
 
     static func set(userId: Int) {
         
-        Amplitude.instance().setUserId(String(userId))
+        Amplitude.instance().setUserId("gunbbang"+String(userId))
         
 #if DEBUG
-        print("🍥🍥🍥🍥🍥 userId: \(userId) 🍥🍥🍥🍥🍥")
+        print("🍥🍥🍥🍥🍥 userId: gunbbang\(userId) 🍥🍥🍥🍥🍥")
 #endif
     }
 
