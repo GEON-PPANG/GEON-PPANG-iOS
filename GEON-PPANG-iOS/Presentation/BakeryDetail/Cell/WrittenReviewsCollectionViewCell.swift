@@ -195,6 +195,7 @@ extension BakeryDetailViewController: ReportButtonDelegate {
     
     func tappedReportButton(reviewID: Int) {
         
+        AnalyticManager.log(event: .reportReview(.startReviewReport))
         Utils.push(self.navigationController, ReportViewController(title: I18N.Detail.reviewReport, reviewID: reviewID))
     }
 }
