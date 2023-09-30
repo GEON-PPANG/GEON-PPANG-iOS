@@ -146,9 +146,8 @@ final class BakeryDetailViewController: BaseViewController {
                 }
             }
             $0.tappedWriteReviewButton = {
-                Utils.push(self.navigationController, ReviewViewController(
-                    type: .write,
-                    bakeryData: self.configureSimpleBakeryData()))
+                AnalyticManager.log(event: .reportReview(.startReviewReport))
+                Utils.push(self.navigationController, ReviewViewController(type: .write, bakeryData: self.configureSimpleBakeryData()))
             }
         }
         
@@ -281,9 +280,9 @@ extension BakeryDetailViewController: UICollectionViewDataSource {
         switch indexPath.section {
         case 1:
             let header: BakeryDetailCollectionViewHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
-
-                header.configureHeaderUI(self.overviewData)
-                header.getType(.info)
+            
+            header.configureHeaderUI(self.overviewData)
+            header.getType(.info)
             
             return header
         case 2:
@@ -414,7 +413,7 @@ extension BakeryDetailViewController {
             self.detailBottomView.configureBookmarkButton(to: data.isBookMarked)
             self.homepageURL = data.homepageURL
             self.instagramURL = data.instagramURL
-            self.getWrittenReviews(bakeryID: bakeryID, isUpdated: isUpdated )
+            self.getWrittenReviews(bakeryID: bakeryID, isUpdated: isUpdated)
         }
     }
     
