@@ -242,11 +242,11 @@ final class ReviewViewController: BaseViewController {
         UIView.animate(withDuration: 0.2, animations: {
             self.bottomView.transform = .identity
             self.scrollView.transform = .identity
-        }) { _ in
+        }, completion: { _ in
             self.backgroundView.isUserInteractionEnabled = false
             self.backgroundView.dimmedViewInteraction = false
             self.backgroundView.appearBottomSheetView(subView: self.confirmBottomSheetView, CGFloat().heightConsideringBottomSafeArea(292))
-        }
+        })
         view.endEditing(true)
     }
     

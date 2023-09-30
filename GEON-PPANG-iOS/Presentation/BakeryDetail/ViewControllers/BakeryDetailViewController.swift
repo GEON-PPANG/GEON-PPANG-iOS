@@ -466,7 +466,7 @@ extension BakeryDetailViewController {
                        delay: 0.1,
                        options: .curveEaseOut,
                        animations: { toastLabel.alpha = 0.0 },
-                       completion: { (isCompleted) in toastLabel.removeFromSuperview() })
+                       completion: { (_) in toastLabel.removeFromSuperview() })
     }
     
     private func tappedFloatingButton() {

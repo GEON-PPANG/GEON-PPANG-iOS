@@ -232,7 +232,7 @@ final class FilterViewController: BaseViewController {
         request.setPurpose(from: FilterCellModel.purpose.map { $0.selected })
         request.setBreadType(from: FilterCellModel.breadType.map { $0.selected })
         request.setNutrientType(from: FilterCellModel.ingredient.map { $0.selected })
-        FilterAPI.shared.changeFilter(to: request) { response in
+        FilterAPI.shared.changeFilter(to: request) { _ in
             if self.isInitial {
                 Utils.sceneDelegate?.changeRootViewControllerToTabBarController()
             } else {

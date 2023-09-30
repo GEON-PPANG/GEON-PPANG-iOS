@@ -81,7 +81,6 @@
 		097682E52A5C99340008F4FB /* BakeryFilterItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682E42A5C99340008F4FB /* BakeryFilterItems.swift */; };
 		097682E72A5CF0080008F4FB /* BakeryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682E62A5CF0080008F4FB /* BakeryFilterView.swift */; };
 		097682E92A5D0B6B0008F4FB /* BakeryListTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682E82A5D0B6B0008F4FB /* BakeryListTopView.swift */; };
-		097682EB2A5D12BD0008F4FB /* BakeryCommonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682EA2A5D12BD0008F4FB /* BakeryCommonCollectionViewCell.swift */; };
 		097716E72AA4E787001EE6D5 /* AuthPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097716E62AA4E787001EE6D5 /* AuthPlugin.swift */; };
 		097716E92AA575C6001EE6D5 /* BakeryListEmptyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097716E82AA575C6001EE6D5 /* BakeryListEmptyType.swift */; };
 		097716EB2AA57713001EE6D5 /* LayoutUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097716EA2AA57713001EE6D5 /* LayoutUtils.swift */; };
@@ -117,12 +116,13 @@
 		09E445392AA3BA07008E3D33 /* SortBakeryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E445382AA3BA07008E3D33 /* SortBakeryFilterView.swift */; };
 		09F015F12A9C881A0093D4F0 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F015F02A9C881A0093D4F0 /* LogInViewController.swift */; };
 		09FD47C82A5DC991002020BD /* SearchNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47C72A5DC991002020BD /* SearchNavigationView.swift */; };
-		09FD47CA2A5DD38D002020BD /* SearchResultHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47C92A5DD38D002020BD /* SearchResultHeaderView.swift */; };
 		09FD47D22A5DF892002020BD /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47D12A5DF892002020BD /* EmptyCollectionViewCell.swift */; };
 		09FD47D92A5E5148002020BD /* MySavedBakeryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47D82A5E5148002020BD /* MySavedBakeryViewController.swift */; };
 		09FD47DD2A5E57F2002020BD /* MyReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47DC2A5E57F2002020BD /* MyReviewsViewController.swift */; };
 		09FD47E22A5E69A2002020BD /* CommonBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47E12A5E69A2002020BD /* CommonBottomSheet.swift */; };
 		09FD47E42A5E82BB002020BD /* BottomSheetAppearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47E32A5E82BB002020BD /* BottomSheetAppearView.swift */; };
+		09FF71AE2AC7FF670096A4BB /* BakeryCommonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682EA2A5D12BD0008F4FB /* BakeryCommonCollectionViewCell.swift */; };
+		09FF71AF2AC7FFB90096A4BB /* SearchResultHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FD47C92A5DD38D002020BD /* SearchResultHeaderView.swift */; };
 		3E06F8D12A9C6DBB001302F4 /* MyPageDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E06F8D02A9C6DBB001302F4 /* MyPageDataSource.swift */; };
 		3E06F8D42A9C769A001302F4 /* MyPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E06F8D32A9C769A001302F4 /* MyPageModel.swift */; };
 		3E06F8D62A9CB83C001302F4 /* DiffableDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E06F8D52A9CB83C001302F4 /* DiffableDataSourceProtocol.swift */; };
@@ -140,7 +140,6 @@
 		3E232ACB2A95A02200125B76 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E232ACA2A95A02200125B76 /* WelcomeViewController.swift */; };
 		3E23CCF52A8BD9950091957D /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556282A51DBC000752067 /* UIView+.swift */; };
 		3E23CCF62A8BD9A40091957D /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556302A51DDD800752067 /* UITableView+.swift */; };
-		3E23CCF72A8BD9C30091957D /* BakeryCommonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097682EA2A5D12BD0008F4FB /* BakeryCommonCollectionViewCell.swift */; };
 		3E2EEF752A5C93010093BCA9 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2EEF742A5C93010093BCA9 /* BottomView.swift */; };
 		3E3543302AAC700600BD926A /* SignUpRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E35432F2AAC700600BD926A /* SignUpRequestDTO.swift */; };
 		3E3543322AAC707200BD926A /* PlatformEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3543312AAC707200BD926A /* PlatformEnum.swift */; };
@@ -1774,7 +1773,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E23CCF72A8BD9C30091957D /* BakeryCommonCollectionViewCell.swift in Sources */,
+				09FF71AF2AC7FFB90096A4BB /* SearchResultHeaderView.swift in Sources */,
+				09FF71AE2AC7FF670096A4BB /* BakeryCommonCollectionViewCell.swift in Sources */,
 				3EB798292AB88B4B004EC35D /* MemberService.swift in Sources */,
 				3E23CCF62A8BD9A40091957D /* UITableView+.swift in Sources */,
 				3E77EC7C2AAAFAE3007995AD /* KeychainKey.swift in Sources */,
@@ -1905,9 +1905,7 @@
 				3E36D7D82A8E6BC500B2C1CC /* FilterDiffableDataSource.swift in Sources */,
 				09F015F12A9C881A0093D4F0 /* LogInViewController.swift in Sources */,
 				093214022A5AE27800875EF6 /* Utils.swift in Sources */,
-				097682EB2A5D12BD0008F4FB /* BakeryCommonCollectionViewCell.swift in Sources */,
 				3E8B30002A67A614001BD057 /* BreadRequestType.swift in Sources */,
-				097682EB2A5D12BD0008F4FB /* BakeryCommonCollectionViewCell.swift in Sources */,
 				090556452A51E79B00752067 /* UITextField+.swift in Sources */,
 				0959F14E2A65840300E77CAF /* NetworkResult.swift in Sources */,
 				0959F16C2A658C9500E77CAF /* AuthResponseDTO.swift in Sources */,
@@ -1977,11 +1975,9 @@
 				3E452B692A60FF7900EA456D /* MyPageCollectionViewFooter.swift in Sources */,
 				3E16E4F52A57CF3800B813D0 /* WriteReviewRequestDTO.swift in Sources */,
 				0930D25D2A928BF200A75C7E /* NearStationResponseDTO.swift in Sources */,
-				09FD47CA2A5DD38D002020BD /* SearchResultHeaderView.swift in Sources */,
 				3E232ACB2A95A02200125B76 /* WelcomeViewController.swift in Sources */,
 				3EB798232AB87F48004EC35D /* FetchNicknameResponseDTO.swift in Sources */,
 				3EB7981F2AB87150004EC35D /* NicknameRequestDTO.swift in Sources */,
-				09FD47CA2A5DD38D002020BD /* SearchResultHeaderView.swift in Sources */,
 				0949750E2A67EC9B00A63420 /* MyReviewsResponseDTO.swift in Sources */,
 				3E06F8D62A9CB83C001302F4 /* DiffableDataSourceProtocol.swift in Sources */,
 				3E06F8D12A9C6DBB001302F4 /* MyPageDataSource.swift in Sources */,

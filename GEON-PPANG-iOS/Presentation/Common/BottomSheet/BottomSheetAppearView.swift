@@ -44,7 +44,8 @@ extension BottomSheetAppearView {
     
     func initializeMainView(_ halfViewHeight: CGFloat? = nil) {
         
-        if let window = UIApplication.shared.windows.first(where: {$0.isKeyWindow}) {
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let window = windowScene.windows.first(where: { $0.isKeyWindow }) {
             window.endEditing(true)
             dimmedView.frame = window.frame
             window.addSubviews(dimmedView, halfView)
@@ -69,7 +70,11 @@ extension BottomSheetAppearView {
     
     func dissmissFromSuperview() {
         
-        if UIApplication.shared.windows.first(where: { $0.isKeyWindow }) != nil {
+        if (UIApplication.shared.connectedScenes
+            .filter({$0.activationState == .foregroundActive})
+            .compactMap({$0 as? UIWindowScene})
+            .first?.windows
+            .filter({$0.isKeyWindow}).first) != nil {
             let transform = CGAffineTransform(translationX: 0, y: 200)
             UIView.animate(
                 withDuration: 0.3,
@@ -105,7 +110,11 @@ extension BottomSheetAppearView {
             $0.directionalHorizontalEdges.bottom.equalToSuperview()
         }
         
-        if UIApplication.shared.windows.first(where: { $0.isKeyWindow }) != nil {
+        if (UIApplication.shared.connectedScenes
+            .filter({$0.activationState == .foregroundActive})
+            .compactMap({$0 as? UIWindowScene})
+            .first?.windows
+            .filter({$0.isKeyWindow}).first) != nil {
             let transform = CGAffineTransform(translationX: 0, y: 300)
             halfView.transform = transform
             dimmedView.alpha = 0

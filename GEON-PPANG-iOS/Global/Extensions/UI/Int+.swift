@@ -10,7 +10,6 @@ import Foundation
 extension Int {
     
     var priceText: String {
-        get {
             let numberFormatter = NumberFormatter()
             numberFormatter.numberStyle = .decimal
             
@@ -18,6 +17,5 @@ extension Int {
             priceString = priceString + "원"
             
             return priceString
-        }
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-protocol InfoCollectionViewCellDelegate: BakeryDetailViewController {
+protocol InfoCollectionViewCellDelegate: AnyObject {
     
     func tappedHomepageLinkButton()
     func tappedInstagramLinkButton()

@@ -210,7 +210,6 @@ extension OnboardingViewController {
             case 200...299:
                 completion?()
             default:
-                // FIXME: UX Writing 고려
                 Utils.showAlert(title: "에러", description: "실패", at: self)
             }
         }
