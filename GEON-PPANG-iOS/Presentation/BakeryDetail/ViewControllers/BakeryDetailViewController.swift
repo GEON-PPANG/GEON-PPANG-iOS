@@ -102,6 +102,7 @@ final class BakeryDetailViewController: BaseViewController {
             $0.configureRightMapButton()
             $0.tappedMapButton = {
                 guard let url = URL(string: self.overviewData.mapURL) else { return }
+                AnalyticManager.log(event: .detail(.clickNavigation))
                 let safariVC = SFSafariViewController(url: url)
                 self.present(safariVC, animated: true, completion: nil)
             }
@@ -439,6 +440,7 @@ extension BakeryDetailViewController {
         
         BakeryAPI.shared.postBookmark(bakeryID: bakeryID, with: bookmarkRequest) { _ in
             
+            AnalyticManager.log(event: .detail(.clickMystore))
             self.detailBottomView.configureBookmarkButton(to: value)
             self.isBookmarked = value
             self.getBakeryDetail(bakeryID: bakeryID, isUpdated: false)
