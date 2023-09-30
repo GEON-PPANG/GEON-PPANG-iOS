@@ -71,7 +71,8 @@ final class WelcomeViewController: BaseViewController {
     
     private func moveToFilterView() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            Utils.push(self.navigationController, FilterViewController(isInitial: true))
+            Utils.push(self.navigationController, FilterViewController(from: .onboarding))
+            AnalyticManager.log(event: .onboarding(.startFilterOnboarding))
         }
     }
     

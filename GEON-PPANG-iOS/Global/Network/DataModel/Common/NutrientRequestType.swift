@@ -38,4 +38,12 @@ extension NutrientRequestType {
         isIngredientOpen = false
         isNotOpen = false
     }
+    
+    func convertToStringArray() -> [String] {
+        var value = [String]()
+        if self.isNutrientOpen { value.append("INGREDIENTS") }
+        if self.isIngredientOpen { value.append("MATERIAL") }
+        if self.isNotOpen { value.append("PRIVATE") }
+        return value
+    }
 }

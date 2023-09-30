@@ -15,7 +15,7 @@
       "location" : "https://github.com/amplitude/Amplitude-iOS",
       "state" : {
         "branch" : "main",
-        "revision" : "94160a550835e6f0a1df9fa76ab3902ac4648a9c"
+        "revision" : "dca2c744336e651ee285011282b86accc2ce3704"
       }
     },
     {
@@ -77,8 +77,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/getsentry/sentry-cocoa.git",
       "state" : {
-        "revision" : "14aa6e47b03b820fd2b338728637570b9e969994",
-        "version" : "8.12.0"
+        "revision" : "12998398eb51e2e8ff7098163fa97d305eee6d87",
+        "version" : "8.11.0"
       }
     },
     {

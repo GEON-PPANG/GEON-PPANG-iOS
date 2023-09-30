@@ -86,15 +86,15 @@ final class MyPageViewController: BaseViewController {
     private func setCollectionViewActions() {
         
         myPageDataSource.filterButtonTapped = {
-            AnalyticManager.log(event: .myPage(.start_filter_mypage))
-            Utils.push(self.navigationController, FilterViewController(isInitial: false))
+            AnalyticManager.log(event: .myPage(.startFilterMypage))
+            Utils.push(self.navigationController, FilterViewController(from: .mypage))
         }
         myPageDataSource.myReviewsTapped = {
-            AnalyticManager.log(event: .myPage(.click_myreview))
+            AnalyticManager.log(event: .myPage(.clickMyreview))
             Utils.push(self.navigationController, MyReviewsViewController())
         }
         myPageDataSource.savedBakeryTapped = {
-            AnalyticManager.log(event: .myPage(.click_mystore))
+            AnalyticManager.log(event: .myPage(.clickMystore))
             Utils.push(self.navigationController, MySavedBakeryViewController())
         }
         
@@ -169,6 +169,7 @@ extension MyPageViewController {
                     KakaoService.logout()
                 }
                 Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
+                AnalyticManager.log(event: .general(.logoutApp))
             default:
                 print("🔴failed")
             }
@@ -185,6 +186,7 @@ extension MyPageViewController {
                 }
                 Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
                 KeychainService.deleteAllAuthKeychains()
+                AnalyticManager.log(event: .general(.withdrawApp))
             default:
                 if let child = self.children.first {
                     child.dismiss(animated: true)
