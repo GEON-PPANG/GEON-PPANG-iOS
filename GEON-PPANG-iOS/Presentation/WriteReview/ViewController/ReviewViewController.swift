@@ -239,6 +239,11 @@ final class ReviewViewController: BaseViewController {
     private func nextButtonTapped() {
         
         requestWriteReview(configureWriteReviewData())
+        AnalyticManager.log(event: .writeReview(.completeReviewWriting(
+            option: self.writeReviewData.isLike ? "좋아요" : "아쉬워요",
+            keyword: self.writeReviewData.keywordList.map { $0.keywordName },
+            text: self.writeReviewData.reviewText
+        )))
         UIView.animate(withDuration: 0.2, animations: {
             self.bottomView.transform = .identity
             self.scrollView.transform = .identity
@@ -255,6 +260,7 @@ final class ReviewViewController: BaseViewController {
         if type == .read {
             self.navigationController?.popViewController(animated: true)
         } else {
+            AnalyticManager.log(event: .writeReview(.clickReviewWritingBack))
             backgroundView.appearBottomSheetView(subView: exitBottomSheetView, CGFloat().heightConsideringBottomSafeArea(347))
         }
     }
@@ -361,10 +367,12 @@ extension ReviewViewController {
         
         exitBottomSheetView.do {
             $0.dismissClosure = {
+                AnalyticManager.log(event: .writeReview(.clickReviewWritingStop))
                 self.backgroundView.dissmissFromSuperview()
                 self.navigationController?.popViewController(animated: true)
             }
             $0.continueClosure = {
+                AnalyticManager.log(event: .writeReview(.clickReviewWritingContinue))
                 self.backgroundView.dissmissFromSuperview()
             }
         }
@@ -417,6 +425,12 @@ extension ReviewViewController {
     private func calculateScrollOffset() -> CGFloat {
         let textViewY = reviewDetailTextView.frame.minY
         return textViewY - 24
+    }
+    
+    private func sendReviewKeywordAmplitudeLog() {
+        guard let keywordIndexPath = optionsCollectionView.indexPathsForSelectedItems else { return }
+        let keywordList = keywordIndexPath.map { return KeywordDescriptionList.requestList[$0[1]] }
+        AnalyticManager.log(event: .writeReview(.clickRecommendKeyword(keyword: keywordList)))
     }
 }
 
@@ -480,6 +494,9 @@ extension ReviewViewController: UICollectionViewDelegate {
         
         switch collectionView {
         case likeCollectionView:
+            
+            AnalyticManager.log(event: .writeReview(.clickReviewWritingOption(option: indexPath.item == 0 ? "좋아요" : "아쉬워요")))
+            
             guard let isLikeSelected = collectionView.cellForItem(at: [0, 0])?.isSelected
             else { return }
             
@@ -496,6 +513,9 @@ extension ReviewViewController: UICollectionViewDelegate {
             }
             
         case optionsCollectionView:
+            
+            self.sendReviewKeywordAmplitudeLog()
+            
             let hasSelection = collectionView.indexPathsForSelectedItems != nil
             reviewDetailTextView.isUserInteractionEnabled = hasSelection
             reviewDetailTextView.configureTextView(to: hasSelection ? .activated : .deactivated)
@@ -507,6 +527,8 @@ extension ReviewViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        
+        self.sendReviewKeywordAmplitudeLog()
         
         if optionsCollectionView.indexPathsForSelectedItems == [] {
             reviewDetailTextView.isUserInteractionEnabled = false
@@ -585,6 +607,11 @@ extension ReviewViewController: UICollectionViewDataSource {
 // MARK: - UITextViewDelegate
 
 extension ReviewViewController: UITextViewDelegate {
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        
+        AnalyticManager.log(event: .writeReview(.clickReviewWritingText))
+    }
     
     func textViewDidChange(_ textView: UITextView) {
         

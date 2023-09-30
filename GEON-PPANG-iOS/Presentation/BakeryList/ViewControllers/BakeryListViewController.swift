@@ -109,7 +109,7 @@ final class BakeryListViewController: BaseViewController {
         
         bakeryFilterView.do {
             $0.applyAction {
-                Utils.push(self.navigationController, FilterViewController(isInitial: false))
+                Utils.push(self.navigationController, FilterViewController(from: .list))
                 
                 AnalyticManager.log(event: .list(.startFilterList))
             }

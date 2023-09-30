@@ -102,7 +102,7 @@ final class HomeViewController: BaseViewController {
                 AnalyticManager.log(event: .home(.clickSearchHome))
             }
             $0.addActionToFilterButton {
-                Utils.push(self.navigationController, FilterViewController(isInitial: false))
+                Utils.push(self.navigationController, FilterViewController(from: .home))
                 
                 AnalyticManager.log(event: .home(.startFilterHome))
 
