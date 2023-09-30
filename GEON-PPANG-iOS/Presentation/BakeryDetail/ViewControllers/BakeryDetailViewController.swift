@@ -38,7 +38,6 @@ final class BakeryDetailViewController: BaseViewController {
         }
     }
     private var isBookmarked: Bool = false
-    var source: AnalyticEventType = .HOME
     var bakeryID: Int?
     var homepageURL: String = ""
     var instagramURL: String = ""
@@ -59,9 +58,7 @@ final class BakeryDetailViewController: BaseViewController {
         guard let bakeryID = self.bakeryID else { return }
         
         getBakeryDetail(bakeryID: bakeryID, isUpdated: true)
-        
-        Utils.setDetailSourceType(self.source)
-        
+                
         navigationController?.interactivePopGestureRecognizer?.delegate = nil // swipe back gesture
     }
     

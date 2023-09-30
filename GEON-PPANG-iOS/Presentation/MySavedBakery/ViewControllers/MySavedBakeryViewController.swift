@@ -175,8 +175,8 @@ extension MySavedBakeryViewController: UICollectionViewDelegate {
         if !self.savedList.isEmpty {
             let nextViewController = BakeryDetailViewController()
             nextViewController.bakeryID = self.savedList[indexPath.item].bakeryID
-            nextViewController.source = .MYPAGE_MYSTORE
             Utils.push(self.navigationController, nextViewController)
+            Utils.setDetailSourceType(.MYPAGE_MYSTORE)
         }
     }
 }

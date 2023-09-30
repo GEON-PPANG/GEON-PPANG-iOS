@@ -225,8 +225,8 @@ extension BakeryListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let nextViewController = BakeryDetailViewController()
-        nextViewController.source = .LIST
         nextViewController.bakeryID = self.bakeryList[indexPath.item].bakeryID
+        Utils.setDetailSourceType(.LIST)
         Utils.push(self.navigationController, nextViewController)
     }
 }
