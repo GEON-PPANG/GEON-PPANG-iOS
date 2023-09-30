@@ -12,6 +12,12 @@ import Then
 
 import Amplitude
 
+struct SignViewData {
+    var isValid: () -> Bool
+    var description: String
+    var textView: CommonTextView
+}
+
 final class SignInViewController: BaseViewController {
     
     // MARK: - Property
@@ -202,20 +208,23 @@ extension SignInViewController: UITextFieldDelegate {
         
         guard let text = textField.text else { return }
         
-        let signViews: [UITextField: (() -> Bool, String, CommonTextView)] =
-        [
-            emailTextField.configureTextField(): ({ text.isValidEmail()},
-                                                  I18N.Rule.disableEmail,
-                                                  emailTextField),
-            passwordTextField.configureTextField(): ({ text.isContainNumberAndAlphabet() && text.count >= 8 },
-                                                     I18N.Rule.password,
-                                                     passwordTextField),
-            checkPasswordTextField.configureTextField(): ({ text.isEqual(self.password) },
-                                                          I18N.Rule.checkPassword,
-                                                          checkPasswordTextField)
-        ]
+        let signViews: [UITextField: SignViewData] = [
+            emailTextField.configureTextField(): SignViewData(isValid: { text.isValidEmail() },
+                                                              description: I18N.Rule.disableEmail,
+                                                              textView: emailTextField),
+            passwordTextField.configureTextField(): SignViewData(isValid: { text.isContainNumberAndAlphabet() && text.count >= 8 },
+                                                                 description: I18N.Rule.password,
+                                                                 textView: passwordTextField),
+            checkPasswordTextField.configureTextField(): SignViewData(isValid: { text.isEqual(self.password) },
+                                                                      description: I18N.Rule.checkPassword,
+                                                                      textView: checkPasswordTextField)
         
-        if let (isValid, error, view) = signViews[textField] {
+        ]
+
+        if let signViewData = signViews[textField] {
+            let isValid = signViewData.isValid
+            let error = signViewData.description
+            let view = signViewData.textView
             configureCommonView(isValid: isValid, error: error, view: view)
         }
         

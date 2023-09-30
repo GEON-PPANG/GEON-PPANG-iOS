@@ -246,7 +246,6 @@ extension NickNameViewController {
                     Utils.push(self.navigationController, WelcomeViewController(nickname: self.checkNickname))
                 }
             default:
-                // TODO: UX Writing 고려
                 DispatchQueue.main.async {
                     Utils.showAlert(title: "에러", description: "닉네임 설정 에러", at: self)
                 }

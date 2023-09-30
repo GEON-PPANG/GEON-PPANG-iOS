@@ -220,7 +220,6 @@ extension OnboardingViewController {
                 AnalyticManager.set(userId: userID)
                 completion?()
             default:
-                // FIXME: UX Writing 고려
                 Utils.showAlert(title: "에러", description: "실패", at: self)
             }
         }

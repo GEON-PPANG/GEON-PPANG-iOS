@@ -232,9 +232,9 @@ extension SearchViewController: UICollectionViewDelegate {
         switch section {
         case .empty, .initial, .none: break
         case .main:
-            nextViewController.source = .SEARCH
             nextViewController.bakeryID = self.searchBakeryList[indexPath.item].bakeryID
             Utils.push(self.navigationController, nextViewController)
+            Utils.setDetailSourceType(.SEARCH)
         }
     }
 }

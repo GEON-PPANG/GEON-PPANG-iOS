@@ -261,6 +261,7 @@ extension HomeViewController: UICollectionViewDelegate {
             let bakery = self.bakeryList[indexPath.item].bakeries.name
             
             AnalyticManager.log(event: .home(.clickRecommendStore(bakery: bakery)))
+            Utils.setDetailSourceType(.HOME)
             
         case .review:
             nextViewController.bakeryID = self.reviewList[indexPath.item].reviews.bakeryID
@@ -268,6 +269,7 @@ extension HomeViewController: UICollectionViewDelegate {
             let bakery = self.reviewList[indexPath.item].reviews.name
 
             AnalyticManager.log(event: .home(.clickRecommendReview(bakery: bakery )))
+            Utils.setDetailSourceType(.HOME)
 
         default:
             break

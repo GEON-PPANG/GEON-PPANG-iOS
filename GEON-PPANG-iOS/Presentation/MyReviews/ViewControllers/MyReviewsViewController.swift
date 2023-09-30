@@ -133,8 +133,8 @@ extension MyReviewsViewController: UICollectionViewDelegate {
             certificates: bakery.mark
         )
         let reviewViewController = ReviewViewController(type: .read, bakeryData: bakeryData, reviewID: data.reviewID, reviewDate: data.createdAt)
-        reviewViewController.source = .MYPAGE_MYREVIEW
         Utils.push(self.navigationController, reviewViewController)
+        Utils.setDetailSourceType(.MYPAGE_MYREVIEW)
     }
 }
 

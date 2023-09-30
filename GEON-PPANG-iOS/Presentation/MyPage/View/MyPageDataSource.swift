@@ -123,8 +123,7 @@ extension MyPageDataSource {
         
         return UICollectionViewCompositionalLayout { (sectionIndex, _) -> NSCollectionLayoutSection? in
             guard let sectionType = Section(rawValue: sectionIndex) else { return nil }
-            
-            let count = self.memberData.breadType.configureTrueOptions().count
+
             let footerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.15))
             let footerAlignmnet = NSRectAlignment.bottom
             let footer = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: footerSize, elementKind: self.footerType, alignment: footerAlignmnet)
