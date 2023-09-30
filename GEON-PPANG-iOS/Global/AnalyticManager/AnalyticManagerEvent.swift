@@ -16,6 +16,7 @@ enum AnalyticManagerEvent {
     case detail(Detail)
     case writeReview(WriteReview)
     case myPage(MyPage)
+    case reportReview(ReportReview)
 }
 
 extension AnalyticManagerEvent: AnalyticManagerEventProtocol {
@@ -36,6 +37,8 @@ extension AnalyticManagerEvent: AnalyticManagerEventProtocol {
             return event.name
         case .myPage(let event):
             return event.rawValue
+        case .reportReview(let event):
+            return event.name
         }
     }
     
@@ -52,6 +55,8 @@ extension AnalyticManagerEvent: AnalyticManagerEventProtocol {
         case .detail(let event):
             return event.parameters
         case .writeReview(let event):
+            return event.parameters
+        case .reportReview(let event):
             return event.parameters
         default:
             return nil
