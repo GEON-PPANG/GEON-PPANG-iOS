@@ -82,13 +82,13 @@ Firebase | 비정상 종료를 유발하는 상황 트래킹을 위한 라이브
 
 <img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/cb16a9a9-b1ba-4345-8c59-700e964bc7c5" width="200"> | <img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/86686c2e-af18-4d82-ba89-167e715daedd" width="200"> | <img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/446a8091-d44e-4e51-9632-7b0deff35f42" width="200">| <img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/a6c6482a-cb75-4159-a104-1d5bcbdf1bbc" width="200">|<img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/a566f6fb-f190-4b2a-a777-074a9fe2e633" width="200">|
 :---------:|:----------:|:---------:|:---------:|:---------:
-회원가입 | 홈 | 빵집 리스트 | 검색뷰 | 저장 목록 ⦁ 내가 쓴 리뷰|
+회원가입 | 홈 | 빵집 리스트 | 검색뷰 | 저장 목록 ⦁ 내가 쓴 리뷰 |
 
 #### 🎩 김창균
 
-<img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/5aeb5c32-d8fe-4861-ad57-f04401516ff4" width="200">|<img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/26adab80-cede-49d8-9f8f-d5bbe57014f5" width="200">|<img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/186c4e3f-e158-442f-891d-ccee71b84bff" width="200">|<img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/186c4e3f-e158-442f-891d-ccee71b84bff" width="200">|
-:---------:|:----------:|:---------:|:---------:|
-온보딩 | 로그인⦁회원가입 | 빵집 디테일 | 저장하기 토스트|
+<img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/107853954/5aeb5c32-d8fe-4861-ad57-f04401516ff4" width="200">|<img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/81475587/62991515-e5f3-4056-99a3-b19a41b1d17e" width="200">|<img src="https://github.com/GEON-PPANG/GEON-PPANG-iOS/assets/81475587/ac7fff60-e78c-4a36-8ebf-bb28a4ebfc82" width="200">|
+:---------:|:----------:|:---------:|
+온보딩 | 빵집 상세페이지 | 리뷰 신고하기 |
 
 #### 🎩 이성민 
 
