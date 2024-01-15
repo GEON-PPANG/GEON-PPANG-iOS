@@ -10,8 +10,8 @@ import Foundation
 import Moya
 
 enum ReviewsService {
-    case writeReview(bakeryID: Int, content: WriteReviewRequestDTO)
-    case fetchMyReviewDetail(reviewID: Int)
+    case write(bakeryID: Int, content: WriteReviewRequestDTO)
+    case myReview(reviewID: Int)
 }
 
 extension ReviewsService: GBService {
@@ -21,36 +21,36 @@ extension ReviewsService: GBService {
     
     var urlPath: String {
         switch self {
-        case .writeReview(bakeryID: let bakeryID, _):
+        case .write(bakeryID: let bakeryID, _):
             return "\(bakeryID)"
-        case .fetchMyReviewDetail(let reviewID):
+        case .myReview(let reviewID):
             return "\(reviewID)"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .writeReview:
+        case .write:
             return .post
-        case .fetchMyReviewDetail:
+        case .myReview:
             return .get
         }
     }
     
     var task: Moya.Task {
         switch self {
-        case .writeReview(_, content: let content):
+        case .write(_, content: let content):
             return .requestJSONEncodable(content)
-        case .fetchMyReviewDetail(let reviewID):
+        case .myReview(let reviewID):
             return .requestPlain
         }
     }
     
     var headerType: GBHeaderFields {
         switch self {
-        case .writeReview:
+        case .write:
             return .accessToken
-        case .fetchMyReviewDetail:
+        case .myReview:
             return .accessToken
         }
     }

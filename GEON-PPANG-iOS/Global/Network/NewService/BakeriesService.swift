@@ -10,9 +10,9 @@ import Foundation
 import Moya
 
 enum BakeriesService {
-    case bakeryList(request: BakeryRequestDTO)
-    case fetchBakeryDetail(bakeryID: Int)
-    case fetchWrittenReviews(bakeryID: Int)
+    case bakeries(request: BakeryRequestDTO)
+    case bakeryDetail(bakeryID: Int)
+    case bakeryReviews(bakeryID: Int)
 }
 
 extension BakeriesService: GBService {
@@ -22,33 +22,33 @@ extension BakeriesService: GBService {
     
     var urlPath: String {
         switch self {
-        case .bakeryList:
+        case .bakeries:
             return ""
-        case .fetchBakeryDetail(bakeryID: let bakeryID):
+        case .bakeryDetail(bakeryID: let bakeryID):
             return "/\(bakeryID)"
-        case .fetchWrittenReviews(bakeryID: let bakeryID):
+        case .bakeryReviews(bakeryID: let bakeryID):
             return "/\(bakeryID)" + "/reviews"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .bakeryList:
+        case .bakeries:
             return .get
-        case .fetchBakeryDetail:
+        case .bakeryDetail:
             return .get
-        case .fetchWrittenReviews:
+        case .bakeryReviews:
             return .get
         }
     }
     
     var task: Moya.Task {
         switch self {
-        case .bakeryList(request: let request):
+        case .bakeries(request: let request):
             return .requestParameters(parameters: try! request.asParameter(), encoding: URLEncoding.default)
-        case .fetchBakeryDetail:
+        case .bakeryDetail:
             return .requestPlain
-        case .fetchWrittenReviews:
+        case .bakeryReviews:
             return .requestPlain
         }
     }

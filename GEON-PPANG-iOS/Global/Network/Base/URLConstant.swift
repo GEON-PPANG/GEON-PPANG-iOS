@@ -28,7 +28,7 @@ struct URLConstant {
     // MARK: - Member
     
     struct Member {
-        static let type = "/types"
+        static let types = "/types"
         static let bookmarks = "/bookMarks"
         static let reviews = "/reviews"
         static let nickname = "/nickname"
