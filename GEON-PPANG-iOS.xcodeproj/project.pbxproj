@@ -840,21 +840,12 @@
 			isa = PBXGroup;
 			children = (
 				3EA69B242B5578BB008AE23B /* NewAPI */,
-				3EA69B252B5578C0008AE23B /* NewService */,
 				0959F1612A658C3000E77CAF /* DataModel */,
 				0961C3692A501EF00031A822 /* Base */,
 				0961C3682A501EE90031A822 /* API */,
-				0961C3672A501EE40031A822 /* Service */,
+				3EA69B252B5578C0008AE23B /* Service */,
 			);
 			path = Network;
-			sourceTree = "<group>";
-		};
-		0961C3672A501EE40031A822 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				3EA69B222B557027008AE23B /* GBService.swift */,
-			);
-			path = Service;
 			sourceTree = "<group>";
 		};
 		0961C3682A501EE90031A822 /* API */ = {
@@ -1369,9 +1360,10 @@
 			path = NewAPI;
 			sourceTree = "<group>";
 		};
-		3EA69B252B5578C0008AE23B /* NewService */ = {
+		3EA69B252B5578C0008AE23B /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				3EA69B222B557027008AE23B /* GBService.swift */,
 				3EA69B592B557A52008AE23B /* AuthService.swift */,
 				3EA69B5C2B557A59008AE23B /* ValidationService.swift */,
 				3EA69B5E2B557A5E008AE23B /* ReportService.swift */,
@@ -1382,7 +1374,7 @@
 				3EA69B682B557A83008AE23B /* BakeriesService.swift */,
 				3EA69B6A2B557A89008AE23B /* ReviewsService.swift */,
 			);
-			path = NewService;
+			path = Service;
 			sourceTree = "<group>";
 		};
 		3EAC950B2A9FAF3500D2AADC /* WebView */ = {
