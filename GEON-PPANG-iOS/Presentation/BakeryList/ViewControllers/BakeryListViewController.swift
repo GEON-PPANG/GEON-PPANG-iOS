@@ -237,7 +237,7 @@ extension BakeryListViewController {
     
     private func getBakeryList(request: BakeryRequestDTO) {
         
-        BakeryAPI.shared.getBakeryList(to: request) { response in
+        BakeriesAPI.shared.getBakeries(parameters: request) { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
             let bakeryList = data.map { $0 }

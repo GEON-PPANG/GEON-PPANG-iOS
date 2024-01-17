@@ -7,52 +7,49 @@
 import Foundation
 
 struct URLConstant {
-    // MARK: - Auth
     
-    static let checkEmail = "/validation/email"
-    static let checkNickname = "/validation/nickname"
-    static let login = "/auth/login"
-    static let signup = "/auth/signup"
-    static let refreshToken = "/auth/refresh"
-    static let logout = "auth/logout"
-    static let withdraw = "auth/withdraw"
+    // MARK: - validation
     
-    // MARK: - Filter
+    struct Validation {
+        static let email = "/email"
+        static let nickname = "/nickname"
+    }
     
-    static let changeFilter = "/member/types"
+    // MARK: - auth
     
-    // MARK: - Home
-    
-    static let bestBakery = "/best/bakeries"
-    static let bestReviews = "/best/reviews"
-    
-    // MARK: - Search
-    
-    static let search = "/search/bakeries"
-    
-    // MARK: - Bakery
-    
-    static let bakeryList = "/bakeries"
-    
-    // MARK: - MyPage
-    
-    static let member = "/member"
-    
-    // MARK: - Review
-    
-    static let review = "/reviews"
-    
-    // MARK: - Bookmark
-    
-    static let bookmarks = "member/bookMarks"
-    static let myReviews = "member/reviews"
-    static let bookmark = "/bookMarks"
+    struct Auth {
+        static let login = "/login"
+        static let signup = "/signup"
+        static let refresh = "/refresh"
+        static let logout = "/logout"
+        static let withdraw = "/withdraw"
+    }
     
     // MARK: - Member
     
-    static let nickname = "/member/nickname"
+    struct Member {
+        static let types = "/types"
+        static let bookmarks = "/bookMarks"
+        static let reviews = "/reviews"
+        static let nickname = "/nickname"
+    }
+    
+    // MARK: - Best
+    
+    struct Best {
+        static let bakeries = "/bakeries"
+        static let reviews = "/reviews"
+    }
+    
+    // MARK: - Search
+    
+    struct Search {
+        static let bakeries = "/bakeries"
+    }
     
     // MARK: - Report
     
-    static let report = "/report/review"
+    struct Report {
+        static let review = "/review"
+    }
 }

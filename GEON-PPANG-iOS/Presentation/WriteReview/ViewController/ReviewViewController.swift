@@ -647,7 +647,7 @@ extension ReviewViewController {
     func getReview() {
         
         guard let id = reviewID else { return }
-        ReviewAPI.shared.getMyReviewDetail(of: id) { response in
+        ReviewsAPI.shared.getMyReview(id: id) { response in
             guard let response = response,
                   let data = response.data
             else { return }
@@ -657,7 +657,7 @@ extension ReviewViewController {
     
     func requestWriteReview(_ content: WriteReviewRequestDTO) {
         
-        ReviewAPI.shared.postWriteReview(content: content) { response in
+        ReviewsAPI.shared.postWriteReview(content: content) { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
             dump(data)

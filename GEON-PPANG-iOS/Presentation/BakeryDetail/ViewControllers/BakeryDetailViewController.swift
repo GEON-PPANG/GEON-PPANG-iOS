@@ -402,7 +402,7 @@ extension BakeryDetailViewController {
     
     func getBakeryDetail(bakeryID: Int, isUpdated: Bool) {
         
-        BakeryAPI.shared.getBakeryDetail(bakeryID: bakeryID) { response in
+        BakeriesAPI.shared.getBakeryDetail(bakeryID: bakeryID) { response in
             
             guard let response = response else { return }
             guard let data = response.data else { return }
@@ -420,7 +420,7 @@ extension BakeryDetailViewController {
     func getWrittenReviews(bakeryID: Int, isUpdated: Bool) {
         
         if isUpdated {
-            BakeryAPI.shared.getWrittenReviews(bakeryID: bakeryID) { response in
+            BakeriesAPI.shared.getBakeryReviews(bakeryID: bakeryID) { response in
                 
                 guard let response = response else { return }
                 guard let data = response.data else { return }
@@ -437,13 +437,13 @@ extension BakeryDetailViewController {
         
         guard let bakeryID = self.bakeryID else { return }
         
-        BakeryAPI.shared.postBookmark(bakeryID: bakeryID, with: bookmarkRequest) { _ in
-            
-            AnalyticManager.log(event: .detail(.clickMystore))
-            self.detailBottomView.configureBookmarkButton(to: value)
-            self.isBookmarked = value
-            self.getBakeryDetail(bakeryID: bakeryID, isUpdated: false)
-        }
+//        BakeriesAPI.shared.postBookmark(bakeryID: bakeryID, with: bookmarkRequest) { _ in
+//            
+//            AnalyticManager.log(event: .detail(.clickMystore))
+//            self.detailBottomView.configureBookmarkButton(to: value)
+//            self.isBookmarked = value
+//            self.getBakeryDetail(bakeryID: bakeryID, isUpdated: false)
+//        }
     }
     
     private func showToast(message: String) {
