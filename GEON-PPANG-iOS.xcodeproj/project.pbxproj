@@ -763,7 +763,7 @@
 		0961C3662A501EDD0031A822 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				3EA69B242B5578BB008AE23B /* NewAPI */,
+				3EA69B242B5578BB008AE23B /* API */,
 				0959F1612A658C3000E77CAF /* DataModel */,
 				0961C3692A501EF00031A822 /* Base */,
 				3EA69B252B5578C0008AE23B /* Service */,
@@ -1242,7 +1242,7 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
-		3EA69B242B5578BB008AE23B /* NewAPI */ = {
+		3EA69B242B5578BB008AE23B /* API */ = {
 			isa = PBXGroup;
 			children = (
 				3EA69B3B2B557979008AE23B /* AuthAPI.swift */,
@@ -1255,7 +1255,7 @@
 				3EA69B372B557953008AE23B /* BakeriesAPI.swift */,
 				3EA69B352B55794D008AE23B /* ReviewsAPI.swift */,
 			);
-			path = NewAPI;
+			path = API;
 			sourceTree = "<group>";
 		};
 		3EA69B252B5578C0008AE23B /* Service */ = {
