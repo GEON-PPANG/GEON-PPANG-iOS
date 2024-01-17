@@ -9,24 +9,14 @@ import Foundation
 
 import Moya
 
-typealias PostFilterRequest = FilterRequestDTO
-typealias PostFilterResponse = GeneralArrayResponse<FilterResponseDTO>
-typealias GetFilterResponse = GeneralResponse<FilterResponseDTO>
-typealias PostNicknameRequest = NicknameRequestDTO
-typealias PostNicknameResponse = GeneralResponse<SetNicknameResponseDTO>
-typealias GetNicknameResponse = GeneralResponse<FetchNicknameResponseDTO>
-typealias BookmarkResponse = GeneralResponse<BookmarkResponseDTO>
-typealias ReviewsResponse = GeneralArrayResponse<MyReviewsResponseDTO>
-typealias MemberResponse = GeneralResponse<MyPageResponseDTO>
-
 protocol MemberAPIType {
-    func postFilter(request: PostFilterRequest, completion: @escaping (PostFilterResponse?) -> Void)
-    func getFilter(completion: @escaping (GetFilterResponse?) -> Void)
-    func postNickname(request: PostNicknameRequest, completion: @escaping (PostNicknameResponse?) -> Void)
-    func getNickname(completion: @escaping (GetNicknameResponse?) -> Void)
-    func bookmarks(completion: @escaping (BookmarkResponse?) -> Void)
-    func reviews(completion: @escaping (ReviewsResponse?) -> Void)
-    func member(completion: @escaping (MemberResponse?) -> Void)
+    func postFilter(request: FilterRequestDTO, completion: @escaping (ArrayEndpoint<FilterResponseDTO>?) -> Void)
+    func getFilter(completion: @escaping (Endpoint<FilterResponseDTO>?) -> Void)
+    func postNickname(request: NicknameRequestDTO, completion: @escaping (Endpoint<SetNicknameResponseDTO>?) -> Void)
+    func getNickname(completion: @escaping (Endpoint<FetchNicknameResponseDTO>?) -> Void)
+    func bookmarks(completion: @escaping (ArrayEndpoint<BakeryCommonListResponseDTO>?) -> Void)
+    func reviews(completion: @escaping (ArrayEndpoint<MyReviewsResponseDTO>?) -> Void)
+    func member(completion: @escaping (Endpoint<MyPageResponseDTO>?) -> Void)
 }
 
 final class MemberAPI: MemberAPIType {
@@ -37,12 +27,12 @@ final class MemberAPI: MemberAPIType {
     var provider: MoyaProvider<MemberService> = MoyaProvider(session: Session(interceptor: AuthInterceptor.shared),
                                                              plugins: [MoyaLoggingPlugin()])
     
-    func postFilter(request: PostFilterRequest, completion: @escaping (PostFilterResponse?) -> Void) {
+    func postFilter(request: FilterRequestDTO, completion: @escaping (ArrayEndpoint<FilterResponseDTO>?) -> Void) {
         provider.request(.postTypes(request: request)) { result in
             switch result {
             case .success(let response):
                 do {
-                    let response = try response.map(PostFilterResponse.self)
+                    let response = try response.map(ArrayEndpoint<FilterResponseDTO>.self)
                     completion(response)
                 } catch let err {
                     print(err.localizedDescription)
@@ -54,12 +44,12 @@ final class MemberAPI: MemberAPIType {
         }
     }
     
-    func getFilter(completion: @escaping (GetFilterResponse?) -> Void) {
+    func getFilter(completion: @escaping (Endpoint<FilterResponseDTO>?) -> Void) {
         provider.request(.getTypes) { result in
             switch result {
             case .success(let response):
                 do {
-                    let response = try response.map(GetFilterResponse.self)
+                    let response = try response.map(Endpoint<FilterResponseDTO>.self)
                     completion(response)
                 } catch let err {
                     print(err.localizedDescription)
@@ -71,12 +61,12 @@ final class MemberAPI: MemberAPIType {
         }
     }
     
-    func postNickname(request: PostNicknameRequest, completion: @escaping (PostNicknameResponse?) -> Void) {
+    func postNickname(request: NicknameRequestDTO, completion: @escaping (Endpoint<SetNicknameResponseDTO>?) -> Void) {
         provider.request(.postNickname(request: request)) { result in
             switch result {
             case .success(let response):
                 do {
-                    let response = try response.map(PostNicknameResponse.self)
+                    let response = try response.map(Endpoint<SetNicknameResponseDTO>.self)
                     completion(response)
                 } catch let err {
                     print(err)
@@ -88,12 +78,12 @@ final class MemberAPI: MemberAPIType {
         }
     }
     
-    func getNickname(completion: @escaping (GetNicknameResponse?) -> Void) {
+    func getNickname(completion: @escaping (Endpoint<FetchNicknameResponseDTO>?) -> Void) {
         provider.request(.getNickname) { result in
             switch result {
             case .success(let response):
                 do {
-                    let response = try response.map(GetNicknameResponse.self)
+                    let response = try response.map(Endpoint<FetchNicknameResponseDTO>.self)
                     completion(response)
                 } catch let err {
                     print(err)
@@ -105,12 +95,12 @@ final class MemberAPI: MemberAPIType {
         }
     }
     
-    func bookmarks(completion: @escaping (BookmarkResponse?) -> Void) {
+    func bookmarks(completion: @escaping (ArrayEndpoint<BakeryCommonListResponseDTO>?) -> Void) {
         provider.request(.bookmarks) { result in
             switch result {
             case .success(let response):
                 do {
-                    let response = try response.map(BookmarkResponse.self)
+                    let response = try response.map(ArrayEndpoint<BakeryCommonListResponseDTO>.self)
                     completion(response)
                 } catch let err {
                     print(err)
@@ -122,12 +112,12 @@ final class MemberAPI: MemberAPIType {
         }
     }
     
-    func reviews(completion: @escaping (ReviewsResponse?) -> Void) {
+    func reviews(completion: @escaping (ArrayEndpoint<MyReviewsResponseDTO>?) -> Void) {
         provider.request(.reviews) { result in
             switch result {
             case .success(let response):
                 do {
-                    let response = try response.map(ReviewsResponse.self)
+                    let response = try response.map(ArrayEndpoint<MyReviewsResponseDTO>.self)
                     completion(response)
                 } catch let err {
                     print(err)
@@ -139,12 +129,12 @@ final class MemberAPI: MemberAPIType {
         }
     }
     
-    func member(completion: @escaping (MemberResponse?) -> Void) {
+    func member(completion: @escaping (Endpoint<MyPageResponseDTO>?) -> Void) {
         provider.request(.member) { result in
             switch result {
             case .success(let response):
                 do {
-                    let response = try response.map(MemberResponse.self)
+                    let response = try response.map(Endpoint<MyPageResponseDTO>.self)
                     completion(response)
                 } catch let err {
                     print(err)

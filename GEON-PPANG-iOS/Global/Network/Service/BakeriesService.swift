@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 enum BakeriesService {
-    case bakeries(request: BakeryRequestDTO)
+    case bakeries(parameters: BakeryRequestDTO)
     case bakeryDetail(bakeryID: Int)
     case bakeryReviews(bakeryID: Int)
 }
@@ -44,8 +44,8 @@ extension BakeriesService: GBService {
     
     var task: Moya.Task {
         switch self {
-        case .bakeries(request: let request):
-            return .requestParameters(parameters: try! request.asParameter(), encoding: URLEncoding.default)
+        case .bakeries(parameters: let param):
+            return .requestParameters(parameters: try! param.asParameter(), encoding: URLEncoding.default)
         case .bakeryDetail:
             return .requestPlain
         case .bakeryReviews:
