@@ -169,10 +169,10 @@
 		3EA69B362B55794D008AE23B /* ReviewsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA69B352B55794D008AE23B /* ReviewsAPI.swift */; };
 		3EA69B382B557954008AE23B /* BakeriesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA69B372B557953008AE23B /* BakeriesAPI.swift */; };
 		3EA69B3A2B55795B008AE23B /* SearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA69B392B55795B008AE23B /* SearchAPI.swift */; };
-		3EA69B3C2B557979008AE23B /* NewAuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA69B3B2B557979008AE23B /* NewAuthAPI.swift */; };
+		3EA69B3C2B557979008AE23B /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA69B3B2B557979008AE23B /* AuthAPI.swift */; };
 		3EA69B3E2B557991008AE23B /* NewMemberAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA69B3D2B557991008AE23B /* NewMemberAPI.swift */; };
 		3EA69B402B5579A1008AE23B /* ValidationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA69B3F2B5579A1008AE23B /* ValidationAPI.swift */; };
-		3EA69B422B5579A7008AE23B /* NewReportAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA69B412B5579A7008AE23B /* NewReportAPI.swift */; };
+		3EA69B422B5579A7008AE23B /* ReportAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA69B412B5579A7008AE23B /* ReportAPI.swift */; };
 		3EA69B442B5579AD008AE23B /* BestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA69B432B5579AD008AE23B /* BestAPI.swift */; };
 		3EA69B462B5579D9008AE23B /* BookmarksAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA69B452B5579D9008AE23B /* BookmarksAPI.swift */; };
 		3EA69B5A2B557A52008AE23B /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA69B592B557A52008AE23B /* AuthService.swift */; };
@@ -399,10 +399,10 @@
 		3EA69B352B55794D008AE23B /* ReviewsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsAPI.swift; sourceTree = "<group>"; };
 		3EA69B372B557953008AE23B /* BakeriesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeriesAPI.swift; sourceTree = "<group>"; };
 		3EA69B392B55795B008AE23B /* SearchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAPI.swift; sourceTree = "<group>"; };
-		3EA69B3B2B557979008AE23B /* NewAuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAuthAPI.swift; sourceTree = "<group>"; };
+		3EA69B3B2B557979008AE23B /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
 		3EA69B3D2B557991008AE23B /* NewMemberAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMemberAPI.swift; sourceTree = "<group>"; };
 		3EA69B3F2B5579A1008AE23B /* ValidationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationAPI.swift; sourceTree = "<group>"; };
-		3EA69B412B5579A7008AE23B /* NewReportAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReportAPI.swift; sourceTree = "<group>"; };
+		3EA69B412B5579A7008AE23B /* ReportAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportAPI.swift; sourceTree = "<group>"; };
 		3EA69B432B5579AD008AE23B /* BestAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestAPI.swift; sourceTree = "<group>"; };
 		3EA69B452B5579D9008AE23B /* BookmarksAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksAPI.swift; sourceTree = "<group>"; };
 		3EA69B592B557A52008AE23B /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -1336,9 +1336,9 @@
 		3EA69B242B5578BB008AE23B /* NewAPI */ = {
 			isa = PBXGroup;
 			children = (
-				3EA69B3B2B557979008AE23B /* NewAuthAPI.swift */,
+				3EA69B3B2B557979008AE23B /* AuthAPI.swift */,
 				3EA69B3F2B5579A1008AE23B /* ValidationAPI.swift */,
-				3EA69B412B5579A7008AE23B /* NewReportAPI.swift */,
+				3EA69B412B5579A7008AE23B /* ReportAPI.swift */,
 				3EA69B432B5579AD008AE23B /* BestAPI.swift */,
 				3EA69B452B5579D9008AE23B /* BookmarksAPI.swift */,
 				3EA69B3D2B557991008AE23B /* NewMemberAPI.swift */,
@@ -1759,7 +1759,7 @@
 				0959F1862A658CF900E77CAF /* BookmarkAPI.swift in Sources */,
 				09B13F5A2A5946B700C0C723 /* TabBar+.swift in Sources */,
 				DFB585F92A5F32420077D272 /* TitleCollectionViewCell.swift in Sources */,
-				3EA69B3C2B557979008AE23B /* NewAuthAPI.swift in Sources */,
+				3EA69B3C2B557979008AE23B /* AuthAPI.swift in Sources */,
 				DF99C6002A644A1700C2C78C /* ReviewCategoryCollectionViewCell.swift in Sources */,
 				09B71C002A59D50900076AC2 /* HomeTopView.swift in Sources */,
 				090556492A51E7EC00752067 /* UIScreen+.swift in Sources */,
@@ -1867,7 +1867,7 @@
 				3EA69B3E2B557991008AE23B /* NewMemberAPI.swift in Sources */,
 				3EB798212AB87188004EC35D /* SetNicknameResponseDTO.swift in Sources */,
 				090556472A51E7D900752067 /* UITextView+.swift in Sources */,
-				3EA69B422B5579A7008AE23B /* NewReportAPI.swift in Sources */,
+				3EA69B422B5579A7008AE23B /* ReportAPI.swift in Sources */,
 				3EDC05D02A5E4FF900EAD950 /* String+.swift in Sources */,
 				09FD47E42A5E82BB002020BD /* BottomSheetAppearView.swift in Sources */,
 				3EB798102AB2F448004EC35D /* HeaderEnum.swift in Sources */,

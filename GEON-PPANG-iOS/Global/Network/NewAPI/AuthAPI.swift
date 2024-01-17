@@ -11,10 +11,10 @@ import Moya
 
 protocol AuthAPIType {
     func postLogin(request: LoginRequestDTO, completion: @escaping (Int?) -> Void)
-    func postSignUp(request: SignUpRequestDTO, completion: @escaping (EndPoint<SignUpResponseDTO>?) -> Void)
-    func getTokenRefresh(completion: @escaping (EndPoint<VoidType>?) -> Void)
+    func postSignUp(request: SignUpRequestDTO, completion: @escaping (Endpoint<SignUpResponseDTO>?) -> Void)
+    func getTokenRefresh(completion: @escaping (Endpoint<VoidType>?) -> Void)
     func logout(completion: @escaping (Int?) -> Void)
-    func deleteUser(completion: @escaping (EndPoint<DeleteUserResponseDTO>?) -> Void)
+    func deleteUser(completion: @escaping (Endpoint<DeleteUserResponseDTO>?) -> Void)
 }
 
 final class AuthAPI: AuthAPIType {
@@ -32,7 +32,7 @@ final class AuthAPI: AuthAPIType {
             switch result {
             case .success(let response):
                 do {
-                    let response = try response.map(EndPoint<SearchResponseDTO>.self)
+                    let response = try response.map(Endpoint<SearchResponseDTO>.self)
                     completion(response.code)
                 } catch let err {
                     print(err.localizedDescription)
@@ -45,12 +45,12 @@ final class AuthAPI: AuthAPIType {
         }
     }
     
-    func postSignUp(request: SignUpRequestDTO, completion: @escaping (EndPoint<SignUpResponseDTO>?) -> Void) {
+    func postSignUp(request: SignUpRequestDTO, completion: @escaping (Endpoint<SignUpResponseDTO>?) -> Void) {
         defaultProvider.request(.signUp(request: request)) { result in
             switch result {
             case .success(let response):
                 do {
-                    let response = try response.map(EndPoint<SignUpResponseDTO>.self)
+                    let response = try response.map(Endpoint<SignUpResponseDTO>.self)
                     completion(response)
                 } catch let err {
                     print(err.localizedDescription, 500)
@@ -62,12 +62,12 @@ final class AuthAPI: AuthAPIType {
         }
     }
     
-    func getTokenRefresh(completion: @escaping (EndPoint<VoidType>?) -> Void) {
+    func getTokenRefresh(completion: @escaping (Endpoint<VoidType>?) -> Void) {
         defaultProvider.request(.refreshToken) { result in
             switch result {
             case .success(let response):
                 do {
-                    let response = try response.map(EndPoint<VoidType>.self)
+                    let response = try response.map(Endpoint<VoidType>.self)
                     completion(response)
                 } catch let err {
                     print(err.localizedDescription, 500)
@@ -91,13 +91,13 @@ final class AuthAPI: AuthAPIType {
         }
     }
     
-    func deleteUser(completion: @escaping (EndPoint<DeleteUserResponseDTO>?) -> Void) {
+    func deleteUser(completion: @escaping (Endpoint<DeleteUserResponseDTO>?) -> Void) {
         let type = KeychainService.readKeychain(of: .socialType)
         tokenProvider.request(type == "APPLE" ? .appleWithdraw : .withdraw) { result in
             switch result {
             case .success(let response):
                 do {
-                    let response = try response.map(EndPoint<DeleteUserResponseDTO>.self)
+                    let response = try response.map(Endpoint<DeleteUserResponseDTO>.self)
                     completion(response)
                 } catch let err {
                     print(err.localizedDescription, 500)

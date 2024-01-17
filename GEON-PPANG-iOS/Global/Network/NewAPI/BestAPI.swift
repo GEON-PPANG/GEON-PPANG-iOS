@@ -10,8 +10,8 @@ import Foundation
 import Moya
 
 protocol BestAPIType {
-    func getBestBakery(completion: @escaping (ArrayEndPoint<HomeBestBakeryResponseDTO>?) -> Void)
-    func getBestReviews(completion: @escaping (ArrayEndPoint<HomeBestReviewResponseDTO>?) -> Void)
+    func getBestBakery(completion: @escaping (ArrayEndpoint<HomeBestBakeryResponseDTO>?) -> Void)
+    func getBestReviews(completion: @escaping (ArrayEndpoint<HomeBestReviewResponseDTO>?) -> Void)
 }
 final class BestAPI: BestAPIType {
     
@@ -23,13 +23,13 @@ final class BestAPI: BestAPIType {
     
     // MARK: - GET
     
-    func getBestBakery(completion: @escaping (ArrayEndPoint<HomeBestBakeryResponseDTO>?) -> Void) {
+    func getBestBakery(completion: @escaping (ArrayEndpoint<HomeBestBakeryResponseDTO>?) -> Void) {
         provider.request(.bakery) { result in
             switch result {
             case let .success(response):
                 do {
                     let response = try
-                    response.map(ArrayEndPoint<HomeBestBakeryResponseDTO>.self)
+                    response.map(ArrayEndpoint<HomeBestBakeryResponseDTO>.self)
                     completion(response)
                 } catch let err {
                     print(err.localizedDescription, 500)
@@ -41,13 +41,13 @@ final class BestAPI: BestAPIType {
         }
     }
     
-    func getBestReviews(completion: @escaping (ArrayEndPoint<HomeBestReviewResponseDTO>?) -> Void) {
+    func getBestReviews(completion: @escaping (ArrayEndpoint<HomeBestReviewResponseDTO>?) -> Void) {
         provider.request(.reviews) { result in
             switch result {
             case let .success(response):
                 do {
                     let response = try
-                    response.map(ArrayEndPoint<HomeBestReviewResponseDTO>.self)
+                    response.map(ArrayEndpoint<HomeBestReviewResponseDTO>.self)
                     completion(response)
                 } catch let err {
                     print(err.localizedDescription, 500)
