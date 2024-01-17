@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GeneralResponse<T: Decodable>: Decodable {
+struct Response<T: Decodable>: Decodable {
     var code: Int
     var message: String?
     var data: T?
@@ -26,7 +26,7 @@ struct GeneralResponse<T: Decodable>: Decodable {
     }
 }
 
-struct GeneralArrayResponse<T: Decodable>: Decodable {
+struct ArrayResponse<T: Decodable>: Decodable {
     let code: Int
     let message: String?
     let data: [T]?
