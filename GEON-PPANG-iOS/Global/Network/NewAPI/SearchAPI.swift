@@ -9,10 +9,8 @@ import Foundation
 
 import Moya
 
-typealias SearchResponse = GeneralResponse<SearchResponseDTO>
-
 protocol SearchAPIType {
-    func getBakeries(name: String, completion: @escaping (SearchResponse?) -> Void)
+    func getBakeries(name: String, completion: @escaping (Endpoint<SearchResponseDTO>?) -> Void)
 }
 
 final class SearchAPI: SearchAPIType {
@@ -23,12 +21,12 @@ final class SearchAPI: SearchAPIType {
     var provider: MoyaProvider<SearchService> = MoyaProvider(session: Session(interceptor: AuthInterceptor.shared),
                                                              plugins: [MoyaLoggingPlugin()])
     
-    func getBakeries(name: String, completion: @escaping (SearchResponse?) -> Void) {
+    func getBakeries(name: String, completion: @escaping (Endpoint<SearchResponseDTO>?) -> Void) {
         provider.request(.bakeries(bakeryName: name)) { result in
             switch result {
             case .success(let response):
                 do {
-                    let response = try response.map(SearchResponse.self)
+                    let response = try response.map(Endpoint<SearchResponseDTO>.self)
                     completion(response)
                 } catch let err {
                     print(err.localizedDescription)

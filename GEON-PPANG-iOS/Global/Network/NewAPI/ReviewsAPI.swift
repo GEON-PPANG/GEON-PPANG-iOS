@@ -9,13 +9,9 @@ import Foundation
 
 import Moya
 
-typealias WriteReviewRequest = WriteReviewRequestDTO
-typealias WriteReviewResponse = GeneralResponse<VoidType>
-typealias MyReviewDetailResponse = GeneralResponse<MyReviewDetailResponseDTO>
-
 protocol ReviewsAPIType {
-    func postWriteReview(content: WriteReviewRequest, completion: @escaping (WriteReviewResponse?) -> Void)
-    func getMyReview(id: Int, completion: @escaping (MyReviewDetailResponse?) -> Void)
+    func postWriteReview(content: WriteReviewRequestDTO, completion: @escaping (Endpoint<VoidType>?) -> Void)
+    func getMyReview(id: Int, completion: @escaping (Endpoint<MyReviewDetailResponseDTO>?) -> Void)
 }
 
 final class ReviewsAPI: ReviewsAPIType {
@@ -26,12 +22,12 @@ final class ReviewsAPI: ReviewsAPIType {
     var provider: MoyaProvider<ReviewsService> = MoyaProvider(session: Session(interceptor: AuthInterceptor.shared),
                                                               plugins: [MoyaLoggingPlugin()])
     
-    func postWriteReview(content: WriteReviewRequest, completion: @escaping (WriteReviewResponse?) -> Void) {
+    func postWriteReview(content: WriteReviewRequestDTO, completion: @escaping (Endpoint<VoidType>?) -> Void) {
         provider.request(.write(bakeryID: content.bakeryID, content: content)) { result in
             switch result {
             case let .success(response):
                 do {
-                    let response = try response.map(WriteReviewResponse.self)
+                    let response = try response.map(Endpoint<VoidType>.self)
                     completion(response)
                     
                     #if DEBUG
@@ -49,12 +45,12 @@ final class ReviewsAPI: ReviewsAPIType {
         }
     }
     
-    func getMyReview(id: Int, completion: @escaping (MyReviewDetailResponse?) -> Void) {
+    func getMyReview(id: Int, completion: @escaping (Endpoint<MyReviewDetailResponseDTO>?) -> Void) {
         provider.request(.myReview(reviewID: id)) { result in
             switch result {
             case let .success(response):
                 do {
-                    let response = try response.map(MyReviewDetailResponse.self)
+                    let response = try response.map(Endpoint<MyReviewDetailResponseDTO>.self)
                     completion(response)
                     
                     #if DEBUG
