@@ -244,7 +244,7 @@ extension SearchViewController: UICollectionViewDelegate {
 extension SearchViewController {
     func getSearchBakery(bakeryName: String) {
         
-        SearchAPI.shared.searchBakeryList(bakeryName: bakeryName) { response in
+        SearchAPI.shared.getBakeries(name: bakeryName) { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
             self.bakeryListCount = data.resultCount
