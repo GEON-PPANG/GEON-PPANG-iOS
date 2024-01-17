@@ -44,7 +44,7 @@
 		0949750E2A67EC9B00A63420 /* MyReviewsResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0949750D2A67EC9B00A63420 /* MyReviewsResponseDTO.swift */; };
 		094F3AF72AB3DFB300A34154 /* AnalyticManagerUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094F3AF62AB3DFB300A34154 /* AnalyticManagerUser.swift */; };
 		0959F1482A6583C200E77CAF /* NetworkLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F1472A6583C200E77CAF /* NetworkLoggerPlugin.swift */; };
-		0959F14A2A6583DF00E77CAF /* GeneralResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F1492A6583DF00E77CAF /* GeneralResponse.swift */; };
+		0959F14A2A6583DF00E77CAF /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F1492A6583DF00E77CAF /* Endpoint.swift */; };
 		0959F14E2A65840300E77CAF /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F14D2A65840300E77CAF /* NetworkResult.swift */; };
 		0959F1502A65840F00E77CAF /* NetworkBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F14F2A65840F00E77CAF /* NetworkBase.swift */; };
 		0959F1522A65844A00E77CAF /* NetworkConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F1512A65844A00E77CAF /* NetworkConstant.swift */; };
@@ -277,7 +277,7 @@
 		0949750D2A67EC9B00A63420 /* MyReviewsResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewsResponseDTO.swift; sourceTree = "<group>"; };
 		094F3AF62AB3DFB300A34154 /* AnalyticManagerUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticManagerUser.swift; sourceTree = "<group>"; };
 		0959F1472A6583C200E77CAF /* NetworkLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerPlugin.swift; sourceTree = "<group>"; };
-		0959F1492A6583DF00E77CAF /* GeneralResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralResponse.swift; sourceTree = "<group>"; };
+		0959F1492A6583DF00E77CAF /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		0959F14D2A65840300E77CAF /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		0959F14F2A65840F00E77CAF /* NetworkBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkBase.swift; sourceTree = "<group>"; };
 		0959F1512A65844A00E77CAF /* NetworkConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstant.swift; sourceTree = "<group>"; };
@@ -861,7 +861,7 @@
 				09CA3EFB2A569E4A0063897A /* URLConstant.swift */,
 				0959F1472A6583C200E77CAF /* NetworkLoggerPlugin.swift */,
 				097716E62AA4E787001EE6D5 /* AuthPlugin.swift */,
-				0959F1492A6583DF00E77CAF /* GeneralResponse.swift */,
+				0959F1492A6583DF00E77CAF /* Endpoint.swift */,
 				0959F1512A65844A00E77CAF /* NetworkConstant.swift */,
 				0959F14D2A65840300E77CAF /* NetworkResult.swift */,
 				0959F14F2A65840F00E77CAF /* NetworkBase.swift */,
@@ -1717,7 +1717,7 @@
 				3EA69B632B557A76008AE23B /* BookmarksService.swift in Sources */,
 				3E06F8DB2A9E5759001302F4 /* AlertView.swift in Sources */,
 				3E36D7D62A8E6AF000B2C1CC /* FilterViewController.swift in Sources */,
-				0959F14A2A6583DF00E77CAF /* GeneralResponse.swift in Sources */,
+				0959F14A2A6583DF00E77CAF /* Endpoint.swift in Sources */,
 				3EFA97882A5EBCED002E70FA /* CustomNavigationBar.swift in Sources */,
 				3E232AC32A93554C00125B76 /* RegionLabel.swift in Sources */,
 				09E445372AA3AFB1008E3D33 /* Encodable+.swift in Sources */,
