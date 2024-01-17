@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 enum ReportService {
-    case writeReport(reviewID: Int, content: ReportRequestDTO)
+    case writeReport(reviewID: Int, request: ReportRequestDTO)
 }
 
 extension ReportService: GBService {
@@ -41,8 +41,8 @@ extension ReportService: GBService {
     
     var task: Moya.Task {
         switch self {
-        case .writeReport(_, content: let content):
-            return .requestJSONEncodable(content)
+        case .writeReport(_, request: let data):
+            return .requestJSONEncodable(data)
         }
     }
     
