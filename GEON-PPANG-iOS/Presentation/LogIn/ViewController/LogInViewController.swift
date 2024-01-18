@@ -214,7 +214,7 @@ extension LogInViewController {
     private func postLogin() {
         
         let loginData = LoginRequestDTO(email: self.loginEmail, password: self.loginPassword)
-        AuthAPI.shared.postLogin(to: loginData) { result in
+        AuthAPI.shared.postLogin(request: loginData) { result in
             guard let status = result else { return }
             switch status {
             case 200...204:

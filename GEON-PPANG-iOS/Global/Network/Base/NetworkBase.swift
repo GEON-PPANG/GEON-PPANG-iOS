@@ -11,7 +11,7 @@ struct NetworkBase {
     
     static func judgeStatus<T: Codable>(by statusCode: Int, _ data: Data, _ t: T.Type) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GeneralResponse<T>.self, from: data)
+        guard let decodedData = try? decoder.decode(Endpoint<T>.self, from: data)
         else { return .pathErr }
         print(decodedData)
         switch statusCode {

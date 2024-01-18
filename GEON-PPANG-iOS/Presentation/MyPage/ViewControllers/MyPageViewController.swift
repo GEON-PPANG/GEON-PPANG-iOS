@@ -148,7 +148,7 @@ extension MyPageViewController {
     
     func requestMemberData() {
         
-        MyPageAPI.shared.getMemberData { response in
+        MemberAPI.shared.member { response in
             guard let response = response,
                   let data = response.data
             else { return }
@@ -160,7 +160,7 @@ extension MyPageViewController {
     
     func logout() {
         
-        MemberAPI.shared.logout { code in
+        AuthAPI.shared.logout { code in
             switch code {
             case 200:
                 KeychainService.deleteKeychain(of: .access)
@@ -178,7 +178,7 @@ extension MyPageViewController {
     
     func deleteUser() {
         
-        MemberAPI.shared.deleteUser { response in
+        AuthAPI.shared.deleteUser { response in
             switch response?.code {
             case 200:
                 if KeychainService.readKeychain(of: .socialType) == "KAKAO" {

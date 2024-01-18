@@ -218,7 +218,7 @@ extension NickNameViewController {
     private func postNicknameCheck() {
         
         let checkNickname = NicknameRequestDTO(nickname: self.checkNickname)
-        AuthAPI.shared.postCheckNickname(to: checkNickname) { result in
+        ValidationAPI.shared.postCheckNickname(request: checkNickname) { result in
             guard let status = result else { return }
             switch status {
             case 200...204:
@@ -238,7 +238,7 @@ extension NickNameViewController {
     private func postSetNickname() {
         
         let request = NicknameRequestDTO(nickname: self.checkNickname)
-        MemberAPI.shared.postSetNickname(to: request) { result in
+        MemberAPI.shared.postNickname(request: request) { result in
             guard let code = result?.code else { return }
             switch code {
             case 200:
@@ -262,7 +262,7 @@ extension NickNameViewController {
                                         email: email,
                                         password: password,
                                         nickname: nickname)
-        AuthAPI.shared.postSignUp(with: userInfo) { result in
+        AuthAPI.shared.postSignUp(request: userInfo) { result in
             guard result != nil else { return }
             guard let userId = result?.data?.memberID else { return }
             AnalyticManager.set(userId: userId)
