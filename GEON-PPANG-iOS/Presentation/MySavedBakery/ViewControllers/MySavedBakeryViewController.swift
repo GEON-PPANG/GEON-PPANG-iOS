@@ -184,7 +184,7 @@ extension MySavedBakeryViewController: UICollectionViewDelegate {
 extension MySavedBakeryViewController {
     
     private func getSavedBakeryList() {
-        MyPageAPI.shared.getBookmarks { response in
+        MemberAPI.shared.bookmarks { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
             let savedList = data.map { $0 }

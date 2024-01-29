@@ -193,7 +193,7 @@ extension MyReviewsViewController {
     
     private func getMyReviews() {
         
-        MyPageAPI.shared.getMyReviews { response in
+        MemberAPI.shared.reviews { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
             self.myReviewsList = data.map {$0}

@@ -283,7 +283,7 @@ extension HomeViewController {
     
     private func getHomeBestData() {
         
-        HomeAPI.shared.getBestBakery { response in
+        BestAPI.shared.getBestBakery { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
             let bakeryList = data.map { $0 }
@@ -291,7 +291,7 @@ extension HomeViewController {
             self.setSnapshot()
         }
         
-        HomeAPI.shared.getBestReviews { response in
+        BestAPI.shared.getBestReviews { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
             let reviewsList = data.map { $0 }
@@ -302,7 +302,7 @@ extension HomeViewController {
     
     private func getUserName() {
         
-        FilterAPI.shared.getFilterType { response in
+        MemberAPI.shared.getFilter { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
             self.topView.configureTitleText(data.nickname)

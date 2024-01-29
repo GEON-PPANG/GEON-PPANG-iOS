@@ -246,7 +246,7 @@ final class FilterViewController: BaseViewController {
         request.setBreadType(from: FilterCellModel.breadType.map { $0.selected })
         request.setNutrientType(from: FilterCellModel.ingredient.map { $0.selected })
         
-        FilterAPI.shared.changeFilter(to: request) { _ in
+        MemberAPI.shared.postFilter(request: request) { _ in
             self.sendFilterCompleteAmplitudeLog(from: request)
             if self.from == .onboarding {
                 Utils.sceneDelegate?.changeRootViewControllerToTabBarController()

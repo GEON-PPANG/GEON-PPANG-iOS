@@ -248,7 +248,7 @@ extension BakeryListViewController {
     
     private func getUserFilterType() {
         
-        FilterAPI.shared.getFilterType { response in
+        MemberAPI.shared.getFilter { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
             if !data.mainPurpose.contains("NONE") {

@@ -291,7 +291,7 @@ extension SignInViewController {
     private func postCheckEmail() {
         
         let checkEmail = EmailRequestDTO(email: self.checkEmail)
-        AuthAPI.shared.postCheckEmail(to: checkEmail) { result in
+        ValidationAPI.shared.postCheckEmail(request: checkEmail) { result in
             guard let status = result else { return }
             switch status {
             case 200...204:

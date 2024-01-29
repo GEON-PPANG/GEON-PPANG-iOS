@@ -421,7 +421,7 @@ extension ReportViewController {
     
     func requestWriteReport(_ content: ReportRequestDTO) {
         
-        ReportAPI.shared.postWriteReport(reviewID: reviewID, content: content) { response in
+        ReportAPI.shared.postWriteReport(reviewID: reviewID, request: content) { response in
             
             guard let response = response else { return }
             switch response.code {

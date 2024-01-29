@@ -211,7 +211,7 @@ extension OnboardingViewController {
     
     private func postSignUp(with request: SignUpRequestDTO, completion: (() -> Void)?) {
         
-        AuthAPI.shared.postSignUp(with: request) { status in
+        AuthAPI.shared.postSignUp(request: request) { status in
             
             guard let code = status?.code else { return }
             switch code {
