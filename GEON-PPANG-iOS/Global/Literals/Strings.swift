@@ -173,4 +173,12 @@ struct I18N {
     struct BakeryListFilter {
         static let title = "내 필터 적용"
     }
+    
+    struct LoginRequiredViewController{
+        static let recommendation = "별사탕님 맞춤 건빵을 추천하려면\n로그인이 필요해요"
+        static let profile = "별사탕님만의 페이지를 만들려면\n로그인이 필요해요"
+        static let bookmark = "나만의 건빵집을 저장하려면\n로그인이 필요해요"
+        static let writeReview = "리뷰를 작성하기 위해서는\n로그인이 필요해요"
+        static let reportReview = "리뷰를 신고하기 위해서는\n로그인이 필요해요"
+    }
 }
