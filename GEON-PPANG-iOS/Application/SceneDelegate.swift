@@ -70,4 +70,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             UIView.transition(with: window, duration: 0.2, options: [.transitionCrossDissolve], animations: nil)
         }
     }
+    
+    func changeRootViewControllerTo(_ viewController: UIViewController) {
+        guard let window = window else { return }
+        
+        DispatchQueue.main.async {
+            let rootViewController = viewController
+            let navigationController = UINavigationController(rootViewController: rootViewController)
+            navigationController.isNavigationBarHidden = true
+            window.rootViewController = navigationController
+            UIView.transition(with: window, duration: 0.2, options: [.transitionCrossDissolve], animations: nil)
+        }
+    }
 }
