@@ -27,7 +27,8 @@ final class AuthInterceptor: RequestInterceptor {
         
         let authorization = KeychainService.readKeychain(of: .access)
         var urlRequest = urlRequest
-        urlRequest.setValue("Bearer " + authorization, forHTTPHeaderField: "Authorization")
+        
+        urlRequest.headers.add(.authorization(bearerToken: authorization))
         
         completion(.success(urlRequest))
     }
@@ -48,10 +49,14 @@ final class AuthInterceptor: RequestInterceptor {
             return
         }
         
+        if KeychainService.readKeychain(of: .access) == "" {
+            Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
+        }
+        
         AuthAPI.shared.getTokenRefresh { response in
             guard let response = response else { return }
             
-            if response.code == 200 {
+            if response == 200 {
                 completion(.retry)
             } else {
                 Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()

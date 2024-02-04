@@ -345,5 +345,4 @@ extension FilterViewController: UICollectionViewDelegate {
             configureNextButton()
         }
     }
-    
 }

@@ -13,7 +13,7 @@ protocol MemberAPIType {
     func postFilter(request: FilterRequestDTO, completion: @escaping (ArrayEndpoint<FilterResponseDTO>?) -> Void)
     func getFilter(completion: @escaping (Endpoint<FilterResponseDTO>?) -> Void)
     func postNickname(request: NicknameRequestDTO, completion: @escaping (Endpoint<SetNicknameResponseDTO>?) -> Void)
-    func getNickname(completion: @escaping (Endpoint<FetchNicknameResponseDTO>?) -> Void)
+    func getNickname(completion: @escaping (Endpoint<FetchNicknameResponseDTO>?, Int?) -> Void)
     func bookmarks(completion: @escaping (ArrayEndpoint<BakeryCommonListResponseDTO>?) -> Void)
     func reviews(completion: @escaping (ArrayEndpoint<MyReviewsResponseDTO>?) -> Void)
     func member(completion: @escaping (Endpoint<MyPageResponseDTO>?) -> Void)
@@ -78,19 +78,19 @@ final class MemberAPI: MemberAPIType {
         }
     }
     
-    func getNickname(completion: @escaping (Endpoint<FetchNicknameResponseDTO>?) -> Void) {
+    func getNickname(completion: @escaping (Endpoint<FetchNicknameResponseDTO>?, Int?) -> Void) {
         provider.request(.getNickname) { result in
             switch result {
             case .success(let response):
                 do {
                     let response = try response.map(Endpoint<FetchNicknameResponseDTO>.self)
-                    completion(response)
-                } catch let err {
-                    print(err)
+                    completion(response, nil)
+                } catch _ {
+                    completion(nil, nil)
                 }
             case .failure(let err):
                 print(err.localizedDescription)
-                completion(nil)
+                completion(nil, err.response?.statusCode)
             }
         }
     }
@@ -145,5 +145,4 @@ final class MemberAPI: MemberAPIType {
             }
         }
     }
-    
 }
