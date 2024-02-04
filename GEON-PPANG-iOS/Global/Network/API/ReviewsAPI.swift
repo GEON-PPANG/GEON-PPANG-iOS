@@ -33,8 +33,7 @@ final class ReviewsAPI: ReviewsAPIType {
                     #if DEBUG
                     print("✅\(response)")
                     #endif
-                }
-                catch let err {
+                } catch let err {
                     print(err.localizedDescription)
                     completion(nil)
                 }

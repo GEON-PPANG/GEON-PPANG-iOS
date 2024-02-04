@@ -62,7 +62,7 @@ final class AuthAPI: AuthAPIType {
     }
     
     func getTokenRefresh(completion: @escaping (Int?) -> Void) {
-        defaultProvider.request(.refreshToken) { result in
+        tokenProvider.request(.refreshToken) { result in
             switch result {
             case .success(let response):
                 do {
@@ -73,7 +73,7 @@ final class AuthAPI: AuthAPIType {
                 }
             case .failure(let err):
                 print(err.localizedDescription)
-                completion(err.errorCode)
+                completion(err.response?.statusCode)
             }
         }
     }
