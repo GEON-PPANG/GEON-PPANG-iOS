@@ -10,22 +10,24 @@ import UIKit
 import KakaoSDKAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
+    
     var window: UIWindow?
-
-
+    
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             window.overrideUserInterfaceStyle = UIUserInterfaceStyle.light
             
-            let rootViewController = LaunchScreenViewController()
-            let navigationController = UINavigationController(rootViewController: rootViewController)
-            navigationController.isNavigationBarHidden = true
-            window.rootViewController = navigationController
-            window.makeKeyAndVisible()
-            self.window = window
+            DispatchQueue.main.async {
+                let rootViewController = LaunchScreenViewController()
+                let navigationController = UINavigationController(rootViewController: rootViewController)
+                navigationController.isNavigationBarHidden = true
+                window.rootViewController = navigationController
+                window.makeKeyAndVisible()
+                self.window = window
+            }
         }
     }
     
@@ -38,30 +40,34 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {}
-
+    
     func sceneDidBecomeActive(_ scene: UIScene) {}
-
+    
     func sceneWillResignActive(_ scene: UIScene) {}
-
+    
     func sceneWillEnterForeground(_ scene: UIScene) {}
-
+    
     func sceneDidEnterBackground(_ scene: UIScene) {}
     
     func changeRootViewControllerToTabBarController() {
         guard let window = window else { return }
-        let rootViewController = TabBarController()
-        let navigationController = UINavigationController(rootViewController: rootViewController)
-        navigationController.isNavigationBarHidden = true
-        window.rootViewController = navigationController
-        UIView.transition(with: window, duration: 0.2, options: [.transitionCrossDissolve], animations: nil)
+        DispatchQueue.main.async {
+            let rootViewController = TabBarController()
+            let navigationController = UINavigationController(rootViewController: rootViewController)
+            navigationController.isNavigationBarHidden = true
+            window.rootViewController = navigationController
+            UIView.transition(with: window, duration: 0.2, options: [.transitionCrossDissolve], animations: nil)
+        }
     }
     
     func changeRootViewControllerToOnboardingViewController() {
         guard let window = window else { return }
-        let rootViewController = OnboardingViewController()
-        let navigationController = UINavigationController(rootViewController: rootViewController)
-        navigationController.isNavigationBarHidden = true
-        window.rootViewController = navigationController
-        UIView.transition(with: window, duration: 0.2, options: [.transitionCrossDissolve], animations: nil)
+        DispatchQueue.main.async {
+            let rootViewController = OnboardingViewController()
+            let navigationController = UINavigationController(rootViewController: rootViewController)
+            navigationController.isNavigationBarHidden = true
+            window.rootViewController = navigationController
+            UIView.transition(with: window, duration: 0.2, options: [.transitionCrossDissolve], animations: nil)
+        }
     }
 }

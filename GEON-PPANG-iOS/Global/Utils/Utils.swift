@@ -70,5 +70,9 @@ final class Utils {
         AnalyticManager.log(event: .detail(.viewDetailpageAt(source: source.rawValue)))
     }
     
-    static var sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+    static var sceneDelegate: SceneDelegate? {
+        return DispatchQueue.main.sync {
+            return UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+        }
+    }
 }
