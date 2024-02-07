@@ -41,7 +41,7 @@ final class ValidationAPI: ValidationAPIType {
                 completion(response.statusCode)
             case .failure(let err):
                 print(err.localizedDescription)
-                completion(nil)
+                completion(err.response?.statusCode)
             }
         }
     }
