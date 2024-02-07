@@ -35,16 +35,16 @@ final class AuthInterceptor: RequestInterceptor {
     
     func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
         
+        guard let response = request.task?.response as? HTTPURLResponse, response.statusCode == 401
+        else {
+            completion(.doNotRetry)
+            return
+        }
+        
         guard KeychainService.hasKeychain(of: .access) else {
             DispatchQueue.main.async {
                 Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
             }
-            return
-        }
-        
-        guard let response = request.task?.response as? HTTPURLResponse, response.statusCode == 401
-        else {
-            completion(.doNotRetry)
             return
         }
         

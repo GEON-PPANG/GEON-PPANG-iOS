@@ -19,8 +19,7 @@ final class ValidationAPI: ValidationAPIType {
     static let shared: ValidationAPI = ValidationAPI()
     private init() {}
     
-    var provider: MoyaProvider<ValidationService> = MoyaProvider(session: Session(interceptor: AuthInterceptor.shared),
-                                                                 plugins: [MoyaLoggingPlugin()])
+    var provider: MoyaProvider<ValidationService> = MoyaProvider(plugins: [MoyaLoggingPlugin()])
     
     func postCheckEmail(request: EmailRequestDTO, completion: @escaping (Int?) -> Void) {
         provider.request(.checkEmail(request: request)) { result in
