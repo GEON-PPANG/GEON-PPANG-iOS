@@ -11,14 +11,22 @@ struct FilterResponseDTO: Codable {
     let memberID: Int
     let mainPurpose: String
     let nickname: String
-    let breadType: BreadResponseType
-    let nutrientType: NutrientResponseType
+    let breadTypeList: [BreadType]
+    let nutrientTypeList: [NutrientType]
     
     enum CodingKeys: String, CodingKey {
         case memberID = "memberId"
         case mainPurpose
         case nickname
-        case breadType
-        case nutrientType
+        case breadTypeList
+        case nutrientTypeList
+    }
+    
+    struct BreadType: Codable {
+        let breadTypeId: Int
+    }
+    
+    struct NutrientType: Codable {
+        let nutrientTypeId: Int
     }
 }
