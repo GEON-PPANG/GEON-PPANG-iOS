@@ -63,7 +63,7 @@ enum FilterType: Int, CaseIterable {
         switch self {
         case .purpose: return 9
         case .breadType: return 20
-        case .ingredient: return 0
+        case .ingredient: return 9
         }
     }
     
@@ -76,13 +76,6 @@ enum FilterType: Int, CaseIterable {
         case .purpose: return .bodyM1
         case .breadType: return .subHead
         case .ingredient: return nil
-        }
-    }
-    
-    var hideDescription: Bool {
-        switch self {
-        case .purpose, .breadType: return false
-        case .ingredient: return true
         }
     }
     

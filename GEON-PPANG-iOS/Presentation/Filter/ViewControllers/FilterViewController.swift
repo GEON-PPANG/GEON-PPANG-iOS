@@ -277,26 +277,26 @@ extension FilterViewController {
         case .onboarding:
             AnalyticManager.log(event: .onboarding(.completeFilterOnboarding(
                 mainPurpose: request.mainPurpose,
-                breadType: request.breadType.convertToStringArray(),
-                ingredientsType: request.nutrientType.convertToStringArray()
+                breadType: request.toBreadTypeStringArray(),
+                ingredientsType: request.toNutrientTypeStringArray()
             )))
         case .home:
             AnalyticManager.log(event: .home(.completeFilterHome(
                 mainPurpose: request.mainPurpose,
-                breadType: request.breadType.convertToStringArray(),
-                ingredientsType: request.nutrientType.convertToStringArray()
+                breadType: request.toBreadTypeStringArray(),
+                ingredientsType: request.toNutrientTypeStringArray()
             )))
         case .list:
             AnalyticManager.log(event: .list(.completeFilterList(
                 mainPurpose: request.mainPurpose,
-                breadType: request.breadType.convertToStringArray(),
-                ingredientsType: request.nutrientType.convertToStringArray()
+                breadType: request.toBreadTypeStringArray(),
+                ingredientsType: request.toNutrientTypeStringArray()
             )))
         case .mypage:
             AnalyticManager.log(event: .myPage(.completeFilterMypage(
                 mainPurpose: request.mainPurpose,
-                breadType: request.breadType.convertToStringArray(),
-                ingredientsType: request.nutrientType.convertToStringArray()
+                breadType: request.toBreadTypeStringArray(),
+                ingredientsType: request.toNutrientTypeStringArray()
             )))
         }
     }

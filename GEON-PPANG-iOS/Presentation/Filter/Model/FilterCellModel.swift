@@ -10,7 +10,7 @@ import Foundation
 struct FilterCellModel: Identifiable {
     var id: Int
     var title: String
-    var subtitle: String?
+    var subtitle: String
     var selected: Bool
     
     init(id: Int = 0, title: String = "", subtitle: String = "", selected: Bool = false) {
@@ -25,48 +25,51 @@ extension FilterCellModel {
     
     static var purpose = [
         FilterCellModel(id: 1,
-                    title: "건강 · 체질",
-                    subtitle: "아토피, 알레르기, 암, 당뇨, 소화문제",
-                    selected: false),
+                        title: "건강 · 체질",
+                        subtitle: "아토피, 알레르기, 당뇨, 소화불량 등이 있어요.",
+                        selected: false),
         FilterCellModel(id: 2,
-                    title: "맛 · 다이어트",
-                    subtitle: "그냥 맛있어서! 식이 관리를 위해",
-                    selected: false),
+                        title: "맛 · 다이어트",
+                        subtitle: "맛있어서 먹거나, 체중조절이 필요해요.",
+                        selected: false),
         FilterCellModel(id: 3,
-                    title: "비건 · 채식지향",
-                    subtitle: "종교, 환경, 동물, 노동권을 위한 비거니즘",
-                    selected: false)
+                        title: "비건 · 채식지향",
+                        subtitle: "종교, 환경, 동물, 노동권 문제에 공감해요.",
+                        selected: false)
     ]
     
     static var breadType = [
         FilterCellModel(id: 4,
-                    title: "글루텐프리",
-                    subtitle: "NO 글루텐\nLOW 글루텐",
-                    selected: false),
+                        title: "글루텐프리",
+                        subtitle: "NO 글루텐",
+                        selected: false),
         FilterCellModel(id: 5,
-                    title: "비건빵",
-                    subtitle: "NO 동물성재료\n(유제품, 계란 등)",
-                    selected: false),
+                        title: "비건빵",
+                        subtitle: "NO 동물성재료\n(유제품, 계란 등)",
+                        selected: false),
         FilterCellModel(id: 6,
-                    title: "넛프리",
-                    subtitle: "NO 견과류",
-                    selected: false),
+                        title: "넛프리",
+                        subtitle: "NO 견과류",
+                        selected: false),
         FilterCellModel(id: 7,
-                    title: "대체당",
-                    subtitle: "알룰로스, 스테비아,\n에리스리톨, 말티톨 등",
-                    selected: false)
+                        title: "대체당",
+                        subtitle: "NO 동물성재료\n(유제품, 계란 등)",
+                        selected: false)
     ]
     
     static var ingredient = [
         FilterCellModel(id: 8,
-                    title: "영양성분까지 꼼꼼히 볼래요!",
-                    selected: false),
+                        title: "영양성분 보기",
+                        subtitle: "영양성분까지 공개한 건빵집을 볼래요!",
+                        selected: false),
         FilterCellModel(id: 9,
-                    title: "어떤 재료가 들어갔는지 볼래요!",
-                    selected: false),
+                        title: "원재료 보기",
+                        subtitle: "원재료를 공개한 건빵집을 볼래요!",
+                        selected: false),
         FilterCellModel(id: 10,
-                    title: "성분 정보는 괜찮아요!",
-                    selected: false)
+                        title: "모든 건빵집 보기",
+                        subtitle: "일단 더 많은 건빵집을 볼래요!",
+                        selected: false)
     ]
     
 }

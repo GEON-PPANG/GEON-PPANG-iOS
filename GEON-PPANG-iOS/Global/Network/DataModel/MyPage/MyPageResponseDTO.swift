@@ -10,7 +10,21 @@ import Foundation
 struct MyPageResponseDTO: Codable {
     let memberNickname: String
     let mainPurpose: String
-    let breadType: BreadResponseType
+    let breadTypeList: [BreadType]
+    
+    struct BreadType: Codable {
+        let breadTypeId: Int
+        
+        func toString() -> String {
+            switch self.breadTypeId {
+            case 1: return "글루텐프리"
+            case 2: return "비건"
+            case 3: return "넛프리"
+            case 4: return "대체당"
+            default: return ""
+            }
+        }
+    }
 }
 
 extension MyPageResponseDTO {
@@ -19,18 +33,13 @@ extension MyPageResponseDTO {
         
         return .init(memberNickname: "Id",
                      mainPurpose: "NONE",
-                     breadType: .init(breadTypeID: 1,
-                                      name: "맛 • 다이어트",
-                                      isGlutenFree: true,
-                                      isVegan: true,
-                                      isNutFree: false,
-                                      isSugarFree: true))
+                     breadTypeList: [.init(breadTypeId: 1)])
     }
     
     static func emptyData() -> MyPageResponseDTO {
         
         return .init(memberNickname: "",
                      mainPurpose: "",
-                     breadType: .emptyBreadType())
+                     breadTypeList: [])
     }
 }

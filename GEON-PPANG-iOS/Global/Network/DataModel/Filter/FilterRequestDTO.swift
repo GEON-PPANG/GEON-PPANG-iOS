@@ -9,15 +9,15 @@ import Foundation
 
 struct FilterRequestDTO: Codable {
     var mainPurpose: String
-    var breadType: BreadRequestType
-    var nutrientType: NutrientRequestType
+    var breadTypeList: [Int]
+    var nutrientTypeList: [Int]
     
     init(mainPurpose: String = "",
-         breadType: BreadRequestType = .init(),
-         nutrientType: NutrientRequestType = .init()) {
+         breadType: [Int] = [],
+         nutrientType: [Int] = []) {
         self.mainPurpose = mainPurpose
-        self.breadType = breadType
-        self.nutrientType = nutrientType
+        self.breadTypeList = breadType
+        self.nutrientTypeList = nutrientType
     }
 }
 
@@ -35,15 +35,47 @@ extension FilterRequestDTO {
     }
     
     mutating func setBreadType(from values: [Bool]) {
-        breadType.isGlutenFree = values[0]
-        breadType.isVegan = values[1]
-        breadType.isNutFree = values[2]
-        breadType.isSugarFree = values[3]
+        var selection: [Int] = []
+        values.enumerated()
+            .forEach { index, selected in
+                if selected { selection.append(index + 1) }
+            }
+        breadTypeList = selection
     }
     
     mutating func setNutrientType(from values: [Bool]) {
-        nutrientType.isNutrientOpen = values[0]
-        nutrientType.isIngredientOpen = values[1]
-        nutrientType.isNotOpen = values[2]
+        var selection: [Int] = []
+        values.enumerated()
+            .forEach { index, selected in
+                if selected { selection.append(index + 1) }
+            }
+        nutrientTypeList = selection
+    }
+    
+    func toBreadTypeStringArray() -> [String] {
+        var value = [String]()
+        for breadType in breadTypeList {
+            switch breadType {
+            case 1: value.append("GLUTENFREE")
+            case 2: value.append("VEGAN")
+            case 3: value.append("NUTFREE")
+            case 4: value.append("SUGARFREE")
+            default: break
+            }
+        }
+        return value
+    }
+    
+    func toNutrientTypeStringArray() -> [String] {
+        var value = [String]()
+        for nutrientType in nutrientTypeList {
+            switch nutrientType {
+            case 1: value.append("INGREDIENTS")
+            case 2: value.append("MATERIAL")
+            case 3: value.append("PRIVATE")
+            default: break
+            }
+        }
+        return value
     }
 }

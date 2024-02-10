@@ -54,10 +54,9 @@ final class FilterDiffableDataSource: DiffableDataSourceProtocol {
         
         let cellRegistration = CellRegistration<FilterCollectionViewCell, FilterCellModel> { cell, _, filterModel in
             cell.filterType = self.filterType
+            print(filterModel)
             cell.typeLabelText = filterModel.title
-            if let subtitle = filterModel.subtitle {
-                cell.descriptionLabelText = subtitle
-            }
+            cell.descriptionLabelText = filterModel.subtitle
             cell.isSelected = filterModel.selected
         }
         
@@ -115,7 +114,7 @@ extension FilterDiffableDataSource {
         loadData()
         configureLayout()
         
-        collectionView.allowsMultipleSelection = filterType == .purpose ? false : true
+        collectionView.allowsMultipleSelection = filterType == .breadType ? true : false
     }
     
 }
