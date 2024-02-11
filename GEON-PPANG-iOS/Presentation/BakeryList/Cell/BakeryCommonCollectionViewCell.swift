@@ -139,24 +139,27 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
         bakeryImage.kf.setImage(with: url, placeholder: UIImage.loading_small)
         
         regionStackView.configureListUI(text: data.station)
-        markStackView.getMarkStatus(data.mark.isHACCP, data.mark.isVegan, data.mark.isNonGMO)
+        markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)
         
         breadTypeTag = []
-        if data.breadType.isGlutenFree {
-            breadTypeTag.append(I18N.BakeryList.glutenfree)
+        data.breadTypeList.forEach {
+            breadTypeTag.append($0.toString())
         }
-        
-        if data.breadType.isNutFree {
-            breadTypeTag.append(I18N.BakeryList.nutfree)
-        }
-        
-        if data.breadType.isVegan {
-            breadTypeTag.append(I18N.BakeryList.vegan)
-        }
-        
-        if data.breadType.isSugarFree {
-            breadTypeTag.append(I18N.BakeryList.subSugar)
-        }
+//        if data.breadTypeList.isGlutenFree {
+//            breadTypeTag.append(I18N.BakeryList.glutenfree)
+//        }
+//        
+//        if data.breadTypeList.isNutFree {
+//            breadTypeTag.append(I18N.BakeryList.nutfree)
+//        }
+//        
+//        if data.breadTypeList.isVegan {
+//            breadTypeTag.append(I18N.BakeryList.vegan)
+//        }
+//        
+//        if data.breadTypeList.isSugarFree {
+//            breadTypeTag.append(I18N.BakeryList.subSugar)
+//        }
         
         collectionView.reloadData()
     }

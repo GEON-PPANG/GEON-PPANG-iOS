@@ -128,9 +128,9 @@ extension MyReviewsViewController: UICollectionViewDelegate {
             id: bakery.bakeryID,
             name: bakery.name,
             imageURL: bakery.picture,
-            ingredients: bakery.breadType.configureTrueOptionStrings(),
+            ingredients: bakery.breadTypeList.map { $0.toString() },
             region: bakery.station.components(separatedBy: ", "),
-            certificates: bakery.mark
+            certificates: .init(isHACCP: bakery.isHACCP, isVegan: bakery.isVegan, isNonGMO: bakery.isNonGMO)
         )
         let reviewViewController = ReviewViewController(type: .read, bakeryData: bakeryData, reviewID: data.reviewID, reviewDate: data.createdAt)
         Utils.push(self.navigationController, reviewViewController)

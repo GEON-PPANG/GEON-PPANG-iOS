@@ -14,7 +14,7 @@ protocol MemberAPIType {
     func getFilter(completion: @escaping (Endpoint<FilterResponseDTO>?) -> Void)
     func postNickname(request: NicknameRequestDTO, completion: @escaping (Endpoint<SetNicknameResponseDTO>?) -> Void)
     func getNickname(completion: @escaping (Endpoint<FetchNicknameResponseDTO>?, Int?) -> Void)
-    func bookmarks(completion: @escaping (ArrayEndpoint<BakeryCommonListResponseDTO>?) -> Void)
+    func bookmarks(completion: @escaping (ArrayEndpoint<BookmarkBakeryListResponseDTO>?) -> Void)
     func reviews(completion: @escaping (ArrayEndpoint<MyReviewsResponseDTO>?) -> Void)
     func member(completion: @escaping (Endpoint<MyPageResponseDTO>?) -> Void)
 }
@@ -95,12 +95,12 @@ final class MemberAPI: MemberAPIType {
         }
     }
     
-    func bookmarks(completion: @escaping (ArrayEndpoint<BakeryCommonListResponseDTO>?) -> Void) {
+    func bookmarks(completion: @escaping (ArrayEndpoint<BookmarkBakeryListResponseDTO>?) -> Void) {
         provider.request(.bookmarks) { result in
             switch result {
             case .success(let response):
                 do {
-                    let response = try response.map(ArrayEndpoint<BakeryCommonListResponseDTO>.self)
+                    let response = try response.map(ArrayEndpoint<BookmarkBakeryListResponseDTO>.self)
                     completion(response)
                 } catch let err {
                     print(err)
