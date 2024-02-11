@@ -26,13 +26,6 @@ enum FilterType: Int, CaseIterable {
         return I18N.Filter.subtitle
     }
     
-    var hideSubtitle: Bool {
-        switch self {
-        case .purpose: return true
-        case .breadType, .ingredient: return false
-        }
-    }
-    
     // FilterCollectionViewCell
     
     var cells: [FilterCellModel] {
@@ -73,9 +66,8 @@ enum FilterType: Int, CaseIterable {
     
     var descriptionFont: UIFont? {
         switch self {
-        case .purpose: return .bodyM1
+        case .purpose, .ingredient: return .bodyM1
         case .breadType: return .subHead
-        case .ingredient: return nil
         }
     }
     

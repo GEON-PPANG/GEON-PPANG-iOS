@@ -54,7 +54,6 @@ final class FilterDiffableDataSource: DiffableDataSourceProtocol {
         
         let cellRegistration = CellRegistration<FilterCollectionViewCell, FilterCellModel> { cell, _, filterModel in
             cell.filterType = self.filterType
-            print(filterModel)
             cell.typeLabelText = filterModel.title
             cell.descriptionLabelText = filterModel.subtitle
             cell.isSelected = filterModel.selected

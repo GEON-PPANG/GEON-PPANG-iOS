@@ -323,13 +323,13 @@ extension FilterViewController: UICollectionViewDelegate {
             to: true
         )
         
-        if currentFilterType == .purpose {
+        if currentFilterType == .breadType {
+            configureNextButton()
+        } else {
             nextButton.isUserInteractionEnabled = true
             UIView.animate(withDuration: 0.2) {
                 self.nextButton.configureButtonUI(.gbbMain2!)
             }
-        } else {
-            configureNextButton()
         }
     }
     
@@ -339,10 +339,10 @@ extension FilterViewController: UICollectionViewDelegate {
                                            at: indexPath.item,
                                            to: false)
         
-        if currentFilterType == .purpose {
-            return
-        } else {
+        if currentFilterType == .breadType {
             configureNextButton()
+        } else {
+            return
         }
     }
 }
