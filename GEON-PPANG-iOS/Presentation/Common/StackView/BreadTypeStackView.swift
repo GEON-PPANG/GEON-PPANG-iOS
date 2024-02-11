@@ -71,11 +71,15 @@ final class BreadTypeStackView: UIStackView {
     
     // MARK: - Custom Method
     
-    func getChipStatus(_ isGlutenFree: Bool, _ isveganBread: Bool, _ isnutFree: Bool, _ issubSugarChip: Bool) {
-        
-        glutenFreeChip.isHidden = !isGlutenFree
-        veganBreadChip.isHidden = !isveganBread
-        nutFreeChip.isHidden = !isnutFree
-        subSugarChip.isHidden = !issubSugarChip
+    func getChipStatus(_ breadTypeList: [BreadType]) {
+        for breadType in breadTypeList {
+            switch breadType.breadTypeId {
+            case 1: glutenFreeChip.isHidden = false
+            case 2: veganBreadChip.isHidden = false
+            case 3: nutFreeChip.isHidden = false
+            case 4: subSugarChip.isHidden = false
+            default: break
+            }
+        }
     }
 }

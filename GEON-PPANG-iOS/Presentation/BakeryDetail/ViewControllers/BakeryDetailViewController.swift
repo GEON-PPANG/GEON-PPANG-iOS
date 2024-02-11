@@ -171,7 +171,7 @@ final class BakeryDetailViewController: BaseViewController {
         bakeryData.id = overviewData.bakeryID
         bakeryData.name = overviewData.bakeryName
         bakeryData.imageURL = overviewData.bakeryPicture
-        bakeryData.ingredients = overviewData.breadType.configureTrueOptions().filter { $0.1 == true }.map { $0.0 }
+        bakeryData.ingredients = overviewData.breadTypeList.map { $0.toString() }
         bakeryData.region = [overviewData.firstNearStation, overviewData.secondNearStation]
         bakeryData.certificates = .init(
             isHACCP: overviewData.isHACCP,

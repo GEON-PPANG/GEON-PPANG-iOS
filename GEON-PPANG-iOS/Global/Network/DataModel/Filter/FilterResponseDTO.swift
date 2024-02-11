@@ -22,10 +22,6 @@ struct FilterResponseDTO: Codable {
         case nutrientTypeList
     }
     
-    struct BreadType: Codable {
-        let breadTypeId: Int
-    }
-    
     struct NutrientType: Codable {
         let nutrientTypeId: Int
     }
