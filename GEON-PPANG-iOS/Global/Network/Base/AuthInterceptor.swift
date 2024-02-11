@@ -41,16 +41,19 @@ final class AuthInterceptor: RequestInterceptor {
             return
         }
         
-        guard request.retryCount < 2
-        else {
+        guard KeychainService.hasKeychain(of: .access) else {
             DispatchQueue.main.async {
                 Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
             }
             return
         }
         
-        if KeychainService.readKeychain(of: .access) == "" {
-            Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
+        guard request.retryCount < 2
+        else {
+            DispatchQueue.main.async {
+                Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
+            }
+            return
         }
         
         AuthAPI.shared.getTokenRefresh { response in
