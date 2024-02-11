@@ -437,13 +437,12 @@ extension BakeryDetailViewController {
         
         guard let bakeryID = self.bakeryID else { return }
         
-//        BakeriesAPI.shared.postBookmark(bakeryID: bakeryID, with: bookmarkRequest) { _ in
-//            
-//            AnalyticManager.log(event: .detail(.clickMystore))
-//            self.detailBottomView.configureBookmarkButton(to: value)
-//            self.isBookmarked = value
-//            self.getBakeryDetail(bakeryID: bakeryID, isUpdated: false)
-//        }
+        BookmarksAPI.shared.bookmark(id: bakeryID, request: bookmarkRequest) { _ in
+            AnalyticManager.log(event: .detail(.clickMystore))
+            self.detailBottomView.configureBookmarkButton(to: value)
+            self.isBookmarked = value
+            self.getBakeryDetail(bakeryID: bakeryID, isUpdated: false)
+        }
     }
     
     private func showToast(message: String) {
