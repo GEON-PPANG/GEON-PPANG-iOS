@@ -22,9 +22,9 @@ extension ReviewsService: GBService {
     var urlPath: String {
         switch self {
         case .write(bakeryID: let bakeryID, _):
-            return "\(bakeryID)"
+            return "/\(bakeryID)"
         case .myReview(let reviewID):
-            return "\(reviewID)"
+            return "/\(reviewID)"
         }
     }
     
