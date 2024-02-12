@@ -1,13 +1,13 @@
 //
-//  BakeryCommonListResponseDTO.swift
+//  BookmarkBakeryListResponseDTO.swift
 //  GEON-PPANG-iOS
 //
-//  Created by JEONGEUN KIM on 2023/08/26.
+//  Created by 이성민 on 2/11/24.
 //
 
 import Foundation
 
-struct BakeryCommonListResponseDTO: Decodable, Hashable, BakeryListProtocol {
+struct BookmarkBakeryListResponseDTO: Decodable, Hashable, BakeryListProtocol {
     
     var id = UUID()
     let bakeryID: Int
@@ -60,12 +60,12 @@ struct BakeryCommonListResponseDTO: Decodable, Hashable, BakeryListProtocol {
         hasher.combine(id)
     }
     
-    static func == (lhs: BakeryCommonListResponseDTO, rhs: BakeryCommonListResponseDTO) -> Bool {
+    static func == (lhs: BookmarkBakeryListResponseDTO, rhs: BookmarkBakeryListResponseDTO) -> Bool {
         lhs.id == rhs.id
     }
 }
 
-extension BakeryCommonListResponseDTO {
+extension BookmarkBakeryListResponseDTO {
     func toBooleanArray() -> [Bool] {
         return [isHACCP, isVegan, isNonGMO]
     }

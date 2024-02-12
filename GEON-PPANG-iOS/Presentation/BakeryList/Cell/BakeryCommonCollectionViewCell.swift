@@ -139,25 +139,29 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
         bakeryImage.kf.setImage(with: url, placeholder: UIImage.loading_small)
         
         regionStackView.configureListUI(text: data.station)
-        markStackView.getMarkStatus(data.mark.isHACCP, data.mark.isVegan, data.mark.isNonGMO)
+        markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)
         
         breadTypeTag = []
-        if data.breadType.isGlutenFree {
-            breadTypeTag.append(I18N.BakeryList.glutenfree)
+        data.breadTypeList.forEach {
+            breadTypeTag.append($0.toString())
         }
+        collectionView.reloadData()
+    }
+    
+    func configureCellUI(data: MyReviewsResponseDTO) {
+        bakeryTitle.setLineHeight(by: 1.05, with: data.name)
+        bakeryTitle.lineBreakMode = .byTruncatingTail
         
-        if data.breadType.isNutFree {
-            breadTypeTag.append(I18N.BakeryList.nutfree)
+        guard let url = URL(string: data.picture) else { return }
+        bakeryImage.kf.setImage(with: url, placeholder: UIImage.loading_small)
+        
+        regionStackView.configureListUI(text: data.station)
+        markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)
+        
+        breadTypeTag = []
+        data.breadTypeList.forEach {
+            breadTypeTag.append($0.toString())
         }
-        
-        if data.breadType.isVegan {
-            breadTypeTag.append(I18N.BakeryList.vegan)
-        }
-        
-        if data.breadType.isSugarFree {
-            breadTypeTag.append(I18N.BakeryList.subSugar)
-        }
-        
         collectionView.reloadData()
     }
 }

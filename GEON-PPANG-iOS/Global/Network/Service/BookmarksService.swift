@@ -21,7 +21,7 @@ extension BookmarksService: GBService {
     
     var urlPath: String {
         switch self {
-        case .bookmark(bakeryID: let bakeryID, _): return "\(bakeryID)"
+        case .bookmark(bakeryID: let bakeryID, _): return "/\(bakeryID)"
         }
     }
     

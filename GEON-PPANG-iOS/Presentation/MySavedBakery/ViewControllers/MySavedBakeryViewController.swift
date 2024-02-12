@@ -22,7 +22,7 @@ final class MySavedBakeryViewController: BaseViewController {
     typealias SanpShot = NSDiffableDataSourceSnapshot<Section, AnyHashable>
     
     private var dataSource: DataSource?
-    private var savedList: [BakeryCommonListResponseDTO] = []
+    private var savedList: [BookmarkBakeryListResponseDTO] = []
     private var currentSection: [Section] = [.empty]
     
     // MARK: - UI Property
@@ -89,7 +89,7 @@ final class MySavedBakeryViewController: BaseViewController {
     
     private func setDataSource() {
         
-        let cellRegistration = UICollectionView.CellRegistration<BakeryCommonCollectionViewCell, BakeryCommonListResponseDTO> { (cell, _, item) in
+        let cellRegistration = UICollectionView.CellRegistration<BakeryCommonCollectionViewCell, BookmarkBakeryListResponseDTO> { (cell, _, item) in
             cell.configureCellUI(data: item)
         }
         
@@ -97,7 +97,7 @@ final class MySavedBakeryViewController: BaseViewController {
             let section = self.dataSource?.snapshot().sectionIdentifiers[indexPath.section]
             switch section {
             case .main:
-                return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item as? BakeryCommonListResponseDTO)
+                return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item as? BookmarkBakeryListResponseDTO)
             case .empty, .none:
                 let cell: EmptyCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
                 cell.configureViewType(.noBookmark)
@@ -115,7 +115,7 @@ final class MySavedBakeryViewController: BaseViewController {
         snapshot.appendItems([0])
     }
     
-    private func configureDataSource(data: [BakeryCommonListResponseDTO]) {
+    private func configureDataSource(data: [BookmarkBakeryListResponseDTO]) {
         
         guard var snapshot = dataSource?.snapshot() else { return }
         
