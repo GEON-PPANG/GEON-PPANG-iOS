@@ -54,12 +54,6 @@ final class HomeViewController: BaseViewController {
     
     // MARK: - Life Cycle
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        getUserName()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -67,6 +61,12 @@ final class HomeViewController: BaseViewController {
         setDataSource()
         setSnapshot()
         setSupplementaryView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        getUserName()
     }
     
     // MARK: - Setting
