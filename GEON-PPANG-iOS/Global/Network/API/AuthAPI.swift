@@ -82,7 +82,7 @@ final class AuthAPI: AuthAPIType {
         tokenProvider.request(.logout) { result in
             switch result {
             case .success(let response):
-                KeychainService.setKeychain(of: .role, with: "NONUSER")
+                KeychainService.setKeychain(of: .role, with: "NONE")
                 completion(response.statusCode)
             case .failure(let err):
                 print(err.localizedDescription)
@@ -96,7 +96,7 @@ final class AuthAPI: AuthAPIType {
         tokenProvider.request(type == "APPLE" ? .appleWithdraw : .withdraw) { result in
             switch result {
             case .success(let response):
-                KeychainService.setKeychain(of: .role, with: "NONUSER")
+                KeychainService.setKeychain(of: .role, with: "NONE")
                 do {
                     let response = try response.map(Endpoint<DeleteUserResponseDTO>.self)
                     completion(response)
