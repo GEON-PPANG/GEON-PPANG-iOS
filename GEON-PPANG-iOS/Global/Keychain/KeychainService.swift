@@ -160,5 +160,6 @@ extension KeychainService {
         deleteKeychain(of: .appleRefresh)
         deleteKeychain(of: .socialAuth)
         deleteKeychain(of: .socialType)
+        deleteKeychain(of: .role)
     }
 }
