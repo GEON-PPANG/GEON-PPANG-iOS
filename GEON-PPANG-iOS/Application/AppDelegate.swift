@@ -47,7 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        guard KeychainService.readKeychain(of: .role) == UserRole.visitor.rawValue
+        guard KeychainService.readKeychain(of: .role) == UserRole.visitor.rawValue,
+              viewController is MyPageViewController
         else { return true }
         
         let loginRequiredViewController = LoginRequiredViewController(viewType: .profile)
@@ -56,7 +57,9 @@ extension AppDelegate: UITabBarControllerDelegate {
             sheet.detents = [.medium()]
             sheet.prefersGrabberVisible = true
         }
-        tabBarController.present(loginRequiredViewController, animated: true)
+        DispatchQueue.main.async {
+            tabBarController.present(loginRequiredViewController, animated: true)
+        }
         return false
     }
 }

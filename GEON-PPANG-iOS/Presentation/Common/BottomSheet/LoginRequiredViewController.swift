@@ -184,10 +184,8 @@ final class LoginRequiredViewController: BaseViewController {
                     nickname: ""
                 )
                 
-                self.postSignUp(with: request, viewController: self) {
-                    self.getNickname { nickname in
-                        self.checkNickname(nickname)
-                    }
+                self.postSignUp(with: request, viewController: self) { role in
+                    
                 }
             }
         }
@@ -222,7 +220,6 @@ extension LoginRequiredViewController {
     }
     
     private func emailSignInButtonTapped() {
-        guard let presenting = self.presentingViewController as? UINavigationController else { print("ee"); return }
         dismiss(animated: true) {
             Utils.push(self.navigationController, SignInViewController())
         }
@@ -289,9 +286,13 @@ extension LoginRequiredViewController: ASAuthorizationControllerDelegate {
                     nickname: ""
                 )
                 
-                self.postSignUp(with: request, viewController: self) {
-                    self.getNickname { nickname in
-                        self.checkNickname(nickname)
+                guard let presenting = self.presentingViewController as? UINavigationController else { print("ee"); return }
+                self.postSignUp(with: request, viewController: self) { role in
+                    KeychainService.setKeychain(of: .role, with: role)
+                    self.dismiss(animated: true) {
+                        DispatchQueue.main.async {
+                            Utils.push(presenting, NickNameViewController())
+                        }
                     }
                 }
                 

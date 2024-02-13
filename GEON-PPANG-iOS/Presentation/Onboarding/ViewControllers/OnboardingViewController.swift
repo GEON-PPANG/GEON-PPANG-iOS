@@ -200,7 +200,7 @@ extension OnboardingViewController {
     
     private func skipLoginButtonTapped() {
         KeychainService.setKeychain(of: .role, with: "VISITOR")
-        Utils.push(self.navigationController, HomeViewController())
+        Utils.sceneDelegate?.changeRootViewControllerToTabBarController()
     }
     
     private func check(role: String) {
