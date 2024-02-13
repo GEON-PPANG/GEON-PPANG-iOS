@@ -301,6 +301,13 @@ extension HomeViewController {
     }
     
     private func getUserName() {
+        let role = KeychainService.readKeychain(of: .role)
+        if role == UserRole.visitor.rawValue {
+            getHomeBestData()
+            configureBubbleView(true)
+            topView.configureTitleText("별사탕")
+            return
+        }
         
         MemberAPI.shared.getFilter { response in
             guard let response = response else { return }

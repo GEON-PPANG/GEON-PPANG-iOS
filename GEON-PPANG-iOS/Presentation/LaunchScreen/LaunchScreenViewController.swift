@@ -42,13 +42,17 @@ final class LaunchScreenViewController: BaseViewController {
     
     private func checkUserLoggedIn() {
         let role = KeychainService.readKeychain(of: .role)
-        if role.contains("GUEST") {
+        print("💩\(role)")
+        switch role {
+        case UserRole.guest.rawValue:
             let viewcontroller = NickNameViewController()
             viewcontroller.naviView.hideBackButton(true)
             Utils.push(self.navigationController, viewcontroller)
-        } else if role.contains("MEMBER") {
+        case UserRole.member.rawValue:
             Utils.sceneDelegate?.changeRootViewControllerToTabBarController()
-        } else {
+        case UserRole.visitor.rawValue:
+            Utils.sceneDelegate?.changeRootViewControllerToTabBarController()
+        default:
             Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
         }
     }

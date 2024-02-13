@@ -199,11 +199,13 @@ extension OnboardingViewController {
     }
     
     private func skipLoginButtonTapped() {
+        KeychainService.setKeychain(of: .role, with: "VISITOR")
         Utils.push(self.navigationController, HomeViewController())
     }
     
     private func check(role: String) {
-        if role.contains("GUEST") {
+        switch role {
+        case UserRole.guest.rawValue:
             let viewController = NickNameViewController()
             viewController.naviView.hideBackButton(true)
             
@@ -211,9 +213,11 @@ extension OnboardingViewController {
             AnalyticManager.log(event: .onboarding(.startSignup(signUpType: socialType)))
             
             Utils.push(self.navigationController, viewController)
-        } else if role.contains("MEMBER") {
+            
+        case UserRole.member.rawValue, UserRole.visitor.rawValue:
             Utils.sceneDelegate?.changeRootViewControllerToTabBarController()
-        } else {
+            
+        default:
             print("❌❌❌ Unknown Role ❌❌❌")
             let viewController = OnboardingViewController()
             Utils.push(self.navigationController, viewController)
@@ -250,7 +254,7 @@ extension OnboardingViewController {
             
             guard let result = result,
                   let response = result.data
-            else {  completion(nil,nil); return }
+            else {  completion(nil, nil); return }
 
             switch result.code {
             case 200:

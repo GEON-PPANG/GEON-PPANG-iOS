@@ -247,6 +247,8 @@ extension BakeryListViewController {
     }
     
     private func getUserFilterType() {
+        guard KeychainService.readKeychain(of: .role) == UserRole.member.rawValue
+        else { return }
         
         MemberAPI.shared.getFilter { response in
             guard let response = response else { return }
