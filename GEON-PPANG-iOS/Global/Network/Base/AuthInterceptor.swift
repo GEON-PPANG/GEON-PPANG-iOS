@@ -41,13 +41,6 @@ final class AuthInterceptor: RequestInterceptor {
             return
         }
         
-        guard KeychainService.hasKeychain(of: .access) else {
-            DispatchQueue.main.async {
-                Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
-            }
-            return
-        }
-        
         guard request.retryCount < 2
         else {
             DispatchQueue.main.async {

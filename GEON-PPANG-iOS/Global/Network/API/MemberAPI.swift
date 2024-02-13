@@ -65,6 +65,7 @@ final class MemberAPI: MemberAPIType {
         provider.request(.postNickname(request: request)) { result in
             switch result {
             case .success(let response):
+                KeychainService.setKeychain(of: .role, with: "ROLE_MEMBER")
                 do {
                     let response = try response.map(Endpoint<SetNicknameResponseDTO>.self)
                     completion(response)

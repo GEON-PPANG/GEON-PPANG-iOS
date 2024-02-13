@@ -62,7 +62,7 @@ final class AuthAPI: AuthAPIType {
     }
     
     func getTokenRefresh(completion: @escaping (Int?) -> Void) {
-        tokenProvider.request(.refreshToken) { result in
+        defaultProvider.request(.refreshToken) { result in
             switch result {
             case .success(let response):
                 do {
@@ -82,6 +82,7 @@ final class AuthAPI: AuthAPIType {
         tokenProvider.request(.logout) { result in
             switch result {
             case .success(let response):
+                KeychainService.setKeychain(of: .role, with: "NONUSER")
                 completion(response.statusCode)
             case .failure(let err):
                 print(err.localizedDescription)
@@ -95,6 +96,7 @@ final class AuthAPI: AuthAPIType {
         tokenProvider.request(type == "APPLE" ? .appleWithdraw : .withdraw) { result in
             switch result {
             case .success(let response):
+                KeychainService.setKeychain(of: .role, with: "NONUSER")
                 do {
                     let response = try response.map(Endpoint<DeleteUserResponseDTO>.self)
                     completion(response)
