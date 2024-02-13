@@ -44,3 +44,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AnalyticManager.log(event: .general(.closeApp))
     }
 }
+
+extension AppDelegate: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        guard KeychainService.readKeychain(of: .role) == UserRole.visitor.rawValue
+        else { return true }
+        
+        let loginRequiredViewController = LoginRequiredViewController(viewType: .profile)
+        loginRequiredViewController.modalPresentationStyle = .pageSheet
+        if let sheet = loginRequiredViewController.sheetPresentationController {
+            sheet.detents = [.medium()]
+            sheet.prefersGrabberVisible = true
+        }
+        tabBarController.present(loginRequiredViewController, animated: true)
+        return false
+    }
+}

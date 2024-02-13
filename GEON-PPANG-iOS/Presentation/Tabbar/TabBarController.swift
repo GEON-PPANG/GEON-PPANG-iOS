@@ -25,6 +25,7 @@ final class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setTabBarDelegate()
         setTabBarItems()
         setTabBarUI()
     }
@@ -36,6 +37,10 @@ final class TabBarController: UITabBarController {
     }
     
     // MARK: - Setting
+    
+    private func setTabBarDelegate() {
+        self.delegate = UIApplication.shared.delegate as? UITabBarControllerDelegate
+    }
     
     private func setTabBarItems() {
         
@@ -69,3 +74,21 @@ final class TabBarController: UITabBarController {
         tabBar.frame = newFrame
     }
 }
+
+//extension TabBarController {
+//    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+//        guard item.tag == 2,
+//              KeychainService.readKeychain(of: .role) == UserRole.visitor.rawValue
+//        else {
+//            return
+//        }
+//        
+//        let loginRequiredViewController = LoginRequiredViewController(viewType: .profile)
+//        loginRequiredViewController.modalPresentationStyle = .pageSheet
+//        if let sheet = loginRequiredViewController.sheetPresentationController {
+//            sheet.detents = [.medium()]
+//            sheet.prefersGrabberVisible = true
+//        }
+//        present(loginRequiredViewController, animated: true)
+//    }
+//}
