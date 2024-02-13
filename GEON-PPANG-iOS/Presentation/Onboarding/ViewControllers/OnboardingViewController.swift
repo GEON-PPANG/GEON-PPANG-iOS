@@ -16,6 +16,7 @@ final class OnboardingViewController: BaseViewController {
     
     // MARK: - UI Property
     
+    private let skipLoginButton = UIButton()
     private let logoImage = UIImageView()
     private let kakaoLoginButton = UIButton()
     private let appleLoginButton = UIButton()
@@ -36,6 +37,12 @@ final class OnboardingViewController: BaseViewController {
     // MARK: - Setting
     
     override func setLayout() {
+        view.addSubview(skipLoginButton)
+        skipLoginButton.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(28)
+            $0.leading.equalToSuperview().inset(16)
+            $0.height.equalTo(25)
+        }
         
         view.addSubview(logoImage)
         logoImage.snp.makeConstraints {
@@ -79,6 +86,14 @@ final class OnboardingViewController: BaseViewController {
     }
     
     override func setUI() {
+        skipLoginButton.do {
+            $0.setTitle("둘러보기", for: .normal)
+            $0.setTitleColor(.gbbGray300, for: .normal)
+            $0.titleLabel?.font = .captionB1
+            $0.addAction(UIAction { [weak self] _ in
+                self?.skipLoginButtonTapped()
+            }, for: .touchUpInside)
+        }
         
         logoImage.do {
             $0.image = .launchscreenIcon
@@ -146,10 +161,9 @@ final class OnboardingViewController: BaseViewController {
                     nickname: ""
                 )
                 
-                self?.postSignUp(with: request) {
-                    self?.getNickname { nickname, err in
-                        self?.checkNickname(nickname)
-                    }
+                self?.postSignUp(with: request) { role in
+                    KeychainService.setKeychain(of: .role, with: role)
+                    self?.check(role: role)
                 }
             }
         }
@@ -184,24 +198,25 @@ extension OnboardingViewController {
         Utils.push(self.navigationController, SignInViewController())
     }
     
-    private func checkNickname(_ nickname: String?) {
-        
-        let socialType = KeychainService.readKeychain(of: .socialType)
-        
-        guard let nickname = nickname else {
+    private func skipLoginButtonTapped() {
+        Utils.push(self.navigationController, HomeViewController())
+    }
+    
+    private func check(role: String) {
+        if role.contains("GUEST") {
             let viewController = NickNameViewController()
-            Utils.push(self.navigationController, viewController)
-            return
-        }
-        
-        if nickname.prefix(5) == "GUEST" {
-            let viewcontroller = NickNameViewController()
-            viewcontroller.naviView.hideBackButton(true)
-            Utils.push(self.navigationController, viewcontroller)
+            viewController.naviView.hideBackButton(true)
+            
+            let socialType = KeychainService.readKeychain(of: .socialType)
             AnalyticManager.log(event: .onboarding(.startSignup(signUpType: socialType)))
-        } else {
+            
+            Utils.push(self.navigationController, viewController)
+        } else if role.contains("MEMBER") {
             Utils.sceneDelegate?.changeRootViewControllerToTabBarController()
-            AnalyticManager.log(event: .general(.loginApp(loginType: socialType)))
+        } else {
+            print("❌❌❌ Unknown Role ❌❌❌")
+            let viewController = OnboardingViewController()
+            Utils.push(self.navigationController, viewController)
         }
     }
     
@@ -209,16 +224,18 @@ extension OnboardingViewController {
 
 extension OnboardingViewController {
     
-    private func postSignUp(with request: SignUpRequestDTO, completion: (() -> Void)?) {
+    private func postSignUp(with request: SignUpRequestDTO, completion: ((String) -> Void)?) {
         
-        AuthAPI.shared.postSignUp(request: request) { status in
+        AuthAPI.shared.postSignUp(request: request) { response in
             
-            guard let code = status?.code else { return }
+            guard let code = response?.code else { return }
             switch code {
             case 200...299:
-                guard let userID = status?.data?.memberID else { return }
+                guard let userID = response?.data?.memberID,
+                      let role = response?.data?.role
+                else { return }
                 AnalyticManager.set(userId: userID)
-                completion?()
+                completion?(role)
             default:
                 Utils.showAlert(title: "에러", description: "실패", at: self)
             }
@@ -283,10 +300,9 @@ extension OnboardingViewController: ASAuthorizationControllerDelegate {
                     nickname: ""
                 )
                 
-                self.postSignUp(with: request) {
-                    self.getNickname { nickname, err in
-                        self.checkNickname(nickname)
-                    }
+                self.postSignUp(with: request) { role in
+                    KeychainService.setKeychain(of: .role, with: role)
+                    self.check(role: role)
                 }
                 
             case .revoked:
