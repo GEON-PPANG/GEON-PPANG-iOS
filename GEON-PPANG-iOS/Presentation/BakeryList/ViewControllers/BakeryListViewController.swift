@@ -109,7 +109,11 @@ final class BakeryListViewController: BaseViewController {
         
         bakeryFilterView.do {
             $0.applyAction {
-                Utils.push(self.navigationController, FilterViewController(from: .list))
+                if KeychainService.readKeychain(of: .role) == UserRole.visitor.rawValue {
+                    Utils.showLoginRequiredSheet(on: self, type: .recommendation)
+                } else {
+                    Utils.push(self.navigationController, FilterViewController(from: .list))
+                }
                 
                 AnalyticManager.log(event: .list(.startFilterList))
             }

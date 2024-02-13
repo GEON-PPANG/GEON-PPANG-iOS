@@ -102,7 +102,11 @@ final class HomeViewController: BaseViewController {
                 AnalyticManager.log(event: .home(.clickSearchHome))
             }
             $0.addActionToFilterButton {
-                Utils.push(self.navigationController, FilterViewController(from: .home))
+                if KeychainService.readKeychain(of: .role) == UserRole.visitor.rawValue {
+                    Utils.showLoginRequiredSheet(on: self, type: .recommendation)
+                } else {
+                    Utils.push(self.navigationController, FilterViewController(from: .home))
+                }
                 
                 AnalyticManager.log(event: .home(.startFilterHome))
 

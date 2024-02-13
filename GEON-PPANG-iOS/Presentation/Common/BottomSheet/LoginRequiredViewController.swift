@@ -184,8 +184,14 @@ final class LoginRequiredViewController: BaseViewController {
                     nickname: ""
                 )
                 
+                guard let presenting = self.presentingViewController as? UINavigationController else { return }
                 self.postSignUp(with: request, viewController: self) { role in
-                    
+                    KeychainService.setKeychain(of: .role, with: role)
+                    self.dismiss(animated: true) {
+                        DispatchQueue.main.async {
+                            Utils.push(presenting, NickNameViewController())
+                        }
+                    }
                 }
             }
         }
@@ -213,36 +219,16 @@ extension LoginRequiredViewController {
     }
     
     private func emailLogInButtonTapped() {
-        guard let presenting = self.presentingViewController as? UINavigationController else { print("ee"); return }
+        guard let presenting = self.presentingViewController as? UINavigationController else { return }
         dismiss(animated: true) {
             Utils.push(presenting, LogInViewController())
         }
     }
     
     private func emailSignInButtonTapped() {
+        guard let presenting = self.presentingViewController as? UINavigationController else { return }
         dismiss(animated: true) {
-            Utils.push(self.navigationController, SignInViewController())
-        }
-    }
-    
-    private func checkNickname(_ nickname: String?) {
-        
-        let socialType = KeychainService.readKeychain(of: .socialType)
-        
-        guard let nickname = nickname else {
-            let viewController = NickNameViewController()
-            Utils.push(self.navigationController, viewController)
-            return
-        }
-        
-        if nickname.prefix(5) == "GUEST" {
-            let viewcontroller = NickNameViewController()
-            viewcontroller.naviView.hideBackButton(true)
-            Utils.push(self.navigationController, viewcontroller)
-            AnalyticManager.log(event: .onboarding(.startSignup(signUpType: socialType)))
-        } else {
-            Utils.sceneDelegate?.changeRootViewControllerToTabBarController()
-            AnalyticManager.log(event: .general(.loginApp(loginType: socialType)))
+            Utils.push(presenting, SignInViewController())
         }
     }
     
@@ -286,7 +272,7 @@ extension LoginRequiredViewController: ASAuthorizationControllerDelegate {
                     nickname: ""
                 )
                 
-                guard let presenting = self.presentingViewController as? UINavigationController else { print("ee"); return }
+                guard let presenting = self.presentingViewController as? UINavigationController else { return }
                 self.postSignUp(with: request, viewController: self) { role in
                     KeychainService.setKeychain(of: .role, with: role)
                     self.dismiss(animated: true) {

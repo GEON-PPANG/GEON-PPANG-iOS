@@ -51,15 +51,7 @@ extension AppDelegate: UITabBarControllerDelegate {
               viewController is MyPageViewController
         else { return true }
         
-        let loginRequiredViewController = LoginRequiredViewController(viewType: .profile)
-        loginRequiredViewController.modalPresentationStyle = .pageSheet
-        if let sheet = loginRequiredViewController.sheetPresentationController {
-            sheet.detents = [.medium()]
-            sheet.prefersGrabberVisible = true
-        }
-        DispatchQueue.main.async {
-            tabBarController.present(loginRequiredViewController, animated: true)
-        }
+        Utils.showLoginRequiredSheet(on: tabBarController, type:.profile)
         return false
     }
 }

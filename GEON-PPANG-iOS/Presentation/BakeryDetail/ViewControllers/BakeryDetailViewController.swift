@@ -135,6 +135,11 @@ final class BakeryDetailViewController: BaseViewController {
             $0.check = false
             $0.backgroundColor = .gbbWhite
             $0.tappedBookmarkButton = {
+                if KeychainService.readKeychain(of: .role) == UserRole.visitor.rawValue {
+                    Utils.showLoginRequiredSheet(on: self, type: .bookmark)
+                    return
+                }
+                
                 self.detailBottomView.check = true
                 self.requestBakeryBookmark(!self.isBookmarked)
                 if !self.isBookmarked {
@@ -145,6 +150,11 @@ final class BakeryDetailViewController: BaseViewController {
             }
             $0.tappedWriteReviewButton = {
                 AnalyticManager.log(event: .writeReview(.startReviewWriting))
+                
+                if KeychainService.readKeychain(of: .role) == UserRole.visitor.rawValue {
+                    Utils.showLoginRequiredSheet(on: self, type: .writeReview)
+                    return
+                }
                 Utils.push(self.navigationController, ReviewViewController(
                     type: .write,
                     bakeryData: self.configureSimpleBakeryData()))
