@@ -41,26 +41,15 @@ final class LaunchScreenViewController: BaseViewController {
     }
     
     private func checkUserLoggedIn() {
-        
-        getNickname { nickname, err in
-            if err  == 403 {
-                let viewcontroller = NickNameViewController()
-                viewcontroller.naviView.hideBackButton(true)
-                Utils.push(self.navigationController, viewcontroller)
-            }
-            
-            guard let nickname = nickname else {
-                Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
-                return
-            }
-            
-            if nickname.prefix(5) == "GUEST" {
-                let viewcontroller = NickNameViewController()
-                viewcontroller.naviView.hideBackButton(true)
-                Utils.push(self.navigationController, viewcontroller)
-            } else {
-                Utils.sceneDelegate?.changeRootViewControllerToTabBarController()
-            }
+        let role = KeychainService.readKeychain(of: .role)
+        if role.contains("GUEST") {
+            let viewcontroller = NickNameViewController()
+            viewcontroller.naviView.hideBackButton(true)
+            Utils.push(self.navigationController, viewcontroller)
+        } else if role.contains("MEMBER") {
+            Utils.sceneDelegate?.changeRootViewControllerToTabBarController()
+        } else {
+            Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
         }
     }
     
