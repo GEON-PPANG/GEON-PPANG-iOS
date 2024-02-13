@@ -13,19 +13,22 @@ struct BakeryCommonListResponseDTO: Decodable, Hashable, BakeryListProtocol {
     let bakeryID: Int
     let name: String
     let picture: String
-    let mark: CertificationMarkResponseType
+    let isHACCP: Bool
+    let isVegan: Bool
+    let isNonGMO: Bool
     let station: String
     let bookmarkCount: Int
     let reviewCount: Int
-    let breadType: BreadResponseType
+    let breadTypeList: [BreadType]
     
     private enum CodingKeys: String, CodingKey {
         case bakeryID = "bakeryId"
         case name = "bakeryName"
         case picture = "bakeryPicture"
+        case isHACCP, isVegan, isNonGMO
         case firstNearStation, secondNearStation
         case bookmarkCount = "bookMarkCount"
-        case reviewCount, mark, breadType
+        case reviewCount, breadTypeList
     }
     
     init(from decoder: Decoder) throws {
@@ -33,6 +36,9 @@ struct BakeryCommonListResponseDTO: Decodable, Hashable, BakeryListProtocol {
         bakeryID = try container.decode(Int.self, forKey: .bakeryID)
         name = try container.decode(String.self, forKey: .name)
         picture = try container.decode(String.self, forKey: .picture)
+        isHACCP = try container.decode(Bool.self, forKey: .isHACCP)
+        isVegan = try container.decode(Bool.self, forKey: .isVegan)
+        isNonGMO = try container.decode(Bool.self, forKey: .isNonGMO)
         bookmarkCount = (try? container.decode(Int.self, forKey: .bookmarkCount)) ?? 0
         reviewCount = (try? container.decode(Int.self, forKey: .reviewCount)) ?? 0
         
@@ -45,8 +51,7 @@ struct BakeryCommonListResponseDTO: Decodable, Hashable, BakeryListProtocol {
             station = "\(first) ⦁ \(second)"
         }
         
-        breadType = try container.decode(BreadResponseType.self, forKey: .breadType)
-        mark = try CertificationMarkResponseType(from: decoder)
+        breadTypeList = try container.decode([BreadType].self, forKey: .breadTypeList)
         
     }
     
@@ -57,5 +62,11 @@ struct BakeryCommonListResponseDTO: Decodable, Hashable, BakeryListProtocol {
     
     static func == (lhs: BakeryCommonListResponseDTO, rhs: BakeryCommonListResponseDTO) -> Bool {
         lhs.id == rhs.id
+    }
+}
+
+extension BakeryCommonListResponseDTO {
+    func toBooleanArray() -> [Bool] {
+        return [isHACCP, isVegan, isNonGMO]
     }
 }

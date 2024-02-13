@@ -16,7 +16,7 @@ struct BakeryDetailResponseDTO: Codable {
     let isHACCP, isVegan, isNonGMO: Bool
     let firstNearStation, secondNearStation: String
     let reviewCount: Int
-    let breadType: BreadResponseType
+    let breadTypeList: [BreadType]
     let mapURL, homepageURL, instagramURL: String
     let address, openingHours, closedDay, phoneNumber: String
     let menuList: [MenuList]
@@ -25,7 +25,7 @@ struct BakeryDetailResponseDTO: Codable {
     
     enum CodingKeys: String, CodingKey {
         case bakeryID = "bakeryId"
-        case bakeryName, bakeryPicture, isHACCP, isVegan, isNonGMO, firstNearStation, secondNearStation, reviewCount, breadType
+        case bakeryName, bakeryPicture, isHACCP, isVegan, isNonGMO, firstNearStation, secondNearStation, reviewCount, breadTypeList
         case mapURL = "mapUrl"
         case homepageURL = "homepageUrl"
         case instagramURL = "instagramUrl"
@@ -36,14 +36,18 @@ struct BakeryDetailResponseDTO: Codable {
 // MARK: - BreadType
 
 struct BreadType: Codable {
-    let breadTypeID: Int
-    let breadTypeName: String
-    let isGlutenFree, isVegan, isNutFree, isSugarFree: Bool
+    let breadTypeId: Int
     
-    enum CodingKeys: String, CodingKey {
-        case breadTypeID = "breadTypeId"
-        case breadTypeName, isGlutenFree, isVegan, isNutFree, isSugarFree
+    func toString() -> String {
+        switch self.breadTypeId {
+        case 1: return "글루텐프리"
+        case 2: return "비건"
+        case 3: return "넛프리"
+        case 4: return "대체당"
+        default: return ""
+        }
     }
+    
 }
 
 // MARK: - MenuList
@@ -66,31 +70,26 @@ extension BakeryDetailResponseDTO {
     static func initialDTO() -> BakeryDetailResponseDTO {
         
         return .init(bakeryID: 0,
-                                       bakeryName: "",
-                                       bakeryPicture: "",
-                                       isHACCP: false,
-                                       isVegan: false,
-                                       isNonGMO: false,
-                                       firstNearStation: "",
-                                       secondNearStation: "",
-                                       reviewCount: 0,
-                                       breadType: BreadResponseType(breadTypeID: 0,
-                                                                    name: "",
-                                                                    isGlutenFree: false,
-                                                                    isVegan: false,
-                                                                    isNutFree: false,
-                                                                    isSugarFree: false),
-                                       mapURL: "",
-                                       homepageURL: "",
-                                       instagramURL: "",
-                                       address: "",
-                                       openingHours: "",
-                                       closedDay: "",
-                                       phoneNumber: "",
-                                       menuList: [MenuList(menuID: 0,
-                                                           menuName: "",
-                                                           menuPrice: 0)],
-                                       isBookMarked: false,
-                                       bookMarkCount: 0)
+                     bakeryName: "",
+                     bakeryPicture: "",
+                     isHACCP: false,
+                     isVegan: false,
+                     isNonGMO: false,
+                     firstNearStation: "",
+                     secondNearStation: "",
+                     reviewCount: 0,
+                     breadTypeList: [.init(breadTypeId: 0)],
+                     mapURL: "",
+                     homepageURL: "",
+                     instagramURL: "",
+                     address: "",
+                     openingHours: "",
+                     closedDay: "",
+                     phoneNumber: "",
+                     menuList: [MenuList(menuID: 0,
+                                         menuName: "",
+                                         menuPrice: 0)],
+                     isBookMarked: false,
+                     bookMarkCount: 0)
     }
 }

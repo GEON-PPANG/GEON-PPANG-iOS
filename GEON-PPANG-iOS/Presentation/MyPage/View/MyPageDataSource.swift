@@ -151,7 +151,7 @@ extension MyPageDataSource {
         var group: NSCollectionLayoutGroup
         
         let basicItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(56))
-        let count = memberData.breadType.configureTrueOptions().count
+        let count = memberData.breadTypeList.count
         
         guard let sectionType = Section(rawValue: section)
         else { return .init(layoutSize: .init(widthDimension: .absolute(0), heightDimension: .absolute(0))) }
