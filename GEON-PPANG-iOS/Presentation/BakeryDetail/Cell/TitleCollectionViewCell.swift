@@ -93,7 +93,7 @@ final class TitleCollectionViewCell: UICollectionViewCell {
         }
         
         breadTypeStackView.do {
-            $0.getChipStatus(false, false, false, false)
+            $0.getChipStatus([])
         }
     }
     
@@ -115,7 +115,7 @@ final class TitleCollectionViewCell: UICollectionViewCell {
             }
         }
         
-        breadTypeStackView.getChipStatus(data.breadType.isGlutenFree, data.breadType.isVegan, data.breadType.isNutFree, data.breadType.isSugarFree)
+        breadTypeStackView.getChipStatus(data.breadTypeList)
         bookmarkReviewStackView.configureCount(bookmarkCount: data.bookMarkCount, reviewCount: data.reviewCount)
     }
 }

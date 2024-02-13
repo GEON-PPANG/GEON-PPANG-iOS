@@ -72,7 +72,7 @@ final class FilterCollectionViewHeader: UICollectionReusableView {
         
         subtitleLabel.do {
             $0.text = type.subtitle
-            $0.isHidden = type == .purpose ? true : false
+            $0.isHidden = type == .breadType ? false : true
         }
     }
     

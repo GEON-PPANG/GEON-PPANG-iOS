@@ -147,7 +147,7 @@ final class OnboardingViewController: BaseViewController {
                 )
                 
                 self?.postSignUp(with: request) {
-                    self?.getNickname { nickname in
+                    self?.getNickname { nickname, err in
                         self?.checkNickname(nickname)
                     }
                 }
@@ -225,17 +225,21 @@ extension OnboardingViewController {
         }
     }
     
-    private func getNickname(_ completion: @escaping (String?) -> Void) {
+    private func getNickname(_ completion: @escaping (String?, Int?) -> Void) {
         
-        MemberAPI.shared.getNickname { result in
+        MemberAPI.shared.getNickname { result, err  in
+            
+            if err == 403 { completion(nil, err); return }
+            
             guard let result = result,
                   let response = result.data
-            else { return }
+            else {  completion(nil,nil); return }
+
             switch result.code {
             case 200:
-                completion(response.nickname)
+                completion(response.nickname, nil)
             default:
-                completion(nil)
+                completion(nil, nil)
             }
         }
     }
@@ -280,7 +284,7 @@ extension OnboardingViewController: ASAuthorizationControllerDelegate {
                 )
                 
                 self.postSignUp(with: request) {
-                    self.getNickname { nickname in
+                    self.getNickname { nickname, err in
                         self.checkNickname(nickname)
                     }
                 }

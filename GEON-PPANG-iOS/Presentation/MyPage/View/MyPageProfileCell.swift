@@ -15,7 +15,7 @@ final class MyPageProfileCell: UICollectionViewCell {
     // MARK: - Prperty
     
     private var myPageData = MyPageResponseDTO.dummyData()
-    private lazy var myPageTagData = myPageData.breadType.configureTrueOptions()
+    private lazy var myPageTagData = myPageData.breadTypeList
     var filterButtonTapped: (() -> Void)?
     var savedBakeryTapped: (() -> Void)?
     var myReviewsTapped: (() -> Void)?
@@ -187,7 +187,7 @@ final class MyPageProfileCell: UICollectionViewCell {
         self.myPageData = memberData
         self.purposeFilterChipView.configureChip(toTag: convertFromData(myPageData.mainPurpose))
         self.userNameLabel.text = memberData.memberNickname
-        self.myPageTagData = memberData.breadType.configureTrueOptions()
+        self.myPageTagData = memberData.breadTypeList
         
         filterCollectionView.reloadData()
     }
@@ -225,7 +225,7 @@ final class MyPageProfileCell: UICollectionViewCell {
     
     private func chipCount() -> Int {
         
-        return myPageData.breadType.configureTrueOptions().count
+        return myPageData.breadTypeList.count
     }
 }
 
@@ -238,7 +238,7 @@ extension MyPageProfileCell: UICollectionViewDelegate {}
 extension MyPageProfileCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let tagCount = myPageTagData.filter { $0.1 == true }.count
+        let tagCount = myPageTagData.count
         if tagCount != 0 {
             configureBubbleView(false)
         }
@@ -248,7 +248,7 @@ extension MyPageProfileCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell: DescriptionCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-        cell.configureTagTitle(myPageTagData[indexPath.item].0)
+        cell.configureTagTitle(myPageTagData[indexPath.item].toString())
         return cell
     }
     
@@ -264,7 +264,7 @@ extension MyPageProfileCell: UICollectionViewDelegateFlowLayout {
         
         let dummyLabel = UILabel()
         dummyLabel.do {
-            $0.text = myPageTagData[indexPath.item].0
+            $0.text = myPageTagData[indexPath.item].toString()
             $0.font = .captionM1
         }
         let size = dummyLabel.intrinsicContentSize
