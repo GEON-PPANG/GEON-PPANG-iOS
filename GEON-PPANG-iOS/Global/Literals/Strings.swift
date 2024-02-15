@@ -78,7 +78,7 @@ struct I18N {
     struct Filter {
         static let purposeTitle = "맞춤 빵집 추천을 위해\n건빵을 찾은 이유를 알려주세요!"
         static let breadTypeTitle = "어떤 빵을 원하시나요?"
-        static let ingredientTitle = "어떤 성분을 원하시나요?"
+        static let ingredientTitle = "원하시는 성분공개 정도를\n선택해주세요!"
         static let subtitle = "중복선택이 가능해요!"
         static let welcomeTitle = "님:)\n건빵에 오신 걸 환영해요!"
         static let skip = "건너뛰기 "
@@ -172,5 +172,13 @@ struct I18N {
     /// BakeryListFilter
     struct BakeryListFilter {
         static let title = "내 필터 적용"
+    }
+    
+    struct LoginRequiredViewController {
+        static let recommendation = "별사탕님 맞춤 건빵을 추천하려면\n로그인이 필요해요"
+        static let profile = "별사탕님만의 페이지를 만들려면\n로그인이 필요해요"
+        static let bookmark = "건빵집을 저장하려면\n로그인이 필요해요"
+        static let writeReview = "리뷰를 작성하려면\n로그인이 필요해요"
+        static let reportReview = "리뷰를 신고하려면\n로그인이 필요해요"
     }
 }

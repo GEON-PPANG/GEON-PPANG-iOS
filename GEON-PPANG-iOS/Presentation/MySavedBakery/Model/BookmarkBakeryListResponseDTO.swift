@@ -1,16 +1,15 @@
 //
-//  MyReviewsResponseDTO.swift
+//  BookmarkBakeryListResponseDTO.swift
 //  GEON-PPANG-iOS
 //
-//  Created by JEONGEUN KIM on 2023/07/19.
+//  Created by 이성민 on 2/11/24.
 //
 
 import Foundation
 
-// MARK: - MyReviewsResponseDTO
-
-struct MyReviewsResponseDTO: Decodable, Equatable {
+struct BookmarkBakeryListResponseDTO: Decodable, Hashable, BakeryListProtocol {
     
+    var id = UUID()
     let bakeryID: Int
     let name: String
     let picture: String
@@ -18,9 +17,9 @@ struct MyReviewsResponseDTO: Decodable, Equatable {
     let isVegan: Bool
     let isNonGMO: Bool
     let station: String
+    let bookmarkCount: Int
+    let reviewCount: Int
     let breadTypeList: [BreadType]
-    let createdAt: String
-    let reviewID: Int
     
     private enum CodingKeys: String, CodingKey {
         case bakeryID = "bakeryId"
@@ -28,9 +27,8 @@ struct MyReviewsResponseDTO: Decodable, Equatable {
         case picture = "bakeryPicture"
         case isHACCP, isVegan, isNonGMO
         case firstNearStation, secondNearStation
-        case breadTypeList
-        case reviewID = "reviewId"
-        case createdAt
+        case bookmarkCount = "bookMarkCount"
+        case reviewCount, breadTypeList
     }
     
     init(from decoder: Decoder) throws {
@@ -41,6 +39,8 @@ struct MyReviewsResponseDTO: Decodable, Equatable {
         isHACCP = try container.decode(Bool.self, forKey: .isHACCP)
         isVegan = try container.decode(Bool.self, forKey: .isVegan)
         isNonGMO = try container.decode(Bool.self, forKey: .isNonGMO)
+        bookmarkCount = (try? container.decode(Int.self, forKey: .bookmarkCount)) ?? 0
+        reviewCount = (try? container.decode(Int.self, forKey: .reviewCount)) ?? 0
         
         let first = try container.decode(String.self, forKey: .firstNearStation)
         let second = try container.decode(String.self, forKey: .secondNearStation)
@@ -52,11 +52,21 @@ struct MyReviewsResponseDTO: Decodable, Equatable {
         }
         
         breadTypeList = try container.decode([BreadType].self, forKey: .breadTypeList)
-        reviewID = try container.decode(Int.self, forKey: .reviewID)
-        createdAt = try container.decode(String.self, forKey: .createdAt)
+        
     }
     
-    static func == (lhs: MyReviewsResponseDTO, rhs: MyReviewsResponseDTO) -> Bool {
-        lhs.reviewID == rhs.reviewID
+    func hash(into hasher: inout Hasher) {
+        
+        hasher.combine(id)
+    }
+    
+    static func == (lhs: BookmarkBakeryListResponseDTO, rhs: BookmarkBakeryListResponseDTO) -> Bool {
+        lhs.id == rhs.id
+    }
+}
+
+extension BookmarkBakeryListResponseDTO {
+    func toBooleanArray() -> [Bool] {
+        return [isHACCP, isVegan, isNonGMO]
     }
 }

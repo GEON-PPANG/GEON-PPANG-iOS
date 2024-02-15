@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Alamofire/Alamofire.git",
       "state" : {
-        "revision" : "bc268c28fb170f494de9e9927c371b8342979ece",
-        "version" : "5.7.1"
+        "revision" : "3dc6a42c7727c49bf26508e29b0a0b35f9c7e1ad",
+        "version" : "5.8.1"
       }
     },
     {
@@ -15,7 +15,7 @@
       "location" : "https://github.com/amplitude/Amplitude-iOS",
       "state" : {
         "branch" : "main",
-        "revision" : "dca2c744336e651ee285011282b86accc2ce3704"
+        "revision" : "82fc62448292c13fa0a6b0b11c4524df83fd3f3b"
       }
     },
     {
@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/amplitude/analytics-connector-ios.git",
       "state" : {
-        "revision" : "d2f3ec4b022211a67d5d4509135d84359f7f8b8d",
-        "version" : "1.0.2"
+        "revision" : "e2ca17ac735bcbc48b13062484541702ef45153d",
+        "version" : "1.0.3"
       }
     },
     {
@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kakao/kakao-ios-sdk",
       "state" : {
-        "revision" : "7047a84f416338badb0c0afc7209d01294adaf47",
-        "version" : "2.16.0"
+        "revision" : "ae3c60cbd4e3b348775f8c766e5b908fa1e66c5a",
+        "version" : "2.20.0"
       }
     },
     {
@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/onevcat/Kingfisher.git",
       "state" : {
-        "revision" : "c1f60c63f356d364f4284ba82961acbe7de79bcc",
-        "version" : "7.8.1"
+        "revision" : "5b92f029fab2cce44386d28588098b5be0824ef5",
+        "version" : "7.11.0"
       }
     },
     {
@@ -51,7 +51,7 @@
       "location" : "https://github.com/Moya/Moya",
       "state" : {
         "branch" : "master",
-        "revision" : "963654cd4f82d17d7546b9d6127c29f6df091717"
+        "revision" : "10a9dd1577c4de5135a29f99410863d2e9ee034a"
       }
     },
     {
@@ -77,8 +77,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/getsentry/sentry-cocoa.git",
       "state" : {
-        "revision" : "12998398eb51e2e8ff7098163fa97d305eee6d87",
-        "version" : "8.11.0"
+        "revision" : "b847a202a517a90763e8fd0656d8028aeee7b78d",
+        "version" : "8.20.0"
       }
     },
     {
@@ -86,8 +86,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SnapKit/SnapKit",
       "state" : {
-        "revision" : "f222cbdf325885926566172f6f5f06af95473158",
-        "version" : "5.6.0"
+        "revision" : "e74fe2a978d1216c3602b129447c7301573cc2d8",
+        "version" : "5.7.0"
       }
     },
     {

@@ -14,6 +14,7 @@ enum KeychainKey {
     case socialAuth
     case userEmail
     case socialType
+    case role
 }
 
 extension KeychainKey {
@@ -25,6 +26,7 @@ extension KeychainKey {
         case .socialAuth: return "socialAuthorizationCode"
         case .socialType: return "socialType"
         case .userEmail: return "userEmail"
+        case .role: return "role"
         }
     }
 }

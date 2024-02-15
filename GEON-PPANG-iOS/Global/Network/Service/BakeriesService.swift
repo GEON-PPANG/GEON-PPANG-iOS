@@ -54,6 +54,6 @@ extension BakeriesService: GBService {
     }
     
     var headerType: GBHeaderFields {
-        return .accessToken
+        return .optionalAccessToken
     }
 }

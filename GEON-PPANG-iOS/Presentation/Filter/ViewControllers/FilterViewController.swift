@@ -277,26 +277,26 @@ extension FilterViewController {
         case .onboarding:
             AnalyticManager.log(event: .onboarding(.completeFilterOnboarding(
                 mainPurpose: request.mainPurpose,
-                breadType: request.breadType.convertToStringArray(),
-                ingredientsType: request.nutrientType.convertToStringArray()
+                breadType: request.toBreadTypeStringArray(),
+                ingredientsType: request.toNutrientTypeStringArray()
             )))
         case .home:
             AnalyticManager.log(event: .home(.completeFilterHome(
                 mainPurpose: request.mainPurpose,
-                breadType: request.breadType.convertToStringArray(),
-                ingredientsType: request.nutrientType.convertToStringArray()
+                breadType: request.toBreadTypeStringArray(),
+                ingredientsType: request.toNutrientTypeStringArray()
             )))
         case .list:
             AnalyticManager.log(event: .list(.completeFilterList(
                 mainPurpose: request.mainPurpose,
-                breadType: request.breadType.convertToStringArray(),
-                ingredientsType: request.nutrientType.convertToStringArray()
+                breadType: request.toBreadTypeStringArray(),
+                ingredientsType: request.toNutrientTypeStringArray()
             )))
         case .mypage:
             AnalyticManager.log(event: .myPage(.completeFilterMypage(
                 mainPurpose: request.mainPurpose,
-                breadType: request.breadType.convertToStringArray(),
-                ingredientsType: request.nutrientType.convertToStringArray()
+                breadType: request.toBreadTypeStringArray(),
+                ingredientsType: request.toNutrientTypeStringArray()
             )))
         }
     }
@@ -323,13 +323,13 @@ extension FilterViewController: UICollectionViewDelegate {
             to: true
         )
         
-        if currentFilterType == .purpose {
+        if currentFilterType == .breadType {
+            configureNextButton()
+        } else {
             nextButton.isUserInteractionEnabled = true
             UIView.animate(withDuration: 0.2) {
                 self.nextButton.configureButtonUI(.gbbMain2!)
             }
-        } else {
-            configureNextButton()
         }
     }
     
@@ -339,11 +339,10 @@ extension FilterViewController: UICollectionViewDelegate {
                                            at: indexPath.item,
                                            to: false)
         
-        if currentFilterType == .purpose {
-            return
-        } else {
+        if currentFilterType == .breadType {
             configureNextButton()
+        } else {
+            return
         }
     }
-    
 }

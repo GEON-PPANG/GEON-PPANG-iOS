@@ -74,7 +74,6 @@ final class FilterCollectionViewCell: UICollectionViewCell {
             $0.setLineHeight(by: 1.12)
             $0.textAlignment = .center
             $0.numberOfLines = 2
-            $0.isHidden = filterType.hideDescription
         }
         
         labelStackView.do {

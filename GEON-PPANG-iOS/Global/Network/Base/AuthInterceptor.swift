@@ -25,14 +25,24 @@ final class AuthInterceptor: RequestInterceptor {
             return
         }
         
+        guard KeychainService.readKeychain(of: .role) == UserRole.member.rawValue
+        else {
+            completion(.success(urlRequest))
+            return
+        }
+        
         let authorization = KeychainService.readKeychain(of: .access)
         var urlRequest = urlRequest
-        urlRequest.setValue("Bearer " + authorization, forHTTPHeaderField: "Authorization")
+        
+        urlRequest.headers.add(.authorization(bearerToken: authorization))
         
         completion(.success(urlRequest))
     }
     
     func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
+        
+        guard KeychainService.readKeychain(of: .role) == UserRole.member.rawValue
+        else { return }
         
         guard let response = request.task?.response as? HTTPURLResponse, response.statusCode == 401
         else {
@@ -51,7 +61,7 @@ final class AuthInterceptor: RequestInterceptor {
         AuthAPI.shared.getTokenRefresh { response in
             guard let response = response else { return }
             
-            if response.code == 200 {
+            if response == 200 {
                 completion(.retry)
             } else {
                 Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()

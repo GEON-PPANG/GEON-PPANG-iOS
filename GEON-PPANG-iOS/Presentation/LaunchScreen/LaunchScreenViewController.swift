@@ -41,20 +41,19 @@ final class LaunchScreenViewController: BaseViewController {
     }
     
     private func checkUserLoggedIn() {
-        
-        getNickname { nickname in
-            guard let nickname = nickname else {
-                Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
-                return
-            }
-            
-            if nickname.prefix(5) == "GUEST" {
-                let viewcontroller = NickNameViewController()
-                viewcontroller.naviView.hideBackButton(true)
-                Utils.push(self.navigationController, viewcontroller)
-            } else {
-                Utils.sceneDelegate?.changeRootViewControllerToTabBarController()
-            }
+        let role = KeychainService.readKeychain(of: .role)
+        print("💩\(role)")
+        switch role {
+        case UserRole.guest.rawValue:
+            let viewcontroller = NickNameViewController()
+            viewcontroller.naviView.hideBackButton(true)
+            Utils.push(self.navigationController, viewcontroller)
+        case UserRole.member.rawValue:
+            Utils.sceneDelegate?.changeRootViewControllerToTabBarController()
+        case UserRole.visitor.rawValue:
+            Utils.sceneDelegate?.changeRootViewControllerToTabBarController()
+        default:
+            Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
         }
     }
     
@@ -62,17 +61,21 @@ final class LaunchScreenViewController: BaseViewController {
 
 extension LaunchScreenViewController {
     
-    private func getNickname(_ completion: @escaping (String?) -> Void) {
+    private func getNickname(_ completion: @escaping (String?, Int?) -> Void) {
         
-        MemberAPI.shared.getNickname { result in
+        MemberAPI.shared.getNickname { result, err in
+            
+            if err == 403 { completion(nil, err); return }
+            
             guard let result = result,
                   let response = result.data
-            else { return }
+            else { completion(nil, nil); return }
+            
             switch result.code {
             case 200:
-                completion(response.nickname)
+                completion(response.nickname, nil)
             default:
-                completion(nil)
+                completion(nil, nil)
             }
         }
     }

@@ -70,5 +70,17 @@ final class Utils {
         AnalyticManager.log(event: .detail(.viewDetailpageAt(source: source.rawValue)))
     }
     
-    static var sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+    static var sceneDelegate: SceneDelegate? = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+    
+    static func showLoginRequiredSheet(on viewController: UIViewController, type: LoginRequiredViewController.ViewType) {
+        let loginRequiredViewController = LoginRequiredViewController(viewType: type)
+        loginRequiredViewController.modalPresentationStyle = .pageSheet
+        if let sheet = loginRequiredViewController.sheetPresentationController {
+            sheet.detents = [.medium()]
+            sheet.prefersGrabberVisible = true
+        }
+        DispatchQueue.main.async {
+            viewController.present(loginRequiredViewController, animated: true)
+        }
+    }
 }

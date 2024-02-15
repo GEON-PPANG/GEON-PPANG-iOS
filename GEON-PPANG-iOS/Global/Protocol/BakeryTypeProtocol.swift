@@ -22,9 +22,11 @@ protocol BakeryListProtocol {
     var bakeryID: Int { get }
     var name: String { get }
     var picture: String { get }
-    var mark: CertificationMarkResponseType { get }
+    var isHACCP: Bool { get }
+    var isVegan: Bool { get }
+    var isNonGMO: Bool { get }
     var station: String { get }
     var bookmarkCount: Int { get }
     var reviewCount: Int { get }
-    var breadType: BreadResponseType { get }
+    var breadTypeList: [BreadType] { get }
 }

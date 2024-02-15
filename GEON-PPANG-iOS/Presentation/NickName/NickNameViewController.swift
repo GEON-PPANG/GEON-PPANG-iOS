@@ -100,6 +100,7 @@ final class NickNameViewController: BaseViewController {
         }
         
         checkButton.do {
+            $0.isEnabled = false
             $0.configureButtonUI(.clear)
             $0.configureBorder(1, .gbbGray300)
             $0.configureButtonTitle(.duplicate)
@@ -265,6 +266,7 @@ extension NickNameViewController {
         AuthAPI.shared.postSignUp(request: userInfo) { result in
             guard result != nil else { return }
             guard let userId = result?.data?.memberID else { return }
+            KeychainService.setKeychain(of: .role, with: "ROLE_MEMBER")
             AnalyticManager.set(userId: userId)
             AnalyticManager.log(event: .onboarding(.completeNickname(nickname: nickname)))
             AnalyticManager.log(event: .onboarding(.completeSignup))

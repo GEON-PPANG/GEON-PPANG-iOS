@@ -135,6 +135,11 @@ final class BakeryDetailViewController: BaseViewController {
             $0.check = false
             $0.backgroundColor = .gbbWhite
             $0.tappedBookmarkButton = {
+                if KeychainService.readKeychain(of: .role) == UserRole.visitor.rawValue {
+                    Utils.showLoginRequiredSheet(on: self, type: .bookmark)
+                    return
+                }
+                
                 self.detailBottomView.check = true
                 self.requestBakeryBookmark(!self.isBookmarked)
                 if !self.isBookmarked {
@@ -145,6 +150,11 @@ final class BakeryDetailViewController: BaseViewController {
             }
             $0.tappedWriteReviewButton = {
                 AnalyticManager.log(event: .writeReview(.startReviewWriting))
+                
+                if KeychainService.readKeychain(of: .role) == UserRole.visitor.rawValue {
+                    Utils.showLoginRequiredSheet(on: self, type: .writeReview)
+                    return
+                }
                 Utils.push(self.navigationController, ReviewViewController(
                     type: .write,
                     bakeryData: self.configureSimpleBakeryData()))
@@ -171,7 +181,7 @@ final class BakeryDetailViewController: BaseViewController {
         bakeryData.id = overviewData.bakeryID
         bakeryData.name = overviewData.bakeryName
         bakeryData.imageURL = overviewData.bakeryPicture
-        bakeryData.ingredients = overviewData.breadType.configureTrueOptions().filter { $0.1 == true }.map { $0.0 }
+        bakeryData.ingredients = overviewData.breadTypeList.map { $0.toString() }
         bakeryData.region = [overviewData.firstNearStation, overviewData.secondNearStation]
         bakeryData.certificates = .init(
             isHACCP: overviewData.isHACCP,
@@ -437,13 +447,12 @@ extension BakeryDetailViewController {
         
         guard let bakeryID = self.bakeryID else { return }
         
-//        BakeriesAPI.shared.postBookmark(bakeryID: bakeryID, with: bookmarkRequest) { _ in
-//            
-//            AnalyticManager.log(event: .detail(.clickMystore))
-//            self.detailBottomView.configureBookmarkButton(to: value)
-//            self.isBookmarked = value
-//            self.getBakeryDetail(bakeryID: bakeryID, isUpdated: false)
-//        }
+        BookmarksAPI.shared.bookmark(id: bakeryID, request: bookmarkRequest) { _ in
+            AnalyticManager.log(event: .detail(.clickMystore))
+            self.detailBottomView.configureBookmarkButton(to: value)
+            self.isBookmarked = value
+            self.getBakeryDetail(bakeryID: bakeryID, isUpdated: false)
+        }
     }
     
     private func showToast(message: String) {

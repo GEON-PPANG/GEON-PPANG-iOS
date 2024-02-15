@@ -122,17 +122,16 @@ extension MyReviewsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         guard myReviewsList != [] else { return }
-        let data = myReviewsList[indexPath.section]
-        let bakery = data.bakeryList
+        let bakery = myReviewsList[indexPath.section]
         let bakeryData = SimpleBakeryModel(
             id: bakery.bakeryID,
             name: bakery.name,
             imageURL: bakery.picture,
-            ingredients: bakery.breadType.configureTrueOptionStrings(),
+            ingredients: bakery.breadTypeList.map { $0.toString() },
             region: bakery.station.components(separatedBy: ", "),
-            certificates: bakery.mark
+            certificates: .init(isHACCP: bakery.isHACCP, isVegan: bakery.isVegan, isNonGMO: bakery.isNonGMO)
         )
-        let reviewViewController = ReviewViewController(type: .read, bakeryData: bakeryData, reviewID: data.reviewID, reviewDate: data.createdAt)
+        let reviewViewController = ReviewViewController(type: .read, bakeryData: bakeryData, reviewID: bakery.reviewID, reviewDate: bakery.createdAt)
         Utils.push(self.navigationController, reviewViewController)
         Utils.setDetailSourceType(.MYPAGE_MYREVIEW)
     }
@@ -165,7 +164,7 @@ extension MyReviewsViewController: UICollectionViewDataSource {
         } else {
             let cell: BakeryCommonCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             cell.configureReviewsUI()
-            cell.configureCellUI(data: myReviewsList[indexPath.section].bakeryList)
+            cell.configureCellUI(data: myReviewsList[indexPath.section])
             return cell
         }
     }
