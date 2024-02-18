@@ -54,19 +54,19 @@ final class HomeViewController: BaseViewController {
     
     // MARK: - Life Cycle
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        getUserName()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setRegistration()
         setDataSource()
         setSnapshot()
         setSupplementaryView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        getUserName()
     }
     
     // MARK: - Setting
@@ -102,7 +102,11 @@ final class HomeViewController: BaseViewController {
                 AnalyticManager.log(event: .home(.clickSearchHome))
             }
             $0.addActionToFilterButton {
-                Utils.push(self.navigationController, FilterViewController(from: .home))
+                if KeychainService.readKeychain(of: .role) == UserRole.visitor.rawValue {
+                    Utils.showLoginRequiredSheet(on: self, type: .recommendation)
+                } else {
+                    Utils.push(self.navigationController, FilterViewController(from: .home))
+                }
                 
                 AnalyticManager.log(event: .home(.startFilterHome))
 
@@ -301,6 +305,13 @@ extension HomeViewController {
     }
     
     private func getUserName() {
+        let role = KeychainService.readKeychain(of: .role)
+        if role == UserRole.visitor.rawValue {
+            getHomeBestData()
+            configureBubbleView(true)
+            topView.configureTitleText("별사탕")
+            return
+        }
         
         MemberAPI.shared.getFilter { response in
             guard let response = response else { return }

@@ -29,7 +29,7 @@ extension BestService: GBService {
     
     var headerType: GBHeaderFields {
         switch self {
-        case .bakery, .reviews: return .accessToken
+        case .bakery, .reviews: return .optionalAccessToken
         }
     }
     

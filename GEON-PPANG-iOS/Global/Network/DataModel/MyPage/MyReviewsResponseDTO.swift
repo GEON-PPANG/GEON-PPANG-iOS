@@ -56,30 +56,7 @@ struct MyReviewsResponseDTO: Decodable, Equatable {
         createdAt = try container.decode(String.self, forKey: .createdAt)
     }
     
-//    func hash(into hasher: inout Hasher) {
-//        
-//        hasher.combine(id)
-//    }
-    
     static func == (lhs: MyReviewsResponseDTO, rhs: MyReviewsResponseDTO) -> Bool {
         lhs.reviewID == rhs.reviewID
     }
-    
-//    let bakeries: [BookmarkBakeryListResponseDTO]
-//    let createdAt: String
-//    let reviewID: Int
-//    
-//    enum CodingKeys: String, CodingKey {
-//        case bakeries
-//        case createdAt
-//        case reviewID = "reviewId"
-//    }
-//    
-//    init(from decoder: Decoder) throws {
-//        let container = try decoder.container(keyedBy: CodingKeys.self)
-//        self.createdAt = try container.decode(String.self, forKey: .createdAt)
-//        self.reviewID = try container.decode(Int.self, forKey: .reviewID)
-//        self.bakeries = try container.decode([BookmarkBakeryListResponseDTO].self, forKey: .bakeries)
-//
-//    }
 }

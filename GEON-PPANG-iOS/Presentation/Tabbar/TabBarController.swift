@@ -25,6 +25,7 @@ final class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setTabBarDelegate()
         setTabBarItems()
         setTabBarUI()
     }
@@ -36,6 +37,10 @@ final class TabBarController: UITabBarController {
     }
     
     // MARK: - Setting
+    
+    private func setTabBarDelegate() {
+        self.delegate = UIApplication.shared.delegate as? UITabBarControllerDelegate
+    }
     
     private func setTabBarItems() {
         

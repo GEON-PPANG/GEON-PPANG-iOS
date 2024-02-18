@@ -41,6 +41,7 @@ enum GBHeaderFields {
     case noToken
     case platformToken
     case accessToken
+    case optionalAccessToken
     case accessAndRefreshToken
     case appleRefresh
 }
@@ -69,6 +70,7 @@ extension GBService {
         case .noToken: return NetworkConstant.header(.noToken)
         case .platformToken: return NetworkConstant.header(.platformToken)
         case .accessToken: return NetworkConstant.header(.accessToken)
+        case .optionalAccessToken: return NetworkConstant.header(.optionalTokenHeader)
         case .accessAndRefreshToken: return NetworkConstant.header(.accessAndRefreshToken)
         case .appleRefresh: return NetworkConstant.header(.appleRefresh)
         }

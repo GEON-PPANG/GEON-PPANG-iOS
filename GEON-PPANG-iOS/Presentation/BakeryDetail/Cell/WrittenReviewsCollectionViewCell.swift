@@ -196,6 +196,12 @@ extension BakeryDetailViewController: ReportButtonDelegate {
     func tappedReportButton(reviewID: Int) {
         
         AnalyticManager.log(event: .reportReview(.startReviewReport))
+        
+        if KeychainService.readKeychain(of: .role) == UserRole.visitor.rawValue {
+            Utils.showLoginRequiredSheet(on: self, type: .reportReview)
+            return
+        }
+        
         Utils.push(self.navigationController, ReportViewController(title: I18N.Detail.reviewReport, reviewID: reviewID))
     }
 }

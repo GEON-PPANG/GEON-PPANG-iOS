@@ -7,6 +7,13 @@
 
 import Foundation
 
+enum UserRole: String, RawRepresentable {
+    case guest = "ROLE_GUEST"
+    case member = "ROLE_MEMBER"
+    case visitor = "VISITOR"
+    case none = "NONE"
+}
+
 class KeychainService {
     
     static let serviceName = "GEON-PPANG"
@@ -14,6 +21,16 @@ class KeychainService {
     // MARK: - create keychain
     
     static func setKeychain(of key: KeychainKey, with value: String) {
+        
+        var value = value
+        if key == .role {
+            switch value {
+            case UserRole.guest.rawValue: value = UserRole.guest.rawValue
+            case UserRole.member.rawValue: value = UserRole.member.rawValue
+            case UserRole.visitor.rawValue: value = UserRole.visitor.rawValue
+            default: value = UserRole.none.rawValue
+            }
+        }
         
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
@@ -160,5 +177,6 @@ extension KeychainService {
         deleteKeychain(of: .appleRefresh)
         deleteKeychain(of: .socialAuth)
         deleteKeychain(of: .socialType)
+        deleteKeychain(of: .role)
     }
 }

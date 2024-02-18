@@ -112,7 +112,12 @@ final class BakeryListViewController: BaseViewController {
         
         bakeryFilterView.do {
             $0.applyAction {
-                Utils.push(self.navigationController, FilterViewController(from: .list))
+                if KeychainService.readKeychain(of: .role) == UserRole.visitor.rawValue {
+                    Utils.showLoginRequiredSheet(on: self, type: .recommendation)
+                } else {
+                    Utils.push(self.navigationController, FilterViewController(from: .list))
+                }
+                
                 AnalyticManager.log(event: .list(.startFilterList))
             }
             $0.filterData = { [weak self] data in
@@ -302,6 +307,8 @@ extension BakeryListViewController {
     }
     
     private func getUserFilterType() {
+        guard KeychainService.readKeychain(of: .role) == UserRole.member.rawValue
+        else { return }
         
         MemberAPI.shared.getFilter { response in
             guard let response = response else { return }

@@ -25,6 +25,12 @@ final class AuthInterceptor: RequestInterceptor {
             return
         }
         
+        guard KeychainService.readKeychain(of: .role) == UserRole.member.rawValue
+        else {
+            completion(.success(urlRequest))
+            return
+        }
+        
         let authorization = KeychainService.readKeychain(of: .access)
         var urlRequest = urlRequest
         
@@ -35,16 +41,12 @@ final class AuthInterceptor: RequestInterceptor {
     
     func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
         
+        guard KeychainService.readKeychain(of: .role) == UserRole.member.rawValue
+        else { return }
+        
         guard let response = request.task?.response as? HTTPURLResponse, response.statusCode == 401
         else {
             completion(.doNotRetry)
-            return
-        }
-        
-        guard KeychainService.hasKeychain(of: .access) else {
-            DispatchQueue.main.async {
-                Utils.sceneDelegate?.changeRootViewControllerToOnboardingViewController()
-            }
             return
         }
         

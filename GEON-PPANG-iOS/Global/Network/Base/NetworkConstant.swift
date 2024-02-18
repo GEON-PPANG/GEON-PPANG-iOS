@@ -29,6 +29,13 @@ struct NetworkConstant {
         case .accessToken:
             return ["Content-Type": "application/json",
                     "Authorization": "Bearer \(KeychainService.readKeychain(of: .access))"]
+        case .optionalTokenHeader:
+            let accessToken = KeychainService.readKeychain(of: .access)
+            if accessToken == "" {
+                return noTokenHeader
+            } else {
+                return hasTokenHeader
+            }
         case .accessAndRefreshToken:
             return ["Authorization": "Bearer \(KeychainService.readKeychain(of: .access))",
                     "Authorization-refresh": "Bearer \(KeychainService.readKeychain(of: .refresh))"]

@@ -1,23 +1,43 @@
 //
-//  OnboardingViewController.swift
+//  LoginRequiredViewController.swift
 //  GEON-PPANG-iOS
 //
-//  Created by kyun on 2023/07/11.
+//  Created by 이성민 on 1/30/24.
 //
 
 import UIKit
 
+import AuthenticationServices
 import SnapKit
 import Then
 
-import AuthenticationServices
-
-final class OnboardingViewController: BaseViewController {
+final class LoginRequiredViewController: BaseViewController {
+    
+    // MARK: - Property
+    
+    enum ViewType {
+        case recommendation
+        case profile
+        case bookmark
+        case writeReview
+        case reportReview
+    }
+    
+    let viewType: ViewType
+    private var descriptionLabelText: String {
+        switch viewType {
+        case .recommendation: I18N.LoginRequiredViewController.recommendation
+        case .profile: I18N.LoginRequiredViewController.profile
+        case .bookmark: I18N.LoginRequiredViewController.bookmark
+        case .writeReview: I18N.LoginRequiredViewController.writeReview
+        case .reportReview: I18N.LoginRequiredViewController.reportReview
+        }
+    }
     
     // MARK: - UI Property
     
-    private let skipLoginButton = UIButton()
-    private let logoImage = UIImageView()
+    private let loginImageView = UIImageView(image: .loginIcon)
+    private let loginLabel = UILabel()
     private let kakaoLoginButton = UIButton()
     private let appleLoginButton = UIButton()
     private let socialLoginButtonStackView = UIStackView()
@@ -26,7 +46,16 @@ final class OnboardingViewController: BaseViewController {
     private let seperatorView = UIView()
     private let emailButtonStackView = UIStackView()
     
-    // MARK: - life cycle
+    // MARK: - Life Cycle
+    
+    init(viewType: ViewType) {
+        self.viewType = viewType
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,18 +66,24 @@ final class OnboardingViewController: BaseViewController {
     // MARK: - Setting
     
     override func setLayout() {
-        view.addSubview(skipLoginButton)
-        skipLoginButton.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(28)
-            $0.leading.equalToSuperview().inset(16)
-            $0.height.equalTo(25)
+        
+        view.addSubview(loginImageView)
+        loginImageView.snp.makeConstraints {
+            $0.size.equalTo(64)
+            $0.top.equalToSuperview().offset(28)
+            $0.centerX.equalToSuperview()
         }
         
-        view.addSubview(logoImage)
-        logoImage.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(convertByHeightRatio(190))
-            $0.centerX.equalToSuperview()
-            $0.height.equalTo(convertByHeightRatio(179))
+        view.addSubview(loginLabel)
+        loginLabel.snp.makeConstraints {
+            $0.top.equalTo(loginImageView.snp.bottom).offset(18)
+            $0.directionalHorizontalEdges.equalToSuperview()
+        }
+        
+        view.addSubview(socialLoginButtonStackView)
+        socialLoginButtonStackView.snp.makeConstraints {
+            $0.top.equalTo(loginLabel.snp.bottom).offset(32)
+            $0.horizontalEdges.equalToSuperview().inset(24)
         }
         
         kakaoLoginButton.snp.makeConstraints {
@@ -59,10 +94,10 @@ final class OnboardingViewController: BaseViewController {
             $0.height.equalTo(56)
         }
         
-        view.addSubview(socialLoginButtonStackView)
-        socialLoginButtonStackView.snp.makeConstraints {
-            $0.top.equalTo(logoImage.snp.bottom).offset(56)
-            $0.horizontalEdges.equalToSuperview().inset(24)
+        view.addSubview(emailButtonStackView)
+        emailButtonStackView.snp.makeConstraints {
+            $0.top.equalTo(socialLoginButtonStackView.snp.bottom).offset(24)
+            $0.centerX.equalToSuperview()
         }
         
         emailLogInButton.snp.makeConstraints {
@@ -77,27 +112,15 @@ final class OnboardingViewController: BaseViewController {
             $0.height.equalTo(12)
             $0.width.equalTo(1)
         }
-        
-        view.addSubview(emailButtonStackView)
-        emailButtonStackView.snp.makeConstraints {
-            $0.top.equalTo(socialLoginButtonStackView.snp.bottom).offset(24)
-            $0.centerX.equalToSuperview()
-        }
     }
     
     override func setUI() {
-        skipLoginButton.do {
-            $0.setTitle("둘러보기", for: .normal)
-            $0.setTitleColor(.gbbGray300, for: .normal)
-            $0.titleLabel?.font = .captionB1
-            $0.addAction(UIAction { [weak self] _ in
-                self?.skipLoginButtonTapped()
-            }, for: .touchUpInside)
-        }
-        
-        logoImage.do {
-            $0.image = .launchscreenIcon
-            $0.contentMode = .scaleAspectFit
+        loginLabel.do {
+            $0.text = self.descriptionLabelText
+            $0.font = .title2
+            $0.numberOfLines = 2
+            $0.textAlignment = .center
+            $0.partColorChange(targetString: "로그인", textColor: .gbbMain2!)
         }
         
         kakaoLoginButton.do {
@@ -148,7 +171,7 @@ final class OnboardingViewController: BaseViewController {
         let kakaoLoginAction = UIAction { [weak self] _ in
             
             KakaoService.getKakaoAuthCode { token in
-                guard let token = token
+                guard let token = token, let self
                 else { return }
                 
                 KeychainService.setKeychain(of: .socialAuth, with: token)
@@ -161,9 +184,14 @@ final class OnboardingViewController: BaseViewController {
                     nickname: ""
                 )
                 
-                self?.postSignUp(with: request) { role in
+                guard let presenting = self.presentingViewController as? UINavigationController else { return }
+                self.postSignUp(with: request, viewController: self) { role in
                     KeychainService.setKeychain(of: .role, with: role)
-                    self?.check(role: role)
+                    self.dismiss(animated: true) {
+                        DispatchQueue.main.async {
+                            Utils.push(presenting, NickNameViewController())
+                        }
+                    }
                 }
             }
         }
@@ -176,7 +204,7 @@ final class OnboardingViewController: BaseViewController {
     }
 }
 
-extension OnboardingViewController {
+extension LoginRequiredViewController {
     
     private func appleLoginButtonTapped() {
         
@@ -191,84 +219,24 @@ extension OnboardingViewController {
     }
     
     private func emailLogInButtonTapped() {
-        Utils.push(self.navigationController, LogInViewController())
+        guard let presenting = self.presentingViewController as? UINavigationController else { return }
+        dismiss(animated: true) {
+            Utils.push(presenting, LogInViewController())
+        }
     }
     
     private func emailSignInButtonTapped() {
-        Utils.push(self.navigationController, SignInViewController())
-    }
-    
-    private func skipLoginButtonTapped() {
-        KeychainService.setKeychain(of: .role, with: "VISITOR")
-        Utils.sceneDelegate?.changeRootViewControllerToTabBarController()
-    }
-    
-    private func check(role: String) {
-        switch role {
-        case UserRole.guest.rawValue:
-            let viewController = NickNameViewController()
-            viewController.naviView.hideBackButton(true)
-            
-            let socialType = KeychainService.readKeychain(of: .socialType)
-            AnalyticManager.log(event: .onboarding(.startSignup(signUpType: socialType)))
-            
-            Utils.push(self.navigationController, viewController)
-            
-        case UserRole.member.rawValue, UserRole.visitor.rawValue:
-            Utils.sceneDelegate?.changeRootViewControllerToTabBarController()
-            
-        default:
-            print("❌❌❌ Unknown Role ❌❌❌")
-            let viewController = OnboardingViewController()
-            Utils.push(self.navigationController, viewController)
+        guard let presenting = self.presentingViewController as? UINavigationController else { return }
+        dismiss(animated: true) {
+            Utils.push(presenting, SignInViewController())
         }
     }
     
 }
 
-extension OnboardingViewController {
-    
-    private func postSignUp(with request: SignUpRequestDTO, completion: ((String) -> Void)?) {
-        
-        AuthAPI.shared.postSignUp(request: request) { response in
-            
-            guard let code = response?.code else { return }
-            switch code {
-            case 200...299:
-                guard let userID = response?.data?.memberID,
-                      let role = response?.data?.role
-                else { return }
-                AnalyticManager.set(userId: userID)
-                completion?(role)
-            default:
-                Utils.showAlert(title: "에러", description: "실패", at: self)
-            }
-        }
-    }
-    
-    private func getNickname(_ completion: @escaping (String?, Int?) -> Void) {
-        
-        MemberAPI.shared.getNickname { result, err  in
-            
-            if err == 403 { completion(nil, err); return }
-            
-            guard let result = result,
-                  let response = result.data
-            else {  completion(nil, nil); return }
+extension LoginRequiredViewController: LoginProtocol {}
 
-            switch result.code {
-            case 200:
-                completion(response.nickname, nil)
-            default:
-                completion(nil, nil)
-            }
-        }
-    }
-}
-
-// MARK: - Delegate
-
-extension OnboardingViewController: ASAuthorizationControllerDelegate {
+extension LoginRequiredViewController: ASAuthorizationControllerDelegate {
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         
@@ -304,9 +272,14 @@ extension OnboardingViewController: ASAuthorizationControllerDelegate {
                     nickname: ""
                 )
                 
-                self.postSignUp(with: request) { role in
+                guard let presenting = self.presentingViewController as? UINavigationController else { return }
+                self.postSignUp(with: request, viewController: self) { role in
                     KeychainService.setKeychain(of: .role, with: role)
-                    self.check(role: role)
+                    self.dismiss(animated: true) {
+                        DispatchQueue.main.async {
+                            Utils.push(presenting, NickNameViewController())
+                        }
+                    }
                 }
                 
             case .revoked:
@@ -320,7 +293,7 @@ extension OnboardingViewController: ASAuthorizationControllerDelegate {
     
 }
 
-extension OnboardingViewController: ASAuthorizationControllerPresentationContextProviding {
+extension LoginRequiredViewController: ASAuthorizationControllerPresentationContextProviding {
     
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         

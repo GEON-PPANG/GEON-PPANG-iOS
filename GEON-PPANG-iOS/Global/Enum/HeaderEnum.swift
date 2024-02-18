@@ -13,4 +13,5 @@ enum HeaderType {
     case accessToken
     case accessAndRefreshToken
     case appleRefresh
+    case optionalTokenHeader
 }

@@ -43,7 +43,7 @@ extension SearchService: GBService {
     var headerType: GBHeaderFields {
         switch self {
         case .bakeries:
-            return .accessToken
+            return .optionalAccessToken
         }
     }
     

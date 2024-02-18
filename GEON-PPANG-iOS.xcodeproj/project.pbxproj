@@ -179,6 +179,8 @@
 		3EA69B692B557A83008AE23B /* BakeriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA69B682B557A83008AE23B /* BakeriesService.swift */; };
 		3EA69B6B2B557A89008AE23B /* ReviewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA69B6A2B557A89008AE23B /* ReviewsService.swift */; };
 		3EA69BC72B59836B008AE23B /* KakaoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA69BC62B59836B008AE23B /* KakaoService.swift */; };
+		3EA69C472B67F7A1008AE23B /* LoginRequiredViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA69C462B67F7A1008AE23B /* LoginRequiredViewController.swift */; };
+		3EA69C492B67F8BA008AE23B /* LoginProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA69C482B67F8BA008AE23B /* LoginProtocol.swift */; };
 		3EAC950D2A9FAF4500D2AADC /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC950C2A9FAF4500D2AADC /* WebViewController.swift */; };
 		3EB798102AB2F448004EC35D /* HeaderEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB7980F2AB2F448004EC35D /* HeaderEnum.swift */; };
 		3EB798132AB302B1004EC35D /* AuthInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB798122AB302B1004EC35D /* AuthInterceptor.swift */; };
@@ -402,6 +404,8 @@
 		3EA69B682B557A83008AE23B /* BakeriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeriesService.swift; sourceTree = "<group>"; };
 		3EA69B6A2B557A89008AE23B /* ReviewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsService.swift; sourceTree = "<group>"; };
 		3EA69BC62B59836B008AE23B /* KakaoService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KakaoService.swift; sourceTree = "<group>"; };
+		3EA69C462B67F7A1008AE23B /* LoginRequiredViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequiredViewController.swift; sourceTree = "<group>"; };
+		3EA69C482B67F8BA008AE23B /* LoginProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginProtocol.swift; sourceTree = "<group>"; };
 		3EAC950C2A9FAF4500D2AADC /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		3EB7980F2AB2F448004EC35D /* HeaderEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderEnum.swift; sourceTree = "<group>"; };
 		3EB798122AB302B1004EC35D /* AuthInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInterceptor.swift; sourceTree = "<group>"; };
@@ -988,6 +992,7 @@
 			children = (
 				098716B52A60F52200538D05 /* BakeryTypeProtocol.swift */,
 				3E06F8D52A9CB83C001302F4 /* DiffableDataSourceProtocol.swift */,
+				3EA69C482B67F8BA008AE23B /* LoginProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -1056,6 +1061,7 @@
 			children = (
 				09FD47E12A5E69A2002020BD /* CommonBottomSheet.swift */,
 				09FD47E32A5E82BB002020BD /* BottomSheetAppearView.swift */,
+				3EA69C462B67F7A1008AE23B /* LoginRequiredViewController.swift */,
 			);
 			path = BottomSheet;
 			sourceTree = "<group>";
@@ -1699,6 +1705,7 @@
 				DFF196342A697EF8005D8233 /* Int+.swift in Sources */,
 				3EB798132AB302B1004EC35D /* AuthInterceptor.swift in Sources */,
 				0915C16A2A5BFC5900ACB8D4 /* HomeBottomCollectionViewCell.swift in Sources */,
+				3EA69C492B67F8BA008AE23B /* LoginProtocol.swift in Sources */,
 				DF483ACE2A65893600FCD507 /* IconLabelStackView.swift in Sources */,
 				DFECBB0A2A691B9B007F054B /* WrittenReviewsResponseDTO.swift in Sources */,
 				3EE466A42A69CAC6007C3C77 /* SimpleBakeryModel.swift in Sources */,
@@ -1759,6 +1766,7 @@
 				3E232ABC2A8FDB8F00125B76 /* FilterCollectionViewHeader.swift in Sources */,
 				DFB587B92A5D584800704B6C /* OnboardingViewController.swift in Sources */,
 				3E3543342AAD594E00BD926A /* SignUpResponseDTO.swift in Sources */,
+				3EA69C472B67F7A1008AE23B /* LoginRequiredViewController.swift in Sources */,
 				09E445332AA34F90008E3D33 /* AuthRequestDTO.swift in Sources */,
 				097716E72AA4E787001EE6D5 /* AuthPlugin.swift in Sources */,
 				DF959A6E2A568C9400E75774 /* UIColor+.swift in Sources */,

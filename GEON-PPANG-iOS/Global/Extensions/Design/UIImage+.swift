@@ -68,6 +68,7 @@ extension UIImage {
     static let timeIcon = UIImage(named: "ic_time")!.withRenderingMode(.alwaysOriginal)
     static let filterCheckIcon = UIImage(named: "ic_filter_check")!.withRenderingMode(.alwaysOriginal)
     static let filterUncheckIcon = UIImage(named: "ic_filter_unchecked")!.withRenderingMode(.alwaysOriginal)
+    static let loginIcon = UIImage(named: "ic_login")!.withRenderingMode(.alwaysOriginal)
     
     // Images
     static let noBookmarkImage = UIImage(named: "img_no_bookmark")!.withRenderingMode(.alwaysOriginal)
