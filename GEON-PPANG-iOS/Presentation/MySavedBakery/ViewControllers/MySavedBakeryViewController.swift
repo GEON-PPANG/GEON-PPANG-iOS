@@ -29,6 +29,7 @@ final class MySavedBakeryViewController: BaseViewController {
     
     private let naviView = CustomNavigationBar()
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
+    private lazy var refreshControl = UIRefreshControl()
     
     // MARK: - Life Cycle
     
@@ -76,9 +77,16 @@ final class MySavedBakeryViewController: BaseViewController {
             $0.configureCenterTitle(to: I18N.MySavedBakery.naviTitle, with: .title2!)
         }
         
+        refreshControl.do {
+            $0.addAction(UIAction { [weak self] _ in
+                self?.loadData()
+            }, for: .valueChanged)
+        }
+        
         collectionView.do {
             $0.backgroundColor = .gbbBackground1
             $0.delegate = self
+            $0.refreshControl = refreshControl
         }
     }
     
@@ -182,6 +190,12 @@ extension MySavedBakeryViewController: UICollectionViewDelegate {
 }
 
 extension MySavedBakeryViewController {
+    
+    private func loadData() {
+        
+        getSavedBakeryList()
+        refreshControl.endRefreshing()
+    }
     
     private func getSavedBakeryList() {
         MemberAPI.shared.bookmarks { response in
