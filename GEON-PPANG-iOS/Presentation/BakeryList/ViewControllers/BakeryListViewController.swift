@@ -137,6 +137,8 @@ final class BakeryListViewController: BaseViewController {
             }
             $0.tappedCheckBox = { [weak self] tapped in
                 guard let self else { return }
+                guard KeychainService.readKeychain(of: .role) == UserRole.member.rawValue
+                else { bakerySortView.tappedButton(false); return }
                 self.myFilterStatus = !tapped
                 getDefaultBakeryList()
                 self.bakerySortView.configureCheckBox()
@@ -308,7 +310,7 @@ extension BakeryListViewController {
     
     private func getUserFilterType() {
         guard KeychainService.readKeychain(of: .role) == UserRole.member.rawValue
-        else { return }
+        else { self.getDefaultBakeryList(); return }
         
         MemberAPI.shared.getFilter { response in
             guard let response = response else { return }
