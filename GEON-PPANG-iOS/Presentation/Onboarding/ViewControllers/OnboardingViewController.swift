@@ -147,7 +147,7 @@ final class OnboardingViewController: BaseViewController {
                 )
                 
                 self?.postSignUp(with: request) {
-                    self?.getNickname { nickname, err in
+                    self?.getNickname { nickname, _ in
                         self?.checkNickname(nickname)
                     }
                 }
@@ -233,7 +233,7 @@ extension OnboardingViewController {
             
             guard let result = result,
                   let response = result.data
-            else {  completion(nil,nil); return }
+            else {  completion(nil, nil); return }
 
             switch result.code {
             case 200:
@@ -284,7 +284,7 @@ extension OnboardingViewController: ASAuthorizationControllerDelegate {
                 )
                 
                 self.postSignUp(with: request) {
-                    self.getNickname { nickname, err in
+                    self.getNickname { nickname, _ in
                         self.checkNickname(nickname)
                     }
                 }

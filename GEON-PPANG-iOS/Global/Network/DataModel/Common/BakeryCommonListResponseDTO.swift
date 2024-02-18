@@ -70,3 +70,28 @@ extension BakeryCommonListResponseDTO {
         return [isHACCP, isVegan, isNonGMO]
     }
 }
+
+struct BakeryListResponseDTO: Decodable {
+
+    let content: [BakeryCommonListResponseDTO]
+    let pageable: Pageable
+    let totalPages, totalElements: Int
+    let last: Bool
+    let number: Int
+    let sort: Sort
+    let size, numberOfElements: Int
+    let first, empty: Bool
+}
+
+// MARK: - Pageable
+struct Pageable: Codable {
+    let sort: Sort
+    let offset, pageNumber, pageSize: Int
+    let paged, unpaged: Bool
+}
+
+// MARK: - Sort
+struct Sort: Codable {
+    let empty, sorted, unsorted: Bool
+}
+

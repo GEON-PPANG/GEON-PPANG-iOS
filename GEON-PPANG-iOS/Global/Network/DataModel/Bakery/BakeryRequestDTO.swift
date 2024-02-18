@@ -13,4 +13,5 @@ struct BakeryRequestDTO: Codable {
     var isHard: Bool
     var isDessert: Bool
     var isBrunch: Bool
+    var pageNumber: Int?
 }
