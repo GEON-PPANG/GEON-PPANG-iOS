@@ -29,20 +29,23 @@ final class BakeryListViewController: BaseViewController {
     private var isFirstAppearance = false
     private var filterStatus: [Bool] = [false, false, false ]
     private var myFilterStatus: Bool = false
+    private var pageNumber: Int = 1
+    private var isLast: Bool = false
     private var requestBakeryList: BakeryRequestDTO { return BakeryRequestDTO(
         sortingOption: sortBakeryName,
         personalFilter: myFilterStatus,
         isHard: filterStatus[0],
         isDessert: filterStatus[1],
-        isBrunch: filterStatus[2]
-    )
-    }
+        isBrunch: filterStatus[2],
+        pageNumber: pageNumber
+    )}
     
     // MARK: - UI Property
     
     private let bakeryTopView = BakeryListTopView()
     private let bakeryFilterView = BakeryFilterView()
     private let bakerySortView = SortBakeryFilterView()
+    private lazy var refreshControl = UIRefreshControl()
     private lazy var bubbleView = BubbleView(type: .left)
     private lazy var bakeryListCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
     
@@ -122,9 +125,8 @@ final class BakeryListViewController: BaseViewController {
                 
                 for (index, value) in data.enumerated() {
                     self.filterStatus[index] = value
-                                    
                 }
-                self.getBakeryList(request: self.requestBakeryList)
+                getDefaultBakeryList()
             }
         }
         
@@ -135,8 +137,14 @@ final class BakeryListViewController: BaseViewController {
             }
             $0.tappedCheckBox = { [weak self] tapped in
                 guard let self else { return }
+                guard KeychainService.readKeychain(of: .role) == UserRole.member.rawValue
+                else { 
+                    Utils.showLoginRequiredSheet(on: self, type: .recommendation)
+                    bakerySortView.tappedButton(false)
+                    return
+                }
                 self.myFilterStatus = !tapped
-                self.getBakeryList(request: self.requestBakeryList)
+                getDefaultBakeryList()
                 self.bakerySortView.configureCheckBox()
                 
                 if !self.myFilterStatus {
@@ -145,8 +153,15 @@ final class BakeryListViewController: BaseViewController {
             }
         }
         
+        refreshControl.do {
+            $0.addAction(UIAction { [weak self] _ in
+                self?.loadData()
+            }, for: .valueChanged)
+        }
+        
         bakeryListCollectionView.do {
             $0.delegate = self
+            $0.refreshControl = refreshControl
         }
     }
     
@@ -216,9 +231,20 @@ final class BakeryListViewController: BaseViewController {
             self.sortBakeryBy = sortBy
             self.configureFilterButtonText()
             self.sortBakeryName = sortBy.sortValue
-            self.getBakeryList(request: self.requestBakeryList)
+            self.getDefaultBakeryList()
         }
         self.present(sortBottomSheet, animated: false)
+    }
+    
+    private func loadData() {
+        
+        getDefaultBakeryList()
+        refreshControl.endRefreshing()
+    }
+    
+    func scrollToTop() {
+        let desiredOffset = CGPoint(x: 0, y: -bakeryListCollectionView.contentInset.top)
+        bakeryListCollectionView.setContentOffset(desiredOffset, animated: true)
     }
 }
 
@@ -233,26 +259,62 @@ extension BakeryListViewController: UICollectionViewDelegate {
         Utils.setDetailSourceType(.LIST)
         Utils.push(self.navigationController, nextViewController)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        if indexPath.item == bakeryList.count - 1, !self.isLast {
+            getMoreBakeryList()
+        }
+    }
 }
 
 // MARK: - Network
 
 extension BakeryListViewController {
     
+    private func makeRequestBakeryList(pageNumber: Int) -> BakeryRequestDTO {
+        return BakeryRequestDTO(
+            sortingOption: sortBakeryName,
+            personalFilter: myFilterStatus,
+            isHard: filterStatus[0],
+            isDessert: filterStatus[1],
+            isBrunch: filterStatus[2],
+            pageNumber: pageNumber
+        )
+    }
+    
+    private func getBakeryList(pageNumber: Int) {
+        self.pageNumber = pageNumber
+        let requestBakeryList = makeRequestBakeryList(pageNumber: pageNumber)
+        self.getBakeryList(request: requestBakeryList)
+    }
+    
+    private func getDefaultBakeryList() {
+        scrollToTop()
+        self.bakeryList = []
+        getBakeryList(pageNumber: 1)
+    }
+    
+    private func getMoreBakeryList() {
+        getBakeryList(pageNumber: pageNumber)
+    }
+    
     private func getBakeryList(request: BakeryRequestDTO) {
-        
         BakeriesAPI.shared.getBakeries(parameters: request) { response in
             guard let response = response else { return }
             guard let data = response.data else { return }
-            let bakeryList = data.map { $0 }
-            self.bakeryList = bakeryList
+            
+            self.bakeryList.append(contentsOf: data.content)
+            self.isLast = data.last
+            self.pageNumber += data.last ? 0 : 1
+            
             self.setSnapShot()
         }
     }
     
     private func getUserFilterType() {
         guard KeychainService.readKeychain(of: .role) == UserRole.member.rawValue
-        else { return }
+        else { self.getDefaultBakeryList(); return }
         
         MemberAPI.shared.getFilter { response in
             guard let response = response else { return }
@@ -268,8 +330,8 @@ extension BakeryListViewController {
                     self.isFirstAppearance = true
                 }
             }
-            self.getBakeryList(request: self.requestBakeryList)
-            self.setSnapShot()
+            
+            self.getDefaultBakeryList()
         }
     }
 }

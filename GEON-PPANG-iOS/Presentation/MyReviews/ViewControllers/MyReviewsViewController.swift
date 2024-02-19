@@ -20,6 +20,7 @@ final class MyReviewsViewController: BaseViewController {
     
     private let naviView = CustomNavigationBar()
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
+    private lazy var refreshControl = UIRefreshControl()
     
     // MARK: - Setting
     
@@ -61,9 +62,16 @@ final class MyReviewsViewController: BaseViewController {
             $0.configureCenterTitle(to: I18N.MyReviews.naviTitle, with: .title2!)
         }
         
+        refreshControl.do {
+            $0.addAction(UIAction { [weak self] _ in
+                self?.loadData()
+            }, for: .valueChanged)
+        }
+        
         collectionView.do {
             $0.backgroundColor = .gbbBackground1
             $0.isScrollEnabled = false
+            $0.refreshControl = refreshControl
         }
     }
     
@@ -189,6 +197,12 @@ extension MyReviewsViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - API
 
 extension MyReviewsViewController {
+    
+    private func loadData() {
+        
+        getMyReviews()
+        refreshControl.endRefreshing()
+    }
     
     private func getMyReviews() {
         

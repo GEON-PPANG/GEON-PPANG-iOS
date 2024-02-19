@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 protocol BakeriesAPIType {
-    func getBakeries(parameters: BakeryRequestDTO, completion: @escaping (ArrayEndpoint<BakeryCommonListResponseDTO>?) -> Void)
+    func getBakeries(parameters: BakeryRequestDTO, completion: @escaping (Endpoint<BakeryListResponseDTO>?) -> Void)
     func getBakeryDetail(bakeryID: Int, completion: @escaping (Endpoint<BakeryDetailResponseDTO>?) -> Void)
     func getBakeryReviews(bakeryID: Int, completion: @escaping (Endpoint<WrittenReviewsResponseDTO>?) -> Void)
 }
@@ -23,12 +23,12 @@ final class BakeriesAPI: BakeriesAPIType {
     var provider: MoyaProvider<BakeriesService> = MoyaProvider(session: Session(interceptor: AuthInterceptor.shared),
                                                                plugins: [MoyaLoggingPlugin()])
     
-    func getBakeries(parameters: BakeryRequestDTO, completion: @escaping (ArrayEndpoint<BakeryCommonListResponseDTO>?) -> Void) {
+    func getBakeries(parameters: BakeryRequestDTO, completion: @escaping (Endpoint<BakeryListResponseDTO>?) -> Void) {
         provider.request(.bakeries(parameters: parameters)) { result in
             switch result {
             case let .success(response):
                 do {
-                    let bakeries = try response.map(ArrayEndpoint<BakeryCommonListResponseDTO>.self)
+                    let bakeries = try response.map(Endpoint<BakeryListResponseDTO>.self)
                     completion(bakeries)
                 } catch let err {
                     print(err.localizedDescription)

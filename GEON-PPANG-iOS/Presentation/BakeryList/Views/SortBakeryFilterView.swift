@@ -133,6 +133,8 @@ final class SortBakeryFilterView: UIView {
     func tappedButton(_ isSelected: Bool) {
         
         self.checkBox.isSelected = isSelected
-        self.checkBox.isUserInteractionEnabled = isSelected
+        
+        guard KeychainService.readKeychain(of: .role) != UserRole.member.rawValue
+        else { self.checkBox.isUserInteractionEnabled = isSelected; return }
     }
 }
