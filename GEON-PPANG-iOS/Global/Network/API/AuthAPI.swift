@@ -46,6 +46,7 @@ final class AuthAPI: AuthAPIType {
     
     func postSignUp(request: SignUpRequestDTO, completion: @escaping (Endpoint<SignUpResponseDTO>?) -> Void) {
         defaultProvider.request(.signUp(request: request)) { result in
+            dump(result)
             switch result {
             case .success(let response):
                 do {
@@ -83,6 +84,7 @@ final class AuthAPI: AuthAPIType {
             switch result {
             case .success(let response):
                 KeychainService.setKeychain(of: .role, with: "NONE")
+                
                 completion(response.statusCode)
             case .failure(let err):
                 print(err.localizedDescription)

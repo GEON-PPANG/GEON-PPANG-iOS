@@ -62,6 +62,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func changeRootViewControllerToOnboardingViewController() {
         guard let window = window else { return }
+        KeychainService.setKeychain(of: .role, with: "NONE")
         DispatchQueue.main.async {
             let rootViewController = OnboardingViewController()
             let navigationController = UINavigationController(rootViewController: rootViewController)

@@ -218,6 +218,7 @@ extension LogInViewController {
             guard let status = result else { return }
             switch status {
             case 200...204:
+                KeychainService.setKeychain(of: .role, with: "ROLE_MEMBER")
                 AnalyticManager.log(event: .general(.loginApp(loginType: AnalyticEventType.EMAIL.rawValue)))
                 DispatchQueue.main.async {
                     Utils.sceneDelegate?.changeRootViewControllerToTabBarController()

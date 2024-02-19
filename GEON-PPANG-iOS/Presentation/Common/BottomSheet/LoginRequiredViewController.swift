@@ -188,8 +188,14 @@ final class LoginRequiredViewController: BaseViewController {
                 self.postSignUp(with: request, viewController: self) { role in
                     KeychainService.setKeychain(of: .role, with: role)
                     self.dismiss(animated: true) {
-                        DispatchQueue.main.async {
-                            Utils.push(presenting, NickNameViewController())
+                        if role == "ROLE_MEMBER" {
+                            DispatchQueue.main.async {
+                                Utils.sceneDelegate?.changeRootViewControllerToTabBarController()
+                            }
+                        } else {
+                            DispatchQueue.main.async {
+                                Utils.push(presenting, NickNameViewController())
+                            }
                         }
                     }
                 }
@@ -276,8 +282,14 @@ extension LoginRequiredViewController: ASAuthorizationControllerDelegate {
                 self.postSignUp(with: request, viewController: self) { role in
                     KeychainService.setKeychain(of: .role, with: role)
                     self.dismiss(animated: true) {
-                        DispatchQueue.main.async {
-                            Utils.push(presenting, NickNameViewController())
+                        if role == "ROLE_MEMBER" {
+                            DispatchQueue.main.async {
+                                Utils.sceneDelegate?.changeRootViewControllerToTabBarController()
+                            }
+                        } else {
+                            DispatchQueue.main.async {
+                                Utils.push(presenting, NickNameViewController())
+                            }
                         }
                     }
                 }

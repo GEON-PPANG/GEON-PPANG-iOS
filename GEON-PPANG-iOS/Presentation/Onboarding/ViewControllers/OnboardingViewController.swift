@@ -200,6 +200,8 @@ extension OnboardingViewController {
     
     private func skipLoginButtonTapped() {
         KeychainService.setKeychain(of: .role, with: "VISITOR")
+        KeychainService.deleteKeychain(of: .access)
+        KeychainService.deleteKeychain(of: .refresh)
         Utils.sceneDelegate?.changeRootViewControllerToTabBarController()
     }
     
