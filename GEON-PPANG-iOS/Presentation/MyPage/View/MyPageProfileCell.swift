@@ -171,7 +171,7 @@ final class MyPageProfileCell: UICollectionViewCell {
             }
         }
         
-        configureBubbleView(true)
+        configureBubbleView(KeychainService.readKeychain(of: .role) != UserRole.visitor.rawValue)
     }
     
     private func setDelegate() {

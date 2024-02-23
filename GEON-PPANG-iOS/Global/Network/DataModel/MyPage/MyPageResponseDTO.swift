@@ -24,7 +24,7 @@ extension MyPageResponseDTO {
     
     static func emptyData() -> MyPageResponseDTO {
         
-        return .init(memberNickname: "",
+        return .init(memberNickname: "별사탕",
                      mainPurpose: "",
                      breadTypeList: [])
     }

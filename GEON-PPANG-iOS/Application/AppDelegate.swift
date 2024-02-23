@@ -45,13 +45,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-extension AppDelegate: UITabBarControllerDelegate {
-    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        guard KeychainService.readKeychain(of: .role) == UserRole.visitor.rawValue,
-              viewController is MyPageViewController
-        else { return true }
-        
-        Utils.showLoginRequiredSheet(on: tabBarController, type:.profile)
-        return false
-    }
-}
