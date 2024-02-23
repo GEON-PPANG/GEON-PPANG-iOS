@@ -50,6 +50,6 @@ struct URLConstant {
     // MARK: - Report
     
     struct Report {
-        static let review = "/review"
+        static let review = "/report/review"
     }
 }
