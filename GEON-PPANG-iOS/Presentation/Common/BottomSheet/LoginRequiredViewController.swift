@@ -139,7 +139,7 @@ final class LoginRequiredViewController: BaseViewController {
         
         emailLogInButton.do {
             $0.setTitle(I18N.Onboarding.emailSignIn, for: .normal)
-            $0.setTitleColor(.gbbGray400, for: .normal)
+            $0.setTitleColor(.gbbGray500, for: .normal)
             $0.titleLabel?.font = .captionB1
             $0.addAction(UIAction { [weak self] _ in
                 self?.emailLogInButtonTapped()

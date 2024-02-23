@@ -62,6 +62,7 @@ extension UILabel {
         self.text = text ?? ""
         self.font = font
         self.textColor = color
+        self.textAlignment = .center
     }
 }
 
