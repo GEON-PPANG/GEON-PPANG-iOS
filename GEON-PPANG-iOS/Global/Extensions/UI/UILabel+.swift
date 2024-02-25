@@ -58,11 +58,11 @@ extension UILabel {
 }
 
 extension UILabel {
-    func basic(text: String? = "", font: UIFont, color: UIColor) {
+    func basic(text: String? = "", font: UIFont, color: UIColor, align: NSTextAlignment = .left) {
         self.text = text ?? ""
         self.font = font
         self.textColor = color
-        self.textAlignment = .center
+        self.textAlignment = align
     }
 }
 
