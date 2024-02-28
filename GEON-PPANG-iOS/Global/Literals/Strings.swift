@@ -87,7 +87,7 @@ struct I18N {
     /// MyPage
     struct MyPage {
         static let title = "마이페이지"
-        static let bookmark = "저장목록"
+        static let bookmark = "저장 목록"
         static let myReviews = "내가 쓴 리뷰"
         static let terms = "이용약관"
         static let commonQuestions = "자주 묻는 질문"

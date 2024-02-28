@@ -338,6 +338,10 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
             
             return CGSize(width: getDeviceWidth(), height: cellHeight)
         case 1:
+            // 가게 상세정보 영역
+            if overviewData.homepageURL == "" && overviewData.instagramURL == "" {
+                return CGSize(width: getDeviceWidth(), height: 263 - 42)
+            }
             return CGSize(width: getDeviceWidth(), height: 263)
         case 2:
             return CGSize(width: getDeviceWidth(), height: 32)

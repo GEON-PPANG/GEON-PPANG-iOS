@@ -53,7 +53,7 @@ extension FilterCellModel {
                         selected: false),
         FilterCellModel(id: 7,
                         title: "대체당",
-                        subtitle: "NO 동물성재료\n(유제품, 계란 등)",
+                        subtitle: "NO 설탕\n(비설탕감미료)",
                         selected: false)
     ]
     

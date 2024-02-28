@@ -20,20 +20,25 @@ final class InfoCollectionViewCell: UICollectionViewCell {
     
     weak var delegate: InfoCollectionViewCellDelegate?
     
-    // MARK: - UI Property
+    private let infoStackView = UIStackView()
     
-    private let bakeryLinkImage = UIImageView()
+    private let linkSection = UIView()
+    private let linkImage = UIImageView()
     private lazy var linkButtonStackView = LinkButtonStackView()
-    private let bakeryAddressImage = UIImageView()
-    private lazy var bakeryAddressLabel = UILabel()
-    private lazy var regionStackView = RegionStackView()
-    private let bakeryOpeningHoursImage = UIImageView()
-    private let bakeryClosedDaysLabel = UILabel()
-    private let bakeryOpeningHoursLabel = UILabel()
-    private let bakeryPhoneNumberImage = UIImageView()
-    private let bakeryPhoneNumberLabel = UILabel()
     
-    // MARK: - Initializer
+    private let addressSection = UIView()
+    private let addressImage = UIImageView()
+    private lazy var addressLabel = UILabel()
+    private lazy var regionStackView = RegionStackView()
+    
+    private let openingHoursSection = UIView()
+    private let openingHoursImage = UIImageView()
+    private let closedDaysLabel = UILabel()
+    private let openingHoursLabel = UILabel()
+    
+    private let phoneNumberSection = UIView()
+    private let phoneNumberImage = UIImageView()
+    private let phoneNumberLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -42,98 +47,89 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         setUI()
     }
     
-    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Setting
-    
     private func setLayout() {
-        
-        contentView.addSubview(bakeryLinkImage)
-        bakeryLinkImage.snp.makeConstraints {
-            $0.top.leading.equalToSuperview().inset(24)
-            $0.size.equalTo(24)
+        contentView.addSubview(infoStackView)
+        infoStackView.snp.makeConstraints {
+            $0.edges.equalToSuperview().inset(24)
         }
         
-        contentView.addSubview(linkButtonStackView)
+        infoStackView.addArrangedSubview(linkSection)
+        linkSection.addSubview(linkImage)
+        linkImage.snp.makeConstraints {
+            $0.leading.verticalEdges.equalToSuperview()
+            $0.size.equalTo(24)
+        }
+        linkSection.addSubview(linkButtonStackView)
         linkButtonStackView.snp.makeConstraints {
-            $0.centerY.equalTo(bakeryLinkImage)
-            $0.leading.equalTo(bakeryLinkImage.snp.trailing).offset(10)
+            $0.centerY.equalTo(linkImage)
+            $0.leading.equalTo(linkImage.snp.trailing).offset(10)
         }
         
-        contentView.addSubview(bakeryAddressImage)
-        bakeryAddressImage.snp.makeConstraints {
-            $0.top.equalTo(bakeryLinkImage.snp.bottom).offset(18)
-            $0.leading.equalTo(bakeryLinkImage)
+        infoStackView.addArrangedSubview(addressSection)
+        addressSection.addSubview(addressImage)
+        addressImage.snp.makeConstraints {
+            $0.leading.top.equalToSuperview()
             $0.size.equalTo(24)
         }
-        
-        contentView.addSubview(bakeryAddressLabel)
-        bakeryAddressLabel.snp.makeConstraints {
-            $0.centerY.equalTo(bakeryAddressImage)
-            $0.leading.equalTo(linkButtonStackView)
-            $0.trailing.equalToSuperview().inset(24)
-            $0.width.equalTo(293)
-            $0.height.equalTo(20)
+        addressSection.addSubview(addressLabel)
+        addressLabel.snp.makeConstraints {
+            $0.centerY.equalTo(addressImage)
+            $0.leading.equalTo(addressImage.snp.trailing).offset(10)
         }
-        
-        contentView.addSubview(regionStackView)
+        addressSection.addSubview(regionStackView)
         regionStackView.snp.makeConstraints {
-            $0.top.equalTo(bakeryAddressLabel.snp.bottom).offset(13)
-            $0.leading.equalTo(bakeryAddressLabel)
+            $0.leading.equalTo(addressImage.snp.trailing).offset(10)
+            $0.top.equalTo(addressImage.snp.bottom).offset(8)
+            $0.bottom.equalToSuperview()
         }
         
-        contentView.addSubview(bakeryOpeningHoursImage)
-        bakeryOpeningHoursImage.snp.makeConstraints {
-            $0.top.equalTo(regionStackView.snp.bottom).offset(18)
-            $0.leading.equalToSuperview().inset(24)
+        infoStackView.addArrangedSubview(openingHoursSection)
+        openingHoursSection.addSubview(openingHoursImage)
+        openingHoursImage.snp.makeConstraints {
+            $0.leading.top.equalToSuperview()
             $0.size.equalTo(24)
         }
-        
-        contentView.addSubview(bakeryClosedDaysLabel)
-        bakeryClosedDaysLabel.snp.makeConstraints {
-            $0.top.equalTo(bakeryOpeningHoursImage)
-            $0.leading.equalTo(bakeryAddressLabel)
-            $0.trailing.equalToSuperview().inset(24)
-            $0.width.equalTo(293)
-            $0.height.equalTo(20)
+        openingHoursSection.addSubview(closedDaysLabel)
+        closedDaysLabel.snp.makeConstraints {
+            $0.leading.equalTo(openingHoursImage.snp.trailing).offset(10)
+            $0.top.equalToSuperview()
+        }
+        openingHoursSection.addSubview(openingHoursLabel)
+        openingHoursLabel.snp.makeConstraints {
+            $0.leading.equalTo(closedDaysLabel)
+            $0.top.equalTo(closedDaysLabel.snp.bottom).offset(2)
+            $0.bottom.equalToSuperview()
         }
         
-        contentView.addSubview(bakeryOpeningHoursLabel)
-        bakeryOpeningHoursLabel.snp.makeConstraints {
-            $0.top.equalTo(bakeryClosedDaysLabel.snp.bottom).offset(2)
-            $0.leading.equalTo(bakeryClosedDaysLabel)
-            $0.trailing.equalToSuperview().inset(24)
-            $0.width.equalTo(293)
-            $0.height.equalTo(20)
-        }
-        
-        contentView.addSubview(bakeryPhoneNumberImage)
-        bakeryPhoneNumberImage.snp.makeConstraints {
-            $0.top.equalTo(bakeryOpeningHoursLabel.snp.bottom).offset(18)
-            $0.leading.equalToSuperview().inset(24)
+        infoStackView.addArrangedSubview(phoneNumberSection)
+        phoneNumberSection.addSubview(phoneNumberImage)
+        phoneNumberImage.snp.makeConstraints {
+            $0.leading.verticalEdges.equalToSuperview()
             $0.size.equalTo(24)
         }
-        
-        contentView.addSubview(bakeryPhoneNumberLabel)
-        bakeryPhoneNumberLabel.snp.makeConstraints {
-            $0.centerY.equalTo(bakeryPhoneNumberImage)
-            $0.leading.equalTo(bakeryOpeningHoursLabel)
-            $0.trailing.equalToSuperview().inset(155)
-            $0.width.equalTo(162)
-            $0.height.equalTo(20)
+        phoneNumberSection.addSubview(phoneNumberLabel)
+        phoneNumberLabel.snp.makeConstraints {
+            $0.centerY.equalTo(phoneNumberImage)
+            $0.leading.equalTo(phoneNumberImage.snp.trailing).offset(10)
         }
     }
     
     private func setUI() {
-        
         self.do {
             $0.backgroundColor = .gbbWhite
         }
         
-        bakeryLinkImage.do {
+        infoStackView.do {
+            $0.axis = .vertical
+            $0.spacing = 18
+            $0.distribution = .equalSpacing
+        }
+        
+        linkImage.do {
             $0.image = .linkIcon
         }
         
@@ -151,11 +147,11 @@ final class InfoCollectionViewCell: UICollectionViewCell {
             }
         }
         
-        bakeryAddressImage.do {
+        addressImage.do {
             $0.image = .storeIcon
         }
         
-        bakeryAddressLabel.do {
+        addressLabel.do {
             $0.basic(font: .subHead!, color: .gbbGray400!)
             $0.adjustsFontSizeToFitWidth = true
         }
@@ -165,43 +161,45 @@ final class InfoCollectionViewCell: UICollectionViewCell {
             $0.configureChipBackgroundColor(.gbbBackground2!)
         }
         
-        bakeryOpeningHoursImage.do {
+        openingHoursImage.do {
             $0.image = .timeIcon
         }
         
-        bakeryClosedDaysLabel.do {
+        closedDaysLabel.do {
             $0.basic(font: .subHead!, color: .gbbError!)
         }
         
-        bakeryOpeningHoursLabel.do {
+        openingHoursLabel.do {
             $0.basic(font: .subHead!, color: .gbbGray400!)
             $0.adjustsFontSizeToFitWidth = true
         }
         
-        bakeryPhoneNumberImage.do {
+        phoneNumberImage.do {
             $0.image = .callIcon
         }
         
-        bakeryPhoneNumberLabel.do {
+        phoneNumberLabel.do {
             $0.basic(font: .subHead!, color: .gbbGray400!)
         }
     }
     
-    // MARK: - Custom Method
-    
     func configureCellUI(_ data: BakeryDetailResponseDTO) {
         
-        linkButtonStackView.getLinkStatus(data.homepageURL, data.instagramURL)
-        bakeryAddressLabel.text = data.address
+        if data.homepageURL == "" && data.instagramURL == "" {
+            linkSection.isHidden = true
+        } else {
+            linkButtonStackView.getLinkStatus(data.homepageURL, data.instagramURL)
+        }
+        addressLabel.text = data.address
         regionStackView.configureRegionName(data.firstNearStation, data.secondNearStation)
         
         if data.firstNearStation != "" && data.secondNearStation == "" {
             regionStackView.removeSecondRegion()
         }
         
-        bakeryClosedDaysLabel.text = data.closedDay
-        bakeryOpeningHoursLabel.text = data.openingHours
-        bakeryPhoneNumberLabel.text = data.phoneNumber
+        closedDaysLabel.text = data.closedDay
+        openingHoursLabel.text = data.openingHours
+        phoneNumberLabel.text = data.phoneNumber
     }
     
     func tappedHomepageLinkButton() {
@@ -213,8 +211,6 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         delegate?.tappedInstagramLinkButton()
     }
 }
-
-// MARK: - Custom Protocol
 
 extension BakeryDetailViewController: InfoCollectionViewCellDelegate {
     

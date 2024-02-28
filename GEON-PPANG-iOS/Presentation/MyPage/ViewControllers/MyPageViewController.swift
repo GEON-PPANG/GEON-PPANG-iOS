@@ -87,19 +87,35 @@ final class MyPageViewController: BaseViewController {
         
         myPageDataSource.filterButtonTapped = {
             AnalyticManager.log(event: .myPage(.startFilterMypage))
-            Utils.push(self.navigationController, FilterViewController(from: .mypage))
+            if KeychainService.readKeychain(of: .role) == UserRole.visitor.rawValue {
+                Utils.showLoginRequiredSheet(on: self, type: .profile)
+            } else {
+                Utils.push(self.navigationController, FilterViewController(from: .mypage))
+            }
         }
         myPageDataSource.myReviewsTapped = {
             AnalyticManager.log(event: .myPage(.clickMyreview))
-            Utils.push(self.navigationController, MyReviewsViewController())
+            if KeychainService.readKeychain(of: .role) == UserRole.visitor.rawValue {
+                Utils.showLoginRequiredSheet(on: self, type: .profile)
+            } else {
+                Utils.push(self.navigationController, MyReviewsViewController())
+            }
         }
         myPageDataSource.savedBakeryTapped = {
             AnalyticManager.log(event: .myPage(.clickMystore))
-            Utils.push(self.navigationController, MySavedBakeryViewController())
+            if KeychainService.readKeychain(of: .role) == UserRole.visitor.rawValue {
+                Utils.showLoginRequiredSheet(on: self, type: .profile)
+            } else {
+                Utils.push(self.navigationController, MySavedBakeryViewController())
+            }
         }
         
         myPageDataSource.leaveTapped = {
-            self.showPopUp(of: .leave)
+            if KeychainService.readKeychain(of: .role) == UserRole.visitor.rawValue {
+                Utils.showLoginRequiredSheet(on: self, type: .profile)
+            } else {
+                self.showPopUp(of: .leave)
+            }
         }
     }
     
@@ -135,7 +151,11 @@ extension MyPageViewController: UICollectionViewDelegate {
                 title: indexPath.item == 0 ? I18N.MyPage.terms : I18N.MyPage.askQuestions
             ))
         case 3:
-            self.showPopUp(of: .logout)
+            if KeychainService.readKeychain(of: .role) == UserRole.visitor.rawValue {
+                Utils.showLoginRequiredSheet(on: self, type: .profile)
+            } else {
+                self.showPopUp(of: .logout)
+            }
         default:
             break
         }

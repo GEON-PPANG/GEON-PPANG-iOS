@@ -18,7 +18,7 @@ final class ReviewProgressBarStackView: UIStackView {
     private let specialProgressView = ReviewProgressView()
     private lazy var kindProgressView = ReviewProgressView()
     private lazy var zeroWasteProgressView = ReviewProgressView()
-    private let labeling = ["맛있어요", "제로웨이스트", "특별한 메뉴", "친절해요"]
+    private let labeling = ["맛있어요", "특별한 메뉴", "친절해요", "제로웨이스트"]
     private var tempGauge: [Float] = [0.0, 0.0, 0.0, 0.0] {
         didSet {
             setUI()

@@ -96,7 +96,7 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
         
         emptyLabel.do {
             $0.numberOfLines = 0
-            $0.basic(font: .title2!, color: .gbbGray300!)
+            $0.basic(font: .title2!, color: .gbbGray300!, align: .center)
             $0.textAlignment = .center
         }
     }

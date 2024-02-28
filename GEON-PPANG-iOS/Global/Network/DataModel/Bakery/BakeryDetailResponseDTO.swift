@@ -41,7 +41,7 @@ struct BreadType: Codable {
     func toString() -> String {
         switch self.breadTypeId {
         case 1: return "글루텐프리"
-        case 2: return "비건"
+        case 2: return "비건빵"
         case 3: return "넛프리"
         case 4: return "대체당"
         default: return ""
