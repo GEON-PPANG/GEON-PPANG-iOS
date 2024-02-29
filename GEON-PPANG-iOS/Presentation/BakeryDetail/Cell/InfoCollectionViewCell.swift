@@ -188,6 +188,7 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         if data.homepageURL == "" && data.instagramURL == "" {
             linkSection.isHidden = true
         } else {
+            linkSection.isHidden = false
             linkButtonStackView.getLinkStatus(data.homepageURL, data.instagramURL)
         }
         addressLabel.text = data.address
