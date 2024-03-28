@@ -52,12 +52,18 @@ final class BakeryDetailViewController: BaseViewController {
     
     // MARK: - Life Cycle
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        guard let bakeryID = self.bakeryID else { return }
+        getBakeryDetail(bakeryID: bakeryID)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         guard let bakeryID = self.bakeryID else { return }
-        
-        getBakeryDetail(bakeryID: bakeryID, isUpdated: true)
+        getWrittenReviews(bakeryID: bakeryID, isUpdated: true)
                 
         navigationController?.interactivePopGestureRecognizer?.delegate = nil // swipe back gesture
     }
@@ -414,7 +420,7 @@ extension BakeryDetailViewController: UICollectionViewDelegateFlowLayout {
 
 extension BakeryDetailViewController {
     
-    func getBakeryDetail(bakeryID: Int, isUpdated: Bool) {
+    func getBakeryDetail(bakeryID: Int) {
         
         BakeriesAPI.shared.getBakeryDetail(bakeryID: bakeryID) { response in
             
@@ -427,7 +433,6 @@ extension BakeryDetailViewController {
             self.detailBottomView.configureBookmarkButton(to: data.isBookMarked)
             self.homepageURL = data.homepageURL
             self.instagramURL = data.instagramURL
-            self.getWrittenReviews(bakeryID: bakeryID, isUpdated: isUpdated)
         }
     }
     
@@ -455,7 +460,7 @@ extension BakeryDetailViewController {
             AnalyticManager.log(event: .detail(.clickMystore))
             self.detailBottomView.configureBookmarkButton(to: value)
             self.isBookmarked = value
-            self.getBakeryDetail(bakeryID: bakeryID, isUpdated: false)
+            self.getBakeryDetail(bakeryID: bakeryID)
         }
     }
     
