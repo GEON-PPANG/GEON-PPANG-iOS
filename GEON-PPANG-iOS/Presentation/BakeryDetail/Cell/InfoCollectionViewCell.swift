@@ -96,11 +96,12 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         openingHoursSection.addSubview(closedDaysLabel)
         closedDaysLabel.snp.makeConstraints {
             $0.leading.equalTo(openingHoursImage.snp.trailing).offset(10)
+            $0.trailing.equalToSuperview()
             $0.top.equalToSuperview()
         }
         openingHoursSection.addSubview(openingHoursLabel)
         openingHoursLabel.snp.makeConstraints {
-            $0.leading.equalTo(closedDaysLabel)
+            $0.horizontalEdges.equalTo(closedDaysLabel)
             $0.top.equalTo(closedDaysLabel.snp.bottom).offset(2)
             $0.bottom.equalToSuperview()
         }
