@@ -42,6 +42,7 @@
 		094392CF2A84E68700984310 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 094392CE2A84E68700984310 /* GoogleService-Info.plist */; };
 		0943B9302AB610A8006EC1DE /* AnalyticEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0943B92F2AB610A8006EC1DE /* AnalyticEventType.swift */; };
 		0949750E2A67EC9B00A63420 /* MyReviewsResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0949750D2A67EC9B00A63420 /* MyReviewsResponseDTO.swift */; };
+		094E93702BB70345003A3A62 /* ci_post_clone.sh in Resources */ = {isa = PBXBuildFile; fileRef = 094E936F2BB70345003A3A62 /* ci_post_clone.sh */; };
 		094F3AF72AB3DFB300A34154 /* AnalyticManagerUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094F3AF62AB3DFB300A34154 /* AnalyticManagerUser.swift */; };
 		0959F1482A6583C200E77CAF /* NetworkLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F1472A6583C200E77CAF /* NetworkLoggerPlugin.swift */; };
 		0959F14A2A6583DF00E77CAF /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0959F1492A6583DF00E77CAF /* Endpoint.swift */; };
@@ -270,6 +271,7 @@
 		094392CE2A84E68700984310 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0943B92F2AB610A8006EC1DE /* AnalyticEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticEventType.swift; sourceTree = "<group>"; };
 		0949750D2A67EC9B00A63420 /* MyReviewsResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewsResponseDTO.swift; sourceTree = "<group>"; };
+		094E936F2BB70345003A3A62 /* ci_post_clone.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
 		094F3AF62AB3DFB300A34154 /* AnalyticManagerUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticManagerUser.swift; sourceTree = "<group>"; };
 		0959F1472A6583C200E77CAF /* NetworkLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerPlugin.swift; sourceTree = "<group>"; };
 		0959F1492A6583DF00E77CAF /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
@@ -308,7 +310,6 @@
 		098F32EC2A4200FE0092D09A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		098F32EE2A4200FE0092D09A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09980CFA2A99A9800098550C /* SignInPropertyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPropertyType.swift; sourceTree = "<group>"; };
-		09B01DEC2BB66AE9006B9DFB /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
 		09B13F472A5931DC00C0C723 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		09B13F4B2A593C6F00C0C723 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		09B13F4F2A593CB800C0C723 /* BakeryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryListViewController.swift; sourceTree = "<group>"; };
@@ -634,6 +635,14 @@
 			path = NickName;
 			sourceTree = "<group>";
 		};
+		094E936E2BB70345003A3A62 /* ci_scripts */ = {
+			isa = PBXGroup;
+			children = (
+				094E936F2BB70345003A3A62 /* ci_post_clone.sh */,
+			);
+			path = ci_scripts;
+			sourceTree = "<group>";
+		};
 		0959F1612A658C3000E77CAF /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -896,6 +905,7 @@
 		098F32D42A4200FD0092D09A = {
 			isa = PBXGroup;
 			children = (
+				094E936E2BB70345003A3A62 /* ci_scripts */,
 				091AFD412ABD79380001DD02 /* Settings.bundle */,
 				090668F72A4FF1D900F413FA /* .swiftlint.yml */,
 				098F32DF2A4200FD0092D09A /* GEON-PPANG-iOS */,
@@ -916,21 +926,12 @@
 			children = (
 				DFDE72DA2A66893900389A51 /* Config.xcconfig */,
 				3E36D7D22A8E15C200B2C1CC /* GEON-PPANG-iOS.entitlements */,
-				09B01DEB2BB66AD5006B9DFB /* ci_scripts */,
 				0961C35F2A501E110031A822 /* Application */,
 				0961C3602A501E9F0031A822 /* Global */,
 				0961C36A2A501EF60031A822 /* Presentation */,
 				0961C36B2A501F050031A822 /* Resource */,
 			);
 			path = "GEON-PPANG-iOS";
-			sourceTree = "<group>";
-		};
-		09B01DEB2BB66AD5006B9DFB /* ci_scripts */ = {
-			isa = PBXGroup;
-			children = (
-				09B01DEC2BB66AE9006B9DFB /* ci_post_clone.sh */,
-			);
-			path = ci_scripts;
 			sourceTree = "<group>";
 		};
 		09B13F462A5931A300C0C723 /* Tabbar */ = {
@@ -1576,6 +1577,7 @@
 				098F32EA2A4200FE0092D09A /* Assets.xcassets in Resources */,
 				DF959A622A539FBE00E75774 /* Pretendard-Medium.otf in Resources */,
 				091AFD422ABD79380001DD02 /* Settings.bundle in Resources */,
+				094E93702BB70345003A3A62 /* ci_post_clone.sh in Resources */,
 				DF959A6C2A568C4600E75774 /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
