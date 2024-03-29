@@ -2033,7 +2033,7 @@
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZLLGCJ8XUL;
 				GENERATE_INFOPLIST_FILE = YES;
-				"HEADER_SEARCH_PATHS[arch=*]" = "/Volumes/workspace/repository/GEON-PPANG-iOS";
+				"HEADER_SEARCH_PATHS[arch=*]" = /Volumes/workspace/repository;
 				INFOPLIST_FILE = "GEON-PPANG-iOS/Resource/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "건빵";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
