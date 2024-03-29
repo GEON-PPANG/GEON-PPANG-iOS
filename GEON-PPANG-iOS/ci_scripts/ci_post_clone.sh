@@ -6,7 +6,7 @@
 #  Created by JEONGEUN KIM on 3/29/24.
 #  
 
-FOLDER_PATH="/Users/workspace/GEON-PPANG-iOS"
+FOLDER_PATH="/Volumes/workspace/repository/GEON-PPANG-iOS"
 
 # *.xconfig 파일 이름
 CONFIG_FILENAME="Config.xcconfig"

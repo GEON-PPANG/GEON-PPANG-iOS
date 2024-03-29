@@ -896,10 +896,8 @@
 		098F32D42A4200FD0092D09A = {
 			isa = PBXGroup;
 			children = (
-				09B01DEB2BB66AD5006B9DFB /* ci_scripts */,
 				091AFD412ABD79380001DD02 /* Settings.bundle */,
 				090668F72A4FF1D900F413FA /* .swiftlint.yml */,
-				DFDE72DA2A66893900389A51 /* Config.xcconfig */,
 				098F32DF2A4200FD0092D09A /* GEON-PPANG-iOS */,
 				098F32DE2A4200FD0092D09A /* Products */,
 			);
@@ -916,7 +914,9 @@
 		098F32DF2A4200FD0092D09A /* GEON-PPANG-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				DFDE72DA2A66893900389A51 /* Config.xcconfig */,
 				3E36D7D22A8E15C200B2C1CC /* GEON-PPANG-iOS.entitlements */,
+				09B01DEB2BB66AD5006B9DFB /* ci_scripts */,
 				0961C35F2A501E110031A822 /* Application */,
 				0961C3602A501E9F0031A822 /* Global */,
 				0961C36A2A501EF60031A822 /* Presentation */,
@@ -2033,6 +2033,7 @@
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZLLGCJ8XUL;
 				GENERATE_INFOPLIST_FILE = YES;
+				"HEADER_SEARCH_PATHS[arch=*]" = "/Volumes/workspace/repository/GEON-PPANG";
 				INFOPLIST_FILE = "GEON-PPANG-iOS/Resource/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "건빵";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
