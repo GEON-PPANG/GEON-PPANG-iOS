@@ -20,7 +20,6 @@
 		090556472A51E7D900752067 /* UITextView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556462A51E7D900752067 /* UITextView+.swift */; };
 		090556492A51E7EC00752067 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556482A51E7EC00752067 /* UIScreen+.swift */; };
 		0905564B2A51E81D00752067 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905564A2A51E81D00752067 /* UIViewController+.swift */; };
-		090668F82A4FF1D900F413FA /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 090668F72A4FF1D900F413FA /* .swiftlint.yml */; };
 		090668FC2A4FF3C600F413FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098F32E02A4200FD0092D09A /* AppDelegate.swift */; };
 		090668FD2A4FF3C600F413FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098F32E22A4200FD0092D09A /* SceneDelegate.swift */; };
 		0915C16A2A5BFC5900ACB8D4 /* HomeBottomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0915C1692A5BFC5900ACB8D4 /* HomeBottomCollectionViewCell.swift */; };
@@ -275,7 +274,6 @@
 		090556462A51E7D900752067 /* UITextView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+.swift"; sourceTree = "<group>"; };
 		090556482A51E7EC00752067 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
 		0905564A2A51E81D00752067 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
-		090668F72A4FF1D900F413FA /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		0915C1692A5BFC5900ACB8D4 /* HomeBottomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBottomCollectionViewCell.swift; sourceTree = "<group>"; };
 		0915C16D2A5C2EE200ACB8D4 /* MarkStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkStackView.swift; sourceTree = "<group>"; };
 		0915C16F2A5C3C5600ACB8D4 /* RegionStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionStackView.swift; sourceTree = "<group>"; };
@@ -856,7 +854,6 @@
 		0961C36B2A501F050031A822 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				090668F72A4FF1D900F413FA /* .swiftlint.yml */,
 				DFDE72DA2A66893900389A51 /* Config.xcconfig */,
 				3E36D7D22A8E15C200B2C1CC /* GEON-PPANG-iOS.entitlements */,
 				098F32EE2A4200FE0092D09A /* Info.plist */,
@@ -1824,7 +1821,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 098F32F12A4200FE0092D09A /* Build configuration list for PBXNativeTarget "GEON-PPANG-iOS" */;
 			buildPhases = (
-				0983A5E22A4FF10900E19981 /* SwiftLint Script */,
 				098F32D92A4200FD0092D09A /* Sources */,
 				098F32DA2A4200FD0092D09A /* Frameworks */,
 				098F32DB2A4200FD0092D09A /* Resources */,
@@ -1899,7 +1895,6 @@
 			files = (
 				DF959A612A539FBE00E75774 /* Pretendard-Bold.otf in Resources */,
 				094392CF2A84E68700984310 /* GoogleService-Info.plist in Resources */,
-				090668F82A4FF1D900F413FA /* .swiftlint.yml in Resources */,
 				098F32ED2A4200FE0092D09A /* LaunchScreen.storyboard in Resources */,
 				DFDE72DB2A66893900389A51 /* Config.xcconfig in Resources */,
 				098F32EA2A4200FE0092D09A /* Assets.xcassets in Resources */,
@@ -1912,25 +1907,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0983A5E22A4FF10900E19981 /* SwiftLint Script */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "SwiftLint Script";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then\n    swiftlint\nelse \n    echo \"warning: SwiftLint not installed, download form https://github.com/realm/SwiftLint\"\nfi\n";
-		};
 		099FC1C92A51F23B00116D00 /* Sentry */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
