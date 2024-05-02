@@ -169,6 +169,7 @@
 		3E8C47F92BC3CA0600919E06 /* FilterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8C47F82BC3CA0600919E06 /* FilterCoordinator.swift */; };
 		3E8C47FB2BC3CA0D00919E06 /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8C47FA2BC3CA0D00919E06 /* SearchCoordinator.swift */; };
 		3E8C47FD2BC3CA1600919E06 /* BakeryDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8C47FC2BC3CA1600919E06 /* BakeryDetailCoordinator.swift */; };
+		3E93BCAB2BE3753C005B658F /* LaunchScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E93BCAA2BE3753C005B658F /* LaunchScreenCoordinator.swift */; };
 		3EA2E1E32A53E88B003516A3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */; };
 		3EA2E1EB2A542151003516A3 /* SizeLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2E1EA2A542151003516A3 /* SizeLiteral.swift */; };
 		3EA69B232B557027008AE23B /* GBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA69B222B557027008AE23B /* GBService.swift */; };
@@ -418,6 +419,7 @@
 		3E8C47F82BC3CA0600919E06 /* FilterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCoordinator.swift; sourceTree = "<group>"; };
 		3E8C47FA2BC3CA0D00919E06 /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
 		3E8C47FC2BC3CA1600919E06 /* BakeryDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryDetailCoordinator.swift; sourceTree = "<group>"; };
+		3E93BCAA2BE3753C005B658F /* LaunchScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenCoordinator.swift; sourceTree = "<group>"; };
 		3EA2E1E22A53E88B003516A3 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		3EA2E1EA2A542151003516A3 /* SizeLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeLiteral.swift; sourceTree = "<group>"; };
 		3EA69B222B557027008AE23B /* GBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GBService.swift; sourceTree = "<group>"; };
@@ -615,14 +617,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		093213FC2A5A74C200875EF6 /* Views */ = {
+		093213FC2A5A74C200875EF6 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				09B71BFF2A59D50900076AC2 /* HomeTopView.swift */,
 				09C626572A5B4269002C8110 /* HomeHeaderView.swift */,
 				09C1C7822A9CE92A00343283 /* BubbleView.swift */,
 			);
-			path = Views;
+			path = View;
 			sourceTree = "<group>";
 		};
 		093213FD2A5A74D100875EF6 /* TextField */ = {
@@ -648,24 +650,24 @@
 			isa = PBXGroup;
 			children = (
 				092F11B32A69A6F000852CA5 /* Cell */,
-				09FD47C62A5DC97E002020BD /* Views */,
-				093214052A5AE3D600875EF6 /* ViewControllers */,
+				09FD47C62A5DC97E002020BD /* View */,
+				093214052A5AE3D600875EF6 /* ViewController */,
 			);
 			path = Search;
 			sourceTree = "<group>";
 		};
-		093214052A5AE3D600875EF6 /* ViewControllers */ = {
+		093214052A5AE3D600875EF6 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				093214072A5AE40900875EF6 /* SearchViewController.swift */,
 			);
-			path = ViewControllers;
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		093EFA542A61F5E4003228CD /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
-				093EFA582A61F62D003228CD /* SignInViewController.swift */,
+				3E93BCA52BE37461005B658F /* ViewController */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -673,7 +675,7 @@
 		093EFA572A61F611003228CD /* NickName */ = {
 			isa = PBXGroup;
 			children = (
-				09CD078F2A620D7D00A078DE /* NickNameViewController.swift */,
+				3E93BCA32BE37459005B658F /* ViewController */,
 			);
 			path = NickName;
 			sourceTree = "<group>";
@@ -846,7 +848,8 @@
 			children = (
 				3EA2E1E02A53E864003516A3 /* Common */,
 				3E8C47E02BC3B81B00919E06 /* Utils */,
-				3E1A4EDA2BCD22AF004CA603 /* Flow */,
+				3E93BCA92BE37527005B658F /* Coordinator */,
+				3E1A4EDA2BCD22AF004CA603 /* Scene */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -905,22 +908,22 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		0979852E2A5D9DBF004263E5 /* Views */ = {
+		0979852E2A5D9DBF004263E5 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				097682E82A5D0B6B0008F4FB /* BakeryListTopView.swift */,
 				097682E62A5CF0080008F4FB /* BakeryFilterView.swift */,
 				09E445382AA3BA07008E3D33 /* SortBakeryFilterView.swift */,
 			);
-			path = Views;
+			path = View;
 			sourceTree = "<group>";
 		};
-		098716B92A613B6A00538D05 /* Views */ = {
+		098716B92A613B6A00538D05 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				098716B72A6138BD00538D05 /* MyReviewsHeaderView.swift */,
 			);
-			path = Views;
+			path = View;
 			sourceTree = "<group>";
 		};
 		098F32D42A4200FD0092D09A = {
@@ -958,7 +961,7 @@
 		09B13F462A5931A300C0C723 /* Tabbar */ = {
 			isa = PBXGroup;
 			children = (
-				09B13F472A5931DC00C0C723 /* TabBarController.swift */,
+				3E93BCA72BE3746C005B658F /* ViewController */,
 			);
 			path = Tabbar;
 			sourceTree = "<group>";
@@ -967,38 +970,21 @@
 			isa = PBXGroup;
 			children = (
 				092F11B22A69A6E200852CA5 /* Cell */,
-				093213FC2A5A74C200875EF6 /* Views */,
-				09B13F4A2A593C6300C0C723 /* ViewControllers */,
+				093213FC2A5A74C200875EF6 /* View */,
+				3E93BCA12BE3744C005B658F /* ViewController */,
 			);
 			path = Home;
-			sourceTree = "<group>";
-		};
-		09B13F4A2A593C6300C0C723 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				09B13F4B2A593C6F00C0C723 /* HomeViewController.swift */,
-			);
-			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		09B13F4D2A593C7600C0C723 /* BakeryList */ = {
 			isa = PBXGroup;
 			children = (
+				097682DD2A5C91050008F4FB /* Model */,
 				092F11B12A69A6CC00852CA5 /* Cell */,
-				0979852E2A5D9DBF004263E5 /* Views */,
-				09B13F4E2A593CAE00C0C723 /* ViewControllers */,
+				0979852E2A5D9DBF004263E5 /* View */,
+				3E93BCA02BE3743C005B658F /* ViewController */,
 			);
 			path = BakeryList;
-			sourceTree = "<group>";
-		};
-		09B13F4E2A593CAE00C0C723 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				3E7B21BF2A61CB8C00C8F8B4 /* SortBottomSheetViewController.swift */,
-				09B13F4F2A593CB800C0C723 /* BakeryListViewController.swift */,
-				097682DD2A5C91050008F4FB /* Model */,
-			);
-			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		09B13F512A593CC200C0C723 /* MyPage */ = {
@@ -1006,17 +992,9 @@
 			children = (
 				3E06F8D22A9C768F001302F4 /* Model */,
 				3ED40DFC2A608B2B00C7D5DA /* View */,
-				09B13F522A593CC800C0C723 /* ViewControllers */,
+				3E93BC9F2BE3742E005B658F /* ViewController */,
 			);
 			path = MyPage;
-			sourceTree = "<group>";
-		};
-		09B13F522A593CC800C0C723 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				09B13F532A593CD300C0C723 /* MyPageViewController.swift */,
-			);
-			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		09CA3EF62A56738A0063897A /* Protocol */ = {
@@ -1032,60 +1010,36 @@
 		09F015EE2A9C87D40093D4F0 /* LogIn */ = {
 			isa = PBXGroup;
 			children = (
-				09F015EF2A9C87E90093D4F0 /* ViewController */,
+				3E93BCA42BE3745D005B658F /* ViewController */,
 			);
 			path = LogIn;
 			sourceTree = "<group>";
 		};
-		09F015EF2A9C87E90093D4F0 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				09F015F02A9C881A0093D4F0 /* LogInViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		09FD47C62A5DC97E002020BD /* Views */ = {
+		09FD47C62A5DC97E002020BD /* View */ = {
 			isa = PBXGroup;
 			children = (
 				09FD47C72A5DC991002020BD /* SearchNavigationView.swift */,
 				09FD47C92A5DD38D002020BD /* SearchResultHeaderView.swift */,
 			);
-			path = Views;
+			path = View;
 			sourceTree = "<group>";
 		};
 		09FD47D62A5E511F002020BD /* MySavedBakery */ = {
 			isa = PBXGroup;
 			children = (
 				3E1E73FF2B78AD460082386A /* Model */,
-				09FD47D72A5E5132002020BD /* ViewControllers */,
+				3E93BC9D2BE3741A005B658F /* ViewController */,
 			);
 			path = MySavedBakery;
-			sourceTree = "<group>";
-		};
-		09FD47D72A5E5132002020BD /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				09FD47D82A5E5148002020BD /* MySavedBakeryViewController.swift */,
-			);
-			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		09FD47DA2A5E57CC002020BD /* MyReviews */ = {
 			isa = PBXGroup;
 			children = (
-				098716B92A613B6A00538D05 /* Views */,
-				09FD47DB2A5E57E3002020BD /* ViewControllers */,
+				098716B92A613B6A00538D05 /* View */,
+				3E93BC9E2BE37422005B658F /* ViewController */,
 			);
 			path = MyReviews;
-			sourceTree = "<group>";
-		};
-		09FD47DB2A5E57E3002020BD /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				09FD47DC2A5E57F2002020BD /* MyReviewsViewController.swift */,
-			);
-			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		09FD47E02A5E698D002020BD /* BottomSheet */ = {
@@ -1142,7 +1096,7 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		3E1A4EDA2BCD22AF004CA603 /* Flow */ = {
+		3E1A4EDA2BCD22AF004CA603 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
 				3EB798142AB3425B004EC35D /* LaunchScreen */,
@@ -1155,7 +1109,7 @@
 				3E8C47E42BC3C99E00919E06 /* Search */,
 				3E8C47E32BC3B83100919E06 /* BakeryDetail */,
 			);
-			path = Flow;
+			path = Scene;
 			sourceTree = "<group>";
 		};
 		3E1A4EDD2BCD2343004CA603 /* Infrastructure */ = {
@@ -1185,17 +1139,9 @@
 		3E232AC82A95A00900125B76 /* Welcome */ = {
 			isa = PBXGroup;
 			children = (
-				3E232AC92A95A01100125B76 /* ViewControllers */,
+				3E93BCA22BE37454005B658F /* ViewController */,
 			);
 			path = Welcome;
-			sourceTree = "<group>";
-		};
-		3E232AC92A95A01100125B76 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				3E232ACA2A95A02200125B76 /* WelcomeViewController.swift */,
-			);
-			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		3E2EEF722A5C928F0093BCA9 /* View */ = {
@@ -1333,7 +1279,6 @@
 		3E8C47E32BC3B83100919E06 /* BakeryDetail */ = {
 			isa = PBXGroup;
 			children = (
-				3E8C47FC2BC3CA1600919E06 /* BakeryDetailCoordinator.swift */,
 				DFB585F52A5F314D0077D272 /* BakeryDetail */,
 				3E79B1A42A566F0700D36A26 /* WriteReview */,
 				DFBCFA3B2AB6E17700D3E649 /* Report */,
@@ -1344,7 +1289,6 @@
 		3E8C47E42BC3C99E00919E06 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				3E8C47FA2BC3CA0D00919E06 /* SearchCoordinator.swift */,
 				093214032A5AE3C000875EF6 /* Search */,
 			);
 			path = Search;
@@ -1353,7 +1297,6 @@
 		3E8C47E52BC3C9A100919E06 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
-				3E8C47F82BC3CA0600919E06 /* FilterCoordinator.swift */,
 				3EDC05BA2A5DEB7500EAD950 /* Filter */,
 			);
 			path = Filter;
@@ -1362,7 +1305,6 @@
 		3E8C47E62BC3C9B700919E06 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
-				3E8C47F62BC3CA0100919E06 /* MyPageCoordinator.swift */,
 				09B13F512A593CC200C0C723 /* MyPage */,
 				09FD47DA2A5E57CC002020BD /* MyReviews */,
 				09FD47D62A5E511F002020BD /* MySavedBakery */,
@@ -1373,7 +1315,7 @@
 		3E8C47E72BC3C9BB00919E06 /* BakeryList */ = {
 			isa = PBXGroup;
 			children = (
-				3E8C47F42BC3C9FC00919E06 /* BakeryListCoordinator.swift */,
+				3E93BC9C2BE37297005B658F /* SortBakeryList */,
 				09B13F4D2A593C7600C0C723 /* BakeryList */,
 			);
 			path = BakeryList;
@@ -1382,7 +1324,6 @@
 		3E8C47E82BC3C9BE00919E06 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				3E8C47F22BC3C9F600919E06 /* HomeCoordinator.swift */,
 				09B13F492A593C5900C0C723 /* Home */,
 			);
 			path = Home;
@@ -1391,7 +1332,6 @@
 		3E8C47E92BC3C9BF00919E06 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				3E8C47F02BC3C9F000919E06 /* AuthCoordinator.swift */,
 				DFB587B72A5D580B00704B6C /* Onboarding */,
 				093EFA542A61F5E4003228CD /* SignIn */,
 				09F015EE2A9C87D40093D4F0 /* LogIn */,
@@ -1404,10 +1344,137 @@
 		3E8C47EA2BC3C9C300919E06 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				3E8C47EE2BC3C9EA00919E06 /* MainCoordinator.swift */,
 				09B13F462A5931A300C0C723 /* Tabbar */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		3E93BC9B2BE371E9005B658F /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				3E93BCA82BE37471005B658F /* ViewController */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		3E93BC9C2BE37297005B658F /* SortBakeryList */ = {
+			isa = PBXGroup;
+			children = (
+				3E7B21BF2A61CB8C00C8F8B4 /* SortBottomSheetViewController.swift */,
+			);
+			path = SortBakeryList;
+			sourceTree = "<group>";
+		};
+		3E93BC9D2BE3741A005B658F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				09FD47D82A5E5148002020BD /* MySavedBakeryViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		3E93BC9E2BE37422005B658F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				09FD47DC2A5E57F2002020BD /* MyReviewsViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		3E93BC9F2BE3742E005B658F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				09B13F532A593CD300C0C723 /* MyPageViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		3E93BCA02BE3743C005B658F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				09B13F4F2A593CB800C0C723 /* BakeryListViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		3E93BCA12BE3744C005B658F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				09B13F4B2A593C6F00C0C723 /* HomeViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		3E93BCA22BE37454005B658F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3E232ACA2A95A02200125B76 /* WelcomeViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		3E93BCA32BE37459005B658F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				09CD078F2A620D7D00A078DE /* NickNameViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		3E93BCA42BE3745D005B658F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				09F015F02A9C881A0093D4F0 /* LogInViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		3E93BCA52BE37461005B658F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				093EFA582A61F62D003228CD /* SignInViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		3E93BCA62BE37466005B658F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DFB587B82A5D584800704B6C /* OnboardingViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		3E93BCA72BE3746C005B658F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				09B13F472A5931DC00C0C723 /* TabBarController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		3E93BCA82BE37471005B658F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3EB798152AB34275004EC35D /* LaunchScreenViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		3E93BCA92BE37527005B658F /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				3E93BCAA2BE3753C005B658F /* LaunchScreenCoordinator.swift */,
+				3E8C47EE2BC3C9EA00919E06 /* MainCoordinator.swift */,
+				3E8C47F02BC3C9F000919E06 /* AuthCoordinator.swift */,
+				3E8C47F22BC3C9F600919E06 /* HomeCoordinator.swift */,
+				3E8C47F42BC3C9FC00919E06 /* BakeryListCoordinator.swift */,
+				3E8C47F62BC3CA0100919E06 /* MyPageCoordinator.swift */,
+				3E8C47F82BC3CA0600919E06 /* FilterCoordinator.swift */,
+				3E8C47FA2BC3CA0D00919E06 /* SearchCoordinator.swift */,
+				3E8C47FC2BC3CA1600919E06 /* BakeryDetailCoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		3EA2E1E02A53E864003516A3 /* Common */ = {
@@ -1482,7 +1549,7 @@
 		3EB798142AB3425B004EC35D /* LaunchScreen */ = {
 			isa = PBXGroup;
 			children = (
-				3EB798152AB34275004EC35D /* LaunchScreenViewController.swift */,
+				3E93BC9B2BE371E9005B658F /* LaunchScreen */,
 			);
 			path = LaunchScreen;
 			sourceTree = "<group>";
@@ -1513,28 +1580,28 @@
 			isa = PBXGroup;
 			children = (
 				3E232AC12A9282BE00125B76 /* Model */,
-				3EDC05BC2A5DEB7F00EAD950 /* Views */,
-				3EDC05BB2A5DEB7B00EAD950 /* ViewControllers */,
+				3EDC05BC2A5DEB7F00EAD950 /* View */,
+				3EDC05BB2A5DEB7B00EAD950 /* ViewController */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
 		};
-		3EDC05BB2A5DEB7B00EAD950 /* ViewControllers */ = {
+		3EDC05BB2A5DEB7B00EAD950 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				3E36D7D52A8E6AF000B2C1CC /* FilterViewController.swift */,
 			);
-			path = ViewControllers;
+			path = ViewController;
 			sourceTree = "<group>";
 		};
-		3EDC05BC2A5DEB7F00EAD950 /* Views */ = {
+		3EDC05BC2A5DEB7F00EAD950 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				3EDC05C32A5DEE3600EAD950 /* FilterCollectionViewCell.swift */,
 				3E36D7D72A8E6BC500B2C1CC /* FilterDiffableDataSource.swift */,
 				3E232ABB2A8FDB8F00125B76 /* FilterCollectionViewHeader.swift */,
 			);
-			path = Views;
+			path = View;
 			sourceTree = "<group>";
 		};
 		3EF9F8892BBCE9D400F3E366 /* DesignSystem */ = {
@@ -1736,38 +1803,30 @@
 			path = Enum;
 			sourceTree = "<group>";
 		};
-		DFB134382A627AD000BAB52E /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				DFB587B82A5D584800704B6C /* OnboardingViewController.swift */,
-			);
-			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		DFB134392A627ADF00BAB52E /* Views */ = {
+		DFB134392A627ADF00BAB52E /* View */ = {
 			isa = PBXGroup;
 			children = (
 				DFB1343C2A6284BB00BAB52E /* ReviewProgressView.swift */,
 				DF697C022A671A6D008CE4CF /* BakeryDetailCollectionViewHeader.swift */,
 				DF697C042A671A7B008CE4CF /* BakeryDetailCollectionViewFooter.swift */,
 			);
-			path = Views;
+			path = View;
 			sourceTree = "<group>";
 		};
-		DFB1343A2A627AE900BAB52E /* ViewControllers */ = {
+		DFB1343A2A627AE900BAB52E /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				DFB585F62A5F31D80077D272 /* BakeryDetailViewController.swift */,
 			);
-			path = ViewControllers;
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		DFB585F52A5F314D0077D272 /* BakeryDetail */ = {
 			isa = PBXGroup;
 			children = (
 				DF697C082A686ABC008CE4CF /* Cell */,
-				DFB134392A627ADF00BAB52E /* Views */,
-				DFB1343A2A627AE900BAB52E /* ViewControllers */,
+				DFB134392A627ADF00BAB52E /* View */,
+				DFB1343A2A627AE900BAB52E /* ViewController */,
 			);
 			path = BakeryDetail;
 			sourceTree = "<group>";
@@ -1775,7 +1834,7 @@
 		DFB587B72A5D580B00704B6C /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				DFB134382A627AD000BAB52E /* ViewControllers */,
+				3E93BCA62BE37466005B658F /* ViewController */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -2129,6 +2188,7 @@
 				095FB8842AB3435300C69BD1 /* AnalyticManagerProtocol.swift in Sources */,
 				3E162D182A692C1400590C6F /* BookmarkRequestDTO.swift in Sources */,
 				0930D25F2A928C2300A75C7E /* RecommendKeywordResponseDTO.swift in Sources */,
+				3E93BCAB2BE3753C005B658F /* LaunchScreenCoordinator.swift in Sources */,
 				3EF9F8A62BBD116600F3E366 /* DummyRequestDTO.swift in Sources */,
 				3EB798162AB34275004EC35D /* LaunchScreenViewController.swift in Sources */,
 				3E1A4EDC2BCD232F004CA603 /* PersistentDummyError.swift in Sources */,
