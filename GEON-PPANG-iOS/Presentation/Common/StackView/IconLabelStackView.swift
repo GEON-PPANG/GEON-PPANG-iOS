@@ -62,9 +62,9 @@ final class IconLabelStackView: UIStackView {
     private var labelFont: UIFont {
         switch iconType {
         case .bookmark, .review, .basic:
-            return .captionB1!
+            return .captionB1
         case .notice:
-            return .captionM1!
+            return .captionM1
         }
     }
     private var labelColor: UIColor {

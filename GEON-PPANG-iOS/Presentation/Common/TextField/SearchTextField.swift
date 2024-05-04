@@ -78,13 +78,13 @@ final class SearchTextField: UITextField {
         
         switch viewType {
         case .search:
-            setPlaceholder(color: .gbbGray300, font: .bodyM1!)
+            setPlaceholder(color: .gbbGray300, font: .bodyM1)
             leftView = searchButton
             leftViewMode = .always
             rightView = clearButton
             rightViewMode = .whileEditing
         case .home:
-            setPlaceholder(color: .gbbGray300, font: .subHead!)
+            setPlaceholder(color: .gbbGray300, font: .subHead)
             setLeftPadding(amount: 0)
             rightView = searchButton
             rightViewMode = .always

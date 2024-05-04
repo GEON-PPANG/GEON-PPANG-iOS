@@ -67,11 +67,11 @@ final class MenuCollectionViewCell: UICollectionViewCell {
         }
         
         bakeryMenuLabel.do {
-            $0.basic(font: .subHead!, color: .gbbGray500)
+            $0.basic(font: .subHead, color: .gbbGray500)
         }
         
         menuPriceLabel.do {
-            $0.basic(font: .subHead!, color: .gbbGray400)
+            $0.basic(font: .subHead, color: .gbbGray400)
             $0.textAlignment = .right
         }
     }

@@ -107,7 +107,7 @@ final class LogInViewController: BaseViewController {
         titleLabel.do {
             $0.numberOfLines = 0
             $0.basic(text: I18N.LogIn.title,
-                     font: .title1!,
+                     font: .title1,
                      color: .gbbGray700)
         }
         
@@ -120,7 +120,7 @@ final class LogInViewController: BaseViewController {
         signInButton.do {
             $0.setTitle(I18N.LogIn.signIn, for: .normal)
             $0.setTitleColor(.gbbGray500, for: .normal)
-            $0.titleLabel?.font = .bodyB2!
+            $0.titleLabel?.font = .bodyB2
             $0.setUnderline()
             $0.addAction(UIAction { [weak self] _ in
                 guard let self else { return }
@@ -131,7 +131,7 @@ final class LogInViewController: BaseViewController {
         
         accountLabel.do {
             $0.basic(text: I18N.LogIn.noAccount,
-                     font: .subHead!,
+                     font: .subHead,
                      color: .init(hex: "#BDBFC1"))
         }
         

@@ -168,7 +168,7 @@ final class BakeryDetailViewController: BaseViewController {
         }
         
         tempLabel.do {
-            $0.basic(font: .subHead!, color: .gbbGray400)
+            $0.basic(font: .subHead, color: .gbbGray400)
             $0.numberOfLines = 0
         }
     }

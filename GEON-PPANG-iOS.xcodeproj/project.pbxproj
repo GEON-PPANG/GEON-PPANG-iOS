@@ -215,7 +215,6 @@
 		3EE1A9132AA0873500021F9D /* UrlLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE1A9122AA0873500021F9D /* UrlLiteral.swift */; };
 		3EE343142A6440EB0010C187 /* UICollectionViewCell+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE343132A6440EB0010C187 /* UICollectionViewCell+.swift */; };
 		3EE466A42A69CAC6007C3C77 /* SimpleBakeryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE466A32A69CAC6007C3C77 /* SimpleBakeryModel.swift */; };
-		3EF9F8922BBCEDDC00F3E366 /* ImageDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF9F8912BBCEDDC00F3E366 /* ImageDummy.swift */; };
 		3EF9F8A62BBD116600F3E366 /* DummyRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF9F8A52BBD116600F3E366 /* DummyRequestDTO.swift */; };
 		3EF9F8A82BBD116F00F3E366 /* DummyResDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF9F8A72BBD116F00F3E366 /* DummyResDTO.swift */; };
 		3EF9F8AA2BBD117400F3E366 /* DummyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF9F8A92BBD117400F3E366 /* DummyRepository.swift */; };
@@ -464,7 +463,6 @@
 		3EE1A9122AA0873500021F9D /* UrlLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlLiteral.swift; sourceTree = "<group>"; };
 		3EE343132A6440EB0010C187 /* UICollectionViewCell+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+.swift"; sourceTree = "<group>"; };
 		3EE466A32A69CAC6007C3C77 /* SimpleBakeryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleBakeryModel.swift; sourceTree = "<group>"; };
-		3EF9F8912BBCEDDC00F3E366 /* ImageDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDummy.swift; sourceTree = "<group>"; };
 		3EF9F8A52BBD116600F3E366 /* DummyRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyRequestDTO.swift; sourceTree = "<group>"; };
 		3EF9F8A72BBD116F00F3E366 /* DummyResDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyResDTO.swift; sourceTree = "<group>"; };
 		3EF9F8A92BBD117400F3E366 /* DummyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyRepository.swift; sourceTree = "<group>"; };
@@ -1644,7 +1642,6 @@
 			isa = PBXGroup;
 			children = (
 				0905561F2A51DB2C00752067 /* UIImage+.swift */,
-				3EF9F8912BBCEDDC00F3E366 /* ImageDummy.swift */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -2104,7 +2101,6 @@
 				097716EB2AA57713001EE6D5 /* LayoutUtils.swift in Sources */,
 				DF697C032A671A6D008CE4CF /* BakeryDetailCollectionViewHeader.swift in Sources */,
 				DFB585FB2A5F565F0077D272 /* BreadTypeStackView.swift in Sources */,
-				3EF9F8922BBCEDDC00F3E366 /* ImageDummy.swift in Sources */,
 				DFB585FD2A5FEA0E0077D272 /* InfoCollectionViewCell.swift in Sources */,
 				09FD47DD2A5E57F2002020BD /* MyReviewsViewController.swift in Sources */,
 				3EA2E1EB2A542151003516A3 /* SizeLiteral.swift in Sources */,

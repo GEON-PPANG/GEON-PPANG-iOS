@@ -74,7 +74,7 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
         }
         
         titleLabel.do {
-            $0.basic(font: .bodyB1!, color: .gbbBlack)
+            $0.basic(font: .bodyB1, color: .gbbBlack)
             $0.frame.size = $0.sizeThatFits(self.frame.size)
         }
         

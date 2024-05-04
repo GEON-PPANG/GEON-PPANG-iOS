@@ -153,7 +153,7 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         }
         
         addressLabel.do {
-            $0.basic(font: .subHead!, color: .gbbGray400)
+            $0.basic(font: .subHead, color: .gbbGray400)
             $0.adjustsFontSizeToFitWidth = true
         }
         
@@ -167,11 +167,11 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         }
         
         closedDaysLabel.do {
-            $0.basic(font: .subHead!, color: .gbbError)
+            $0.basic(font: .subHead, color: .gbbError)
         }
         
         openingHoursLabel.do {
-            $0.basic(font: .subHead!, color: .gbbGray400)
+            $0.basic(font: .subHead, color: .gbbGray400)
             $0.adjustsFontSizeToFitWidth = true
         }
         
@@ -180,7 +180,7 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         }
         
         phoneNumberLabel.do {
-            $0.basic(font: .subHead!, color: .gbbGray400)
+            $0.basic(font: .subHead, color: .gbbGray400)
         }
     }
     

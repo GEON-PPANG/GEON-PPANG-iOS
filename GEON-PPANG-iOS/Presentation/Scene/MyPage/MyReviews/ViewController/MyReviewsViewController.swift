@@ -59,7 +59,7 @@ final class MyReviewsViewController: BaseViewController {
             $0.configureBackButtonAction(UIAction { _ in
                 self.navigationController?.popViewController(animated: true)
             })
-            $0.configureCenterTitle(to: I18N.MyReviews.naviTitle, with: .title2!)
+            $0.configureCenterTitle(to: I18N.MyReviews.naviTitle, with: .title2)
         }
         
         refreshControl.do {

@@ -65,7 +65,7 @@ final class DetailReasonTextView: UIView {
         }
         
         textLimitLabel.do {
-            $0.basic(text: "0/140자", font: .captionM1!, color: .gbbGray300)
+            $0.basic(text: "0/140자", font: .captionM1, color: .gbbGray300)
             $0.textAlignment = .right
         }
     }

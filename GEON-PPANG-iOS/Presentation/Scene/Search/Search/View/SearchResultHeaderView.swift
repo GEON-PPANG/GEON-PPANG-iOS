@@ -43,7 +43,7 @@ final class SearchResultHeaderView: UICollectionReusableView {
     private func setUI() {
         
         resultLabel.do {
-            $0.basic(font: .headLine!, color: .gbbGray600)
+            $0.basic(font: .headLine, color: .gbbGray600)
             
         }
     }

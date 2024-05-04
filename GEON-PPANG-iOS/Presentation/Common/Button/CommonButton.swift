@@ -76,7 +76,7 @@ final class CommonButton: UIButton {
         switch color {
         case .gbbMain2, .gbbGray700: setTitleColor(.gbbGray100, for: .normal)
         case .clear:
-            self.titleLabel?.font = .bodyB1!
+            self.titleLabel?.font = .bodyB1
             setTitleColor(.gbbGray400, for: .normal)
         default:
             setTitleColor(.gbbGray400, for: .normal)

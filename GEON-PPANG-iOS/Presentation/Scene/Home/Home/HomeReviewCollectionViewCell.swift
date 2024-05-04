@@ -100,7 +100,7 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         }
         
         reviewTitle.do {
-            $0.basic(font: .bodyB2!, color: .white)
+            $0.basic(font: .bodyB2, color: .white)
             $0.textAlignment = .left
             $0.numberOfLines = 2
         }
@@ -114,7 +114,7 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         
         bakeryTitle.do {
             $0.numberOfLines = 1
-            $0.basic(font: .bodyB1!, color: .gbbGray700)
+            $0.basic(font: .bodyB1, color: .gbbGray700)
             $0.textAlignment = .left
             
         }
@@ -168,7 +168,7 @@ extension HomeReviewCollectionViewCell: UICollectionViewDataSource {
 extension HomeReviewCollectionViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let keywordsTitle = self.keywords[indexPath.item]
-        let itemSize = keywordsTitle.size(withAttributes: [NSAttributedString.Key.font: UIFont.captionM1!])
+        let itemSize = keywordsTitle.size(withAttributes: [NSAttributedString.Key.font: UIFont.captionM1])
         return CGSize(width: itemSize.width + 12, height: itemSize.height + 8)
     }
 }

@@ -62,7 +62,7 @@ final class ReviewCategoryStackView: UIStackView {
         [deliciousChip, zerowasteChip, specialChip, kindChip].enumerated().forEach { index, chip in
             chip.do {
                 $0.backgroundColor = .gbbPoint2
-                $0.basic(text: labeling[index], font: .captionM1!, color: .gbbPoint1)
+                $0.basic(text: labeling[index], font: .captionM1, color: .gbbPoint1)
                 $0.makeCornerRound(radius: 3)
             }
         }

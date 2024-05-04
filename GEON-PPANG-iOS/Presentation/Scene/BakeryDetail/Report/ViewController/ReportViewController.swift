@@ -182,7 +182,7 @@ final class ReportViewController: BaseViewController {
                 AnalyticManager.log(event: .reportReview(.clickReviewReportBack))
                 self?.navigationController?.popViewController(animated: true)
             })
-            $0.configureCenterTitle(to: navigationTitle, with: .title2!)
+            $0.configureCenterTitle(to: navigationTitle, with: .title2)
             $0.configureBottomLine()
         }
         
@@ -194,13 +194,13 @@ final class ReportViewController: BaseViewController {
         }
         
         reportingReasonLabel.do {
-            $0.basic(text: I18N.Report.reportReason, font: .bodyB1!, color: .gbbGray700)
+            $0.basic(text: I18N.Report.reportReason, font: .bodyB1, color: .gbbGray700)
         }
         
         [advertisementReportButton, profanityReportButton, defamationReportButton, othersReportButton].enumerated().forEach { index, button in
             button.do {
                 $0.configuration?.attributedTitle = AttributedString(labeling[index],
-                                                                     attributes: AttributeContainer([.font: UIFont.captionB1!,
+                                                                     attributes: AttributeContainer([.font: UIFont.captionB1,
                                                                                                      .foregroundColor: UIColor.gbbGray500]))
                 $0.configuration?.contentInsets = .init(top: 8,
                                                         leading: 8,
@@ -217,7 +217,7 @@ final class ReportViewController: BaseViewController {
         }
         
         detailReasonLabel.do {
-            $0.basic(text: I18N.Report.detailReportReason, font: .bodyB1!, color: .gbbGray700)
+            $0.basic(text: I18N.Report.detailReportReason, font: .bodyB1, color: .gbbGray700)
         }
         
         pleaseReportContainer.do {
@@ -225,7 +225,7 @@ final class ReportViewController: BaseViewController {
         }
         
         pleaseReportLabel.do {
-            $0.basic(text: I18N.Report.pleaseReport, font: .captionM2!, color: .gbbGray300)
+            $0.basic(text: I18N.Report.pleaseReport, font: .captionM2, color: .gbbGray300)
             $0.textAlignment = .center
             $0.adjustsFontSizeToFitWidth = true
         }

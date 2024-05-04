@@ -67,7 +67,7 @@ final class BookmarkButton: UIButton {
         if count == 0 {
             configuration?.title = ""
         } else {
-            configuration?.attributedTitle = AttributedString("\(count)명", attributes: AttributeContainer([.font: UIFont.bodyB2!]))
+            configuration?.attributedTitle = AttributedString("\(count)명", attributes: AttributeContainer([.font: UIFont.bodyB2]))
         }
     }
 }

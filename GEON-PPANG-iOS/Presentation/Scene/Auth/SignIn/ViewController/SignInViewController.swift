@@ -147,7 +147,7 @@ final class SignInViewController: BaseViewController {
         titleLabel.do {
             $0.numberOfLines = 0
             $0.basic(text: I18N.SignIn.title,
-                     font: .title1!,
+                     font: .title1,
                      color: .gbbGray700)
         }
         

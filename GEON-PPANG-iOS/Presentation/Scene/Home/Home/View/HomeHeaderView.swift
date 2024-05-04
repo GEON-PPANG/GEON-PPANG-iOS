@@ -52,7 +52,7 @@ final class HomeHeaderView: UICollectionReusableView {
         let attributedString = NSMutableAttributedString(
             string: headerTitle,
             attributes: [
-                .font: UIFont.title2!,
+                .font: UIFont.title2,
                 .foregroundColor: UIColor.gbbGray700
             ]
         )

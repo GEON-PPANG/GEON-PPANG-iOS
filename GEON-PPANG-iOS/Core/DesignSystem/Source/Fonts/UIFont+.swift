@@ -21,27 +21,27 @@ extension UIFont {
         return UIFont(name: "Pretendard-Medium", size: size)!
     }
     
-    static let largeTitle = UIFont(name: "Pretendard-Bold", size: 32.0)
+    static let largeTitle: UIFont = .pretendardBold(32.0)
 
-    static let title1 = UIFont(name: "Pretendard-Bold", size: 26.0)
+    static let title1: UIFont = .pretendardBold(26.0)
     
-    static let title2 = UIFont(name: "Pretendard-Bold", size: 20.0)
+    static let title2: UIFont = .pretendardBold(20.0)
     
-    static let headLine = UIFont(name: "Pretendard-Medium", size: 18.0)
+    static let headLine: UIFont = .pretendardMedium(18.0)
     
-    static let subHead = UIFont(name: "Pretendard-Medium", size: 15.0)
+    static let subHead: UIFont = .pretendardMedium(15.0)
     
-    static let bodyB1 = UIFont(name: "Pretendard-Bold", size: 17.0)
+    static let bodyB1: UIFont = .pretendardBold(17.0)
     
-    static let bodyM1 = UIFont(name: "Pretendard-Medium", size: 17.0)
+    static let bodyM1: UIFont = .pretendardMedium(17.0)
     
-    static let bodyB2 = UIFont(name: "Pretendard-Bold", size: 14.0)
+    static let bodyB2: UIFont = .pretendardBold(14.0)
     
-    static let bodyM2 = UIFont(name: "Pretendard-Medium", size: 14.0)
+    static let bodyM2: UIFont = .pretendardMedium(14.0)
     
-    static let captionB1 = UIFont(name: "Pretendard-Bold", size: 13.0)
+    static let captionB1: UIFont = .pretendardBold(13.0)
     
-    static let captionM1 = UIFont(name: "Pretendard-Medium", size: 13.0)
+    static let captionM1: UIFont = .pretendardMedium(13.0)
     
-    static let captionM2 = UIFont(name: "Pretendard-Medium", size: 11.0)
+    static let captionM2: UIFont = .pretendardMedium(11.0)
 }

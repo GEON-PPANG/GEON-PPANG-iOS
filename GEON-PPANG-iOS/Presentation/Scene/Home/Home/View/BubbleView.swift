@@ -80,7 +80,7 @@ final class BubbleView: UIView {
         
         titleLabel.do {
             $0.basic(text: I18N.Home.bubbleTitle,
-                     font: .captionM2!,
+                     font: .captionM2,
                      color: .gbbGray400)
         }
         

@@ -111,7 +111,7 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
         }
         
         bakeryTitle.do {
-            $0.basic(font: .title2!, color: .gbbGray700)
+            $0.basic(font: .title2, color: .gbbGray700)
         }
         
         collectionView.do {
@@ -198,7 +198,7 @@ extension BakeryCommonCollectionViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let tagTitle = self.breadTypeTag[indexPath.item]
-        let itemSize = tagTitle.size(withAttributes: [NSAttributedString.Key.font: UIFont.captionM2!])
+        let itemSize = tagTitle.size(withAttributes: [NSAttributedString.Key.font: UIFont.captionM2])
         return CGSize(width: itemSize.width + 12, height: itemSize.height)
     }
 }
