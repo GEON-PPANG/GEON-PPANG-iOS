@@ -84,7 +84,7 @@ final class SortBakeryFilterView: UIView {
         checkBoxTitle.do {
             $0.basic(text: I18N.BakeryListFilter.title,
                      font: .captionB1!,
-                     color: .gbbGray600!)
+                     color: .gbbGray600)
         }
     }
     

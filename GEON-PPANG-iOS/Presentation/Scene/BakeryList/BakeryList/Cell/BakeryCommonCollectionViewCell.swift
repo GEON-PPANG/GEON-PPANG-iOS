@@ -111,7 +111,7 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
         }
         
         bakeryTitle.do {
-            $0.basic(font: .title2!, color: .gbbGray700!)
+            $0.basic(font: .title2!, color: .gbbGray700)
         }
         
         collectionView.do {

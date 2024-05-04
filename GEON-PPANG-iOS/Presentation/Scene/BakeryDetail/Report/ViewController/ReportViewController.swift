@@ -194,14 +194,14 @@ final class ReportViewController: BaseViewController {
         }
         
         reportingReasonLabel.do {
-            $0.basic(text: I18N.Report.reportReason, font: .bodyB1!, color: .gbbGray700!)
+            $0.basic(text: I18N.Report.reportReason, font: .bodyB1!, color: .gbbGray700)
         }
         
         [advertisementReportButton, profanityReportButton, defamationReportButton, othersReportButton].enumerated().forEach { index, button in
             button.do {
                 $0.configuration?.attributedTitle = AttributedString(labeling[index],
                                                                      attributes: AttributeContainer([.font: UIFont.captionB1!,
-                                                                                                     .foregroundColor: UIColor.gbbGray500!]))
+                                                                                                     .foregroundColor: UIColor.gbbGray500]))
                 $0.configuration?.contentInsets = .init(top: 8,
                                                         leading: 8,
                                                         bottom: 8,
@@ -217,7 +217,7 @@ final class ReportViewController: BaseViewController {
         }
         
         detailReasonLabel.do {
-            $0.basic(text: I18N.Report.detailReportReason, font: .bodyB1!, color: .gbbGray700!)
+            $0.basic(text: I18N.Report.detailReportReason, font: .bodyB1!, color: .gbbGray700)
         }
         
         pleaseReportContainer.do {
@@ -225,7 +225,7 @@ final class ReportViewController: BaseViewController {
         }
         
         pleaseReportLabel.do {
-            $0.basic(text: I18N.Report.pleaseReport, font: .captionM2!, color: .gbbGray300!)
+            $0.basic(text: I18N.Report.pleaseReport, font: .captionM2!, color: .gbbGray300)
             $0.textAlignment = .center
             $0.adjustsFontSizeToFitWidth = true
         }
@@ -291,7 +291,7 @@ final class ReportViewController: BaseViewController {
     private func nothingSelected() {
         // 버튼 선택 안하고 텍스트 입력하려 했을 때 border와 글자 수 라벨의 색깔 바꿔주기
         if selectedButton == nil {
-            detailReasonTextView.detailTextView.makeBorder(width: 1, color: .gbbGray500!)
+            detailReasonTextView.detailTextView.makeBorder(width: 1, color: .gbbGray500)
             detailReasonTextView.textLimitLabel.textColor = .gbbGray500
         }
     }
@@ -401,7 +401,7 @@ extension ReportViewController: UITextViewDelegate {
             detailReasonTextView.updateTextLimitLabel(to: 0)
             
             if selectedButton == nil {
-                detailReasonTextView.detailTextView.makeBorder(width: 1, color: .gbbGray300!)
+                detailReasonTextView.detailTextView.makeBorder(width: 1, color: .gbbGray300)
                 detailReasonTextView.textLimitLabel.textColor = .gbbGray300
             }
         }

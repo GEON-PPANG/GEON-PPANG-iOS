@@ -146,7 +146,7 @@ final class MyPageProfileCell: UICollectionViewCell {
         
         buttonsContainer.do {
             $0.makeCornerRound(radius: 12)
-            $0.makeBorder(width: 1, color: .gbbPoint1!)
+            $0.makeBorder(width: 1, color: .gbbPoint1)
             $0.backgroundColor = .gbbBackground1
         }
         

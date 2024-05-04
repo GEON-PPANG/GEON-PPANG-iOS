@@ -81,7 +81,7 @@ final class BubbleView: UIView {
         titleLabel.do {
             $0.basic(text: I18N.Home.bubbleTitle,
                      font: .captionM2!,
-                     color: .gbbGray400!)
+                     color: .gbbGray400)
         }
         
         cancelButton.do {

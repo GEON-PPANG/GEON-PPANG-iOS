@@ -120,7 +120,7 @@ final class LoginRequiredViewController: BaseViewController {
             $0.font = .title2
             $0.numberOfLines = 2
             $0.textAlignment = .center
-            $0.partColorChange(targetString: "로그인", textColor: .gbbMain2!)
+            $0.partColorChange(targetString: "로그인", textColor: .gbbMain2)
         }
         
         kakaoLoginButton.do {

@@ -130,7 +130,7 @@ final class BakeryDetailViewController: BaseViewController {
         floatingButton.do {
             $0.setImage(.upArrowIcon, for: .normal)
             $0.backgroundColor = .gbbWhite
-            $0.makeBorder(width: 1, color: .gbbGray200!)
+            $0.makeBorder(width: 1, color: .gbbGray200)
             $0.makeCornerRound(radius: 24)
             $0.addAction(UIAction { [weak self] _ in
                 self?.tappedFloatingButton()
@@ -168,7 +168,7 @@ final class BakeryDetailViewController: BaseViewController {
         }
         
         tempLabel.do {
-            $0.basic(font: .subHead!, color: .gbbGray400!)
+            $0.basic(font: .subHead!, color: .gbbGray400)
             $0.numberOfLines = 0
         }
     }

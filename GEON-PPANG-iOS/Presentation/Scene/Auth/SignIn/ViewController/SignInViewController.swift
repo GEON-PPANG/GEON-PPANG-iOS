@@ -148,7 +148,7 @@ final class SignInViewController: BaseViewController {
             $0.numberOfLines = 0
             $0.basic(text: I18N.SignIn.title,
                      font: .title1!,
-                     color: .gbbGray700!)
+                     color: .gbbGray700)
         }
         
         emailTextField.do {
@@ -165,7 +165,7 @@ final class SignInViewController: BaseViewController {
         
         nextButton.do {
             $0.configureButtonTitle(.next)
-            $0.configureButtonUI(.gbbGray200!)
+            $0.configureButtonUI(.gbbGray200)
             $0.isUserInteractionEnabled = false
         }
     }
@@ -180,7 +180,7 @@ final class SignInViewController: BaseViewController {
     func configureButtonUI(_ isValid: Bool) {
         
         nextButton.do {
-            $0.configureButtonUI(isValid ? .gbbMain2!: .gbbGray200!)
+            $0.configureButtonUI(isValid ? .gbbMain2: .gbbGray200)
             $0.isUserInteractionEnabled = isValid
             $0.tappedCommonButton = { [weak self] in
                 guard let self else { return }

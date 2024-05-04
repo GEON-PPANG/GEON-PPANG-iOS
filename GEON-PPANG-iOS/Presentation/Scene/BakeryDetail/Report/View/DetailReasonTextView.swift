@@ -59,13 +59,13 @@ final class DetailReasonTextView: UIView {
             $0.textColor = .gbbGray300
             $0.autocorrectionType = .no // 자동완성 비활성화
             $0.makeCornerRound(radius: 12)
-            $0.makeBorder(width: 1, color: .gbbGray300!)
+            $0.makeBorder(width: 1, color: .gbbGray300)
             $0.textContainerInset = .init(top: 20, left: 24, bottom: 49, right: 24)
             $0.clipsToBounds = true
         }
         
         textLimitLabel.do {
-            $0.basic(text: "0/140자", font: .captionM1!, color: .gbbGray300!)
+            $0.basic(text: "0/140자", font: .captionM1!, color: .gbbGray300)
             $0.textAlignment = .right
         }
     }

@@ -69,7 +69,7 @@ final class CommonTextView: UIView {
     private func setUI(type: SignInPropertyType) {
         
         titleLabel.do {
-            $0.basic(font: .bodyB2!, color: .gbbGray400!)
+            $0.basic(font: .bodyB2!, color: .gbbGray400)
             $0.text = type.title
         }
         
@@ -103,8 +103,8 @@ final class CommonTextView: UIView {
         titleLabel.textColor = isValid ? .gbbError: .gbbMain3
         checkLabel.basic(text: message,
                          font: .captionM1!,
-                         color: isValid ? .gbbError!: .gbbMain3!)
-        commonTextField.layer.borderColor = isValid ? UIColor.gbbError?.cgColor : UIColor.gbbMain3?.cgColor
+                         color: isValid ? .gbbError: .gbbMain3)
+        commonTextField.layer.borderColor = isValid ? UIColor.gbbError.cgColor : UIColor.gbbMain3.cgColor
     }
     
     func clearErrorMessage() {

@@ -70,9 +70,9 @@ final class IconLabelStackView: UIStackView {
     private var labelColor: UIColor {
         switch iconType {
         case .bookmark, .review, .notice:
-            return .gbbGray300!
+            return .gbbGray300
         case .basic:
-            return .gbbBlack!
+            return .gbbBlack
         }
     }
     

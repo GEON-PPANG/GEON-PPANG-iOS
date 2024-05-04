@@ -46,7 +46,7 @@ final class MyReviewsHeaderView: UICollectionReusableView {
         
         dateLabel.do {
             $0.basic(font: .captionM1!,
-                     color: .gbbGray400!)
+                     color: .gbbGray400)
         }
     }
     

@@ -58,7 +58,7 @@ final class LayoutUtils {
         
         var config = UICollectionLayoutListConfiguration(appearance: appearance)
         config.backgroundColor = .clear
-        config.separatorConfiguration.color = .gbbGray200!
+        config.separatorConfiguration.color = .gbbGray200
         config.headerMode = headerMode
         config.separatorConfiguration.topSeparatorVisibility = .hidden
         config.itemSeparatorHandler = handler

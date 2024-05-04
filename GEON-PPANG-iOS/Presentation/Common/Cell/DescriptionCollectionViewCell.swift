@@ -22,25 +22,25 @@ final class DescriptionCollectionViewCell: UICollectionViewCell {
     
     private var cellBorderColor: UIColor {
         switch cellColor {
-        case .basic: return .gbbGray300!
-        case .sub: return .gbbPoint1!
+        case .basic: return .gbbGray300
+        case .sub: return .gbbPoint1
         case .point: return .clear
         }
     }
     
     private var cellBackgroundColor: UIColor {
         switch cellColor {
-        case .basic: return .gbbBackground1!
-        case .sub: return .gbbBackground1!
-        case .point: return .gbbPoint2!
+        case .basic: return .gbbBackground1
+        case .sub: return .gbbBackground1
+        case .point: return .gbbPoint2
         }
     }
     
     private var cellTextColor: UIColor {
         switch cellColor {
-        case .basic: return .gbbGray400!
-        case .sub: return .gbbPoint1!
-        case .point: return .gbbPoint1!
+        case .basic: return .gbbGray400
+        case .sub: return .gbbPoint1
+        case .point: return .gbbPoint1
         }
     }
     

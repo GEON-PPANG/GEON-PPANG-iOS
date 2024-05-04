@@ -74,7 +74,7 @@ final class CommonButton: UIButton {
         
         self.backgroundColor = color
         switch color {
-        case .gbbMain2!, .gbbGray700!: setTitleColor(.gbbGray100, for: .normal)
+        case .gbbMain2, .gbbGray700: setTitleColor(.gbbGray100, for: .normal)
         case .clear:
             self.titleLabel?.font = .bodyB1!
             setTitleColor(.gbbGray400, for: .normal)
@@ -108,6 +108,6 @@ final class CommonButton: UIButton {
     
     func configureInteraction(to value: Bool) {
         self.isUserInteractionEnabled = value
-        self.configureButtonUI(value ? .gbbGray700! : .gbbGray200!)
+        self.configureButtonUI(value ? .gbbGray700 : .gbbGray200)
     }
 }

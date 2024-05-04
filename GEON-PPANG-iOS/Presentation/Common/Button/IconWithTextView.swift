@@ -65,12 +65,12 @@ final class IconWithTextView: UIButton {
     
     func configureListUI(text: String) {
         
-        self.configuration?.attributedTitle = AttributedString(text, attributes: AttributeContainer([.font: UIFont.captionM1!, .foregroundColor: UIColor.gbbGray400!]))
+        self.configuration?.attributedTitle = AttributedString(text, attributes: AttributeContainer([.font: UIFont.captionM1!, .foregroundColor: UIColor.gbbGray400]))
         
     }
     
     func configureHomeCell(count: Int) {
         
-        self.configuration?.attributedTitle = AttributedString("(\(count))", attributes: AttributeContainer([.font: UIFont.captionB1!, .foregroundColor: UIColor.gbbGray400!]))
+        self.configuration?.attributedTitle = AttributedString("(\(count))", attributes: AttributeContainer([.font: UIFont.captionB1!, .foregroundColor: UIColor.gbbGray400]))
     }
 }

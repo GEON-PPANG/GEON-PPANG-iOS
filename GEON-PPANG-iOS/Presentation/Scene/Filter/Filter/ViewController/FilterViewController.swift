@@ -96,7 +96,7 @@ final class FilterViewController: BaseViewController {
         
         nextButton.do {
             $0.configureButtonTitle(.next)
-            $0.configureButtonUI(.gbbGray200!)
+            $0.configureButtonUI(.gbbGray200)
             $0.tappedCommonButton = {
                 self.nextButtonTapped()
             }
@@ -183,7 +183,7 @@ final class FilterViewController: BaseViewController {
         let isAnySelected = FilterCellModel.isAnySelected(of: currentFilterType)
         nextButton.isUserInteractionEnabled = isAnySelected ? true : false
         UIView.animate(withDuration: 0.2) {
-            self.nextButton.configureButtonUI(isAnySelected ? .gbbMain2! : .gbbGray200!)
+            self.nextButton.configureButtonUI(isAnySelected ? .gbbMain2 : .gbbGray200)
         }
     }
     
@@ -328,7 +328,7 @@ extension FilterViewController: UICollectionViewDelegate {
         } else {
             nextButton.isUserInteractionEnabled = true
             UIView.animate(withDuration: 0.2) {
-                self.nextButton.configureButtonUI(.gbbMain2!)
+                self.nextButton.configureButtonUI(.gbbMain2)
             }
         }
     }

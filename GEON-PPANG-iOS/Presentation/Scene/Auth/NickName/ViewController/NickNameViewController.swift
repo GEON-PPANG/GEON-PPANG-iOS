@@ -96,7 +96,7 @@ final class NickNameViewController: BaseViewController {
             $0.numberOfLines = 0
             $0.basic(text: I18N.Nickname.title,
                      font: .title1!,
-                     color: .gbbGray700!)
+                     color: .gbbGray700)
         }
         
         checkButton.do {
@@ -115,7 +115,7 @@ final class NickNameViewController: BaseViewController {
         
         nextButton.do {
             $0.isUserInteractionEnabled = false
-            $0.configureButtonUI(.gbbGray200!)
+            $0.configureButtonUI(.gbbGray200)
             $0.configureButtonTitle(.next)
         }
         
@@ -131,7 +131,7 @@ final class NickNameViewController: BaseViewController {
         self.checkButton.do {
             $0.isEnabled = isValid
             $0.configureButtonUI(.clear)
-            $0.configureBorder(isValid ? 2 : 1, isValid ? .gbbMain2! : .gbbGray300!)
+            $0.configureBorder(isValid ? 2 : 1, isValid ? .gbbMain2 : .gbbGray300)
         }
     }
     
@@ -140,7 +140,7 @@ final class NickNameViewController: BaseViewController {
         self.nextButton.do {
             $0.isUserInteractionEnabled = isValid
             $0.configureButtonTitle(isValid ? .start : .next)
-            $0.configureButtonUI(isValid ? .gbbMain2! : .gbbGray200!)
+            $0.configureButtonUI(isValid ? .gbbMain2 : .gbbGray200)
             $0.tappedCommonButton = {
                 self.signUp()
             }

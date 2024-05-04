@@ -114,7 +114,7 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         
         bakeryTitle.do {
             $0.numberOfLines = 1
-            $0.basic(font: .bodyB1!, color: .gbbGray700!)
+            $0.basic(font: .bodyB1!, color: .gbbGray700)
             $0.textAlignment = .left
             
         }

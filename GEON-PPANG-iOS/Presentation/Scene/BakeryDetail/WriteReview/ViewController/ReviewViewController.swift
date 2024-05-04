@@ -502,7 +502,7 @@ extension ReviewViewController: UICollectionViewDelegate {
             
             optionsCollectionView.toggleIsEnabled(to: isLikeSelected)
             
-            configureCollectionViewHeader(to: isLikeSelected ? .black : .gbbGray300!)
+            configureCollectionViewHeader(to: isLikeSelected ? .black : .gbbGray300)
             
             reviewDetailTextView.isLike = isLikeSelected
             reviewDetailTextView.isUserInteractionEnabled = !isLikeSelected

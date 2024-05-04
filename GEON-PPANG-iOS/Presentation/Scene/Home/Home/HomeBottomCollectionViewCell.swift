@@ -45,7 +45,7 @@ final class HomeBottomCollectionViewCell: UICollectionViewCell {
             $0.textAlignment = .left
             $0.numberOfLines = 4
             $0.basic(font: .captionM2!,
-                     color: .gbbGray300!)
+                     color: .gbbGray300)
             $0.setLineHeight(by: 1.37, with: I18N.Home.bottomSectionTitle)
         }
     }

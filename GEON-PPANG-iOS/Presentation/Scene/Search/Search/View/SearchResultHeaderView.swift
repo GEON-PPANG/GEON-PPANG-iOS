@@ -43,13 +43,13 @@ final class SearchResultHeaderView: UICollectionReusableView {
     private func setUI() {
         
         resultLabel.do {
-            $0.basic(font: .headLine!, color: .gbbGray600!)
+            $0.basic(font: .headLine!, color: .gbbGray600)
             
         }
     }
     
     func configureUI(count: Int) {
         resultLabel.text = "건빵집 결과 \(count)개"
-        resultLabel.partColorChange(targetString: "\(count)개", textColor: .gbbPoint1!)
+        resultLabel.partColorChange(targetString: "\(count)개", textColor: .gbbPoint1)
     }
 }

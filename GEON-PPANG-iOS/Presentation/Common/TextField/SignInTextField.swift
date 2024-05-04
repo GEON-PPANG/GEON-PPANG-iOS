@@ -58,7 +58,7 @@ final class SignInTextField: UITextField {
             
             $0.makeCornerRound(radius: 10)
             $0.makeBorder(width: 1, color: .clear)
-            $0.setPlaceholder(color: .gbbGray300!, font: .headLine!)
+            $0.setPlaceholder(color: .gbbGray300, font: .headLine!)
         }
     }
     

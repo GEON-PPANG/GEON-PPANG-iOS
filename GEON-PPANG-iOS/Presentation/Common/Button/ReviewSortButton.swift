@@ -50,7 +50,7 @@ final class ReviewSortButton: UIButton {
     private func setUI() {
         
         iconLabelStackViewContainer.do {
-            $0.makeBorder(width: 1, color: .gbbGray200!)
+            $0.makeBorder(width: 1, color: .gbbGray200)
             $0.makeCornerRound(radius: 18)
         }
         

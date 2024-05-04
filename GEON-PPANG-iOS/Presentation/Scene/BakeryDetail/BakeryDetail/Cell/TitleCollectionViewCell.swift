@@ -88,7 +88,7 @@ final class TitleCollectionViewCell: UICollectionViewCell {
         }
         
         bakeryNameLabel.do {
-            $0.basic(font: .title1!, color: .gbbGray700!)
+            $0.basic(font: .title1!, color: .gbbGray700)
             $0.adjustsFontSizeToFitWidth = true
         }
         

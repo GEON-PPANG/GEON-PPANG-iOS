@@ -53,12 +53,12 @@ final class HomeHeaderView: UICollectionReusableView {
             string: headerTitle,
             attributes: [
                 .font: UIFont.title2!,
-                .foregroundColor: UIColor.gbbGray700!
+                .foregroundColor: UIColor.gbbGray700
             ]
         )
         
         attributedString.addAttributes(
-            [.foregroundColor: UIColor.gbbPoint1!],
+            [.foregroundColor: UIColor.gbbPoint1],
             range: NSRange(
                 location: headerTitle.count - 8,
                 length: 8

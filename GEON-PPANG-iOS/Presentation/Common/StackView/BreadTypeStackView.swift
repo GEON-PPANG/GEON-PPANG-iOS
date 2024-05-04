@@ -62,9 +62,9 @@ final class BreadTypeStackView: UIStackView {
         
         [glutenFreeChip, veganBreadChip, nutFreeChip, subSugarChip].enumerated().forEach { index, chip in
             chip.do {
-                $0.basic(text: labeling[index], font: .captionM1!, color: .gbbPoint1!)
+                $0.basic(text: labeling[index], font: .captionM1!, color: .gbbPoint1)
                 $0.makeCornerRound(radius: 3)
-                $0.makeBorder(width: 0.5, color: .gbbPoint1!)
+                $0.makeBorder(width: 0.5, color: .gbbPoint1)
             }
         }
     }

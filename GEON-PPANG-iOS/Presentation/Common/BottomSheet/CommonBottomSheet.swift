@@ -85,10 +85,10 @@ final class CommonBottomSheet: UIView {
         bottonSheetTitle.do {
             $0.textAlignment = .center
             $0.numberOfLines = 0
-            $0.basic(font: .pretendardBold(20), color: .gbbGray500!)
+            $0.basic(font: .pretendardBold(20), color: .gbbGray500)
         }
         confirmButton.do {
-            $0.configureButtonUI(.gbbGray700!)
+            $0.configureButtonUI(.gbbGray700)
             $0.configureButtonTitle(.confirm)
             $0.tappedCommonButton = {
                 self.dismissBottomSheet?()
