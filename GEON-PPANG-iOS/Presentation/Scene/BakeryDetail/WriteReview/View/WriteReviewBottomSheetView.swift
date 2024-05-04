@@ -19,7 +19,7 @@ final class WriteReviewBottomSheetView: UIView {
     
     // MARK: - UI Property
     
-    private let emojiImageView = UIImageView(image: .reviewBreadIcon)
+    private let emojiImageView = UIImageView(image: .Icon.Review.bread)
     private let sheetTitleLabel = UILabel()
     private let sheetDescriptionLabel = UILabel()
     

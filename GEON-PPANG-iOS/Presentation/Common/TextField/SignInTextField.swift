@@ -72,8 +72,8 @@ final class SignInTextField: UITextField {
         }
         
         securityButton.do {
-            $0.setImage(.hideIcon, for: .normal)
-            $0.setImage(.showIcon, for: .selected)
+            $0.setImage(.Icon.hide, for: .normal)
+            $0.setImage(.Icon.show, for: .selected)
             $0.addAction(UIAction { [weak self]_ in
                 self?.isSecureTextEntry.toggle()
                 self?.securityButton.isSelected.toggle()

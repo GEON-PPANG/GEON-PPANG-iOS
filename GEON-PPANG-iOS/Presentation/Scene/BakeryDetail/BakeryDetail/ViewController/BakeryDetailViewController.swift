@@ -128,7 +128,7 @@ final class BakeryDetailViewController: BaseViewController {
         }
         
         floatingButton.do {
-            $0.setImage(.upArrowIcon, for: .normal)
+            $0.setImage(.Icon.Arrow.up, for: .normal)
             $0.backgroundColor = .gbbWhite
             $0.makeBorder(width: 1, color: .gbbGray200)
             $0.makeCornerRound(radius: 24)

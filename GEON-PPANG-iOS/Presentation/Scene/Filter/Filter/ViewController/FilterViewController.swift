@@ -107,7 +107,7 @@ final class FilterViewController: BaseViewController {
             $0.setTitle(I18N.Filter.skip, for: .normal)
             $0.setTitleColor(.gbbGray500, for: .normal)
             $0.titleLabel?.font = .bodyM2
-            $0.setImage(.rightArrowIcon.resize(to: .init(width: 16, height: 16)),
+            $0.setImage(.Icon.Arrow.right.resize(to: .init(width: 16, height: 16)),
                         for: .normal)
             $0.semanticContentAttribute = .forceRightToLeft
             $0.isHidden = !(self.from == .onboarding)

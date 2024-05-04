@@ -36,7 +36,7 @@ final class LoginRequiredViewController: BaseViewController {
     
     // MARK: - UI Property
     
-    private let loginImageView = UIImageView(image: .loginIcon)
+    private let loginImageView = UIImageView(image: .Icon.login)
     private let loginLabel = UILabel()
     private let kakaoLoginButton = UIButton()
     private let appleLoginButton = UIButton()

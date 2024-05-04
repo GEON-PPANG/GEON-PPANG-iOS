@@ -131,7 +131,7 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         }
         
         linkImage.do {
-            $0.image = .linkIcon
+            $0.image = .Icon.link
         }
         
         linkButtonStackView.do {
@@ -149,7 +149,7 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         }
         
         addressImage.do {
-            $0.image = .storeIcon
+            $0.image = .Icon.store
         }
         
         addressLabel.do {
@@ -163,7 +163,7 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         }
         
         openingHoursImage.do {
-            $0.image = .timeIcon
+            $0.image = .Icon.time
         }
         
         closedDaysLabel.do {
@@ -176,7 +176,7 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         }
         
         phoneNumberImage.do {
-            $0.image = .callIcon
+            $0.image = .Icon.call
         }
         
         phoneNumberLabel.do {

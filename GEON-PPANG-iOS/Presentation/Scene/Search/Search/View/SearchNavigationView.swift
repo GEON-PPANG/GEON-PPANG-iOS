@@ -65,7 +65,7 @@ final class SearchNavigationView: UIView {
         }
         
         backButton.do {
-            $0.setImage(.leftArrowIcon, for: .normal)
+            $0.setImage(.Icon.Arrow.left, for: .normal)
             $0.addAction(UIAction { [weak self] _ in
                 self?.dismissSearchView?()
             }, for: .touchUpInside)

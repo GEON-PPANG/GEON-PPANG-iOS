@@ -116,7 +116,7 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
         }
         
         profileImage.do {
-            $0.image = .smileIcon
+            $0.image = .Icon.Smile.px64
             $0.contentMode = .scaleToFill
         }
         

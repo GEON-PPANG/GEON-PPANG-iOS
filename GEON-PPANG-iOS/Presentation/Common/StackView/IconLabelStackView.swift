@@ -25,13 +25,13 @@ final class IconLabelStackView: UIStackView {
     private var ic: UIImage {
         switch iconType {
         case .bookmark:
-            return .bookmarkIcon16px300
+            return .Icon.Bookmark.px16gray300
         case .review:
-            return .reviewIcon16px
+            return .Icon.Review.px16
         case .notice:
-            return .noticeIcon18px
+            return .Icon.notice
         case .basic:
-            return .swapIcon
+            return .Icon.swap
         }
     }
     private var icSize: Int {

@@ -206,7 +206,7 @@ final class ReportViewController: BaseViewController {
                                                         leading: 8,
                                                         bottom: 8,
                                                         trailing: 8)
-                $0.configuration?.image = .filterUncheckIcon
+                $0.configuration?.image = .Icon.Filter.uncheck
                 $0.configuration?.imagePadding = 6
                 $0.configuration?.imagePlacement = .leading
                 $0.isSelected = false
@@ -301,10 +301,10 @@ final class ReportViewController: BaseViewController {
         nothingSelected()
         
         selectedButton?.isSelected = false // 이전 선택 해제
-        selectedButton?.configuration?.image = .filterUncheckIcon
+        selectedButton?.configuration?.image = .Icon.Filter.uncheck
         
         sender.isSelected = true // 새로운 버튼 선택
-        sender.configuration?.image = .filterCheckIcon
+        sender.configuration?.image = .Icon.Filter.check
         sender.configuration?.baseBackgroundColor = .gbbWhite
         writeButton.configureInteraction(to: true)
         

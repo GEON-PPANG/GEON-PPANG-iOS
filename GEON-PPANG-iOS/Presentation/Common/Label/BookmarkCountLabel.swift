@@ -18,7 +18,7 @@ final class BookmarkCountLabel: UILabel {
     
     // MARK: - UI Property
     
-    private let imageView = UIImageView(image: .bookmarkIcon16px400)
+    private let imageView = UIImageView(image: .Icon.Bookmark.px16gray400)
     private let label = UILabel()
     
     // MARK: - Life Cycle

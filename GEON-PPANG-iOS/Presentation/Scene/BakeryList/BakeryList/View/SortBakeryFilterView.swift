@@ -69,7 +69,7 @@ final class SortBakeryFilterView: UIView {
                                                     leading: 12,
                                                     bottom: 11,
                                                     trailing: 12)
-            $0.configuration?.image = .swapIcon.resize(to: CGSize(width: 16, height: 16))
+            $0.configuration?.image = .Icon.swap.resize(to: CGSize(width: 16, height: 16))
             $0.configuration?.attributedTitle = AttributedString(I18N.BakeryList.defaultFilter,
                                                                  attributes: AttributeContainer([.font: UIFont.captionB1!]))
             $0.configuration?.imagePadding = 5
@@ -116,9 +116,9 @@ final class SortBakeryFilterView: UIView {
         let handler: UIButton.ConfigurationUpdateHandler = { button in
             switch button.state {
             case .selected:
-                button.configuration?.image = .filterCheckIcon
+                button.configuration?.image = .Icon.Filter.check
             default:
-                button.configuration?.image = .filterUncheckIcon
+                button.configuration?.image = .Icon.Filter.uncheck
             }
         }
         return handler

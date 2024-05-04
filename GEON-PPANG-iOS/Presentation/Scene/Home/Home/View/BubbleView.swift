@@ -20,8 +20,8 @@ final class BubbleView: UIView {
         
         var image: UIImage {
             switch self {
-            case .left: return .leftBubbleImage
-            case .right: return .rightBubbleImage
+            case .left: return .Image.Bubble.left
+            case .right: return .Image.Bubble.right
             }
         }
     }
@@ -85,7 +85,7 @@ final class BubbleView: UIView {
         }
         
         cancelButton.do {
-            $0.setImage(.deleteKeywordIcon, for: .normal)
+            $0.setImage(.Icon.deleteKeyword, for: .normal)
             $0.addAction(UIAction { _ in
                 self.removeFromSuperview()
             }, for: .touchUpInside)

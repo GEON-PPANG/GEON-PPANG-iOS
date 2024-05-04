@@ -7,89 +7,168 @@
 
 import UIKit
 
-extension UIImage {
+public extension UIImage {
     
     // 따로 픽셀이 적혀있지 않은 컴포넌트는 24px임.
     
-    // Bread Types
-    static let disabledCakeIcon = UIImage(named: "ic_cake_disable_20px")!.withRenderingMode(.alwaysOriginal)
-    static let disabledHardIcon = UIImage(named: "ic_hard_disable_20px")!.withRenderingMode(.alwaysOriginal)
-    static let disabledSandwichIcon = UIImage(named: "ic_sandwich_disable_20px")!.withRenderingMode(.alwaysOriginal)
-    static let enabledCakeIcon = UIImage(named: "ic_cake_enable_20px")!.withRenderingMode(.alwaysOriginal)
-    static let enabledHardIcon = UIImage(named: "ic_hard_enable_20px")!.withRenderingMode(.alwaysOriginal)
-    static let enabledSandwichIcon = UIImage(named: "ic_sandwich_enable_20px")!.withRenderingMode(.alwaysOriginal)
+    // MARK: - Icon
     
-    // Emoji
-    
-    static let sadIcon = UIImage(named: "icon_sad")!.withRenderingMode(.alwaysOriginal)
-    static let cryingIcon = UIImage(named: "icon_crying")!.withRenderingMode(.alwaysOriginal)
-    
-    // Environmental Marks
-    static let smallGMOMark = UIImage(named: "gmo_mark_22px")!.withRenderingMode(.alwaysOriginal)
-    static let smallHACCPMark = UIImage(named: "haccp_mark_22px")!.withRenderingMode(.alwaysOriginal)
-    static let smallVeganMark = UIImage(named: "vegan_mark_22px")!.withRenderingMode(.alwaysOriginal)
-    static let bigGMOMark = UIImage(named: "gmo_mark_28px")!.withRenderingMode(.alwaysOriginal)
-    static let bigHACCPMark = UIImage(named: "haccp_mark_28px")!.withRenderingMode(.alwaysOriginal)
-    static let bigVeganMark = UIImage(named: "vegan_mark_28px")!.withRenderingMode(.alwaysOriginal)
-    
-    // Icons
-    static let downArrowIcon = UIImage(named: "ic_arrow_down")!.withRenderingMode(.alwaysOriginal)
-    static let leftArrowIcon = UIImage(named: "ic_arrow_left")!.withRenderingMode(.alwaysOriginal)
-    static let rightArrowIcon = UIImage(named: "ic_arrow_right")!.withRenderingMode(.alwaysOriginal)
-    static let upArrowIcon = UIImage(named: "ic_arrow_up")!.withRenderingMode(.alwaysOriginal)
-    static let bookmarkIcon16px300 = UIImage(named: "ic_bookmark_16px_300")!.withRenderingMode(.alwaysOriginal) /// gray300
-    static let bookmarkIcon16px400 = UIImage(named: "ic_bookmark_16px_400")!.withRenderingMode(.alwaysOriginal) /// gray400
-    static let bookmarkIcon = UIImage(named: "ic_bookmark")!.withRenderingMode(.alwaysOriginal)
-    static let callIcon = UIImage(named: "ic_call")!.withRenderingMode(.alwaysOriginal)
-    static let checkIcon = UIImage(named: "ic_check")!.withRenderingMode(.alwaysOriginal)
-    static let deleteKeywordIcon = UIImage(named: "ic_delete_keyword")!.withRenderingMode(.alwaysOriginal) /// 최근 검색어 삭제용 (앱잼 이후)
-    static let deleteIcon = UIImage(named: "ic_delete")!.withRenderingMode(.alwaysOriginal)
-    static let dotdotdotIcon = UIImage(named: "ic_dotdotdot")!.withRenderingMode(.alwaysOriginal)
-    static let hideIcon = UIImage(named: "ic_hide")!.withRenderingMode(.alwaysOriginal)
-    static let launchscreenIcon = UIImage(named: "ic_launchscreen")!.withRenderingMode(.alwaysOriginal)
-    static let linkIcon = UIImage(named: "ic_link")!.withRenderingMode(.alwaysOriginal)
-    static let listIcon = UIImage(named: "ic_list")!.withRenderingMode(.alwaysOriginal) // 건빵집 리스트 옆에 얘 써야 됨, 탭바의 storelist 아님!
-    static let logoIcon16px = UIImage(named: "ic_logo_16px")!.withRenderingMode(.alwaysOriginal)
-    static let logoIcon20px = UIImage(named: "ic_logo_20px")!.withRenderingMode(.alwaysOriginal)
-    static let mapIcon = UIImage(named: "ic_map")!.withRenderingMode(.alwaysOriginal)
-    static let noticeIcon18px = UIImage(named: "ic_notice_18px")!.withRenderingMode(.alwaysOriginal)
-    static let profileIcon = UIImage(named: "ic_profile")!.withRenderingMode(.alwaysOriginal)
-    static let reviewIcon16px = UIImage(named: "ic_review_16px")!.withRenderingMode(.alwaysOriginal)
-    static let reviewIcon = UIImage(named: "ic_review")!.withRenderingMode(.alwaysOriginal)
-    static let reviewIcon16px400 = UIImage(named: "ic_review_16px_400")!.withRenderingMode(.alwaysOriginal)
-    static let reviewBreadIcon = UIImage(named: "ic_review_bread")!.withRenderingMode(.alwaysOriginal)
-    static let searchIcon400 = UIImage(named: "ic_search_400")!.withRenderingMode(.alwaysOriginal) /// gray400
-    static let searchIcon600 = UIImage(named: "ic_search_600")!.withRenderingMode(.alwaysOriginal) /// gray600
-    static let smileIcon = UIImage(named: "ic_smile")!.withRenderingMode(.alwaysOriginal)
-    static let showIcon = UIImage(named: "ic_show")!.withRenderingMode(.alwaysOriginal)
-    static let smileIcon86px = UIImage(named: "ic_smile_86px")!.withRenderingMode(.alwaysOriginal)
-    static let storeIcon = UIImage(named: "ic_store")!.withRenderingMode(.alwaysOriginal)
-    static let swapIcon = UIImage(named: "ic_swap")!.withRenderingMode(.alwaysOriginal)
-    static let timeIcon = UIImage(named: "ic_time")!.withRenderingMode(.alwaysOriginal)
-    static let filterCheckIcon = UIImage(named: "ic_filter_check")!.withRenderingMode(.alwaysOriginal)
-    static let filterUncheckIcon = UIImage(named: "ic_filter_unchecked")!.withRenderingMode(.alwaysOriginal)
-    static let loginIcon = UIImage(named: "ic_login")!.withRenderingMode(.alwaysOriginal)
-    
-    // Images
-    static let noBookmarkImage = UIImage(named: "img_no_bookmark")!.withRenderingMode(.alwaysOriginal)
-    static let noMyreviewImage = UIImage(named: "img_no_myreview")!.withRenderingMode(.alwaysOriginal)
-    static let noReviewImage = UIImage(named: "img_no_review")!.withRenderingMode(.alwaysOriginal)
-    static let noSearchResultImage = UIImage(named: "img_no_search_result")!.withRenderingMode(.alwaysOriginal)
-    static let searchImage = UIImage(named: "img_search")!.withRenderingMode(.alwaysOriginal)
-    static let serverMaintenanceImage = UIImage(named: "img_server_maintenance")!.withRenderingMode(.alwaysOriginal)
-    static let welcomeImage = UIImage(named: "img_welcome")!.withRenderingMode(.alwaysOriginal)
-    static let leftBubbleImage = UIImage(named: "img_left_bubble")!.withRenderingMode(.alwaysOriginal)
-    static let rightBubbleImage = UIImage(named: "img_right_bubble")!.withRenderingMode(.alwaysOriginal)
-    static let loading_large = UIImage(named: "img_loading_large")!.withRenderingMode(.alwaysOriginal)
-    static let loading_medium = UIImage(named: "img_loading_medium")!.withRenderingMode(.alwaysOriginal)
-    static let loading_small = UIImage(named: "img_loading_small")!.withRenderingMode(.alwaysOriginal)
+    enum Icon {
         
-    // Include Touch Area
-    static let bigLeftArrowIcon = UIImage(named: "ic_arrow_left")!.withRenderingMode(.alwaysOriginal)
-    static let bigRightArrowIcon = UIImage(named: "ic_arrow_right")!.withRenderingMode(.alwaysOriginal)
-    static let bigSearchIcon = UIImage(named: "ic_search_48px")!.withRenderingMode(.alwaysOriginal)
+        // MARK: - Bread Types
+        
+        enum Cake {
+            static let disabled = UIImage(named: "ic_cake_disable_20px")!.withRenderingMode(.alwaysOriginal)
+            static let enabled = UIImage(named: "ic_cake_enable_20px")!.withRenderingMode(.alwaysOriginal)
+        }
+        
+        enum Hard {
+            static let disabled = UIImage(named: "ic_hard_disable_20px")!.withRenderingMode(.alwaysOriginal)
+            static let enabled = UIImage(named: "ic_hard_enable_20px")!.withRenderingMode(.alwaysOriginal)
+        }
+        
+        enum Sandwich {
+            static let disabled = UIImage(named: "ic_sandwich_disable_20px")!.withRenderingMode(.alwaysOriginal)
+            static let enabled = UIImage(named: "ic_sandwich_enable_20px")!.withRenderingMode(.alwaysOriginal)
+        }
+        
+        // MARK: - Emoji
+        
+        enum Smile {
+            static let px64 = UIImage(named: "ic_smile")!.withRenderingMode(.alwaysOriginal)
+            static let px86 = UIImage(named: "ic_smile_86px")!.withRenderingMode(.alwaysOriginal)
+        }
+        static let sad = UIImage(named: "icon_sad")!.withRenderingMode(.alwaysOriginal)
+        static let crying = UIImage(named: "icon_crying")!.withRenderingMode(.alwaysOriginal)
+        
+        // MARK: - arrow
+        
+        enum Arrow {
+            static let down = UIImage(named: "ic_arrow_down")!.withRenderingMode(.alwaysOriginal)
+            static let left = UIImage(named: "ic_arrow_left")!.withRenderingMode(.alwaysOriginal)
+            static let right = UIImage(named: "ic_arrow_right")!.withRenderingMode(.alwaysOriginal)
+            static let up = UIImage(named: "ic_arrow_up")!.withRenderingMode(.alwaysOriginal)
+        }
+        
+        // MARK: - Logo
+        
+        enum Logo {
+            static let px16 = UIImage(named: "ic_logo_16px")!.withRenderingMode(.alwaysOriginal)
+            static let px20 = UIImage(named: "ic_logo_20px")!.withRenderingMode(.alwaysOriginal)
+        }
+        
+        // MARK: - Bookmark
+        
+        enum Bookmark {
+            static let px16gray300 = UIImage(named: "ic_bookmark_16px_300")!.withRenderingMode(.alwaysOriginal) /// gray300
+            static let px16gray400 = UIImage(named: "ic_bookmark_16px_400")!.withRenderingMode(.alwaysOriginal) /// gray400
+            static let point = UIImage(named: "ic_bookmark")!.withRenderingMode(.alwaysOriginal)
+        }
+        
+        // MARK: - Review
+        
+        enum Review {
+            static let px16 = UIImage(named: "ic_review_16px")!.withRenderingMode(.alwaysOriginal)
+            static let point = UIImage(named: "ic_review")!.withRenderingMode(.alwaysOriginal)
+            static let px16gray400 = UIImage(named: "ic_review_16px_400")!.withRenderingMode(.alwaysOriginal)
+            static let bread = UIImage(named: "ic_review_bread")!.withRenderingMode(.alwaysOriginal)
+        }
+        
+        // MARK: - Search
+        
+        enum Search {
+            static let gray400 = UIImage(named: "ic_search_400")!.withRenderingMode(.alwaysOriginal) /// gray400
+            static let gray600 = UIImage(named: "ic_search_600")!.withRenderingMode(.alwaysOriginal) /// gray600
+        }
+        
+        // MARK: - Filter
+        
+        enum Filter {
+            static let check = UIImage(named: "ic_filter_check")!.withRenderingMode(.alwaysOriginal)
+            static let uncheck = UIImage(named: "ic_filter_unchecked")!.withRenderingMode(.alwaysOriginal)
+        }
+        
+        // MARK: - Tabbar
+        
+        enum Home {
+            static let disabled = UIImage(named: "ic_home_disable")!.withRenderingMode(.alwaysOriginal)
+            static let enabled = UIImage(named: "ic_home_enable")!.withRenderingMode(.alwaysOriginal)
+        }
+        
+        enum Mypage {
+            static let disabled = UIImage(named: "ic_mypage_disable")!.withRenderingMode(.alwaysOriginal)
+            static let enabled = UIImage(named: "ic_mypage_enable")!.withRenderingMode(.alwaysOriginal)
+        }
+        
+        enum StoreList {
+            static let disabled = UIImage(named: "ic_storelist_disable")!.withRenderingMode(.alwaysOriginal)
+            static let enabled = UIImage(named: "ic_storelist_enable")!.withRenderingMode(.alwaysOriginal)
+        }
+        
+        // MARK: - others
+        
+        static let call = UIImage(named: "ic_call")!.withRenderingMode(.alwaysOriginal)
+        static let check = UIImage(named: "ic_check")!.withRenderingMode(.alwaysOriginal)
+        static let deleteKeyword = UIImage(named: "ic_delete_keyword")!.withRenderingMode(.alwaysOriginal) /// 최근 검색어 삭제용 (앱잼 이후)
+        static let delete = UIImage(named: "ic_delete")!.withRenderingMode(.alwaysOriginal)
+        static let dotdotdot = UIImage(named: "ic_dotdotdot")!.withRenderingMode(.alwaysOriginal)
+        static let hide = UIImage(named: "ic_hide")!.withRenderingMode(.alwaysOriginal)
+        static let launchscreen = UIImage(named: "ic_launchscreen")!.withRenderingMode(.alwaysOriginal)
+        static let link = UIImage(named: "ic_link")!.withRenderingMode(.alwaysOriginal)
+        static let list = UIImage(named: "ic_list")!.withRenderingMode(.alwaysOriginal) // 건빵집 리스트 옆에 얘 써야 됨, 탭바의 storelist 아님!
+        static let map = UIImage(named: "ic_map")!.withRenderingMode(.alwaysOriginal)
+        static let notice = UIImage(named: "ic_notice_18px")!.withRenderingMode(.alwaysOriginal)
+        static let profile = UIImage(named: "ic_profile")!.withRenderingMode(.alwaysOriginal)
+        static let show = UIImage(named: "ic_show")!.withRenderingMode(.alwaysOriginal)
+        static let store = UIImage(named: "ic_store")!.withRenderingMode(.alwaysOriginal)
+        static let swap = UIImage(named: "ic_swap")!.withRenderingMode(.alwaysOriginal)
+        static let time = UIImage(named: "ic_time")!.withRenderingMode(.alwaysOriginal)
+        static let login = UIImage(named: "ic_login")!.withRenderingMode(.alwaysOriginal)
+    }
     
-    // Ready-made Buttons
+    // MARK: - Environmental Marks
+    enum GMO {
+        static let mark22 = UIImage(named: "gmo_mark_22px")!.withRenderingMode(.alwaysOriginal)
+        static let mark28 = UIImage(named: "gmo_mark_28px")!.withRenderingMode(.alwaysOriginal)
+    }
+    
+    enum HACCP {
+        static let mark22 = UIImage(named: "haccp_mark_22px")!.withRenderingMode(.alwaysOriginal)
+        static let mark28 = UIImage(named: "haccp_mark_28px")!.withRenderingMode(.alwaysOriginal)
+    }
+    
+    enum Vegan {
+        static let mark22 = UIImage(named: "vegan_mark_22px")!.withRenderingMode(.alwaysOriginal)
+        static let mark28 = UIImage(named: "vegan_mark_28px")!.withRenderingMode(.alwaysOriginal)
+    }
+    
+    
+    // MARK: - Image
+    
+    enum Image {
+        static let noBookmark = UIImage(named: "img_no_bookmark")!.withRenderingMode(.alwaysOriginal)
+        static let noMyreview = UIImage(named: "img_no_myreview")!.withRenderingMode(.alwaysOriginal)
+        static let noReview = UIImage(named: "img_no_review")!.withRenderingMode(.alwaysOriginal)
+        static let noSearchResult = UIImage(named: "img_no_search_result")!.withRenderingMode(.alwaysOriginal)
+        static let search = UIImage(named: "img_search")!.withRenderingMode(.alwaysOriginal)
+        static let serverMaintenance = UIImage(named: "img_server_maintenance")!.withRenderingMode(.alwaysOriginal)
+        static let welcome = UIImage(named: "img_welcome")!.withRenderingMode(.alwaysOriginal)
+        
+        enum Bubble {
+            static let left = UIImage(named: "img_left_bubble")!.withRenderingMode(.alwaysOriginal)
+            static let right = UIImage(named: "img_right_bubble")!.withRenderingMode(.alwaysOriginal)
+        }
+        
+        enum Loading {
+            static let large = UIImage(named: "img_loading_large")!.withRenderingMode(.alwaysOriginal)
+            static let medium = UIImage(named: "img_loading_medium")!.withRenderingMode(.alwaysOriginal)
+            static let small = UIImage(named: "img_loading_small")!.withRenderingMode(.alwaysOriginal)
+        }
+    }
+    
+    
+    // MARK: - Button
+    
     static let disabledBookmarkButton = UIImage(named: "bookmark_button_disable")!.withRenderingMode(.alwaysOriginal)
     static let enabledBookmarkButton = UIImage(named: "bookmark_button_enable")!.withRenderingMode(.alwaysOriginal)
     static let copyButton = UIImage(named: "copy_button")!.withRenderingMode(.alwaysOriginal)
@@ -100,14 +179,6 @@ extension UIImage {
     // Social Login
     static let kakaoLoginButton = UIImage(named: "KakaoSocialLogin")!.withRenderingMode(.alwaysOriginal)
     static let appleLoginButton = UIImage(named: "AppleSocialLogin")!.withRenderingMode(.alwaysOriginal)
-    
-    // TabBar
-    static let disabledHomeIcon = UIImage(named: "ic_home_disable")!.withRenderingMode(.alwaysOriginal)
-    static let disabledMypageIcon = UIImage(named: "ic_mypage_disable")!.withRenderingMode(.alwaysOriginal)
-    static let disabledStorelistIcon = UIImage(named: "ic_storelist_disable")!.withRenderingMode(.alwaysOriginal)
-    static let enabledHomeIcon = UIImage(named: "ic_home_enable")!.withRenderingMode(.alwaysOriginal)
-    static let enabledMypageIcon = UIImage(named: "ic_mypage_enable")!.withRenderingMode(.alwaysOriginal)
-    static let enabledStorelistIcon = UIImage(named: "ic_storelist_enable")!.withRenderingMode(.alwaysOriginal)
 }
 
 extension UIImage {

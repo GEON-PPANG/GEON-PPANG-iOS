@@ -25,7 +25,7 @@ final class SortBakeryCollectionViewCell: UICollectionViewCell {
     // MARK: - UI Property
     
     private let sortByLabel = UILabel()
-    private let checkImageView = UIImageView(image: .checkIcon)
+    private let checkImageView = UIImageView(image: .Icon.check)
     
     // MARK: - Life Cycle
     

@@ -16,10 +16,10 @@ enum EmptyType: String {
     
     var icon: UIImage {
         switch self {
-        case .noReview, .noMyReview: return .noReviewImage
-        case .noBookmark: return .noBookmarkImage
-        case .noSearch: return .noSearchResultImage
-        case .initialize: return .searchImage
+        case .noReview, .noMyReview: return .Image.noReview
+        case .noBookmark: return .Image.noBookmark
+        case .noSearch: return .Image.noSearchResult
+        case .initialize: return .Image.search
         }
     }
     

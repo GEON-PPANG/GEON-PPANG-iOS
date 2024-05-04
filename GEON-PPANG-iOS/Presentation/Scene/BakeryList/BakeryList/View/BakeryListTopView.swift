@@ -56,7 +56,7 @@ final class BakeryListTopView: UIView {
         }
         
         searchButton.do {
-            $0.setImage(.searchIcon400, for: .normal)
+            $0.setImage(.Icon.Search.gray400, for: .normal)
         }
     }
     

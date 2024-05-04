@@ -17,22 +17,22 @@ extension TabBarItemType {
     var selectedIcon: UIImage {
         switch self {
         case .home:
-            return .enabledHomeIcon
+            return .Icon.Home.enabled
         case .bakeryList:
-            return .enabledStorelistIcon
+            return .Icon.StoreList.enabled
         case .mypage:
-            return .enabledMypageIcon
+            return .Icon.Mypage.enabled
         }
     }
     
     var unselectedIcon: UIImage {
         switch self {
         case .home:
-            return .disabledHomeIcon
+            return .Icon.Home.disabled
         case .bakeryList:
-            return .disabledStorelistIcon
+            return .Icon.StoreList.disabled
         case .mypage:
-            return .disabledMypageIcon
+            return .Icon.Mypage.disabled
         }
     }
     

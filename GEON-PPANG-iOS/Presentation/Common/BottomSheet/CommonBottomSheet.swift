@@ -17,9 +17,9 @@ enum EmojiType {
     
     var icon: UIImage? {
         switch self {
-        case .smile: return .smileIcon
-        case .sad: return .sadIcon
-        case .crying: return .cryingIcon
+        case .smile: return .Icon.Smile.px64
+        case .sad: return .Icon.sad
+        case .crying: return .Icon.crying
             
         }
     }

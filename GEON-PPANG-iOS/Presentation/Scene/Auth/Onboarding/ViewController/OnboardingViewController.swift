@@ -96,7 +96,7 @@ final class OnboardingViewController: BaseViewController {
         }
         
         logoImage.do {
-            $0.image = .launchscreenIcon
+            $0.image = .Icon.launchscreen
             $0.contentMode = .scaleAspectFit
         }
         
