@@ -132,7 +132,7 @@ final class LogInViewController: BaseViewController {
         accountLabel.do {
             $0.basic(text: I18N.LogIn.noAccount,
                      font: .subHead!,
-                     color: .gray_500)
+                     color: .init(hex: "#BDBFC1"))
         }
         
         bottomSheet.do {
