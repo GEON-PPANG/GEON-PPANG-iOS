@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "bakery_filter_button.pdf",
+      "filename" : "bakery_filter_button.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "bakery_filter_button@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "bakery_filter_button@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

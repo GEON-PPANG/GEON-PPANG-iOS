@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "ic_map.pdf",
+      "filename" : "ic_map.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "ic_map@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "ic_map@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
