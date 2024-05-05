@@ -35,13 +35,13 @@ struct BakeryFilterItems: Hashable {
     var leftIcon: UIImage
     static var item: [BakeryFilterItems] = [BakeryFilterItems(filter: .HARD,
                                                               status: .off,
-                                                              leftIcon: .Icon.Hard.disabled),
+                                                              leftIcon: .icHardDisable20px),
                                             BakeryFilterItems(filter: .DESSERT,
                                                               status: .off,
-                                                              leftIcon: .Icon.Cake.disabled),
+                                                              leftIcon: .icCakeDisable20px),
                                             BakeryFilterItems(filter: .BRUNCH,
                                                               status: .off,
-                                                              leftIcon: .Icon.Sandwich.disabled)
+                                                              leftIcon: .icSandwichDisable20px)
     ]
     
     public func isSelected() -> Self {
@@ -52,15 +52,15 @@ struct BakeryFilterItems: Hashable {
             case .HARD:
                 return BakeryFilterItems(filter: filter,
                                          status: status,
-                                         leftIcon: .Icon.Hard.disabled)
+                                         leftIcon: .icHardDisable20px)
             case .DESSERT:
                 return BakeryFilterItems(filter: filter,
                                          status: status,
-                                         leftIcon: .Icon.Cake.disabled)
+                                         leftIcon: .icCakeDisable20px)
             case .BRUNCH:
                 return BakeryFilterItems(filter: filter,
                                          status: status,
-                                         leftIcon: .Icon.Sandwich.disabled)
+                                         leftIcon: .icSandwichDisable20px)
             }
             
         case .on:
@@ -68,15 +68,15 @@ struct BakeryFilterItems: Hashable {
             case .HARD:
                 return BakeryFilterItems(filter: filter,
                                          status: status,
-                                         leftIcon: .Icon.Hard.enabled)
+                                         leftIcon: .icHardEnable20px)
             case .DESSERT:
                 return BakeryFilterItems(filter: filter,
                                          status: status,
-                                         leftIcon: .Icon.Cake.enabled)
+                                         leftIcon: .icCakeEnable20px)
             case .BRUNCH:
                 return BakeryFilterItems(filter: filter,
                                          status: status,
-                                         leftIcon: .Icon.Sandwich.enabled)
+                                         leftIcon: .icSandwichEnable20px)
             }
         }
     }

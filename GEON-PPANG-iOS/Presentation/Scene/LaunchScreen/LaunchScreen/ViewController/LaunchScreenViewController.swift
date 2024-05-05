@@ -13,7 +13,7 @@ final class LaunchScreenViewController: BaseViewController {
     
     // MARK: - UI Property
     
-    private let logoImageView = UIImageView(image: .Icon.launchscreen)
+    private let logoImageView = UIImageView(image: .icLaunchscreen)
     
     // MARK: - Life Cycle
     

@@ -16,9 +16,9 @@ enum HomeIconType {
     
     var icon: UIImage {
         switch self {
-        case .reviews: return .Icon.Review.px16gray400
-        case .bookmark: return .Icon.Bookmark.px16gray400
-        case .region: return .Icon.map
+        case .reviews: return .icReview16px400
+        case .bookmark: return .icBookmark16px400
+        case .region: return .icMap
         }
     }
     

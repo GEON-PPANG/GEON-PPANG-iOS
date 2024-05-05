@@ -72,7 +72,7 @@ final class DetailBottomView: UIView {
     private func setUI() {
         
         bookmarkButton.do {
-            $0.setImage(.disabledBookmarkButton, for: .normal)
+            $0.setImage(.bookmarkButtonDisable, for: .normal)
             $0.addAction(UIAction { [weak self] _ in
                 self?.tappedBookmarkButton?()
             }, for: .touchUpInside)
@@ -107,7 +107,7 @@ final class DetailBottomView: UIView {
     func configureBookmarkButton(to isSelected: Bool) {
         
         bookmarkButton.do {
-            $0.setImage((isSelected ? UIImage.enabledBookmarkButton : UIImage.disabledBookmarkButton), for: .normal)
+            $0.setImage((isSelected ? UIImage.bookmarkButtonEnable : UIImage.bookmarkButtonDisable), for: .normal)
         }
     }
 }

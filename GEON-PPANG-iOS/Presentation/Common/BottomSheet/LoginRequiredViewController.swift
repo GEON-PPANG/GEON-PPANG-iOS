@@ -36,7 +36,7 @@ final class LoginRequiredViewController: BaseViewController {
     
     // MARK: - UI Property
     
-    private let loginImageView = UIImageView(image: .Icon.login)
+    private let loginImageView = UIImageView(image: .icLogin)
     private let loginLabel = UILabel()
     private let kakaoLoginButton = UIButton()
     private let appleLoginButton = UIButton()
@@ -124,11 +124,11 @@ final class LoginRequiredViewController: BaseViewController {
         }
         
         kakaoLoginButton.do {
-            $0.setImage(.kakaoLoginButton, for: .normal)
+            $0.setImage(.kakaoSociaLogin, for: .normal)
         }
         
         appleLoginButton.do {
-            $0.setImage(.appleLoginButton, for: .normal)
+            $0.setImage(.appleSocialLogin, for: .normal)
         }
         
         socialLoginButtonStackView.do {

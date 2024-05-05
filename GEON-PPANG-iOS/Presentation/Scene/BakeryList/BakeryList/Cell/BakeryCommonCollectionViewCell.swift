@@ -107,7 +107,7 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
         }
         
         markStackView.do {
-            $0.configureIconImage(.HACCP.mark22, .Vegan.mark22, .GMO.mark22)
+            $0.configureIconImage(.haccpMark22px, .veganMark22px, .gmoMark22px)
         }
         
         bakeryTitle.do {
@@ -136,7 +136,7 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
         bookmarkCount.setContentCompressionResistancePriority(UILayoutPriority(751), for: .horizontal)
         
         guard let url = URL(string: data.picture) else { return }
-        bakeryImage.kf.setImage(with: url, placeholder: UIImage.Image.Loading.small)
+        bakeryImage.kf.setImage(with: url, placeholder: UIImage.imgLoadingSmall)
         
         regionStackView.configureListUI(text: data.station)
         markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)
@@ -153,7 +153,7 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
         bakeryTitle.lineBreakMode = .byTruncatingTail
         
         guard let url = URL(string: data.picture) else { return }
-        bakeryImage.kf.setImage(with: url, placeholder: UIImage.Image.Loading.small)
+        bakeryImage.kf.setImage(with: url, placeholder: UIImage.imgLoadingSmall)
         
         regionStackView.configureListUI(text: data.station)
         markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)

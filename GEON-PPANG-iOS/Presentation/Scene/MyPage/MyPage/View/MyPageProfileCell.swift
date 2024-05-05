@@ -22,7 +22,7 @@ final class MyPageProfileCell: UICollectionViewCell {
     
     // MARK: - UI Property
     
-    private let profileImageView = UIImageView(image: .Icon.Smile.px86)
+    private let profileImageView = UIImageView(image: .icSmile86px)
     private let purposeFilterChipView = MyPagePurposeChipView()
     private let userNameLabel = UILabel()
     private let flowLayout = OptionsCollectionViewFlowLayout()
@@ -138,7 +138,7 @@ final class MyPageProfileCell: UICollectionViewCell {
         }
         
         filterButton.do {
-            $0.setImage(.Icon.Arrow.right, for: .normal)
+            $0.setImage(.icArrowRight, for: .normal)
             $0.addAction(UIAction { _ in
                 self.filterButtonTapped?()
             }, for: .touchUpInside)

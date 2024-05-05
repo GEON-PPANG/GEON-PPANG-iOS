@@ -41,8 +41,8 @@ enum AlertType {
     
     var image: UIImage {
         switch self {
-        case .logout: return .Icon.sad
-        case .leave: return .Icon.sad
+        case .logout: return .iconSad
+        case .leave: return .iconSad
         }
     }
 }

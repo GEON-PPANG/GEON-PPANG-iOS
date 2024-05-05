@@ -51,11 +51,11 @@ final class SearchTextField: UITextField {
     private func setUI() {
         
         searchButton.do {
-            $0.setImage(.Icon.Search.gray400, for: .normal)
+            $0.setImage(.icSearch400, for: .normal)
         }
         
         clearButton.do {
-            $0.setImage(.Icon.delete, for: .normal)
+            $0.setImage(.icDelete, for: .normal)
             $0.addAction(UIAction { _ in
                 self.text?.removeAll()
             }, for: .touchUpInside)
