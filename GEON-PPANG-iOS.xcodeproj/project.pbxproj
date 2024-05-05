@@ -157,7 +157,6 @@
 		3E8B2FFE2A67A5B9001BD057 /* NutrientResponseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8B2FFD2A67A5B9001BD057 /* NutrientResponseType.swift */; };
 		3E8B30002A67A614001BD057 /* BreadRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8B2FFF2A67A614001BD057 /* BreadRequestType.swift */; };
 		3E8B30022A67A630001BD057 /* NutrientRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8B30012A67A630001BD057 /* NutrientRequestType.swift */; };
-		3E8C47D02BC3860700919E06 /* FontsDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8C47CF2BC3860700919E06 /* FontsDummy.swift */; };
 		3E8C47D62BC3A38D00919E06 /* DummyComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8C47D52BC3A38D00919E06 /* DummyComponent.swift */; };
 		3E8C47E22BC3B82500919E06 /* DummyUIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8C47E12BC3B82500919E06 /* DummyUIUtils.swift */; };
 		3E8C47ED2BC3C9E600919E06 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8C47EC2BC3C9E600919E06 /* AppCoordinator.swift */; };
@@ -405,7 +404,6 @@
 		3E8B2FFD2A67A5B9001BD057 /* NutrientResponseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientResponseType.swift; sourceTree = "<group>"; };
 		3E8B2FFF2A67A614001BD057 /* BreadRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreadRequestType.swift; sourceTree = "<group>"; };
 		3E8B30012A67A630001BD057 /* NutrientRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientRequestType.swift; sourceTree = "<group>"; };
-		3E8C47CF2BC3860700919E06 /* FontsDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontsDummy.swift; sourceTree = "<group>"; };
 		3E8C47D52BC3A38D00919E06 /* DummyComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyComponent.swift; sourceTree = "<group>"; };
 		3E8C47E12BC3B82500919E06 /* DummyUIUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyUIUtils.swift; sourceTree = "<group>"; };
 		3E8C47EC2BC3C9E600919E06 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -1633,7 +1631,6 @@
 			isa = PBXGroup;
 			children = (
 				090556212A51DB3300752067 /* UIFont+.swift */,
-				3E8C47CF2BC3860700919E06 /* FontsDummy.swift */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -2149,7 +2146,6 @@
 				3E3543342AAD594E00BD926A /* SignUpResponseDTO.swift in Sources */,
 				3E8C47D62BC3A38D00919E06 /* DummyComponent.swift in Sources */,
 				3EF9F8B42BBD119A00F3E366 /* DummyError.swift in Sources */,
-				3E8C47D02BC3860700919E06 /* FontsDummy.swift in Sources */,
 				3EA69C472B67F7A1008AE23B /* LoginRequiredViewController.swift in Sources */,
 				09E445332AA34F90008E3D33 /* AuthRequestDTO.swift in Sources */,
 				097716E72AA4E787001EE6D5 /* AuthPlugin.swift in Sources */,

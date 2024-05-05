@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UIImage {
+public extension UIImage {
     
     // 따로 픽셀이 적혀있지 않은 컴포넌트는 24px임.
     
@@ -111,7 +111,7 @@ extension UIImage {
     static let icStorelistEnable = UIImage(named: "ic_storelist_enable")!.withRenderingMode(.alwaysOriginal)
 }
 
-extension UIImage {
+public extension UIImage {
     func resize(to size: CGSize) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
         defer { UIGraphicsEndImageContext() }

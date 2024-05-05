@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UIFont {
+public extension UIFont {
     
     // 사용 예시)
     // $0.font = .pretendardBold(32)
