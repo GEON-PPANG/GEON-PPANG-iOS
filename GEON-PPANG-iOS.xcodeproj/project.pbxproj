@@ -127,6 +127,8 @@
 		3E232ACB2A95A02200125B76 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E232ACA2A95A02200125B76 /* WelcomeViewController.swift */; };
 		3E23CCF52A8BD9950091957D /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556282A51DBC000752067 /* UIView+.swift */; };
 		3E23CCF62A8BD9A40091957D /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556302A51DDD800752067 /* UITableView+.swift */; };
+		3E2A0B852BE74E54004F8D6B /* ChipBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2A0B842BE74E54004F8D6B /* ChipBuilder.swift */; };
+		3E2A0B872BE751F8004F8D6B /* ChipDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2A0B862BE751F8004F8D6B /* ChipDirector.swift */; };
 		3E2EEF752A5C93010093BCA9 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2EEF742A5C93010093BCA9 /* BottomView.swift */; };
 		3E3543302AAC700600BD926A /* SignUpRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E35432F2AAC700600BD926A /* SignUpRequestDTO.swift */; };
 		3E3543322AAC707200BD926A /* PlatformEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3543312AAC707200BD926A /* PlatformEnum.swift */; };
@@ -376,6 +378,8 @@
 		3E232AC22A93554C00125B76 /* RegionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionLabel.swift; sourceTree = "<group>"; };
 		3E232AC42A938F6400125B76 /* BookmarkCountLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkCountLabel.swift; sourceTree = "<group>"; };
 		3E232ACA2A95A02200125B76 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		3E2A0B842BE74E54004F8D6B /* ChipBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipBuilder.swift; sourceTree = "<group>"; };
+		3E2A0B862BE751F8004F8D6B /* ChipDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipDirector.swift; sourceTree = "<group>"; };
 		3E2EEF742A5C93010093BCA9 /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
 		3E35432F2AAC700600BD926A /* SignUpRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequestDTO.swift; sourceTree = "<group>"; };
 		3E3543312AAC707200BD926A /* PlatformEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformEnum.swift; sourceTree = "<group>"; };
@@ -1138,6 +1142,23 @@
 			path = Welcome;
 			sourceTree = "<group>";
 		};
+		3E2A0B822BE72373004F8D6B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3E2A0B832BE74E49004F8D6B /* Chip */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3E2A0B832BE74E49004F8D6B /* Chip */ = {
+			isa = PBXGroup;
+			children = (
+				3E2A0B842BE74E54004F8D6B /* ChipBuilder.swift */,
+				3E2A0B862BE751F8004F8D6B /* ChipDirector.swift */,
+			);
+			path = Chip;
+			sourceTree = "<group>";
+		};
 		3E2EEF722A5C928F0093BCA9 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1241,6 +1262,7 @@
 		3E8C47D42BC38E9500919E06 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				3E2A0B822BE72373004F8D6B /* View */,
 				3E8C47D52BC3A38D00919E06 /* DummyComponent.swift */,
 			);
 			path = UIComponents;
@@ -1986,6 +2008,7 @@
 			files = (
 				09FF71AF2AC7FFB90096A4BB /* SearchResultHeaderView.swift in Sources */,
 				09FF71AE2AC7FF670096A4BB /* BakeryCommonCollectionViewCell.swift in Sources */,
+				3E2A0B852BE74E54004F8D6B /* ChipBuilder.swift in Sources */,
 				3EF9F8B22BBD119200F3E366 /* DummyEntity.swift in Sources */,
 				3E23CCF62A8BD9A40091957D /* UITableView+.swift in Sources */,
 				3EA69B462B5579D9008AE23B /* BookmarksAPI.swift in Sources */,
@@ -2018,6 +2041,7 @@
 				3EA69B232B557027008AE23B /* GBService.swift in Sources */,
 				0959F1482A6583C200E77CAF /* NetworkLoggerPlugin.swift in Sources */,
 				DF99C5FE2A6412F800C2C78C /* ReviewProgressBarStackView.swift in Sources */,
+				3E2A0B872BE751F8004F8D6B /* ChipDirector.swift in Sources */,
 				095FB8862AB3506700C69BD1 /* AnalyticManagerEvent+.swift in Sources */,
 				3EA69B6B2B557A89008AE23B /* ReviewsService.swift in Sources */,
 				DFB134372A62110900BAB52E /* MenuCollectionViewCell.swift in Sources */,
