@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		090556202A51DB2C00752067 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905561F2A51DB2C00752067 /* UIImage+.swift */; };
-		090556222A51DB3300752067 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556212A51DB3300752067 /* UIFont+.swift */; };
+		090556202A51DB2C00752067 /* UIImage+Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905561F2A51DB2C00752067 /* UIImage+Source.swift */; };
+		090556222A51DB3300752067 /* UIFont+Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556212A51DB3300752067 /* UIFont+Source.swift */; };
 		090556252A51DB9600752067 /* UICollectionView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556242A51DB9600752067 /* UICollectionView+.swift */; };
 		090556272A51DBB100752067 /* NSObject+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090556262A51DBB100752067 /* NSObject+.swift */; };
 		0905562B2A51DBCE00752067 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0905562A2A51DBCE00752067 /* UIStackView+.swift */; };
@@ -235,7 +235,7 @@
 		DF959A612A539FBE00E75774 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */; };
 		DF959A622A539FBE00E75774 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */; };
 		DF959A6C2A568C4600E75774 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF959A6B2A568C4600E75774 /* Colors.xcassets */; };
-		DF959A6E2A568C9400E75774 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF959A6D2A568C9400E75774 /* UIColor+.swift */; };
+		DF959A6E2A568C9400E75774 /* UIColor+Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF959A6D2A568C9400E75774 /* UIColor+Source.swift */; };
 		DF99C5FE2A6412F800C2C78C /* ReviewProgressBarStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF99C5FD2A6412F800C2C78C /* ReviewProgressBarStackView.swift */; };
 		DF99C6002A644A1700C2C78C /* ReviewCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF99C5FF2A644A1700C2C78C /* ReviewCategoryCollectionViewCell.swift */; };
 		DFB134372A62110900BAB52E /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB134362A62110900BAB52E /* MenuCollectionViewCell.swift */; };
@@ -260,8 +260,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0905561F2A51DB2C00752067 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
-		090556212A51DB3300752067 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
+		0905561F2A51DB2C00752067 /* UIImage+Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Source.swift"; sourceTree = "<group>"; };
+		090556212A51DB3300752067 /* UIFont+Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Source.swift"; sourceTree = "<group>"; };
 		090556242A51DB9600752067 /* UICollectionView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+.swift"; sourceTree = "<group>"; };
 		090556262A51DBB100752067 /* NSObject+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+.swift"; sourceTree = "<group>"; };
 		090556282A51DBC000752067 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
@@ -482,7 +482,7 @@
 		DF959A5F2A539FBE00E75774 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		DF959A602A539FBE00E75774 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		DF959A6B2A568C4600E75774 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
-		DF959A6D2A568C9400E75774 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		DF959A6D2A568C9400E75774 /* UIColor+Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Source.swift"; sourceTree = "<group>"; };
 		DF99C5FD2A6412F800C2C78C /* ReviewProgressBarStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewProgressBarStackView.swift; sourceTree = "<group>"; };
 		DF99C5FF2A644A1700C2C78C /* ReviewCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		DFB134362A62110900BAB52E /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -1630,7 +1630,7 @@
 		3EF9F88C2BBCED2300F3E366 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				090556212A51DB3300752067 /* UIFont+.swift */,
+				090556212A51DB3300752067 /* UIFont+Source.swift */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -1638,7 +1638,7 @@
 		3EF9F88D2BBCED2D00F3E366 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				0905561F2A51DB2C00752067 /* UIImage+.swift */,
+				0905561F2A51DB2C00752067 /* UIImage+Source.swift */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -1646,7 +1646,7 @@
 		3EF9F88E2BBCED2F00F3E366 /* Colors */ = {
 			isa = PBXGroup;
 			children = (
-				DF959A6D2A568C9400E75774 /* UIColor+.swift */,
+				DF959A6D2A568C9400E75774 /* UIColor+Source.swift */,
 			);
 			path = Colors;
 			sourceTree = "<group>";
@@ -2064,7 +2064,7 @@
 				0959F1702A658CA400E77CAF /* HomeBestBakeryResponseDTO.swift in Sources */,
 				3E7B21C42A621A9A00C8F8B4 /* SortBakeryCollectionViewCell.swift in Sources */,
 				DFB587BB2A5D588500704B6C /* DrawDashLineView.swift in Sources */,
-				090556222A51DB3300752067 /* UIFont+.swift in Sources */,
+				090556222A51DB3300752067 /* UIFont+Source.swift in Sources */,
 				09CA3EFC2A569E4A0063897A /* URLConstant.swift in Sources */,
 				3EA69B652B557A7A008AE23B /* MemberService.swift in Sources */,
 				0959F1502A65840F00E77CAF /* NetworkBase.swift in Sources */,
@@ -2107,7 +2107,7 @@
 				3E3543302AAC700600BD926A /* SignUpRequestDTO.swift in Sources */,
 				3E8C47EF2BC3C9EA00919E06 /* MainCoordinator.swift in Sources */,
 				0987288D2A5BA1F000A29402 /* BookmarkButton.swift in Sources */,
-				090556202A51DB2C00752067 /* UIImage+.swift in Sources */,
+				090556202A51DB2C00752067 /* UIImage+Source.swift in Sources */,
 				3E1E74012B78AD530082386A /* BookmarkBakeryListResponseDTO.swift in Sources */,
 				09FD47E22A5E69A2002020BD /* CommonBottomSheet.swift in Sources */,
 				095FB88E2AB3703500C69BD1 /* AnalyticManagerEventProtocol.swift in Sources */,
@@ -2149,7 +2149,7 @@
 				3EA69C472B67F7A1008AE23B /* LoginRequiredViewController.swift in Sources */,
 				09E445332AA34F90008E3D33 /* AuthRequestDTO.swift in Sources */,
 				097716E72AA4E787001EE6D5 /* AuthPlugin.swift in Sources */,
-				DF959A6E2A568C9400E75774 /* UIColor+.swift in Sources */,
+				DF959A6E2A568C9400E75774 /* UIColor+Source.swift in Sources */,
 				3E452B672A60E68000EA456D /* MyPageResponseDTO.swift in Sources */,
 				09C626562A5B3572002C8110 /* HomeBestReviewResponseDTO.swift in Sources */,
 				095FB88A2AB36FCA00C69BD1 /* AnalyticManagerEvent.swift in Sources */,
