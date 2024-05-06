@@ -13,7 +13,7 @@ internal protocol Builder {
     func build() -> View
 }
 
-public final class ChipBuilder: Builder {
+internal final class ChipBuilder: Builder {
     
     private let view: UIView
     private let label: UILabel
@@ -37,43 +37,43 @@ public final class ChipBuilder: Builder {
 }
 
 extension ChipBuilder {
-    public func setText(to text: String) -> ChipBuilder {
+    internal func setText(to text: String) -> ChipBuilder {
         self.label.text = text
         return self
     }
     
-    public func setTextColor(to color: UIColor) -> ChipBuilder {
+    internal func setTextColor(to color: UIColor) -> ChipBuilder {
         self.label.textColor = color
         return self
     }
     
-    public func setTextFont(to font: UIFont) -> ChipBuilder {
+    internal func setTextFont(to font: UIFont) -> ChipBuilder {
         self.label.font = font
         return self
     }
     
-    public func setCornerRadius(to amount: CGFloat) -> ChipBuilder {
+    internal func setCornerRadius(to amount: CGFloat) -> ChipBuilder {
         self.view.layer.masksToBounds = true
         self.view.layer.cornerRadius = amount
         return self
     }
     
-    public func setBackgroundColor(to color: UIColor) -> ChipBuilder {
+    internal func setBackgroundColor(to color: UIColor) -> ChipBuilder {
         self.view.backgroundColor = color
         return self
     }
     
-    public func setBorderWidth(to width: CGFloat) -> ChipBuilder {
+    internal func setBorderWidth(to width: CGFloat) -> ChipBuilder {
         self.view.layer.borderWidth = width
         return self
     }
     
-    public func setBorderColor(to color: UIColor) -> ChipBuilder {
-        self.label.layer.borderColor = color.cgColor
+    internal func setBorderColor(to color: UIColor) -> ChipBuilder {
+        self.view.layer.borderColor = color.cgColor
         return self
     }
     
-    public func setPadding(
+    internal func setPadding(
         top: CGFloat,
         right: CGFloat,
         bottom: CGFloat,
