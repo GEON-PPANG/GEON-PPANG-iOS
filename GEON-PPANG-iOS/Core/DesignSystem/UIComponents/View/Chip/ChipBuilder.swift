@@ -36,44 +36,44 @@ internal final class ChipBuilder: Builder {
     }
 }
 
-extension ChipBuilder {
-    internal func setText(to text: String) -> ChipBuilder {
+internal extension ChipBuilder {
+    func setText(to text: String) -> ChipBuilder {
         self.label.text = text
         return self
     }
     
-    internal func setTextColor(to color: UIColor) -> ChipBuilder {
+    func setTextColor(to color: UIColor) -> ChipBuilder {
         self.label.textColor = color
         return self
     }
     
-    internal func setTextFont(to font: UIFont) -> ChipBuilder {
+    func setTextFont(to font: UIFont) -> ChipBuilder {
         self.label.font = font
         return self
     }
     
-    internal func setCornerRadius(to amount: CGFloat) -> ChipBuilder {
+    func setCornerRadius(to amount: CGFloat) -> ChipBuilder {
         self.view.layer.masksToBounds = true
         self.view.layer.cornerRadius = amount
         return self
     }
     
-    internal func setBackgroundColor(to color: UIColor) -> ChipBuilder {
+    func setBackgroundColor(to color: UIColor) -> ChipBuilder {
         self.view.backgroundColor = color
         return self
     }
     
-    internal func setBorderWidth(to width: CGFloat) -> ChipBuilder {
+    func setBorderWidth(to width: CGFloat) -> ChipBuilder {
         self.view.layer.borderWidth = width
         return self
     }
     
-    internal func setBorderColor(to color: UIColor) -> ChipBuilder {
+    func setBorderColor(to color: UIColor) -> ChipBuilder {
         self.view.layer.borderColor = color.cgColor
         return self
     }
     
-    internal func setPadding(
+    func setPadding(
         top: CGFloat,
         right: CGFloat,
         bottom: CGFloat,

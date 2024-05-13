@@ -9,7 +9,7 @@ import UIKit
 
 public final class ChipDirector {
     
-    static func buildPointChip(_ text: String) -> UIView {
+    static func buildOrangeChipWithoutBorder(_ text: String) -> UIView {
         ChipBuilder()
             .setText(to: text)
             .setTextFont(to: .captionM1)
@@ -20,7 +20,7 @@ public final class ChipDirector {
             .build()
     }
     
-    static func buildPointChipWithRoundCorner(_ text: String) -> UIView {
+    static func buildOrangeChipWithRoundCorner(_ text: String) -> UIView {
         ChipBuilder()
             .setText(to: text)
             .setTextFont(to: .captionM1)
@@ -46,7 +46,7 @@ public final class ChipDirector {
             .build()
     }
     
-    static func buildPointChipWithBorder(_ text: String) -> UIView {
+    static func buildOrangeChipWithBorder(_ text: String) -> UIView {
         ChipBuilder()
             .setText(to: text)
             .setTextFont(to: .captionM1)
