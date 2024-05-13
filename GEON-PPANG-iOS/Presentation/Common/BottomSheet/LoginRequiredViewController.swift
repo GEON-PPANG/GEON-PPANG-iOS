@@ -278,7 +278,6 @@ extension LoginRequiredViewController: ASAuthorizationControllerDelegate {
                     nickname: ""
                 )
                 
-                guard let presenting = self.presentingViewController as? UINavigationController else { return }
                 self.postSignUp(with: request, viewController: self) { role in
                     KeychainService.setKeychain(of: .role, with: role)
                     self.dismiss(animated: true) {
@@ -288,6 +287,7 @@ extension LoginRequiredViewController: ASAuthorizationControllerDelegate {
                             }
                         } else {
                             DispatchQueue.main.async {
+                                guard let presenting = self.presentingViewController as? UINavigationController else { return }
                                 Utils.push(presenting, NickNameViewController())
                             }
                         }
