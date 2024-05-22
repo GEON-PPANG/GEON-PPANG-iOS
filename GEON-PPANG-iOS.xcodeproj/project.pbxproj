@@ -253,7 +253,6 @@
 		DFD93D132AC6F28B008E9EE1 /* ReportRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD93D122AC6F28B008E9EE1 /* ReportRequestDTO.swift */; };
 		DFD93D152AC6F649008E9EE1 /* ReportResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD93D142AC6F649008E9EE1 /* ReportResponseDTO.swift */; };
 		DFDE72D72A65E84700389A51 /* WrittenReviewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDE72D62A65E84700389A51 /* WrittenReviewsCollectionViewCell.swift */; };
-		DFDE72DB2A66893900389A51 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DFDE72DA2A66893900389A51 /* Config.xcconfig */; };
 		DFDE72DD2A668FFE00389A51 /* ReviewCategoryStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDE72DC2A668FFE00389A51 /* ReviewCategoryStackView.swift */; };
 		DFEA34EF2AA62E6200524DEC /* LinkButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEA34EE2AA62E6200524DEC /* LinkButtonStackView.swift */; };
 		DFECBB082A690DBB007F054B /* BakeryDetailResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFECBB072A690DBB007F054B /* BakeryDetailResponseDTO.swift */; };
@@ -332,6 +331,7 @@
 		098F32EC2A4200FE0092D09A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		098F32EE2A4200FE0092D09A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09980CFA2A99A9800098550C /* SignInPropertyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPropertyType.swift; sourceTree = "<group>"; };
+		09A994A32BFD119A007A8098 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		09B13F472A5931DC00C0C723 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		09B13F4B2A593C6F00C0C723 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		09B13F4F2A593CB800C0C723 /* BakeryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryListViewController.swift; sourceTree = "<group>"; };
@@ -383,7 +383,6 @@
 		3E35432F2AAC700600BD926A /* SignUpRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequestDTO.swift; sourceTree = "<group>"; };
 		3E3543312AAC707200BD926A /* PlatformEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformEnum.swift; sourceTree = "<group>"; };
 		3E3543332AAD594E00BD926A /* SignUpResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponseDTO.swift; sourceTree = "<group>"; };
-		3E36D7D22A8E15C200B2C1CC /* GEON-PPANG-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "GEON-PPANG-iOS.entitlements"; sourceTree = "<group>"; };
 		3E36D7D52A8E6AF000B2C1CC /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		3E36D7D72A8E6BC500B2C1CC /* FilterDiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDiffableDataSource.swift; sourceTree = "<group>"; };
 		3E36D7D92A8E758A00B2C1CC /* FilterCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCellModel.swift; sourceTree = "<group>"; };
@@ -503,7 +502,6 @@
 		DFD93D122AC6F28B008E9EE1 /* ReportRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportRequestDTO.swift; sourceTree = "<group>"; };
 		DFD93D142AC6F649008E9EE1 /* ReportResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportResponseDTO.swift; sourceTree = "<group>"; };
 		DFDE72D62A65E84700389A51 /* WrittenReviewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrittenReviewsCollectionViewCell.swift; sourceTree = "<group>"; };
-		DFDE72DA2A66893900389A51 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		DFDE72DC2A668FFE00389A51 /* ReviewCategoryStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCategoryStackView.swift; sourceTree = "<group>"; };
 		DFEA34EE2AA62E6200524DEC /* LinkButtonStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkButtonStackView.swift; sourceTree = "<group>"; };
 		DFECBB072A690DBB007F054B /* BakeryDetailResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryDetailResponseDTO.swift; sourceTree = "<group>"; };
@@ -532,13 +530,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0905561C2A51DAF900752067 /* Design */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Design;
-			sourceTree = "<group>";
-		};
 		090556232A51DB7A00752067 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -811,7 +802,6 @@
 			isa = PBXGroup;
 			children = (
 				090556232A51DB7A00752067 /* UI */,
-				0905561C2A51DAF900752067 /* Design */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -857,8 +847,6 @@
 		0961C36B2A501F050031A822 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				DFDE72DA2A66893900389A51 /* Config.xcconfig */,
-				3E36D7D22A8E15C200B2C1CC /* GEON-PPANG-iOS.entitlements */,
 				098F32EE2A4200FE0092D09A /* Info.plist */,
 				094392CE2A84E68700984310 /* GoogleService-Info.plist */,
 				0961C36F2A501F4C0031A822 /* Storyboard */,
@@ -929,6 +917,7 @@
 		098F32D42A4200FD0092D09A = {
 			isa = PBXGroup;
 			children = (
+				09A994A32BFD119A007A8098 /* Config.xcconfig */,
 				091AFD412ABD79380001DD02 /* Settings.bundle */,
 				098F32DF2A4200FD0092D09A /* GEON-PPANG-iOS */,
 				098F32DE2A4200FD0092D09A /* Products */,
@@ -1955,7 +1944,6 @@
 				DF959A612A539FBE00E75774 /* Pretendard-Bold.otf in Resources */,
 				094392CF2A84E68700984310 /* GoogleService-Info.plist in Resources */,
 				098F32ED2A4200FE0092D09A /* LaunchScreen.storyboard in Resources */,
-				DFDE72DB2A66893900389A51 /* Config.xcconfig in Resources */,
 				098F32EA2A4200FE0092D09A /* Assets.xcassets in Resources */,
 				DF959A622A539FBE00E75774 /* Pretendard-Medium.otf in Resources */,
 				091AFD422ABD79380001DD02 /* Settings.bundle in Resources */,
@@ -2248,7 +2236,7 @@
 /* Begin XCBuildConfiguration section */
 		098F32EF2A4200FE0092D09A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DFDE72DA2A66893900389A51 /* Config.xcconfig */;
+			baseConfigurationReference = 09A994A32BFD119A007A8098 /* Config.xcconfig */;
 			buildSettings = {
 				ACCESS_TOKEN = "${ACCESS_TOKEN}";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2311,7 +2299,7 @@
 		};
 		098F32F02A4200FE0092D09A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DFDE72DA2A66893900389A51 /* Config.xcconfig */;
+			baseConfigurationReference = 09A994A32BFD119A007A8098 /* Config.xcconfig */;
 			buildSettings = {
 				ACCESS_TOKEN = "${ACCESS_TOKEN}";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2368,7 +2356,7 @@
 		};
 		098F32F22A4200FE0092D09A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DFDE72DA2A66893900389A51 /* Config.xcconfig */;
+			baseConfigurationReference = 09A994A32BFD119A007A8098 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"ASSETCATALOG_COMPILER_APPICON_NAME[sdk=iphoneos*]" = AppIcon;
@@ -2408,7 +2396,7 @@
 		};
 		098F32F32A4200FE0092D09A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DFDE72DA2A66893900389A51 /* Config.xcconfig */;
+			baseConfigurationReference = 09A994A32BFD119A007A8098 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"ASSETCATALOG_COMPILER_APPICON_NAME[sdk=iphoneos*]" = AppIcon;
