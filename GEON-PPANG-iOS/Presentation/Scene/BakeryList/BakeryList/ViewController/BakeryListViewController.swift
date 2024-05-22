@@ -265,9 +265,12 @@ extension BakeryListViewController: UICollectionViewDelegate {
 extension BakeryListViewController: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         
+        let serialQueue = DispatchQueue(label: "Decode queue")
         for indexPath in indexPaths {
-            if bakeryList.count - 1 == indexPath.item, !self.isLast {
-                self.getMoreBakeryList()
+            serialQueue.async {
+                if self.bakeryList.count - 1 == indexPath.item, !self.isLast {
+                    self.getMoreBakeryList()
+                }
             }
         }
     }
