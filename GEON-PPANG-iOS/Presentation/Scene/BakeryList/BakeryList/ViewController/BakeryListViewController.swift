@@ -138,7 +138,7 @@ final class BakeryListViewController: BaseViewController {
             $0.tappedCheckBox = { [weak self] tapped in
                 guard let self else { return }
                 guard KeychainService.readKeychain(of: .role) == UserRole.member.rawValue
-                else { 
+                else {
                     Utils.showLoginRequiredSheet(on: self, type: .recommendation)
                     bakerySortView.tappedButton(false)
                     return
@@ -162,6 +162,7 @@ final class BakeryListViewController: BaseViewController {
         bakeryListCollectionView.do {
             $0.delegate = self
             $0.refreshControl = refreshControl
+            $0.prefetchDataSource = self
         }
     }
     
@@ -259,11 +260,15 @@ extension BakeryListViewController: UICollectionViewDelegate {
         Utils.setDetailSourceType(.LIST)
         Utils.push(self.navigationController, nextViewController)
     }
-    
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+}
+
+extension BakeryListViewController: UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         
-        if indexPath.item == bakeryList.count - 1, !self.isLast {
-            getMoreBakeryList()
+        for indexPath in indexPaths {
+            if bakeryList.count - 1 == indexPath.item, !self.isLast {
+                self.getMoreBakeryList()
+            }
         }
     }
 }
