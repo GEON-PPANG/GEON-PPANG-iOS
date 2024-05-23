@@ -16,8 +16,8 @@ final class LogInViewController: BaseViewController {
     
     private var loginEmail: String = ""
     private var loginPassword: String = ""
-    private var IsEmailValid: Bool = false
-    private var IsPasswordValid: Bool = false
+    private var isEmailValid: Bool = false
+    private var isPasswordValid: Bool = false
     private var isValid: Bool = false {
         didSet {
             configureButtonUI(self.isValid)
@@ -182,15 +182,15 @@ extension LogInViewController: UITextFieldDelegate {
         switch textField {
         case emailTextField.configureTextField():
             self.loginEmail = text
-            self.IsEmailValid = (text.isValidEmail() && !emailTextField.fetchText().isEmpty) ? true : false
+            self.isEmailValid = (text.isValidEmail() && !emailTextField.fetchText().isEmpty) ? true : false
         case passwordTextField.configureTextField():
             self.loginPassword = text
-            self.IsPasswordValid = !passwordTextField.fetchText().isEmpty ? true : false
+            self.isPasswordValid = !passwordTextField.fetchText().isEmpty ? true : false
         default:
             break
         }
         
-        self.isValid = IsEmailValid && IsPasswordValid
+        self.isValid = isEmailValid && isPasswordValid
         configureButtonUI(self.isValid)
     }
     

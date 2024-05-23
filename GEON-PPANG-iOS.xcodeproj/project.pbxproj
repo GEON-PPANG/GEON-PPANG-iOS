@@ -385,7 +385,6 @@
 		3E35432F2AAC700600BD926A /* SignUpRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequestDTO.swift; sourceTree = "<group>"; };
 		3E3543312AAC707200BD926A /* PlatformEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformEnum.swift; sourceTree = "<group>"; };
 		3E3543332AAD594E00BD926A /* SignUpResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponseDTO.swift; sourceTree = "<group>"; };
-		3E36D7D22A8E15C200B2C1CC /* GEON-PPANG-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "GEON-PPANG-iOS.entitlements"; sourceTree = "<group>"; };
 		3E36D7D52A8E6AF000B2C1CC /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		3E36D7D72A8E6BC500B2C1CC /* FilterDiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDiffableDataSource.swift; sourceTree = "<group>"; };
 		3E36D7D92A8E758A00B2C1CC /* FilterCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCellModel.swift; sourceTree = "<group>"; };
@@ -533,13 +532,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0905561C2A51DAF900752067 /* Design */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Design;
-			sourceTree = "<group>";
-		};
 		090556232A51DB7A00752067 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -812,7 +804,6 @@
 			isa = PBXGroup;
 			children = (
 				090556232A51DB7A00752067 /* UI */,
-				0905561C2A51DAF900752067 /* Design */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -859,7 +850,6 @@
 			isa = PBXGroup;
 			children = (
 				09E30E892BFF123C001E107B /* Config.xcconfig */,
-				3E36D7D22A8E15C200B2C1CC /* GEON-PPANG-iOS.entitlements */,
 				098F32EE2A4200FE0092D09A /* Info.plist */,
 				094392CE2A84E68700984310 /* GoogleService-Info.plist */,
 				0961C36F2A501F4C0031A822 /* Storyboard */,
