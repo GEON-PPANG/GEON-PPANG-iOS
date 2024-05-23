@@ -95,7 +95,6 @@
 		09CD07902A620D7D00A078DE /* NickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CD078F2A620D7D00A078DE /* NickNameViewController.swift */; };
 		09CD07922A624B7D00A078DE /* SignInTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CD07912A624B7D00A078DE /* SignInTextField.swift */; };
 		09D55FC72A99F69000997FB4 /* BakeryCommonListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D55FC62A99F69000997FB4 /* BakeryCommonListResponseDTO.swift */; };
-		09E30E832BFEF180001E107B /* ci_post_clone.sh in Resources */ = {isa = PBXBuildFile; fileRef = 09E30E822BFEF180001E107B /* ci_post_clone.sh */; };
 		09E445332AA34F90008E3D33 /* AuthRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E445322AA34F90008E3D33 /* AuthRequestDTO.swift */; };
 		09E445352AA3A6D6008E3D33 /* BakeryRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E445342AA3A6D6008E3D33 /* BakeryRequestDTO.swift */; };
 		09E445372AA3AFB1008E3D33 /* Encodable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E445362AA3AFB1008E3D33 /* Encodable+.swift */; };
@@ -351,7 +350,7 @@
 		09CD078F2A620D7D00A078DE /* NickNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameViewController.swift; sourceTree = "<group>"; };
 		09CD07912A624B7D00A078DE /* SignInTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInTextField.swift; sourceTree = "<group>"; };
 		09D55FC62A99F69000997FB4 /* BakeryCommonListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryCommonListResponseDTO.swift; sourceTree = "<group>"; };
-		09E30E822BFEF180001E107B /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
+		09E30E842BFF0F8B001E107B /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
 		09E445322AA34F90008E3D33 /* AuthRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequestDTO.swift; sourceTree = "<group>"; };
 		09E445342AA3A6D6008E3D33 /* BakeryRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryRequestDTO.swift; sourceTree = "<group>"; };
 		09E445362AA3AFB1008E3D33 /* Encodable+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+.swift"; sourceTree = "<group>"; };
@@ -1013,7 +1012,7 @@
 		09E30E812BFEF16F001E107B /* ci_scripts */ = {
 			isa = PBXGroup;
 			children = (
-				09E30E822BFEF180001E107B /* ci_post_clone.sh */,
+				09E30E842BFF0F8B001E107B /* ci_post_clone.sh */,
 			);
 			path = ci_scripts;
 			sourceTree = "<group>";
@@ -1967,7 +1966,6 @@
 				094392CF2A84E68700984310 /* GoogleService-Info.plist in Resources */,
 				098F32ED2A4200FE0092D09A /* LaunchScreen.storyboard in Resources */,
 				DFDE72DB2A66893900389A51 /* Config.xcconfig in Resources */,
-				09E30E832BFEF180001E107B /* ci_post_clone.sh in Resources */,
 				098F32EA2A4200FE0092D09A /* Assets.xcassets in Resources */,
 				DF959A622A539FBE00E75774 /* Pretendard-Medium.otf in Resources */,
 				091AFD422ABD79380001DD02 /* Settings.bundle in Resources */,

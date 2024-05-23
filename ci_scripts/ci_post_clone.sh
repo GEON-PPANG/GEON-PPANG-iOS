@@ -1,10 +1,10 @@
-//
-//  ci_post_clone.sh
-//  GEON-PPANG-iOS
-//
-//  Created by JEONGEUN KIM on 5/23/24.
-//
+#!/bin/sh
 
+#  ci_post_clone.sh
+#  GEON-PPANG-iOS
+#
+#  Created by JEONGEUN KIM on 5/23/24.
+#  
 FOLDER_PATH="/Volumes/workspace/repository/GEON-PPANG-iOS"
 
 # *.xconfig 파일 이름
