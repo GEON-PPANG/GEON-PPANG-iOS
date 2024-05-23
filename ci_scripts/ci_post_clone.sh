@@ -5,7 +5,7 @@
 //  Created by JEONGEUN KIM on 5/23/24.
 //
 
-FOLDER_PATH="/Volumes/workspace/repository/GEON-PPANG-iOS
+FOLDER_PATH="/Volumes/workspace/repository/GEON-PPANG-iOS"
 
 # *.xconfig 파일 이름
 CONFIG_FILENAME="Config.xcconfig"
@@ -23,5 +23,3 @@ CONFIG_FILE_PATH="$FOLDER_PATH/$CONFIG_FILENAME"
 
 # 생성된 *.xconfig 파일 내용 출력
 cat "$CONFIG_FILE_PATH"
-
-echo "Config.xcconfig 파일이 성공적으로 생성되었고, 환경변수 값이 확인되었습니다."
