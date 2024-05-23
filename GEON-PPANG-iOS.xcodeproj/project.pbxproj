@@ -332,7 +332,6 @@
 		098F32EC2A4200FE0092D09A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		098F32EE2A4200FE0092D09A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09980CFA2A99A9800098550C /* SignInPropertyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPropertyType.swift; sourceTree = "<group>"; };
-		09A994A32BFD119A007A8098 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		09B13F472A5931DC00C0C723 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		09B13F4B2A593C6F00C0C723 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		09B13F4F2A593CB800C0C723 /* BakeryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryListViewController.swift; sourceTree = "<group>"; };
@@ -851,7 +850,6 @@
 			isa = PBXGroup;
 			children = (
 				09E30E892BFF123C001E107B /* Config.xcconfig */,
-				3E36D7D22A8E15C200B2C1CC /* GEON-PPANG-iOS.entitlements */,
 				098F32EE2A4200FE0092D09A /* Info.plist */,
 				094392CE2A84E68700984310 /* GoogleService-Info.plist */,
 				0961C36F2A501F4C0031A822 /* Storyboard */,
@@ -922,7 +920,6 @@
 		098F32D42A4200FD0092D09A = {
 			isa = PBXGroup;
 			children = (
-				09A994A32BFD119A007A8098 /* Config.xcconfig */,
 				091AFD412ABD79380001DD02 /* Settings.bundle */,
 				09E30E812BFEF16F001E107B /* ci_scripts */,
 				098F32DF2A4200FD0092D09A /* GEON-PPANG-iOS */,
