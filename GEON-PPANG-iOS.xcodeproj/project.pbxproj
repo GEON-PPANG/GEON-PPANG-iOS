@@ -74,9 +74,12 @@
 		098716B62A60F52200538D05 /* BakeryTypeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098716B52A60F52200538D05 /* BakeryTypeProtocol.swift */; };
 		098716B82A6138BD00538D05 /* MyReviewsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098716B72A6138BD00538D05 /* MyReviewsHeaderView.swift */; };
 		0987288D2A5BA1F000A29402 /* BookmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0987288C2A5BA1F000A29402 /* BookmarkButton.swift */; };
-		098F32EA2A4200FE0092D09A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 098F32E92A4200FE0092D09A /* Assets.xcassets */; };
-		098F32ED2A4200FE0092D09A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 098F32EB2A4200FE0092D09A /* LaunchScreen.storyboard */; };
+		0989547D2C1C07D80000D650 /* TextFieldBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0989547C2C1C07D80000D650 /* TextFieldBuilder.swift */; };
+		0989547F2C1C18900000D650 /* TextFieldDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0989547E2C1C18900000D650 /* TextFieldDirector.swift */; };
 		09980CFB2A99A9800098550C /* SignInPropertyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09980CFA2A99A9800098550C /* SignInPropertyType.swift */; };
+		09A7B73E2C1C2F54009A4C18 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 091AFD412ABD79380001DD02 /* Settings.bundle */; };
+		09A820E32C1C63A6006634E5 /* SignUpBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A820E22C1C63A6006634E5 /* SignUpBuilder.swift */; };
+		09A820E52C1C7540006634E5 /* SignUpDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A820E42C1C7540006634E5 /* SignUpDirector.swift */; };
 		09B13F482A5931DC00C0C723 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B13F472A5931DC00C0C723 /* TabBarController.swift */; };
 		09B13F4C2A593C6F00C0C723 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B13F4B2A593C6F00C0C723 /* HomeViewController.swift */; };
 		09B13F502A593CB800C0C723 /* BakeryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B13F4F2A593CB800C0C723 /* BakeryListViewController.swift */; };
@@ -324,6 +327,8 @@
 		098716B52A60F52200538D05 /* BakeryTypeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryTypeProtocol.swift; sourceTree = "<group>"; };
 		098716B72A6138BD00538D05 /* MyReviewsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewsHeaderView.swift; sourceTree = "<group>"; };
 		0987288C2A5BA1F000A29402 /* BookmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkButton.swift; sourceTree = "<group>"; };
+		0989547C2C1C07D80000D650 /* TextFieldBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldBuilder.swift; sourceTree = "<group>"; };
+		0989547E2C1C18900000D650 /* TextFieldDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDirector.swift; sourceTree = "<group>"; };
 		098F32DD2A4200FD0092D09A /* GEON-PPANG-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GEON-PPANG-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		098F32E02A4200FD0092D09A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		098F32E22A4200FD0092D09A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -331,6 +336,8 @@
 		098F32EC2A4200FE0092D09A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		098F32EE2A4200FE0092D09A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09980CFA2A99A9800098550C /* SignInPropertyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPropertyType.swift; sourceTree = "<group>"; };
+		09A820E22C1C63A6006634E5 /* SignUpBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBuilder.swift; sourceTree = "<group>"; };
+		09A820E42C1C7540006634E5 /* SignUpDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDirector.swift; sourceTree = "<group>"; };
 		09B13F472A5931DC00C0C723 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		09B13F4B2A593C6F00C0C723 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		09B13F4F2A593CB800C0C723 /* BakeryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryListViewController.swift; sourceTree = "<group>"; };
@@ -915,6 +922,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		0989547B2C1C07B30000D650 /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				0989547C2C1C07D80000D650 /* TextFieldBuilder.swift */,
+				0989547E2C1C18900000D650 /* TextFieldDirector.swift */,
+			);
+			path = TextField;
+			sourceTree = "<group>";
+		};
 		098F32D42A4200FD0092D09A = {
 			isa = PBXGroup;
 			children = (
@@ -946,6 +962,15 @@
 				0961C3602A501E9F0031A822 /* Global */,
 			);
 			path = "GEON-PPANG-iOS";
+			sourceTree = "<group>";
+		};
+		09A820E12C1C639A006634E5 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				09A820E22C1C63A6006634E5 /* SignUpBuilder.swift */,
+				09A820E42C1C7540006634E5 /* SignUpDirector.swift */,
+			);
+			path = SignUp;
 			sourceTree = "<group>";
 		};
 		09B13F462A5931A300C0C723 /* Tabbar */ = {
@@ -1145,6 +1170,8 @@
 		3E2A0B822BE72373004F8D6B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				09A820E12C1C639A006634E5 /* SignUp */,
+				0989547B2C1C07B30000D650 /* TextField */,
 				3E2A0B832BE74E49004F8D6B /* Chip */,
 			);
 			path = View;
@@ -2104,6 +2131,7 @@
 				3E8C47ED2BC3C9E600919E06 /* AppCoordinator.swift in Sources */,
 				09CD07922A624B7D00A078DE /* SignInTextField.swift in Sources */,
 				097716E92AA575C6001EE6D5 /* BakeryListEmptyType.swift in Sources */,
+				0989547F2C1C18900000D650 /* TextFieldDirector.swift in Sources */,
 				098716B82A6138BD00538D05 /* MyReviewsHeaderView.swift in Sources */,
 				09E445352AA3A6D6008E3D33 /* BakeryRequestDTO.swift in Sources */,
 				09B13F4C2A593C6F00C0C723 /* HomeViewController.swift in Sources */,
@@ -2144,9 +2172,11 @@
 				3E8C47FB2BC3CA0D00919E06 /* SearchCoordinator.swift in Sources */,
 				09B13F582A59433500C0C723 /* TabBarItem.swift in Sources */,
 				3EE1A9132AA0873500021F9D /* UrlLiteral.swift in Sources */,
+				09A820E32C1C63A6006634E5 /* SignUpBuilder.swift in Sources */,
 				09B13F502A593CB800C0C723 /* BakeryListViewController.swift in Sources */,
 				09FD47D92A5E5148002020BD /* MySavedBakeryViewController.swift in Sources */,
 				3E8C47F92BC3CA0600919E06 /* FilterCoordinator.swift in Sources */,
+				09A820E52C1C7540006634E5 /* SignUpDirector.swift in Sources */,
 				3E36D7D82A8E6BC500B2C1CC /* FilterDiffableDataSource.swift in Sources */,
 				3EA69B612B557A65008AE23B /* BestService.swift in Sources */,
 				09F015F12A9C881A0093D4F0 /* LogInViewController.swift in Sources */,
@@ -2155,6 +2185,7 @@
 				3E8B30002A67A614001BD057 /* BreadRequestType.swift in Sources */,
 				090556452A51E79B00752067 /* UITextField+.swift in Sources */,
 				0959F14E2A65840300E77CAF /* NetworkResult.swift in Sources */,
+				0989547D2C1C07D80000D650 /* TextFieldBuilder.swift in Sources */,
 				0959F16C2A658C9500E77CAF /* AuthResponseDTO.swift in Sources */,
 				3E7B21C02A61CB8C00C8F8B4 /* SortBottomSheetViewController.swift in Sources */,
 				3E8C47F32BC3C9F600919E06 /* HomeCoordinator.swift in Sources */,
