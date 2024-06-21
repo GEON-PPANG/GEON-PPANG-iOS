@@ -54,22 +54,6 @@ final class TextFieldBuilder: UITextField {
 
 extension TextFieldBuilder {
 
-    func setPlaceholder(to color: UIColor, to font: UIFont ) -> TextFieldBuilder {
-        self.setPlaceholder(color: color, font: font)
-        return self
-    }
-    
-    func setCornerRadius(to amount: CGFloat) -> TextFieldBuilder {
-        self.layer.masksToBounds = true
-        self.layer.cornerRadius = amount
-        return self
-    }
-
-    func setBackgroundColor(to color: UIColor) -> TextFieldBuilder {
-        self.backgroundColor = color
-        return self
-    }
-    
     func setRect(forInsets insets: UIEdgeInsets) -> TextFieldBuilder {
         self.insets = insets
         return self
@@ -102,11 +86,6 @@ extension TextFieldBuilder {
     
     func setRightViewRect(forInsets insets: UIEdgeInsets) -> TextFieldBuilder {
         self.rightViewRect = insets
-        return self
-    }
-    
-    func setSecureTextEntry(to secure: Bool) -> TextFieldBuilder {
-        self.isSecureTextEntry = secure
         return self
     }
 }

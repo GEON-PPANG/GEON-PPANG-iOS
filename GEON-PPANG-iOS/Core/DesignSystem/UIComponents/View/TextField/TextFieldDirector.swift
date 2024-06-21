@@ -12,30 +12,17 @@ public final class TextFieldDirector {
     static func buildHomeTextField() -> UITextField {
         TextFieldBuilder()
             .setLeftView(to: .icSearch400, mode: .always)
-            .setLeftViewRect(forInsets: .init(top: 0,
-                                              left: 15,
-                                              bottom: 0,
-                                              right: -15)
-            )
+            .setLeftViewRect(forInsets: .init(top: 0, left: 15, bottom: 0, right: -15))
             .build()
     }
 
-    static func buildSerachTetField() -> UITextField {
+    static func buildSearchTetField() -> UITextField {
         TextFieldBuilder()
-            .setRightView(to: .icDelete, mode: .whileEditing)
+            .setRect(forInsets: .init(top: 0, left: 12, bottom: 0, right: 15))
             .setLeftView(to: .icSearch400, mode: .always)
-            .setRect(forInsets: .init(top: 0,
-                                      left: 12,
-                                      bottom: 0,
-                                      right: 15))
-            .setRightViewRect(forInsets: .init(top: 0,
-                                               left: -15,
-                                               bottom: 0,
-                                               right: 15))
-            .setLeftViewRect(forInsets: .init(top: 0, 
-                                              left: 15,
-                                              bottom: 0,
-                                              right: -15))
+            .setLeftViewRect(forInsets: .init(top: 0, left: 15, bottom: 0, right: -15))
+            .setRightView(to: .icDelete, mode: .whileEditing)
+            .setRightViewRect(forInsets: .init(top: 0, left: -15, bottom: 0, right: 15))
             .build()
     }
 }
