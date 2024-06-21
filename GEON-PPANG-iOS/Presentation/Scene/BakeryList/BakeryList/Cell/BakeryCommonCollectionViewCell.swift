@@ -17,7 +17,8 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
     
     private var breadTypeTag: [String] = []
     private var ingredientList: [BakeryCommonListResponseDTO] = []
-    
+    private var itemSizeCache: [Int: CGSize] = [:]
+
     // MARK: - UI Property
     
     private let markStackView = MarkStackView()
@@ -32,13 +33,14 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        
         ingredientList = []
+        bakeryImage.kf.cancelDownloadTask()
+        bakeryImage.image = nil
+        itemSizeCache.removeAll()
     }
     
     override init(frame: CGRect) {
-        super.init(frame: .zero)
-        
+        super.init(frame: frame)
         setLayout()
         setUI()
         setRegistration()
@@ -58,7 +60,6 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
             $0.top.equalToSuperview().offset(24)
             $0.leading.equalToSuperview().inset(24)
             $0.bottom.equalToSuperview().inset(24)
-            
         }
         
         contentView.addSubview(bookmarkCount)
@@ -123,45 +124,53 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
     }
     
     func configureReviewsUI() {
-        
         bookmarkCount.removeFromSuperview()
     }
     
     func configureCellUI<T: BakeryListProtocol>(data: T) {
-        
-        bakeryTitle.setLineHeight(by: 1.05, with: data.name)
-        bakeryTitle.lineBreakMode = .byTruncatingTail
+     
         bookmarkCount.configureHomeCell(count: data.bookmarkCount)
         bookmarkCount.setContentHuggingPriority(UILayoutPriority(751), for: .horizontal)
         bookmarkCount.setContentCompressionResistancePriority(UILayoutPriority(751), for: .horizontal)
         
-        guard let url = URL(string: data.picture) else { return }
-        bakeryImage.kf.setImage(with: url, placeholder: UIImage.imgLoadingSmall)
-        
-        regionStackView.configureListUI(text: data.station)
-        markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)
-        
-        breadTypeTag = []
-        data.breadTypeList.forEach {
-            breadTypeTag.append($0.toString())
-        }
-        collectionView.reloadData()
+        setupCellUI(name: data.name,
+                    pictureURL: data.picture,
+                    station: data.station,
+                    isHACCP: data.isHACCP,
+                    isVegan: data.isVegan,
+                    isNonGMO: data.isNonGMO,
+                    breadTypeList: data.breadTypeList)
     }
     
     func configureCellUI(data: MyReviewsResponseDTO) {
-        bakeryTitle.setLineHeight(by: 1.05, with: data.name)
+        setupCellUI(name: data.name,
+                    pictureURL: data.picture,
+                    station: data.station,
+                    isHACCP: data.isHACCP, 
+                    isVegan: data.isVegan,
+                    isNonGMO: data.isNonGMO,
+                    breadTypeList: data.breadTypeList)
+    }
+    
+    private func setupCellUI(name: String, pictureURL: String, station: String, isHACCP: Bool, isVegan: Bool, isNonGMO: Bool, breadTypeList: [BreadType]) {
+        bakeryTitle.setLineHeight(by: 1.05, with: name)
         bakeryTitle.lineBreakMode = .byTruncatingTail
         
-        guard let url = URL(string: data.picture) else { return }
-        bakeryImage.kf.setImage(with: url, placeholder: UIImage.imgLoadingSmall)
+        guard let url = URL(string: pictureURL) else { return }
+        bakeryImage.kf.setImage(
+            with: url,
+            placeholder: UIImage.imgLoadingSmall,
+            options: [
+                .processor(DownsamplingImageProcessor(size: CGSize(width: 86, height: 86))),
+                .scaleFactor(UIScreen.main.scale),
+                .cacheOriginalImage
+            ])
         
-        regionStackView.configureListUI(text: data.station)
-        markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)
+        regionStackView.configureListUI(text: station)
+        markStackView.getMarkStatus(isHACCP, isVegan, isNonGMO)
         
-        breadTypeTag = []
-        data.breadTypeList.forEach {
-            breadTypeTag.append($0.toString())
-        }
+        breadTypeTag = breadTypeList.map { $0.toString() }
+        itemSizeCache.removeAll()
         collectionView.reloadData()
     }
 }
@@ -170,7 +179,6 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
 
 extension BakeryCommonCollectionViewCell {
     private func setRegistration() {
-        
         collectionView.register(cell: DescriptionCollectionViewCell.self)
     }
 }
@@ -179,12 +187,10 @@ extension BakeryCommonCollectionViewCell {
 
 extension BakeryCommonCollectionViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return breadTypeTag.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell: DescriptionCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
         cell.cellColor = .sub
         cell.configureTagTitle(self.breadTypeTag[indexPath.item])
@@ -196,9 +202,15 @@ extension BakeryCommonCollectionViewCell: UICollectionViewDataSource {
 
 extension BakeryCommonCollectionViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let tagTitle = breadTypeTag[indexPath.item]
         
-        let tagTitle = self.breadTypeTag[indexPath.item]
-        let itemSize = tagTitle.size(withAttributes: [NSAttributedString.Key.font: UIFont.captionM2])
-        return CGSize(width: itemSize.width + 12, height: itemSize.height)
+        guard let cachedSize = itemSizeCache[tagTitle.count] else {
+            let itemSize = tagTitle.size(withAttributes: [NSAttributedString.Key.font: UIFont.captionM2])
+            let finalSize = CGSize(width: itemSize.width + 12, height: itemSize.height)
+            itemSizeCache[tagTitle.count] = finalSize
+            return finalSize
+        }
+        
+        return cachedSize
     }
 }

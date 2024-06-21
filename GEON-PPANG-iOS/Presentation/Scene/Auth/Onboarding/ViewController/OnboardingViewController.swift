@@ -306,9 +306,9 @@ extension OnboardingViewController: ASAuthorizationControllerDelegate {
                     nickname: ""
                 )
                 
-                self.postSignUp(with: request) { role in
+                self.postSignUp(with: request) { [weak self] role in
                     KeychainService.setKeychain(of: .role, with: role)
-                    self.check(role: role)
+                    self?.check(role: role)
                 }
                 
             case .revoked:
