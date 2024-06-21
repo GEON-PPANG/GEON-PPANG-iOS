@@ -159,7 +159,7 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
         guard let url = URL(string: pictureURL) else { return }
         bakeryImage.kf.setImage(
             with: url,
-            placeholder: UIImage.loading_small,
+            placeholder: UIImage.imgLoadingSmall,
             options: [
                 .processor(DownsamplingImageProcessor(size: CGSize(width: 86, height: 86))),
                 .scaleFactor(UIScreen.main.scale),

@@ -8,8 +8,6 @@
 import UIKit
 import SnapKit
 
-import Combine
-
 // search, textfiled
 
 final class TextFieldBuilder: UITextField {
@@ -19,10 +17,7 @@ final class TextFieldBuilder: UITextField {
     private var insets: UIEdgeInsets
     private var rightViewRect: UIEdgeInsets
     private var leftViewRect: UIEdgeInsets
-    
-    private var cancellables = Set<AnyCancellable>()
-    private var rightButtonTapSubject = PassthroughSubject<Void, Never>()
-    
+        
     init() {
         self.leftButton = UIButton()
         self.rightButton = UIButton()
@@ -30,6 +25,7 @@ final class TextFieldBuilder: UITextField {
         self.rightViewRect = UIEdgeInsets()
         self.leftViewRect = UIEdgeInsets()
         super.init(frame: .zero)
+        
         self.setUI()
         self.setBindings()
     }
@@ -40,16 +36,17 @@ final class TextFieldBuilder: UITextField {
     
     private func setUI() {
         self.leftButton.isEnabled = false
+        self.placeholder = "빵집·지역·역 명을 검색해 보세요!"
+        self.layer.masksToBounds = true
+        self.layer.cornerRadius = CGFloat().convertByHeightRatio(22)
+        self.backgroundColor = .gbbGray100
     }
     
     private func setBindings() {
-        self.rightButton.publisher(for: .touchUpInside)
-            .sink { [weak self] _ in
-                self?.rightButtonTapSubject.send()
-            }
-            .store(in: &cancellables)
+        let action = UIAction { _ in self.text = "" }
+        self.rightButton.addAction(action, for: .touchUpInside)
     }
-    
+        
     func build() -> UITextField {
         return self
     }
@@ -57,11 +54,6 @@ final class TextFieldBuilder: UITextField {
 
 extension TextFieldBuilder {
 
-    func setDescription(to text: String) -> TextFieldBuilder {
-        self.placeholder = text
-        return self
-    }
-    
     func setPlaceholder(to color: UIColor, to font: UIFont ) -> TextFieldBuilder {
         self.setPlaceholder(color: color, font: font)
         return self
@@ -72,7 +64,7 @@ extension TextFieldBuilder {
         self.layer.cornerRadius = amount
         return self
     }
-    
+
     func setBackgroundColor(to color: UIColor) -> TextFieldBuilder {
         self.backgroundColor = color
         return self
@@ -200,5 +192,204 @@ extension UIControl: CombineCompatible {}
 public extension CombineCompatible where Self: UIControl {
     func publisher(for event: UIControl.Event) -> UIControl.Publisher<UIControl> {
         .init(output: self, event: event)
+    }
+}
+
+
+#if !(os(iOS) && (arch(i386) || arch(arm)))
+import Combine
+import UIKit
+
+@available(iOS 13.0, *)
+public extension UITextField {
+    /// A publisher emitting any text changes to a this text field.
+    var textPublisher: AnyPublisher<String?, Never> {
+        Publishers.ControlProperty(control: self, events: .defaultValueEvents, keyPath: \.text)
+                  .eraseToAnyPublisher()
+    }
+
+    /// A publisher emitting any attributed text changes to this text field.
+    var attributedTextPublisher: AnyPublisher<NSAttributedString?, Never> {
+        Publishers.ControlProperty(control: self, events: .defaultValueEvents, keyPath: \.attributedText)
+                  .eraseToAnyPublisher()
+    }
+
+    /// A publisher that emits whenever the user taps the return button and ends the editing on the text field.
+    var returnPublisher: AnyPublisher<Void, Never> {
+        controlEventPublisher(for: .editingDidEndOnExit)
+    }
+
+    /// A publisher that emits whenever the user taps the text fields and begin the editing.
+    var didBeginEditingPublisher: AnyPublisher<Void, Never> {
+        controlEventPublisher(for: .editingDidBegin)
+    }
+}
+#endif
+
+#if !(os(iOS) && (arch(i386) || arch(arm)))
+import Combine
+import Foundation
+import UIKit.UIControl
+
+// MARK: - Publisher
+@available(iOS 13.0, *)
+public extension Combine.Publishers {
+    /// A Control Property is a publisher that emits the value at the provided keypath
+    /// whenever the specific control events are triggered. It also emits the keypath's
+    /// initial value upon subscription.
+    struct ControlProperty<Control: UIControl, Value>: Publisher {
+        public typealias Output = Value
+        public typealias Failure = Never
+
+        private let control: Control
+        private let controlEvents: Control.Event
+        private let keyPath: KeyPath<Control, Value>
+
+        /// Initialize a publisher that emits the value at the specified keypath
+        /// whenever any of the provided Control Events trigger.
+        ///
+        /// - parameter control: UI Control.
+        /// - parameter events: Control Events.
+        /// - parameter keyPath: A Key Path from the UI Control to the requested value.
+        public init(control: Control,
+                    events: Control.Event,
+                    keyPath: KeyPath<Control, Value>) {
+            self.control = control
+            self.controlEvents = events
+            self.keyPath = keyPath
+        }
+
+        public func receive<S: Subscriber>(subscriber: S) where S.Failure == Failure, S.Input == Output {
+            let subscription = Subscription(subscriber: subscriber,
+                                            control: control,
+                                            event: controlEvents,
+                                            keyPath: keyPath)
+
+            subscriber.receive(subscription: subscription)
+        }
+    }
+}
+
+// MARK: - Subscription
+@available(iOS 13.0, *)
+extension Combine.Publishers.ControlProperty {
+    private final class Subscription<S: Subscriber, Control: UIControl, Value>: Combine.Subscription where S.Input == Value {
+        private var subscriber: S?
+        weak private var control: Control?
+        let keyPath: KeyPath<Control, Value>
+        private var didEmitInitial = false
+        private let event: Control.Event
+
+        init(subscriber: S, control: Control, event: Control.Event, keyPath: KeyPath<Control, Value>) {
+            self.subscriber = subscriber
+            self.control = control
+            self.keyPath = keyPath
+            self.event = event
+            control.addTarget(self, action: #selector(processControlEvent), for: event)
+        }
+
+        func request(_ demand: Subscribers.Demand) {
+            // Emit initial value upon first demand request
+            if !didEmitInitial,
+                demand > .none,
+                let control = control,
+                let subscriber = subscriber {
+                _ = subscriber.receive(control[keyPath: keyPath])
+                didEmitInitial = true
+            }
+
+            // We don't care about the demand at this point.
+            // As far as we're concerned - UIControl events are endless until the control is deallocated.
+        }
+
+        func cancel() {
+            control?.removeTarget(self, action: #selector(processControlEvent), for: event)
+            subscriber = nil
+        }
+
+        @objc private func processControlEvent() {
+            guard let control = control else { return }
+            _ = subscriber?.receive(control[keyPath: keyPath])
+        }
+    }
+}
+
+extension UIControl.Event {
+    static var defaultValueEvents: UIControl.Event {
+        return [.allEditingEvents, .valueChanged]
+    }
+}
+#endif
+#if !(os(iOS) && (arch(i386) || arch(arm)))
+
+@available(iOS 13.0, *)
+public extension UIControl {
+    /// A publisher emitting events from this control.
+    func controlEventPublisher(for events: UIControl.Event) -> AnyPublisher<Void, Never> {
+        Publishers.ControlEvent(control: self, events: events)
+                  .eraseToAnyPublisher()
+    }
+}
+#endif
+
+
+// MARK: - Publisher
+@available(iOS 13.0, *)
+public extension Combine.Publishers {
+    /// A Control Event is a publisher that emits whenever the provided
+    /// Control Events fire.
+    struct ControlEvent<Control: UIControl>: Publisher {
+        public typealias Output = Void
+        public typealias Failure = Never
+
+        private let control: Control
+        private let controlEvents: Control.Event
+
+        /// Initialize a publisher that emits a Void
+        /// whenever any of the provided Control Events trigger.
+        ///
+        /// - parameter control: UI Control.
+        /// - parameter events: Control Events.
+        public init(control: Control,
+                    events: Control.Event) {
+            self.control = control
+            self.controlEvents = events
+        }
+
+        public func receive<S: Subscriber>(subscriber: S) where S.Failure == Failure, S.Input == Output {
+            let subscription = Subscription(subscriber: subscriber,
+                                            control: control,
+                                            event: controlEvents)
+
+            subscriber.receive(subscription: subscription)
+        }
+    }
+}
+
+// MARK: - Subscription
+@available(iOS 13.0, *)
+extension Combine.Publishers.ControlEvent {
+    private final class Subscription<S: Subscriber, Control: UIControl>: Combine.Subscription where S.Input == Void {
+        private var subscriber: S?
+        weak private var control: Control?
+
+        init(subscriber: S, control: Control, event: Control.Event) {
+            self.subscriber = subscriber
+            self.control = control
+            control.addTarget(self, action: #selector(processControlEvent), for: event)
+        }
+
+        func request(_ demand: Subscribers.Demand) {
+            // We don't care about the demand at this point.
+            // As far as we're concerned - UIControl events are endless until the control is deallocated.
+        }
+
+        func cancel() {
+            subscriber = nil
+        }
+
+        @objc private func processControlEvent() {
+            _ = subscriber?.receive()
+        }
     }
 }
