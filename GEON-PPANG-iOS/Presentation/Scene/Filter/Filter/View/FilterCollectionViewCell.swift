@@ -59,7 +59,7 @@ final class FilterCollectionViewCell: UICollectionViewCell {
         
         self.do {
             $0.backgroundColor = .gbbBackground2
-            $0.makeBorder(width: 1, color: .gbbGray300!)
+            $0.makeBorder(width: 1, color: .gbbGray300)
             $0.makeCornerRound(radius: 10)
         }
         
@@ -101,7 +101,7 @@ final class FilterCollectionViewCell: UICollectionViewCell {
         
         UIView.animate(withDuration: 0.2) {
             self.do {
-                $0.makeBorder(width: self.isSelected ? 2 : 1, color: self.isSelected ? .gbbMain3! : .gbbGray300!)
+                $0.makeBorder(width: self.isSelected ? 2 : 1, color: self.isSelected ? .gbbMain3 : .gbbGray300)
             }
         }
         

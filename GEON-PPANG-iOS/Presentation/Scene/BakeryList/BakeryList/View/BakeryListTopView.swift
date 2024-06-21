@@ -51,12 +51,12 @@ final class BakeryListTopView: UIView {
         
         bakeryTitle.do {
             $0.basic(text: I18N.BakeryList.bakeryTitle,
-                     font: .title1!,
-                     color: .gbbGray700!)
+                     font: .title1,
+                     color: .gbbGray700)
         }
         
         searchButton.do {
-            $0.setImage(.searchIcon400, for: .normal)
+            $0.setImage(.icSearch400, for: .normal)
         }
     }
     

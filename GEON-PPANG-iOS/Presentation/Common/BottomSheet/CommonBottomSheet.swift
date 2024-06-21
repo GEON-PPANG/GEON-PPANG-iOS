@@ -17,9 +17,9 @@ enum EmojiType {
     
     var icon: UIImage? {
         switch self {
-        case .smile: return .smileIcon
-        case .sad: return .sadIcon
-        case .crying: return .cryingIcon
+        case .smile: return .icSmile
+        case .sad: return .iconSad
+        case .crying: return .iconCrying
             
         }
     }
@@ -85,10 +85,10 @@ final class CommonBottomSheet: UIView {
         bottonSheetTitle.do {
             $0.textAlignment = .center
             $0.numberOfLines = 0
-            $0.basic(font: .pretendardBold(20), color: .gbbGray500!)
+            $0.basic(font: .pretendardBold(20), color: .gbbGray500)
         }
         confirmButton.do {
-            $0.configureButtonUI(.gbbGray700!)
+            $0.configureButtonUI(.gbbGray700)
             $0.configureButtonTitle(.confirm)
             $0.tappedCommonButton = {
                 self.dismissBottomSheet?()

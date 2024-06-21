@@ -69,9 +69,9 @@ final class SortBakeryFilterView: UIView {
                                                     leading: 12,
                                                     bottom: 11,
                                                     trailing: 12)
-            $0.configuration?.image = .swapIcon.resize(to: CGSize(width: 16, height: 16))
+            $0.configuration?.image = .icSwap.resize(to: CGSize(width: 16, height: 16))
             $0.configuration?.attributedTitle = AttributedString(I18N.BakeryList.defaultFilter,
-                                                                 attributes: AttributeContainer([.font: UIFont.captionB1!]))
+                                                                 attributes: AttributeContainer([.font: UIFont.captionB1]))
             $0.configuration?.imagePadding = 5
         }
         
@@ -83,8 +83,8 @@ final class SortBakeryFilterView: UIView {
         
         checkBoxTitle.do {
             $0.basic(text: I18N.BakeryListFilter.title,
-                     font: .captionB1!,
-                     color: .gbbGray600!)
+                     font: .captionB1,
+                     color: .gbbGray600)
         }
     }
     
@@ -107,7 +107,7 @@ final class SortBakeryFilterView: UIView {
         
         filterButton.do {
             $0.configuration?.attributedTitle = AttributedString(text,
-                                                                 attributes: AttributeContainer([.font: UIFont.captionB1!]))
+                                                                 attributes: AttributeContainer([.font: UIFont.captionB1]))
         }
     }
     
@@ -116,9 +116,9 @@ final class SortBakeryFilterView: UIView {
         let handler: UIButton.ConfigurationUpdateHandler = { button in
             switch button.state {
             case .selected:
-                button.configuration?.image = .filterCheckIcon
+                button.configuration?.image = .icFilterCheck
             default:
-                button.configuration?.image = .filterUncheckIcon
+                button.configuration?.image = .icFilterUnchecked
             }
         }
         return handler

@@ -108,11 +108,11 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
         }
         
         markStackView.do {
-            $0.configureIconImage(.smallHACCPMark, .smallVeganMark, .smallGMOMark)
+            $0.configureIconImage(.haccpMark22px, .veganMark22px, .gmoMark22px)
         }
         
         bakeryTitle.do {
-            $0.basic(font: .title2!, color: .gbbGray700!)
+            $0.basic(font: .title2, color: .gbbGray700)
         }
         
         collectionView.do {
@@ -159,7 +159,7 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
         guard let url = URL(string: pictureURL) else { return }
         bakeryImage.kf.setImage(
             with: url,
-            placeholder: UIImage.loading_small,
+            placeholder: UIImage.imgLoadingSmall,
             options: [
                 .processor(DownsamplingImageProcessor(size: CGSize(width: 86, height: 86))),
                 .scaleFactor(UIScreen.main.scale),

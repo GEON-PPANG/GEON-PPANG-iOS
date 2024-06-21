@@ -73,7 +73,7 @@ final class BakeryDetailCollectionViewFooter: UICollectionReusableView {
         
         label.do {
             $0.setLineHeight(by: 1.35)
-            $0.basic(text: I18N.Detail.menuNotice, font: .captionM2!, color: .gbbGray400!)
+            $0.basic(text: I18N.Detail.menuNotice, font: .captionM2, color: .gbbGray400)
             $0.adjustsFontSizeToFitWidth = true
             $0.numberOfLines = 2
         }

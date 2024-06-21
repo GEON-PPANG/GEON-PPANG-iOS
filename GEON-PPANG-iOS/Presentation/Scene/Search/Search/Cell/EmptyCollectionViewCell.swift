@@ -96,7 +96,7 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
         
         emptyLabel.do {
             $0.numberOfLines = 0
-            $0.basic(font: .title2!, color: .gbbGray300!, align: .center)
+            $0.basic(font: .title2, color: .gbbGray300, align: .center)
         }
     }
     
@@ -115,11 +115,11 @@ final class EmptyCollectionViewCell: UICollectionViewCell {
         switch type {
         case .initialize, .noReview, .noMyReview, .noBookmark:
             return emptyLabel.basic(text: emptyType.rawValue,
-                                    font: .title2!,
-                                    color: .gbbGray300!,
+                                    font: .title2,
+                                    color: .gbbGray300,
                                     align: .center)
         case .noSearch:
-            return emptyLabel.partFontChange(targetString: type.subTitle, font: .subHead!)
+            return emptyLabel.partFontChange(targetString: type.subTitle, font: .subHead)
         }
     }
     

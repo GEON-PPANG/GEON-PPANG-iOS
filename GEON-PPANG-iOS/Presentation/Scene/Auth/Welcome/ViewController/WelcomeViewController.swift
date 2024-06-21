@@ -19,7 +19,7 @@ final class WelcomeViewController: BaseViewController {
     // MARK: - UI Property
     
     private let welcomeLabel = UILabel()
-    private let welcomeImageView = UIImageView(image: .welcomeImage)
+    private let welcomeImageView = UIImageView(image: .imgWelcome)
     
     // MARK: - Life Cycle
     

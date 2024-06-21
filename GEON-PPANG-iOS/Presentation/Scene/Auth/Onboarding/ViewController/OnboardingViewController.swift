@@ -96,16 +96,16 @@ final class OnboardingViewController: BaseViewController {
         }
         
         logoImage.do {
-            $0.image = .launchscreenIcon
+            $0.image = .icLaunchscreen
             $0.contentMode = .scaleAspectFit
         }
         
         kakaoLoginButton.do {
-            $0.setImage(.kakaoLoginButton, for: .normal)
+            $0.setImage(.kakaoSociaLogin, for: .normal)
         }
         
         appleLoginButton.do {
-            $0.setImage(.appleLoginButton, for: .normal)
+            $0.setImage(.appleSocialLogin, for: .normal)
         }
         
         socialLoginButtonStackView.do {

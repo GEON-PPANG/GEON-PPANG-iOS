@@ -28,7 +28,7 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         
         markStackView.getMarkStatus(false, false, false)
-        markStackView.configureIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
+        markStackView.configureIconImage(.haccpMark28px, .veganMark28px, .gmoMark28px)
         regionStackView.arrangedSubviews.forEach {
             regionStackView.removeArrangedSubview($0)
         }
@@ -102,12 +102,12 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
         }
         
         markStackView.do {
-            $0.configureIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
+            $0.configureIconImage(.haccpMark28px, .veganMark28px, .gmoMark28px)
         }
         
         bakeryTitle.do {
             $0.numberOfLines = 1
-            $0.basic(font: .bodyB1!, color: .gbbGray700!)
+            $0.basic(font: .bodyB1, color: .gbbGray700)
             $0.sizeToFit()
         }
         
@@ -118,7 +118,7 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     func configureCellUI(data: HomeBestBakeryResponseDTO) {
         
         let url = URL(string: data.bakeries.picture)
-        bakeryImage.kf.setImage(with: url, placeholder: UIImage.loading_large)
+        bakeryImage.kf.setImage(with: url, placeholder: UIImage.imgLoadingLarge)
         bakeryTitle.setLineHeight(by: 1.08, with: data.bakeries.name)
         bakeryTitle.lineBreakMode = .byTruncatingTail
 

@@ -182,7 +182,7 @@ final class ReportViewController: BaseViewController {
                 AnalyticManager.log(event: .reportReview(.clickReviewReportBack))
                 self?.navigationController?.popViewController(animated: true)
             })
-            $0.configureCenterTitle(to: navigationTitle, with: .title2!)
+            $0.configureCenterTitle(to: navigationTitle, with: .title2)
             $0.configureBottomLine()
         }
         
@@ -194,19 +194,19 @@ final class ReportViewController: BaseViewController {
         }
         
         reportingReasonLabel.do {
-            $0.basic(text: I18N.Report.reportReason, font: .bodyB1!, color: .gbbGray700!)
+            $0.basic(text: I18N.Report.reportReason, font: .bodyB1, color: .gbbGray700)
         }
         
         [advertisementReportButton, profanityReportButton, defamationReportButton, othersReportButton].enumerated().forEach { index, button in
             button.do {
                 $0.configuration?.attributedTitle = AttributedString(labeling[index],
-                                                                     attributes: AttributeContainer([.font: UIFont.captionB1!,
-                                                                                                     .foregroundColor: UIColor.gbbGray500!]))
+                                                                     attributes: AttributeContainer([.font: UIFont.captionB1,
+                                                                                                     .foregroundColor: UIColor.gbbGray500]))
                 $0.configuration?.contentInsets = .init(top: 8,
                                                         leading: 8,
                                                         bottom: 8,
                                                         trailing: 8)
-                $0.configuration?.image = .filterUncheckIcon
+                $0.configuration?.image = .icFilterUnchecked
                 $0.configuration?.imagePadding = 6
                 $0.configuration?.imagePlacement = .leading
                 $0.isSelected = false
@@ -217,7 +217,7 @@ final class ReportViewController: BaseViewController {
         }
         
         detailReasonLabel.do {
-            $0.basic(text: I18N.Report.detailReportReason, font: .bodyB1!, color: .gbbGray700!)
+            $0.basic(text: I18N.Report.detailReportReason, font: .bodyB1, color: .gbbGray700)
         }
         
         pleaseReportContainer.do {
@@ -225,7 +225,7 @@ final class ReportViewController: BaseViewController {
         }
         
         pleaseReportLabel.do {
-            $0.basic(text: I18N.Report.pleaseReport, font: .captionM2!, color: .gbbGray300!)
+            $0.basic(text: I18N.Report.pleaseReport, font: .captionM2, color: .gbbGray300)
             $0.textAlignment = .center
             $0.adjustsFontSizeToFitWidth = true
         }
@@ -291,7 +291,7 @@ final class ReportViewController: BaseViewController {
     private func nothingSelected() {
         // 버튼 선택 안하고 텍스트 입력하려 했을 때 border와 글자 수 라벨의 색깔 바꿔주기
         if selectedButton == nil {
-            detailReasonTextView.detailTextView.makeBorder(width: 1, color: .gbbGray500!)
+            detailReasonTextView.detailTextView.makeBorder(width: 1, color: .gbbGray500)
             detailReasonTextView.textLimitLabel.textColor = .gbbGray500
         }
     }
@@ -301,10 +301,10 @@ final class ReportViewController: BaseViewController {
         nothingSelected()
         
         selectedButton?.isSelected = false // 이전 선택 해제
-        selectedButton?.configuration?.image = .filterUncheckIcon
+        selectedButton?.configuration?.image = .icFilterUnchecked
         
         sender.isSelected = true // 새로운 버튼 선택
-        sender.configuration?.image = .filterCheckIcon
+        sender.configuration?.image = .icFilterCheck
         sender.configuration?.baseBackgroundColor = .gbbWhite
         writeButton.configureInteraction(to: true)
         
@@ -401,7 +401,7 @@ extension ReportViewController: UITextViewDelegate {
             detailReasonTextView.updateTextLimitLabel(to: 0)
             
             if selectedButton == nil {
-                detailReasonTextView.detailTextView.makeBorder(width: 1, color: .gbbGray300!)
+                detailReasonTextView.detailTextView.makeBorder(width: 1, color: .gbbGray300)
                 detailReasonTextView.textLimitLabel.textColor = .gbbGray300
             }
         }

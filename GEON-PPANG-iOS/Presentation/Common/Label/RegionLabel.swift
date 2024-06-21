@@ -19,7 +19,7 @@ final class RegionLabel: UILabel {
     
     // MARK: - UI Property
     
-    private let imageView = UIImageView(image: .mapIcon)
+    private let imageView = UIImageView(image: .icMap)
     private let label = UILabel()
     
     // MARK: - Life Cycle

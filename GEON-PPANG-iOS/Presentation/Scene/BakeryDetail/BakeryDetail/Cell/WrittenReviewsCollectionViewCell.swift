@@ -112,20 +112,20 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
         reviewContainer.do {
             $0.backgroundColor = .gbbBackground1
             $0.makeCornerRound(radius: 12)
-            $0.makeBorder(width: 1, color: .gbbGray300!)
+            $0.makeBorder(width: 1, color: .gbbGray300)
         }
         
         profileImage.do {
-            $0.image = .smileIcon
+            $0.image = .icSmile
             $0.contentMode = .scaleToFill
         }
         
         userNicknameLabel.do {
-            $0.basic(font: .bodyB2!, color: .gbbMain1!)
+            $0.basic(font: .bodyB2, color: .gbbMain1)
         }
         
         reviewDateLabel.do {
-            $0.basic(font: .captionM1!, color: .gbbGray400!)
+            $0.basic(font: .captionM1, color: .gbbGray400)
             $0.textAlignment = .right
         }
         
@@ -139,7 +139,7 @@ final class WrittenReviewsCollectionViewCell: UICollectionViewCell {
         }
         
         reviewTextLabel.do {
-            $0.basic(font: .subHead!, color: .gbbGray400!)
+            $0.basic(font: .subHead, color: .gbbGray400)
             $0.numberOfLines = 0
         }
     }

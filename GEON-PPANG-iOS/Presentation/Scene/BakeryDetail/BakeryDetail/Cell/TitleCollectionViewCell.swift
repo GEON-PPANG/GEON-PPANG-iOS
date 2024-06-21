@@ -88,7 +88,7 @@ final class TitleCollectionViewCell: UICollectionViewCell {
         }
         
         bakeryNameLabel.do {
-            $0.basic(font: .title1!, color: .gbbGray700!)
+            $0.basic(font: .title1, color: .gbbGray700)
             $0.adjustsFontSizeToFitWidth = true
         }
         
@@ -102,10 +102,10 @@ final class TitleCollectionViewCell: UICollectionViewCell {
     func configureCellUI(_ data: BakeryDetailResponseDTO) {
         
         guard let url = URL(string: data.bakeryPicture) else { return }
-        bakeryImage.kf.setImage(with: url, placeholder: UIImage.loading_medium)
+        bakeryImage.kf.setImage(with: url, placeholder: UIImage.imgLoadingLarge)
         bakeryNameLabel.text = data.bakeryName
         markStackView.getMarkStatus(data.isHACCP, data.isVegan, data.isNonGMO)
-        markStackView.configureIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
+        markStackView.configureIconImage(.haccpMark28px, .veganMark28px, .gmoMark28px)
         
         if !data.isHACCP && !data.isVegan && !data.isNonGMO {
             bakeryNameLabel.snp.remakeConstraints {

@@ -19,7 +19,7 @@ final class WriteReviewBottomSheetView: UIView {
     
     // MARK: - UI Property
     
-    private let emojiImageView = UIImageView(image: .reviewBreadIcon)
+    private let emojiImageView = UIImageView(image: .icReviewBread)
     private let sheetTitleLabel = UILabel()
     private let sheetDescriptionLabel = UILabel()
     
@@ -98,18 +98,18 @@ final class WriteReviewBottomSheetView: UIView {
         }
         
         quitButton.do {
-            $0.configureButtonUI(.gbbGray100!)
+            $0.configureButtonUI(.gbbGray100)
             $0.configureButtonTitle(to: I18N.Review.sheetQuit)
-            $0.configureButtonTitle(color: .gbbGray300!)
+            $0.configureButtonTitle(color: .gbbGray300)
             $0.tappedCommonButton = {
                 self.dismissClosure!()
             }
         }
         
         continueButton.do {
-            $0.configureButtonUI(.gbbBlack!)
+            $0.configureButtonUI(.gbbBlack)
             $0.configureButtonTitle(to: I18N.Review.sheetContinue)
-            $0.configureButtonTitle(color: .gbbGray100!)
+            $0.configureButtonTitle(color: .gbbGray100)
             $0.tappedCommonButton = {
                 self.continueClosure!()
             }

@@ -21,8 +21,8 @@ final class ImageWithSubtitleButton: UIButton {
     
     private var buttonImage: UIImage {
         switch type {
-        case .bookmark: return .bookmarkIcon
-        case .myReview: return .reviewIcon
+        case .bookmark: return .icBookmark
+        case .myReview: return .icReview
         }
     }
     

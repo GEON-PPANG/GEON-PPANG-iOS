@@ -42,11 +42,11 @@ final class BookmarkButton: UIButton {
             $0.configurationUpdateHandler = { button in
                 switch button.state {
                 case .selected:
-                    button.configuration?.image = .enabledBookmarkButton
+                    button.configuration?.image = .bookmarkButtonEnable
                     button.configuration?.baseForegroundColor = .gbbPoint1
                     
                 default:
-                    button.configuration?.image = .disabledBookmarkButton
+                    button.configuration?.image = .bookmarkButtonDisable
                     button.configuration?.baseForegroundColor = .gbbGray300
                 }
             }
@@ -67,7 +67,7 @@ final class BookmarkButton: UIButton {
         if count == 0 {
             configuration?.title = ""
         } else {
-            configuration?.attributedTitle = AttributedString("\(count)명", attributes: AttributeContainer([.font: UIFont.bodyB2!]))
+            configuration?.attributedTitle = AttributedString("\(count)명", attributes: AttributeContainer([.font: UIFont.bodyB2]))
         }
     }
 }

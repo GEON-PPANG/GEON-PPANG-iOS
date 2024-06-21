@@ -11,7 +11,7 @@ final class BackButton: UIButton {
     
     // MARK: - UI Property
     
-    private let leftChevron = UIImageView(image: UIImage.leftArrowIcon)
+    private let leftChevron = UIImageView(image: .icArrowLeft)
     
     // MARK: - Init
     

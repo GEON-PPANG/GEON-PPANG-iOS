@@ -96,7 +96,7 @@ final class FilterViewController: BaseViewController {
         
         nextButton.do {
             $0.configureButtonTitle(.next)
-            $0.configureButtonUI(.gbbGray200!)
+            $0.configureButtonUI(.gbbGray200)
             $0.tappedCommonButton = {
                 self.nextButtonTapped()
             }
@@ -107,7 +107,7 @@ final class FilterViewController: BaseViewController {
             $0.setTitle(I18N.Filter.skip, for: .normal)
             $0.setTitleColor(.gbbGray500, for: .normal)
             $0.titleLabel?.font = .bodyM2
-            $0.setImage(.rightArrowIcon.resize(to: .init(width: 16, height: 16)),
+            $0.setImage(.icArrowRight.resize(to: .init(width: 16, height: 16)),
                         for: .normal)
             $0.semanticContentAttribute = .forceRightToLeft
             $0.isHidden = !(self.from == .onboarding)
@@ -183,7 +183,7 @@ final class FilterViewController: BaseViewController {
         let isAnySelected = FilterCellModel.isAnySelected(of: currentFilterType)
         nextButton.isUserInteractionEnabled = isAnySelected ? true : false
         UIView.animate(withDuration: 0.2) {
-            self.nextButton.configureButtonUI(isAnySelected ? .gbbMain2! : .gbbGray200!)
+            self.nextButton.configureButtonUI(isAnySelected ? .gbbMain2 : .gbbGray200)
         }
     }
     
@@ -328,7 +328,7 @@ extension FilterViewController: UICollectionViewDelegate {
         } else {
             nextButton.isUserInteractionEnabled = true
             UIView.animate(withDuration: 0.2) {
-                self.nextButton.configureButtonUI(.gbbMain2!)
+                self.nextButton.configureButtonUI(.gbbMain2)
             }
         }
     }

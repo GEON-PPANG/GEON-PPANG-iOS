@@ -22,17 +22,17 @@ final class ReviewDetailTextView: UIView {
     
     private var borderColor: UIColor {
         switch status {
-        case .deactivated: return .gbbGray300!
-        case .activated: return .gbbGray500!
-        case .error: return .gbbError!
+        case .deactivated: return .gbbGray300
+        case .activated: return .gbbGray500
+        case .error: return .gbbError
         }
     }
     
     private var textColor: UIColor {
         switch status {
-        case .deactivated: return .gbbGray300!
-        case .activated: return .gbbGray700!
-        case .error: return .gbbError!
+        case .deactivated: return .gbbGray300
+        case .activated: return .gbbGray700
+        case .error: return .gbbError
         }
     }
     
@@ -84,7 +84,7 @@ final class ReviewDetailTextView: UIView {
         
         self.do {
             $0.makeCornerRound(radius: 12)
-            $0.makeBorder(width: 1, color: .gbbGray300!)
+            $0.makeBorder(width: 1, color: .gbbGray300)
         }
         
         detailTextView.do {

@@ -176,7 +176,7 @@ final class ReviewViewController: BaseViewController {
         
         navigationBar.do {
             $0.backgroundColor = .white
-            $0.configureCenterTitle(to: type == .read ? I18N.Review.myReview : I18N.Review.writeReview, with: .title2!)
+            $0.configureCenterTitle(to: type == .read ? I18N.Review.myReview : I18N.Review.writeReview, with: .title2)
             $0.configureBottomLine()
             $0.configureBackButtonAction(UIAction { [weak self] _ in
                 self?.backButtonTapped()
@@ -502,7 +502,7 @@ extension ReviewViewController: UICollectionViewDelegate {
             
             optionsCollectionView.toggleIsEnabled(to: isLikeSelected)
             
-            configureCollectionViewHeader(to: isLikeSelected ? .black : .gbbGray300!)
+            configureCollectionViewHeader(to: isLikeSelected ? .black : .gbbGray300)
             
             reviewDetailTextView.isLike = isLikeSelected
             reviewDetailTextView.isUserInteractionEnabled = !isLikeSelected

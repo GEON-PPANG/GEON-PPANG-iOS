@@ -107,20 +107,20 @@ final class LogInViewController: BaseViewController {
         titleLabel.do {
             $0.numberOfLines = 0
             $0.basic(text: I18N.LogIn.title,
-                     font: .title1!,
-                     color: .gbbGray700!)
+                     font: .title1,
+                     color: .gbbGray700)
         }
         
         loginButton.do {
             $0.isUserInteractionEnabled = false
-            $0.configureButtonUI(.gbbGray200!)
+            $0.configureButtonUI(.gbbGray200)
             $0.configureButtonTitle(.login)
         }
         
         signInButton.do {
             $0.setTitle(I18N.LogIn.signIn, for: .normal)
-            $0.setTitleColor(.gbbGray500!, for: .normal)
-            $0.titleLabel?.font = .bodyB2!
+            $0.setTitleColor(.gbbGray500, for: .normal)
+            $0.titleLabel?.font = .bodyB2
             $0.setUnderline()
             $0.addAction(UIAction { [weak self] _ in
                 guard let self else { return }
@@ -131,8 +131,8 @@ final class LogInViewController: BaseViewController {
         
         accountLabel.do {
             $0.basic(text: I18N.LogIn.noAccount,
-                     font: .subHead!,
-                     color: .gray_500!)
+                     font: .subHead,
+                     color: .init(hex: "#BDBFC1"))
         }
         
         bottomSheet.do {
@@ -152,7 +152,7 @@ final class LogInViewController: BaseViewController {
         
         loginButton.do {
             $0.isUserInteractionEnabled = isValid
-            $0.configureButtonUI(isValid ? .gbbMain2!: .gbbGray200!)
+            $0.configureButtonUI(isValid ? .gbbMain2: .gbbGray200)
             $0.tappedCommonButton = {
                 if isValid {
                     self.postLogin()

@@ -20,8 +20,8 @@ final class BubbleView: UIView {
         
         var image: UIImage {
             switch self {
-            case .left: return .leftBubbleImage
-            case .right: return .rightBubbleImage
+            case .left: return .imgLeftBubble
+            case .right: return .imgRightBubble
             }
         }
     }
@@ -80,12 +80,12 @@ final class BubbleView: UIView {
         
         titleLabel.do {
             $0.basic(text: I18N.Home.bubbleTitle,
-                     font: .captionM2!,
-                     color: .gbbGray400!)
+                     font: .captionM2,
+                     color: .gbbGray400)
         }
         
         cancelButton.do {
-            $0.setImage(.deleteKeywordIcon, for: .normal)
+            $0.setImage(.icDeleteKeyword, for: .normal)
             $0.addAction(UIAction { _ in
                 self.removeFromSuperview()
             }, for: .touchUpInside)

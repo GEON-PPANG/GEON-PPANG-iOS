@@ -131,7 +131,7 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         }
         
         linkImage.do {
-            $0.image = .linkIcon
+            $0.image = .icLink
         }
         
         linkButtonStackView.do {
@@ -149,38 +149,38 @@ final class InfoCollectionViewCell: UICollectionViewCell {
         }
         
         addressImage.do {
-            $0.image = .storeIcon
+            $0.image = .icStore
         }
         
         addressLabel.do {
-            $0.basic(font: .subHead!, color: .gbbGray400!)
+            $0.basic(font: .subHead, color: .gbbGray400)
             $0.adjustsFontSizeToFitWidth = true
         }
         
         regionStackView.do {
             $0.configureChipCornerRadius(8)
-            $0.configureChipBackgroundColor(.gbbBackground2!)
+            $0.configureChipBackgroundColor(.gbbBackground2)
         }
         
         openingHoursImage.do {
-            $0.image = .timeIcon
+            $0.image = .icTime
         }
         
         closedDaysLabel.do {
-            $0.basic(font: .subHead!, color: .gbbError!)
+            $0.basic(font: .subHead, color: .gbbError)
         }
         
         openingHoursLabel.do {
-            $0.basic(font: .subHead!, color: .gbbGray400!)
+            $0.basic(font: .subHead, color: .gbbGray400)
             $0.adjustsFontSizeToFitWidth = true
         }
         
         phoneNumberImage.do {
-            $0.image = .callIcon
+            $0.image = .icCall
         }
         
         phoneNumberLabel.do {
-            $0.basic(font: .subHead!, color: .gbbGray400!)
+            $0.basic(font: .subHead, color: .gbbGray400)
         }
     }
     

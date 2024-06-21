@@ -79,7 +79,7 @@ final class CustomNavigationBar: UIView {
         }
         
         centerTitleLabel.do {
-            $0.basic(text: title, font: font, color: .gbbGray700!)
+            $0.basic(text: title, font: font, color: .gbbGray700)
         }
     }
     

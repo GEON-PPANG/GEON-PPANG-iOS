@@ -22,17 +22,17 @@ final class OptionsCollectionViewCell: UICollectionViewCell {
     
     private var cellBorderColor: UIColor {
         switch status {
-        case .deselected: return .gbbGray400!
-        case .selected: return .gbbMain3!
-        case .disabled: return .gbbGray300!
+        case .deselected: return .gbbGray400
+        case .selected: return .gbbMain3
+        case .disabled: return .gbbGray300
         }
     }
     
     private var cellTextColor: UIColor {
         switch status {
-        case .deselected: return .gbbGray400!
-        case .selected: return .gbbMain1!
-        case .disabled: return .gbbGray300!
+        case .deselected: return .gbbGray400
+        case .selected: return .gbbMain1
+        case .disabled: return .gbbGray300
         }
     }
     

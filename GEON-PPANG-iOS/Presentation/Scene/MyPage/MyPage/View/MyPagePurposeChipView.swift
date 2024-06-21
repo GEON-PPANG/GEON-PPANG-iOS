@@ -50,7 +50,7 @@ final class MyPagePurposeChipView: UIView {
         self.do {
             $0.backgroundColor = .gbbPoint2
             $0.makeCornerRound(radius: 12.5)
-            $0.makeBorder(width: 0.5, color: .gbbPoint1!)
+            $0.makeBorder(width: 0.5, color: .gbbPoint1)
         }
         
         purposeLabel.do {

@@ -74,7 +74,7 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
         }
         
         titleLabel.do {
-            $0.basic(font: .bodyB1!, color: .gbbBlack!)
+            $0.basic(font: .bodyB1, color: .gbbBlack)
             $0.frame.size = $0.sizeThatFits(self.frame.size)
         }
         
@@ -110,7 +110,7 @@ final class BakeryDetailCollectionViewHeader: UICollectionReusableView {
             titleLabel.text = "건빵집 리뷰"
         case .writtenReviews:
             titleLabel.text = "작성된 리뷰 \(reviewCount)개"
-            titleLabel.partColorChange(targetString: "\(reviewCount)개", textColor: .gbbPoint1!) // 특정 문자열의 textColor를 변경
+            titleLabel.partColorChange(targetString: "\(reviewCount)개", textColor: .gbbPoint1) // 특정 문자열의 textColor를 변경
         }
     }
     

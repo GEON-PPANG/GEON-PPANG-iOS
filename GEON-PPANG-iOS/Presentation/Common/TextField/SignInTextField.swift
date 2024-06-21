@@ -58,7 +58,7 @@ final class SignInTextField: UITextField {
             
             $0.makeCornerRound(radius: 10)
             $0.makeBorder(width: 1, color: .clear)
-            $0.setPlaceholder(color: .gbbGray300!, font: .headLine!)
+            $0.setPlaceholder(color: .gbbGray300, font: .headLine)
         }
     }
     
@@ -72,8 +72,8 @@ final class SignInTextField: UITextField {
         }
         
         securityButton.do {
-            $0.setImage(.hideIcon, for: .normal)
-            $0.setImage(.showIcon, for: .selected)
+            $0.setImage(.icHide, for: .normal)
+            $0.setImage(.icShow, for: .selected)
             $0.addAction(UIAction { [weak self]_ in
                 self?.isSecureTextEntry.toggle()
                 self?.securityButton.isSelected.toggle()
@@ -88,7 +88,7 @@ final class SignInTextField: UITextField {
         configuration.baseForegroundColor = .gbbWhite
         configuration.cornerStyle = .capsule
         configuration.attributedTitle = AttributedString("중복확인",
-                                                         attributes: AttributeContainer([.font: UIFont.captionM1!]))
+                                                         attributes: AttributeContainer([.font: UIFont.captionM1]))
         configuration.contentInsets = .init(top: 10,
                                             leading: 10,
                                             bottom: 10,

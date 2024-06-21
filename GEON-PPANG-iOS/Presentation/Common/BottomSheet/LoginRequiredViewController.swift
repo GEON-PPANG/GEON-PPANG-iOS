@@ -36,7 +36,7 @@ final class LoginRequiredViewController: BaseViewController {
     
     // MARK: - UI Property
     
-    private let loginImageView = UIImageView(image: .loginIcon)
+    private let loginImageView = UIImageView(image: .icLogin)
     private let loginLabel = UILabel()
     private let kakaoLoginButton = UIButton()
     private let appleLoginButton = UIButton()
@@ -120,15 +120,15 @@ final class LoginRequiredViewController: BaseViewController {
             $0.font = .title2
             $0.numberOfLines = 2
             $0.textAlignment = .center
-            $0.partColorChange(targetString: "로그인", textColor: .gbbMain2!)
+            $0.partColorChange(targetString: "로그인", textColor: .gbbMain2)
         }
         
         kakaoLoginButton.do {
-            $0.setImage(.kakaoLoginButton, for: .normal)
+            $0.setImage(.kakaoSociaLogin, for: .normal)
         }
         
         appleLoginButton.do {
-            $0.setImage(.appleLoginButton, for: .normal)
+            $0.setImage(.appleSocialLogin, for: .normal)
         }
         
         socialLoginButtonStackView.do {
