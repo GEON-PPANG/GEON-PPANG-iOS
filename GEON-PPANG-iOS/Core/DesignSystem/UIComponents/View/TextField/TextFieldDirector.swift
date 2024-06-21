@@ -11,13 +11,14 @@ public final class TextFieldDirector {
     
     static func buildHomeTextField() -> UITextField {
         TextFieldBuilder()
-            .setLeftView(to: .icSearch400, mode: .always)
-            .setLeftViewRect(forInsets: .init(top: 0, left: 15, bottom: 0, right: -15))
+            .setRightView(to: .icSearch400, mode: .always)
+            .setRightViewRect(forInsets: .init(top: 0, left: 15, bottom: 0, right: -15))
             .build()
     }
 
-    static func buildSearchTetField() -> UITextField {
+    static func buildSearchTextField() -> UITextField {
         TextFieldBuilder()
+            .setClearAction()
             .setRect(forInsets: .init(top: 0, left: 12, bottom: 0, right: 15))
             .setLeftView(to: .icSearch400, mode: .always)
             .setLeftViewRect(forInsets: .init(top: 0, left: 15, bottom: 0, right: -15))

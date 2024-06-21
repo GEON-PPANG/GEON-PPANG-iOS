@@ -17,7 +17,7 @@ final class TextFieldBuilder: UITextField {
     private var insets: UIEdgeInsets
     private var rightViewRect: UIEdgeInsets
     private var leftViewRect: UIEdgeInsets
-        
+    
     init() {
         self.leftButton = UIButton()
         self.rightButton = UIButton()
@@ -27,7 +27,6 @@ final class TextFieldBuilder: UITextField {
         super.init(frame: .zero)
         
         self.setUI()
-        self.setBindings()
     }
     
     required init?(coder: NSCoder) {
@@ -41,19 +40,20 @@ final class TextFieldBuilder: UITextField {
         self.layer.cornerRadius = CGFloat().convertByHeightRatio(22)
         self.backgroundColor = .gbbGray100
     }
-    
-    private func setBindings() {
-        let action = UIAction { _ in self.text = "" }
-        self.rightButton.addAction(action, for: .touchUpInside)
-    }
-        
+
     func build() -> UITextField {
         return self
     }
 }
 
 extension TextFieldBuilder {
-
+    
+    func setClearAction() -> TextFieldBuilder {
+        let action = UIAction { _ in self.text = "" }
+        self.rightButton.addAction(action, for: .touchUpInside)
+        return self
+    }
+    
     func setRect(forInsets insets: UIEdgeInsets) -> TextFieldBuilder {
         self.insets = insets
         return self
@@ -104,17 +104,17 @@ extension TextFieldBuilder {
         return rect.inset(by: self.insets)
     }
     
-    override public func placeholderRect(forBounds bounds: CGRect) -> CGRect {
+    override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
         let rect = super.textRect(forBounds: bounds)
         return rect.inset(by: self.insets)
     }
     
-    override public func rightViewRect(forBounds bounds: CGRect) -> CGRect {
+    override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
         let rect = super.rightViewRect(forBounds: bounds)
         return rect.inset(by: self.rightViewRect)
     }
     
-    override public func leftViewRect(forBounds bounds: CGRect) -> CGRect {
+    override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
         let rect = super.leftViewRect(forBounds: bounds)
         return rect.inset(by: self.leftViewRect)
     }
