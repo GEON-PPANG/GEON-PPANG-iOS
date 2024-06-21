@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct BakeryInfo {
+    let figure: BakeryFigure
+    let detail: BakeryDetail
+    let menu: BakeryMenu
+}

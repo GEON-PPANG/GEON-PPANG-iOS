@@ -11,7 +11,7 @@ struct FilterResponseDTO: Codable {
     let memberID: Int
     let mainPurpose: String
     let nickname: String
-    let breadTypeList: [BreadType]
+    let breadTypeList: [OldBreadType]
     let nutrientTypeList: [NutrientType]
     
     enum CodingKeys: String, CodingKey {

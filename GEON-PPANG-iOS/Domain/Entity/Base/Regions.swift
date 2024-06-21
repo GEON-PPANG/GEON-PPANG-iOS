@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct Regions {
+    let firstRegion: String
+    let secondRegion: String?
+}

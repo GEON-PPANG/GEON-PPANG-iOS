@@ -28,5 +28,5 @@ protocol BakeryListProtocol {
     var station: String { get }
     var bookmarkCount: Int { get }
     var reviewCount: Int { get }
-    var breadTypeList: [BreadType] { get }
+    var breadTypeList: [OldBreadType] { get }
 }

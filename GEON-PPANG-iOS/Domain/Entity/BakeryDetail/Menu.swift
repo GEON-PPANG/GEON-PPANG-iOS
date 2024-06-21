@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct Menu {
+    let id: Int
+    let name: String
+    let price: Int
+}

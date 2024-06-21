@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+struct BakeryFigure {
+    let overview: BakeryOverview
+    let certifications: Certifications
+    let type: BakeryType
+    let bookmarkCount: Int
+    let reviewCount: Int
+}

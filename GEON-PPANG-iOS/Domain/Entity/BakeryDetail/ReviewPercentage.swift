@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+struct ReviewPercentage {
+    let delicious: Float
+    let special: Float
+    let kind: Float
+    let zero: Float
+}

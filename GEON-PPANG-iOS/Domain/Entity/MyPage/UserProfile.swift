@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct UserProfile {
+    let purpose: PurposeType
+    let username: String
+    let bakeryType: [BakeryType]
+}

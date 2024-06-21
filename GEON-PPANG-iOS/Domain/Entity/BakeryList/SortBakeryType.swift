@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+enum SortBakeryType {
+    case `default`
+    case review
+}

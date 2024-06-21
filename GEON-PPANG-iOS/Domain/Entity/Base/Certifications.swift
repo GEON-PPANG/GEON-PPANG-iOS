@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct Certifications {
+    let isHaccp: Bool
+    let isVegan: Bool
+    let isNonGMO: Bool
+}

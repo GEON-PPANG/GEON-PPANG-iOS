@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct Reviews {
+    let count: Int
+    let list: [Review]
+}

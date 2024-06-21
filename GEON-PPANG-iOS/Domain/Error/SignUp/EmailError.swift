@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+enum EmailError: Error {
+    case notValid
+    case notUnique
+}

@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+enum PasswordValidationError: Error {
+    case notValid
+}

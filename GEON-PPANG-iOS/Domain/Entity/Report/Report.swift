@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct Report {
+    let type: ReportType
+    let content: String
+}

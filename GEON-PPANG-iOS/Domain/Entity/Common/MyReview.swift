@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+struct MyReview {
+    let overview: BakeryOverview
+    let regions: Regions
+    let certifications: Certifications
+    let type: BakeryType
+    let date: String
+}

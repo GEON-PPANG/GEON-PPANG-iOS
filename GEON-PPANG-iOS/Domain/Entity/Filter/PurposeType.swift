@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+enum PurposeType {
+    case health
+    case diet
+    case vegan
+}

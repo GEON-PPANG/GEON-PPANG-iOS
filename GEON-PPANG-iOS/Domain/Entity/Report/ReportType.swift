@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+enum ReportType {
+    case advertisement
+    case abusement
+    case copyright
+    case others
+}

@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+enum NutrientType {
+    case nutrient
+    case ingredient
+    case all
+}

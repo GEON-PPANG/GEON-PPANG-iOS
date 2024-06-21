@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+struct Review {
+    let id: Int
+    let username: String
+    let date: String
+    let keywords: [String]
+    let content: String
+}

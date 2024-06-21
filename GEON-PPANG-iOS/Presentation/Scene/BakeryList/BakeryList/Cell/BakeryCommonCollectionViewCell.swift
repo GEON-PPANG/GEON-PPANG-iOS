@@ -152,7 +152,7 @@ final class BakeryCommonCollectionViewCell: UICollectionViewCell {
                     breadTypeList: data.breadTypeList)
     }
     
-    private func setupCellUI(name: String, pictureURL: String, station: String, isHACCP: Bool, isVegan: Bool, isNonGMO: Bool, breadTypeList: [BreadType]) {
+    private func setupCellUI(name: String, pictureURL: String, station: String, isHACCP: Bool, isVegan: Bool, isNonGMO: Bool, breadTypeList: [OldBreadType]) {
         bakeryTitle.setLineHeight(by: 1.05, with: name)
         bakeryTitle.lineBreakMode = .byTruncatingTail
         

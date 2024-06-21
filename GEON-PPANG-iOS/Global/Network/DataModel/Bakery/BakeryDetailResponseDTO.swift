@@ -16,7 +16,7 @@ struct BakeryDetailResponseDTO: Codable {
     let isHACCP, isVegan, isNonGMO: Bool
     let firstNearStation, secondNearStation: String
     let reviewCount: Int
-    let breadTypeList: [BreadType]
+    let breadTypeList: [OldBreadType]
     let mapURL, homepageURL, instagramURL: String
     let address, openingHours, closedDay, phoneNumber: String
     let menuList: [MenuList]
@@ -35,7 +35,7 @@ struct BakeryDetailResponseDTO: Codable {
 
 // MARK: - BreadType
 
-struct BreadType: Codable {
+struct OldBreadType: Codable {
     let breadTypeId: Int
     
     func toString() -> String {

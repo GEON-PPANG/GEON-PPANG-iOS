@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+enum BreadType {
+    case hard
+    case desert
+    case brunch
+}

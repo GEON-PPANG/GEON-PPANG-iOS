@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+struct BakeryDetail {
+    let homepageUrl: String
+    let instagramUrl: String
+    let address: String
+    let regions: Regions
+    let openingHours: String
+    let closedDays: String
+    let phoneNumber: String
+}

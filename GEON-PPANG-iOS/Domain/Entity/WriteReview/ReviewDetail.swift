@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct ReviewDetail {
+    let isLike: Bool
+    let keywords: [String]
+    let content: String
+}

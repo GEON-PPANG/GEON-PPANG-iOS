@@ -18,7 +18,7 @@ struct MyReviewsResponseDTO: Decodable, Equatable {
     let isVegan: Bool
     let isNonGMO: Bool
     let station: String
-    let breadTypeList: [BreadType]
+    let breadTypeList: [OldBreadType]
     let createdAt: String
     let reviewID: Int
     
@@ -51,7 +51,7 @@ struct MyReviewsResponseDTO: Decodable, Equatable {
             station = "\(first) ⦁ \(second)"
         }
         
-        breadTypeList = try container.decode([BreadType].self, forKey: .breadTypeList)
+        breadTypeList = try container.decode([OldBreadType].self, forKey: .breadTypeList)
         reviewID = try container.decode(Int.self, forKey: .reviewID)
         createdAt = try container.decode(String.self, forKey: .createdAt)
     }

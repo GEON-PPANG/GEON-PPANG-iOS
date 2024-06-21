@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+enum UsernameError: Error {
+    case notValid
+}

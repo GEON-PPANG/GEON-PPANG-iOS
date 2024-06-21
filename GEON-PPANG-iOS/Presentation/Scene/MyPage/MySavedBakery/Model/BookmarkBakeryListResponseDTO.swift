@@ -19,7 +19,7 @@ struct BookmarkBakeryListResponseDTO: Decodable, Hashable, BakeryListProtocol {
     let station: String
     let bookmarkCount: Int
     let reviewCount: Int
-    let breadTypeList: [BreadType]
+    let breadTypeList: [OldBreadType]
     
     private enum CodingKeys: String, CodingKey {
         case bakeryID = "bakeryId"
@@ -51,7 +51,7 @@ struct BookmarkBakeryListResponseDTO: Decodable, Hashable, BakeryListProtocol {
             station = "\(first) ⦁ \(second)"
         }
         
-        breadTypeList = try container.decode([BreadType].self, forKey: .breadTypeList)
+        breadTypeList = try container.decode([OldBreadType].self, forKey: .breadTypeList)
         
     }
     
