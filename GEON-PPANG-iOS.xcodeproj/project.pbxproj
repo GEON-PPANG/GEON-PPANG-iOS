@@ -227,7 +227,6 @@
 		3EF9F8B22BBD119200F3E366 /* DummyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF9F8B12BBD119200F3E366 /* DummyEntity.swift */; };
 		3EF9F8B42BBD119A00F3E366 /* DummyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF9F8B32BBD119A00F3E366 /* DummyError.swift */; };
 		3EF9F8B72BBD141600F3E366 /* DummyEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF9F8B62BBD141600F3E366 /* DummyEndpoint.swift */; };
-		3EF9F8BB2BBD228C00F3E366 /* InfrastructureDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF9F8BA2BBD228C00F3E366 /* InfrastructureDummy.swift */; };
 		3EFA97862A5EBCA9002E70FA /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFA97852A5EBCA9002E70FA /* LineView.swift */; };
 		3EFA97882A5EBCED002E70FA /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFA97872A5EBCED002E70FA /* CustomNavigationBar.swift */; };
 		DF483ACC2A652E0100FCD507 /* BookmarkReviewNumberStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF483ACB2A652E0100FCD507 /* BookmarkReviewNumberStackView.swift */; };
@@ -261,6 +260,23 @@
 		DFF196342A697EF8005D8233 /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF196332A697EF8005D8233 /* Int+.swift */; };
 		DFFBE3872AB8B4C100D27548 /* DetailReasonTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFBE3862AB8B4C100D27548 /* DetailReasonTextView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3E3DE9F32C25D28200CA5999 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E3DE9EE2C25D28200CA5999 /* GBNetwork.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3E35BFD22C1195AD007D399C;
+			remoteInfo = GBNetwork;
+		};
+		3E3DE9F52C25D28200CA5999 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E3DE9EE2C25D28200CA5999 /* GBNetwork.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3E35BFDC2C1195AD007D399C;
+			remoteInfo = GBNetworkTests;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0905561F2A51DB2C00752067 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
@@ -388,6 +404,7 @@
 		3E36D7D52A8E6AF000B2C1CC /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		3E36D7D72A8E6BC500B2C1CC /* FilterDiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDiffableDataSource.swift; sourceTree = "<group>"; };
 		3E36D7D92A8E758A00B2C1CC /* FilterCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCellModel.swift; sourceTree = "<group>"; };
+		3E3DE9EE2C25D28200CA5999 /* GBNetwork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GBNetwork.xcodeproj; path = "../../../gbnetwork-framework/GBNetwork/GBNetwork.xcodeproj"; sourceTree = "<group>"; };
 		3E452B662A60E68000EA456D /* MyPageResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageResponseDTO.swift; sourceTree = "<group>"; };
 		3E452B682A60FF7900EA456D /* MyPageCollectionViewFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCollectionViewFooter.swift; sourceTree = "<group>"; };
 		3E452B6A2A614AAD00EA456D /* ImageWithSubtitleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWithSubtitleButton.swift; sourceTree = "<group>"; };
@@ -477,7 +494,6 @@
 		3EF9F8B12BBD119200F3E366 /* DummyEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyEntity.swift; sourceTree = "<group>"; };
 		3EF9F8B32BBD119A00F3E366 /* DummyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyError.swift; sourceTree = "<group>"; };
 		3EF9F8B62BBD141600F3E366 /* DummyEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyEndpoint.swift; sourceTree = "<group>"; };
-		3EF9F8BA2BBD228C00F3E366 /* InfrastructureDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfrastructureDummy.swift; sourceTree = "<group>"; };
 		3EFA97852A5EBCA9002E70FA /* LineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 		3EFA97872A5EBCED002E70FA /* CustomNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		DF483ACB2A652E0100FCD507 /* BookmarkReviewNumberStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkReviewNumberStackView.swift; sourceTree = "<group>"; };
@@ -943,7 +959,6 @@
 				3EF9F89A2BBD109E00F3E366 /* Domain */,
 				3EF9F89B2BBD10A000F3E366 /* Data */,
 				3E8C47CE2BC385A800919E06 /* Core */,
-				3E1A4EDD2BCD2343004CA603 /* Infrastructure */,
 				0961C36B2A501F050031A822 /* Resource */,
 				0961C3602A501E9F0031A822 /* Global */,
 			);
@@ -1112,14 +1127,6 @@
 			path = Scene;
 			sourceTree = "<group>";
 		};
-		3E1A4EDD2BCD2343004CA603 /* Infrastructure */ = {
-			isa = PBXGroup;
-			children = (
-				3EF9F8B82BBD17F400F3E366 /* Network */,
-			);
-			path = Infrastructure;
-			sourceTree = "<group>";
-		};
 		3E1E73FF2B78AD460082386A /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -1161,6 +1168,15 @@
 				3EFA97872A5EBCED002E70FA /* CustomNavigationBar.swift */,
 			);
 			path = NavigationBar;
+			sourceTree = "<group>";
+		};
+		3E3DE9EF2C25D28200CA5999 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3E3DE9F42C25D28200CA5999 /* GBNetwork.framework */,
+				3E3DE9F62C25D28200CA5999 /* GBNetworkTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		3E61EE8F2AA9530D004F25DB /* Review */ = {
@@ -1239,6 +1255,7 @@
 		3E8C47CE2BC385A800919E06 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				3E3DE9EE2C25D28200CA5999 /* GBNetwork.xcodeproj */,
 				3EF9F8892BBCE9D400F3E366 /* DesignSystem */,
 			);
 			path = Core;
@@ -1764,14 +1781,6 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		3EF9F8B82BBD17F400F3E366 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				3EF9F8BA2BBD228C00F3E366 /* InfrastructureDummy.swift */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
 		DF697C082A686ABC008CE4CF /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1940,12 +1949,35 @@
 			);
 			productRefGroup = 098F32DE2A4200FD0092D09A /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 3E3DE9EF2C25D28200CA5999 /* Products */;
+					ProjectRef = 3E3DE9EE2C25D28200CA5999 /* GBNetwork.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				098F32DC2A4200FD0092D09A /* GEON-PPANG-iOS */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		3E3DE9F42C25D28200CA5999 /* GBNetwork.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GBNetwork.framework;
+			remoteRef = 3E3DE9F32C25D28200CA5999 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3E3DE9F62C25D28200CA5999 /* GBNetworkTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = GBNetworkTests.xctest;
+			remoteRef = 3E3DE9F52C25D28200CA5999 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		098F32DB2A4200FD0092D09A /* Resources */ = {
@@ -2176,7 +2208,6 @@
 				3EB798182AB7D42B004EC35D /* DeleteUserResponseDTO.swift in Sources */,
 				0905562B2A51DBCE00752067 /* UIStackView+.swift in Sources */,
 				3E8C47F52BC3C9FC00919E06 /* BakeryListCoordinator.swift in Sources */,
-				3EF9F8BB2BBD228C00F3E366 /* InfrastructureDummy.swift in Sources */,
 				09B13F562A59410C00C0C723 /* CALayer+.swift in Sources */,
 				09CD07902A620D7D00A078DE /* NickNameViewController.swift in Sources */,
 				DFB1343D2A6284BB00BAB52E /* ReviewProgressView.swift in Sources */,
