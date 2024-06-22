@@ -138,8 +138,7 @@
 		3E36D7D62A8E6AF000B2C1CC /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E36D7D52A8E6AF000B2C1CC /* FilterViewController.swift */; };
 		3E36D7D82A8E6BC500B2C1CC /* FilterDiffableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E36D7D72A8E6BC500B2C1CC /* FilterDiffableDataSource.swift */; };
 		3E36D7DA2A8E758A00B2C1CC /* FilterCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E36D7D92A8E758A00B2C1CC /* FilterCellModel.swift */; };
-		3E3DE9FE2C26981200CA5999 /* GBNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3DE9F42C25D28200CA5999 /* GBNetwork.framework */; };
-		3E3DE9FF2C26981200CA5999 /* GBNetwork.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3DE9F42C25D28200CA5999 /* GBNetwork.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3E3DEA5C2C27247400CA5999 /* GBNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3DEA592C27246C00CA5999 /* GBNetwork.framework */; };
 		3E452B672A60E68000EA456D /* MyPageResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E452B662A60E68000EA456D /* MyPageResponseDTO.swift */; };
 		3E452B692A60FF7900EA456D /* MyPageCollectionViewFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E452B682A60FF7900EA456D /* MyPageCollectionViewFooter.swift */; };
 		3E452B6B2A614AAE00EA456D /* ImageWithSubtitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E452B6A2A614AAD00EA456D /* ImageWithSubtitleButton.swift */; };
@@ -264,16 +263,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3E3DE9F32C25D28200CA5999 /* PBXContainerItemProxy */ = {
+		3E3DEA582C27246C00CA5999 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 3E3DE9EE2C25D28200CA5999 /* GBNetwork.xcodeproj */;
+			containerPortal = 3E3DEA532C27246C00CA5999 /* GBNetwork.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 3E35BFD22C1195AD007D399C;
 			remoteInfo = GBNetwork;
 		};
-		3E3DE9F52C25D28200CA5999 /* PBXContainerItemProxy */ = {
+		3E3DEA5A2C27246C00CA5999 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 3E3DE9EE2C25D28200CA5999 /* GBNetwork.xcodeproj */;
+			containerPortal = 3E3DEA532C27246C00CA5999 /* GBNetwork.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 3E35BFDC2C1195AD007D399C;
 			remoteInfo = GBNetworkTests;
@@ -287,7 +286,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3E3DE9FF2C26981200CA5999 /* GBNetwork.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -420,7 +418,7 @@
 		3E36D7D52A8E6AF000B2C1CC /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		3E36D7D72A8E6BC500B2C1CC /* FilterDiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDiffableDataSource.swift; sourceTree = "<group>"; };
 		3E36D7D92A8E758A00B2C1CC /* FilterCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCellModel.swift; sourceTree = "<group>"; };
-		3E3DE9EE2C25D28200CA5999 /* GBNetwork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GBNetwork.xcodeproj; path = "../../../gbnetwork-framework/GBNetwork/GBNetwork.xcodeproj"; sourceTree = "<group>"; };
+		3E3DEA532C27246C00CA5999 /* GBNetwork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GBNetwork.xcodeproj; path = "../../../gbnetwork-framework/GBNetwork/GBNetwork.xcodeproj"; sourceTree = "<group>"; };
 		3E452B662A60E68000EA456D /* MyPageResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageResponseDTO.swift; sourceTree = "<group>"; };
 		3E452B682A60FF7900EA456D /* MyPageCollectionViewFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCollectionViewFooter.swift; sourceTree = "<group>"; };
 		3E452B6A2A614AAD00EA456D /* ImageWithSubtitleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWithSubtitleButton.swift; sourceTree = "<group>"; };
@@ -549,13 +547,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E3DEA5C2C27247400CA5999 /* GBNetwork.framework in Frameworks */,
 				3E36D7CF2A8DE65D00B2C1CC /* KakaoSDKCommon in Frameworks */,
 				3E36D7CD2A8DE65D00B2C1CC /* KakaoSDKAuth in Frameworks */,
 				0959F19A2A65D45700E77CAF /* Kingfisher in Frameworks */,
 				090556382A51E16B00752067 /* Then in Frameworks */,
 				098227EA2AB8B17700872135 /* Sentry in Frameworks */,
 				0905563B2A51E17800752067 /* SnapKit in Frameworks */,
-				3E3DE9FE2C26981200CA5999 /* GBNetwork.framework in Frameworks */,
 				090556432A51E6FC00752067 /* Moya in Frameworks */,
 				095FB8802AB3427D00C69BD1 /* Amplitude in Frameworks */,
 				3E36D7D12A8DE65D00B2C1CC /* KakaoSDKUser in Frameworks */,
@@ -1188,20 +1186,20 @@
 			path = NavigationBar;
 			sourceTree = "<group>";
 		};
-		3E3DE9EF2C25D28200CA5999 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3E3DE9F42C25D28200CA5999 /* GBNetwork.framework */,
-				3E3DE9F62C25D28200CA5999 /* GBNetworkTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		3E3DE9FD2C26981200CA5999 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3E3DEA542C27246C00CA5999 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3E3DEA592C27246C00CA5999 /* GBNetwork.framework */,
+				3E3DEA5B2C27246C00CA5999 /* GBNetworkTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		3E61EE8F2AA9530D004F25DB /* Review */ = {
@@ -1280,7 +1278,7 @@
 		3E8C47CE2BC385A800919E06 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				3E3DE9EE2C25D28200CA5999 /* GBNetwork.xcodeproj */,
+				3E3DEA532C27246C00CA5999 /* GBNetwork.xcodeproj */,
 				3EF9F8892BBCE9D400F3E366 /* DesignSystem */,
 			);
 			path = Core;
@@ -1977,8 +1975,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 3E3DE9EF2C25D28200CA5999 /* Products */;
-					ProjectRef = 3E3DE9EE2C25D28200CA5999 /* GBNetwork.xcodeproj */;
+					ProductGroup = 3E3DEA542C27246C00CA5999 /* Products */;
+					ProjectRef = 3E3DEA532C27246C00CA5999 /* GBNetwork.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1989,18 +1987,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		3E3DE9F42C25D28200CA5999 /* GBNetwork.framework */ = {
+		3E3DEA592C27246C00CA5999 /* GBNetwork.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = GBNetwork.framework;
-			remoteRef = 3E3DE9F32C25D28200CA5999 /* PBXContainerItemProxy */;
+			remoteRef = 3E3DEA582C27246C00CA5999 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		3E3DE9F62C25D28200CA5999 /* GBNetworkTests.xctest */ = {
+		3E3DEA5B2C27246C00CA5999 /* GBNetworkTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = GBNetworkTests.xctest;
-			remoteRef = 3E3DE9F52C25D28200CA5999 /* PBXContainerItemProxy */;
+			remoteRef = 3E3DEA5A2C27246C00CA5999 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
