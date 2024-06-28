@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum BakeryType {
+enum BakeryType: Codable {
     case 글루텐프리
     case 비건빵
     case 넛프리

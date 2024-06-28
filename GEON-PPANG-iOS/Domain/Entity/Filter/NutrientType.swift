@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum NutrientType {
+enum NutrientType: Codable {
     case nutrient
     case ingredient
     case all
