@@ -174,7 +174,6 @@
 		3E3DE9E52C25AF7600CA5999 /* ReviewPercentage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3DE9E42C25AF7600CA5999 /* ReviewPercentage.swift */; };
 		3E3DE9E72C25AF8500CA5999 /* Reviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3DE9E62C25AF8500CA5999 /* Reviews.swift */; };
 		3E3DE9E92C25AFA100CA5999 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3DE9E82C25AFA100CA5999 /* Review.swift */; };
-		3E3DEA5C2C27247400CA5999 /* GBNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3DEA592C27246C00CA5999 /* GBNetwork.framework */; };
 		3E3DEA652C2D933F00CA5999 /* MemberEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3DEA642C2D933F00CA5999 /* MemberEndpoint.swift */; };
 		3E3DEA682C2DA01A00CA5999 /* PostFilterRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3DEA672C2DA01A00CA5999 /* PostFilterRequestDTO.swift */; };
 		3E3DEA6B2C2DA14600CA5999 /* PostFilterResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3DEA6A2C2DA14600CA5999 /* PostFilterResponseDTO.swift */; };
@@ -289,23 +288,6 @@
 		DFF196342A697EF8005D8233 /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF196332A697EF8005D8233 /* Int+.swift */; };
 		DFFBE3872AB8B4C100D27548 /* DetailReasonTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFBE3862AB8B4C100D27548 /* DetailReasonTextView.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		3E3DEA582C27246C00CA5999 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3E3DEA532C27246C00CA5999 /* GBNetwork.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3E35BFD22C1195AD007D399C;
-			remoteInfo = GBNetwork;
-		};
-		3E3DEA5A2C27246C00CA5999 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3E3DEA532C27246C00CA5999 /* GBNetwork.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3E35BFDC2C1195AD007D399C;
-			remoteInfo = GBNetworkTests;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		3E3DEA002C26981200CA5999 /* Embed Frameworks */ = {
@@ -479,7 +461,6 @@
 		3E3DE9E42C25AF7600CA5999 /* ReviewPercentage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPercentage.swift; sourceTree = "<group>"; };
 		3E3DE9E62C25AF8500CA5999 /* Reviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reviews.swift; sourceTree = "<group>"; };
 		3E3DE9E82C25AFA100CA5999 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
-		3E3DEA532C27246C00CA5999 /* GBNetwork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GBNetwork.xcodeproj; path = "../../../gbnetwork-framework/GBNetwork/GBNetwork.xcodeproj"; sourceTree = "<group>"; };
 		3E3DEA642C2D933F00CA5999 /* MemberEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberEndpoint.swift; sourceTree = "<group>"; };
 		3E3DEA672C2DA01A00CA5999 /* PostFilterRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFilterRequestDTO.swift; sourceTree = "<group>"; };
 		3E3DEA6A2C2DA14600CA5999 /* PostFilterResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFilterResponseDTO.swift; sourceTree = "<group>"; };
@@ -603,7 +584,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E3DEA5C2C27247400CA5999 /* GBNetwork.framework in Frameworks */,
 				3E36D7CF2A8DE65D00B2C1CC /* KakaoSDKCommon in Frameworks */,
 				3E36D7CD2A8DE65D00B2C1CC /* KakaoSDKAuth in Frameworks */,
 				0959F19A2A65D45700E77CAF /* Kingfisher in Frameworks */,
@@ -1381,15 +1361,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3E3DEA542C27246C00CA5999 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3E3DEA592C27246C00CA5999 /* GBNetwork.framework */,
-				3E3DEA5B2C27246C00CA5999 /* GBNetworkTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		3E3DEA662C2DA00700CA5999 /* Member */ = {
 			isa = PBXGroup;
 			children = (
@@ -1482,7 +1453,6 @@
 		3E8C47CE2BC385A800919E06 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				3E3DEA532C27246C00CA5999 /* GBNetwork.xcodeproj */,
 				3EF9F8892BBCE9D400F3E366 /* DesignSystem */,
 			);
 			path = Core;
@@ -2185,35 +2155,12 @@
 			);
 			productRefGroup = 098F32DE2A4200FD0092D09A /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 3E3DEA542C27246C00CA5999 /* Products */;
-					ProjectRef = 3E3DEA532C27246C00CA5999 /* GBNetwork.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				098F32DC2A4200FD0092D09A /* GEON-PPANG-iOS */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		3E3DEA592C27246C00CA5999 /* GBNetwork.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = GBNetwork.framework;
-			remoteRef = 3E3DEA582C27246C00CA5999 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3E3DEA5B2C27246C00CA5999 /* GBNetworkTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = GBNetworkTests.xctest;
-			remoteRef = 3E3DEA5A2C27246C00CA5999 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		098F32DB2A4200FD0092D09A /* Resources */ = {
