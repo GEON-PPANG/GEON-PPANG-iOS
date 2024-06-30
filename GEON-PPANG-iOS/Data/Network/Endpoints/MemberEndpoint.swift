@@ -10,7 +10,7 @@ import Foundation
 import GBNetwork
 
 enum MemberEndpoint {
-    case postFilter(body: PostFilterRequestDTO)
+    case postFilter(request: PostFilterRequestDTO)
 }
 
 extension MemberEndpoint: RequestType {

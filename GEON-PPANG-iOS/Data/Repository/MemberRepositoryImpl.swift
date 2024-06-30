@@ -20,8 +20,24 @@ final class MemberRepositoryImpl: MemberRepository {
             nutrientType: nutrient.map { $0.id }
         )
         
-        let (data, response) = try await apiClient.send(.postFilter(body: requestDTO))
+        let rawResponse = try await apiClient.send(.postFilter(request: requestDTO))
+        let response = try rawResponse.decode(to: PostFilterResponseDTO.self)
         
-        
+        switch response.code {
+        case 200..<300:
+            return
+        case 400:
+            throw GBDataError.missingValue
+        case 401:
+            if response.message == GBDataError.invalidToken.rawValue {
+                throw GBDataError.invalidToken
+            } else if response.message == GBDataError.expiredToken.rawValue {
+                throw GBDataError.expiredToken
+            }
+        case 404:
+            throw GBDataError.invalidRequest
+        default: 
+            throw GBDataError.unknownError
+        }
     }
 }

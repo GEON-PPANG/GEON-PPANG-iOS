@@ -8,11 +8,21 @@
 import Foundation
 
 protocol FilterUseCase {
-    func changeFilter(purpose: PurposeType, bakeries: [BakeryType], nutrient: [NutrientType])
+    func changeFilter(purpose: PurposeType, breadTypes: [BakeryType], nutrientTypes: [NutrientType]) async throws
 }
 
 final class FilterUseCaseImpl: FilterUseCase {
-    func changeFilter(purpose: PurposeType, bakeries: [BakeryType], nutrient: [NutrientType]) {
-        <#code#>
+    
+    private let repository: MemberRepository
+    
+    init(repository: MemberRepository) {
+        self.repository = repository
+    }
+    
+    func changeFilter(purpose: PurposeType, breadTypes: [BakeryType], nutrientTypes: [NutrientType]) async throws {
+        do {
+            try await repository.postFilter(purpose: purpose, bread: breadTypes, nutrient: nutrientTypes)
+        }
+        
     }
 }
