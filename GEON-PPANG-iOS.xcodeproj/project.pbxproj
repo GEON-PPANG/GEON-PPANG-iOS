@@ -180,6 +180,8 @@
 		3E3DEB7F2C3122E500CA5999 /* PostFilterRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3DEB7E2C3122E500CA5999 /* PostFilterRequestDTO.swift */; };
 		3E3DEB812C31263600CA5999 /* PostFilterResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3DEB802C31263600CA5999 /* PostFilterResponseDTO.swift */; };
 		3E3DEB852C312F6C00CA5999 /* GBDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3DEB842C312F6C00CA5999 /* GBDataError.swift */; };
+		3E3DEB9D2C315E0B00CA5999 /* GBNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3DEB982C313F0B00CA5999 /* GBNetwork.framework */; };
+		3E3DEB9E2C315E0B00CA5999 /* GBNetwork.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3DEB982C313F0B00CA5999 /* GBNetwork.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3E452B672A60E68000EA456D /* MyPageResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E452B662A60E68000EA456D /* MyPageResponseDTO.swift */; };
 		3E452B692A60FF7900EA456D /* MyPageCollectionViewFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E452B682A60FF7900EA456D /* MyPageCollectionViewFooter.swift */; };
 		3E452B6B2A614AAE00EA456D /* ImageWithSubtitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E452B6A2A614AAD00EA456D /* ImageWithSubtitleButton.swift */; };
@@ -313,6 +315,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				3E3DEB9E2C315E0B00CA5999 /* GBNetwork.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -608,6 +611,7 @@
 				090556382A51E16B00752067 /* Then in Frameworks */,
 				098227EA2AB8B17700872135 /* Sentry in Frameworks */,
 				0905563B2A51E17800752067 /* SnapKit in Frameworks */,
+				3E3DEB9D2C315E0B00CA5999 /* GBNetwork.framework in Frameworks */,
 				090556432A51E6FC00752067 /* Moya in Frameworks */,
 				095FB8802AB3427D00C69BD1 /* Amplitude in Frameworks */,
 				3E36D7D12A8DE65D00B2C1CC /* KakaoSDKUser in Frameworks */,
