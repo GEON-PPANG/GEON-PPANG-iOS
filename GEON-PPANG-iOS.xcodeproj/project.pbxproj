@@ -138,8 +138,6 @@
 		3E36D7D62A8E6AF000B2C1CC /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E36D7D52A8E6AF000B2C1CC /* FilterViewController.swift */; };
 		3E36D7D82A8E6BC500B2C1CC /* FilterDiffableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E36D7D72A8E6BC500B2C1CC /* FilterDiffableDataSource.swift */; };
 		3E36D7DA2A8E758A00B2C1CC /* FilterCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E36D7D92A8E758A00B2C1CC /* FilterCellModel.swift */; };
-		3E3DEB682C31184800CA5999 /* GBNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3DEB652C31182C00CA5999 /* GBNetwork.framework */; };
-		3E3DEB692C31184800CA5999 /* GBNetwork.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3DEB652C31182C00CA5999 /* GBNetwork.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3E452B672A60E68000EA456D /* MyPageResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E452B662A60E68000EA456D /* MyPageResponseDTO.swift */; };
 		3E452B692A60FF7900EA456D /* MyPageCollectionViewFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E452B682A60FF7900EA456D /* MyPageCollectionViewFooter.swift */; };
 		3E452B6B2A614AAE00EA456D /* ImageWithSubtitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E452B6A2A614AAD00EA456D /* ImageWithSubtitleButton.swift */; };
@@ -263,23 +261,6 @@
 		DFFBE3872AB8B4C100D27548 /* DetailReasonTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFBE3862AB8B4C100D27548 /* DetailReasonTextView.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		3E3DEB642C31182C00CA5999 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3E3DEB5F2C31182C00CA5999 /* GBNetwork.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3E3DEB332C3117A300CA5999;
-			remoteInfo = GBNetwork;
-		};
-		3E3DEB662C31182C00CA5999 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3E3DEB5F2C31182C00CA5999 /* GBNetwork.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3E3DEB3D2C3117A400CA5999;
-			remoteInfo = GBNetworkTests;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		3E3DEA002C26981200CA5999 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -287,7 +268,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3E3DEB692C31184800CA5999 /* GBNetwork.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -420,7 +400,6 @@
 		3E36D7D52A8E6AF000B2C1CC /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		3E36D7D72A8E6BC500B2C1CC /* FilterDiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDiffableDataSource.swift; sourceTree = "<group>"; };
 		3E36D7D92A8E758A00B2C1CC /* FilterCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCellModel.swift; sourceTree = "<group>"; };
-		3E3DEB5F2C31182C00CA5999 /* GBNetwork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GBNetwork.xcodeproj; path = GBNetwork/GBNetwork.xcodeproj; sourceTree = "<group>"; };
 		3E452B662A60E68000EA456D /* MyPageResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageResponseDTO.swift; sourceTree = "<group>"; };
 		3E452B682A60FF7900EA456D /* MyPageCollectionViewFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCollectionViewFooter.swift; sourceTree = "<group>"; };
 		3E452B6A2A614AAD00EA456D /* ImageWithSubtitleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWithSubtitleButton.swift; sourceTree = "<group>"; };
@@ -555,7 +534,6 @@
 				090556382A51E16B00752067 /* Then in Frameworks */,
 				098227EA2AB8B17700872135 /* Sentry in Frameworks */,
 				0905563B2A51E17800752067 /* SnapKit in Frameworks */,
-				3E3DEB682C31184800CA5999 /* GBNetwork.framework in Frameworks */,
 				090556432A51E6FC00752067 /* Moya in Frameworks */,
 				095FB8802AB3427D00C69BD1 /* Amplitude in Frameworks */,
 				3E36D7D12A8DE65D00B2C1CC /* KakaoSDKUser in Frameworks */,
@@ -1195,15 +1173,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3E3DEB602C31182C00CA5999 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3E3DEB652C31182C00CA5999 /* GBNetwork.framework */,
-				3E3DEB672C31182C00CA5999 /* GBNetworkTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		3E61EE8F2AA9530D004F25DB /* Review */ = {
 			isa = PBXGroup;
 			children = (
@@ -1280,7 +1249,6 @@
 		3E8C47CE2BC385A800919E06 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				3E3DEB5F2C31182C00CA5999 /* GBNetwork.xcodeproj */,
 				3EF9F8892BBCE9D400F3E366 /* DesignSystem */,
 			);
 			path = Core;
@@ -1975,35 +1943,12 @@
 			);
 			productRefGroup = 098F32DE2A4200FD0092D09A /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 3E3DEB602C31182C00CA5999 /* Products */;
-					ProjectRef = 3E3DEB5F2C31182C00CA5999 /* GBNetwork.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				098F32DC2A4200FD0092D09A /* GEON-PPANG-iOS */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		3E3DEB652C31182C00CA5999 /* GBNetwork.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = GBNetwork.framework;
-			remoteRef = 3E3DEB642C31182C00CA5999 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3E3DEB672C31182C00CA5999 /* GBNetworkTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = GBNetworkTests.xctest;
-			remoteRef = 3E3DEB662C31182C00CA5999 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		098F32DB2A4200FD0092D09A /* Resources */ = {
