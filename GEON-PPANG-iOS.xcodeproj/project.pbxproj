@@ -1387,15 +1387,6 @@
 			isa = PBXGroup;
 			children = (
 				3E3DEA672C2DA01A00CA5999 /* PostFilterRequestDTO.swift */,
-            );
-            path = Member;
-            sourceTree = "<group>";
-        };
-		3E3DEB602C31182C00CA5999 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3E3DEB652C31182C00CA5999 /* GBNetwork.framework */,
-				3E3DEB672C31182C00CA5999 /* GBNetworkTests.xctest */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -1404,6 +1395,15 @@
 			isa = PBXGroup;
 			children = (
 				3E3DEA6A2C2DA14600CA5999 /* PostFilterResponseDTO.swift */,
+			);
+			path = Member;
+			sourceTree = "<group>";
+		};
+		3E3DEB602C31182C00CA5999 /* Member */ = {
+			isa = PBXGroup;
+			children = (
+				3E3DEB652C31182C00CA5999 /* GBNetwork.framework */,
+				3E3DEB672C31182C00CA5999 /* GBNetworkTests.xctest */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -2189,7 +2189,7 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 3E3DEB602C31182C00CA5999 /* Products */;
+					ProductGroup = 3E3DEB602C31182C00CA5999 /* Member */;
 					ProjectRef = 3E3DEB5F2C31182C00CA5999 /* GBNetwork.xcodeproj */;
 				},
 			);
