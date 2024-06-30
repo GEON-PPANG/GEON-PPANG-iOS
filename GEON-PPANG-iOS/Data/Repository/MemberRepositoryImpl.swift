@@ -26,18 +26,14 @@ final class MemberRepositoryImpl: MemberRepository {
         switch response.code {
         case 200..<300:
             return
-        case 400:
-            throw GBDataError.missingValue
         case 401:
-            if response.message == GBDataError.invalidToken.rawValue {
-                throw GBDataError.invalidToken
-            } else if response.message == GBDataError.expiredToken.rawValue {
-                throw GBDataError.expiredToken
+            if response.message == MemberError.invalidToken.rawValue {
+                throw MemberError.invalidToken
+            } else if response.message == MemberError.expiredToken.rawValue {
+                throw MemberError.expiredToken
             }
-        case 404:
-            throw GBDataError.invalidRequest
-        default: 
-            throw GBDataError.unknownError
+        default:
+            throw MemberError.otherError
         }
     }
 }

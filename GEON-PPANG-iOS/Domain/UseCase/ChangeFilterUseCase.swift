@@ -23,6 +23,11 @@ final class FilterUseCaseImpl: FilterUseCase {
         do {
             try await repository.postFilter(purpose: purpose, bread: breadTypes, nutrient: nutrientTypes)
         }
-        
+        catch MemberError.expiredToken {
+            // TODO: token revalidation logic
+        }
+        catch MemberError.invalidToken {
+            // TODO: redirect to onboarding
+        }
     }
 }
