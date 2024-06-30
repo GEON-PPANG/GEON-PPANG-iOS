@@ -12,3 +12,13 @@ enum NutrientType: Codable {
     case ingredient
     case all
 }
+
+extension NutrientType {
+    var id: Int {
+        switch self {
+        case .nutrient: 1
+        case .ingredient: 2
+        case .all: 3
+        }
+    }
+}

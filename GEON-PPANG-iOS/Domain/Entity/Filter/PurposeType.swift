@@ -7,8 +7,14 @@
 
 import Foundation
 
-enum PurposeType {
+enum PurposeType: String {
     case health
     case diet
     case vegan
+}
+
+extension PurposeType {
+    func upperCased() -> String {
+        return self.rawValue.uppercased()
+    }
 }

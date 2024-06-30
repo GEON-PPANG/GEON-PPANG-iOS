@@ -8,5 +8,5 @@
 import Foundation
 
 protocol MemberRepository {
-    func postFilter(purpose: PurposeType, bakery: [BakeryType], nutrient: [NutrientType])
+    func postFilter(purpose: PurposeType, bread: [BakeryType], nutrient: [NutrientType]) async throws
 }
