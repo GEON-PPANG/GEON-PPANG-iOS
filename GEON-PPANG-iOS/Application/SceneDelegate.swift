@@ -16,19 +16,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
-        if let windowScene = scene as? UIWindowScene {
-            let window = UIWindow(windowScene: windowScene)
-            window.overrideUserInterfaceStyle = UIUserInterfaceStyle.light
-            
-            DispatchQueue.main.async {
-                let rootViewController = LaunchScreenViewController()
-                let navigationController = UINavigationController(rootViewController: rootViewController)
-                navigationController.isNavigationBarHidden = true
-                window.rootViewController = navigationController
-                window.makeKeyAndVisible()
-                self.window = window
-            }
-        }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        self.window = UIWindow(windowScene: windowScene)
+        let navigationController = UINavigationController(rootViewController: NewFilterViewController(isInitial: true))
+        self.window?.rootViewController = navigationController
+        self.window?.makeKeyAndVisible()
+        
+//        if let windowScene = scene as? UIWindowScene {
+//            let window = UIWindow(windowScene: windowScene)
+//            window.overrideUserInterfaceStyle = UIUserInterfaceStyle.light
+//            
+//            DispatchQueue.main.async {
+//                let rootViewController = LaunchScreenViewController()
+//                let navigationController = UINavigationController(rootViewController: rootViewController)
+//                navigationController.isNavigationBarHidden = true
+//                window.rootViewController = navigationController
+//                window.makeKeyAndVisible()
+//                self.window = window
+//            }
+//        }
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
