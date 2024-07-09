@@ -121,20 +121,20 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
         
     }
     
-    func configureCellUI(data: HomeBestReviewResponseDTO) {
+    func configureCellUI(data: BestReview) {
         
-        let url = URL(string: data.reviews.picture)
+        let url = URL(string: data.overview.image)
         bakeryImage.kf.setImage(with: url, placeholder: UIImage.loading_large)
         
-        reviewTitle.setLineHeight(by: 1.14, with: "\"\(data.text)\"")
+        reviewTitle.setLineHeight(by: 1.14, with: "\"\(data.reviewOverview)\"")
         reviewTitle.lineBreakMode = .byTruncatingTail
-        bakeryTitle.setLineHeight(by: 1.08, with: data.reviews.name)
+        bakeryTitle.setLineHeight(by: 1.08, with: data.overview.name)
         bakeryTitle.lineBreakMode = .byTruncatingTail
         
-        reviewCount.configureHomeCell(count: data.reviews.reviewCount)
-        bookmarkCount.configureHomeCell(count: data.reviews.bookmarkCount)
+        reviewCount.configureHomeCell(count: data.reviewCount)
+        bookmarkCount.configureHomeCell(count: data.bookmarkCount)
         
-        keywords = data.keywords.keywords
+        keywords = data.recommendKeywords
         collectionView.reloadData()
     }
 }

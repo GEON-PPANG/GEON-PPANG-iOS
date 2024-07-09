@@ -147,11 +147,11 @@ final class HomeViewController: BaseViewController {
             switch item {
             case .bakery(let data):
                 let cell: HomeBakeryCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-                cell.configureCellUI(data: data)
+            //    cell.configureCellUI(data: data)
                 return cell
             case .reviews(let data):
                 let cell: HomeReviewCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-                cell.configureCellUI(data: data)
+        //        cell.configureCellUI(data: data)
                 return cell
             case .bottom:
                 let cell: HomeBottomCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
@@ -329,4 +329,10 @@ extension HomeViewController {
             self.getHomeBestData()
         }
     }
+}
+
+
+final class HomeCompositionalLayout: UICollectionViewCompositionalLayout {
+    
+    
 }

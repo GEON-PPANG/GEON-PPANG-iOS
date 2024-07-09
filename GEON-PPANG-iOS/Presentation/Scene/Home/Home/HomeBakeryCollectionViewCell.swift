@@ -17,6 +17,7 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     
     private let bakeryImage = UIImageView()
     private let markStackView = MarkStackView()
+ //   private var markStackView: GBStackView
     private let bakeryTitle = UILabel()
     private let reviewCount = IconWithTextView(.reviews)
     private let bookmarkCount = IconWithTextView(.bookmark)
@@ -101,10 +102,10 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
             $0.clipsToBounds = true
         }
         
-        markStackView.do {
-            $0.configureIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
-        }
-        
+//        markStackView.do {
+//            $0.configureIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
+//        }
+//        
         bakeryTitle.do {
             $0.numberOfLines = 1
             $0.basic(font: .bodyB1!, color: .gbbGray700!)
@@ -115,23 +116,91 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Custom Method
     
-    func configureCellUI(data: HomeBestBakeryResponseDTO) {
+    func configureCellUI(data: BestBakery) {
         
-        let url = URL(string: data.bakeries.picture)
+        let url = URL(string: data.overview.image)
         bakeryImage.kf.setImage(with: url, placeholder: UIImage.loading_large)
-        bakeryTitle.setLineHeight(by: 1.08, with: data.bakeries.name)
+        bakeryTitle.setLineHeight(by: 1.08, with: data.overview.name)
         bakeryTitle.lineBreakMode = .byTruncatingTail
-
-        bookmarkCount.configureHomeCell(count: data.bakeries.bookmarkCount)
-        reviewCount.configureHomeCell(count: data.bakeries.reviewCount)
-        markStackView.getMarkStatus(data.bakeries.mark.isHACCP,
-                                    data.bakeries.mark.isVegan,
-                                    data.bakeries.mark.isNonGMO)
         
-        if data.bakeries.station.second == "" {
+        bookmarkCount.configureHomeCell(count: data.bookmarkCount)
+        reviewCount.configureHomeCell(count: data.reviewCount)
+     //   markStackView = GBStackView(type: .big, data: [data.certifications.isHaccp,
+//                                                       data.certifications.isVegan,
+//                                                       data.certifications.isNonGMO
+//                                                      ])
+//        markStackView.getMarkStatus(data.certifications.isHaccp,
+//                                    data.certifications.isVegan,
+//                                    data.certifications.isNonGMO)
+        
+        if data.regions.secondRegion == "" {
             regionStackView.removeSecondRegion()
         }
         
-        regionStackView.configureRegion(data.bakeries.station)
+        regionStackView.configureRegion(data.regions)
     }
 }
+
+
+enum GBStackType {
+    case big
+    case small
+    
+    var images: [UIImage]{
+        switch self {
+        case .big:
+            return [.bigHACCPMark, .bigVeganMark, .bigGMOMark]
+        case .small:
+            return [.smallHACCPMark, .smallVeganMark, .smallGMOMark]
+        }
+    }
+    
+    var size: Int {
+        switch self {
+        case .big:
+            return 28
+        case .small:
+            return 24
+        }
+    }
+}
+
+final class GBStackView: UIStackView {
+    
+    init(type: GBStackType, data: [Bool]) {
+        super.init(frame: .zero)
+        
+        setUI()
+        createCells(type: type, from: data).forEach { view in
+            self.addArrangedSubview(view)
+        }
+    }
+    
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func createCells(type: GBStackType, from data: [Bool]) -> [UIImageView] {
+        let images = type.images
+        var imageIndex = 0
+        
+        return data.compactMap { isCertified in
+            defer { imageIndex += 1 }
+            guard isCertified, imageIndex < images.count else { return nil }
+            let imageView = UIImageView(image: images[imageIndex])
+            imageView.contentMode = .topLeft
+            imageView.snp.makeConstraints {  $0.size.equalTo(type.size) }
+            return imageView
+        }
+    }
+    
+    private func setLayout() {
+        
+    }
+    
+    private func setUI() {
+        self.axis = .horizontal
+        self.spacing = -8
+    }
+}
+
