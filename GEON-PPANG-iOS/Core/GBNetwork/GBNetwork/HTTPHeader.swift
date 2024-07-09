@@ -10,8 +10,8 @@ import Foundation
 public struct HTTPHeader {
     private(set) var headers: [HTTPHeaderField] = []
     
-    public init(headers: [HTTPHeaderField]) {
-        self.headers = headers
+    public init(headers: [HTTPHeaderField?]) {
+        self.headers = headers.compactMap { $0 }
     }
 }
 
@@ -45,5 +45,10 @@ public extension HTTPHeaderField {
     
     static func platformToken(value: String) -> HTTPHeaderField {
         .init(key: "Platform-Token", value: value)
+    }
+    
+    static func optionalToken(value: String?) -> HTTPHeaderField? {
+        guard let value else { return nil }
+        return .init(key: "Authorization", value: value)
     }
 }
