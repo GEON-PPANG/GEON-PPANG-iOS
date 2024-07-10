@@ -8,7 +8,6 @@
 import UIKit
 
 import SnapKit
-import Then
 
 final class HomeTopView: UIView {
     
@@ -18,9 +17,30 @@ final class HomeTopView: UIView {
     
     // MARK: - UI Property
     
-    private let titleLabel = UILabel()
-    private let searchTextField = SearchTextField()
-    private lazy var filterButton = UIButton()
+    private let titleLabel: UILabel = {
+       let label = UILabel()
+        label.font = .title1
+        label.textColor = .gbbGray700
+        label.numberOfLines = 2
+        label.textAlignment = .left
+        return label
+    }()
+    
+    private lazy var searchTextField: SearchTextField = {
+        let textField = SearchTextField()
+        textField.configureViewType(.home)
+        textField.pushToSearchView = { [weak self] in
+            self?.pushToSearchView?()
+        }
+        return textField
+    }()
+    
+    private let filterButton: UIButton = {
+        let button = UIButton()
+        button.setImage(.homeFilterButton, for: .normal)
+        return button
+    }()
+    
     private let lineView = LineView()
     
     // MARK: - Life Cycle
@@ -29,7 +49,6 @@ final class HomeTopView: UIView {
         super.init(frame: .zero)
         
         setLayout()
-        setUI()
     }
     
     required init?(coder: NSCoder) {
@@ -69,28 +88,7 @@ final class HomeTopView: UIView {
             $0.directionalHorizontalEdges.equalToSuperview()
         }
     }
-    
-    private func setUI() {
-        
-        titleLabel.do {
-            $0.numberOfLines = 2
-            $0.textAlignment = .left
-            $0.basic(font: .title1!,
-                     color: .gbbGray700!)
-        }
-        
-        searchTextField.do {
-            $0.configureViewType(.home)
-            $0.pushToSearchView = {
-                self.pushToSearchView?()
-            }
-        }
-        
-        filterButton.do {
-            $0.setImage(.homeFilterButton, for: .normal)
-        }
-    }
-    
+
     func configureTitleText(_ title: String) {
         titleLabel.text = "\(title)님\n건빵에 오신걸 환영해요!"
     }
@@ -102,5 +100,4 @@ final class HomeTopView: UIView {
             action()
         }, for: .touchUpInside)
     }
-    
 }
