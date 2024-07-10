@@ -19,7 +19,8 @@ final class HomeViewModel: ViewModelType {
     }
     
     struct Output {
-        let best: AnyPublisher<([BestBakery], [BestReview]), Error>
+        let bakery: AnyPublisher<[BestBakery], Error>
+        let review: AnyPublisher<[BestReview], Error>
     }
     
     // MARK: - Property
@@ -68,9 +69,13 @@ final class HomeViewModel: ViewModelType {
             }
             .eraseToAnyPublisher()
         
-        let best = Publishers.CombineLatest(bakery, review)
         
-        return Output(best: best.eraseToAnyPublisher())
+//        let best = Publishers.CombineLatest(bakery, review)
+//            .map { (_, _) -> () in }
+//            .eraseToAnyPublisher()
+        
+        return Output(bakery: bakery,
+                      review: review)
     }
 }
 

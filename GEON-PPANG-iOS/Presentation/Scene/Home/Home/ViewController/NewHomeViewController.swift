@@ -34,10 +34,10 @@ final class NewHomeViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.layout())
         collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = .gbbBackground1
-        collectionView.registerCells(cells: [HomeBakeryCollectionViewCell.self,
-                                             HomeReviewCollectionViewCell.self,
-                                             HomeBottomCollectionViewCell.self])
-        collectionView.register(header: HomeHeaderView.self)
+        collectionView.register(HomeBakeryCollectionViewCell.self, forCellWithReuseIdentifier: HomeBakeryCollectionViewCell.identifier)
+        collectionView.register(HomeReviewCollectionViewCell.self, forCellWithReuseIdentifier: HomeReviewCollectionViewCell.identifier)
+        collectionView.register(HomeBottomCollectionViewCell.self, forCellWithReuseIdentifier: HomeBottomCollectionViewCell.identifier)
+        collectionView.register(HomeHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HomeHeaderView.identifier)
         collectionView.dataSource = self
         return collectionView
     }()
@@ -108,21 +108,35 @@ final class NewHomeViewController: UIViewController {
     private func bindOutputToViewModel(_ output: HomeViewModel.Output?) {
         guard let output else { return }
         
-        output.best
+        output.bakery
             .receive(on: RunLoop.main)
             .sink { err in
                 print("error:\(err)")
-            } receiveValue: { [weak self] bakery, review in
+            } receiveValue: { [weak self] bakery in
                 dump(bakery)
-                self?.updateList(bakery: bakery, review: review)
+                self?.updateBakery(bakery: bakery)
+            }
+            .store(in: &self.cancelBag)
+        
+        output.review
+            .receive(on: RunLoop.main)
+            .sink { err in
+                print("error:\(err)")
+            } receiveValue: { [weak self] review in
+                dump(review)
+                self?.updateReview(review: review)
             }
             .store(in: &self.cancelBag)
     }
     
-    private func updateList(bakery: [BestBakery], review: [BestReview]) {
+    private func updateBakery(bakery:[BestBakery]) {
         self.bakeryList = bakery
+        self.collectionView.reloadSections(IndexSet(integersIn: 0 ..< 1))
+    }
+    
+    private func updateReview(review: [BestReview]) {
         self.reviewList = review
-        self.collectionView.reloadData()
+        self.collectionView.reloadSections(IndexSet(integersIn: 1 ..< 2))
     }
 }
 
