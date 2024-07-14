@@ -61,13 +61,13 @@ extension NewFilterType {
             return UICollectionViewCompositionalLayout { _, _ in
                 let itemSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1),
-                    heightDimension: .absolute(106)
+                    heightDimension: .absolute(100)
                 )
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 
                 let groupSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1),
-                    heightDimension: .absolute(106)
+                    heightDimension: .absolute(100)
                 )
                 let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
                 
@@ -79,18 +79,20 @@ extension NewFilterType {
         case .breadType:
             return UICollectionViewCompositionalLayout { _, _ in
                 let itemSize = NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(1),
+                    widthDimension: .fractionalWidth(0.45),
                     heightDimension: .absolute(161)
                 )
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                
                 let groupSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1),
                     heightDimension: .absolute(161)
                 )
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+                let itemSpacing = NSCollectionLayoutSpacing.flexible(20)
+                group.interItemSpacing = itemSpacing
                 
                 let section = NSCollectionLayoutSection(group: group)
+                section.interGroupSpacing = itemSpacing.spacing
                 return section
             }
         }

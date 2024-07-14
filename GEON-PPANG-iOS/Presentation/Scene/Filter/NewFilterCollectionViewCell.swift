@@ -23,8 +23,11 @@ final class NewFilterCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = .subHead
         label.textColor = .gbbGray300
+        label.numberOfLines = 2
+        label.textAlignment = .center
         return label
     }()
+    private let content: UIView = UIView()
     
     // MARK: - life cycle
     
@@ -47,16 +50,22 @@ final class NewFilterCollectionViewCell: UICollectionViewCell {
     }
     
     private func setLayout() {
-        contentView.addSubview(titleLabel)
+        content.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalToSuperview().inset(25)
         }
         
-        contentView.addSubview(descriptionLabel)
+        content.addSubview(descriptionLabel)
         descriptionLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
+            $0.top.equalTo(titleLabel.snp.bottom).offset(10)
             $0.bottom.equalToSuperview().inset(25)
+        }
+        
+        contentView.addSubview(content)
+        content.snp.makeConstraints {
+            $0.center.equalToSuperview()
         }
     }
 }

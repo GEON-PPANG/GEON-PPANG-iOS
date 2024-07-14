@@ -15,7 +15,7 @@ final class NewFilterViewController: UIViewController {
     // MARK: - properties
     
     private let isInitial: Bool
-    private var filterType: NewFilterType = .purpose
+    private var filterType: NewFilterType = .breadType
     
     // MARK: - ui properties
     
@@ -54,7 +54,7 @@ final class NewFilterViewController: UIViewController {
         return label
     }()
     private let filterCollectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .init())
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView.backgroundColor = .clear
         collectionView.isScrollEnabled = false
         collectionView.register(cell: NewFilterCollectionViewCell.self)
@@ -155,7 +155,7 @@ final class NewFilterViewController: UIViewController {
         filterCollectionView.snp.makeConstraints {
             $0.top.equalTo(navigationBar.snp.bottom).offset(124)
             $0.horizontalEdges.equalToSuperview().inset(24)
-            $0.bottom.equalTo(nextButton.snp.top).offset(100)
+            $0.bottom.equalTo(nextButton.snp.top).offset(-50)
         }
         
         if isInitial {
@@ -178,12 +178,34 @@ final class NewFilterViewController: UIViewController {
         if let description = filterType.description {
             descriptionLabel.text = description
         }
-        
-        filterCollectionView.collectionViewLayout = filterType.layout
     }
 }
 
-extension NewFilterViewController: UICollectionViewDelegate {}
+extension NewFilterViewController: UICollectionViewDelegate {
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        <#code#>
+//    }
+}
+
+extension NewFilterViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        let size = collectionView.bounds.size
+        switch filterType {
+        case .purpose, .ingredient:
+            let cellHeight = size.width/3.5
+            return .init(width: size.width, height: cellHeight)
+        case .breadType:
+            let cellWidth = size.width/2 - 10
+            let cellHeight = min(size.height/2 - 10, 160)
+            return .init(width: cellWidth, height: cellHeight)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 20
+    }
+}
 
 extension NewFilterViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
