@@ -28,10 +28,10 @@ enum GBStackType {
 
 final class GBStackView: UIStackView {
     
-    init(type: GBStackType, data: [Bool]) {
+    init(type: GBStackType, isHaccp: Bool, isVegan: Bool, isNonGMO: Bool) {
         super.init(frame: .zero)
         setUI()
-        addCertifiedImageViews(type: type, data: data)
+        addCertifiedImageViews(type: type, data: [isHaccp, isVegan, isNonGMO])
     }
     
     required init(coder: NSCoder) {
