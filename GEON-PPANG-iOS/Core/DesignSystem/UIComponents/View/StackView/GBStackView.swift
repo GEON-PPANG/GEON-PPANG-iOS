@@ -31,7 +31,7 @@ final class GBStackView: UIStackView {
     init(type: GBStackType, isHaccp: Bool, isVegan: Bool, isNonGMO: Bool) {
         super.init(frame: .zero)
         setUI()
-        addCertifiedImageViews(type: type, data: [isHaccp, isVegan, isNonGMO])
+        addCertifiedImageViews(type: type, certifications: [isHaccp, isVegan, isNonGMO])
     }
     
     required init(coder: NSCoder) {
@@ -43,8 +43,8 @@ final class GBStackView: UIStackView {
         spacing = -8
     }
     
-    private func addCertifiedImageViews(type: GBStackType, data: [Bool]) {
-        data.enumerated()
+    private func addCertifiedImageViews(type: GBStackType, certifications: [Bool]) {
+        certifications.enumerated()
             .filter { $0.element }
             .map { $0.offset }
             .forEach { index in
