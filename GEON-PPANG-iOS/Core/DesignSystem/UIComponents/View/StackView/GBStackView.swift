@@ -48,12 +48,21 @@ final class GBStackView: UIStackView {
             .filter { $0.element }
             .map { $0.offset }
             .forEach { index in
-                let imageView = UIImageView(image: type.images[index])
-                imageView.contentMode = .topLeft
-                addArrangedSubview(imageView)
-                imageView.snp.makeConstraints {
-                    $0.size.equalTo(type.size)
-                }
+                let imageView = createCertificationImageView(type: type, index: index)
+                addImageViewToStack(imageView: imageView, size: type.size)
             }
+    }
+    
+    private func createCertificationImageView(type: GBStackType, index: Int) -> UIImageView {
+        let imageView = UIImageView(image: type.images[index])
+        imageView.contentMode = .topLeft
+        return imageView
+    }
+    
+    private func addImageViewToStack(imageView: UIImageView, size: Int) {
+        addArrangedSubview(imageView)
+        imageView.snp.makeConstraints {
+            $0.size.equalTo(size)
+        }
     }
 }
