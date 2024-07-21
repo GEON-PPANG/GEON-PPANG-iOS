@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kakao/kakao-ios-sdk",
       "state" : {
-        "revision" : "e9e649d3ba823c3673867d3d09010fc77005a940",
-        "version" : "2.22.3"
+        "revision" : "08089eeffc9b442da1c7343a70bf66c6de1a72c9",
+        "version" : "2.22.4"
       }
     },
     {
@@ -77,8 +77,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/getsentry/sentry-cocoa.git",
       "state" : {
-        "revision" : "8fd4e804f2e72e0b9c1b189ce4e8349c4d10b6a2",
-        "version" : "8.30.0"
+        "revision" : "7339fcbab2ded21fe5753687022f2b673a1a1865",
+        "version" : "8.31.1"
       }
     },
     {

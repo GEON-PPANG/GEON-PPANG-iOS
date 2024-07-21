@@ -28,6 +28,7 @@
 		0915C1722A5C3D3700ACB8D4 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0915C1712A5C3D3700ACB8D4 /* PaddingLabel.swift */; };
 		0915C1752A5C533900ACB8D4 /* HomeReviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0915C1742A5C533900ACB8D4 /* HomeReviewCollectionViewCell.swift */; };
 		0924632F2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0924632E2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift */; };
+		0926989E2C3EB19600A9349D /* GBStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0926989D2C3EB19600A9349D /* GBStackView.swift */; };
 		092EFCA42A6195D900E7C262 /* CommonTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092EFCA32A6195D900E7C262 /* CommonTextView.swift */; };
 		0930D25B2A928B8000A75C7E /* CertificationMarkResponseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0930D25A2A928B8000A75C7E /* CertificationMarkResponseType.swift */; };
 		0930D25D2A928BF200A75C7E /* NearStationResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0930D25C2A928BF200A75C7E /* NearStationResponseDTO.swift */; };
@@ -285,6 +286,7 @@
 		0915C1742A5C533900ACB8D4 /* HomeReviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeReviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		091AFD412ABD79380001DD02 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		0924632E2A5BA0F200B6F65D /* HomeBakeryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBakeryCollectionViewCell.swift; sourceTree = "<group>"; };
+		0926989D2C3EB19600A9349D /* GBStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GBStackView.swift; sourceTree = "<group>"; };
 		092EFCA32A6195D900E7C262 /* CommonTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTextView.swift; sourceTree = "<group>"; };
 		0930D25A2A928B8000A75C7E /* CertificationMarkResponseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationMarkResponseType.swift; sourceTree = "<group>"; };
 		0930D25C2A928BF200A75C7E /* NearStationResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearStationResponseDTO.swift; sourceTree = "<group>"; };
@@ -586,6 +588,14 @@
 				3E232AC42A938F6400125B76 /* BookmarkCountLabel.swift */,
 			);
 			path = Label;
+			sourceTree = "<group>";
+		};
+		0926989C2C3EB18600A9349D /* StackView */ = {
+			isa = PBXGroup;
+			children = (
+				0926989D2C3EB19600A9349D /* GBStackView.swift */,
+			);
+			path = StackView;
 			sourceTree = "<group>";
 		};
 		092F11B12A69A6CC00852CA5 /* Cell */ = {
@@ -1172,6 +1182,7 @@
 			isa = PBXGroup;
 			children = (
 				096446352C2C063800D5E85A /* Bubble */,
+				0926989C2C3EB18600A9349D /* StackView */,
 				0989547B2C1C07B30000D650 /* TextField */,
 				3E2A0B832BE74E49004F8D6B /* Chip */,
 			);
@@ -2244,6 +2255,7 @@
 				3EAC950D2A9FAF4500D2AADC /* WebViewController.swift in Sources */,
 				3ED40E002A608B4700C7D5DA /* MyPageBasicCell.swift in Sources */,
 				09E445392AA3BA07008E3D33 /* SortBakeryFilterView.swift in Sources */,
+				0926989E2C3EB19600A9349D /* GBStackView.swift in Sources */,
 				3E06F8D92A9E1588001302F4 /* AlertViewController.swift in Sources */,
 				3EF9F8A82BBD116F00F3E366 /* DummyResDTO.swift in Sources */,
 				097682E52A5C99340008F4FB /* BakeryFilterItems.swift in Sources */,

@@ -1,0 +1,68 @@
+//
+//  GBStackView.swift
+//  GEON-PPANG-iOS
+//
+//  Created by JEONGEUN KIM on 7/10/24.
+//
+
+import UIKit
+
+enum GBStackType {
+    case big
+    case small
+    
+    var images: [UIImage] {
+        switch self {
+        case .big: return [.haccpMark28px, .veganMark28px, .gmoMark28px]
+        case .small: return [.haccpMark22px, .veganMark22px, .gmoMark22px]
+        }
+    }
+    
+    var size: Int {
+        switch self {
+        case .big: return 28
+        case .small: return 24
+        }
+    }
+}
+
+final class GBStackView: UIStackView {
+    
+    init(type: GBStackType, isHaccp: Bool, isVegan: Bool, isNonGMO: Bool) {
+        super.init(frame: .zero)
+        setUI()
+        addCertifiedImageViews(type: type, certifications: [isHaccp, isVegan, isNonGMO])
+    }
+    
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setUI() {
+        axis = .horizontal
+        spacing = -8
+    }
+    
+    private func addCertifiedImageViews(type: GBStackType, certifications: [Bool]) {
+        certifications.enumerated()
+            .filter { $0.element }
+            .map { $0.offset }
+            .forEach { index in
+                let imageView = createCertificationImageView(type: type, index: index)
+                addImageViewToStack(imageView: imageView, size: type.size)
+            }
+    }
+    
+    private func createCertificationImageView(type: GBStackType, index: Int) -> UIImageView {
+        let imageView = UIImageView(image: type.images[index])
+        imageView.contentMode = .topLeft
+        return imageView
+    }
+    
+    private func addImageViewToStack(imageView: UIImageView, size: Int) {
+        addArrangedSubview(imageView)
+        imageView.snp.makeConstraints {
+            $0.size.equalTo(size)
+        }
+    }
+}
