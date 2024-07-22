@@ -5,17 +5,14 @@
 //  Created by JEONGEUN KIM on 7/9/24.
 //
 
+import Combine
 
 import Foundation
-import Combine
 
 final class HomeViewModel: ViewModelType {
     
     struct Input {
-        let viewWillAppear: PassthroughSubject<Void, Never>
-        init(viewWillAppear: PassthroughSubject<Void, Never>) {
-            self.viewWillAppear = viewWillAppear
-        }
+        let viewDidLoad: AnyPublisher<Void, Never>
     }
     
     struct Output {
@@ -27,7 +24,7 @@ final class HomeViewModel: ViewModelType {
     
     private let usecase: HomeUseCase
     private var cancellable: Set<AnyCancellable> = Set()
-    
+
     init(usecase: HomeUseCase) {
         self.usecase = usecase
     }
@@ -35,7 +32,7 @@ final class HomeViewModel: ViewModelType {
     // MARK: - func
     
     func transform(_ input: Input) -> Output {
-        let bakery = input.viewWillAppear
+        let bakery = input.viewDidLoad
             .compactMap { [weak self] in self }
             .flatMap { _ -> AnyPublisher<[BestBakery], Error> in
                 Future<[BestBakery], Error> { promise in
@@ -52,14 +49,14 @@ final class HomeViewModel: ViewModelType {
             }
             .eraseToAnyPublisher()
         
-        let review = input.viewWillAppear
+        let review = input.viewDidLoad
             .compactMap { [weak self] in self }
             .flatMap {  _ -> AnyPublisher<[BestReview], Error> in
                 return Future<[BestReview], Error> { promise in
                     Task {
                         do {
                             let review = try await self.fetchBestReview()
-                            promise(.success(review))
+                                promise(.success(review))
                         } catch {
                             promise(.failure(error))
                         }
@@ -68,14 +65,8 @@ final class HomeViewModel: ViewModelType {
                 .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
-        
-        
-//        let best = Publishers.CombineLatest(bakery, review)
-//            .map { (_, _) -> () in }
-//            .eraseToAnyPublisher()
-        
-        return Output(bakery: bakery,
-                      review: review)
+
+        return Output(bakery: bakery, review: review)
     }
 }
 
