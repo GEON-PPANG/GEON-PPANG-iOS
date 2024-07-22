@@ -121,7 +121,6 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     }
     
     func configureStackView(with certifications: Certifications) {
-        let data = [certifications.isHaccp, certifications.isVegan, certifications.isNonGMO]
         
 //        self.markStackView = GBStackView(type: .big, data: data)
 //        

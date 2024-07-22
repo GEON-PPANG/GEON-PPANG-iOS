@@ -13,13 +13,15 @@ protocol HomeUseCase {
     func fetchBestReviews() async throws -> [BestReview]
 }
 
+
 final class HomeUseCaseImpl: HomeUseCase {
+    
     let bestRepository: BestRepository
     
-    init(bestRepository: BestRepository) {
+        init(bestRepository: BestRepository) {
         self.bestRepository = bestRepository
     }
-    
+
     func fetchBestBakeries() async throws -> [BestBakery] {
         do {
             return try await bestRepository.getBestBakeries()

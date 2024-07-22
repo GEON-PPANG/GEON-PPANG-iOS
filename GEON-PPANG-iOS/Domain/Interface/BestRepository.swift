@@ -11,3 +11,4 @@ protocol BestRepository {
     func getBestBakeries() async throws -> [BestBakery]
     func getBestReviews() async throws -> [BestReview]
 }
+

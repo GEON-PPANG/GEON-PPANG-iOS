@@ -29,7 +29,7 @@ struct BestBakeryResponseDTO: Decodable {
 }
 
 extension BestBakeryResponseDTO {
-    
+
     func toDomain() -> BestBakery {
         let overview: BakeryOverview = .init(
             id: bakeryID,
