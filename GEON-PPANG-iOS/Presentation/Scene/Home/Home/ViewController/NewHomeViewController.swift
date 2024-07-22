@@ -17,9 +17,7 @@ final class NewHomeViewController: UIViewController {
     
     private let viewModel: any ViewModelType
     private var cancelBag: Set<AnyCancellable> = Set()
-    
-    private let cellTappedPublisher: PassthroughSubject<IndexPath, Never> = PassthroughSubject()
-    
+        
     private var bakeryList: [BestBakery] = []
     private var reviewList: [BestReview] = []
     
