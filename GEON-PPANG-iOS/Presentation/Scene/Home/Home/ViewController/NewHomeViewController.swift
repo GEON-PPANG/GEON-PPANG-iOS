@@ -18,7 +18,7 @@ final class NewHomeViewController: UIViewController {
     private let viewModel: any ViewModelType
     private var cancelBag: Set<AnyCancellable> = Set()
     
-    private let viewWillAppearPublisher: PassthroughSubject<Void, Never> = PassthroughSubject()
+    private let cellTappedPublisher: PassthroughSubject<IndexPath, Never> = PassthroughSubject()
     
     private var bakeryList: [BestBakery] = []
     private var reviewList: [BestReview] = []
@@ -34,11 +34,15 @@ final class NewHomeViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.layout())
         collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = .gbbBackground1
-        collectionView.register(HomeBakeryCollectionViewCell.self, forCellWithReuseIdentifier: HomeBakeryCollectionViewCell.identifier)
-        collectionView.register(HomeReviewCollectionViewCell.self, forCellWithReuseIdentifier: HomeReviewCollectionViewCell.identifier)
+        collectionView.register(HomeBakeryCollectionViewCell.self,
+                                forCellWithReuseIdentifier: HomeBakeryCollectionViewCell.identifier)
+        collectionView.register(HomeReviewCollectionViewCell.self,
+                                forCellWithReuseIdentifier: HomeReviewCollectionViewCell.identifier)
         collectionView.register(HomeBottomCollectionViewCell.self, forCellWithReuseIdentifier: HomeBottomCollectionViewCell.identifier)
-        collectionView.register(HomeHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HomeHeaderView.identifier)
+        collectionView.register(HomeHeaderView.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HomeHeaderView.identifier)
         collectionView.dataSource = self
+        collectionView.delegate = self
         return collectionView
     }()
     
@@ -55,12 +59,6 @@ final class NewHomeViewController: UIViewController {
     }
     
     // MARK: - Life cycle
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        viewWillAppearPublisher.send()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,9 +97,7 @@ final class NewHomeViewController: UIViewController {
     private func transformedOutput() -> HomeViewModel.Output? {
         guard let viewModel = self.viewModel as? HomeViewModel
         else { return nil }
-        let input = HomeViewModel.Input(
-            viewWillAppear: self.viewWillAppearPublisher
-        )
+        let input = HomeViewModel.Input(viewDidLoad: self.viewDidLoadPublisher)
         return viewModel.transform(input)
     }
     
@@ -113,7 +109,6 @@ final class NewHomeViewController: UIViewController {
             .sink { err in
                 print("error:\(err)")
             } receiveValue: { [weak self] bakery in
-                dump(bakery)
                 self?.updateBakery(bakery: bakery)
             }
             .store(in: &self.cancelBag)
@@ -123,7 +118,6 @@ final class NewHomeViewController: UIViewController {
             .sink { err in
                 print("error:\(err)")
             } receiveValue: { [weak self] review in
-                dump(review)
                 self?.updateReview(review: review)
             }
             .store(in: &self.cancelBag)
@@ -131,14 +125,99 @@ final class NewHomeViewController: UIViewController {
     
     private func updateBakery(bakery:[BestBakery]) {
         self.bakeryList = bakery
-        self.collectionView.reloadSections(IndexSet(integersIn: 0 ..< 1))
+        UIView.performWithoutAnimation {
+            self.collectionView.reloadSections(IndexSet(integer: 0))
+            
+        }
     }
     
     private func updateReview(review: [BestReview]) {
         self.reviewList = review
-        self.collectionView.reloadSections(IndexSet(integersIn: 1 ..< 2))
+        UIView.performWithoutAnimation {
+            self.collectionView.reloadSections(IndexSet(integer: 1))
+        }
     }
 }
+
+// MARK: - CollectionView Layout
+
+extension NewHomeViewController {
+    
+    private func layout() -> UICollectionViewCompositionalLayout {
+        return UICollectionViewCompositionalLayout(sectionProvider: { [weak self] sectionIndex, _ in
+            switch sectionIndex {
+            case 0:
+                return self?.bestSection(headerSize: 49)
+            case 1:
+                return self?.bestSection(headerSize: 25)
+            default:
+                return self?.bottomSection()
+            }
+        })
+    }
+    
+    private func bestSection(headerSize: CGFloat) -> NSCollectionLayoutSection {
+        
+        let itemGroupSize = NSCollectionLayoutSize(
+            widthDimension: .absolute(convertByWidthRatio(192)),
+            heightDimension: .absolute(heightConsideringNotch(236))
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemGroupSize)
+        
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemGroupSize, subitems: [item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 12
+        section.orthogonalScrollingBehavior = .continuous
+        section.boundarySupplementaryItems = bestSectionHeader(to: headerSize)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 24,
+                                                        leading: 24,
+                                                        bottom: 30,
+                                                        trailing: 24)
+        
+        return section
+    }
+    
+    private func bottomSection() -> NSCollectionLayoutSection {
+        
+        let itemGroupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .absolute(72)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemGroupSize)
+        
+        let group = NSCollectionLayoutGroup.vertical(
+            layoutSize: itemGroupSize,
+            subitem: item,
+            count: 1
+        )
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 14,
+                                                        leading: 24,
+                                                        bottom: 30,
+                                                        trailing: 24)
+        
+        return section
+    }
+    
+    private func bestSectionHeader(to size: CGFloat) -> [NSCollectionLayoutBoundarySupplementaryItem] {
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .absolute(size)
+        )
+        
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top
+        )
+        
+        return [header]
+    }
+}
+
+// MARK: - CollectionView DataSource
 
 extension NewHomeViewController: UICollectionViewDataSource {
     
@@ -187,66 +266,45 @@ extension NewHomeViewController: UICollectionViewDataSource {
         
         guard let title = Sections(rawValue: indexPath.section)?.title else { return UICollectionReusableView() }
         // nickname
-        header.configureSectionHeaderTitle(nil, title)
+        header.configureSectionHeaderTitle("nil", title)
         return header
     }
 }
 
-extension NewHomeViewController {
-    private func layout() -> UICollectionViewCompositionalLayout {
+// MARK: - CollectionView Delegate
+
+extension NewHomeViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        return UICollectionViewCompositionalLayout(sectionProvider: { [weak self] sectionIndex, _ in
-            switch sectionIndex {
-            case 0:
-                return self?.bestSection(headerSize: 49)
-            case 1:
-                return self?.bestSection(headerSize: 25)
-            default:
-                return self?.bottomSection()
-            }
-        })
+        let (id, bakery) = getBakeryData(for: indexPath)
+        
+        if let id = id, let bakery = bakery {
+            navigateToDetailViewController(with: id)
+            logAnalytics(for: bakery)
+        }
     }
     
-    private func bestSection(headerSize: CGFloat) -> NSCollectionLayoutSection {
-        
-        let itemGroupSize = NSCollectionLayoutSize(widthDimension: .absolute(convertByWidthRatio(192)),
-                                                   heightDimension: .absolute(heightConsideringNotch(236)))
-        let item = NSCollectionLayoutItem(layoutSize: itemGroupSize)
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemGroupSize, subitems: [item])
-        
-        let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 12
-        section.orthogonalScrollingBehavior = .continuous
-        
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                heightDimension: .absolute(headerSize))
-        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
-                                                                 elementKind: UICollectionView.elementKindSectionHeader,
-                                                                 alignment: .top)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 24,
-                                                        leading: 24,
-                                                        bottom: 30,
-                                                        trailing: 24)
-        
-        section.boundarySupplementaryItems = [header]
-        return section
+    private func getBakeryData(for indexPath: IndexPath) -> (Int?, String?) {
+        switch indexPath.section {
+        case 0:
+            return (bakeryList[indexPath.item].overview.id, bakeryList[indexPath.item].overview.name)
+        case 1:
+            return (reviewList[indexPath.item].overview.id, reviewList[indexPath.item].overview.name)
+        default:
+            return (nil, nil)
+        }
     }
     
-    private func bottomSection() -> NSCollectionLayoutSection {
-        
-        let itemGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                   heightDimension: .absolute(72))
-        let item = NSCollectionLayoutItem(layoutSize: itemGroupSize)
-        
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: itemGroupSize,
-                                                     subitem: item,
-                                                     count: 1)
-        let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 14,
-                                                        leading: 24,
-                                                        bottom: 30,
-                                                        trailing: 24)
-        
-        return section
+    private func navigateToDetailViewController(with id: Int) {
+        let nextViewController = BakeryDetailViewController()
+        nextViewController.bakeryID = id
+        navigationController?.isNavigationBarHidden = true
+        navigationController?.pushViewController(nextViewController, animated: true)
+    }
+    
+    private func logAnalytics(for bakery: String) {
+        AnalyticManager.log(event: .home(.clickRecommendStore(bakery: bakery)))
+        AnalyticManager.log(event: .detail(.viewDetailpageAt(source: AnalyticEventType.HOME.rawValue)))
     }
 }
