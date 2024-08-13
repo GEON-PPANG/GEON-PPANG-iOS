@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BestBakery {
+struct BestBakery: Hashable {
     let overview: BakeryOverview
     let certifications: Certifications
     let bookmarkCount: Int

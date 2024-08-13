@@ -8,20 +8,33 @@
 import Combine
 
 import UIKit
+import SnapKit
 
 final class NewHomeViewController: UIViewController {
     
+    enum Sections: Int, CaseIterable {
+        case bakery
+        case review
+        case bottom
+    }
+    
+    enum Item: Hashable {
+        case bakery(BestBakery)
+        case review(BestReview)
+        case bottom
+    }
+    
     // MARK: - Property
     
-    private lazy var safeArea = self.view.safeAreaLayoutGuide
+    private var dataSource: UICollectionViewDiffableDataSource<Sections, Item>?
+    private var snapShot: NSDiffableDataSourceSnapshot<Sections, Item>?
     
     private let viewModel: any ViewModelType
     private var cancelBag: Set<AnyCancellable> = Set()
-        
-    private var bakeryList: [BestBakery] = []
-    private var reviewList: [BestReview] = []
     
     // MARK: - UI Property
+    
+    private lazy var safeArea = self.view.safeAreaLayoutGuide
     
     private let topView: HomeTopView = {
         let view = HomeTopView()
@@ -36,11 +49,11 @@ final class NewHomeViewController: UIViewController {
                                 forCellWithReuseIdentifier: HomeBakeryCollectionViewCell.identifier)
         collectionView.register(HomeReviewCollectionViewCell.self,
                                 forCellWithReuseIdentifier: HomeReviewCollectionViewCell.identifier)
-        collectionView.register(HomeBottomCollectionViewCell.self, forCellWithReuseIdentifier: HomeBottomCollectionViewCell.identifier)
+        collectionView.register(HomeBottomCollectionViewCell.self,
+                                forCellWithReuseIdentifier: HomeBottomCollectionViewCell.identifier)
         collectionView.register(HomeHeaderView.self,
-                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HomeHeaderView.identifier)
-        collectionView.dataSource = self
-        collectionView.delegate = self
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: HomeHeaderView.identifier)
         return collectionView
     }()
     
@@ -64,10 +77,11 @@ final class NewHomeViewController: UIViewController {
         setLayout()
         setUI()
         setViewModel()
+        setDataSource()
+        bindCollectionViewEvents()
     }
     
     private func setLayout() {
-        
         view.addSubview(topView)
         topView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(heightConsideringNotch(44))
@@ -107,7 +121,7 @@ final class NewHomeViewController: UIViewController {
             .sink { err in
                 print("error:\(err)")
             } receiveValue: { [weak self] bakery in
-                self?.updateBakery(bakery: bakery)
+                self?.reloadBestList(bakery: bakery)
             }
             .store(in: &self.cancelBag)
         
@@ -116,24 +130,124 @@ final class NewHomeViewController: UIViewController {
             .sink { err in
                 print("error:\(err)")
             } receiveValue: { [weak self] review in
-                self?.updateReview(review: review)
+                self?.reloadBestList(review: review)
             }
             .store(in: &self.cancelBag)
     }
+}
+
+extension NewHomeViewController {
     
-    private func updateBakery(bakery:[BestBakery]) {
-        self.bakeryList = bakery
-        UIView.performWithoutAnimation {
-            self.collectionView.reloadSections(IndexSet(integer: 0))
+    func setDataSource() {
+        self.dataSource = self.BestCollectionViewDataSource()
+        self.configureSnapshot()
+        self.configureSupplementaryView()
+    }
+    
+    func BestCollectionViewDataSource() -> UICollectionViewDiffableDataSource<Sections, Item> {
+        let dataSource = UICollectionViewDiffableDataSource<Sections, Item>(collectionView: collectionView) { collectionView, indexPath, item in
             
+            switch item {
+            case .bakery(let data):
+                let cell: HomeBakeryCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+                cell.configureCellUI(data: data)
+                return cell
+            case .review(let data):
+                let cell: HomeReviewCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+                cell.configureCellUI(data: data)
+                return cell
+            case .bottom:
+                let cell: HomeBottomCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+                return cell
+            }
+        }
+        
+        return dataSource
+    }
+    
+    private func configureSupplementaryView() {
+        dataSource?.supplementaryViewProvider = { (collectionView, _, indexPath) in
+            guard let section = Sections(rawValue: indexPath.section) else { fatalError() }
+            
+            let header: HomeHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
+            
+            //  header.configureSectionHeaderTitle("", "")
+            return header
         }
     }
     
-    private func updateReview(review: [BestReview]) {
-        self.reviewList = review
-        UIView.performWithoutAnimation {
-            self.collectionView.reloadSections(IndexSet(integer: 1))
+    func configureSnapshot() {
+        self.snapShot = NSDiffableDataSourceSnapshot<Sections, Item>()
+        snapShot?.appendSections([.bakery,.review,.bottom])
+        if let snapShot {
+            self.dataSource?.apply(snapShot)
         }
+    }
+    
+    private func reloadBestList(bakery: [BestBakery] = [], review: [BestReview] = []) {
+        // 현재 스냅샷을 가져와서 기존의 아이템이 비어있을 때만 update
+        guard var snapShot = self.dataSource?.snapshot() else { return }
+        
+        let previousBakeryData = snapShot.itemIdentifiers(inSection: .bakery)
+        let previousReviewData = snapShot.itemIdentifiers(inSection: .review)
+        
+        if previousBakeryData.isEmpty {
+            let bakeryItems = bakery.map { Item.bakery($0) }
+            snapShot.appendItems(bakeryItems, toSection: .bakery)
+        }
+        
+        if previousReviewData.isEmpty {
+            let reviewItems = review.map { Item.review($0) }
+            snapShot.appendItems(reviewItems, toSection: .review)
+        }
+        
+        snapShot.appendItems([.bottom], toSection: .bottom)
+        
+        self.dataSource?.apply(snapShot, animatingDifferences: false)
+    }
+}
+
+extension NewHomeViewController {
+    
+    private func bindCollectionViewEvents() {
+        let didSelectPublisher = CollectionViewPublisher(collectionView: collectionView, event: .didSelect)
+        didSelectPublisher
+            .sink { [weak self] indexPath in
+                self?.handleSelection(for: indexPath)
+            }
+            .store(in: &cancelBag)
+    }
+    
+    private func handleSelection(for indexPath: IndexPath) {
+        guard let (id, bakery) = getBakeryData(for: indexPath) else { return }
+        
+        self.navigateToDetailViewController(with: id)
+        self.logAnalytics(for: bakery)
+    }
+
+    private func getBakeryData(for indexPath: IndexPath) -> (Int, String)? {
+        guard let item = dataSource?.itemIdentifier(for: indexPath) else { return nil }
+        
+        switch item {
+        case .bakery(let data):
+            return (data.overview.id, data.overview.name)
+        case .review(let data):
+            return (data.overview.id, data.overview.name)
+        default:
+            return nil
+        }
+    }
+
+    private func navigateToDetailViewController(with id: Int) {
+        let nextViewController = BakeryDetailViewController()
+        nextViewController.bakeryID = id
+        navigationController?.isNavigationBarHidden = true
+        navigationController?.pushViewController(nextViewController, animated: true)
+    }
+
+    private func logAnalytics(for bakery: String) {
+        AnalyticManager.log(event: .home(.clickRecommendStore(bakery: bakery)))
+        AnalyticManager.log(event: .detail(.viewDetailpageAt(source: AnalyticEventType.HOME.rawValue)))
     }
 }
 
@@ -215,94 +329,76 @@ extension NewHomeViewController {
     }
 }
 
-// MARK: - CollectionView DataSource
+enum Event {
+    case didSelect
+    case didDeselect
+}
 
-extension NewHomeViewController: UICollectionViewDataSource {
+final class CollectionViewSubscription<SubscriberType: Subscriber>: Subscription where SubscriberType.Input == IndexPath {
+    private var subscriber: SubscriberType?
+    private weak var collectionView: UICollectionView?
+    private var delegateProxy: CollectionViewDelegateProxy?
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return bakeryList.count
-        case 1:
-            return reviewList.count
-        default:
-            return 1
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch indexPath.section {
-        case 0:
-            let cell: HomeBakeryCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-            let item = self.bakeryList[indexPath.item]
-            cell.configureCellUI(data: item)
-            return cell
-        case 1:
-            let cell: HomeReviewCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-            let item = self.reviewList[indexPath.item]
-            cell.configureCellUI(data: item)
-            return cell
-        case 2:
-            let cell: HomeBottomCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-            return cell
-        default:
-            return UICollectionViewCell()
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard kind == UICollectionView.elementKindSectionHeader,
-              let header = collectionView.dequeueReusableSupplementaryView(
-                ofKind: kind,
-                withReuseIdentifier: HomeHeaderView.identifier,
-                for: indexPath
-              ) as? HomeHeaderView else { return UICollectionReusableView() }
+    init(subscriber: SubscriberType, collectionView: UICollectionView, event: Event) {
+        self.subscriber = subscriber
+        self.collectionView = collectionView
         
-        guard let title = Sections(rawValue: indexPath.section)?.title else { return UICollectionReusableView() }
-        // nickname
-        header.configureSectionHeaderTitle("nil", title)
-        return header
+        let delegateProxy = CollectionViewDelegateProxy(
+            event: event,
+            handler: { [weak self] indexPath in
+                _ = self?.subscriber?.receive(indexPath)
+            }
+        )
+        
+        self.delegateProxy = delegateProxy
+        collectionView.delegate = delegateProxy
+    }
+    
+    func request(_ demand: Subscribers.Demand) {
+        // 요구 처리 로직 추가 가능
+    }
+    
+    func cancel() {
+        subscriber = nil
+        delegateProxy = nil
     }
 }
 
-// MARK: - CollectionView Delegate
-
-extension NewHomeViewController: UICollectionViewDelegate {
+private class CollectionViewDelegateProxy: NSObject, UICollectionViewDelegate {
+    private let event: Event
+    private let handler: (IndexPath) -> Void
+    
+    init(event: Event, handler: @escaping (IndexPath) -> Void) {
+        self.event = event
+        self.handler = handler
+    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let (id, bakery) = getBakeryData(for: indexPath)
-        
-        if let id = id, let bakery = bakery {
-            navigateToDetailViewController(with: id)
-            logAnalytics(for: bakery)
+        if event == .didSelect {
+            handler(indexPath)
         }
     }
     
-    private func getBakeryData(for indexPath: IndexPath) -> (Int?, String?) {
-        switch indexPath.section {
-        case 0:
-            return (bakeryList[indexPath.item].overview.id, bakeryList[indexPath.item].overview.name)
-        case 1:
-            return (reviewList[indexPath.item].overview.id, reviewList[indexPath.item].overview.name)
-        default:
-            return (nil, nil)
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if event == .didDeselect {
+            handler(indexPath)
         }
     }
+}
+
+struct CollectionViewPublisher: Publisher {
+    typealias Output = IndexPath
+    typealias Failure = Never
     
-    private func navigateToDetailViewController(with id: Int) {
-        let nextViewController = BakeryDetailViewController()
-        nextViewController.bakeryID = id
-        navigationController?.isNavigationBarHidden = true
-        navigationController?.pushViewController(nextViewController, animated: true)
-    }
+    let collectionView: UICollectionView
+    let event: Event
     
-    private func logAnalytics(for bakery: String) {
-        AnalyticManager.log(event: .home(.clickRecommendStore(bakery: bakery)))
-        AnalyticManager.log(event: .detail(.viewDetailpageAt(source: AnalyticEventType.HOME.rawValue)))
+    func receive<S>(subscriber: S) where S: Subscriber, S.Input == IndexPath, S.Failure == Never {
+        let subscription = CollectionViewSubscription(
+            subscriber: subscriber,
+            collectionView: collectionView,
+            event: event
+        )
+        subscriber.receive(subscription: subscription)
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BakeryOverview {
+struct BakeryOverview: Hashable {
     let id: Int
     let name: String
     let image: String

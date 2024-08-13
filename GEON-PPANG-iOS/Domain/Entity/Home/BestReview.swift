@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BestReview {
+struct BestReview: Hashable {
     let overview: BakeryOverview
     let reviewOverview: String
     let recommendKeywords: [String]

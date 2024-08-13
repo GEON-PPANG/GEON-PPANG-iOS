@@ -16,15 +16,18 @@ final class HomeViewModel: ViewModelType {
     }
     
     struct Output {
-        let bakery: AnyPublisher<[BestBakery], Error>
-        let review: AnyPublisher<[BestReview], Error>
+        let bakery: AnyPublisher<[BestBakery], Never>
+        let review: AnyPublisher<[BestReview], Never>
     }
     
     // MARK: - Property
     
     private let usecase: HomeUseCase
     private var cancellable: Set<AnyCancellable> = Set()
-
+    
+    private var bakerySubject = CurrentValueSubject<[BestBakery], Never>([])
+    private var reviewSubject = CurrentValueSubject<[BestReview], Never>([])
+    
     init(usecase: HomeUseCase) {
         self.usecase = usecase
     }
@@ -32,41 +35,34 @@ final class HomeViewModel: ViewModelType {
     // MARK: - func
     
     func transform(_ input: Input) -> Output {
-        let bakery = input.viewDidLoad
-            .compactMap { [weak self] in self }
-            .flatMap { _ -> AnyPublisher<[BestBakery], Error> in
-                Future<[BestBakery], Error> { promise in
-                    Task {
-                        do {
-                            let bakery = try await self.fetchBestBakery()
-                            promise(.success(bakery))
-                        } catch {
-                            promise(.failure(error))
-                        }
-                    }
-                }
-                .eraseToAnyPublisher()
+        input.viewDidLoad
+            .sink { [weak self] in
+                self?.fetchData()
             }
-            .eraseToAnyPublisher()
+            .store(in: &cancellable)
         
-        let review = input.viewDidLoad
-            .compactMap { [weak self] in self }
-            .flatMap {  _ -> AnyPublisher<[BestReview], Error> in
-                return Future<[BestReview], Error> { promise in
-                    Task {
-                        do {
-                            let review = try await self.fetchBestReview()
-                                promise(.success(review))
-                        } catch {
-                            promise(.failure(error))
-                        }
-                    }
-                }
-                .eraseToAnyPublisher()
+        return Output(bakery: bakerySubject.eraseToAnyPublisher(),
+                      review: reviewSubject.eraseToAnyPublisher())
+    }
+    
+    private func fetchData() {
+        Task {
+            do {
+                let bakeries = try await fetchBestBakery()
+                bakerySubject.send(bakeries) 
+            } catch {
+                bakerySubject.send([])
             }
-            .eraseToAnyPublisher()
-
-        return Output(bakery: bakery, review: review)
+        }
+        
+        Task {
+            do {
+                let reviews = try await fetchBestReview()
+                reviewSubject.send(reviews)
+            } catch {
+                reviewSubject.send([])
+            }
+        }
     }
 }
 

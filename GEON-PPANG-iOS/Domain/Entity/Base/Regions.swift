@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Regions {
+struct Regions: Hashable {
     let firstRegion: String
     let secondRegion: String?
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Certifications {
+struct Certifications: Hashable {
     let isHaccp: Bool
     let isVegan: Bool
     let isNonGMO: Bool
