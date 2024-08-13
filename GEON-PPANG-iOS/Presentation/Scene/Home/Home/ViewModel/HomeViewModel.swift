@@ -25,8 +25,8 @@ final class HomeViewModel: ViewModelType {
     private let usecase: HomeUseCase
     private var cancellable: Set<AnyCancellable> = Set()
     
-    private var bakerySubject = CurrentValueSubject<[BestBakery], Never>([])
-    private var reviewSubject = CurrentValueSubject<[BestReview], Never>([])
+    private var bakerySubject = PassthroughSubject<[BestBakery], Never>()
+    private var reviewSubject = PassthroughSubject<[BestReview], Never>()
     
     init(usecase: HomeUseCase) {
         self.usecase = usecase
