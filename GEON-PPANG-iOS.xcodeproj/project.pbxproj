@@ -81,7 +81,7 @@
 		098716B62A60F52200538D05 /* BakeryTypeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098716B52A60F52200538D05 /* BakeryTypeProtocol.swift */; };
 		098716B82A6138BD00538D05 /* MyReviewsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098716B72A6138BD00538D05 /* MyReviewsHeaderView.swift */; };
 		0987288D2A5BA1F000A29402 /* BookmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0987288C2A5BA1F000A29402 /* BookmarkButton.swift */; };
-		098800A82C4E3A62009E6F43 /* UIViewController+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098800A72C4E3A62009E6F43 /* UIViewController+Combine.swift */; };
+		098800A82C4E3A62009E6F43 /* UIViewController+LifeCyclePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098800A72C4E3A62009E6F43 /* UIViewController+LifeCyclePublisher.swift */; };
 		098F32EA2A4200FE0092D09A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 098F32E92A4200FE0092D09A /* Assets.xcassets */; };
 		098F32ED2A4200FE0092D09A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 098F32EB2A4200FE0092D09A /* LaunchScreen.storyboard */; };
 		09980CFB2A99A9800098550C /* SignInPropertyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09980CFA2A99A9800098550C /* SignInPropertyType.swift */; };
@@ -400,7 +400,7 @@
 		098716B52A60F52200538D05 /* BakeryTypeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryTypeProtocol.swift; sourceTree = "<group>"; };
 		098716B72A6138BD00538D05 /* MyReviewsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewsHeaderView.swift; sourceTree = "<group>"; };
 		0987288C2A5BA1F000A29402 /* BookmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkButton.swift; sourceTree = "<group>"; };
-		098800A72C4E3A62009E6F43 /* UIViewController+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Combine.swift"; sourceTree = "<group>"; };
+		098800A72C4E3A62009E6F43 /* UIViewController+LifeCyclePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+LifeCyclePublisher.swift"; sourceTree = "<group>"; };
 		098F32DD2A4200FD0092D09A /* GEON-PPANG-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GEON-PPANG-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		098F32E02A4200FD0092D09A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		098F32E22A4200FD0092D09A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -1041,7 +1041,7 @@
 		098800A62C4E3A4D009E6F43 /* Combine */ = {
 			isa = PBXGroup;
 			children = (
-				098800A72C4E3A62009E6F43 /* UIViewController+Combine.swift */,
+				098800A72C4E3A62009E6F43 /* UIViewController+LifeCyclePublisher.swift */,
 			);
 			path = Combine;
 			sourceTree = "<group>";
@@ -2362,7 +2362,7 @@
 				3E3DE9C92C25AE0100CA5999 /* PasswordValidationError.swift in Sources */,
 				0959F1702A658CA400E77CAF /* HomeBestBakeryResponseDTO.swift in Sources */,
 				3E7B21C42A621A9A00C8F8B4 /* SortBakeryCollectionViewCell.swift in Sources */,
-				098800A82C4E3A62009E6F43 /* UIViewController+Combine.swift in Sources */,
+				098800A82C4E3A62009E6F43 /* UIViewController+LifeCyclePublisher.swift in Sources */,
 				DFB587BB2A5D588500704B6C /* DrawDashLineView.swift in Sources */,
 				090556222A51DB3300752067 /* UIFont+.swift in Sources */,
 				092698892C3CF93F00A9349D /* BestBakeryResponseDTO.swift in Sources */,
