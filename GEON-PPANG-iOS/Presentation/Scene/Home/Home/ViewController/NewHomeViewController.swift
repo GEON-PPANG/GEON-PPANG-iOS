@@ -118,8 +118,8 @@ final class NewHomeViewController: UIViewController {
         
         output.bakery
             .receive(on: RunLoop.main)
-            .sink { err in
-                print("error:\(err)")
+            .sink { completion in
+                print("completion:\(completion)")
             } receiveValue: { [weak self] bakery in
                 self?.reloadBestList(bakery: bakery)
             }
@@ -127,8 +127,8 @@ final class NewHomeViewController: UIViewController {
         
         output.review
             .receive(on: RunLoop.main)
-            .sink { err in
-                print("error:\(err)")
+            .sink { completion in
+                print("completion:\(completion)")
             } receiveValue: { [weak self] review in
                 self?.reloadBestList(review: review)
             }
