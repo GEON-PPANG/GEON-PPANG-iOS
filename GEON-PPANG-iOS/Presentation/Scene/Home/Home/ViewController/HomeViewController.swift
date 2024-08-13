@@ -330,9 +330,3 @@ extension HomeViewController {
         }
     }
 }
-
-
-final class HomeCompositionalLayout: UICollectionViewCompositionalLayout {
-    
-    
-}
