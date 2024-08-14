@@ -8,27 +8,37 @@
 import UIKit
 
 import SnapKit
-import Then
 import Kingfisher
 
 final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI Property
     
-    private let bakeryImage = UIImageView()
-    private let markStackView = MarkStackView()
-    private let bakeryTitle = UILabel()
     private let reviewCount = IconWithTextView(.reviews)
     private let bookmarkCount = IconWithTextView(.bookmark)
     private let regionStackView = RegionStackView()
+ //   private var markStackView: GBStackView?
+    private let bakeryImage: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
+        return view
+    }()
     
-    // MARK: - Life Cycle
+    private let bakeryTitle: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 1
+        label.font = .bodyB1
+        label.textColor = .gbbGray700
+        label.sizeToFit()
+        return label
+    }()
+    
+    // MARK: - Init
     
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        markStackView.getMarkStatus(false, false, false)
-        markStackView.configureIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
         regionStackView.arrangedSubviews.forEach {
             regionStackView.removeArrangedSubview($0)
         }
@@ -36,7 +46,6 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        
         setLayout()
         setUI()
     }
@@ -79,59 +88,48 @@ final class HomeBakeryCollectionViewCell: UICollectionViewCell {
             $0.leading.equalTo(bakeryTitle.snp.leading)
             $0.bottom.equalToSuperview().inset(16)
         }
-        
-        bakeryImage.addSubview(markStackView)
-        markStackView.snp.makeConstraints {
-            $0.top.leading.equalToSuperview().offset(10)
-            $0.size.equalTo(CGSize(width: heightConsideringNotch(68), height: heightConsideringNotch(28)))
-        }
     }
     
     private func setUI() {
-        
-        self.do {
-            $0.layer.applyShadow(alpha: 0.1, x: 0, y: 0, blur: 10)
-            $0.contentView.backgroundColor = .white
-            $0.contentView.makeCornerRound(radius: 5)
-            $0.contentView.clipsToBounds = true
-        }
-        
-        bakeryImage.do {
-            $0.contentMode = .scaleAspectFill
-            $0.clipsToBounds = true
-        }
-        
-        markStackView.do {
-            $0.configureIconImage(.bigHACCPMark, .bigVeganMark, .bigGMOMark)
-        }
-        
-        bakeryTitle.do {
-            $0.numberOfLines = 1
-            $0.basic(font: .bodyB1!, color: .gbbGray700!)
-            $0.sizeToFit()
-        }
-        
+        layer.applyShadow(alpha: 0.1, x: 0, y: 0, blur: 10)
+        contentView.backgroundColor = .white
+        contentView.makeCornerRound(radius: 5)
+        contentView.clipsToBounds = true
     }
     
     // MARK: - Custom Method
     
-    func configureCellUI(data: HomeBestBakeryResponseDTO) {
+    func configureCellUI(data: BestBakery) {
         
-        let url = URL(string: data.bakeries.picture)
+        let url = URL(string: data.overview.image)
         bakeryImage.kf.setImage(with: url, placeholder: UIImage.loading_large)
-        bakeryTitle.setLineHeight(by: 1.08, with: data.bakeries.name)
+        bakeryTitle.setLineHeight(by: 1.08, with: data.overview.name)
         bakeryTitle.lineBreakMode = .byTruncatingTail
-
-        bookmarkCount.configureHomeCell(count: data.bakeries.bookmarkCount)
-        reviewCount.configureHomeCell(count: data.bakeries.reviewCount)
-        markStackView.getMarkStatus(data.bakeries.mark.isHACCP,
-                                    data.bakeries.mark.isVegan,
-                                    data.bakeries.mark.isNonGMO)
         
-        if data.bakeries.station.second == "" {
+        bookmarkCount.configureHomeCell(count: data.bookmarkCount)
+        reviewCount.configureHomeCell(count: data.reviewCount)
+        
+        self.configureStackView(with: data.certifications)
+        
+        // cell builder 머지 후 변경
+        
+        if data.regions.secondRegion == "" {
             regionStackView.removeSecondRegion()
         }
         
-        regionStackView.configureRegion(data.bakeries.station)
+        regionStackView.configureRegion(data.regions)
+    }
+    
+    func configureStackView(with certifications: Certifications) {
+        
+//        self.markStackView = GBStackView(type: .big, data: data)
+//        
+//        if let markStackView = markStackView {
+//            bakeryImage.addSubview(markStackView)
+//            markStackView.snp.makeConstraints {
+//                $0.top.leading.equalToSuperview().offset(10)
+//                $0.size.equalTo(CGSize(width: heightConsideringNotch(68), height: heightConsideringNotch(28)))
+//            }
+//        }
     }
 }

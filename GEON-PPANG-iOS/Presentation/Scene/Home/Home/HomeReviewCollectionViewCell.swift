@@ -9,7 +9,6 @@ import UIKit
 
 import Kingfisher
 import SnapKit
-import Then
 
 final class HomeReviewCollectionViewCell: UICollectionViewCell {
     
@@ -20,21 +19,52 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI Property
     
-    private lazy var bakeryImage = GradientImageView(colors: [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.5).cgColor])
-    private let reviewTitle = UILabel()
-    private let bakeryTitle = UILabel()
+    private lazy var bakeryImage: GradientImageView = {
+        let view = GradientImageView(colors: [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.5).cgColor])
+        view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
+        return view
+    }()
+    
+    private let reviewTitle: UILabel = {
+        let label = UILabel()
+        label.font = .bodyB2
+        label.textColor = .gbbWhite
+        label.textAlignment = .left
+        label.numberOfLines = 2
+        return label
+    }()
+    
+    private let bakeryTitle: UILabel = {
+        let label = UILabel()
+        label.font = .bodyB1
+        label.textColor = .gbbGray700
+        label.textAlignment = .left
+        label.numberOfLines = 1
+        return label
+    }()
+    
+    private lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: OptionsCollectionViewFlowLayout())
+        collectionView.register(DescriptionCollectionViewCell.self, 
+                                forCellWithReuseIdentifier: DescriptionCollectionViewCell.identifier)
+        collectionView.isScrollEnabled = false
+        collectionView.backgroundColor = .clear
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        return collectionView
+    }()
+    
     private let reviewCount = IconWithTextView(.reviews)
     private let bookmarkCount = IconWithTextView(.bookmark)
-    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: OptionsCollectionViewFlowLayout())
     
-    // MARK: - Life Cycle
+    // MARK: - init
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
         setLayout()
         setUI()
-        setRegister()
     }
     
     required init?(coder: NSCoder) {
@@ -87,64 +117,27 @@ final class HomeReviewCollectionViewCell: UICollectionViewCell {
     
     private func setUI() {
         
-        self.do {
-            $0.layer.applyShadow(alpha: 0.1, x: 0, y: 0, blur: 10)
-            $0.contentView.backgroundColor = .white
-            $0.contentView.makeCornerRound(radius: 5)
-            $0.contentView.clipsToBounds = true
-        }
-        
-        bakeryImage.do {
-            $0.contentMode = .scaleAspectFill
-            $0.clipsToBounds = true
-        }
-        
-        reviewTitle.do {
-            $0.basic(font: .bodyB2!, color: .white)
-            $0.textAlignment = .left
-            $0.numberOfLines = 2
-        }
-        
-        collectionView.do {
-            $0.isScrollEnabled = false
-            $0.backgroundColor = .clear
-            $0.delegate = self
-            $0.dataSource = self
-        }
-        
-        bakeryTitle.do {
-            $0.numberOfLines = 1
-            $0.basic(font: .bodyB1!, color: .gbbGray700!)
-            $0.textAlignment = .left
-            
-        }
-        
+        self.layer.applyShadow(alpha: 0.1, x: 0, y: 0, blur: 10)
+        self.contentView.backgroundColor = .white
+        self.contentView.makeCornerRound(radius: 5)
+        self.contentView.clipsToBounds = true
     }
     
-    func configureCellUI(data: HomeBestReviewResponseDTO) {
+    func configureCellUI(data: BestReview) {
         
-        let url = URL(string: data.reviews.picture)
+        let url = URL(string: data.overview.image)
         bakeryImage.kf.setImage(with: url, placeholder: UIImage.loading_large)
         
-        reviewTitle.setLineHeight(by: 1.14, with: "\"\(data.text)\"")
+        reviewTitle.setLineHeight(by: 1.14, with: "\"\(data.reviewOverview)\"")
         reviewTitle.lineBreakMode = .byTruncatingTail
-        bakeryTitle.setLineHeight(by: 1.08, with: data.reviews.name)
+        bakeryTitle.setLineHeight(by: 1.08, with: data.overview.name)
         bakeryTitle.lineBreakMode = .byTruncatingTail
         
-        reviewCount.configureHomeCell(count: data.reviews.reviewCount)
-        bookmarkCount.configureHomeCell(count: data.reviews.bookmarkCount)
+        reviewCount.configureHomeCell(count: data.reviewCount)
+        bookmarkCount.configureHomeCell(count: data.bookmarkCount)
         
-        keywords = data.keywords.keywords
+        keywords = data.recommendKeywords
         collectionView.reloadData()
-    }
-}
-
-// MARK: - CollectionView Register
-
-extension HomeReviewCollectionViewCell {
-    private func setRegister() {
-        
-        collectionView.register(cell: DescriptionCollectionViewCell.self)
     }
 }
 

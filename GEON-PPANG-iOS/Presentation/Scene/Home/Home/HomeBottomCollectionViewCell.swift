@@ -8,21 +8,27 @@
 import UIKit
 
 import SnapKit
-import Then
 
 final class HomeBottomCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI Property
     
-    private let footerLabel = UILabel()
+    private let footerLabel: UILabel = {
+        let label = UILabel()
+        label.font = .captionM2
+        label.textColor = .gbbGray300
+        label.textAlignment = .left
+        label.numberOfLines = 4
+        label.setLineHeight(by: 1.37, with: I18N.Home.bottomSectionTitle)
+        return label
+    }()
     
-    // MARK: - Life Cycle
+    // MARK: - init
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
         setLayout()
-        setUI()
     }
     
     required init?(coder: NSCoder) {
@@ -36,17 +42,6 @@ final class HomeBottomCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(footerLabel)
         footerLabel.snp.makeConstraints {
             $0.top.directionalHorizontalEdges.equalToSuperview()
-        }
-    }
-    
-    private func setUI() {
-
-        footerLabel.do {
-            $0.textAlignment = .left
-            $0.numberOfLines = 4
-            $0.basic(font: .captionM2!,
-                     color: .gbbGray300!)
-            $0.setLineHeight(by: 1.37, with: I18N.Home.bottomSectionTitle)
         }
     }
 }

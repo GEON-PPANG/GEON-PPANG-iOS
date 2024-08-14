@@ -65,6 +65,13 @@ final class RegionStackView: UIStackView {
         setUI(!data.stations[1].isEmpty)
     }
     
+    func configureRegion(_ data: Regions) {
+        
+        regionFirstTag.text = data.firstRegion
+        regionSecondTag.text = data.secondRegion
+        setUI(data.secondRegion != nil)
+    }
+    
     func configureChipCornerRadius(_ radius: CGFloat) {
         
         [regionFirstTag, regionSecondTag].forEach {
